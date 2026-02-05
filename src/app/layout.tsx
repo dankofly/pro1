@@ -3,7 +3,7 @@ import { Toaster } from '@/components/ui/sonner'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'SVS-Butler AT – Dein SVS-Beitragsrechner',
+  title: 'SVS Checker – Dein SVS-Beitragsrechner',
   description: 'SVS-Beitragsrechner für Selbständige in Österreich. Berechne deine SVS-Nachzahlung und spare voraus.',
   keywords: ['SVS', 'Sozialversicherung', 'Selbständige', 'Österreich', 'Beitragsrechner', 'Nachzahlung'],
 }

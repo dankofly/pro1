@@ -108,7 +108,7 @@ export default function Home() {
         <PremiumCTA />
 
         <footer className="text-center py-8 text-xs text-muted-foreground space-y-1">
-          <p className="font-medium text-foreground/70">SVS-Butler AT – Beitragsrechner für Selbständige in Österreich</p>
+          <p className="font-medium text-foreground/70">SVS Checker – Beitragsrechner für Selbständige in Österreich</p>
           <p>Alle Angaben ohne Gewähr. Kein Ersatz für professionelle Steuerberatung. Werte 2024/25.</p>
         </footer>
       </main>

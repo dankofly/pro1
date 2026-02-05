@@ -22,7 +22,7 @@ export function PremiumCTA() {
           Coming Soon
         </Badge>
 
-        <h3 className="text-xl sm:text-2xl font-bold mb-2">SVS-Butler Pro</h3>
+        <h3 className="text-xl sm:text-2xl font-bold mb-2">SVS Checker Pro</h3>
         <p className="text-blue-100/80 text-sm mb-6 max-w-md">
           Automatisiere deine SVS-Planung komplett – mit Bank-Anbindung und intelligenter Steueroptimierung.
         </p>
