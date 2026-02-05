@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
-import { calculateSvs } from '@/lib/svs-calculator'
+import { calculateSvs, calculateSteuerTipps } from '@/lib/svs-calculator'
 import { SVS } from '@/lib/svs-constants'
 import { formatEuro } from '@/lib/format'
 import { SvsHeader } from '@/components/svs/header'
@@ -10,10 +10,13 @@ import { InputSection } from '@/components/svs/input-section'
 import { DashboardCards } from '@/components/svs/dashboard-cards'
 import { BeitragsDetails } from '@/components/svs/beitrags-details'
 import { MonthlyOverview } from '@/components/svs/monthly-overview'
+import { WahrheitsTabelle } from '@/components/svs/wahrheits-tabelle'
+import { SteuerTipps } from '@/components/svs/steuer-tipps'
 import { PremiumCTA } from '@/components/svs/premium-cta'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Info } from 'lucide-react'
 import { toast } from 'sonner'
+import { useSmartAlerts } from '@/hooks/use-smart-alerts'
 import type { User } from '@supabase/supabase-js'
 
 export default function Home() {
@@ -35,6 +38,13 @@ export default function Home() {
   }, [])
 
   const result = useMemo(() => calculateSvs(gewinn, vorschreibung), [gewinn, vorschreibung])
+  const steuerTipps = useMemo(() => calculateSteuerTipps(gewinn, result.endgueltigeSVS), [gewinn, result.endgueltigeSVS])
+  const { prefs: alertPrefs, isExceeded: alertActive, updatePrefs: updateAlertPrefs, requestNotificationPermission } = useSmartAlerts(result.nachzahlung)
+
+  const handleImportGewinn = useCallback((value: number) => {
+    setGewinn(Math.round(value))
+    toast.success(`Gewinn von ${formatEuro(value)} uebernommen.`)
+  }, [])
 
   const handleSave = useCallback(async () => {
     if (!user) {
@@ -77,6 +87,7 @@ export default function Home() {
         onSave={handleSave}
         onLogout={handleLogout}
         saving={saving}
+        alertActive={alertActive}
       />
 
       <main className="max-w-5xl mx-auto px-4 sm:px-6 py-6 space-y-6">
@@ -99,13 +110,25 @@ export default function Home() {
 
         {!result.belowMinimum && (
           <>
+            <WahrheitsTabelle gewinn={gewinn} result={result} />
+            <SteuerTipps tipps={steuerTipps} gewinn={gewinn} />
             <DashboardCards result={result} vorschreibung={vorschreibung} />
             <BeitragsDetails result={result} />
             <MonthlyOverview result={result} vorschreibung={vorschreibung} />
           </>
         )}
 
-        <PremiumCTA />
+        <PremiumCTA
+          gewinn={gewinn}
+          vorschreibung={vorschreibung}
+          result={result}
+          steuerTipps={steuerTipps}
+          onImportGewinn={handleImportGewinn}
+          alertPrefs={alertPrefs}
+          alertActive={alertActive}
+          updateAlertPrefs={updateAlertPrefs}
+          requestNotificationPermission={requestNotificationPermission}
+        />
 
         <footer className="text-center py-8 text-xs text-muted-foreground space-y-1">
           <p className="font-medium text-foreground/70">SVS Checker – Beitragsrechner für Selbständige in Österreich</p>

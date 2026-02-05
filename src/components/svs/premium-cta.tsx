@@ -1,47 +1,123 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
+import { useState } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
-import { Bell, Building2, FileDown, BellRing } from 'lucide-react'
+import { Building2, FileDown, BellRing } from 'lucide-react'
+import { PdfExportButton } from './pdf-export-button'
+import { BankImportDialog } from './bank-import-dialog'
+import { AlertSettingsDialog } from './alert-settings-dialog'
+import type { SvsResult, SteuerTipp } from '@/lib/svs-calculator'
+import type { AlertPreferences } from '@/hooks/use-smart-alerts'
 
-const features = [
-  { icon: Building2, title: 'Bank-Anbindung', desc: 'Automatische Gewinn-Erkennung' },
-  { icon: FileDown, title: 'PDF-Export', desc: 'Berichte für deinen Steuerberater' },
-  { icon: BellRing, title: 'Smart Alerts', desc: 'Echtzeit-Nachzahlungs-Warnungen' },
-]
+interface PremiumCTAProps {
+  gewinn: number
+  vorschreibung: number
+  result: SvsResult
+  steuerTipps: SteuerTipp
+  onImportGewinn: (gewinn: number) => void
+  alertPrefs: AlertPreferences
+  alertActive: boolean
+  updateAlertPrefs: (updates: Partial<AlertPreferences>) => void
+  requestNotificationPermission: () => Promise<boolean>
+}
 
-export function PremiumCTA() {
+export function PremiumCTA({
+  gewinn,
+  vorschreibung,
+  result,
+  steuerTipps,
+  onImportGewinn,
+  alertPrefs,
+  alertActive,
+  updateAlertPrefs,
+  requestNotificationPermission,
+}: PremiumCTAProps) {
+  const [bankOpen, setBankOpen] = useState(false)
+  const [alertOpen, setAlertOpen] = useState(false)
+
   return (
-    <Card className="bg-gradient-to-br from-slate-800 via-slate-700 to-blue-800 border-0 text-white overflow-hidden relative">
-      <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-40 h-40 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
-      <CardContent className="relative p-6 sm:p-8">
-        <Badge variant="outline" className="mb-4 bg-white/10 text-white border-white/20 backdrop-blur-sm">
-          <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full mr-1.5 animate-pulse" />
-          Coming Soon
-        </Badge>
+    <>
+      <Card className="bg-gradient-to-br from-slate-800 via-slate-700 to-blue-800 border-0 text-white overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-40 h-40 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
+        <CardContent className="relative p-6 sm:p-8">
+          <Badge variant="outline" className="mb-4 bg-white/10 text-white border-white/20 backdrop-blur-sm">
+            <span className="w-1.5 h-1.5 bg-green-400 rounded-full mr-1.5" />
+            SVS Checker Pro
+          </Badge>
 
-        <h3 className="text-xl sm:text-2xl font-bold mb-2">SVS Checker Pro</h3>
-        <p className="text-blue-100/80 text-sm mb-6 max-w-md">
-          Automatisiere deine SVS-Planung komplett – mit Bank-Anbindung und intelligenter Steueroptimierung.
-        </p>
+          <h3 className="text-xl sm:text-2xl font-bold mb-2">Deine Pro-Werkzeuge</h3>
+          <p className="text-blue-100/80 text-sm mb-6 max-w-md">
+            Bank-Anbindung, PDF-Berichte und Smart Alerts – alles was du brauchst.
+          </p>
 
-        <div className="grid sm:grid-cols-3 gap-3 mb-6">
-          {features.map((item) => (
-            <div key={item.title} className="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/10">
-              <item.icon className="h-5 w-5 mb-1.5 text-blue-200" />
-              <div className="font-semibold text-sm">{item.title}</div>
-              <div className="text-blue-200/70 text-xs">{item.desc}</div>
+          <div className="grid sm:grid-cols-3 gap-3">
+            {/* Bank-Anbindung */}
+            <button
+              onClick={() => setBankOpen(true)}
+              className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/20 transition-colors text-left"
+            >
+              <Building2 className="h-5 w-5 mb-2 text-blue-200" />
+              <div className="font-semibold text-sm">Bank-Anbindung</div>
+              <div className="text-blue-200/70 text-xs mb-3">CSV-Import deiner Kontoauszuege</div>
+              <span className="text-xs font-medium bg-white/10 px-2 py-1 rounded-md">
+                CSV importieren
+              </span>
+            </button>
+
+            {/* PDF-Export */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+              <FileDown className="h-5 w-5 mb-2 text-blue-200" />
+              <div className="font-semibold text-sm">PDF-Export</div>
+              <div className="text-blue-200/70 text-xs mb-3">Berichte fuer deinen Steuerberater</div>
+              <PdfExportButton
+                gewinn={gewinn}
+                vorschreibung={vorschreibung}
+                result={result}
+                steuerTipps={steuerTipps}
+                variant="ghost"
+                size="sm"
+                className="text-white hover:text-white hover:bg-white/10 h-auto px-2 py-1 text-xs font-medium bg-white/10"
+              />
             </div>
-          ))}
-        </div>
 
-        <Button variant="secondary" className="bg-white text-slate-800 hover:bg-blue-50 shadow-lg">
-          <Bell className="h-4 w-4 mr-2" />
-          Auf Warteliste eintragen
-        </Button>
-      </CardContent>
-    </Card>
+            {/* Smart Alerts */}
+            <button
+              onClick={() => setAlertOpen(true)}
+              className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/20 transition-colors text-left relative"
+            >
+              {alertActive && (
+                <span className="absolute top-2 right-2 flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500" />
+                </span>
+              )}
+              <BellRing className="h-5 w-5 mb-2 text-blue-200" />
+              <div className="font-semibold text-sm">Smart Alerts</div>
+              <div className="text-blue-200/70 text-xs mb-3">Nachzahlungs-Warnungen</div>
+              <span className="text-xs font-medium bg-white/10 px-2 py-1 rounded-md">
+                {alertPrefs.enabled ? 'Einstellungen' : 'Aktivieren'}
+              </span>
+            </button>
+          </div>
+        </CardContent>
+      </Card>
+
+      <BankImportDialog
+        open={bankOpen}
+        onOpenChange={setBankOpen}
+        onImport={onImportGewinn}
+      />
+
+      <AlertSettingsDialog
+        open={alertOpen}
+        onOpenChange={setAlertOpen}
+        prefs={alertPrefs}
+        updatePrefs={updateAlertPrefs}
+        requestNotificationPermission={requestNotificationPermission}
+        currentNachzahlung={result.nachzahlung}
+      />
+    </>
   )
 }

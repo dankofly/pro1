@@ -11,16 +11,23 @@ interface HeaderProps {
   onSave?: () => void
   onLogout?: () => void
   saving?: boolean
+  alertActive?: boolean
 }
 
-export function SvsHeader({ user, onSave, onLogout, saving }: HeaderProps) {
+export function SvsHeader({ user, onSave, onLogout, saving, alertActive }: HeaderProps) {
   return (
     <header className="bg-gradient-to-r from-slate-900 via-slate-800 to-blue-900 text-white">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-3 sm:gap-4">
-            <div className="flex h-11 w-11 sm:h-14 sm:w-14 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20">
+            <div className="relative flex h-11 w-11 sm:h-14 sm:w-14 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20">
               <Calculator className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
+              {alertActive && (
+                <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500" />
+                </span>
+              )}
             </div>
             <div>
               <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">SVS Checker</h1>
