@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVS-Butler AT – Dein SVS-Beitragsrechner für Selbständige</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            200: '#bfdbfe',
+                            300: '#93c5fd',
+                            400: '#60a5fa',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            800: '#1e3a5f',
+                            900: '#0f1d33',
+                            950: '#0a1628',
+                        },
+                        danger: {
+                            light: '#fef2f2',
+                            DEFAULT: '#ef4444',
+                            dark: '#991b1b',
+                        },
+                        warning: {
+                            light: '#fffbeb',
+                            DEFAULT: '#f59e0b',
+                            dark: '#92400e',
+                        },
+                        success: {
+                            light: '#f0fdf4',
+                            DEFAULT: '#22c55e',
+                            dark: '#166534',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out',
+                        'slide-up': 'slideUp 0.4s ease-out',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                        'gauge': 'gaugeAnim 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        gaugeAnim: {
+                            '0%': { strokeDashoffset: '283' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: #f8fafc; }
+        input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; border-radius: 4px; background: linear-gradient(to right, #dbeafe, #2563eb); outline: none; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 24px; height: 24px; border-radius: 50%; background: #2563eb; cursor: pointer; box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4); transition: transform 0.15s ease; }
+        input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+        input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; border-radius: 50%; background: #2563eb; cursor: pointer; border: none; box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4); }
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .tooltip-trigger { position: relative; cursor: help; }
+        .tooltip-trigger .tooltip-content { visibility: hidden; opacity: 0; position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: #1e3a5f; color: white; padding: 8px 14px; border-radius: 8px; font-size: 13px; line-height: 1.5; white-space: normal; width: max-content; max-width: 280px; z-index: 50; box-shadow: 0 4px 20px rgba(0,0,0,0.2); transition: all 0.2s ease; pointer-events: none; }
+        .tooltip-trigger .tooltip-content::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: #1e3a5f; }
+        .tooltip-trigger:hover .tooltip-content { visibility: visible; opacity: 1; }
+        @media (max-width: 640px) {
+            .tooltip-trigger .tooltip-content { left: 0; transform: translateX(0); max-width: 240px; }
+            .tooltip-trigger .tooltip-content::after { left: 20px; }
+        }
+        .gradient-bg { background: linear-gradient(135deg, #0f1d33 0%, #1e3a5f 50%, #2563eb 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+        @keyframes numberCount { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .number-animate { animation: numberCount 0.4s ease-out; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useMemo, useCallback } = React;
+
+        // ═══════════════════════════════════════════════
+        // SVS KONSTANTEN - Österreich 2024/25
+        // ═══════════════════════════════════════════════
+        const SVS = {
+            PV_RATE: 0.185,        // Pensionsversicherung 18,5%
+            KV_RATE: 0.068,        // Krankenversicherung 6,8%
+            MV_RATE: 0.0153,       // Mitarbeitervorsorge 1,53% (Selbständigenvorsorge)
+            UV_MONTHLY: 11.35,     // Unfallversicherung fix pro Monat
+            GESAMT_RATE: 0.2683,   // PV + KV + MV = 26,83%
+            GERINGFUEGIGKEIT: 6221.28,   // Geringfügigkeitsgrenze / Jahr
+            HOECHSTBEITRAG: 84840,       // Höchstbeitragsgrundlage / Jahr
+            STEUER_ERSPARNIS_RATE: 0.275, // Durchschnittliche Steuerersparnis (27,5%)
+        };
+
+        // ═══════════════════════════════════════════════
+        // HILFSFUNKTIONEN
+        // ═══════════════════════════════════════════════
+        const formatEuro = (value) => {
+            return new Intl.NumberFormat('de-AT', {
+                style: 'currency',
+                currency: 'EUR',
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+            }).format(value);
+        };
+
+        const formatEuroShort = (value) => {
+            if (Math.abs(value) >= 1000) {
+                return new Intl.NumberFormat('de-AT', {
+                    style: 'currency',
+                    currency: 'EUR',
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0,
+                }).format(value);
+            }
+            return formatEuro(value);
+        };
+
+        // ═══════════════════════════════════════════════
+        // TOOLTIP KOMPONENTE
+        // ═══════════════════════════════════════════════
+        function Tooltip({ term, children }) {
+            const definitions = {
+                'Beitragsgrundlage': 'Die Beitragsgrundlage ist der Betrag, auf den Ihre SVS-Beiträge berechnet werden. Sie basiert auf Ihrem Gewinn laut Einkommensteuerbescheid.',
+                'Nachzahlungsfalle': 'Die SVS berechnet Ihre Beiträge zunächst auf Basis alter Einkünfte (vorläufig). Steigt Ihr Gewinn, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung.',
+                'Höchstbeitragsgrundlage': 'Der maximale Betrag (€ 84.840/Jahr), auf den SVS-Beiträge berechnet werden. Einkommen darüber ist beitragsfrei.',
+                'Geringfügigkeitsgrenze': 'Unter € 6.221,28 Jahresgewinn sind Sie von der Pflichtversicherung bei der SVS ausgenommen.',
+                'Vorläufige Beitragsgrundlage': 'Die SVS schreibt Ihnen zunächst Beiträge auf Basis Ihres Gewinns vor 3 Jahren vor. Diese werden nach dem Steuerbescheid nachträglich korrigiert.',
+                'Endgültige Beitragsgrundlage': 'Die tatsächliche Berechnungsbasis nach Vorliegen des Einkommensteuerbescheids. Die Differenz zur vorläufigen führt zu Nach- oder Rückzahlungen.',
+                'Selbständigenvorsorge': 'Die Mitarbeitervorsorge für Selbständige (1,53%) – ein Pendant zur Abfertigung für Unselbständige. Das Geld fließt in eine Vorsorgekasse.',
+            };
+
+            return (
+                <span className="tooltip-trigger inline-flex items-center">
+                    <span className="border-b border-dashed border-brand-400 text-brand-600 font-medium">
+                        {term}
+                    </span>
+                    <svg className="w-3.5 h-3.5 ml-0.5 text-brand-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span className="tooltip-content">{children || definitions[term] || term}</span>
+                </span>
+            );
+        }
+
+        // ═══════════════════════════════════════════════
+        // GAUGE / BAROMETER KOMPONENTE
+        // ═══════════════════════════════════════════════
+        function GaugeBarometer({ riskPercent }) {
+            const radius = 45;
+            const circumference = Math.PI * radius; // Halbkreis
+            const offset = circumference - (riskPercent / 100) * circumference;
+
+            const getColor = (pct) => {
+                if (pct <= 25) return { stroke: '#22c55e', bg: '#f0fdf4', text: 'Niedrig', emoji: '✓' };
+                if (pct <= 50) return { stroke: '#f59e0b', bg: '#fffbeb', text: 'Mittel', emoji: '⚠' };
+                if (pct <= 75) return { stroke: '#f97316', bg: '#fff7ed', text: 'Hoch', emoji: '⚡' };
+                return { stroke: '#ef4444', bg: '#fef2f2', text: 'Kritisch', emoji: '🔴' };
+            };
+
+            const color = getColor(riskPercent);
+
+            return (
+                <div className="flex flex-col items-center">
+                    <svg width="180" height="110" viewBox="0 0 120 70">
+                        {/* Background arc */}
+                        <path
+                            d="M 10 65 A 45 45 0 0 1 110 65"
+                            fill="none"
+                            stroke="#e2e8f0"
+                            strokeWidth="10"
+                            strokeLinecap="round"
+                        />
+                        {/* Colored arc */}
+                        <path
+                            d="M 10 65 A 45 45 0 0 1 110 65"
+                            fill="none"
+                            stroke={color.stroke}
+                            strokeWidth="10"
+                            strokeLinecap="round"
+                            strokeDasharray={circumference}
+                            strokeDashoffset={offset}
+                            style={{ transition: 'stroke-dashoffset 0.8s ease-out, stroke 0.4s ease' }}
+                        />
+                        {/* Center text */}
+                        <text x="60" y="55" textAnchor="middle" className="font-bold" style={{ fontSize: '18px', fill: color.stroke, fontFamily: 'Inter' }}>
+                            {Math.round(riskPercent)}%
+                        </text>
+                    </svg>
+                    <div className="flex items-center gap-1.5 mt-1">
+                        <span className="text-lg">{color.emoji}</span>
+                        <span className="text-sm font-semibold" style={{ color: color.stroke }}>
+                            Risiko: {color.text}
+                        </span>
+                    </div>
+                </div>
+            );
+        }
+
+        // ═══════════════════════════════════════════════
+        // HEADER KOMPONENTE
+        // ═══════════════════════════════════════════════
+        function Header() {
+            return (
+                <header className="gradient-bg text-white">
+                    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+                        <div className="flex items-center gap-3 sm:gap-4 mb-3">
+                            <div className="w-11 h-11 sm:w-14 sm:h-14 bg-white/15 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/20">
+                                <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">SVS-Butler AT</h1>
+                                <p className="text-blue-200 text-sm sm:text-base font-light">Dein SVS-Beitragsrechner</p>
+                            </div>
+                        </div>
+                        <p className="text-blue-100/80 text-sm sm:text-base max-w-2xl leading-relaxed">
+                            Behalte den Überblick über deine SVS-Beiträge als Selbständige/r in Österreich.
+                            Vermeide die <Tooltip term="Nachzahlungsfalle">Die SVS berechnet Beiträge zunächst vorläufig. Steigt dein Gewinn, droht eine hohe Nachzahlung.</Tooltip> und plane voraus.
+                        </p>
+                        <div className="flex flex-wrap gap-2 mt-4">
+                            <span className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-3 py-1 text-xs font-medium text-blue-100">
+                                <span className="w-1.5 h-1.5 bg-green-400 rounded-full"></span>
+                                Werte 2024/25
+                            </span>
+                            <span className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-3 py-1 text-xs font-medium text-blue-100">
+                                🇦🇹 Österreich
+                            </span>
+                        </div>
+                    </div>
+                </header>
+            );
+        }
+
+        // ═══════════════════════════════════════════════
+        // INPUT SEKTION
+        // ═══════════════════════════════════════════════
+        function InputSection({ gewinn, setGewinn, vorschreibung, setVorschreibung }) {
+            const handleGewinnInput = (e) => {
+                const val = e.target.value.replace(/[^0-9]/g, '');
+                setGewinn(Math.min(Number(val) || 0, 200000));
+            };
+
+            const handleVorschreibungInput = (e) => {
+                const val = e.target.value.replace(/[^0-9.,]/g, '').replace(',', '.');
+                setVorschreibung(Math.min(Number(val) || 0, 5000));
+            };
+
+            return (
+                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 sm:p-8 card-hover animate-slide-up">
+                    <div className="flex items-center gap-2 mb-6">
+                        <div className="w-8 h-8 rounded-lg bg-brand-50 flex items-center justify-center">
+                            <svg className="w-4 h-4 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                            </svg>
+                        </div>
+                        <h2 className="text-lg font-semibold text-gray-900">Deine Angaben</h2>
+                    </div>
+
+                    {/* Jahresgewinn */}
+                    <div className="mb-8">
+                        <div className="flex flex-wrap items-baseline justify-between gap-2 mb-3">
+                            <label className="text-sm font-medium text-gray-700">
+                                Voraussichtlicher Jahresgewinn
+                            </label>
+                            <Tooltip term="Beitragsgrundlage" />
+                        </div>
+                        <div className="flex items-center gap-4 mb-3">
+                            <div className="relative flex-1 max-w-[200px]">
+                                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-medium text-sm">€</span>
+                                <input
+                                    type="text"
+                                    value={gewinn.toLocaleString('de-AT')}
+                                    onChange={handleGewinnInput}
+                                    className="w-full pl-8 pr-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-right font-mono font-medium text-gray-900 text-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all"
+                                />
+                            </div>
+                            <span className="text-sm text-gray-400">/ Jahr</span>
+                        </div>
+                        <input
+                            type="range"
+                            min="0"
+                            max="150000"
+                            step="500"
+                            value={gewinn}
+                            onChange={(e) => setGewinn(Number(e.target.value))}
+                            className="w-full"
+                        />
+                        <div className="flex justify-between text-xs text-gray-400 mt-1.5">
+                            <span>€ 0</span>
+                            <span>€ 50.000</span>
+                            <span>€ 100.000</span>
+                            <span>€ 150.000</span>
+                        </div>
+                    </div>
+
+                    {/* Monatliche Vorschreibung */}
+                    <div>
+                        <div className="flex flex-wrap items-baseline justify-between gap-2 mb-3">
+                            <label className="text-sm font-medium text-gray-700">
+                                Aktuelle monatliche SVS-Vorschreibung
+                            </label>
+                            <Tooltip term="Vorläufige Beitragsgrundlage" />
+                        </div>
+                        <div className="flex items-center gap-4">
+                            <div className="relative flex-1 max-w-[200px]">
+                                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 font-medium text-sm">€</span>
+                                <input
+                                    type="text"
+                                    value={vorschreibung > 0 ? vorschreibung.toLocaleString('de-AT') : ''}
+                                    onChange={handleVorschreibungInput}
+                                    placeholder="0"
+                                    className="w-full pl-8 pr-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-right font-mono font-medium text-gray-900 text-lg focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 transition-all placeholder:text-gray-300"
+                                />
+                            </div>
+                            <span className="text-sm text-gray-400">/ Monat</span>
+                        </div>
+                        <p className="text-xs text-gray-400 mt-2">
+                            Den Betrag findest du auf deiner SVS-Vorschreibung (Quartalsabrechnung ÷ 3).
+                        </p>
+                    </div>
+                </div>
+            );
+        }
+
+        // ═══════════════════════════════════════════════
+        // DASHBOARD KACHELN
+        // ═══════════════════════════════════════════════
+        function DashboardCard({ title, icon, children, className = '', delay = 0 }) {
+            return (
+                <div
+                    className={`bg-white rounded-2xl shadow-sm border border-gray-100 p-5 sm:p-6 card-hover animate-slide-up ${className}`}
+                    style={{ animationDelay: `${delay}ms` }}
+                >
+                    <div className="flex items-center gap-2 mb-4">
+                        {icon}
+                        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">{title}</h3>
+                    </div>
+                    {children}
+                </div>
+            );
+        }
+
+        // ═══════════════════════════════════════════════
+        // BEITRAGS-DETAILS TABELLE
+        // ═══════════════════════════════════════════════
+        function BeitragsDetails({ result }) {
+            return (
+                <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 sm:p-8 card-hover animate-slide-up" style={{ animationDelay: '100ms' }}>
+                    <div className="flex items-center gap-2 mb-5">
+                        <div className="w-8 h-8 rounded-lg bg-brand-50 flex items-center justify-center">
+                            <svg className="w-4 h-4 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                        </div>
+                        <h3 className="text-lg font-semibold text-gray-900">Beitrags-Aufschlüsselung</h3>
+                    </div>
+
+                    <div className="overflow-x-auto">
+                        <table className="w-full text-sm">
+                            <thead>
+                                <tr className="border-b border-gray-100">
+                                    <th className="text-left py-2.5 pr-4 font-medium text-gray-500">Beitragsart</th>
+                                    <th className="text-right py-2.5 px-4 font-medium text-gray-500">Satz</th>
+                                    <th className="text-right py-2.5 pl-4 font-medium text-gray-500">Betrag / Jahr</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-50">
+                                <tr>
+                                    <td className="py-2.5 pr-4 text-gray-700">Pensionsversicherung (PV)</td>
+                                    <td className="py-2.5 px-4 text-right font-mono text-gray-500">18,50 %</td>
+                                    <td className="py-2.5 pl-4 text-right font-mono font-medium text-gray-900">{formatEuro(result.pvBeitrag)}</td>
+                                </tr>
+                                <tr>
+                                    <td className="py-2.5 pr-4 text-gray-700">Krankenversicherung (KV)</td>
+                                    <td className="py-2.5 px-4 text-right font-mono text-gray-500">6,80 %</td>
+                                    <td className="py-2.5 pl-4 text-right font-mono font-medium text-gray-900">{formatEuro(result.kvBeitrag)}</td>
+                                </tr>
+                                <tr>
+                                    <td className="py-2.5 pr-4 text-gray-700">
+                                        <Tooltip term="Selbständigenvorsorge">Die Mitarbeitervorsorge für Selbständige (1,53%) – ein Pendant zur Abfertigung Neu.</Tooltip> (MV)
+                                    </td>
+                                    <td className="py-2.5 px-4 text-right font-mono text-gray-500">1,53 %</td>
+                                    <td className="py-2.5 pl-4 text-right font-mono font-medium text-gray-900">{formatEuro(result.mvBeitrag)}</td>
+                                </tr>
+                                <tr>
+                                    <td className="py-2.5 pr-4 text-gray-700">Unfallversicherung (UV)</td>
+                                    <td className="py-2.5 px-4 text-right font-mono text-gray-500">fix</td>
+                                    <td className="py-2.5 pl-4 text-right font-mono font-medium text-gray-900">{formatEuro(result.uvBeitrag)}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr className="border-t-2 border-brand-100">
+                                    <td className="py-3 pr-4 font-semibold text-brand-800">Gesamt (endgültig)</td>
+                                    <td className="py-3 px-4 text-right font-mono text-brand-600">26,83 % + UV</td>
+                                    <td className="py-3 pl-4 text-right font-mono font-bold text-brand-700 text-base">{formatEuro(result.endgueltigeSVS)}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                    <div className="mt-4 p-3 bg-gray-50 rounded-xl text-xs text-gray-500">
+                        <Tooltip term="Endgültige Beitragsgrundlage" />: <span className="font-mono font-medium text-gray-700">{formatEuro(result.beitragsgrundlage)}</span>
+                        {result.cappedAtMax && (
+                            <span className="ml-2 text-warning font-medium">
+                                (gedeckelt bei <Tooltip term="Höchstbeitragsgrundlage" />)
+                            </span>
+                        )}
+                        {result.belowMinimum && (
+                            <span className="ml-2 text-gray-400 font-medium">
+                                (unter <Tooltip term="Geringfügigkeitsgrenze" />)
+                            </span>
+                        )}
+                    </div>
+                </div>
+            );
+        }
+
+        // ═══════════════════════════════════════════════
+        // PREMIUM CTA KOMPONENTE
+        // ═══════════════════════════════════════════════
+        function PremiumCTA() {
+            return (
+                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-brand-800 via-brand-700 to-brand-600 p-6 sm:p-8 text-white animate-slide-up" style={{ animationDelay: '400ms' }}>
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+                    <div className="absolute bottom-0 left-0 w-40 h-40 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+
+                    <div className="relative">
+                        <div className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-semibold mb-4">
+                            <span className="w-1.5 h-1.5 bg-yellow-400 rounded-full animate-pulse-slow"></span>
+                            Coming Soon
+                        </div>
+
+                        <h3 className="text-xl sm:text-2xl font-bold mb-2">SVS-Butler Pro</h3>
+                        <p className="text-blue-100/80 text-sm mb-6 max-w-md">
+                            Automatisiere deine SVS-Planung komplett – mit Bank-Anbindung und intelligenter Steueroptimierung.
+                        </p>
+
+                        <div className="grid sm:grid-cols-3 gap-3 mb-6">
+                            {[
+                                { icon: '🏦', title: 'Bank-Anbindung', desc: 'Automatische Gewinn-Erkennung' },
+                                { icon: '📄', title: 'PDF-Export', desc: 'Berichte für deinen Steuerberater' },
+                                { icon: '🔔', title: 'Smart Alerts', desc: 'Echtzeit-Nachzahlungs-Warnungen' },
+                            ].map((item, i) => (
+                                <div key={i} className="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/10">
+                                    <div className="text-xl mb-1">{item.icon}</div>
+                                    <div className="font-semibold text-sm">{item.title}</div>
+                                    <div className="text-blue-200/70 text-xs">{item.desc}</div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <button className="inline-flex items-center gap-2 bg-white text-brand-700 font-semibold rounded-xl px-6 py-3 text-sm hover:bg-blue-50 transition-colors shadow-lg shadow-black/10 cursor-pointer">
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                            </svg>
+                            Auf Warteliste eintragen
+                        </button>
+                    </div>
+                </div>
+            );
+        }
+
+        // ═══════════════════════════════════════════════
+        // FOOTER
+        // ═══════════════════════════════════════════════
+        function Footer() {
+            return (
+                <footer className="text-center py-8 text-xs text-gray-400 space-y-2">
+                    <p>
+                        <span className="font-medium text-gray-500">SVS-Butler AT</span> – Beitragsrechner für Selbständige in Österreich
+                    </p>
+                    <p>
+                        Alle Angaben ohne Gewähr. Kein Ersatz für professionelle Steuerberatung.
+                        <br />Werte basierend auf SVS-Sätzen 2024/25.
+                    </p>
+                    <p className="text-gray-300">
+                        Made with ♡ in Austria
+                    </p>
+                </footer>
+            );
+        }
+
+        // ═══════════════════════════════════════════════
+        // HAUPT-APP
+        // ═══════════════════════════════════════════════
+        function App() {
+            const [gewinn, setGewinn] = useState(40000);
+            const [vorschreibung, setVorschreibung] = useState(450);
+
+            // SVS-Berechnung
+            const result = useMemo(() => {
+                const belowMinimum = gewinn < SVS.GERINGFUEGIGKEIT;
+                const cappedAtMax = gewinn > SVS.HOECHSTBEITRAG;
+                const beitragsgrundlage = belowMinimum ? 0 : Math.min(gewinn, SVS.HOECHSTBEITRAG);
+
+                const pvBeitrag = beitragsgrundlage * SVS.PV_RATE;
+                const kvBeitrag = beitragsgrundlage * SVS.KV_RATE;
+                const mvBeitrag = beitragsgrundlage * SVS.MV_RATE;
+                const uvBeitrag = belowMinimum ? 0 : SVS.UV_MONTHLY * 12;
+
+                const endgueltigeSVS = pvBeitrag + kvBeitrag + mvBeitrag + uvBeitrag;
+                const vorlaeufigeSVS = vorschreibung * 12;
+                const nachzahlung = endgueltigeSVS - vorlaeufigeSVS;
+
+                // Spar-Empfehlung: Restliche Monate im Jahr (vereinfacht: 12)
+                const sparEmpfehlung = nachzahlung > 0 ? nachzahlung / 12 : 0;
+
+                // Steuer-Hebel: SVS senkt Steuerlast
+                const steuerErsparnis = endgueltigeSVS * SVS.STEUER_ERSPARNIS_RATE;
+                const effektiveSVS = endgueltigeSVS - steuerErsparnis;
+
+                // Risiko-Bewertung (0-100%)
+                let riskPercent = 0;
+                if (nachzahlung > 0 && endgueltigeSVS > 0) {
+                    riskPercent = Math.min((nachzahlung / endgueltigeSVS) * 100, 100);
+                }
+
+                const endgueltigeMonatlich = endgueltigeSVS / 12;
+
+                return {
+                    beitragsgrundlage,
+                    pvBeitrag,
+                    kvBeitrag,
+                    mvBeitrag,
+                    uvBeitrag,
+                    endgueltigeSVS,
+                    endgueltigeMonatlich,
+                    vorlaeufigeSVS,
+                    nachzahlung,
+                    sparEmpfehlung,
+                    steuerErsparnis,
+                    effektiveSVS,
+                    riskPercent,
+                    belowMinimum,
+                    cappedAtMax,
+                };
+            }, [gewinn, vorschreibung]);
+
+            return (
+                <div className="min-h-screen bg-gray-50/50">
+                    <Header />
+
+                    <main className="max-w-5xl mx-auto px-4 sm:px-6 -mt-4 pb-8 space-y-6">
+                        {/* Input Section */}
+                        <InputSection
+                            gewinn={gewinn}
+                            setGewinn={setGewinn}
+                            vorschreibung={vorschreibung}
+                            setVorschreibung={setVorschreibung}
+                        />
+
+                        {/* Hinweis bei Geringfügigkeit */}
+                        {result.belowMinimum && (
+                            <div className="flex items-start gap-3 bg-blue-50 border border-blue-100 rounded-2xl p-4 animate-fade-in">
+                                <svg className="w-5 h-5 text-blue-500 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <div>
+                                    <p className="text-sm font-medium text-blue-800">Unter der Geringfügigkeitsgrenze</p>
+                                    <p className="text-xs text-blue-600 mt-0.5">
+                                        Bei einem Jahresgewinn unter {formatEuro(SVS.GERINGFUEGIGKEIT)} besteht keine Pflichtversicherung bei der SVS.
+                                        Du kannst dich freiwillig versichern.
+                                    </p>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Dashboard Grid */}
+                        {!result.belowMinimum && (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                                {/* Gefahren-Barometer */}
+                                <DashboardCard
+                                    title="Gefahren-Barometer"
+                                    icon={
+                                        <div className="w-8 h-8 rounded-lg bg-orange-50 flex items-center justify-center">
+                                            <svg className="w-4 h-4 text-orange-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                            </svg>
+                                        </div>
+                                    }
+                                    delay={0}
+                                >
+                                    <GaugeBarometer riskPercent={result.riskPercent} />
+                                    <p className="text-xs text-gray-400 text-center mt-2">
+                                        Nachzahlungsrisiko basierend auf der Differenz zwischen vorläufiger und endgültiger Vorschreibung
+                                    </p>
+                                </DashboardCard>
+
+                                {/* Nachzahlungs-Alarm */}
+                                <DashboardCard
+                                    title="Nachzahlungs-Alarm"
+                                    icon={
+                                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${result.nachzahlung > 0 ? 'bg-red-50' : 'bg-green-50'}`}>
+                                            <svg className={`w-4 h-4 ${result.nachzahlung > 0 ? 'text-red-500' : 'text-green-500'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                            </svg>
+                                        </div>
+                                    }
+                                    delay={100}
+                                >
+                                    <div className="text-center py-2">
+                                        {result.nachzahlung > 0 ? (
+                                            <>
+                                                <p className="text-3xl sm:text-4xl font-bold text-red-600 number-animate">
+                                                    {formatEuroShort(result.nachzahlung)}
+                                                </p>
+                                                <p className="text-sm text-gray-500 mt-1">geschätzte Nachzahlung für dieses Jahr</p>
+                                                <div className="mt-3 p-2.5 bg-red-50 rounded-xl">
+                                                    <p className="text-xs text-red-700">
+                                                        Deine monatliche Vorschreibung ({formatEuro(vorschreibung)}) ist <span className="font-bold">{formatEuro(result.endgueltigeMonatlich - vorschreibung)}</span> zu niedrig.
+                                                    </p>
+                                                </div>
+                                            </>
+                                        ) : result.nachzahlung < 0 ? (
+                                            <>
+                                                <p className="text-3xl sm:text-4xl font-bold text-green-600 number-animate">
+                                                    {formatEuroShort(Math.abs(result.nachzahlung))}
+                                                </p>
+                                                <p className="text-sm text-gray-500 mt-1">voraussichtliche Gutschrift</p>
+                                                <div className="mt-3 p-2.5 bg-green-50 rounded-xl">
+                                                    <p className="text-xs text-green-700">
+                                                        Du zahlst aktuell mehr als nötig. Die SVS wird dir die Differenz gutschreiben.
+                                                    </p>
+                                                </div>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <p className="text-3xl sm:text-4xl font-bold text-gray-400">€ 0</p>
+                                                <p className="text-sm text-gray-500 mt-1">Keine Nachzahlung erwartet</p>
+                                            </>
+                                        )}
+                                    </div>
+                                </DashboardCard>
+
+                                {/* Spar-Empfehlung */}
+                                <DashboardCard
+                                    title="Spar-Empfehlung"
+                                    icon={
+                                        <div className="w-8 h-8 rounded-lg bg-brand-50 flex items-center justify-center">
+                                            <svg className="w-4 h-4 text-brand-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                                            </svg>
+                                        </div>
+                                    }
+                                    delay={200}
+                                >
+                                    <div className="text-center py-2">
+                                        <p className="text-3xl sm:text-4xl font-bold text-brand-700 number-animate">
+                                            {formatEuroShort(result.sparEmpfehlung)}
+                                        </p>
+                                        <p className="text-sm text-gray-500 mt-1">pro Monat auf ein Unterkonto legen</p>
+                                        {result.sparEmpfehlung > 0 && (
+                                            <div className="mt-3 p-2.5 bg-brand-50 rounded-xl">
+                                                <p className="text-xs text-brand-700">
+                                                    Lege jeden Monat diesen Betrag zur Seite, um die Nachzahlung stressfrei zu stemmen.
+                                                </p>
+                                            </div>
+                                        )}
+                                        {result.sparEmpfehlung === 0 && result.nachzahlung < 0 && (
+                                            <div className="mt-3 p-2.5 bg-green-50 rounded-xl">
+                                                <p className="text-xs text-green-700">
+                                                    Keine Rücklage nötig – du bist aktuell gut aufgestellt!
+                                                </p>
+                                            </div>
+                                        )}
+                                    </div>
+                                </DashboardCard>
+
+                                {/* Steuer-Hebel */}
+                                <DashboardCard
+                                    title="Steuer-Hebel"
+                                    icon={
+                                        <div className="w-8 h-8 rounded-lg bg-emerald-50 flex items-center justify-center">
+                                            <svg className="w-4 h-4 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        </div>
+                                    }
+                                    delay={300}
+                                >
+                                    <div className="text-center py-2">
+                                        <p className="text-3xl sm:text-4xl font-bold text-emerald-600 number-animate">
+                                            - {formatEuroShort(result.steuerErsparnis)}
+                                        </p>
+                                        <p className="text-sm text-gray-500 mt-1">geschätzte Steuerersparnis</p>
+                                        <div className="mt-3 p-2.5 bg-emerald-50 rounded-xl">
+                                            <p className="text-xs text-emerald-700">
+                                                SVS-Beiträge sind <span className="font-semibold">Betriebsausgaben</span> und senken deine Einkommensteuer.
+                                                Effektive SVS-Belastung: <span className="font-bold font-mono">{formatEuro(result.effektiveSVS)}</span>/Jahr.
+                                            </p>
+                                        </div>
+                                        <div className="mt-2 flex items-center justify-center gap-2">
+                                            <span className="text-xs text-gray-400">Annahme: ~27,5% Grenzsteuersatz</span>
+                                            <Tooltip term="Steuerersparnis">
+                                                SVS-Beiträge mindern als Betriebsausgabe deinen steuerpflichtigen Gewinn.
+                                                Bei einem Grenzsteuersatz von 25–30% sparst du ca. 27,5% deiner SVS-Beiträge an Einkommensteuer.
+                                            </Tooltip>
+                                        </div>
+                                    </div>
+                                </DashboardCard>
+                            </div>
+                        )}
+
+                        {/* Beitrags-Aufschlüsselung */}
+                        {!result.belowMinimum && <BeitragsDetails result={result} />}
+
+                        {/* Monatsübersicht */}
+                        {!result.belowMinimum && (
+                            <div className="bg-gradient-to-r from-brand-50 to-blue-50 rounded-2xl border border-brand-100 p-5 sm:p-6 animate-slide-up" style={{ animationDelay: '200ms' }}>
+                                <h3 className="text-sm font-semibold text-brand-800 uppercase tracking-wide mb-4">Monatliche Übersicht</h3>
+                                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                                    <div>
+                                        <p className="text-xs text-brand-500 mb-0.5">Vorläufig (aktuell)</p>
+                                        <p className="text-lg font-bold font-mono text-brand-800">{formatEuro(vorschreibung)}</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs text-brand-500 mb-0.5">Endgültig (Soll)</p>
+                                        <p className="text-lg font-bold font-mono text-brand-800">{formatEuro(result.endgueltigeMonatlich)}</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs text-brand-500 mb-0.5">Differenz</p>
+                                        <p className={`text-lg font-bold font-mono ${result.nachzahlung > 0 ? 'text-red-600' : result.nachzahlung < 0 ? 'text-green-600' : 'text-gray-400'}`}>
+                                            {result.nachzahlung > 0 ? '+' : ''}{formatEuro(result.endgueltigeMonatlich - vorschreibung)}
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs text-brand-500 mb-0.5">Nach Steuer-Effekt</p>
+                                        <p className="text-lg font-bold font-mono text-emerald-700">{formatEuro(result.effektiveSVS / 12)}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Premium CTA */}
+                        <PremiumCTA />
+
+                        {/* Footer */}
+                        <Footer />
+                    </main>
+                </div>
+            );
+        }
+
+        // React App rendern
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
