@@ -7,7 +7,7 @@ import { useAppShell } from './app-shell'
 import { isAdmin } from '@/lib/admin'
 
 const BASE_NAV_ITEMS = [
-  { href: '/', label: 'Rechner', icon: Calculator },
+  { href: '/rechner', label: 'Rechner', icon: Calculator },
   { href: '/misch-einkommen', label: 'Optimierung', icon: BarChart3 },
   { href: '/dashboard', label: 'Verlauf', icon: Clock },
   { href: '/pricing', label: 'Pro', icon: Crown },

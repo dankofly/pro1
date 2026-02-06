@@ -44,7 +44,7 @@ function AdminContent() {
   useEffect(() => {
     if (!user) return
     if (!isAdmin(user.email)) {
-      router.push('/')
+      router.push('/rechner')
       return
     }
     setAuthorized(true)

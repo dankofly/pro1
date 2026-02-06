@@ -13,7 +13,7 @@ export default function AuthCallbackPage() {
   useEffect(() => {
     const handleCallback = async () => {
       const params = new URLSearchParams(window.location.search)
-      const redirectTo = params.get('redirect') || '/'
+      const redirectTo = params.get('redirect') || '/rechner'
 
       // Handle hash fragment tokens (implicit flow: #access_token=...)
       const hash = window.location.hash

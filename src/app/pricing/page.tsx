@@ -108,7 +108,7 @@ function PricingContent() {
                   Aktueller Plan
                 </Button>
               ) : (
-                <Link href="/" className="w-full">
+                <Link href="/rechner" className="w-full">
                   <Button variant="outline" className="w-full bg-white/10 border-white/20 text-white hover:bg-white/20">
                     Zum Rechner
                   </Button>

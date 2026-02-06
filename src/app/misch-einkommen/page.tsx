@@ -201,7 +201,7 @@ function ProGate() {
             <Crown className="h-4 w-4" /> Jetzt upgraden
           </Button>
         </Link>
-        <Link href="/">
+        <Link href="/rechner">
           <Button variant="outline" className="gap-2">
             Kostenloser Rechner
           </Button>

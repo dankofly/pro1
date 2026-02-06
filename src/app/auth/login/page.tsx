@@ -14,7 +14,7 @@ import { Calculator, Mail, Lock, AlertCircle, CheckCircle } from 'lucide-react'
 function LoginPageInner() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const redirectTo = searchParams.get('redirect') || '/'
+  const redirectTo = searchParams.get('redirect') || '/rechner'
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -140,7 +140,7 @@ function LoginPageInner() {
                 Jetzt registrieren
               </Link>
             </p>
-            <Link href="/" className="text-sm text-muted-foreground hover:underline text-center">
+            <Link href="/rechner" className="text-sm text-muted-foreground hover:underline text-center">
               Zurueck zum Rechner
             </Link>
           </CardFooter>

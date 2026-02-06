@@ -243,7 +243,7 @@ function DashboardContent() {
               <div className="text-center py-12 space-y-3">
                 <Calculator className="h-12 w-12 text-muted-foreground mx-auto" />
                 <p className="text-muted-foreground">Noch keine Berechnungen gespeichert.</p>
-                <Link href="/">
+                <Link href="/rechner">
                   <Button>Erste Berechnung erstellen</Button>
                 </Link>
               </div>

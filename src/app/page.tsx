@@ -1,218 +1,790 @@
 'use client'
 
-import { useState, useMemo, useCallback } from 'react'
-import { supabase } from '@/lib/supabase'
-import { calculateSvs, calculateSteuerTipps } from '@/lib/svs-calculator'
-import { SVS } from '@/lib/svs-constants'
-import { formatEuro } from '@/lib/format'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { AppShell, useAppShell } from '@/components/svs/app-shell'
-import { InputSection } from '@/components/svs/input-section'
-import { HeroNumber } from '@/components/svs/hero-number'
-import { StatusBadge } from '@/components/svs/status-badge'
-import { TaxBracketBar } from '@/components/svs/tax-bracket-bar'
-import { WaterfallChart } from '@/components/svs/waterfall-chart'
-import { DashboardCards } from '@/components/svs/dashboard-cards'
-import { BeitragsDetails } from '@/components/svs/beitrags-details'
-import { MonthlyOverview } from '@/components/svs/monthly-overview'
-import { WahrheitsTabelle } from '@/components/svs/wahrheits-tabelle'
-import { SteuerTipps } from '@/components/svs/steuer-tipps'
-import { PremiumCTA } from '@/components/svs/premium-cta'
-import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
-import { Info, Save, Lock } from 'lucide-react'
-import { toast } from 'sonner'
-import { useSmartAlerts } from '@/hooks/use-smart-alerts'
-import { UpgradeDialog } from '@/components/svs/upgrade-dialog'
+import { Badge } from '@/components/ui/badge'
+import { Card, CardContent } from '@/components/ui/card'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion'
+import {
+  Calculator,
+  Shield,
+  TrendingUp,
+  Users,
+  ArrowRight,
+  Check,
+  X,
+  ChevronDown,
+  Zap,
+  Crown,
+  Lock,
+  Heart,
+  Star,
+  CalendarDays,
+} from 'lucide-react'
 
-function HomeContent() {
-  const { user, subscription, handleLogout: _handleLogout } = useAppShell()
-  const [gewinn, setGewinn] = useState(40000)
-  const [vorschreibung, setVorschreibung] = useState(450)
-  const [saving, setSaving] = useState(false)
-  const [upgradeOpen, setUpgradeOpen] = useState(false)
-  const [upgradeFeature, setUpgradeFeature] = useState('')
-  const [upgradeRequiredPlan, setUpgradeRequiredPlan] = useState<'basic' | 'pro'>('basic')
+/* ─── Scroll-reveal hook ─── */
+function useReveal() {
+  const ref = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
 
-  const result = useMemo(() => calculateSvs(gewinn, vorschreibung), [gewinn, vorschreibung])
-  const steuerTipps = useMemo(() => calculateSteuerTipps(gewinn, result.endgueltigeSVS), [gewinn, result.endgueltigeSVS])
-  const { prefs: alertPrefs, isExceeded: alertActive, updatePrefs: updateAlertPrefs, requestNotificationPermission } = useSmartAlerts(result.nachzahlung)
-
-  const handleImportGewinn = useCallback((value: number) => {
-    setGewinn(Math.round(value))
-    toast.success(`Gewinn von ${formatEuro(value)} uebernommen.`)
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const obs = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setVisible(true)
+          obs.unobserve(el)
+        }
+      },
+      { threshold: 0.15 }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
   }, [])
 
-  const handleUpgradeRequired = useCallback((feature: string, plan: 'basic' | 'pro') => {
-    setUpgradeFeature(feature)
-    setUpgradeRequiredPlan(plan)
-    setUpgradeOpen(true)
-  }, [])
+  return { ref, visible }
+}
 
-  const handleSave = useCallback(async () => {
-    if (!user) {
-      toast.error('Bitte melde dich an, um Berechnungen zu speichern.')
-      return
-    }
-    if (subscription.isFree) {
-      handleUpgradeRequired('Berechnungen speichern', 'basic')
-      return
-    }
-    setSaving(true)
-    try {
-      const { error } = await supabase.from('calculations').insert({
-        user_id: user.id,
-        label: `Berechnung ${new Date().toLocaleDateString('de-AT')}`,
-        jahresgewinn: gewinn,
-        monatliche_vorschreibung: vorschreibung,
-        beitragsgrundlage: result.beitragsgrundlage,
-        endgueltige_svs: result.endgueltigeSVS,
-        vorlaeufige_svs: result.vorlaeufigeSVS,
-        nachzahlung: result.nachzahlung,
-        spar_empfehlung: result.sparEmpfehlung,
-        steuer_ersparnis: result.steuerErsparnis,
-      })
-      if (error) throw error
-      toast.success('Berechnung gespeichert!')
-    } catch {
-      toast.error('Fehler beim Speichern. Bitte versuche es erneut.')
-    } finally {
-      setSaving(false)
-    }
-  }, [user, subscription.isFree, handleUpgradeRequired, gewinn, vorschreibung, result])
-
-  const steuerpflichtig = Math.max(0, gewinn - result.endgueltigeSVS - Math.min(gewinn, 33000) * 0.15)
-
+function Reveal({
+  children,
+  className = '',
+  delay = 0,
+}: {
+  children: React.ReactNode
+  className?: string
+  delay?: number
+}) {
+  const { ref, visible } = useReveal()
   return (
-    <>
-      {/* Top bar */}
-      <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-lg border-b border-border/50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="md:hidden font-bold text-sm">SVS Checker</span>
-            <StatusBadge riskPercent={result.riskPercent} />
-          </div>
-          <div className="flex items-center gap-2">
-            {user ? (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={handleSave}
-                disabled={saving}
-                className="h-8"
-              >
-                <Save className="h-3.5 w-3.5 mr-1.5" />
-                {saving ? 'Speichert...' : 'Speichern'}
-              </Button>
-            ) : (
-              <Link href="/auth/login">
-                <Button variant="outline" size="sm" className="h-8">Anmelden</Button>
-              </Link>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Split Screen */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-6">
-
-          {/* Left - Inputs (sticky on desktop) */}
-          <div className="lg:sticky lg:top-20 lg:self-start space-y-4">
-            <InputSection
-              gewinn={gewinn}
-              setGewinn={setGewinn}
-              vorschreibung={vorschreibung}
-              setVorschreibung={setVorschreibung}
-            />
-          </div>
-
-          {/* Right - Results */}
-          <div className="space-y-5">
-            {result.belowMinimum && (
-              <Alert className="bg-blue-50 border-blue-200">
-                <Info className="h-4 w-4 text-blue-500" />
-                <AlertDescription className="text-blue-800">
-                  <span className="font-medium">Unter der Geringfuegigkeitsgrenze:</span>{' '}
-                  Bei einem Jahresgewinn unter {formatEuro(SVS.GERINGFUEGIGKEIT)} besteht keine Pflichtversicherung bei der SVS.
-                </AlertDescription>
-              </Alert>
-            )}
-
-            {!result.belowMinimum && (
-              <>
-                <HeroNumber echtesNetto={result.echtesNetto} gewinn={gewinn} />
-                {subscription.isBasic ? (
-                  <>
-                    <TaxBracketBar steuerpflichtig={steuerpflichtig} />
-                    <WaterfallChart gewinn={gewinn} result={result} />
-                    <WahrheitsTabelle gewinn={gewinn} result={result} />
-                    <SteuerTipps tipps={steuerTipps} gewinn={gewinn} />
-                  </>
-                ) : (
-                  <>
-                    <WahrheitsTabelle gewinn={gewinn} result={result} />
-                    <div className="glass rounded-2xl p-6 relative overflow-hidden">
-                      <div className="absolute inset-0 bg-background/60 backdrop-blur-sm z-10 flex flex-col items-center justify-center gap-3">
-                        <Lock className="h-6 w-6 text-muted-foreground" />
-                        <p className="text-sm font-medium text-muted-foreground text-center px-4">Einkommensteuer-Prognose ab Sicherheits-Plan</p>
-                        <Button size="sm" onClick={() => handleUpgradeRequired('Einkommensteuer-Prognose', 'basic')}>
-                          Jetzt freischalten
-                        </Button>
-                      </div>
-                      <div className="opacity-30 pointer-events-none" aria-hidden="true">
-                        <TaxBracketBar steuerpflichtig={steuerpflichtig} />
-                      </div>
-                    </div>
-                  </>
-                )}
-                <DashboardCards result={result} vorschreibung={vorschreibung} />
-                <BeitragsDetails result={result} />
-                <MonthlyOverview result={result} vorschreibung={vorschreibung} />
-              </>
-            )}
-
-            <PremiumCTA
-              gewinn={gewinn}
-              vorschreibung={vorschreibung}
-              result={result}
-              steuerTipps={steuerTipps}
-              onImportGewinn={handleImportGewinn}
-              alertPrefs={alertPrefs}
-              alertActive={alertActive}
-              updateAlertPrefs={updateAlertPrefs}
-              requestNotificationPermission={requestNotificationPermission}
-              subscription={subscription}
-              onUpgradeRequired={handleUpgradeRequired}
-            />
-
-            <UpgradeDialog
-              open={upgradeOpen}
-              onOpenChange={setUpgradeOpen}
-              feature={upgradeFeature}
-              requiredPlan={upgradeRequiredPlan}
-            />
-
-            <footer className="text-center py-8 text-xs text-muted-foreground space-y-2">
-              <p className="font-medium text-foreground/70">SVS Checker - Beitragsrechner fuer Selbstaendige in Oesterreich</p>
-              <p>Alle Angaben ohne Gewaehr. Kein Ersatz fuer professionelle Steuerberatung. Werte 2024/25.</p>
-              <div className="flex items-center justify-center gap-3 pt-1">
-                <Link href="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
-                <span>·</span>
-                <Link href="/datenschutz" className="hover:text-foreground transition-colors">Datenschutz</Link>
-              </div>
-            </footer>
-          </div>
-        </div>
-      </div>
-    </>
+    <div
+      ref={ref}
+      className={`transition-all duration-700 ease-out ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} ${className}`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </div>
   )
 }
 
-export default function Home() {
+/* ─── Counter animation ─── */
+function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: string }) {
+  const [count, setCount] = useState(0)
+  const { ref, visible } = useReveal()
+
+  useEffect(() => {
+    if (!visible) return
+    let start = 0
+    const duration = 1200
+    const step = (ts: number) => {
+      if (!start) start = ts
+      const progress = Math.min((ts - start) / duration, 1)
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setCount(Math.round(eased * target))
+      if (progress < 1) requestAnimationFrame(step)
+    }
+    requestAnimationFrame(step)
+  }, [visible, target])
+
   return (
-    <AppShell>
-      <HomeContent />
-    </AppShell>
+    <span ref={ref} className="tabular-nums">
+      {count.toLocaleString('de-AT')}{suffix}
+    </span>
+  )
+}
+
+/* ─── Navbar ─── */
+function Navbar() {
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > 20)
+    window.addEventListener('scroll', handler, { passive: true })
+    return () => window.removeEventListener('scroll', handler)
+  }, [])
+
+  return (
+    <nav
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled
+          ? 'bg-slate-900/90 backdrop-blur-xl border-b border-white/10 shadow-lg'
+          : 'bg-transparent'
+      }`}
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/20">
+            <Calculator className="h-4 w-4 text-emerald-400" />
+          </div>
+          <span className="font-bold text-white text-lg">SVS Checker</span>
+        </div>
+        <div className="hidden md:flex items-center gap-8 text-sm text-blue-200">
+          <a href="#problem" className="hover:text-white transition-colors">Problem</a>
+          <a href="#features" className="hover:text-white transition-colors">Features</a>
+          <a href="#pricing" className="hover:text-white transition-colors">Preise</a>
+          <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
+        </div>
+        <div className="flex items-center gap-3">
+          <Link href="/auth/login">
+            <Button variant="ghost" size="sm" className="text-blue-200 hover:text-white hover:bg-white/10">
+              Anmelden
+            </Button>
+          </Link>
+          <Link href="/rechner">
+            <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/25">
+              Jetzt berechnen
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </nav>
+  )
+}
+
+/* ─── Hero ─── */
+function Hero() {
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-blue-950" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-emerald-900/10 via-transparent to-transparent" />
+
+      {/* Grid pattern */}
+      <div
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: 'linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)',
+          backgroundSize: '60px 60px',
+        }}
+      />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          {/* Left – Copy */}
+          <div className="text-center lg:text-left">
+            <Reveal>
+              <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 mb-6 text-sm px-4 py-1.5">
+                <Zap className="h-3.5 w-3.5 mr-1.5" />
+                Fuer Selbstaendige in Oesterreich
+              </Badge>
+            </Reveal>
+
+            <Reveal delay={100}>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
+                SVS-Nachzahlung?{' '}
+                <span className="bg-gradient-to-r from-emerald-400 to-emerald-300 bg-clip-text text-transparent">
+                  Nie wieder ueberrascht.
+                </span>
+              </h1>
+            </Reveal>
+
+            <Reveal delay={200}>
+              <p className="mt-6 text-lg sm:text-xl text-blue-200/80 leading-relaxed max-w-lg mx-auto lg:mx-0">
+                Berechne in Sekunden, was die SVS wirklich von dir will – inklusive Einkommensteuer,
+                Familienbonus und echtem Netto. Mit Werten fuer 2024, 2025 und 2026.
+              </p>
+            </Reveal>
+
+            <Reveal delay={300}>
+              <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Link href="/rechner">
+                  <Button size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-xl shadow-emerald-500/25 text-base px-8 h-12 w-full sm:w-auto">
+                    Jetzt gratis berechnen
+                    <ArrowRight className="h-4 w-4 ml-2" />
+                  </Button>
+                </Link>
+                <a href="#features">
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border-white/20 text-white hover:bg-white/10 text-base px-8 h-12 w-full sm:w-auto bg-transparent"
+                  >
+                    Mehr erfahren
+                    <ChevronDown className="h-4 w-4 ml-2" />
+                  </Button>
+                </a>
+              </div>
+            </Reveal>
+
+            <Reveal delay={400}>
+              <div className="mt-10 flex items-center gap-6 justify-center lg:justify-start text-sm text-blue-300/60">
+                <span className="flex items-center gap-1.5">
+                  <Check className="h-4 w-4 text-emerald-500" /> Kostenlos starten
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Check className="h-4 w-4 text-emerald-500" /> Keine Kreditkarte
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Check className="h-4 w-4 text-emerald-500" /> DSGVO-konform
+                </span>
+              </div>
+            </Reveal>
+          </div>
+
+          {/* Right – Dashboard Mockup */}
+          <Reveal delay={200} className="hidden lg:block">
+            <div className="relative">
+              {/* Glow */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 rounded-3xl blur-3xl" />
+
+              {/* Mock Dashboard */}
+              <div className="relative glass-dark rounded-2xl p-6 border border-white/10 shadow-2xl">
+                {/* Mock top bar */}
+                <div className="flex items-center gap-2 mb-5">
+                  <div className="w-3 h-3 rounded-full bg-red-400/60" />
+                  <div className="w-3 h-3 rounded-full bg-amber-400/60" />
+                  <div className="w-3 h-3 rounded-full bg-emerald-400/60" />
+                  <span className="ml-3 text-xs text-white/30 font-mono">svs-checker.at</span>
+                </div>
+
+                {/* Mock Hero Number */}
+                <div className="text-center mb-6">
+                  <p className="text-xs text-emerald-400/70 uppercase tracking-widest mb-1">Echtes Netto</p>
+                  <p className="text-5xl font-extrabold text-white tabular-nums">
+                    <AnimatedCounter target={28742} /> <span className="text-2xl text-white/50">EUR</span>
+                  </p>
+                  <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 mt-2">
+                    71,9 % Netto-Quote
+                  </Badge>
+                </div>
+
+                {/* Mock Stats */}
+                <div className="grid grid-cols-3 gap-3">
+                  {[
+                    { label: 'SVS Gesamt', value: '7.124 EUR', color: 'text-blue-300' },
+                    { label: 'Nachzahlung', value: '1.724 EUR', color: 'text-amber-300' },
+                    { label: 'Steuer', value: '4.134 EUR', color: 'text-red-300' },
+                  ].map((s) => (
+                    <div key={s.label} className="bg-white/5 rounded-xl p-3 text-center">
+                      <p className="text-[10px] text-white/40 uppercase tracking-wider">{s.label}</p>
+                      <p className={`text-sm font-bold ${s.color} tabular-nums mt-0.5`}>{s.value}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Mock Bar */}
+                <div className="mt-5">
+                  <p className="text-[10px] text-white/30 uppercase tracking-wider mb-2">Steuerstufe</p>
+                  <div className="flex h-2 rounded-full overflow-hidden gap-px">
+                    <div className="bg-emerald-400 w-[15%]" />
+                    <div className="bg-emerald-500 w-[12%]" />
+                    <div className="bg-amber-400 w-[20%]" />
+                    <div className="bg-amber-500 opacity-30 w-[23%]" />
+                    <div className="bg-orange-500 opacity-20 w-[15%]" />
+                    <div className="bg-red-500 opacity-10 w-[15%]" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <ChevronDown className="h-6 w-6 text-white/30" />
+      </div>
+    </section>
+  )
+}
+
+/* ─── Problem ─── */
+function ProblemSection() {
+  const problems = [
+    {
+      icon: <TrendingUp className="h-6 w-6" />,
+      title: 'Die Falle',
+      desc: 'Die SVS rechnet mit deinem Gewinn von vor 3 Jahren. Steigt dein Einkommen, kommt eine saftige Nachzahlung – oft tausende Euro, voellig unerwartet.',
+      color: 'text-red-400',
+      bg: 'bg-red-500/10',
+      border: 'border-red-500/20',
+    },
+    {
+      icon: <Shield className="h-6 w-6" />,
+      title: 'Die Ungewissheit',
+      desc: 'Vorlaeufige Beitraege, endgueltige Bescheide, Geringfuegigkeitsgrenze, Hoechstbeitragsgrundlage – wer blickt da noch durch? Du weisst nie, was am Ende wirklich uebrig bleibt.',
+      color: 'text-amber-400',
+      bg: 'bg-amber-500/10',
+      border: 'border-amber-500/20',
+    },
+    {
+      icon: <Users className="h-6 w-6" />,
+      title: 'Der Misch-Masch',
+      desc: 'Angestellt und gleichzeitig selbstaendig? Dann wird es richtig kompliziert: Differenz-Vorschreibung, doppelte SV, Absetzbetraege – eine Formel, die kein normaler Mensch im Kopf hat.',
+      color: 'text-blue-400',
+      bg: 'bg-blue-500/10',
+      border: 'border-blue-500/20',
+    },
+  ]
+
+  return (
+    <section id="problem" className="relative py-20 sm:py-28 bg-slate-950">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <Reveal>
+          <div className="text-center mb-16">
+            <Badge className="bg-red-500/10 text-red-400 border-red-500/20 mb-4">
+              Das Problem
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+              Warum Selbstaendige jedes Jahr boese ueberrascht werden
+            </h2>
+            <p className="mt-4 text-blue-200/60 max-w-2xl mx-auto text-lg">
+              Die SVS-Abrechnung ist bewusst kompliziert. Ohne die richtigen Zahlen tappst du im Dunkeln.
+            </p>
+          </div>
+        </Reveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {problems.map((p, i) => (
+            <Reveal key={p.title} delay={i * 150}>
+              <Card className={`bg-white/[0.03] ${p.border} border backdrop-blur-sm h-full hover:bg-white/[0.06] transition-colors duration-300`}>
+                <CardContent className="p-6 sm:p-8">
+                  <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${p.bg} ${p.color} mb-5`}>
+                    {p.icon}
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3">{p.title}</h3>
+                  <p className="text-blue-200/60 leading-relaxed">{p.desc}</p>
+                </CardContent>
+              </Card>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ─── Features ─── */
+function FeaturesSection() {
+  const features = [
+    {
+      icon: <Calculator className="h-6 w-6" />,
+      title: 'Echtzeit-Prognose',
+      desc: 'Zieh am Slider – und sieh sofort dein echtes Netto, die SVS-Nachzahlung und die Einkommensteuer. Kein Raten, kein Warten auf den Bescheid.',
+      color: 'text-emerald-400',
+      bg: 'bg-emerald-500/10',
+    },
+    {
+      icon: <Heart className="h-6 w-6" />,
+      title: 'Familienbonus & Absetzbetraege',
+      desc: 'AVAB, Familienbonus Plus, Verkehrsabsetzbetrag, Kindermehrbetrag – alles automatisch berechnet mit den korrekten Werten fuer jedes Jahr.',
+      color: 'text-blue-400',
+      bg: 'bg-blue-500/10',
+    },
+    {
+      icon: <CalendarDays className="h-6 w-6" />,
+      title: '2026 Ready',
+      desc: 'Neue Familienbonus-Werte (2.100 EUR), angepasster AVAB, aktueller Verkehrsabsetzbetrag – bereits eingebaut, bevor dein Steuerberater davon weiss.',
+      color: 'text-amber-400',
+      bg: 'bg-amber-500/10',
+    },
+  ]
+
+  return (
+    <section id="features" className="relative py-20 sm:py-28 bg-gradient-to-b from-slate-950 to-slate-900">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <Reveal>
+          <div className="text-center mb-16">
+            <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 mb-4">
+              Features
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+              Alles, was du brauchst – in einer App
+            </h2>
+            <p className="mt-4 text-blue-200/60 max-w-2xl mx-auto text-lg">
+              Gebaut von Selbstaendigen, fuer Selbstaendige. Mit der Praezision, die dein Steuerberater nicht hat.
+            </p>
+          </div>
+        </Reveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {features.map((f, i) => (
+            <Reveal key={f.title} delay={i * 150}>
+              <div className="group relative h-full">
+                <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <Card className="relative bg-white/[0.03] border-white/10 backdrop-blur-sm h-full">
+                  <CardContent className="p-6 sm:p-8">
+                    <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${f.bg} ${f.color} mb-5`}>
+                      {f.icon}
+                    </div>
+                    <h3 className="text-xl font-bold text-white mb-3">{f.title}</h3>
+                    <p className="text-blue-200/60 leading-relaxed">{f.desc}</p>
+                  </CardContent>
+                </Card>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+
+        {/* Extra Feature Cards Row */}
+        <Reveal delay={200}>
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="flex items-start gap-4 bg-white/[0.03] border border-white/10 rounded-xl p-5">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-500/10 shrink-0">
+                <TrendingUp className="h-5 w-5 text-purple-400" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-white">Misch-Einkommen Rechner</h4>
+                <p className="text-sm text-blue-200/50 mt-1">Angestellt + Gewerbe? Berechne die Differenz-Vorschreibung, doppelte SV und dein echtes kombiniertes Netto.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 bg-white/[0.03] border border-white/10 rounded-xl p-5">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 shrink-0">
+                <Star className="h-5 w-5 text-emerald-400" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-white">Wasserfall-Analyse</h4>
+                <p className="text-sm text-blue-200/50 mt-1">Sieh genau, wie sich dein Brutto zu Netto aufschluesselt: SVS, Einkommensteuer und was wirklich bleibt.</p>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+/* ─── Pricing ─── */
+function PricingSection() {
+  const tiers = [
+    {
+      name: 'Free',
+      price: '0',
+      unit: 'fuer immer',
+      desc: 'Fuer den Einstieg',
+      features: [
+        { text: 'SVS-Beitragsrechner', included: true },
+        { text: 'Wahrheits-Tabelle', included: true },
+        { text: 'Einkommensteuer-Prognose', included: false },
+        { text: 'Misch-Einkommen Rechner', included: false },
+        { text: 'Familienbonus & Absetzbetraege', included: false },
+        { text: 'Wasserfall-Analyse', included: false },
+        { text: 'PDF-Export', included: false },
+      ],
+      cta: 'Jetzt gratis starten',
+      href: '/rechner',
+      highlight: false,
+    },
+    {
+      name: 'Sicherheits-Plan',
+      price: '9,90',
+      unit: 'pro Monat',
+      desc: 'Fuer Einsteiger',
+      features: [
+        { text: 'Alles aus Free', included: true },
+        { text: 'Einkommensteuer-Prognose', included: true },
+        { text: 'Berechnungen speichern', included: true },
+        { text: 'Dashboard mit Verlauf', included: true },
+        { text: 'Einfacher Export', included: true },
+        { text: 'Misch-Einkommen Rechner', included: false },
+        { text: 'Familienbonus & Absetzbetraege', included: false },
+      ],
+      cta: 'Jetzt starten',
+      href: '/pricing',
+      highlight: false,
+    },
+    {
+      name: 'SVS Checker Pro',
+      price: '19,90',
+      unit: 'pro Monat',
+      desc: 'Fuer Profis',
+      features: [
+        { text: 'Alles aus Sicherheits-Plan', included: true },
+        { text: 'Misch-Einkommen Rechner', included: true },
+        { text: 'Familienbonus & Absetzbetraege', included: true },
+        { text: 'Wasserfall-Analyse', included: true },
+        { text: 'PDF-Export fuer Steuerberater', included: true },
+        { text: 'Smart Alerts & Push', included: true },
+        { text: 'Prioritaets-Support', included: true },
+      ],
+      cta: 'Jetzt upgraden',
+      href: '/pricing',
+      highlight: true,
+    },
+  ]
+
+  return (
+    <section id="pricing" className="relative py-20 sm:py-28 bg-slate-900">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <Reveal>
+          <div className="text-center mb-16">
+            <Badge className="bg-amber-500/10 text-amber-400 border-amber-500/20 mb-4">
+              Preise
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+              Starte kostenlos, upgrade wenn du bereit bist
+            </h2>
+            <p className="mt-4 text-blue-200/60 max-w-2xl mx-auto text-lg">
+              Keine versteckten Kosten. Monatlich kuendbar. Sichere Zahlung via Lemon Squeezy.
+            </p>
+          </div>
+        </Reveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {tiers.map((tier, i) => (
+            <Reveal key={tier.name} delay={i * 150}>
+              <Card
+                className={`relative h-full ${
+                  tier.highlight
+                    ? 'bg-white/10 border-amber-400/30 ring-2 ring-amber-400/20'
+                    : 'bg-white/[0.03] border-white/10'
+                } backdrop-blur-sm`}
+              >
+                {tier.highlight && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                    <Badge className="bg-amber-500 text-white border-0 shadow-lg">
+                      <Zap className="h-3 w-3 mr-1" />
+                      Beliebtester Plan
+                    </Badge>
+                  </div>
+                )}
+                <CardContent className={`p-6 sm:p-8 ${tier.highlight ? 'pt-10' : ''}`}>
+                  <p className="text-blue-200/60 text-sm">{tier.desc}</p>
+                  <h3 className="text-xl font-bold text-white mt-1 flex items-center gap-2">
+                    {tier.highlight && <Crown className="h-5 w-5 text-amber-400" />}
+                    {tier.name}
+                  </h3>
+                  <div className="mt-4 mb-6">
+                    <span className="text-4xl font-extrabold text-white">{tier.price} EUR</span>
+                    <span className="text-blue-200/50 text-sm ml-2">/ {tier.unit}</span>
+                  </div>
+
+                  <div className="space-y-3 mb-8">
+                    {tier.features.map((f) => (
+                      <div key={f.text} className="flex items-center gap-2.5 text-sm">
+                        {f.included ? (
+                          <Check className={`h-4 w-4 shrink-0 ${tier.highlight ? 'text-amber-400' : 'text-emerald-400'}`} />
+                        ) : (
+                          <X className="h-4 w-4 shrink-0 text-white/20" />
+                        )}
+                        <span className={f.included ? 'text-blue-100' : 'text-white/30'}>
+                          {f.text}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <Link href={tier.href}>
+                    <Button
+                      className={`w-full ${
+                        tier.highlight
+                          ? 'bg-amber-500 hover:bg-amber-600 text-white shadow-lg shadow-amber-500/25'
+                          : 'bg-white/10 hover:bg-white/20 text-white border border-white/10'
+                      }`}
+                    >
+                      {tier.highlight && <Crown className="h-4 w-4 mr-1.5" />}
+                      {tier.cta}
+                    </Button>
+                  </Link>
+                </CardContent>
+              </Card>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={300}>
+          <p className="text-center text-blue-200/30 text-xs mt-8">
+            Alle Preise inkl. USt. Monatlich kuendbar. Spare 2 Monate mit Jahreszahlung.
+          </p>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+/* ─── Trust ─── */
+function TrustSection() {
+  const badges = [
+    { icon: <Lock className="h-5 w-5" />, label: 'DSGVO-konform', desc: 'Deine Daten bleiben in der EU' },
+    { icon: <Shield className="h-5 w-5" />, label: 'SSL-verschluesselt', desc: 'Bankgrade Verschluesselung' },
+    { icon: <Heart className="h-5 w-5" />, label: 'Made in Austria', desc: 'Gebaut fuer oesterreichisches Steuerrecht' },
+    { icon: <Calculator className="h-5 w-5" />, label: 'Aktuelle Werte', desc: '2024, 2025 & 2026 Steuerdaten' },
+  ]
+
+  return (
+    <section className="relative py-16 sm:py-20 bg-gradient-to-b from-slate-900 to-slate-950">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <Reveal>
+          <div className="text-center mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white">
+              Vertrauenswuerdig & sicher
+            </h2>
+          </div>
+        </Reveal>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+          {badges.map((b, i) => (
+            <Reveal key={b.label} delay={i * 100}>
+              <div className="text-center p-4 sm:p-6 bg-white/[0.03] border border-white/10 rounded-xl">
+                <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400 mx-auto mb-3">
+                  {b.icon}
+                </div>
+                <p className="font-semibold text-white text-sm">{b.label}</p>
+                <p className="text-xs text-blue-200/40 mt-1">{b.desc}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/* ─── FAQ ─── */
+function FAQSection() {
+  const faqs = [
+    {
+      q: 'Was genau berechnet der SVS Checker?',
+      a: 'Der SVS Checker berechnet deine endgueltigen SVS-Beitraege (PV, KV, UV, Selbstaendigenvorsorge), die voraussichtliche Nachzahlung, die Einkommensteuer-Prognose und dein echtes Netto – basierend auf deinem tatsaechlichen Jahresgewinn.',
+    },
+    {
+      q: 'Sind die Berechnungen rechtlich verbindlich?',
+      a: 'Nein. Der SVS Checker ist ein Prognose-Tool und ersetzt keine Steuerberatung. Alle Berechnungen basieren auf den aktuellen gesetzlichen Grundlagen, aber die endgueltigen Bescheide der SVS und des Finanzamts koennen abweichen.',
+    },
+    {
+      q: 'Was ist der Unterschied zwischen Free und Pro?',
+      a: 'Die Free-Version bietet den SVS-Beitragsrechner und die Wahrheits-Tabelle. Der Sicherheits-Plan (9,90 EUR/Monat) fuegt die Einkommensteuer-Prognose, Speichern und Export hinzu. SVS Checker Pro (19,90 EUR/Monat) bietet alles plus Misch-Einkommen Rechner, Familienbonus-Berechnung, Wasserfall-Analyse und PDF-Export.',
+    },
+    {
+      q: 'Was ist die Nachzahlungsfalle?',
+      a: 'Die SVS berechnet deine Beitraege zunaechst auf Basis deines Gewinns von vor 3 Jahren (vorlaeufige Beitragsgrundlage). Steigt dein Einkommen, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung. Der SVS Checker zeigt dir genau, wie hoch diese ausfallen wird.',
+    },
+    {
+      q: 'Kann ich den Rechner auch nutzen, wenn ich angestellt UND selbstaendig bin?',
+      a: 'Ja! Der Misch-Einkommen Rechner (Pro-Feature) ist genau dafuer gebaut. Er berechnet die Differenz-Vorschreibung, beruecksichtigt die doppelte Sozialversicherung und zeigt dir das kombinierte Netto aus beiden Einkunftsarten.',
+    },
+    {
+      q: 'Sind die Werte fuer 2026 schon verfuegbar?',
+      a: 'Ja! Wir haben bereits die neuen Werte fuer 2026 eingebaut: Familienbonus Plus (2.100 EUR), angepasster AVAB, aktualisierter Verkehrsabsetzbetrag (481 EUR) und Kindermehrbetrag (727 EUR).',
+    },
+    {
+      q: 'Wie kann ich mein Abo kuendigen?',
+      a: 'Jederzeit mit einem Klick im Dashboard unter Einstellungen. Die Kuendigung wird sofort wirksam am Ende des aktuellen Abrechnungszeitraums. Keine versteckten Fristen, keine Tricks.',
+    },
+  ]
+
+  return (
+    <section id="faq" className="relative py-20 sm:py-28 bg-slate-950">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6">
+        <Reveal>
+          <div className="text-center mb-12">
+            <Badge className="bg-blue-500/10 text-blue-400 border-blue-500/20 mb-4">
+              FAQ
+            </Badge>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+              Haeufig gestellte Fragen
+            </h2>
+          </div>
+        </Reveal>
+
+        <Reveal delay={150}>
+          <Accordion type="single" collapsible className="space-y-2">
+            {faqs.map((faq, i) => (
+              <AccordionItem
+                key={i}
+                value={`faq-${i}`}
+                className="bg-white/[0.03] border border-white/10 rounded-xl px-5 data-[state=open]:bg-white/[0.06] transition-colors"
+              >
+                <AccordionTrigger className="text-white text-left hover:no-underline text-sm sm:text-base py-4">
+                  {faq.q}
+                </AccordionTrigger>
+                <AccordionContent className="text-blue-200/60 leading-relaxed">
+                  {faq.a}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+/* ─── Final CTA ─── */
+function FinalCTA() {
+  return (
+    <section className="relative py-20 sm:py-28 overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-950 via-slate-900 to-blue-950" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-emerald-500/10 via-transparent to-transparent" />
+
+      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 text-center">
+        <Reveal>
+          <div className="flex justify-center mb-6">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-500/20">
+              <Calculator className="h-8 w-8 text-emerald-400" />
+            </div>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            Bereit, dein echtes Netto zu kennen?
+          </h2>
+          <p className="text-blue-200/60 text-lg mb-8 max-w-md mx-auto">
+            Starte jetzt kostenlos und berechne in 30 Sekunden, was die SVS wirklich von dir will.
+          </p>
+          <Link href="/rechner">
+            <Button size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-xl shadow-emerald-500/25 text-base px-10 h-13">
+              Jetzt gratis berechnen
+              <ArrowRight className="h-4 w-4 ml-2" />
+            </Button>
+          </Link>
+          <p className="text-blue-200/30 text-sm mt-6">
+            Kostenlos. Keine Kreditkarte. Keine Registrierung noetig.
+          </p>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+/* ─── Footer ─── */
+function Footer() {
+  return (
+    <footer className="bg-slate-950 border-t border-white/5 py-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <div className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-500/20">
+              <Calculator className="h-3.5 w-3.5 text-emerald-400" />
+            </div>
+            <span className="font-semibold text-white text-sm">SVS Checker</span>
+          </div>
+          <div className="flex items-center gap-4 text-xs text-blue-200/40">
+            <Link href="/impressum" className="hover:text-blue-200 transition-colors">Impressum</Link>
+            <span>·</span>
+            <Link href="/datenschutz" className="hover:text-blue-200 transition-colors">Datenschutz</Link>
+            <span>·</span>
+            <Link href="/pricing" className="hover:text-blue-200 transition-colors">Preise</Link>
+          </div>
+          <p className="text-xs text-blue-200/30">
+            &copy; {new Date().getFullYear()} SVS Checker. Alle Rechte vorbehalten.
+            <span className="mx-1">·</span>
+            <a href="https://hypeakz.io" target="_blank" rel="noopener noreferrer" className="text-blue-200/40 hover:text-blue-200 transition-colors">App by Hypeakz.io</a>
+          </p>
+        </div>
+      </div>
+    </footer>
+  )
+}
+
+/* ─── Page ─── */
+export default function LandingPage() {
+  return (
+    <main className="bg-slate-950">
+      <Navbar />
+      <Hero />
+      <ProblemSection />
+      <FeaturesSection />
+      <PricingSection />
+      <TrustSection />
+      <FAQSection />
+      <FinalCTA />
+      <Footer />
+    </main>
   )
 }

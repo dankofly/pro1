@@ -68,7 +68,7 @@ function RegisterPageInner() {
             <Link href={loginHref} className="w-full">
               <Button className="w-full">Zum Login</Button>
             </Link>
-            <Link href="/" className="text-sm text-muted-foreground hover:underline text-center">
+            <Link href="/rechner" className="text-sm text-muted-foreground hover:underline text-center">
               Zurueck zum Rechner
             </Link>
           </CardFooter>
@@ -153,7 +153,7 @@ function RegisterPageInner() {
                 Anmelden
               </Link>
             </p>
-            <Link href="/" className="text-sm text-muted-foreground hover:underline text-center">
+            <Link href="/rechner" className="text-sm text-muted-foreground hover:underline text-center">
               Zurueck zum Rechner
             </Link>
           </CardFooter>
