@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
       admin = getSupabaseAdmin()
     } catch (e) {
       console.error('Admin client error:', e)
-      return NextResponse.json({ error: 'SUPABASE_SERVICE_ROLE_KEY fehlt' }, { status: 500 })
+      return NextResponse.json({ error: `Admin-Client: ${e instanceof Error ? e.message : String(e)}` }, { status: 500 })
     }
 
     const { data: { user }, error: authError } = await admin.auth.getUser(token)
