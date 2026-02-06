@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import crypto from 'crypto'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { getSupabaseAdmin } from '@/lib/supabase-admin'
 import { getPlanByVariantId } from '@/lib/lemonsqueezy'
 
 function verifySignature(body: string, signature: string, secret: string): boolean {
@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ error: 'Missing user_id' }, { status: 400 })
       }
 
-      const { error } = await supabaseAdmin.from('subscriptions').upsert({
+      const { error } = await getSupabaseAdmin().from('subscriptions').upsert({
         user_id: userId,
         lemonsqueezy_subscription_id: subscriptionId,
         lemonsqueezy_customer_id: customerId,
@@ -76,7 +76,7 @@ export async function POST(request: NextRequest) {
       'subscription_payment_success',
       'subscription_payment_failed',
     ].includes(eventName)) {
-      const { error } = await supabaseAdmin.from('subscriptions')
+      const { error } = await getSupabaseAdmin().from('subscriptions')
         .update({
           status,
           variant_id: variantId,

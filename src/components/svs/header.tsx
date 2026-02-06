@@ -2,9 +2,10 @@
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Calculator, LogIn, User, LogOut, Save } from 'lucide-react'
+import { Calculator, LogIn, User, LogOut, Save, Crown } from 'lucide-react'
 import { SvsTooltip } from './svs-tooltip'
 import Link from 'next/link'
+import type { PlanTier } from '@/lib/lemonsqueezy'
 
 interface HeaderProps {
   user?: { email: string } | null
@@ -12,9 +13,10 @@ interface HeaderProps {
   onLogout?: () => void
   saving?: boolean
   alertActive?: boolean
+  plan?: PlanTier
 }
 
-export function SvsHeader({ user, onSave, onLogout, saving, alertActive }: HeaderProps) {
+export function SvsHeader({ user, onSave, onLogout, saving, alertActive, plan }: HeaderProps) {
   return (
     <header className="bg-gradient-to-r from-slate-900 via-slate-800 to-blue-900 text-white">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
@@ -38,6 +40,14 @@ export function SvsHeader({ user, onSave, onLogout, saving, alertActive }: Heade
           <div className="flex items-center gap-2">
             {user ? (
               <>
+                {plan === 'free' && (
+                  <Link href="/pricing">
+                    <Button variant="outline" size="sm" className="bg-amber-500/20 border-amber-400/30 text-amber-200 hover:bg-amber-500/30 hover:text-white">
+                      <Crown className="h-4 w-4 mr-1" />
+                      Upgrade
+                    </Button>
+                  </Link>
+                )}
                 {onSave && (
                   <Button
                     variant="outline"
@@ -66,12 +76,20 @@ export function SvsHeader({ user, onSave, onLogout, saving, alertActive }: Heade
                 </Button>
               </>
             ) : (
-              <Link href="/auth/login">
-                <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white">
-                  <LogIn className="h-4 w-4 mr-1" />
-                  Anmelden
-                </Button>
-              </Link>
+              <>
+                <Link href="/pricing">
+                  <Button variant="outline" size="sm" className="bg-amber-500/20 border-amber-400/30 text-amber-200 hover:bg-amber-500/30 hover:text-white">
+                    <Crown className="h-4 w-4 mr-1" />
+                    Preise
+                  </Button>
+                </Link>
+                <Link href="/auth/login">
+                  <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white">
+                    <LogIn className="h-4 w-4 mr-1" />
+                    Anmelden
+                  </Button>
+                </Link>
+              </>
             )}
           </div>
         </div>
@@ -93,6 +111,12 @@ export function SvsHeader({ user, onSave, onLogout, saving, alertActive }: Heade
             <Badge variant="outline" className="bg-white/10 text-blue-100 border-white/20">
               <User className="h-3 w-3 mr-1" />
               {user.email}
+            </Badge>
+          )}
+          {plan && plan !== 'free' && (
+            <Badge variant="outline" className="bg-amber-500/20 text-amber-200 border-amber-400/30">
+              <Crown className="h-3 w-3 mr-1" />
+              {plan === 'pro' ? 'Butler-Vollversion' : 'Sicherheits-Plan'}
             </Badge>
           )}
         </div>

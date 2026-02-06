@@ -27,8 +27,9 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
-import { Calculator, ArrowLeft, Trash2, LogOut } from 'lucide-react'
+import { Calculator, ArrowLeft, Trash2, LogOut, Crown, ExternalLink } from 'lucide-react'
 import { toast } from 'sonner'
+import { useSubscription } from '@/hooks/use-subscription'
 import type { User } from '@supabase/supabase-js'
 import type { Calculation } from '@/lib/supabase-types'
 
@@ -80,6 +81,8 @@ export default function DashboardPage() {
     await supabase.auth.signOut()
     router.push('/')
   }
+
+  const subscription = useSubscription(user)
 
   if (!user) return null
 
@@ -154,6 +157,55 @@ export default function DashboardPage() {
             </CardContent>
           </Card>
         </div>
+
+        {/* Subscription Card */}
+        <Card className="bg-gradient-to-br from-slate-800 via-slate-700 to-blue-800 text-white border-0">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Crown className="h-5 w-5 text-amber-400" />
+              {subscription.isFree ? 'Upgrade dein Konto' : 'Dein Abo'}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            {subscription.isFree ? (
+              <div className="space-y-3">
+                <p className="text-blue-100/80 text-sm">
+                  Schalte alle Pro-Werkzeuge frei: PDF-Export, Bank-Anbindung und Smart Alerts.
+                </p>
+                <Link href="/pricing">
+                  <Button className="bg-amber-500 hover:bg-amber-600 text-white">
+                    <Crown className="h-4 w-4 mr-1" />
+                    Preise ansehen
+                  </Button>
+                </Link>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <Badge className="bg-amber-500/20 text-amber-200 border-amber-400/30">
+                    {subscription.plan === 'pro' ? 'Butler-Vollversion' : 'Sicherheits-Plan'}
+                  </Badge>
+                  <Badge variant="outline" className="border-green-400/30 text-green-300">
+                    {subscription.status}
+                  </Badge>
+                </div>
+                {subscription.currentPeriodEnd && (
+                  <p className="text-blue-200/70 text-sm">
+                    Naechste Abrechnung: {new Date(subscription.currentPeriodEnd).toLocaleDateString('de-AT')}
+                  </p>
+                )}
+                {subscription.customerPortalUrl && (
+                  <a href={subscription.customerPortalUrl} target="_blank" rel="noopener noreferrer">
+                    <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
+                      <ExternalLink className="h-4 w-4 mr-1" />
+                      Abo verwalten
+                    </Button>
+                  </a>
+                )}
+              </div>
+            )}
+          </CardContent>
+        </Card>
 
         {/* Calculations Table */}
         <Card>
