@@ -763,6 +763,8 @@ function Footer() {
           </div>
           <p className="text-xs text-blue-200/30">
             &copy; {new Date().getFullYear()} SVS Checker. Alle Rechte vorbehalten.
+            <span className="mx-1">·</span>
+            <a href="https://hypeakz.io" target="_blank" rel="noopener noreferrer" className="text-blue-200/40 hover:text-blue-200 transition-colors">App by Hypeakz.io</a>
           </p>
         </div>
       </div>
