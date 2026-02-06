@@ -2,9 +2,10 @@
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Calculator, LogIn, User, LogOut, Save, Crown, Briefcase } from 'lucide-react'
+import { Calculator, LogIn, User, LogOut, Save, Crown, Briefcase, Shield } from 'lucide-react'
 import { SvsTooltip } from './svs-tooltip'
 import Link from 'next/link'
+import { isAdmin } from '@/lib/admin'
 import type { PlanTier } from '@/lib/lemonsqueezy'
 
 interface HeaderProps {
@@ -65,6 +66,14 @@ export function SvsHeader({ user, onSave, onLogout, saving, alertActive, plan }:
                     <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white">
                       <Briefcase className="h-4 w-4 mr-1" />
                       Misch-Einkommen
+                    </Button>
+                  </Link>
+                )}
+                {user && isAdmin(user.email) && (
+                  <Link href="/admin">
+                    <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white">
+                      <Shield className="h-4 w-4 mr-1" />
+                      Admin
                     </Button>
                   </Link>
                 )}
