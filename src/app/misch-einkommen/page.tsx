@@ -3,8 +3,10 @@
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { formatEuro } from '@/lib/format'
-import { calculateMischEinkommen, CONFIG } from '@/lib/misch-einkommen'
-import type { MischResult } from '@/lib/misch-einkommen'
+import {
+  calculateMischEinkommen, CONFIG, YEAR_CONFIGS, TAX_YEARS,
+  type MischResult, type TaxYear,
+} from '@/lib/misch-einkommen'
 import { AppShell, useAppShell } from '@/components/svs/app-shell'
 
 import { Button } from '@/components/ui/button'
@@ -15,12 +17,16 @@ import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
 import { Slider } from '@/components/ui/slider'
 import {
+  Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
+} from '@/components/ui/select'
+import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from '@/components/ui/table'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import {
   Calculator, Briefcase, Store, Crown, AlertTriangle,
   TrendingDown, ArrowRight, Users, Minus, Plus, Lock, ShieldCheck,
+  CalendarDays, Sparkles,
 } from 'lucide-react'
 
 // ── Helper ─────────────────────────────────────────────────
@@ -122,7 +128,7 @@ function WasserfallChart({ result }: { result: MischResult }) {
               <div className={`w-28 text-right font-mono text-sm shrink-0 ${
                 isLast ? 'font-bold text-emerald-600' : step.betrag < 0 ? 'text-red-600' : ''
               }`}>
-                {step.betrag < 0 ? '' : ''}{formatEuro(step.typ === 'ergebnis' ? step.laufend : step.betrag)}
+                {formatEuro(step.typ === 'ergebnis' ? step.laufend : step.betrag)}
               </div>
             </div>
           )
@@ -205,6 +211,60 @@ function ProGate() {
   )
 }
 
+// ── Dynamische Steuerersparnis-Anzeige ─────────────────────
+
+function SavingsSummary({ result }: { result: MischResult }) {
+  const kinderCount = result.absetzbetraege.familienbonus > 0 || result.absetzbetraege.kindermehrbetrag > 0
+  const hasAbsetzbetraege = result.absetzbetraege.gesamt > 0 || result.absetzbetraege.kindermehrbetrag > 0
+
+  if (!hasAbsetzbetraege) return null
+
+  // Berechne wie viel die Absetzbetraege tatsaechlich an Steuer sparen
+  const steuerOhneAbsetzbetraege = result.steuerGesamt.steuerBrutto
+  const steuerMitAbsetzbetraege = result.steuerGesamt.steuerNetto
+  const tatsaechlicheErsparnis = steuerOhneAbsetzbetraege - steuerMitAbsetzbetraege
+
+  if (tatsaechlicheErsparnis <= 0 && result.absetzbetraege.kindermehrbetrag <= 0) return null
+
+  const yc = YEAR_CONFIGS[result.year]
+  const yearLabel = result.year === '2026' ? '2026' : result.year
+
+  return (
+    <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 space-y-2">
+      <div className="flex items-center gap-2 text-emerald-700">
+        <Sparkles className="h-4 w-4" />
+        <span className="font-semibold text-sm">Deine Steuerersparnis {yearLabel}</span>
+      </div>
+
+      {tatsaechlicheErsparnis > 0 && (
+        <p className="text-emerald-800 text-sm">
+          Durch deine Absetzbetraege sparst du{' '}
+          <strong>{formatEuro(tatsaechlicheErsparnis)}</strong> an Steuern.
+        </p>
+      )}
+
+      {kinderCount && result.absetzbetraege.familienbonus > 0 && (
+        <p className="text-emerald-700 text-xs">
+          Davon Familienbonus Plus: {formatEuro(result.absetzbetraege.familienbonus)}/Jahr
+          (EUR {yc.familienbonusUnder18.toLocaleString('de-AT')}/Kind &lt;18J, EUR {yc.familienbonusOver18.toLocaleString('de-AT')}/Kind &gt;18J)
+        </p>
+      )}
+
+      {result.absetzbetraege.kindermehrbetrag > 0 && (
+        <p className="text-emerald-700 text-xs">
+          Kindermehrbetrag (Gutschrift): {formatEuro(result.absetzbetraege.kindermehrbetrag)}
+        </p>
+      )}
+
+      {result.absetzbetraege.alleinverdiener > 0 && (
+        <p className="text-emerald-700 text-xs">
+          Alleinverdiener-/Alleinerzieherabsetzbetrag: {formatEuro(result.absetzbetraege.alleinverdiener)}
+        </p>
+      )}
+    </div>
+  )
+}
+
 // ── Hauptseite ─────────────────────────────────────────────
 
 function MischContent() {
@@ -214,10 +274,13 @@ function MischContent() {
   const [kinderUnter18, setKinderUnter18] = useState(0)
   const [kinderUeber18, setKinderUeber18] = useState(0)
   const [alleinverdiener, setAlleinverdiener] = useState(false)
+  const [year, setYear] = useState<TaxYear>('2025')
+
+  const yc = YEAR_CONFIGS[year]
 
   const result = useMemo(() => calculateMischEinkommen({
-    bruttoGehalt, jahresgewinn, kinderUnter18, kinderUeber18, alleinverdiener,
-  }), [bruttoGehalt, jahresgewinn, kinderUnter18, kinderUeber18, alleinverdiener])
+    bruttoGehalt, jahresgewinn, kinderUnter18, kinderUeber18, alleinverdiener, year,
+  }), [bruttoGehalt, jahresgewinn, kinderUnter18, kinderUeber18, alleinverdiener, year])
 
   return (
     <>
@@ -231,9 +294,11 @@ function MischContent() {
               <h1 className="text-sm font-semibold">Misch-Einkommen Rechner</h1>
             </div>
           </div>
-          <Badge variant="outline" className="bg-amber-500/10 text-amber-600 border-amber-300/30 text-xs">
-            <Crown className="h-3 w-3 mr-1" /> Pro
-          </Badge>
+          <div className="flex items-center gap-2">
+            <Badge variant="outline" className="bg-amber-500/10 text-amber-600 border-amber-300/30 text-xs">
+              <Crown className="h-3 w-3 mr-1" /> Pro
+            </Badge>
+          </div>
         </div>
       </div>
 
@@ -245,6 +310,33 @@ function MischContent() {
           <p className="text-center text-muted-foreground py-16">Laden...</p>
         ) : (
           <>
+            {/* ── Jahresauswahl ─────────────────────────── */}
+            <Card className="glass">
+              <CardContent className="pt-6">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                  <div className="flex items-center gap-2">
+                    <CalendarDays className="h-4 w-4 text-muted-foreground" />
+                    <Label className="text-sm font-medium">Steuerjahr</Label>
+                  </div>
+                  <Select value={year} onValueChange={(v) => setYear(v as TaxYear)}>
+                    <SelectTrigger className="w-[220px]">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {TAX_YEARS.map((y) => (
+                        <SelectItem key={y.value} value={y.value}>{y.label}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  {year === '2026' && (
+                    <Badge variant="outline" className="text-amber-600 border-amber-300 bg-amber-50 text-xs">
+                      Prognose – vorbehaltlich gesetzlicher Aenderungen
+                    </Badge>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+
             {/* ── Eingaben ────────────────────────────── */}
             <div className="grid md:grid-cols-2 gap-6">
               {/* Anstellung */}
@@ -339,15 +431,23 @@ function MischContent() {
                   <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-50">
                     <Users className="h-4 w-4 text-violet-600" />
                   </div>
-                  Absetzbetraege
+                  Absetzbetraege {year}
                 </CardTitle>
                 <CardDescription>Reduzieren deine Steuerlast direkt</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="space-y-4">
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div className="space-y-4">
-                    <KinderInput value={kinderUnter18} onChange={setKinderUnter18} label="Kinder unter 18 (Familienbonus EUR 2.000)" />
-                    <KinderInput value={kinderUeber18} onChange={setKinderUeber18} label="Kinder ueber 18 (Familienbonus EUR 700)" />
+                    <KinderInput
+                      value={kinderUnter18}
+                      onChange={setKinderUnter18}
+                      label={`Kinder unter 18 (FBP EUR ${yc.familienbonusUnder18.toLocaleString('de-AT')})`}
+                    />
+                    <KinderInput
+                      value={kinderUeber18}
+                      onChange={setKinderUeber18}
+                      label={`Kinder ueber 18 (FBP EUR ${yc.familienbonusOver18.toLocaleString('de-AT')})`}
+                    />
                     <div className="flex items-center justify-between">
                       <Label htmlFor="avab" className="text-sm">Alleinverdiener/-erzieher</Label>
                       <Switch id="avab" checked={alleinverdiener} onCheckedChange={setAlleinverdiener} />
@@ -366,12 +466,23 @@ function MischContent() {
                       <span className="text-muted-foreground">Alleinverdiener-AB</span>
                       <span className="font-mono text-emerald-600">{formatEuro(result.absetzbetraege.alleinverdiener)}</span>
                     </div>
+                    {result.absetzbetraege.kindermehrbetrag > 0 && (
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Kindermehrbetrag</span>
+                        <span className="font-mono text-emerald-600">{formatEuro(result.absetzbetraege.kindermehrbetrag)}</span>
+                      </div>
+                    )}
                     <div className="flex justify-between font-medium border-t pt-1">
                       <span>Gesamt Absetzbetraege</span>
-                      <span className="font-mono text-emerald-600">{formatEuro(result.absetzbetraege.gesamt)}</span>
+                      <span className="font-mono text-emerald-600">
+                        {formatEuro(result.absetzbetraege.gesamt + result.absetzbetraege.kindermehrbetrag)}
+                      </span>
                     </div>
                   </div>
                 </div>
+
+                {/* Dynamische Steuerersparnis */}
+                <SavingsSummary result={result} />
               </CardContent>
             </Card>
 
@@ -469,7 +580,7 @@ function MischContent() {
             {/* ── Steuer-Detail ─────────────────────── */}
             <Card className="glass">
               <CardHeader>
-                <CardTitle className="text-lg">Steuer-Detail</CardTitle>
+                <CardTitle className="text-lg">Steuer-Detail {year}</CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="grid sm:grid-cols-2 gap-6">
@@ -498,9 +609,17 @@ function MischContent() {
                       <span className="text-muted-foreground">Absetzbetraege</span>
                       <span className="font-mono text-emerald-600">-{formatEuro(result.steuerGesamt.absetzbetraege)}</span>
                     </div>
+                    {result.steuerGesamt.kindermehrbetrag > 0 && (
+                      <div className="flex justify-between">
+                        <span className="text-muted-foreground">Kindermehrbetrag</span>
+                        <span className="font-mono text-emerald-600">-{formatEuro(result.steuerGesamt.kindermehrbetrag)}</span>
+                      </div>
+                    )}
                     <div className="flex justify-between font-medium border-t pt-1">
                       <span>Steuer netto (effektiv)</span>
-                      <span className="font-mono text-red-600">{formatEuro(result.steuerGesamt.steuerNetto)}</span>
+                      <span className={`font-mono ${result.steuerGesamt.steuerNetto < 0 ? 'text-emerald-600' : 'text-red-600'}`}>
+                        {result.steuerGesamt.steuerNetto < 0 ? '-' : ''}{formatEuro(Math.abs(result.steuerGesamt.steuerNetto))}
+                      </span>
                     </div>
                     <div className="flex justify-between text-muted-foreground">
                       <span>Durchschn. Steuersatz</span>
@@ -518,7 +637,7 @@ function MischContent() {
             {/* ── Tarif-Tabelle ─────────────────────── */}
             <Card className="glass">
               <CardHeader>
-                <CardTitle className="text-lg">Einkommensteuer-Tarif {CONFIG.year}</CardTitle>
+                <CardTitle className="text-lg">Einkommensteuer-Tarif {year}</CardTitle>
                 <CardDescription>Progressive Tarifstufen (nicht &quot;Steuerklassen&quot;)</CardDescription>
               </CardHeader>
               <CardContent>
@@ -559,7 +678,7 @@ function MischContent() {
         {/* Footer */}
         <footer className="text-center py-8 text-xs text-muted-foreground space-y-2">
           <p className="font-medium text-foreground/70">SVS Checker – Misch-Einkommen Rechner fuer Oesterreich</p>
-          <p>Alle Angaben ohne Gewaehr. Kein Ersatz fuer professionelle Steuerberatung. Werte {CONFIG.year}.</p>
+          <p>Alle Angaben ohne Gewaehr. Kein Ersatz fuer professionelle Steuerberatung. Werte {year}{year === '2026' ? ' (Prognose)' : ''}.</p>
           <div className="flex items-center justify-center gap-3 pt-1">
             <Link href="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
             <span>·</span>
