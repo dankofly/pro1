@@ -89,7 +89,7 @@ function HomeContent() {
       <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-lg border-b border-border/50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span className="md:hidden font-bold text-sm">SVS Checker</span>
+            <Link href="/" className="md:hidden font-bold text-sm hover:opacity-80 transition-opacity">SVS Checker</Link>
             <StatusBadge riskPercent={result.riskPercent} />
           </div>
           <div className="flex items-center gap-2">

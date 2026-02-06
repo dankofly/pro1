@@ -111,7 +111,7 @@ function DashboardContent() {
       <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-lg border-b border-border/50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center">
           <div className="flex items-center gap-3">
-            <span className="md:hidden font-bold text-sm">SVS Checker</span>
+            <Link href="/" className="md:hidden font-bold text-sm hover:opacity-80 transition-opacity">SVS Checker</Link>
             <h1 className="text-sm font-semibold">Meine Berechnungen</h1>
           </div>
         </div>
@@ -155,7 +155,7 @@ function DashboardContent() {
         </div>
 
         {/* Subscription Card */}
-        <Card className="glass-dark text-white border-0">
+        <Card className="bg-slate-900 text-white border-slate-800">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Crown className="h-5 w-5 text-amber-400" />
@@ -178,10 +178,10 @@ function DashboardContent() {
             ) : (
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <Badge className="bg-amber-500/20 text-amber-200 border-amber-400/30">
+                  <Badge className="bg-amber-500/20 text-amber-300 border-amber-400/30">
                     {subscription.plan === 'pro' ? 'SVS Checker Pro' : 'Sicherheits-Plan'}
                   </Badge>
-                  <Badge variant="outline" className="border-green-400/30 text-green-300">
+                  <Badge variant="outline" className="border-green-400/40 text-green-400">
                     {subscription.status}
                   </Badge>
                 </div>

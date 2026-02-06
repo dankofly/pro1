@@ -19,6 +19,7 @@ const NAV_ITEMS = [
   { href: '/misch-einkommen', label: 'Optimierung', icon: BarChart3, requiresPro: true },
   { href: '/dashboard', label: 'Verlauf', icon: Clock },
   { href: '/pricing', label: 'Pro-Vorteile', icon: Crown },
+  { href: '/profil', label: 'Profil', icon: User },
 ]
 
 export function AppSidebar({ user, plan, onLogout }: AppSidebarProps) {
@@ -28,7 +29,7 @@ export function AppSidebar({ user, plan, onLogout }: AppSidebarProps) {
     <aside className="hidden md:flex flex-col w-[220px] min-h-screen bg-slate-900 text-white shrink-0">
       {/* Logo */}
       <div className="p-5 pb-8">
-        <div className="flex items-center gap-3">
+        <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500">
             <Calculator className="h-5 w-5 text-white" />
           </div>
@@ -36,7 +37,7 @@ export function AppSidebar({ user, plan, onLogout }: AppSidebarProps) {
             <p className="font-bold text-sm tracking-tight">SVS Checker</p>
             <p className="text-[11px] text-slate-400">Beitragsrechner AT</p>
           </div>
-        </div>
+        </Link>
       </div>
 
       {/* Navigation */}

@@ -288,7 +288,7 @@ function MischContent() {
       <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-lg border-b border-border/50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span className="md:hidden font-bold text-sm">SVS Checker</span>
+            <Link href="/" className="md:hidden font-bold text-sm hover:opacity-80 transition-opacity">SVS Checker</Link>
             <div className="flex items-center gap-2">
               <Calculator className="h-4 w-4 text-muted-foreground" />
               <h1 className="text-sm font-semibold">Misch-Einkommen Rechner</h1>
