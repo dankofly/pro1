@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import { Suspense, useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
@@ -9,14 +9,17 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Alert, AlertDescription } from '@/components/ui/alert'
-import { Calculator, Mail, Lock, AlertCircle } from 'lucide-react'
+import { Calculator, Mail, Lock, AlertCircle, CheckCircle } from 'lucide-react'
 
-export default function LoginPage() {
+function LoginPageInner() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const redirectTo = searchParams.get('redirect') || '/'
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [resetSent, setResetSent] = useState(false)
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -28,15 +31,35 @@ export default function LoginPage() {
     if (error) {
       setError(
         error.message === 'Invalid login credentials'
-          ? 'Ungültige Anmeldedaten. Bitte überprüfe E-Mail und Passwort.'
+          ? 'Ungueltige Anmeldedaten. Bitte ueberpruefe E-Mail und Passwort.'
           : error.message,
       )
       setLoading(false)
       return
     }
 
-    router.push('/')
+    router.push(redirectTo)
   }
+
+  const handleForgotPassword = async () => {
+    if (!email) {
+      setError('Bitte gib zuerst deine E-Mail-Adresse ein.')
+      return
+    }
+    setError(null)
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/auth/callback`,
+    })
+    if (error) {
+      setError(error.message)
+    } else {
+      setResetSent(true)
+    }
+  }
+
+  const registerHref = redirectTo !== '/'
+    ? `/auth/register?redirect=${encodeURIComponent(redirectTo)}`
+    : '/auth/register'
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 flex items-center justify-center px-4">
@@ -58,6 +81,14 @@ export default function LoginPage() {
                 <AlertDescription>{error}</AlertDescription>
               </Alert>
             )}
+            {resetSent && (
+              <Alert>
+                <CheckCircle className="h-4 w-4" />
+                <AlertDescription>
+                  Falls ein Konto mit dieser E-Mail existiert, haben wir dir einen Link zum Zuruecksetzen gesendet.
+                </AlertDescription>
+              </Alert>
+            )}
             <div className="space-y-2">
               <Label htmlFor="email">E-Mail</Label>
               <div className="relative">
@@ -74,7 +105,16 @@ export default function LoginPage() {
               </div>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Passwort</Label>
+              <div className="flex items-center justify-between">
+                <Label htmlFor="password">Passwort</Label>
+                <button
+                  type="button"
+                  onClick={handleForgotPassword}
+                  className="text-xs text-blue-600 hover:underline"
+                >
+                  Passwort vergessen?
+                </button>
+              </div>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
@@ -96,16 +136,24 @@ export default function LoginPage() {
             </Button>
             <p className="text-sm text-muted-foreground text-center">
               Noch kein Konto?{' '}
-              <Link href="/auth/register" className="text-blue-600 hover:underline font-medium">
+              <Link href={registerHref} className="text-blue-600 hover:underline font-medium">
                 Jetzt registrieren
               </Link>
             </p>
             <Link href="/" className="text-sm text-muted-foreground hover:underline text-center">
-              Zurück zum Rechner
+              Zurueck zum Rechner
             </Link>
           </CardFooter>
         </form>
       </Card>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense>
+      <LoginPageInner />
+    </Suspense>
   )
 }

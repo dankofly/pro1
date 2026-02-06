@@ -2,9 +2,11 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Calculator, BarChart3, Clock, Crown } from 'lucide-react'
+import { Calculator, BarChart3, Clock, Crown, Shield } from 'lucide-react'
+import { useAppShell } from './app-shell'
+import { isAdmin } from '@/lib/admin'
 
-const NAV_ITEMS = [
+const BASE_NAV_ITEMS = [
   { href: '/', label: 'Rechner', icon: Calculator },
   { href: '/misch-einkommen', label: 'Optimierung', icon: BarChart3 },
   { href: '/dashboard', label: 'Verlauf', icon: Clock },
@@ -13,11 +15,16 @@ const NAV_ITEMS = [
 
 export function BottomNav() {
   const pathname = usePathname()
+  const { user } = useAppShell()
+
+  const navItems = isAdmin(user?.email)
+    ? [...BASE_NAV_ITEMS, { href: '/admin', label: 'Admin', icon: Shield }]
+    : BASE_NAV_ITEMS
 
   return (
     <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-t border-slate-200/60 safe-area-pb">
       <div className="flex items-center justify-around h-16">
-        {NAV_ITEMS.map((item) => {
+        {navItems.map((item) => {
           const isActive = pathname === item.href
           return (
             <Link key={item.href} href={item.href} className="flex-1">

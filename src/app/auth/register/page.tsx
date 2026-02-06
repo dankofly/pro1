@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
@@ -10,7 +11,13 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Calculator, Mail, Lock, User, AlertCircle, CheckCircle } from 'lucide-react'
 
-export default function RegisterPage() {
+function RegisterPageInner() {
+  const searchParams = useSearchParams()
+  const redirectParam = searchParams.get('redirect') || ''
+  const loginHref = redirectParam
+    ? `/auth/login?redirect=${encodeURIComponent(redirectParam)}`
+    : '/auth/login'
+
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -54,15 +61,15 @@ export default function RegisterPage() {
             </div>
             <CardTitle className="text-2xl">Registrierung erfolgreich!</CardTitle>
             <CardDescription>
-              Wir haben dir eine Bestätigungs-E-Mail gesendet. Bitte überprüfe dein Postfach und klicke auf den Link.
+              Wir haben dir eine Bestaetigungs-E-Mail gesendet. Bitte ueberpruefe dein Postfach und klicke auf den Link.
             </CardDescription>
           </CardHeader>
           <CardFooter className="flex flex-col gap-3">
-            <Link href="/auth/login" className="w-full">
+            <Link href={loginHref} className="w-full">
               <Button className="w-full">Zum Login</Button>
             </Link>
             <Link href="/" className="text-sm text-muted-foreground hover:underline text-center">
-              Zurück zum Rechner
+              Zurueck zum Rechner
             </Link>
           </CardFooter>
         </Card>
@@ -80,7 +87,7 @@ export default function RegisterPage() {
             </div>
           </div>
           <CardTitle className="text-2xl">Konto erstellen</CardTitle>
-          <CardDescription>Speichere deine SVS-Berechnungen und behalte den Überblick</CardDescription>
+          <CardDescription>Speichere deine SVS-Berechnungen und behalte den Ueberblick</CardDescription>
         </CardHeader>
         <form onSubmit={handleRegister}>
           <CardContent className="space-y-4">
@@ -142,16 +149,24 @@ export default function RegisterPage() {
             </Button>
             <p className="text-sm text-muted-foreground text-center">
               Bereits registriert?{' '}
-              <Link href="/auth/login" className="text-blue-600 hover:underline font-medium">
+              <Link href={loginHref} className="text-blue-600 hover:underline font-medium">
                 Anmelden
               </Link>
             </p>
             <Link href="/" className="text-sm text-muted-foreground hover:underline text-center">
-              Zurück zum Rechner
+              Zurueck zum Rechner
             </Link>
           </CardFooter>
         </form>
       </Card>
     </div>
+  )
+}
+
+export default function RegisterPage() {
+  return (
+    <Suspense>
+      <RegisterPageInner />
+    </Suspense>
   )
 }

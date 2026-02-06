@@ -35,7 +35,7 @@ import type { Calculation } from '@/lib/supabase-types'
 
 function DashboardContent() {
   const router = useRouter()
-  const { user, subscription } = useAppShell()
+  const { user, authLoading, subscription } = useAppShell()
   const [calculations, setCalculations] = useState<Calculation[]>([])
   const [loading, setLoading] = useState(true)
   const [promoCode, setPromoCode] = useState('')
@@ -47,10 +47,10 @@ function DashboardContent() {
   }, [user])
 
   useEffect(() => {
-    if (!subscription.loading && user === null) {
-      router.push('/auth/login')
+    if (!authLoading && !subscription.loading && user === null) {
+      router.push('/auth/login?redirect=/dashboard')
     }
-  }, [user, subscription.loading, router])
+  }, [user, authLoading, subscription.loading, router])
 
   const loadCalculations = async () => {
     setLoading(true)

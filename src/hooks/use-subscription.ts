@@ -18,7 +18,7 @@ export interface SubscriptionInfo {
   refresh: () => Promise<void>
 }
 
-export function useSubscription(user: User | null): SubscriptionInfo {
+export function useSubscription(user: User | null, authLoading: boolean = false): SubscriptionInfo {
   const [plan, setPlan] = useState<PlanTier>('free')
   const [status, setStatus] = useState<string | null>(null)
   const [currentPeriodEnd, setCurrentPeriodEnd] = useState<string | null>(null)
@@ -26,6 +26,8 @@ export function useSubscription(user: User | null): SubscriptionInfo {
   const [loading, setLoading] = useState(true)
 
   const fetchSubscription = useCallback(async () => {
+    if (authLoading) return
+
     if (!user) {
       setPlan('free')
       setStatus(null)
@@ -58,7 +60,7 @@ export function useSubscription(user: User | null): SubscriptionInfo {
     } finally {
       setLoading(false)
     }
-  }, [user])
+  }, [user, authLoading])
 
   useEffect(() => {
     fetchSubscription()

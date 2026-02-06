@@ -12,6 +12,9 @@ export default function AuthCallbackPage() {
 
   useEffect(() => {
     const handleCallback = async () => {
+      const params = new URLSearchParams(window.location.search)
+      const redirectTo = params.get('redirect') || '/'
+
       // Handle hash fragment tokens (implicit flow: #access_token=...)
       const hash = window.location.hash
       if (hash && hash.includes('access_token')) {
@@ -23,12 +26,11 @@ export default function AuthCallbackPage() {
           return
         }
         setStatus('success')
-        setTimeout(() => router.push('/'), 1500)
+        setTimeout(() => router.push(redirectTo), 1500)
         return
       }
 
       // Handle PKCE flow (query param: ?code=...)
-      const params = new URLSearchParams(window.location.search)
       const code = params.get('code')
       if (code) {
         const { error } = await supabase.auth.exchangeCodeForSession(code)
@@ -37,7 +39,7 @@ export default function AuthCallbackPage() {
           return
         }
         setStatus('success')
-        setTimeout(() => router.push('/'), 1500)
+        setTimeout(() => router.push(redirectTo), 1500)
         return
       }
 
