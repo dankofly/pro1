@@ -29,15 +29,18 @@ import {
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
 import { Input } from '@/components/ui/input'
-import { Calculator, Trash2, Crown, ExternalLink, Gift } from 'lucide-react'
+import { Calculator, Trash2, Crown, ExternalLink, Gift, ChevronDown } from 'lucide-react'
 import { toast } from 'sonner'
 import type { Calculation } from '@/lib/supabase-types'
 
 function DashboardContent() {
   const router = useRouter()
   const { user, authLoading, subscription } = useAppShell()
+  const PAGE_SIZE = 50
   const [calculations, setCalculations] = useState<Calculation[]>([])
   const [loading, setLoading] = useState(true)
+  const [loadingMore, setLoadingMore] = useState(false)
+  const [hasMore, setHasMore] = useState(false)
   const [promoCode, setPromoCode] = useState('')
   const [redeeming, setRedeeming] = useState(false)
 
@@ -59,13 +62,36 @@ function DashboardContent() {
       .select('*')
       .eq('user_id', user!.id)
       .order('created_at', { ascending: false })
+      .limit(PAGE_SIZE + 1)
 
     if (error) {
       toast.error('Fehler beim Laden der Berechnungen.')
     } else {
-      setCalculations((data as Calculation[]) || [])
+      const rows = (data as Calculation[]) || []
+      setHasMore(rows.length > PAGE_SIZE)
+      setCalculations(rows.slice(0, PAGE_SIZE))
     }
     setLoading(false)
+  }
+
+  const loadMore = async () => {
+    if (!calculations.length) return
+    setLoadingMore(true)
+    const lastDate = calculations[calculations.length - 1].created_at
+    const { data, error } = await supabase
+      .from('calculations')
+      .select('*')
+      .eq('user_id', user!.id)
+      .order('created_at', { ascending: false })
+      .lt('created_at', lastDate)
+      .limit(PAGE_SIZE + 1)
+
+    if (!error && data) {
+      const rows = data as Calculation[]
+      setHasMore(rows.length > PAGE_SIZE)
+      setCalculations((prev) => [...prev, ...rows.slice(0, PAGE_SIZE)])
+    }
+    setLoadingMore(false)
   }
 
   const handleDelete = useCallback(async (id: string) => {
@@ -249,6 +275,7 @@ function DashboardContent() {
                 </Link>
               </div>
             ) : (
+              <>
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -318,6 +345,24 @@ function DashboardContent() {
                   ))}
                 </TableBody>
               </Table>
+              {hasMore && (
+                <div className="flex justify-center pt-4">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={loadMore}
+                    disabled={loadingMore}
+                  >
+                    {loadingMore ? 'Laden...' : (
+                      <>
+                        <ChevronDown className="h-4 w-4 mr-1" />
+                        Aeltere Berechnungen laden
+                      </>
+                    )}
+                  </Button>
+                </div>
+              )}
+              </>
             )}
           </CardContent>
         </Card>

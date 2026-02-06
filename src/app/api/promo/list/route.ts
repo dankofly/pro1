@@ -18,17 +18,22 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Kein Admin-Zugriff' }, { status: 403 })
     }
 
-    const { data, error } = await getSupabaseAdmin()
+    const url = new URL(request.url)
+    const limit = Math.min(Math.max(Number(url.searchParams.get('limit')) || 100, 1), 500)
+    const offset = Math.max(Number(url.searchParams.get('offset')) || 0, 0)
+
+    const { data, error, count } = await getSupabaseAdmin()
       .from('promo_codes')
-      .select('*')
+      .select('*', { count: 'exact' })
       .order('created_at', { ascending: false })
+      .range(offset, offset + limit - 1)
 
     if (error) {
       console.error('Promo list error:', error)
       return NextResponse.json({ error: 'Fehler beim Laden' }, { status: 500 })
     }
 
-    return NextResponse.json({ codes: data || [] })
+    return NextResponse.json({ codes: data || [], total: count ?? 0 })
   } catch (err) {
     console.error('Promo list error:', err)
     return NextResponse.json({ error: 'Server-Fehler' }, { status: 500 })
