@@ -17,6 +17,8 @@ import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Info } from 'lucide-react'
 import { toast } from 'sonner'
 import { useSmartAlerts } from '@/hooks/use-smart-alerts'
+import { useSubscription } from '@/hooks/use-subscription'
+import { UpgradeDialog } from '@/components/svs/upgrade-dialog'
 import type { User } from '@supabase/supabase-js'
 
 export default function Home() {
@@ -24,6 +26,9 @@ export default function Home() {
   const [vorschreibung, setVorschreibung] = useState(450)
   const [user, setUser] = useState<User | null>(null)
   const [saving, setSaving] = useState(false)
+  const [upgradeOpen, setUpgradeOpen] = useState(false)
+  const [upgradeFeature, setUpgradeFeature] = useState('')
+  const [upgradeRequiredPlan, setUpgradeRequiredPlan] = useState<'basic' | 'pro'>('basic')
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
@@ -37,6 +42,8 @@ export default function Home() {
     return () => subscription.unsubscribe()
   }, [])
 
+  const subscription = useSubscription(user)
+
   const result = useMemo(() => calculateSvs(gewinn, vorschreibung), [gewinn, vorschreibung])
   const steuerTipps = useMemo(() => calculateSteuerTipps(gewinn, result.endgueltigeSVS), [gewinn, result.endgueltigeSVS])
   const { prefs: alertPrefs, isExceeded: alertActive, updatePrefs: updateAlertPrefs, requestNotificationPermission } = useSmartAlerts(result.nachzahlung)
@@ -46,9 +53,19 @@ export default function Home() {
     toast.success(`Gewinn von ${formatEuro(value)} uebernommen.`)
   }, [])
 
+  const handleUpgradeRequired = useCallback((feature: string, plan: 'basic' | 'pro') => {
+    setUpgradeFeature(feature)
+    setUpgradeRequiredPlan(plan)
+    setUpgradeOpen(true)
+  }, [])
+
   const handleSave = useCallback(async () => {
     if (!user) {
       toast.error('Bitte melde dich an, um Berechnungen zu speichern.')
+      return
+    }
+    if (subscription.isFree) {
+      handleUpgradeRequired('Berechnungen speichern', 'basic')
       return
     }
     setSaving(true)
@@ -72,7 +89,7 @@ export default function Home() {
     } finally {
       setSaving(false)
     }
-  }, [user, gewinn, vorschreibung, result])
+  }, [user, subscription.isFree, handleUpgradeRequired, gewinn, vorschreibung, result])
 
   const handleLogout = useCallback(async () => {
     await supabase.auth.signOut()
@@ -88,6 +105,7 @@ export default function Home() {
         onLogout={handleLogout}
         saving={saving}
         alertActive={alertActive}
+        plan={subscription.plan}
       />
 
       <main className="max-w-5xl mx-auto px-4 sm:px-6 py-6 space-y-6">
@@ -128,6 +146,15 @@ export default function Home() {
           alertActive={alertActive}
           updateAlertPrefs={updateAlertPrefs}
           requestNotificationPermission={requestNotificationPermission}
+          subscription={subscription}
+          onUpgradeRequired={handleUpgradeRequired}
+        />
+
+        <UpgradeDialog
+          open={upgradeOpen}
+          onOpenChange={setUpgradeOpen}
+          feature={upgradeFeature}
+          requiredPlan={upgradeRequiredPlan}
         />
 
         <footer className="text-center py-8 text-xs text-muted-foreground space-y-1">

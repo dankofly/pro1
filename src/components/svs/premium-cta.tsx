@@ -9,6 +9,8 @@ import { BankImportDialog } from './bank-import-dialog'
 import { AlertSettingsDialog } from './alert-settings-dialog'
 import type { SvsResult, SteuerTipp } from '@/lib/svs-calculator'
 import type { AlertPreferences } from '@/hooks/use-smart-alerts'
+import type { SubscriptionInfo } from '@/hooks/use-subscription'
+import { Lock } from 'lucide-react'
 
 interface PremiumCTAProps {
   gewinn: number
@@ -20,6 +22,8 @@ interface PremiumCTAProps {
   alertActive: boolean
   updateAlertPrefs: (updates: Partial<AlertPreferences>) => void
   requestNotificationPermission: () => Promise<boolean>
+  subscription: SubscriptionInfo
+  onUpgradeRequired: (feature: string, plan: 'basic' | 'pro') => void
 }
 
 export function PremiumCTA({
@@ -32,9 +36,12 @@ export function PremiumCTA({
   alertActive,
   updateAlertPrefs,
   requestNotificationPermission,
+  subscription,
+  onUpgradeRequired,
 }: PremiumCTAProps) {
   const [bankOpen, setBankOpen] = useState(false)
   const [alertOpen, setAlertOpen] = useState(false)
+  const locked = !subscription.isPro
 
   return (
     <>
@@ -55,39 +62,49 @@ export function PremiumCTA({
           <div className="grid sm:grid-cols-3 gap-3">
             {/* Bank-Anbindung */}
             <button
-              onClick={() => setBankOpen(true)}
-              className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/20 transition-colors text-left"
+              onClick={() => locked ? onUpgradeRequired('Bank-Anbindung', 'pro') : setBankOpen(true)}
+              className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/20 transition-colors text-left relative"
             >
+              {locked && <Lock className="absolute top-3 right-3 h-3.5 w-3.5 text-white/40" />}
               <Building2 className="h-5 w-5 mb-2 text-blue-200" />
               <div className="font-semibold text-sm">Bank-Anbindung</div>
               <div className="text-blue-200/70 text-xs mb-3">CSV-Import deiner Kontoauszuege</div>
               <span className="text-xs font-medium bg-white/10 px-2 py-1 rounded-md">
-                CSV importieren
+                {locked ? 'Pro Feature' : 'CSV importieren'}
               </span>
             </button>
 
             {/* PDF-Export */}
-            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10">
+            <button
+              onClick={() => locked ? onUpgradeRequired('PDF-Export', 'pro') : undefined}
+              className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/20 transition-colors text-left relative"
+            >
+              {locked && <Lock className="absolute top-3 right-3 h-3.5 w-3.5 text-white/40" />}
               <FileDown className="h-5 w-5 mb-2 text-blue-200" />
               <div className="font-semibold text-sm">PDF-Export</div>
               <div className="text-blue-200/70 text-xs mb-3">Berichte fuer deinen Steuerberater</div>
-              <PdfExportButton
-                gewinn={gewinn}
-                vorschreibung={vorschreibung}
-                result={result}
-                steuerTipps={steuerTipps}
-                variant="ghost"
-                size="sm"
-                className="text-white hover:text-white hover:bg-white/10 h-auto px-2 py-1 text-xs font-medium bg-white/10"
-              />
-            </div>
+              {locked ? (
+                <span className="text-xs font-medium bg-white/10 px-2 py-1 rounded-md">Pro Feature</span>
+              ) : (
+                <PdfExportButton
+                  gewinn={gewinn}
+                  vorschreibung={vorschreibung}
+                  result={result}
+                  steuerTipps={steuerTipps}
+                  variant="ghost"
+                  size="sm"
+                  className="text-white hover:text-white hover:bg-white/10 h-auto px-2 py-1 text-xs font-medium bg-white/10"
+                />
+              )}
+            </button>
 
             {/* Smart Alerts */}
             <button
-              onClick={() => setAlertOpen(true)}
+              onClick={() => locked ? onUpgradeRequired('Smart Alerts', 'pro') : setAlertOpen(true)}
               className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10 hover:bg-white/20 transition-colors text-left relative"
             >
-              {alertActive && (
+              {locked && <Lock className="absolute top-3 right-3 h-3.5 w-3.5 text-white/40" />}
+              {!locked && alertActive && (
                 <span className="absolute top-2 right-2 flex h-2.5 w-2.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500" />
@@ -97,7 +114,7 @@ export function PremiumCTA({
               <div className="font-semibold text-sm">Smart Alerts</div>
               <div className="text-blue-200/70 text-xs mb-3">Nachzahlungs-Warnungen</div>
               <span className="text-xs font-medium bg-white/10 px-2 py-1 rounded-md">
-                {alertPrefs.enabled ? 'Einstellungen' : 'Aktivieren'}
+                {locked ? 'Pro Feature' : alertPrefs.enabled ? 'Einstellungen' : 'Aktivieren'}
               </span>
             </button>
           </div>

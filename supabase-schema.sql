@@ -79,3 +79,32 @@ CREATE OR REPLACE TRIGGER on_auth_user_created
 -- 5. Indexes for performance
 CREATE INDEX IF NOT EXISTS idx_calculations_user_id ON public.calculations(user_id);
 CREATE INDEX IF NOT EXISTS idx_calculations_created_at ON public.calculations(created_at DESC);
+
+-- 6. Subscriptions table (Lemon Squeezy)
+CREATE TABLE IF NOT EXISTS public.subscriptions (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  user_id UUID REFERENCES public.profiles(id) ON DELETE CASCADE NOT NULL UNIQUE,
+  lemonsqueezy_subscription_id TEXT NOT NULL UNIQUE,
+  lemonsqueezy_customer_id TEXT NOT NULL,
+  lemonsqueezy_order_id TEXT,
+  variant_id TEXT NOT NULL,
+  plan TEXT NOT NULL CHECK (plan IN ('basic', 'pro')),
+  status TEXT NOT NULL DEFAULT 'active',
+  billing_interval TEXT CHECK (billing_interval IN ('month', 'year')),
+  current_period_end TIMESTAMPTZ,
+  renews_at TIMESTAMPTZ,
+  ends_at TIMESTAMPTZ,
+  update_payment_method_url TEXT,
+  customer_portal_url TEXT,
+  created_at TIMESTAMPTZ DEFAULT now() NOT NULL,
+  updated_at TIMESTAMPTZ DEFAULT now() NOT NULL
+);
+
+ALTER TABLE public.subscriptions ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Users can view own subscription"
+  ON public.subscriptions FOR SELECT
+  USING (auth.uid() = user_id);
+
+CREATE INDEX IF NOT EXISTS idx_subscriptions_user_id ON public.subscriptions(user_id);
+CREATE INDEX IF NOT EXISTS idx_subscriptions_ls_id ON public.subscriptions(lemonsqueezy_subscription_id);
