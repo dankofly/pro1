@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server'
-import crypto from 'crypto'
 import { getSupabaseAdmin } from '@/lib/supabase-admin'
 import { isAdmin } from '@/lib/admin'
 
@@ -26,7 +25,9 @@ export async function POST(request: NextRequest) {
     const codes: string[] = []
     for (let i = 0; i < count; i++) {
       // Format: SVS-XXXX-XXXX (leicht lesbar)
-      const raw = crypto.randomBytes(6).toString('hex').toUpperCase()
+      const bytes = new Uint8Array(4)
+      globalThis.crypto.getRandomValues(bytes)
+      const raw = Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('').toUpperCase()
       codes.push(`SVS-${raw.slice(0, 4)}-${raw.slice(4, 8)}`)
     }
 

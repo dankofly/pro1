@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
       variant_id: 'promo',
       plan: 'pro',
       status: 'active',
-      billing_interval: 'lifetime',
+      billing_interval: 'year',
       current_period_end: null,
       renews_at: null,
       ends_at: null,
