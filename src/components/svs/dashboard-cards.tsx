@@ -56,7 +56,7 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
         <div className="text-center py-2">
           {result.nachzahlung > 0 ? (
             <>
-              <p className="text-3xl sm:text-4xl font-bold text-red-500 num-transition">
+              <p className="text-3xl sm:text-4xl font-bold text-red-500 num-transition font-mono">
                 {formatEuroShort(Math.round(animatedNachzahlung))}
               </p>
               <p className="text-sm text-muted-foreground mt-1">
@@ -74,7 +74,7 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
             </>
           ) : result.nachzahlung < 0 ? (
             <>
-              <p className="text-3xl sm:text-4xl font-bold text-emerald-500 num-transition">
+              <p className="text-3xl sm:text-4xl font-bold text-emerald-500 num-transition font-mono">
                 {formatEuroShort(Math.round(animatedNachzahlung))}
               </p>
               <p className="text-sm text-muted-foreground mt-1">
@@ -89,7 +89,7 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
             </>
           ) : (
             <>
-              <p className="text-3xl sm:text-4xl font-bold text-muted-foreground num-transition">
+              <p className="text-3xl sm:text-4xl font-bold text-muted-foreground num-transition font-mono">
                 &euro; 0
               </p>
               <p className="text-sm text-muted-foreground mt-1">
@@ -111,7 +111,7 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
           </span>
         </div>
         <div className="text-center py-2">
-          <p className="text-3xl sm:text-4xl font-bold text-blue-600 num-transition">
+          <p className="text-3xl sm:text-4xl font-bold text-blue-600 num-transition font-mono">
             {formatEuroShort(Math.round(animatedSpar))}
           </p>
           <p className="text-sm text-muted-foreground mt-1">
@@ -146,7 +146,7 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
           </span>
         </div>
         <div className="text-center py-2">
-          <p className="text-3xl sm:text-4xl font-bold text-emerald-500 num-transition">
+          <p className="text-3xl sm:text-4xl font-bold text-emerald-500 num-transition font-mono">
             - {formatEuroShort(Math.round(animatedSteuer))}
           </p>
           <p className="text-sm text-muted-foreground mt-1">

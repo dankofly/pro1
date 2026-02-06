@@ -1,7 +1,27 @@
 import type { Metadata } from 'next'
+import { Space_Grotesk, JetBrains_Mono, IBM_Plex_Sans } from 'next/font/google'
 import { Toaster } from '@/components/ui/sonner'
 import { JsonLd } from '@/components/json-ld'
 import './globals.css'
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-heading',
+  display: 'swap',
+})
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+})
+
+const ibmPlex = IBM_Plex_Sans({
+  weight: ['400', '500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-body',
+  display: 'swap',
+})
 
 const SITE_URL = 'https://svs-checker.app'
 
@@ -60,7 +80,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de-AT">
-      <body className="antialiased min-h-screen">
+      <body className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${ibmPlex.variable} antialiased min-h-screen`}>
         <JsonLd data={{
           '@context': 'https://schema.org',
           '@type': 'Organization',

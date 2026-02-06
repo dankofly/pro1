@@ -31,7 +31,7 @@ export function InputSection({ gewinn, setGewinn, vorschreibung, setVorschreibun
         <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900">
           <Pencil className="h-4 w-4 text-white" />
         </div>
-        <h2 className="text-lg font-semibold tracking-tight text-slate-900">
+        <h2 className="text-lg font-semibold tracking-tight text-slate-900 font-heading">
           Deine Angaben
         </h2>
       </div>

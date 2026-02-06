@@ -30,7 +30,7 @@ export function HeroNumber({ echtesNetto, gewinn }: HeroNumberProps) {
       <p className="text-sm font-medium text-muted-foreground mb-2 uppercase tracking-wider">
         Das bleibt dir wirklich
       </p>
-      <p className="text-5xl sm:text-6xl lg:text-7xl font-bold text-emerald-500 num-transition tracking-tight">
+      <p className="text-5xl sm:text-6xl lg:text-7xl font-bold text-emerald-500 num-transition tracking-tight font-mono">
         {formatted}
       </p>
       <div className="flex items-center justify-center gap-3 mt-4">

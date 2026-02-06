@@ -93,7 +93,7 @@ function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: str
   }, [visible, target])
 
   return (
-    <span ref={ref} className="tabular-nums">
+    <span ref={ref} className="tabular-nums font-mono">
       {count.toLocaleString('de-AT')}{suffix}
     </span>
   )
@@ -118,17 +118,19 @@ function Navbar() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/20">
-            <Calculator className="h-4 w-4 text-emerald-400" />
+        <div className="flex items-center gap-8">
+          <div className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/20">
+              <Calculator className="h-4 w-4 text-emerald-400" />
+            </div>
+            <span className="font-bold text-white text-lg font-heading">SVS Checker</span>
           </div>
-          <span className="font-bold text-white text-lg">SVS Checker</span>
-        </div>
-        <div className="hidden md:flex items-center gap-8 text-sm text-blue-200">
-          <a href="#problem" className="hover:text-white transition-colors">Problem</a>
-          <a href="#features" className="hover:text-white transition-colors">Features</a>
-          <a href="#pricing" className="hover:text-white transition-colors">Preise</a>
-          <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
+          <div className="hidden md:flex items-center gap-6 text-sm text-blue-200">
+            <a href="#problem" className="hover:text-white transition-colors">Problem</a>
+            <a href="#features" className="hover:text-white transition-colors">Features</a>
+            <a href="#pricing" className="hover:text-white transition-colors">Preise</a>
+            <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
+          </div>
         </div>
         <div className="flex items-center gap-3">
           <Link href="/auth/login">
@@ -177,7 +179,7 @@ function Hero() {
             </Reveal>
 
             <Reveal delay={100}>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight font-heading">
                 SVS-Nachzahlung?{' '}
                 <span className="bg-gradient-to-r from-emerald-400 to-emerald-300 bg-clip-text text-transparent">
                   Nie wieder ueberrascht.
@@ -295,24 +297,22 @@ function Hero() {
   )
 }
 
-/* ─── Social Proof Carousel ─── */
+/* ─── Social Proof ─── */
 const REVIEWS = [
-  { name: 'Markus R.', role: 'Grafik-Designer', text: 'Endlich weiss ich, was die SVS wirklich von mir will. Keine boesen Ueberraschungen mehr!' },
   { name: 'Sandra K.', role: 'Texterin', text: 'In 30 Sekunden mein echtes Netto berechnet. Mein Steuerberater war beeindruckt.' },
   { name: 'Thomas W.', role: 'IT-Freelancer', text: 'Der Misch-Einkommen Rechner hat mir 2 Stunden beim Steuerberater gespart. Absolut genial.' },
-  { name: 'Lisa M.', role: 'Fotografin', text: 'Einfach Gewinn eingeben und sofort sehen, was uebrig bleibt. So muss das sein.' },
   { name: 'David P.', role: 'Berater', text: 'Die Nachzahlungs-Prognose war auf den Euro genau. Besser als jeder Excel-Rechner.' },
   { name: 'Julia H.', role: 'Online-Haendlerin', text: 'Familienbonus, AVAB, alles automatisch dabei. Ich spar mir den Gang zum Steuerberater.' },
   { name: 'Stefan B.', role: 'Webentwickler', text: 'Nutze den Rechner jeden Monat. Die Wasserfall-Analyse zeigt mir genau wo mein Geld hingeht.' },
   { name: 'Anna G.', role: 'Coach', text: 'Endlich ein Tool das Selbstaendige in Oesterreich wirklich verstehen. Klare Empfehlung!' },
 ]
 
-function SocialProofCarousel() {
+function SocialProof() {
   return (
-    <section className="relative py-12 sm:py-16 bg-slate-950 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 mb-8">
+    <section className="relative py-16 sm:py-20 bg-slate-950">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <Reveal>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 text-center">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 text-center mb-12">
             <div className="flex">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="h-5 w-5 text-amber-400 fill-amber-400" />
@@ -323,20 +323,10 @@ function SocialProofCarousel() {
             </p>
           </div>
         </Reveal>
-      </div>
 
-      {/* Infinite scroll track */}
-      <div className="relative">
-        {/* Fade edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-slate-950 to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-slate-950 to-transparent z-10 pointer-events-none" />
-
-        <div className="flex animate-scroll-left">
-          {[...REVIEWS, ...REVIEWS].map((r, i) => (
-            <div
-              key={i}
-              className="flex-shrink-0 w-[300px] sm:w-[340px] mx-3"
-            >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {REVIEWS.map((r, i) => (
+            <Reveal key={r.name} delay={i * 100}>
               <div className="bg-white/[0.04] border border-white/10 rounded-xl p-5 h-full">
                 <div className="flex mb-3">
                   {[...Array(5)].map((_, j) => (
@@ -347,7 +337,7 @@ function SocialProofCarousel() {
                   &ldquo;{r.text}&rdquo;
                 </p>
                 <div className="flex items-center gap-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold font-heading">
                     {r.name.split(' ').map(n => n[0]).join('')}
                   </div>
                   <div>
@@ -356,7 +346,7 @@ function SocialProofCarousel() {
                   </div>
                 </div>
               </div>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -401,7 +391,7 @@ function ProblemSection() {
             <Badge className="bg-red-500/10 text-red-400 border-red-500/20 mb-4">
               Das Problem
             </Badge>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
               Warum Selbstaendige jedes Jahr boese ueberrascht werden
             </h2>
             <p className="mt-4 text-blue-200/60 max-w-2xl mx-auto text-lg">
@@ -410,20 +400,39 @@ function ProblemSection() {
           </div>
         </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {problems.map((p, i) => (
-            <Reveal key={p.title} delay={i * 150}>
-              <Card className={`bg-white/[0.03] ${p.border} border backdrop-blur-sm h-full hover:bg-white/[0.06] transition-colors duration-300`}>
-                <CardContent className="p-6 sm:p-8">
-                  <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${p.bg} ${p.color} mb-5`}>
-                    {p.icon}
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-3">{p.title}</h3>
-                  <p className="text-blue-200/60 leading-relaxed">{p.desc}</p>
-                </CardContent>
-              </Card>
-            </Reveal>
-          ))}
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+          {/* Lead problem – takes 3 cols */}
+          <Reveal className="lg:col-span-3">
+            <Card className={`bg-white/[0.03] ${problems[0].border} border h-full hover:bg-white/[0.06] transition-colors duration-300`}>
+              <CardContent className="p-6 sm:p-10">
+                <div className={`flex h-14 w-14 items-center justify-center rounded-xl ${problems[0].bg} ${problems[0].color} mb-6`}>
+                  {problems[0].icon}
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-heading">{problems[0].title}</h3>
+                <p className="text-blue-200/60 leading-relaxed text-lg">{problems[0].desc}</p>
+                <div className="mt-6 flex items-center gap-3 text-sm text-red-400/80">
+                  <span className="flex h-2 w-2 rounded-full bg-red-400" />
+                  Betrifft 80% aller Selbstaendigen in Oesterreich
+                </div>
+              </CardContent>
+            </Card>
+          </Reveal>
+          {/* Supporting problems – stacked in 2 cols */}
+          <div className="lg:col-span-2 flex flex-col gap-6">
+            {problems.slice(1).map((p, i) => (
+              <Reveal key={p.title} delay={(i + 1) * 150} className="flex-1">
+                <Card className={`bg-white/[0.03] ${p.border} border h-full hover:bg-white/[0.06] transition-colors duration-300`}>
+                  <CardContent className="p-6">
+                    <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${p.bg} ${p.color} mb-4`}>
+                      {p.icon}
+                    </div>
+                    <h3 className="text-lg font-bold text-white mb-2 font-heading">{p.title}</h3>
+                    <p className="text-blue-200/60 leading-relaxed text-sm">{p.desc}</p>
+                  </CardContent>
+                </Card>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -464,7 +473,7 @@ function FeaturesSection() {
             <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 mb-4">
               Features
             </Badge>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
               Alles, was du brauchst – in einer App
             </h2>
             <p className="mt-4 text-blue-200/60 max-w-2xl mx-auto text-lg">
@@ -473,34 +482,61 @@ function FeaturesSection() {
           </div>
         </Reveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {features.map((f, i) => (
-            <Reveal key={f.title} delay={i * 150}>
-              <div className="group relative h-full">
-                <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <Card className="relative bg-white/[0.03] border-white/10 backdrop-blur-sm h-full">
-                  <CardContent className="p-6 sm:p-8">
-                    <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${f.bg} ${f.color} mb-5`}>
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+          {/* Lead feature – 3 cols with larger visual */}
+          <Reveal className="lg:col-span-3">
+            <div className="group relative h-full">
+              <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-emerald-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <Card className="relative bg-white/[0.03] border-white/10 h-full">
+                <CardContent className="p-6 sm:p-10">
+                  <div className={`flex h-14 w-14 items-center justify-center rounded-xl ${features[0].bg} ${features[0].color} mb-6`}>
+                    {features[0].icon}
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-heading">{features[0].title}</h3>
+                  <p className="text-blue-200/60 leading-relaxed text-lg">{features[0].desc}</p>
+                  <div className="mt-8 grid grid-cols-3 gap-4">
+                    {[
+                      { label: 'SVS Gesamt', value: '7.124 EUR', color: 'text-blue-300' },
+                      { label: 'Nachzahlung', value: '1.724 EUR', color: 'text-amber-300' },
+                      { label: 'Echtes Netto', value: '28.742 EUR', color: 'text-emerald-300' },
+                    ].map((s) => (
+                      <div key={s.label} className="bg-white/5 rounded-xl p-3 text-center">
+                        <p className="text-[10px] text-white/40 uppercase tracking-wider">{s.label}</p>
+                        <p className={`text-sm font-bold ${s.color} font-mono mt-0.5`}>{s.value}</p>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </Reveal>
+          {/* Secondary features – stacked in 2 cols */}
+          <div className="lg:col-span-2 space-y-6">
+            {features.slice(1).map((f, i) => (
+              <Reveal key={f.title} delay={(i + 1) * 150}>
+                <Card className="bg-white/[0.03] border-white/10 h-full">
+                  <CardContent className="p-6">
+                    <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${f.bg} ${f.color} mb-4`}>
                       {f.icon}
                     </div>
-                    <h3 className="text-xl font-bold text-white mb-3">{f.title}</h3>
-                    <p className="text-blue-200/60 leading-relaxed">{f.desc}</p>
+                    <h3 className="text-lg font-bold text-white mb-2 font-heading">{f.title}</h3>
+                    <p className="text-blue-200/60 leading-relaxed text-sm">{f.desc}</p>
                   </CardContent>
                 </Card>
-              </div>
-            </Reveal>
-          ))}
+              </Reveal>
+            ))}
+          </div>
         </div>
 
-        {/* Extra Feature Cards Row */}
+        {/* Additional features – 2-col row */}
         <Reveal delay={200}>
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div className="flex items-start gap-4 bg-white/[0.03] border border-white/10 rounded-xl p-5">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-500/10 shrink-0">
                 <TrendingUp className="h-5 w-5 text-purple-400" />
               </div>
               <div>
-                <h4 className="font-semibold text-white">Misch-Einkommen Rechner</h4>
+                <h4 className="font-semibold text-white font-heading">Misch-Einkommen Rechner</h4>
                 <p className="text-sm text-blue-200/50 mt-1">Angestellt + Gewerbe? Berechne die Differenz-Vorschreibung, doppelte SV und dein echtes kombiniertes Netto.</p>
               </div>
             </div>
@@ -509,7 +545,7 @@ function FeaturesSection() {
                 <Star className="h-5 w-5 text-emerald-400" />
               </div>
               <div>
-                <h4 className="font-semibold text-white">Wasserfall-Analyse</h4>
+                <h4 className="font-semibold text-white font-heading">Wasserfall-Analyse</h4>
                 <p className="text-sm text-blue-200/50 mt-1">Sieh genau, wie sich dein Brutto zu Netto aufschluesselt: SVS, Einkommensteuer und was wirklich bleibt.</p>
               </div>
             </div>
@@ -597,7 +633,7 @@ function PricingSection() {
             <Badge className="bg-amber-500/10 text-amber-400 border-amber-500/20 mb-4">
               Preise
             </Badge>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
               Starte kostenlos, upgrade wenn du bereit bist
             </h2>
             <p className="mt-4 text-blue-200/60 max-w-2xl mx-auto text-lg">
@@ -662,7 +698,7 @@ function PricingSection() {
                       {tier.name}
                     </h3>
                     <div className="mt-4 mb-1">
-                      <span className="text-4xl font-extrabold text-white">{price} EUR</span>
+                      <span className="text-4xl font-extrabold text-white font-mono">{price} EUR</span>
                       <span className="text-blue-200/50 text-sm ml-2">/ {tier.unit}</span>
                     </div>
                     <div className="mb-6 h-5">
@@ -732,7 +768,7 @@ function TrustSection() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <Reveal>
           <div className="text-center mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-white">
+            <h2 className="text-2xl sm:text-3xl font-bold text-white font-heading">
               Vertrauenswuerdig & sicher
             </h2>
           </div>
@@ -797,7 +833,7 @@ function FAQSection() {
             <Badge className="bg-blue-500/10 text-blue-400 border-blue-500/20 mb-4">
               FAQ
             </Badge>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
               Haeufig gestellte Fragen
             </h2>
           </div>
@@ -941,7 +977,7 @@ export default function LandingPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSONLD) }} />
       <Navbar />
       <Hero />
-      <SocialProofCarousel />
+      <SocialProof />
       <ProblemSection />
       <FeaturesSection />
       <PricingSection />

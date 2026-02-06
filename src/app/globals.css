@@ -93,15 +93,15 @@
 }
 
 @layer components {
-  /* Glassmorphism Cards */
+  /* Card styles */
   .glass {
-    @apply backdrop-blur-xl bg-white/70 border border-white/20 shadow-lg shadow-slate-900/5;
+    @apply bg-white border border-slate-200 shadow-sm;
   }
   .glass-dark {
-    @apply backdrop-blur-xl bg-slate-900/80 border border-white/10 shadow-lg;
+    @apply bg-slate-900 border border-slate-700/50 shadow-lg;
   }
   .glass-subtle {
-    @apply backdrop-blur-md bg-white/50 border border-white/30;
+    @apply bg-slate-50 border border-slate-200;
   }
 
   /* Gold Glow for Pro Features */
@@ -156,5 +156,15 @@
   }
   input[type="range"]::-moz-range-thumb {
     @apply w-6 h-6 rounded-full bg-white shadow-lg shadow-slate-900/20 cursor-pointer border-2 border-slate-200;
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
