@@ -9,13 +9,21 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Nicht angemeldet' }, { status: 401 })
     }
 
-    const { data: { user }, error: authError } = await getSupabaseAdmin().auth.getUser(token)
+    let admin
+    try {
+      admin = getSupabaseAdmin()
+    } catch (e) {
+      console.error('Admin client error:', e)
+      return NextResponse.json({ error: 'SUPABASE_SERVICE_ROLE_KEY fehlt' }, { status: 500 })
+    }
+
+    const { data: { user }, error: authError } = await admin.auth.getUser(token)
     if (authError || !user) {
-      return NextResponse.json({ error: 'Ungültiges Token' }, { status: 401 })
+      return NextResponse.json({ error: `Auth-Fehler: ${authError?.message || 'Kein User'}` }, { status: 401 })
     }
 
     if (!isAdmin(user.email)) {
-      return NextResponse.json({ error: 'Kein Admin-Zugriff' }, { status: 403 })
+      return NextResponse.json({ error: `Kein Admin: ${user.email}` }, { status: 403 })
     }
 
     const body = await request.json().catch(() => ({}))
@@ -24,7 +32,6 @@ export async function POST(request: NextRequest) {
 
     const codes: string[] = []
     for (let i = 0; i < count; i++) {
-      // Format: SVS-XXXX-XXXX (leicht lesbar)
       const bytes = new Uint8Array(4)
       globalThis.crypto.getRandomValues(bytes)
       const raw = Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('').toUpperCase()
@@ -37,18 +44,18 @@ export async function POST(request: NextRequest) {
       note,
     }))
 
-    const { error: insertError } = await getSupabaseAdmin()
+    const { error: insertError } = await admin
       .from('promo_codes')
       .insert(rows)
 
     if (insertError) {
       console.error('Promo insert error:', insertError)
-      return NextResponse.json({ error: 'Fehler beim Erstellen' }, { status: 500 })
+      return NextResponse.json({ error: `DB-Fehler: ${insertError.message}` }, { status: 500 })
     }
 
     return NextResponse.json({ codes })
   } catch (err) {
     console.error('Promo generate error:', err)
-    return NextResponse.json({ error: 'Server-Fehler' }, { status: 500 })
+    return NextResponse.json({ error: `Server-Fehler: ${err instanceof Error ? err.message : String(err)}` }, { status: 500 })
   }
 }
