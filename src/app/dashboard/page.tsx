@@ -27,7 +27,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from '@/components/ui/alert-dialog'
-import { Calculator, ArrowLeft, Trash2, LogOut, Crown, ExternalLink } from 'lucide-react'
+import { Input } from '@/components/ui/input'
+import { Calculator, ArrowLeft, Trash2, LogOut, Crown, ExternalLink, Gift } from 'lucide-react'
 import { toast } from 'sonner'
 import { useSubscription } from '@/hooks/use-subscription'
 import type { User } from '@supabase/supabase-js'
@@ -38,6 +39,8 @@ export default function DashboardPage() {
   const [user, setUser] = useState<User | null>(null)
   const [calculations, setCalculations] = useState<Calculation[]>([])
   const [loading, setLoading] = useState(true)
+  const [promoCode, setPromoCode] = useState('')
+  const [redeeming, setRedeeming] = useState(false)
 
   useEffect(() => {
     const checkUser = async () => {
@@ -80,6 +83,32 @@ export default function DashboardPage() {
   const handleLogout = async () => {
     await supabase.auth.signOut()
     router.push('/')
+  }
+
+  const handleRedeemPromo = async () => {
+    if (!promoCode.trim()) return
+    setRedeeming(true)
+    const { data: { session } } = await supabase.auth.getSession()
+    if (!session) return
+
+    const res = await fetch('/api/promo/redeem', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${session.access_token}`,
+      },
+      body: JSON.stringify({ code: promoCode }),
+    })
+
+    const json = await res.json().catch(() => ({}))
+    if (res.ok) {
+      toast.success('Code eingelöst! Du hast jetzt SVS Checker Pro.')
+      setPromoCode('')
+      subscription.refresh()
+    } else {
+      toast.error(json.error || 'Fehler beim Einlösen')
+    }
+    setRedeeming(false)
   }
 
   const subscription = useSubscription(user)
@@ -206,6 +235,33 @@ export default function DashboardPage() {
             )}
           </CardContent>
         </Card>
+
+        {/* Promo Code */}
+        {subscription.isFree && (
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Gift className="h-5 w-5 text-amber-500" />
+                Promo-Code einlösen
+              </CardTitle>
+              <CardDescription>Hast du einen Promo-Code? Löse ihn hier ein für SVS Checker Pro.</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center gap-3">
+                <Input
+                  value={promoCode}
+                  onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
+                  placeholder="SVS-XXXX-XXXX"
+                  className="font-mono max-w-[220px]"
+                  onKeyDown={(e) => e.key === 'Enter' && handleRedeemPromo()}
+                />
+                <Button onClick={handleRedeemPromo} disabled={redeeming || !promoCode.trim()}>
+                  {redeeming ? 'Einlösen...' : 'Einlösen'}
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        )}
 
         {/* Calculations Table */}
         <Card>
