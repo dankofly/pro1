@@ -891,10 +891,54 @@ function Footer() {
   )
 }
 
+/* ─── FAQ JSON-LD ─── */
+const FAQ_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Was genau berechnet der SVS Checker?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Der SVS Checker berechnet deine endgueltigen SVS-Beitraege (PV, KV, UV, Selbstaendigenvorsorge), die voraussichtliche Nachzahlung, die Einkommensteuer-Prognose und dein echtes Netto – basierend auf deinem tatsaechlichen Jahresgewinn.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Sind die Berechnungen rechtlich verbindlich?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Nein. Der SVS Checker ist ein Prognose-Tool und ersetzt keine Steuerberatung. Alle Berechnungen basieren auf den aktuellen gesetzlichen Grundlagen, aber die endgueltigen Bescheide der SVS und des Finanzamts koennen abweichen.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Was ist der Unterschied zwischen Free und Pro?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Die Free-Version bietet den SVS-Beitragsrechner und die Wahrheits-Tabelle. Der Sicherheits-Plan (9,90 EUR/Monat) fuegt die Einkommensteuer-Prognose, Speichern und Export hinzu. SVS Checker Pro (19,90 EUR/Monat) bietet alles plus Misch-Einkommen Rechner, Familienbonus-Berechnung, Wasserfall-Analyse und PDF-Export.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Was ist die SVS-Nachzahlungsfalle?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Die SVS berechnet deine Beitraege zunaechst auf Basis deines Gewinns von vor 3 Jahren (vorlaeufige Beitragsgrundlage). Steigt dein Einkommen, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung. Der SVS Checker zeigt dir genau, wie hoch diese ausfallen wird.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Kann ich den Rechner auch nutzen, wenn ich angestellt UND selbstaendig bin?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Ja! Der Misch-Einkommen Rechner (Pro-Feature) ist genau dafuer gebaut. Er berechnet die Differenz-Vorschreibung, beruecksichtigt die doppelte Sozialversicherung und zeigt dir das kombinierte Netto aus beiden Einkunftsarten.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Sind die Werte fuer 2026 schon verfuegbar?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Ja! Wir haben bereits die neuen Werte fuer 2026 eingebaut: Familienbonus Plus (2.100 EUR), angepasster AVAB, aktualisierter Verkehrsabsetzbetrag (481 EUR) und Kindermehrbetrag (727 EUR).' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Wie kann ich mein Abo kuendigen?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Jederzeit mit einem Klick im Dashboard unter Einstellungen. Die Kuendigung wird sofort wirksam am Ende des aktuellen Abrechnungszeitraums. Keine versteckten Fristen, keine Tricks.' },
+    },
+  ],
+}
+
 /* ─── Page ─── */
 export default function LandingPage() {
   return (
     <main className="bg-slate-950">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSONLD) }} />
       <Navbar />
       <Hero />
       <SocialProofCarousel />

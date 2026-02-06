@@ -1,0 +1,53 @@
+# SVS Checker
+
+> SVS-Beitragsrechner fuer Selbstaendige in Oesterreich. Berechne SVS-Beitraege, Nachzahlung, Einkommensteuer und echtes Netto.
+
+## Ueber SVS Checker
+
+SVS Checker ist ein Online-Tool fuer selbstaendige Personen in Oesterreich, die ihre Sozialversicherungsbeitraege (SVS) und Einkommensteuer berechnen moechten. Das Tool berechnet:
+
+- Endgueltige SVS-Beitraege (Pensionsversicherung, Krankenversicherung, Unfallversicherung, Selbstaendigenvorsorge)
+- SVS-Nachzahlung basierend auf vorlaeufiger vs. endgueltiger Beitragsgrundlage
+- Einkommensteuer-Prognose nach oesterreichischem Steuertarif
+- Echtes Netto nach Abzug aller Abgaben
+- Misch-Einkommen: Kombinierte Berechnung fuer Angestellte mit Nebengewerbe
+- Familienbonus Plus, AVAB, Verkehrsabsetzbetrag und Kindermehrbetrag
+
+Aktuelle Werte fuer 2024, 2025 und 2026.
+
+## Seiten
+
+- [Startseite](https://svs-checker.app/): Uebersicht, Features, Preise und FAQ
+- [SVS-Beitragsrechner](https://svs-checker.app/rechner): Kostenloser SVS-Rechner mit Echtzeit-Prognose
+- [Misch-Einkommen Rechner](https://svs-checker.app/misch-einkommen): Berechnung fuer Angestellte mit Nebengewerbe (Pro-Feature)
+- [Preise](https://svs-checker.app/pricing): Free, Sicherheits-Plan (9,90 EUR/Monat), Pro (19,90 EUR/Monat)
+- [Impressum](https://svs-checker.app/impressum): Betreiber HYPEAKZ.IO, Daniel Kofler, Oesterreich
+- [Datenschutz](https://svs-checker.app/datenschutz): DSGVO-konforme Datenschutzerklaerung
+
+## FAQ
+
+### Was berechnet der SVS Checker?
+Endgueltige SVS-Beitraege (PV, KV, UV, Selbstaendigenvorsorge), voraussichtliche Nachzahlung, Einkommensteuer-Prognose und echtes Netto basierend auf dem tatsaechlichen Jahresgewinn.
+
+### Sind die Berechnungen verbindlich?
+Nein, der SVS Checker ist ein Prognose-Tool und ersetzt keine Steuerberatung. Alle Berechnungen basieren auf den aktuellen gesetzlichen Grundlagen.
+
+### Was kostet der SVS Checker?
+Die Basisversion ist kostenlos. Sicherheits-Plan: 9,90 EUR/Monat. Pro: 19,90 EUR/Monat. Monatlich kuendbar.
+
+### Was ist die SVS-Nachzahlungsfalle?
+Die SVS berechnet Beitraege zunaechst auf Basis des Gewinns von vor 3 Jahren. Steigt das Einkommen, folgt eine hohe Nachzahlung nach dem Steuerbescheid.
+
+### Fuer wen ist der Misch-Einkommen Rechner?
+Fuer Personen die angestellt UND selbstaendig sind. Er berechnet Differenz-Vorschreibung, doppelte SV und kombiniertes Netto.
+
+### Welche Werte sind verfuegbar?
+Aktuelle Werte fuer 2024, 2025 und 2026 inkl. Familienbonus Plus (2.100 EUR), AVAB, Verkehrsabsetzbetrag (481 EUR) und Kindermehrbetrag (727 EUR).
+
+## Kontakt
+
+- Betreiber: HYPEAKZ.IO (Daniel Kofler)
+- E-Mail: mail@danielkofler.com
+- Telefon: +43 676 7293888
+- Standort: Assling, Oesterreich
+- UID: ATU77537202

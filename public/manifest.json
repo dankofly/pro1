@@ -1,0 +1,13 @@
+{
+  "name": "SVS Checker",
+  "short_name": "SVS Checker",
+  "description": "SVS-Beitragsrechner fuer Selbstaendige in Oesterreich",
+  "start_url": "/rechner",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#10b981",
+  "lang": "de-AT",
+  "icons": [
+    { "src": "/icon.png", "sizes": "32x32", "type": "image/png" }
+  ]
+}
