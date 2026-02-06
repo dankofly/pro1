@@ -58,10 +58,10 @@ export function UpgradeDialog({ open, onOpenChange, feature, requiredPlan }: Upg
             ) : (
               <>
                 <li className="flex items-center gap-2"><Check className="h-4 w-4 text-green-600" /> Alles aus dem Sicherheits-Plan</li>
+                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-green-600" /> Misch-Einkommen Rechner</li>
                 <li className="flex items-center gap-2"><Check className="h-4 w-4 text-green-600" /> Bank-Anbindung (CSV)</li>
                 <li className="flex items-center gap-2"><Check className="h-4 w-4 text-green-600" /> PDF-Export fuer Steuerberater</li>
-                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-green-600" /> Smart Alerts</li>
-                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-green-600" /> Steuer-Optimierung Tipps</li>
+                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-green-600" /> Smart Alerts & Absetzbetraege</li>
               </>
             )}
           </ul>

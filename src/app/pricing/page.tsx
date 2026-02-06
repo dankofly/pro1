@@ -29,10 +29,13 @@ const BASIC_FEATURES = [
 
 const PRO_FEATURES = [
   'Alles aus Sicherheits-Plan',
+  'Misch-Einkommen Rechner (Anstellung + Gewerbe)',
   'Bank-Anbindung (CSV-Import)',
   'PDF-Export fuer Steuerberater',
   'Smart Alerts & Push',
+  'Absetzbetraege & Familienbonus',
   'Steuer-Optimierung Tipps',
+  'Vergleichs-Modus & Wasserfall-Analyse',
   'Prioritaets-Support',
 ]
 
