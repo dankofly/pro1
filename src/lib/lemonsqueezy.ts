@@ -3,7 +3,7 @@
 
 export const LS_PLANS = {
   basic_monthly: {
-    variantId: 'REPLACE_WITH_VARIANT_ID',
+    variantId: '1283125',
     plan: 'basic' as const,
     interval: 'month' as const,
     price: 990,
@@ -11,7 +11,7 @@ export const LS_PLANS = {
     priceDisplay: '9,90',
   },
   basic_yearly: {
-    variantId: 'REPLACE_WITH_VARIANT_ID',
+    variantId: '1283133',
     plan: 'basic' as const,
     interval: 'year' as const,
     price: 9900,
@@ -19,7 +19,7 @@ export const LS_PLANS = {
     priceDisplay: '99',
   },
   pro_monthly: {
-    variantId: 'REPLACE_WITH_VARIANT_ID',
+    variantId: '1283140',
     plan: 'pro' as const,
     interval: 'month' as const,
     price: 1990,
@@ -27,7 +27,7 @@ export const LS_PLANS = {
     priceDisplay: '19,90',
   },
   pro_yearly: {
-    variantId: 'REPLACE_WITH_VARIANT_ID',
+    variantId: '1283142',
     plan: 'pro' as const,
     interval: 'year' as const,
     price: 19900,
