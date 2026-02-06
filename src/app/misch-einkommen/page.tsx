@@ -1,12 +1,11 @@
 'use client'
 
-import { useState, useMemo, useEffect } from 'react'
+import { useState, useMemo } from 'react'
 import Link from 'next/link'
-import { supabase } from '@/lib/supabase'
 import { formatEuro } from '@/lib/format'
 import { calculateMischEinkommen, CONFIG } from '@/lib/misch-einkommen'
 import type { MischResult } from '@/lib/misch-einkommen'
-import { useSubscription } from '@/hooks/use-subscription'
+import { AppShell, useAppShell } from '@/components/svs/app-shell'
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
@@ -20,10 +19,9 @@ import {
 } from '@/components/ui/table'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import {
-  Calculator, ArrowLeft, Briefcase, Store, Crown, AlertTriangle,
+  Calculator, Briefcase, Store, Crown, AlertTriangle,
   TrendingDown, ArrowRight, Users, Minus, Plus, Lock, ShieldCheck,
 } from 'lucide-react'
-import type { User } from '@supabase/supabase-js'
 
 // ── Helper ─────────────────────────────────────────────────
 
@@ -96,7 +94,7 @@ function KinderInput({ value, onChange, label }: {
 function WasserfallChart({ result }: { result: MischResult }) {
   const maxVal = result.wasserfall[0]?.laufend || 1
   return (
-    <Card>
+    <Card className="glass">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
           <TrendingDown className="h-5 w-5 text-blue-600" />
@@ -138,7 +136,7 @@ function WasserfallChart({ result }: { result: MischResult }) {
 
 function VergleichTable({ result }: { result: MischResult }) {
   return (
-    <Card>
+    <Card className="glass">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
           <ArrowRight className="h-5 w-5 text-blue-600" />
@@ -199,7 +197,7 @@ function ProGate() {
         </Link>
         <Link href="/">
           <Button variant="outline" className="gap-2">
-            <ArrowLeft className="h-4 w-4" /> Kostenloser Rechner
+            Kostenloser Rechner
           </Button>
         </Link>
       </div>
@@ -209,53 +207,37 @@ function ProGate() {
 
 // ── Hauptseite ─────────────────────────────────────────────
 
-export default function MischEinkommenPage() {
-  const [user, setUser] = useState<User | null>(null)
+function MischContent() {
+  const { subscription } = useAppShell()
   const [bruttoGehalt, setBruttoGehalt] = useState(35000)
   const [jahresgewinn, setJahresgewinn] = useState(15000)
   const [kinderUnter18, setKinderUnter18] = useState(0)
   const [kinderUeber18, setKinderUeber18] = useState(0)
   const [alleinverdiener, setAlleinverdiener] = useState(false)
 
-  useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => setUser(data.user))
-  }, [])
-
-  const subscription = useSubscription(user)
-
   const result = useMemo(() => calculateMischEinkommen({
     bruttoGehalt, jahresgewinn, kinderUnter18, kinderUeber18, alleinverdiener,
   }), [bruttoGehalt, jahresgewinn, kinderUnter18, kinderUeber18, alleinverdiener])
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-gradient-to-r from-slate-900 via-slate-800 to-blue-900 text-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-10">
-          <Link href="/" className="inline-flex items-center gap-1.5 text-blue-200 hover:text-white text-sm mb-6 transition-colors">
-            <ArrowLeft className="h-4 w-4" /> Zurueck zum SVS Checker
-          </Link>
-          <div className="flex items-center gap-3 sm:gap-4">
-            <div className="flex h-11 w-11 sm:h-14 sm:w-14 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20">
-              <Calculator className="h-6 w-6 sm:h-8 sm:w-8 text-white" />
-            </div>
-            <div>
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Misch-Einkommen Rechner</h1>
-              <p className="text-blue-200 text-sm sm:text-base font-light">Anstellung + Nebengewerbe kombiniert</p>
+    <>
+      {/* Top bar */}
+      <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-lg border-b border-border/50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <span className="md:hidden font-bold text-sm">SVS Checker</span>
+            <div className="flex items-center gap-2">
+              <Calculator className="h-4 w-4 text-muted-foreground" />
+              <h1 className="text-sm font-semibold">Misch-Einkommen Rechner</h1>
             </div>
           </div>
-          <div className="flex flex-wrap gap-2 mt-4">
-            <Badge variant="outline" className="bg-white/10 text-blue-100 border-white/20">
-              <span className="w-1.5 h-1.5 bg-green-400 rounded-full mr-1.5" /> Werte {CONFIG.year}
-            </Badge>
-            <Badge variant="outline" className="bg-amber-500/20 text-amber-200 border-amber-400/30">
-              <Crown className="h-3 w-3 mr-1" /> SVS Checker Pro
-            </Badge>
-          </div>
+          <Badge variant="outline" className="bg-amber-500/10 text-amber-600 border-amber-300/30 text-xs">
+            <Crown className="h-3 w-3 mr-1" /> Pro
+          </Badge>
         </div>
-      </header>
+      </div>
 
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 py-6 space-y-6">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 space-y-6">
         {/* Pro Gate */}
         {!subscription.isPro && !subscription.loading ? (
           <ProGate />
@@ -266,7 +248,7 @@ export default function MischEinkommenPage() {
             {/* ── Eingaben ────────────────────────────── */}
             <div className="grid md:grid-cols-2 gap-6">
               {/* Anstellung */}
-              <Card>
+              <Card className="glass">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-lg">
                     <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50">
@@ -302,7 +284,7 @@ export default function MischEinkommenPage() {
               </Card>
 
               {/* Gewerbe */}
-              <Card>
+              <Card className="glass">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-lg">
                     <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-50">
@@ -350,8 +332,8 @@ export default function MischEinkommenPage() {
               </Card>
             </div>
 
-            {/* ── Absetzbeträge ─────────────────────── */}
-            <Card>
+            {/* ── Absetzbetraege ─────────────────────── */}
+            <Card className="glass">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-50">
@@ -394,7 +376,7 @@ export default function MischEinkommenPage() {
             </Card>
 
             {/* ── Nebengewerbe Butler (Highlight) ───── */}
-            <Card className="bg-gradient-to-br from-slate-800 via-slate-700 to-blue-800 border-0 text-white overflow-hidden relative">
+            <Card className="glass-dark border-0 text-white overflow-hidden relative">
               <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
               <CardContent className="relative p-6 sm:p-8">
                 <Badge variant="outline" className="mb-4 bg-white/10 text-white border-white/20">
@@ -407,39 +389,39 @@ export default function MischEinkommenPage() {
                 {jahresgewinn > 0 ? (
                   <div className="grid sm:grid-cols-3 gap-4">
                     <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10">
-                      <p className="text-blue-200 text-xs mb-1">Effektive Abgabenquote</p>
+                      <p className="text-slate-300 text-xs mb-1">Effektive Abgabenquote</p>
                       <p className="text-3xl font-bold">{pct(result.nebengewerbeAbgabenquote)}</p>
-                      <p className="text-blue-200/70 text-xs mt-1">auf jeden Euro Gewinn</p>
+                      <p className="text-slate-400 text-xs mt-1">auf jeden Euro Gewinn</p>
                     </div>
                     <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10">
-                      <p className="text-blue-200 text-xs mb-1">Netto pro EUR 1 Gewinn</p>
+                      <p className="text-slate-300 text-xs mb-1">Netto pro EUR 1 Gewinn</p>
                       <p className="text-3xl font-bold text-emerald-400">
                         {(result.nebengewerbeNettoCent * 100).toFixed(0)} Cent
                       </p>
-                      <p className="text-blue-200/70 text-xs mt-1">bleiben uebrig</p>
+                      <p className="text-slate-400 text-xs mt-1">bleiben uebrig</p>
                     </div>
                     <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10">
-                      <p className="text-blue-200 text-xs mb-1">Grenzsteuersatz</p>
+                      <p className="text-slate-300 text-xs mb-1">Grenzsteuersatz</p>
                       <p className="text-3xl font-bold text-amber-400">{pct(result.steuerGesamt.grenzsteuersatz)}</p>
-                      <p className="text-blue-200/70 text-xs mt-1">naechste Tarifstufe</p>
+                      <p className="text-slate-400 text-xs mt-1">naechste Tarifstufe</p>
                     </div>
                   </div>
                 ) : (
-                  <p className="text-blue-200/70">Gib einen Gewinn aus Gewerbe ein, um die Analyse zu sehen.</p>
+                  <p className="text-slate-400">Gib einen Gewinn aus Gewerbe ein, um die Analyse zu sehen.</p>
                 )}
 
                 {jahresgewinn > 0 && (
                   <div className="mt-6 grid sm:grid-cols-2 gap-3">
                     <div className="bg-white/5 rounded-lg p-3 text-sm">
-                      <span className="text-blue-200/70">Zusaetzliche SVS:</span>
+                      <span className="text-slate-400">Zusaetzliche SVS:</span>
                       <span className="float-right font-mono text-red-300">-{formatEuro(result.gewerbe.svsGesamt)}</span>
                     </div>
                     <div className="bg-white/5 rounded-lg p-3 text-sm">
-                      <span className="text-blue-200/70">Zusaetzliche Steuer:</span>
+                      <span className="text-slate-400">Zusaetzliche Steuer:</span>
                       <span className="float-right font-mono text-red-300">-{formatEuro(result.steuerDifferenz)}</span>
                     </div>
                     <div className="bg-white/5 rounded-lg p-3 text-sm">
-                      <span className="text-blue-200/70">Gesamte Abgaben Nebengewerbe:</span>
+                      <span className="text-slate-400">Gesamte Abgaben Nebengewerbe:</span>
                       <span className="float-right font-mono text-red-300">-{formatEuro(result.gewerbe.svsGesamt + result.steuerDifferenz)}</span>
                     </div>
                     <div className="bg-emerald-500/20 rounded-lg p-3 text-sm">
@@ -485,7 +467,7 @@ export default function MischEinkommenPage() {
             <WasserfallChart result={result} />
 
             {/* ── Steuer-Detail ─────────────────────── */}
-            <Card>
+            <Card className="glass">
               <CardHeader>
                 <CardTitle className="text-lg">Steuer-Detail</CardTitle>
               </CardHeader>
@@ -534,7 +516,7 @@ export default function MischEinkommenPage() {
             </Card>
 
             {/* ── Tarif-Tabelle ─────────────────────── */}
-            <Card>
+            <Card className="glass">
               <CardHeader>
                 <CardTitle className="text-lg">Einkommensteuer-Tarif {CONFIG.year}</CardTitle>
                 <CardDescription>Progressive Tarifstufen (nicht &quot;Steuerklassen&quot;)</CardDescription>
@@ -584,7 +566,15 @@ export default function MischEinkommenPage() {
             <Link href="/datenschutz" className="hover:text-foreground transition-colors">Datenschutz</Link>
           </div>
         </footer>
-      </main>
-    </div>
+      </div>
+    </>
+  )
+}
+
+export default function MischEinkommenPage() {
+  return (
+    <AppShell>
+      <MischContent />
+    </AppShell>
   )
 }

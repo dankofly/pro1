@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { isAdmin } from '@/lib/admin'
+import { AppShell, useAppShell } from '@/components/svs/app-shell'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -17,10 +18,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { Shield, Copy, Plus, ArrowLeft, Check } from 'lucide-react'
-import Link from 'next/link'
+import { Shield, Copy, Plus, Check } from 'lucide-react'
 import { toast } from 'sonner'
-import type { User } from '@supabase/supabase-js'
 
 interface PromoCode {
   id: string
@@ -31,9 +30,9 @@ interface PromoCode {
   created_at: string
 }
 
-export default function AdminPage() {
+function AdminContent() {
   const router = useRouter()
-  const [user, setUser] = useState<User | null>(null)
+  const { user } = useAppShell()
   const [authorized, setAuthorized] = useState(false)
   const [codes, setCodes] = useState<PromoCode[]>([])
   const [loading, setLoading] = useState(true)
@@ -43,22 +42,14 @@ export default function AdminPage() {
   const [copiedCode, setCopiedCode] = useState<string | null>(null)
 
   useEffect(() => {
-    const checkAuth = async () => {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) {
-        router.push('/auth/login')
-        return
-      }
-      setUser(user)
-      if (!isAdmin(user.email)) {
-        router.push('/')
-        return
-      }
-      setAuthorized(true)
-      await loadCodes()
+    if (!user) return
+    if (!isAdmin(user.email)) {
+      router.push('/')
+      return
     }
-    checkAuth()
-  }, [router])
+    setAuthorized(true)
+    loadCodes()
+  }, [user, router])
 
   const loadCodes = useCallback(async () => {
     setLoading(true)
@@ -114,33 +105,24 @@ export default function AdminPage() {
   const freeCount = codes.filter((c) => !c.redeemed_by).length
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-gradient-to-r from-slate-900 via-slate-800 to-blue-900 text-white">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 border border-white/20">
-                <Shield className="h-5 w-5 text-white" />
-              </div>
-              <div>
-                <h1 className="text-xl font-bold">Admin</h1>
-                <p className="text-blue-200 text-sm">Promo-Code Verwaltung</p>
-              </div>
+    <>
+      {/* Top bar */}
+      <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-lg border-b border-border/50">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center">
+          <div className="flex items-center gap-3">
+            <span className="md:hidden font-bold text-sm">SVS Checker</span>
+            <div className="flex items-center gap-2">
+              <Shield className="h-4 w-4 text-muted-foreground" />
+              <h1 className="text-sm font-semibold">Admin - Promo-Codes</h1>
             </div>
-            <Link href="/">
-              <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white">
-                <ArrowLeft className="h-4 w-4 mr-1" />
-                Zurück
-              </Button>
-            </Link>
           </div>
         </div>
-      </header>
+      </div>
 
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 py-6 space-y-6">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 space-y-6">
         {/* Stats */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <Card>
+          <Card className="glass">
             <CardHeader className="pb-2">
               <CardDescription>Codes gesamt</CardDescription>
             </CardHeader>
@@ -148,17 +130,17 @@ export default function AdminPage() {
               <p className="text-3xl font-bold">{codes.length}</p>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="glass">
             <CardHeader className="pb-2">
-              <CardDescription>Verfügbar</CardDescription>
+              <CardDescription>Verfuegbar</CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-3xl font-bold text-green-600">{freeCount}</p>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="glass">
             <CardHeader className="pb-2">
-              <CardDescription>Eingelöst</CardDescription>
+              <CardDescription>Eingeloest</CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-3xl font-bold text-amber-600">{usedCount}</p>
@@ -167,10 +149,10 @@ export default function AdminPage() {
         </div>
 
         {/* Generator */}
-        <Card>
+        <Card className="glass">
           <CardHeader>
             <CardTitle>Neue Codes generieren</CardTitle>
-            <CardDescription>Erstelle Promo-Codes für SVS Checker Pro Vollzugang</CardDescription>
+            <CardDescription>Erstelle Promo-Codes fuer SVS Checker Pro Vollzugang</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex flex-wrap items-end gap-4">
@@ -204,7 +186,7 @@ export default function AdminPage() {
         </Card>
 
         {/* Code List */}
-        <Card>
+        <Card className="glass">
           <CardHeader>
             <CardTitle>Alle Codes</CardTitle>
           </CardHeader>
@@ -232,10 +214,10 @@ export default function AdminPage() {
                       <TableCell>
                         {promo.redeemed_by ? (
                           <Badge variant="secondary">
-                            Eingelöst {promo.redeemed_at ? new Date(promo.redeemed_at).toLocaleDateString('de-AT') : ''}
+                            Eingeloest {promo.redeemed_at ? new Date(promo.redeemed_at).toLocaleDateString('de-AT') : ''}
                           </Badge>
                         ) : (
-                          <Badge className="bg-green-100 text-green-700 border-green-200">Verfügbar</Badge>
+                          <Badge className="bg-green-100 text-green-700 border-green-200">Verfuegbar</Badge>
                         )}
                       </TableCell>
                       <TableCell className="text-sm text-muted-foreground">
@@ -264,7 +246,15 @@ export default function AdminPage() {
             )}
           </CardContent>
         </Card>
-      </main>
-    </div>
+      </div>
+    </>
+  )
+}
+
+export default function AdminPage() {
+  return (
+    <AppShell>
+      <AdminContent />
+    </AppShell>
   )
 }

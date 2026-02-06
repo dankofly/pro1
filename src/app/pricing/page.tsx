@@ -1,17 +1,15 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { supabase } from '@/lib/supabase'
-import { useSubscription } from '@/hooks/use-subscription'
+import { AppShell, useAppShell } from '@/components/svs/app-shell'
 import { LS_PLANS, buildCheckoutUrl } from '@/lib/lemonsqueezy'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Switch } from '@/components/ui/switch'
 import { Label } from '@/components/ui/label'
-import { Check, ArrowLeft, Crown, Calculator, Zap } from 'lucide-react'
+import { Check, Crown, Calculator, Zap } from 'lucide-react'
 import Link from 'next/link'
-import type { User } from '@supabase/supabase-js'
+import { useState } from 'react'
 
 const FREE_FEATURES = [
   'SVS-Beitragsrechner',
@@ -39,15 +37,9 @@ const PRO_FEATURES = [
   'Prioritaets-Support',
 ]
 
-export default function PricingPage() {
-  const [user, setUser] = useState<User | null>(null)
+function PricingContent() {
+  const { user, subscription } = useAppShell()
   const [yearly, setYearly] = useState(false)
-
-  useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => setUser(data.user))
-  }, [])
-
-  const subscription = useSubscription(user)
 
   const handleCheckout = (variantId: string) => {
     if (!user) {
@@ -62,15 +54,7 @@ export default function PricingPage() {
   const proPlan = yearly ? LS_PLANS.pro_yearly : LS_PLANS.pro_monthly
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900">
-      {/* Nav */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-6">
-        <Link href="/" className="inline-flex items-center gap-1.5 text-blue-200 hover:text-white text-sm transition-colors">
-          <ArrowLeft className="h-4 w-4" />
-          Zurueck zum Rechner
-        </Link>
-      </div>
-
+    <div className="min-h-[calc(100vh-3.5rem)] bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900">
       {/* Header */}
       <div className="text-center pt-12 pb-8 px-4">
         <div className="flex justify-center mb-4">
@@ -229,5 +213,13 @@ export default function PricingPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function PricingPage() {
+  return (
+    <AppShell>
+      <PricingContent />
+    </AppShell>
   )
 }

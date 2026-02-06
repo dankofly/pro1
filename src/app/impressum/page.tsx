@@ -1,24 +1,11 @@
-import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
-import type { Metadata } from 'next'
+'use client'
 
-export const metadata: Metadata = {
-  title: 'Impressum – SVS Checker',
-}
+import { AppShell } from '@/components/svs/app-shell'
 
-export default function ImpressumPage() {
+function ImpressumContent() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
-        <Link
-          href="/"
-          className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-foreground text-sm mb-8 transition-colors"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          Zurueck zum Rechner
-        </Link>
-
-        <h1 className="text-3xl font-bold mb-8">Impressum</h1>
+    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+      <h1 className="text-3xl font-bold mb-8">Impressum</h1>
 
         <div className="prose prose-slate max-w-none space-y-6">
           <section>
@@ -169,6 +156,13 @@ export default function ImpressumPage() {
           <p>Stand: Februar 2026</p>
         </div>
       </div>
-    </div>
+  )
+}
+
+export default function ImpressumPage() {
+  return (
+    <AppShell>
+      <ImpressumContent />
+    </AppShell>
   )
 }
