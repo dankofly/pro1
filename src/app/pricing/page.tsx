@@ -13,12 +13,12 @@ import { useState } from 'react'
 
 const FREE_FEATURES = [
   'SVS-Beitragsrechner',
-  'Einkommensteuer-Prognose',
   'Wahrheits-Tabelle',
 ]
 
 const BASIC_FEATURES = [
   'Alles aus Free',
+  'Einkommensteuer-Prognose',
   'Berechnungen speichern',
   'Dashboard mit Verlauf',
   'Einfacher Export',

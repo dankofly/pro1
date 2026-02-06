@@ -20,7 +20,7 @@ import { SteuerTipps } from '@/components/svs/steuer-tipps'
 import { PremiumCTA } from '@/components/svs/premium-cta'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
-import { Info, Save } from 'lucide-react'
+import { Info, Save, Lock } from 'lucide-react'
 import { toast } from 'sonner'
 import { useSmartAlerts } from '@/hooks/use-smart-alerts'
 import { UpgradeDialog } from '@/components/svs/upgrade-dialog'
@@ -142,10 +142,30 @@ function HomeContent() {
             {!result.belowMinimum && (
               <>
                 <HeroNumber echtesNetto={result.echtesNetto} gewinn={gewinn} />
-                <TaxBracketBar steuerpflichtig={steuerpflichtig} />
-                <WaterfallChart gewinn={gewinn} result={result} />
-                <WahrheitsTabelle gewinn={gewinn} result={result} />
-                <SteuerTipps tipps={steuerTipps} gewinn={gewinn} />
+                {subscription.isBasic ? (
+                  <>
+                    <TaxBracketBar steuerpflichtig={steuerpflichtig} />
+                    <WaterfallChart gewinn={gewinn} result={result} />
+                    <WahrheitsTabelle gewinn={gewinn} result={result} />
+                    <SteuerTipps tipps={steuerTipps} gewinn={gewinn} />
+                  </>
+                ) : (
+                  <>
+                    <WahrheitsTabelle gewinn={gewinn} result={result} />
+                    <div className="glass rounded-2xl p-6 relative overflow-hidden">
+                      <div className="absolute inset-0 bg-background/60 backdrop-blur-sm z-10 flex flex-col items-center justify-center gap-3">
+                        <Lock className="h-6 w-6 text-muted-foreground" />
+                        <p className="text-sm font-medium text-muted-foreground text-center px-4">Einkommensteuer-Prognose ab Sicherheits-Plan</p>
+                        <Button size="sm" onClick={() => handleUpgradeRequired('Einkommensteuer-Prognose', 'basic')}>
+                          Jetzt freischalten
+                        </Button>
+                      </div>
+                      <div className="opacity-30 pointer-events-none" aria-hidden="true">
+                        <TaxBracketBar steuerpflichtig={steuerpflichtig} />
+                      </div>
+                    </div>
+                  </>
+                )}
                 <DashboardCards result={result} vorschreibung={vorschreibung} />
                 <BeitragsDetails result={result} />
                 <MonthlyOverview result={result} vorschreibung={vorschreibung} />

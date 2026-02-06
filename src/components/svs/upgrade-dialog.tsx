@@ -51,6 +51,7 @@ export function UpgradeDialog({ open, onOpenChange, feature, requiredPlan }: Upg
           <ul className="space-y-1.5 text-sm">
             {requiredPlan === 'basic' ? (
               <>
+                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-green-600" /> Einkommensteuer-Prognose</li>
                 <li className="flex items-center gap-2"><Check className="h-4 w-4 text-green-600" /> Berechnungen speichern</li>
                 <li className="flex items-center gap-2"><Check className="h-4 w-4 text-green-600" /> Dashboard mit Verlauf</li>
                 <li className="flex items-center gap-2"><Check className="h-4 w-4 text-green-600" /> Einfacher Export</li>
