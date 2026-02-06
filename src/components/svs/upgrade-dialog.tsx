@@ -14,8 +14,9 @@ interface UpgradeDialogProps {
 }
 
 export function UpgradeDialog({ open, onOpenChange, feature, requiredPlan }: UpgradeDialogProps) {
-  const planLabel = requiredPlan === 'pro' ? 'Butler-Vollversion' : 'Sicherheits-Plan'
-  const planPrice = requiredPlan === 'pro' ? '19,90' : '9,90'
+  const planLabel = requiredPlan === 'pro' ? 'SVS Checker Pro' : 'Sicherheits-Plan'
+  const monthlyPrice = requiredPlan === 'pro' ? '19,90' : '9,90'
+  const yearlyPrice = requiredPlan === 'pro' ? '199' : '99'
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -33,10 +34,20 @@ export function UpgradeDialog({ open, onOpenChange, feature, requiredPlan }: Upg
 
         <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-xl p-5 border space-y-3">
           <p className="font-semibold text-lg">{planLabel}</p>
-          <p className="text-2xl font-bold">
-            {planPrice} EUR
-            <span className="text-sm font-normal text-muted-foreground">/Monat</span>
-          </p>
+          <div className="flex items-baseline gap-3">
+            <p className="text-2xl font-bold">
+              {monthlyPrice} EUR
+              <span className="text-sm font-normal text-muted-foreground">/Monat</span>
+            </p>
+            <span className="text-muted-foreground text-sm">oder</span>
+            <p className="text-2xl font-bold">
+              {yearlyPrice} EUR
+              <span className="text-sm font-normal text-muted-foreground">/Jahr</span>
+            </p>
+          </div>
+          <Badge className="bg-green-100 text-green-700 border-green-200">
+            Spare 2 Monate beim Jahresabo!
+          </Badge>
           <ul className="space-y-1.5 text-sm">
             {requiredPlan === 'basic' ? (
               <>

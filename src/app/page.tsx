@@ -5,6 +5,7 @@ import { supabase } from '@/lib/supabase'
 import { calculateSvs, calculateSteuerTipps } from '@/lib/svs-calculator'
 import { SVS } from '@/lib/svs-constants'
 import { formatEuro } from '@/lib/format'
+import Link from 'next/link'
 import { SvsHeader } from '@/components/svs/header'
 import { InputSection } from '@/components/svs/input-section'
 import { DashboardCards } from '@/components/svs/dashboard-cards'
@@ -157,9 +158,14 @@ export default function Home() {
           requiredPlan={upgradeRequiredPlan}
         />
 
-        <footer className="text-center py-8 text-xs text-muted-foreground space-y-1">
+        <footer className="text-center py-8 text-xs text-muted-foreground space-y-2">
           <p className="font-medium text-foreground/70">SVS Checker – Beitragsrechner für Selbständige in Österreich</p>
           <p>Alle Angaben ohne Gewähr. Kein Ersatz für professionelle Steuerberatung. Werte 2024/25.</p>
+          <div className="flex items-center justify-center gap-3 pt-1">
+            <Link href="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
+            <span>·</span>
+            <Link href="/datenschutz" className="hover:text-foreground transition-colors">Datenschutz</Link>
+          </div>
         </footer>
       </main>
     </div>

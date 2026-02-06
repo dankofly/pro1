@@ -183,7 +183,7 @@ export default function DashboardPage() {
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <Badge className="bg-amber-500/20 text-amber-200 border-amber-400/30">
-                    {subscription.plan === 'pro' ? 'Butler-Vollversion' : 'Sicherheits-Plan'}
+                    {subscription.plan === 'pro' ? 'SVS Checker Pro' : 'Sicherheits-Plan'}
                   </Badge>
                   <Badge variant="outline" className="border-green-400/30 text-green-300">
                     {subscription.status}
@@ -297,6 +297,14 @@ export default function DashboardPage() {
             )}
           </CardContent>
         </Card>
+        <footer className="text-center py-8 text-xs text-muted-foreground space-y-2">
+          <p>SVS Checker – Alle Angaben ohne Gewaehr.</p>
+          <div className="flex items-center justify-center gap-3">
+            <Link href="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
+            <span>·</span>
+            <Link href="/datenschutz" className="hover:text-foreground transition-colors">Datenschutz</Link>
+          </div>
+        </footer>
       </main>
     </div>
   )

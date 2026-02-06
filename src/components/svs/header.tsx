@@ -2,7 +2,7 @@
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Calculator, LogIn, User, LogOut, Save, Crown } from 'lucide-react'
+import { Calculator, LogIn, User, LogOut, Save, Crown, Briefcase } from 'lucide-react'
 import { SvsTooltip } from './svs-tooltip'
 import Link from 'next/link'
 import type { PlanTier } from '@/lib/lemonsqueezy'
@@ -60,6 +60,14 @@ export function SvsHeader({ user, onSave, onLogout, saving, alertActive, plan }:
                     {saving ? 'Speichert...' : 'Speichern'}
                   </Button>
                 )}
+                {plan === 'pro' && (
+                  <Link href="/misch-einkommen">
+                    <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white">
+                      <Briefcase className="h-4 w-4 mr-1" />
+                      Misch-Einkommen
+                    </Button>
+                  </Link>
+                )}
                 <Link href="/dashboard">
                   <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white">
                     <User className="h-4 w-4 mr-1" />
@@ -116,7 +124,7 @@ export function SvsHeader({ user, onSave, onLogout, saving, alertActive, plan }:
           {plan && plan !== 'free' && (
             <Badge variant="outline" className="bg-amber-500/20 text-amber-200 border-amber-400/30">
               <Crown className="h-3 w-3 mr-1" />
-              {plan === 'pro' ? 'Butler-Vollversion' : 'Sicherheits-Plan'}
+              {plan === 'pro' ? 'SVS Checker Pro' : 'Sicherheits-Plan'}
             </Badge>
           )}
         </div>

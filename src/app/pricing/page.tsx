@@ -180,7 +180,7 @@ export default function PricingPage() {
               <CardDescription className="text-amber-200">Fuer Profis</CardDescription>
               <CardTitle className="flex items-center gap-2 text-2xl">
                 <Crown className="h-5 w-5 text-amber-400" />
-                Butler-Vollversion
+                SVS Checker Pro
               </CardTitle>
               <div className="pt-2">
                 <span className="text-4xl font-bold">{proPlan.priceDisplay} EUR</span>
@@ -214,9 +214,16 @@ export default function PricingPage() {
         </div>
 
         {/* Footer */}
-        <p className="text-center text-blue-200/50 text-xs mt-12">
-          Alle Preise inkl. USt. Monatlich kuendbar. Sichere Zahlung via Lemon Squeezy.
-        </p>
+        <div className="text-center text-xs mt-12 space-y-2">
+          <p className="text-blue-200/50">
+            Alle Preise inkl. USt. Monatlich kuendbar. Sichere Zahlung via Lemon Squeezy.
+          </p>
+          <div className="flex items-center justify-center gap-3 text-blue-200/40">
+            <Link href="/impressum" className="hover:text-blue-200 transition-colors">Impressum</Link>
+            <span>·</span>
+            <Link href="/datenschutz" className="hover:text-blue-200 transition-colors">Datenschutz</Link>
+          </div>
+        </div>
       </div>
     </div>
   )
