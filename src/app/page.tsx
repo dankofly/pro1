@@ -522,12 +522,16 @@ function FeaturesSection() {
 
 /* ─── Pricing ─── */
 function PricingSection() {
+  const [yearly, setYearly] = useState(false)
+
   const tiers = [
     {
       name: 'Free',
-      price: '0',
-      unit: 'fuer immer',
+      monthlyPrice: '0',
+      yearlyPrice: '0',
+      unit: yearly ? 'fuer immer' : 'fuer immer',
       desc: 'Fuer den Einstieg',
+      isFree: true,
       features: [
         { text: 'SVS-Beitragsrechner', included: true },
         { text: 'Wahrheits-Tabelle', included: true },
@@ -543,9 +547,12 @@ function PricingSection() {
     },
     {
       name: 'Sicherheits-Plan',
-      price: '9,90',
-      unit: 'pro Monat',
+      monthlyPrice: '9,90',
+      yearlyPrice: '7,90',
+      yearlyTotal: '94,80',
+      unit: yearly ? 'pro Monat' : 'pro Monat',
       desc: 'Fuer Einsteiger',
+      isFree: false,
       features: [
         { text: 'Alles aus Free', included: true },
         { text: 'Einkommensteuer-Prognose', included: true },
@@ -561,9 +568,12 @@ function PricingSection() {
     },
     {
       name: 'SVS Checker Pro',
-      price: '19,90',
-      unit: 'pro Monat',
+      monthlyPrice: '19,90',
+      yearlyPrice: '15,90',
+      yearlyTotal: '190,80',
+      unit: yearly ? 'pro Monat' : 'pro Monat',
       desc: 'Fuer Profis',
+      isFree: false,
       features: [
         { text: 'Alles aus Sicherheits-Plan', included: true },
         { text: 'Misch-Einkommen Rechner', included: true },
@@ -583,7 +593,7 @@ function PricingSection() {
     <section id="pricing" className="relative py-20 sm:py-28 bg-slate-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <Reveal>
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <Badge className="bg-amber-500/10 text-amber-400 border-amber-500/20 mb-4">
               Preise
             </Badge>
@@ -596,71 +606,111 @@ function PricingSection() {
           </div>
         </Reveal>
 
+        {/* Billing Toggle */}
+        <Reveal delay={100}>
+          <div className="flex items-center justify-center gap-4 mb-12">
+            <span className={`text-sm font-medium transition-colors ${!yearly ? 'text-white' : 'text-blue-200/40'}`}>
+              Monatlich
+            </span>
+            <button
+              onClick={() => setYearly(!yearly)}
+              className={`relative w-14 h-7 rounded-full transition-colors duration-300 ${
+                yearly ? 'bg-emerald-500' : 'bg-white/20'
+              }`}
+            >
+              <div
+                className={`absolute top-0.5 left-0.5 w-6 h-6 rounded-full bg-white shadow-md transition-transform duration-300 ${
+                  yearly ? 'translate-x-7' : 'translate-x-0'
+                }`}
+              />
+            </button>
+            <span className={`text-sm font-medium transition-colors ${yearly ? 'text-white' : 'text-blue-200/40'}`}>
+              Jaehrlich
+            </span>
+            {yearly && (
+              <Badge className="bg-emerald-500/15 text-emerald-400 border-emerald-500/25 text-xs">
+                Spare 20%
+              </Badge>
+            )}
+          </div>
+        </Reveal>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {tiers.map((tier, i) => (
-            <Reveal key={tier.name} delay={i * 150}>
-              <Card
-                className={`relative h-full ${
-                  tier.highlight
-                    ? 'bg-white/10 border-amber-400/30 ring-2 ring-amber-400/20'
-                    : 'bg-white/[0.03] border-white/10'
-                } backdrop-blur-sm`}
-              >
-                {tier.highlight && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <Badge className="bg-amber-500 text-white border-0 shadow-lg">
-                      <Zap className="h-3 w-3 mr-1" />
-                      Beliebtester Plan
-                    </Badge>
-                  </div>
-                )}
-                <CardContent className={`p-6 sm:p-8 ${tier.highlight ? 'pt-10' : ''}`}>
-                  <p className="text-blue-200/60 text-sm">{tier.desc}</p>
-                  <h3 className="text-xl font-bold text-white mt-1 flex items-center gap-2">
-                    {tier.highlight && <Crown className="h-5 w-5 text-amber-400" />}
-                    {tier.name}
-                  </h3>
-                  <div className="mt-4 mb-6">
-                    <span className="text-4xl font-extrabold text-white">{tier.price} EUR</span>
-                    <span className="text-blue-200/50 text-sm ml-2">/ {tier.unit}</span>
-                  </div>
+          {tiers.map((tier, i) => {
+            const price = yearly ? tier.yearlyPrice : tier.monthlyPrice
+            return (
+              <Reveal key={tier.name} delay={i * 150}>
+                <Card
+                  className={`relative h-full ${
+                    tier.highlight
+                      ? 'bg-white/10 border-amber-400/30 ring-2 ring-amber-400/20'
+                      : 'bg-white/[0.03] border-white/10'
+                  } backdrop-blur-sm`}
+                >
+                  {tier.highlight && (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                      <Badge className="bg-amber-500 text-white border-0 shadow-lg">
+                        <Zap className="h-3 w-3 mr-1" />
+                        Beliebtester Plan
+                      </Badge>
+                    </div>
+                  )}
+                  <CardContent className={`p-6 sm:p-8 ${tier.highlight ? 'pt-10' : ''}`}>
+                    <p className="text-blue-200/60 text-sm">{tier.desc}</p>
+                    <h3 className="text-xl font-bold text-white mt-1 flex items-center gap-2">
+                      {tier.highlight && <Crown className="h-5 w-5 text-amber-400" />}
+                      {tier.name}
+                    </h3>
+                    <div className="mt-4 mb-1">
+                      <span className="text-4xl font-extrabold text-white">{price} EUR</span>
+                      <span className="text-blue-200/50 text-sm ml-2">/ {tier.unit}</span>
+                    </div>
+                    <div className="mb-6 h-5">
+                      {yearly && !tier.isFree && (
+                        <div className="flex items-center gap-2">
+                          <span className="text-blue-200/30 text-xs line-through">{tier.monthlyPrice} EUR/Monat</span>
+                          <span className="text-emerald-400 text-xs font-medium">{tier.yearlyTotal} EUR/Jahr</span>
+                        </div>
+                      )}
+                    </div>
 
-                  <div className="space-y-3 mb-8">
-                    {tier.features.map((f) => (
-                      <div key={f.text} className="flex items-center gap-2.5 text-sm">
-                        {f.included ? (
-                          <Check className={`h-4 w-4 shrink-0 ${tier.highlight ? 'text-amber-400' : 'text-emerald-400'}`} />
-                        ) : (
-                          <X className="h-4 w-4 shrink-0 text-white/20" />
-                        )}
-                        <span className={f.included ? 'text-blue-100' : 'text-white/30'}>
-                          {f.text}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                    <div className="space-y-3 mb-8">
+                      {tier.features.map((f) => (
+                        <div key={f.text} className="flex items-center gap-2.5 text-sm">
+                          {f.included ? (
+                            <Check className={`h-4 w-4 shrink-0 ${tier.highlight ? 'text-amber-400' : 'text-emerald-400'}`} />
+                          ) : (
+                            <X className="h-4 w-4 shrink-0 text-white/20" />
+                          )}
+                          <span className={f.included ? 'text-blue-100' : 'text-white/30'}>
+                            {f.text}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
 
-                  <Link href={tier.href}>
-                    <Button
-                      className={`w-full ${
-                        tier.highlight
-                          ? 'bg-amber-500 hover:bg-amber-600 text-white shadow-lg shadow-amber-500/25'
-                          : 'bg-white/10 hover:bg-white/20 text-white border border-white/10'
-                      }`}
-                    >
-                      {tier.highlight && <Crown className="h-4 w-4 mr-1.5" />}
-                      {tier.cta}
-                    </Button>
-                  </Link>
-                </CardContent>
-              </Card>
-            </Reveal>
-          ))}
+                    <Link href={tier.href}>
+                      <Button
+                        className={`w-full ${
+                          tier.highlight
+                            ? 'bg-amber-500 hover:bg-amber-600 text-white shadow-lg shadow-amber-500/25'
+                            : 'bg-white/10 hover:bg-white/20 text-white border border-white/10'
+                        }`}
+                      >
+                        {tier.highlight && <Crown className="h-4 w-4 mr-1.5" />}
+                        {tier.cta}
+                      </Button>
+                    </Link>
+                  </CardContent>
+                </Card>
+              </Reveal>
+            )
+          })}
         </div>
 
         <Reveal delay={300}>
           <p className="text-center text-blue-200/30 text-xs mt-8">
-            Alle Preise inkl. USt. Monatlich kuendbar. Spare 2 Monate mit Jahreszahlung.
+            Alle Preise inkl. USt. {yearly ? 'Jaehrlich im Voraus. ' : 'Monatlich kuendbar. '}Sichere Zahlung via Lemon Squeezy.
           </p>
         </Reveal>
       </div>
