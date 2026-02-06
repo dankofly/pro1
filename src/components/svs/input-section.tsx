@@ -1,6 +1,5 @@
 'use client'
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { SvsTooltip } from './svs-tooltip'
@@ -26,79 +25,94 @@ export function InputSection({ gewinn, setGewinn, vorschreibung, setVorschreibun
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-lg">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50">
-            <Pencil className="h-4 w-4 text-blue-600" />
-          </div>
+    <div className="glass rounded-2xl p-5 sm:p-6">
+      {/* Header */}
+      <div className="flex items-center gap-3 mb-6">
+        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900">
+          <Pencil className="h-4 w-4 text-white" />
+        </div>
+        <h2 className="text-lg font-semibold tracking-tight text-slate-900">
           Deine Angaben
-        </CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-6">
+        </h2>
+      </div>
+
+      <div className="space-y-8">
         {/* Jahresgewinn */}
-        <div className="space-y-3">
+        <div className="space-y-4">
           <div className="flex flex-wrap items-baseline justify-between gap-2">
-            <Label htmlFor="gewinn" className="text-sm font-medium">
+            <Label htmlFor="gewinn" className="text-sm font-medium text-slate-700">
               Voraussichtlicher Jahresgewinn
             </Label>
             <SvsTooltip term="Beitragsgrundlage" />
           </div>
-          <div className="flex items-center gap-3">
-            <div className="relative max-w-[200px]">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">€</span>
+
+          <div className="flex items-baseline gap-3">
+            <div className="relative max-w-[220px]">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-medium">
+                EUR
+              </span>
               <Input
                 id="gewinn"
                 value={gewinn.toLocaleString('de-AT')}
                 onChange={handleGewinnInput}
-                className="pl-8 text-right font-mono text-lg font-medium"
+                className="pl-14 text-right font-mono text-xl font-semibold tracking-tight h-12 rounded-xl border-slate-200 focus:border-slate-400 focus:ring-slate-400"
               />
             </div>
-            <span className="text-sm text-muted-foreground">/ Jahr</span>
+            <span className="text-sm font-medium text-slate-400">/ Jahr</span>
           </div>
-          <input
-            type="range"
-            min="0"
-            max={SLIDER_MAX}
-            step={SLIDER_STEP}
-            value={gewinn}
-            onChange={(e) => setGewinn(Number(e.target.value))}
-            className="w-full h-2 rounded-full bg-blue-100 appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-blue-600 [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-blue-600 [&::-moz-range-thumb]:border-none [&::-moz-range-thumb]:cursor-pointer"
-          />
-          <div className="flex justify-between text-xs text-muted-foreground">
-            <span>€ 0</span>
-            <span>€ 50.000</span>
-            <span>€ 100.000</span>
-            <span>€ 150.000</span>
+
+          <div className="pt-1">
+            <input
+              type="range"
+              min="0"
+              max={SLIDER_MAX}
+              step={SLIDER_STEP}
+              value={gewinn}
+              onChange={(e) => setGewinn(Number(e.target.value))}
+              className="w-full"
+            />
+            <div className="flex justify-between text-[11px] font-medium text-slate-400 mt-1.5">
+              <span>0</span>
+              <span>50k</span>
+              <span>100k</span>
+              <span>150k</span>
+            </div>
           </div>
         </div>
 
+        {/* Divider */}
+        <div className="border-t border-slate-200/60" />
+
         {/* Monatliche Vorschreibung */}
-        <div className="space-y-3">
+        <div className="space-y-4">
           <div className="flex flex-wrap items-baseline justify-between gap-2">
-            <Label htmlFor="vorschreibung" className="text-sm font-medium">
+            <Label htmlFor="vorschreibung" className="text-sm font-medium text-slate-700">
               Aktuelle monatliche SVS-Vorschreibung
             </Label>
             <SvsTooltip term="Vorläufige Beitragsgrundlage" />
           </div>
-          <div className="flex items-center gap-3">
-            <div className="relative max-w-[200px]">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">€</span>
+
+          <div className="flex items-baseline gap-3">
+            <div className="relative max-w-[220px]">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-medium">
+                EUR
+              </span>
               <Input
                 id="vorschreibung"
                 value={vorschreibung > 0 ? vorschreibung.toLocaleString('de-AT') : ''}
                 onChange={handleVorschreibungInput}
                 placeholder="0"
-                className="pl-8 text-right font-mono text-lg font-medium"
+                className="pl-14 text-right font-mono text-xl font-semibold tracking-tight h-12 rounded-xl border-slate-200 focus:border-slate-400 focus:ring-slate-400"
               />
             </div>
-            <span className="text-sm text-muted-foreground">/ Monat</span>
+            <span className="text-sm font-medium text-slate-400">/ Monat</span>
           </div>
-          <p className="text-xs text-muted-foreground">
-            Den Betrag findest du auf deiner SVS-Vorschreibung (Quartalsabrechnung ÷ 3).
+
+          <p className="text-xs text-slate-400 leading-relaxed">
+            Den Betrag findest du auf deiner SVS-Vorschreibung (Quartalsabrechnung / 3).
           </p>
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </div>
   )
 }

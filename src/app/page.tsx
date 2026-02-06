@@ -6,8 +6,13 @@ import { calculateSvs, calculateSteuerTipps } from '@/lib/svs-calculator'
 import { SVS } from '@/lib/svs-constants'
 import { formatEuro } from '@/lib/format'
 import Link from 'next/link'
-import { SvsHeader } from '@/components/svs/header'
+import { AppSidebar } from '@/components/svs/app-sidebar'
+import { BottomNav } from '@/components/svs/bottom-nav'
 import { InputSection } from '@/components/svs/input-section'
+import { HeroNumber } from '@/components/svs/hero-number'
+import { StatusBadge } from '@/components/svs/status-badge'
+import { TaxBracketBar } from '@/components/svs/tax-bracket-bar'
+import { WaterfallChart } from '@/components/svs/waterfall-chart'
 import { DashboardCards } from '@/components/svs/dashboard-cards'
 import { BeitragsDetails } from '@/components/svs/beitrags-details'
 import { MonthlyOverview } from '@/components/svs/monthly-overview'
@@ -15,7 +20,8 @@ import { WahrheitsTabelle } from '@/components/svs/wahrheits-tabelle'
 import { SteuerTipps } from '@/components/svs/steuer-tipps'
 import { PremiumCTA } from '@/components/svs/premium-cta'
 import { Alert, AlertDescription } from '@/components/ui/alert'
-import { Info } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Info, Save } from 'lucide-react'
 import { toast } from 'sonner'
 import { useSmartAlerts } from '@/hooks/use-smart-alerts'
 import { useSubscription } from '@/hooks/use-subscription'
@@ -98,76 +104,124 @@ export default function Home() {
     toast.success('Erfolgreich abgemeldet.')
   }, [])
 
+  // Steuerpflichtiges Einkommen for tax bracket bar
+  const steuerpflichtig = Math.max(0, gewinn - result.endgueltigeSVS - Math.min(gewinn, 33000) * 0.15)
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      <SvsHeader
+    <div className="flex min-h-screen bg-background">
+      {/* Desktop Sidebar */}
+      <AppSidebar
         user={user ? { email: user.email ?? '' } : null}
-        onSave={handleSave}
-        onLogout={handleLogout}
-        saving={saving}
-        alertActive={alertActive}
         plan={subscription.plan}
+        onLogout={handleLogout}
       />
 
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 py-6 space-y-6">
-        <InputSection
-          gewinn={gewinn}
-          setGewinn={setGewinn}
-          vorschreibung={vorschreibung}
-          setVorschreibung={setVorschreibung}
-        />
-
-        {result.belowMinimum && (
-          <Alert className="bg-blue-50 border-blue-200">
-            <Info className="h-4 w-4 text-blue-500" />
-            <AlertDescription className="text-blue-800">
-              <span className="font-medium">Unter der Geringfügigkeitsgrenze:</span>{' '}
-              Bei einem Jahresgewinn unter {formatEuro(SVS.GERINGFUEGIGKEIT)} besteht keine Pflichtversicherung bei der SVS.
-            </AlertDescription>
-          </Alert>
-        )}
-
-        {!result.belowMinimum && (
-          <>
-            <WahrheitsTabelle gewinn={gewinn} result={result} />
-            <SteuerTipps tipps={steuerTipps} gewinn={gewinn} />
-            <DashboardCards result={result} vorschreibung={vorschreibung} />
-            <BeitragsDetails result={result} />
-            <MonthlyOverview result={result} vorschreibung={vorschreibung} />
-          </>
-        )}
-
-        <PremiumCTA
-          gewinn={gewinn}
-          vorschreibung={vorschreibung}
-          result={result}
-          steuerTipps={steuerTipps}
-          onImportGewinn={handleImportGewinn}
-          alertPrefs={alertPrefs}
-          alertActive={alertActive}
-          updateAlertPrefs={updateAlertPrefs}
-          requestNotificationPermission={requestNotificationPermission}
-          subscription={subscription}
-          onUpgradeRequired={handleUpgradeRequired}
-        />
-
-        <UpgradeDialog
-          open={upgradeOpen}
-          onOpenChange={setUpgradeOpen}
-          feature={upgradeFeature}
-          requiredPlan={upgradeRequiredPlan}
-        />
-
-        <footer className="text-center py-8 text-xs text-muted-foreground space-y-2">
-          <p className="font-medium text-foreground/70">SVS Checker – Beitragsrechner für Selbständige in Österreich</p>
-          <p>Alle Angaben ohne Gewähr. Kein Ersatz für professionelle Steuerberatung. Werte 2024/25.</p>
-          <div className="flex items-center justify-center gap-3 pt-1">
-            <Link href="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
-            <span>·</span>
-            <Link href="/datenschutz" className="hover:text-foreground transition-colors">Datenschutz</Link>
+      {/* Main Content */}
+      <main className="flex-1 min-w-0">
+        {/* Top bar */}
+        <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-lg border-b border-border/50">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <span className="md:hidden font-bold text-sm">SVS Checker</span>
+              <StatusBadge riskPercent={result.riskPercent} />
+            </div>
+            <div className="flex items-center gap-2">
+              {user ? (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleSave}
+                  disabled={saving}
+                  className="h-8"
+                >
+                  <Save className="h-3.5 w-3.5 mr-1.5" />
+                  {saving ? 'Speichert...' : 'Speichern'}
+                </Button>
+              ) : (
+                <Link href="/auth/login">
+                  <Button variant="outline" size="sm" className="h-8">Anmelden</Button>
+                </Link>
+              )}
+            </div>
           </div>
-        </footer>
+        </div>
+
+        {/* Split Screen */}
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-6">
+
+            {/* Left – Inputs (sticky on desktop) */}
+            <div className="lg:sticky lg:top-20 lg:self-start space-y-4">
+              <InputSection
+                gewinn={gewinn}
+                setGewinn={setGewinn}
+                vorschreibung={vorschreibung}
+                setVorschreibung={setVorschreibung}
+              />
+            </div>
+
+            {/* Right – Results */}
+            <div className="space-y-5">
+              {result.belowMinimum && (
+                <Alert className="bg-blue-50 border-blue-200">
+                  <Info className="h-4 w-4 text-blue-500" />
+                  <AlertDescription className="text-blue-800">
+                    <span className="font-medium">Unter der Geringfügigkeitsgrenze:</span>{' '}
+                    Bei einem Jahresgewinn unter {formatEuro(SVS.GERINGFUEGIGKEIT)} besteht keine Pflichtversicherung bei der SVS.
+                  </AlertDescription>
+                </Alert>
+              )}
+
+              {!result.belowMinimum && (
+                <>
+                  <HeroNumber echtesNetto={result.echtesNetto} gewinn={gewinn} />
+                  <TaxBracketBar steuerpflichtig={steuerpflichtig} />
+                  <WaterfallChart gewinn={gewinn} result={result} />
+                  <WahrheitsTabelle gewinn={gewinn} result={result} />
+                  <SteuerTipps tipps={steuerTipps} gewinn={gewinn} />
+                  <DashboardCards result={result} vorschreibung={vorschreibung} />
+                  <BeitragsDetails result={result} />
+                  <MonthlyOverview result={result} vorschreibung={vorschreibung} />
+                </>
+              )}
+
+              <PremiumCTA
+                gewinn={gewinn}
+                vorschreibung={vorschreibung}
+                result={result}
+                steuerTipps={steuerTipps}
+                onImportGewinn={handleImportGewinn}
+                alertPrefs={alertPrefs}
+                alertActive={alertActive}
+                updateAlertPrefs={updateAlertPrefs}
+                requestNotificationPermission={requestNotificationPermission}
+                subscription={subscription}
+                onUpgradeRequired={handleUpgradeRequired}
+              />
+
+              <UpgradeDialog
+                open={upgradeOpen}
+                onOpenChange={setUpgradeOpen}
+                feature={upgradeFeature}
+                requiredPlan={upgradeRequiredPlan}
+              />
+
+              <footer className="text-center py-8 pb-24 md:pb-8 text-xs text-muted-foreground space-y-2">
+                <p className="font-medium text-foreground/70">SVS Checker – Beitragsrechner für Selbständige in Österreich</p>
+                <p>Alle Angaben ohne Gewähr. Kein Ersatz für professionelle Steuerberatung. Werte 2024/25.</p>
+                <div className="flex items-center justify-center gap-3 pt-1">
+                  <Link href="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
+                  <span>·</span>
+                  <Link href="/datenschutz" className="hover:text-foreground transition-colors">Datenschutz</Link>
+                </div>
+              </footer>
+            </div>
+          </div>
+        </div>
       </main>
+
+      {/* Mobile Bottom Nav */}
+      <BottomNav />
     </div>
   )
 }

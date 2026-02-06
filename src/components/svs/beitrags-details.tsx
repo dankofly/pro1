@@ -1,15 +1,5 @@
 'use client'
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableFooter,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
 import { SvsTooltip } from './svs-tooltip'
 import { formatEuro } from '@/lib/format'
 import type { SvsResult } from '@/lib/svs-calculator'
@@ -19,76 +9,90 @@ interface BeitragsDetailsProps {
   result: SvsResult
 }
 
-export function BeitragsDetails({ result }: BeitragsDetailsProps) {
+function MiniProgressBar({ value, max, color }: { value: number; max: number; color: string }) {
+  const percent = max > 0 ? Math.min((value / max) * 100, 100) : 0
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-lg">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50">
-            <FileText className="h-4 w-4 text-blue-600" />
-          </div>
-          Beitrags-Aufschlüsselung
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Beitragsart</TableHead>
-              <TableHead className="text-right">Satz</TableHead>
-              <TableHead className="text-right">Betrag / Jahr</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow>
-              <TableCell>Pensionsversicherung (PV)</TableCell>
-              <TableCell className="text-right font-mono text-muted-foreground">18,50 %</TableCell>
-              <TableCell className="text-right font-mono font-medium">{formatEuro(result.pvBeitrag)}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Krankenversicherung (KV)</TableCell>
-              <TableCell className="text-right font-mono text-muted-foreground">6,80 %</TableCell>
-              <TableCell className="text-right font-mono font-medium">{formatEuro(result.kvBeitrag)}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <SvsTooltip term="Selbständigenvorsorge" /> (MV)
-              </TableCell>
-              <TableCell className="text-right font-mono text-muted-foreground">1,53 %</TableCell>
-              <TableCell className="text-right font-mono font-medium">{formatEuro(result.mvBeitrag)}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Unfallversicherung (UV)</TableCell>
-              <TableCell className="text-right font-mono text-muted-foreground">fix</TableCell>
-              <TableCell className="text-right font-mono font-medium">{formatEuro(result.uvBeitrag)}</TableCell>
-            </TableRow>
-          </TableBody>
-          <TableFooter>
-            <TableRow className="bg-blue-50/50">
-              <TableCell className="font-semibold text-blue-800">Gesamt (endgültig)</TableCell>
-              <TableCell className="text-right font-mono text-blue-600">26,83 % + UV</TableCell>
-              <TableCell className="text-right font-mono font-bold text-blue-700 text-base">
-                {formatEuro(result.endgueltigeSVS)}
-              </TableCell>
-            </TableRow>
-          </TableFooter>
-        </Table>
+    <div className="w-full h-1.5 bg-slate-200/60 rounded-full overflow-hidden mt-1">
+      <div
+        className={`h-full rounded-full transition-all duration-500 ${color}`}
+        style={{ width: `${percent}%` }}
+      />
+    </div>
+  )
+}
 
-        <div className="mt-4 p-3 bg-muted rounded-lg text-xs text-muted-foreground">
-          <SvsTooltip term="Endgültige Beitragsgrundlage" />:{' '}
-          <span className="font-mono font-medium text-foreground">{formatEuro(result.beitragsgrundlage)}</span>
-          {result.cappedAtMax && (
-            <span className="ml-2 text-amber-600 font-medium">
-              (gedeckelt bei <SvsTooltip term="Höchstbeitragsgrundlage" />)
-            </span>
-          )}
-          {result.belowMinimum && (
-            <span className="ml-2 text-muted-foreground font-medium">
-              (unter <SvsTooltip term="Geringfügigkeitsgrenze" />)
-            </span>
-          )}
+export function BeitragsDetails({ result }: BeitragsDetailsProps) {
+  const maxBeitrag = Math.max(result.pvBeitrag, result.kvBeitrag, result.mvBeitrag, result.uvBeitrag, 1)
+
+  const beitraege = [
+    { label: 'Pensionsversicherung (PV)', satz: '18,50 %', betrag: result.pvBeitrag, color: 'bg-blue-500' },
+    { label: 'Krankenversicherung (KV)', satz: '6,80 %', betrag: result.kvBeitrag, color: 'bg-emerald-500' },
+    { label: null, tooltip: 'Selbständigenvorsorge', suffix: ' (MV)', satz: '1,53 %', betrag: result.mvBeitrag, color: 'bg-amber-500' },
+    { label: 'Unfallversicherung (UV)', satz: 'fix', betrag: result.uvBeitrag, color: 'bg-purple-500' },
+  ]
+
+  return (
+    <div className="glass rounded-2xl p-5 sm:p-6 transition-all duration-300 hover:shadow-xl">
+      <div className="flex items-center gap-2 text-lg font-semibold mb-4">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/10">
+          <FileText className="h-4 w-4 text-blue-600" />
         </div>
-      </CardContent>
-    </Card>
+        Beitrags-Aufschluesselung
+      </div>
+
+      <div className="overflow-x-auto">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-slate-200/60">
+              <th className="text-left py-2.5 font-semibold text-muted-foreground">Beitragsart</th>
+              <th className="text-right py-2.5 font-semibold text-muted-foreground">Satz</th>
+              <th className="text-right py-2.5 font-semibold text-muted-foreground">Betrag / Jahr</th>
+            </tr>
+          </thead>
+          <tbody>
+            {beitraege.map((b, i) => (
+              <tr key={i} className="border-b border-slate-100/60">
+                <td className="py-3">
+                  <div>
+                    {b.tooltip ? (
+                      <span><SvsTooltip term={b.tooltip} />{b.suffix}</span>
+                    ) : (
+                      b.label
+                    )}
+                  </div>
+                  <MiniProgressBar value={b.betrag} max={maxBeitrag} color={b.color} />
+                </td>
+                <td className="text-right font-mono text-muted-foreground align-top py-3">{b.satz}</td>
+                <td className="text-right font-mono font-medium align-top py-3">{formatEuro(b.betrag)}</td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr className="bg-blue-50/50 rounded-lg">
+              <td className="py-3 pl-2 font-semibold text-blue-800 rounded-l-lg">Gesamt (endgueltig)</td>
+              <td className="py-3 text-right font-mono text-blue-600">26,83 % + UV</td>
+              <td className="py-3 pr-2 text-right font-mono font-bold text-blue-700 text-base rounded-r-lg">
+                {formatEuro(result.endgueltigeSVS)}
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div className="mt-4 p-3 bg-slate-100/50 backdrop-blur-sm rounded-lg text-xs text-muted-foreground">
+        <SvsTooltip term="Endgültige Beitragsgrundlage" />:{' '}
+        <span className="font-mono font-medium text-foreground">{formatEuro(result.beitragsgrundlage)}</span>
+        {result.cappedAtMax && (
+          <span className="ml-2 text-amber-600 font-medium">
+            (gedeckelt bei <SvsTooltip term="Höchstbeitragsgrundlage" />)
+          </span>
+        )}
+        {result.belowMinimum && (
+          <span className="ml-2 text-muted-foreground font-medium">
+            (unter <SvsTooltip term="Geringfügigkeitsgrenze" />)
+          </span>
+        )}
+      </div>
+    </div>
   )
 }
