@@ -133,12 +133,12 @@ function RegisterPageInner() {
                 <Input
                   id="password"
                   type="password"
-                  placeholder="Min. 6 Zeichen"
+                  placeholder="Min. 8 Zeichen"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="pl-10"
                   required
-                  minLength={6}
+                  minLength={8}
                 />
               </div>
             </div>

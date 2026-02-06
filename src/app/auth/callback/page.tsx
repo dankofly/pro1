@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
+import { safeRedirect } from '@/lib/safe-redirect'
 import { Card, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Loader2, CheckCircle, AlertCircle } from 'lucide-react'
 
@@ -13,7 +14,7 @@ export default function AuthCallbackPage() {
   useEffect(() => {
     const handleCallback = async () => {
       const params = new URLSearchParams(window.location.search)
-      const redirectTo = params.get('redirect') || '/rechner'
+      const redirectTo = safeRedirect(params.get('redirect'))
 
       // Handle hash fragment tokens (implicit flow: #access_token=...)
       const hash = window.location.hash

@@ -13,6 +13,19 @@ function verifySignature(body: string, signature: string, secret: string): boole
   }
 }
 
+const VALID_EVENTS = [
+  'subscription_created',
+  'subscription_updated',
+  'subscription_cancelled',
+  'subscription_expired',
+  'subscription_resumed',
+  'subscription_payment_success',
+  'subscription_payment_failed',
+]
+
+const VALID_STATUSES = ['active', 'on_trial', 'paused', 'cancelled', 'expired', 'past_due', 'unpaid']
+const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+
 export async function POST(request: NextRequest) {
   try {
     const rawBody = await request.text()
@@ -21,31 +34,42 @@ export async function POST(request: NextRequest) {
 
     if (!secret) {
       console.error('LEMONSQUEEZY_WEBHOOK_SECRET not configured')
-      return NextResponse.json({ error: 'Server misconfigured' }, { status: 500 })
+      return NextResponse.json({ error: 'Server error' }, { status: 500 })
     }
 
-    if (!verifySignature(rawBody, signature, secret)) {
-      return NextResponse.json({ error: 'Invalid signature' }, { status: 401 })
+    if (!signature || !verifySignature(rawBody, signature, secret)) {
+      console.error('Webhook signature verification failed')
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
     const payload = JSON.parse(rawBody)
-    const eventName: string = payload.meta.event_name
+    const eventName: string = payload.meta?.event_name
     const data = payload.data
-    const attrs = data.attributes
+    const attrs = data?.attributes
+
+    if (!eventName || !data || !attrs) {
+      return NextResponse.json({ error: 'Invalid payload' }, { status: 400 })
+    }
+
+    if (!VALID_EVENTS.includes(eventName)) {
+      // Unknown event - acknowledge to prevent retries
+      return NextResponse.json({ received: true })
+    }
+
     const customData = payload.meta.custom_data ?? {}
     const userId = customData.user_id as string | undefined
 
     const subscriptionId = String(data.id)
     const variantId = String(attrs.variant_id)
     const planInfo = getPlanByVariantId(variantId)
-    const status: string = attrs.status
+    const status: string = VALID_STATUSES.includes(attrs.status) ? attrs.status : 'active'
     const customerId = String(attrs.customer_id)
     const orderId = attrs.order_id ? String(attrs.order_id) : null
 
     if (eventName === 'subscription_created') {
-      if (!userId) {
-        console.error('No user_id in custom_data for subscription_created')
-        return NextResponse.json({ error: 'Missing user_id' }, { status: 400 })
+      if (!userId || !UUID_REGEX.test(userId)) {
+        console.error('Invalid or missing user_id in custom_data', { userId })
+        return NextResponse.json({ error: 'Invalid user_id' }, { status: 400 })
       }
 
       const { error } = await getSupabaseAdmin().from('subscriptions').upsert({
@@ -65,7 +89,10 @@ export async function POST(request: NextRequest) {
         updated_at: new Date().toISOString(),
       }, { onConflict: 'user_id' })
 
-      if (error) console.error('Webhook upsert error:', error)
+      if (error) {
+        console.error('Webhook upsert error:', error)
+        return NextResponse.json({ error: 'Processing failed' }, { status: 500 })
+      }
     }
 
     if ([
@@ -90,12 +117,15 @@ export async function POST(request: NextRequest) {
         })
         .eq('lemonsqueezy_subscription_id', subscriptionId)
 
-      if (error) console.error('Webhook update error:', error)
+      if (error) {
+        console.error('Webhook update error:', error)
+        return NextResponse.json({ error: 'Processing failed' }, { status: 500 })
+      }
     }
 
     return NextResponse.json({ received: true })
   } catch (err) {
     console.error('Webhook error:', err)
-    return NextResponse.json({ error: 'Webhook handler failed' }, { status: 500 })
+    return NextResponse.json({ error: 'Server error' }, { status: 500 })
   }
 }

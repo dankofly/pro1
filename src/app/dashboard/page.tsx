@@ -57,6 +57,7 @@ function DashboardContent() {
     const { data, error } = await supabase
       .from('calculations')
       .select('*')
+      .eq('user_id', user!.id)
       .order('created_at', { ascending: false })
 
     if (error) {
@@ -68,7 +69,7 @@ function DashboardContent() {
   }
 
   const handleDelete = useCallback(async (id: string) => {
-    const { error } = await supabase.from('calculations').delete().eq('id', id)
+    const { error } = await supabase.from('calculations').delete().eq('id', id).eq('user_id', user!.id)
     if (error) {
       toast.error('Fehler beim Loeschen.')
     } else {
