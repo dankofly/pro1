@@ -28,15 +28,15 @@ const SITE_URL = 'https://svs-checker.app'
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'SVS Checker – SVS-Beitragsrechner fuer Selbstaendige in Oesterreich',
+    default: 'SVS Checker – SVS-Beitragsrechner für Selbständige in Österreich',
     template: '%s | SVS Checker',
   },
   description:
-    'Berechne in Sekunden deine SVS-Beitraege, Nachzahlung und dein echtes Netto als Selbstaendiger in Oesterreich. Kostenlos, DSGVO-konform, mit Werten fuer 2024–2026.',
+    'Berechne in Sekunden deine SVS-Beiträge, Nachzahlung und dein echtes Netto als Selbständiger in Österreich. Kostenlos, DSGVO-konform, mit Werten für 2024–2026.',
   keywords: [
-    'SVS Rechner', 'SVS Beitragsrechner', 'Sozialversicherung Selbstaendige',
-    'SVS Nachzahlung berechnen', 'SVS Oesterreich', 'Selbstaendige Oesterreich',
-    'Einkommensteuer Selbstaendige', 'Misch-Einkommen Rechner', 'Netto Rechner Selbstaendige',
+    'SVS Rechner', 'SVS Beitragsrechner', 'Sozialversicherung Selbständige',
+    'SVS Nachzahlung berechnen', 'SVS Österreich', 'Selbständige Österreich',
+    'Einkommensteuer Selbständige', 'Misch-Einkommen Rechner', 'Netto Rechner Selbständige',
   ],
   authors: [{ name: 'HYPEAKZ.IO', url: 'https://hypeakz.io' }],
   creator: 'HYPEAKZ.IO',
@@ -46,15 +46,15 @@ export const metadata: Metadata = {
     locale: 'de_AT',
     url: SITE_URL,
     siteName: 'SVS Checker',
-    title: 'SVS Checker – SVS-Beitragsrechner fuer Selbstaendige in Oesterreich',
+    title: 'SVS Checker – SVS-Beitragsrechner für Selbständige in Österreich',
     description:
-      'Berechne in Sekunden deine SVS-Beitraege, Nachzahlung und dein echtes Netto. Kostenlos starten, keine Registrierung noetig.',
+      'Berechne in Sekunden deine SVS-Beiträge, Nachzahlung und dein echtes Netto. Kostenlos starten, keine Registrierung nötig.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SVS Checker – SVS-Beitragsrechner fuer Selbstaendige',
+    title: 'SVS Checker – SVS-Beitragsrechner für Selbständige',
     description:
-      'SVS-Nachzahlung berechnen, Einkommensteuer-Prognose, echtes Netto. Fuer Selbstaendige in Oesterreich.',
+      'SVS-Nachzahlung berechnen, Einkommensteuer-Prognose, echtes Netto. Für Selbständige in Österreich.',
   },
   alternates: {
     canonical: SITE_URL,
@@ -86,7 +86,7 @@ export default function RootLayout({
           '@type': 'Organization',
           name: 'SVS Checker',
           url: SITE_URL,
-          description: 'SVS-Beitragsrechner fuer Selbstaendige in Oesterreich',
+          description: 'SVS-Beitragsrechner für Selbständige in Österreich',
           founder: {
             '@type': 'Person',
             name: 'Daniel Kofler',

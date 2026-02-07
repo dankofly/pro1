@@ -32,7 +32,7 @@ export function WahrheitsTabelle({ gewinn, result }: WahrheitsTabelleProps) {
           <thead>
             <tr className="border-b border-white/10">
               <th className="text-left py-2.5 font-semibold text-white/60">Posten</th>
-              <th className="text-right py-2.5 font-semibold text-white/60">Jaehrlich</th>
+              <th className="text-right py-2.5 font-semibold text-white/60">Jährlich</th>
               <th className="text-right py-2.5 font-semibold text-white/60">Monatlich</th>
             </tr>
           </thead>
@@ -43,7 +43,7 @@ export function WahrheitsTabelle({ gewinn, result }: WahrheitsTabelleProps) {
               <td className="py-3 text-right font-mono font-medium text-white">{formatEuro(gewinn / 12)}</td>
             </tr>
             <tr className="border-b border-white/10 text-red-300">
-              <td className="py-3">- SVS Beitraege</td>
+              <td className="py-3">- SVS Beiträge</td>
               <td className="py-3 text-right font-mono">{formatEuro(result.endgueltigeSVS)}</td>
               <td className="py-3 text-right font-mono">{formatEuro(result.endgueltigeSVS / 12)}</td>
             </tr>

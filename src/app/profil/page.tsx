@@ -153,7 +153,7 @@ function ProfilContent() {
                 { label: 'Berechnungen speichern', basic: true },
                 { label: 'Dashboard mit Verlauf', basic: true },
                 { label: 'Misch-Einkommen Rechner', pro: true },
-                { label: 'Familienbonus & Absetzbetraege', pro: true },
+                { label: 'Familienbonus & Absetzbeträge', pro: true },
                 { label: 'PDF-Export', pro: true },
                 { label: 'Wasserfall-Analyse', pro: true },
               ].map((f) => {
@@ -194,7 +194,7 @@ function ProfilContent() {
         </Card>
 
         <footer className="text-center py-8 text-xs text-muted-foreground space-y-2">
-          <p>SVS Checker – Alle Angaben ohne Gewaehr.</p>
+          <p>SVS Checker – Alle Angaben ohne Gewähr.</p>
           <div className="flex items-center justify-center gap-3">
             <Link href="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
             <span>·</span>

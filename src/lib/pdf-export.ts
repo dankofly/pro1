@@ -39,10 +39,10 @@ export function generateSvsReport({ gewinn, vorschreibung, result, steuerTipps }
 
   autoTable(doc, {
     startY: y,
-    head: [['Posten', 'Jaehrlich', 'Monatlich']],
+    head: [['Posten', 'Jährlich', 'Monatlich']],
     body: [
       ['Brutto-Gewinn', formatEuro(gewinn), formatEuro(gewinn / 12)],
-      ['- SVS Beitraege', formatEuro(result.endgueltigeSVS), formatEuro(result.endgueltigeSVS / 12)],
+      ['- SVS Beiträge', formatEuro(result.endgueltigeSVS), formatEuro(result.endgueltigeSVS / 12)],
       ['- Einkommensteuer', formatEuro(result.einkommensteuer), formatEuro(result.einkommensteuer / 12)],
     ],
     foot: [['ECHTES NETTO', formatEuro(result.echtesNetto), formatEuro(result.echtesNetto / 12)]],
@@ -63,7 +63,7 @@ export function generateSvsReport({ gewinn, vorschreibung, result, steuerTipps }
   // Beitrags-Details
   doc.setFontSize(14)
   doc.setFont('helvetica', 'bold')
-  doc.text('SVS-Beitraege im Detail', 14, y)
+  doc.text('SVS-Beiträge im Detail', 14, y)
   y += 2
 
   autoTable(doc, {
@@ -72,7 +72,7 @@ export function generateSvsReport({ gewinn, vorschreibung, result, steuerTipps }
     body: [
       ['Pensionsversicherung (PV)', '18,50%', formatEuro(result.pvBeitrag)],
       ['Krankenversicherung (KV)', '6,80%', formatEuro(result.kvBeitrag)],
-      ['Selbstaendigenvorsorge (MV)', '1,53%', formatEuro(result.mvBeitrag)],
+      ['Selbständigenvorsorge (MV)', '1,53%', formatEuro(result.mvBeitrag)],
       ['Unfallversicherung (UV)', 'fix', formatEuro(result.uvBeitrag)],
     ],
     foot: [['Gesamt SVS', '~26,83% + UV', formatEuro(result.endgueltigeSVS)]],
@@ -100,8 +100,8 @@ export function generateSvsReport({ gewinn, vorschreibung, result, steuerTipps }
     startY: y,
     body: [
       ['Beitragsgrundlage', formatEuro(result.beitragsgrundlage)],
-      ['Vorlaeufige SVS (Vorschreibung)', formatEuro(vorschreibung * 12) + ' (' + formatEuro(vorschreibung) + '/Monat)'],
-      ['Geschaetzte Nachzahlung', formatEuro(result.nachzahlung)],
+      ['Vorläufige SVS (Vorschreibung)', formatEuro(vorschreibung * 12) + ' (' + formatEuro(vorschreibung) + '/Monat)'],
+      ['Geschätzte Nachzahlung', formatEuro(result.nachzahlung)],
       ['Spar-Empfehlung pro Monat', formatEuro(result.sparEmpfehlung)],
       ['Steuerersparnis durch SVS', formatEuro(result.steuerErsparnis)],
     ],
@@ -141,7 +141,7 @@ export function generateSvsReport({ gewinn, vorschreibung, result, steuerTipps }
 
     if (steuerTipps.svsVorauszahlung > 0) {
       doc.setFont('helvetica', 'bold')
-      doc.text('SVS-Vorauszahlung erhoehen:', 14, y)
+      doc.text('SVS-Vorauszahlung erhöhen:', 14, y)
       y += 5
       doc.setFont('helvetica', 'normal')
       doc.text(
@@ -159,7 +159,7 @@ export function generateSvsReport({ gewinn, vorschreibung, result, steuerTipps }
   doc.setFontSize(8)
   doc.setTextColor(150, 150, 150)
   doc.text(
-    'Erstellt mit SVS Checker | Keine Steuerberatung. Alle Angaben ohne Gewaehr. Werte 2024/25.',
+    'Erstellt mit SVS Checker | Keine Steuerberatung. Alle Angaben ohne Gewähr. Werte 2024/25.',
     105, pageHeight - 10, { align: 'center' }
   )
 

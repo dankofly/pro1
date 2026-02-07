@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og'
 
-export const alt = 'SVS Checker – SVS-Beitragsrechner fuer Selbstaendige in Oesterreich'
+export const alt = 'SVS Checker – SVS-Beitragsrechner für Selbständige in Österreich'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -58,7 +58,7 @@ export default function OgImage() {
             marginBottom: 24,
           }}
         >
-          SVS-Beitragsrechner fuer Selbstaendige in Oesterreich
+          SVS-Beitragsrechner für Selbständige in Österreich
         </div>
         <div
           style={{
@@ -68,7 +68,7 @@ export default function OgImage() {
             maxWidth: 600,
           }}
         >
-          Berechne SVS-Beitraege, Nachzahlung und echtes Netto. Kostenlos.
+          Berechne SVS-Beiträge, Nachzahlung und echtes Netto. Kostenlos.
         </div>
         <div
           style={{

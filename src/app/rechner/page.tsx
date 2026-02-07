@@ -40,7 +40,7 @@ function HomeContent() {
 
   const handleImportGewinn = useCallback((value: number) => {
     setGewinn(Math.round(value))
-    toast.success(`Gewinn von ${formatEuro(value)} uebernommen.`)
+    toast.success(`Gewinn von ${formatEuro(value)} übernommen.`)
   }, [])
 
   const handleUpgradeRequired = useCallback((feature: string, plan: 'basic' | 'pro') => {
@@ -133,7 +133,7 @@ function HomeContent() {
               <Alert className="bg-blue-50 border-blue-200">
                 <Info className="h-4 w-4 text-blue-500" />
                 <AlertDescription className="text-blue-800">
-                  <span className="font-medium">Unter der Geringfuegigkeitsgrenze:</span>{' '}
+                  <span className="font-medium">Unter der Geringfügigkeitsgrenze:</span>{' '}
                   Bei einem Jahresgewinn unter {formatEuro(SVS.GERINGFUEGIGKEIT)} besteht keine Pflichtversicherung bei der SVS.
                 </AlertDescription>
               </Alert>
@@ -194,8 +194,8 @@ function HomeContent() {
             />
 
             <footer className="text-center py-8 text-xs text-muted-foreground space-y-2">
-              <p className="font-medium text-foreground/70">SVS Checker - Beitragsrechner fuer Selbstaendige in Oesterreich</p>
-              <p>Alle Angaben ohne Gewaehr. Kein Ersatz fuer professionelle Steuerberatung. Werte 2024/25.</p>
+              <p className="font-medium text-foreground/70">SVS Checker - Beitragsrechner für Selbständige in Österreich</p>
+              <p>Alle Angaben ohne Gewähr. Kein Ersatz für professionelle Steuerberatung. Werte 2024/25.</p>
               <div className="flex items-center justify-center gap-3 pt-1">
                 <Link href="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
                 <span>·</span>

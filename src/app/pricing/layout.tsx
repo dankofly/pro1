@@ -4,11 +4,11 @@ import { JsonLd } from '@/components/json-ld'
 export const metadata: Metadata = {
   title: 'Preise – SVS Checker Plaene',
   description:
-    'SVS Checker Preise: Kostenloser SVS-Beitragsrechner, Sicherheits-Plan ab 9,90 EUR/Monat, Pro ab 19,90 EUR/Monat. Monatlich kuendbar.',
+    'SVS Checker Preise: Kostenloser SVS-Beitragsrechner, Sicherheits-Plan ab 9,90 EUR/Monat, Pro ab 19,90 EUR/Monat. Monatlich kündbar.',
   alternates: { canonical: '/pricing' },
   openGraph: {
     title: 'SVS Checker Preise – Starte kostenlos',
-    description: 'Free, Sicherheits-Plan und Pro: Alle Features und Preise im Ueberblick.',
+    description: 'Free, Sicherheits-Plan und Pro: Alle Features und Preise im Überblick.',
     url: '/pricing',
   },
 }

@@ -51,7 +51,7 @@ export function useSmartAlerts(nachzahlung: number) {
     ) {
       lastNotifiedRef.current = nachzahlung
       new Notification('SVS Checker – Nachzahlungs-Warnung', {
-        body: `Deine geschaetzte Nachzahlung betraegt €${Math.round(nachzahlung).toLocaleString('de-AT')} und uebersteigt deinen Schwellwert von €${Math.round(prefs.threshold).toLocaleString('de-AT')}.`,
+        body: `Deine geschätzte Nachzahlung beträgt €${Math.round(nachzahlung).toLocaleString('de-AT')} und übersteigt deinen Schwellwert von €${Math.round(prefs.threshold).toLocaleString('de-AT')}.`,
         icon: '/favicon.ico',
       })
     }

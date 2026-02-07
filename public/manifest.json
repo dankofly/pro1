@@ -1,7 +1,7 @@
 {
   "name": "SVS Checker",
   "short_name": "SVS Checker",
-  "description": "SVS-Beitragsrechner fuer Selbstaendige in Oesterreich",
+  "description": "SVS-Beitragsrechner für Selbständige in Österreich",
   "start_url": "/rechner",
   "display": "standalone",
   "background_color": "#020617",

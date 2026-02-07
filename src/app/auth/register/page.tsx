@@ -61,7 +61,7 @@ function RegisterPageInner() {
             </div>
             <CardTitle className="text-2xl">Registrierung erfolgreich!</CardTitle>
             <CardDescription>
-              Wir haben dir eine Bestaetigungs-E-Mail gesendet. Bitte ueberpruefe dein Postfach und klicke auf den Link.
+              Wir haben dir eine Bestätigungs-E-Mail gesendet. Bitte überprüfe dein Postfach und klicke auf den Link.
             </CardDescription>
           </CardHeader>
           <CardFooter className="flex flex-col gap-3">
@@ -69,7 +69,7 @@ function RegisterPageInner() {
               <Button className="w-full">Zum Login</Button>
             </Link>
             <Link href="/rechner" className="text-sm text-muted-foreground hover:underline text-center">
-              Zurueck zum Rechner
+              Zurück zum Rechner
             </Link>
           </CardFooter>
         </Card>
@@ -87,7 +87,7 @@ function RegisterPageInner() {
             </div>
           </div>
           <CardTitle className="text-2xl">Konto erstellen</CardTitle>
-          <CardDescription>Speichere deine SVS-Berechnungen und behalte den Ueberblick</CardDescription>
+          <CardDescription>Speichere deine SVS-Berechnungen und behalte den Überblick</CardDescription>
         </CardHeader>
         <form onSubmit={handleRegister}>
           <CardContent className="space-y-4">
@@ -154,7 +154,7 @@ function RegisterPageInner() {
               </Link>
             </p>
             <Link href="/rechner" className="text-sm text-muted-foreground hover:underline text-center">
-              Zurueck zum Rechner
+              Zurück zum Rechner
             </Link>
           </CardFooter>
         </form>

@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
     const code = ((body.code as string) || '').trim().toUpperCase()
 
     if (!code || code.length > 20) {
-      return NextResponse.json({ error: 'Ungueltiger Code' }, { status: 400 })
+      return NextResponse.json({ error: 'Ungültiger Code' }, { status: 400 })
     }
 
     const admin = getSupabaseAdmin()

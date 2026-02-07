@@ -174,7 +174,7 @@ function Hero() {
             <Reveal>
               <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 mb-6 text-sm px-4 py-1.5">
                 <Zap className="h-3.5 w-3.5 mr-1.5" />
-                Fuer Selbstaendige in Oesterreich
+                Für Selbständige in Österreich
               </Badge>
             </Reveal>
 
@@ -182,7 +182,7 @@ function Hero() {
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight font-heading">
                 SVS-Nachzahlung?{' '}
                 <span className="bg-gradient-to-r from-emerald-400 to-emerald-300 bg-clip-text text-transparent">
-                  Nie wieder ueberrascht.
+                  Nie wieder überrascht.
                 </span>
               </h1>
             </Reveal>
@@ -190,7 +190,7 @@ function Hero() {
             <Reveal delay={200}>
               <p className="mt-6 text-lg sm:text-xl text-blue-200/80 leading-relaxed max-w-lg mx-auto lg:mx-0">
                 Berechne in Sekunden, was die SVS wirklich von dir will – inklusive Einkommensteuer,
-                Familienbonus und echtem Netto. Mit Werten fuer 2024, 2025 und 2026.
+                Familienbonus und echtem Netto. Mit Werten für 2024, 2025 und 2026.
               </p>
             </Reveal>
 
@@ -304,7 +304,7 @@ const REVIEWS = [
   { name: 'David P.', role: 'Berater', text: 'Die Nachzahlungs-Prognose war auf den Euro genau. Besser als jeder Excel-Rechner.' },
   { name: 'Julia H.', role: 'Online-Haendlerin', text: 'Familienbonus, AVAB, alles automatisch dabei. Ich spar mir den Gang zum Steuerberater.' },
   { name: 'Stefan B.', role: 'Webentwickler', text: 'Nutze den Rechner jeden Monat. Die Wasserfall-Analyse zeigt mir genau wo mein Geld hingeht.' },
-  { name: 'Anna G.', role: 'Coach', text: 'Endlich ein Tool das Selbstaendige in Oesterreich wirklich verstehen. Klare Empfehlung!' },
+  { name: 'Anna G.', role: 'Coach', text: 'Endlich ein Tool das Selbständige in Österreich wirklich verstehen. Klare Empfehlung!' },
 ]
 
 function SocialProof() {
@@ -319,7 +319,7 @@ function SocialProof() {
               ))}
             </div>
             <p className="text-blue-200/60 text-sm">
-              <span className="text-white font-semibold">4.9/5</span> von ueber 500+ Selbstaendigen
+              <span className="text-white font-semibold">4.9/5</span> von über 500+ Selbständigen
             </p>
           </div>
         </Reveal>
@@ -368,7 +368,7 @@ function ProblemSection() {
     {
       icon: <Shield className="h-6 w-6" />,
       title: 'Die Ungewissheit',
-      desc: 'Vorlaeufige Beitraege, endgueltige Bescheide, Geringfuegigkeitsgrenze, Hoechstbeitragsgrundlage – wer blickt da noch durch? Du weisst nie, was am Ende wirklich uebrig bleibt.',
+      desc: 'Vorläufige Beiträge, endgültige Bescheide, Geringfügigkeitsgrenze, Höchstbeitragsgrundlage – wer blickt da noch durch? Du weißt nie, was am Ende wirklich übrig bleibt.',
       color: 'text-amber-400',
       bg: 'bg-amber-500/10',
       border: 'border-amber-500/20',
@@ -376,7 +376,7 @@ function ProblemSection() {
     {
       icon: <Users className="h-6 w-6" />,
       title: 'Der Misch-Masch',
-      desc: 'Angestellt und gleichzeitig selbstaendig? Dann wird es richtig kompliziert: Differenz-Vorschreibung, doppelte SV, Absetzbetraege – eine Formel, die kein normaler Mensch im Kopf hat.',
+      desc: 'Angestellt und gleichzeitig selbständig? Dann wird es richtig kompliziert: Differenz-Vorschreibung, doppelte SV, Absetzbeträge – eine Formel, die kein normaler Mensch im Kopf hat.',
       color: 'text-blue-400',
       bg: 'bg-blue-500/10',
       border: 'border-blue-500/20',
@@ -392,7 +392,7 @@ function ProblemSection() {
               Das Problem
             </Badge>
             <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              Warum Selbstaendige jedes Jahr boese ueberrascht werden
+              Warum Selbständige jedes Jahr böse überrascht werden
             </h2>
             <p className="mt-4 text-blue-200/60 max-w-2xl mx-auto text-lg">
               Die SVS-Abrechnung ist bewusst kompliziert. Ohne die richtigen Zahlen tappst du im Dunkeln.
@@ -412,7 +412,7 @@ function ProblemSection() {
                 <p className="text-blue-200/60 leading-relaxed text-lg">{problems[0].desc}</p>
                 <div className="mt-6 flex items-center gap-3 text-sm text-red-400/80">
                   <span className="flex h-2 w-2 rounded-full bg-red-400" />
-                  Betrifft 80% aller Selbstaendigen in Oesterreich
+                  Betrifft 80% aller Selbständigen in Österreich
                 </div>
               </CardContent>
             </Card>
@@ -451,8 +451,8 @@ function FeaturesSection() {
     },
     {
       icon: <Heart className="h-6 w-6" />,
-      title: 'Familienbonus & Absetzbetraege',
-      desc: 'AVAB, Familienbonus Plus, Verkehrsabsetzbetrag, Kindermehrbetrag – alles automatisch berechnet mit den korrekten Werten fuer jedes Jahr.',
+      title: 'Familienbonus & Absetzbeträge',
+      desc: 'AVAB, Familienbonus Plus, Verkehrsabsetzbetrag, Kindermehrbetrag – alles automatisch berechnet mit den korrekten Werten für jedes Jahr.',
       color: 'text-blue-400',
       bg: 'bg-blue-500/10',
     },
@@ -477,7 +477,7 @@ function FeaturesSection() {
               Alles, was du brauchst – in einer App
             </h2>
             <p className="mt-4 text-blue-200/60 max-w-2xl mx-auto text-lg">
-              Gebaut von Selbstaendigen, fuer Selbstaendige. Mit der Praezision, die dein Steuerberater nicht hat.
+              Gebaut von Selbständigen, für Selbständige. Mit der Präzision, die dein Steuerberater nicht hat.
             </p>
           </div>
         </Reveal>
@@ -546,7 +546,7 @@ function FeaturesSection() {
               </div>
               <div>
                 <h4 className="font-semibold text-white font-heading">Wasserfall-Analyse</h4>
-                <p className="text-sm text-blue-200/50 mt-1">Sieh genau, wie sich dein Brutto zu Netto aufschluesselt: SVS, Einkommensteuer und was wirklich bleibt.</p>
+                <p className="text-sm text-blue-200/50 mt-1">Sieh genau, wie sich dein Brutto zu Netto aufschlüsselt: SVS, Einkommensteuer und was wirklich bleibt.</p>
               </div>
             </div>
           </div>
@@ -565,15 +565,15 @@ function PricingSection() {
       name: 'Free',
       monthlyPrice: '0',
       yearlyPrice: '0',
-      unit: yearly ? 'fuer immer' : 'fuer immer',
-      desc: 'Fuer den Einstieg',
+      unit: yearly ? 'für immer' : 'für immer',
+      desc: 'Für den Einstieg',
       isFree: true,
       features: [
         { text: 'SVS-Beitragsrechner', included: true },
         { text: 'Wahrheits-Tabelle', included: true },
         { text: 'Einkommensteuer-Prognose', included: false },
         { text: 'Misch-Einkommen Rechner', included: false },
-        { text: 'Familienbonus & Absetzbetraege', included: false },
+        { text: 'Familienbonus & Absetzbeträge', included: false },
         { text: 'Wasserfall-Analyse', included: false },
         { text: 'PDF-Export', included: false },
       ],
@@ -587,7 +587,7 @@ function PricingSection() {
       yearlyPrice: '7,90',
       yearlyTotal: '94,80',
       unit: yearly ? 'pro Monat' : 'pro Monat',
-      desc: 'Fuer Einsteiger',
+      desc: 'Für Einsteiger',
       isFree: false,
       features: [
         { text: 'Alles aus Free', included: true },
@@ -596,7 +596,7 @@ function PricingSection() {
         { text: 'Dashboard mit Verlauf', included: true },
         { text: 'Einfacher Export', included: true },
         { text: 'Misch-Einkommen Rechner', included: false },
-        { text: 'Familienbonus & Absetzbetraege', included: false },
+        { text: 'Familienbonus & Absetzbeträge', included: false },
       ],
       cta: 'Jetzt starten',
       href: '/pricing',
@@ -608,14 +608,14 @@ function PricingSection() {
       yearlyPrice: '15,90',
       yearlyTotal: '190,80',
       unit: yearly ? 'pro Monat' : 'pro Monat',
-      desc: 'Fuer Profis',
+      desc: 'Für Profis',
       isFree: false,
       features: [
         { text: 'Alles aus Sicherheits-Plan', included: true },
         { text: 'Misch-Einkommen Rechner', included: true },
-        { text: 'Familienbonus & Absetzbetraege', included: true },
+        { text: 'Familienbonus & Absetzbeträge', included: true },
         { text: 'Wasserfall-Analyse', included: true },
-        { text: 'PDF-Export fuer Steuerberater', included: true },
+        { text: 'PDF-Export für Steuerberater', included: true },
         { text: 'Smart Alerts & Push', included: true },
         { text: 'Prioritaets-Support', included: true },
       ],
@@ -637,7 +637,7 @@ function PricingSection() {
               Starte kostenlos, upgrade wenn du bereit bist
             </h2>
             <p className="mt-4 text-blue-200/60 max-w-2xl mx-auto text-lg">
-              Keine versteckten Kosten. Monatlich kuendbar. Sichere Zahlung via Lemon Squeezy.
+              Keine versteckten Kosten. Monatlich kündbar. Sichere Zahlung via Lemon Squeezy.
             </p>
           </div>
         </Reveal>
@@ -661,7 +661,7 @@ function PricingSection() {
               />
             </button>
             <span className={`text-sm font-medium transition-colors ${yearly ? 'text-white' : 'text-blue-200/40'}`}>
-              Jaehrlich
+              Jährlich
             </span>
             {yearly && (
               <Badge className="bg-emerald-500/15 text-emerald-400 border-emerald-500/25 text-xs">
@@ -746,7 +746,7 @@ function PricingSection() {
 
         <Reveal delay={300}>
           <p className="text-center text-blue-200/30 text-xs mt-8">
-            Alle Preise inkl. USt. {yearly ? 'Jaehrlich im Voraus. ' : 'Monatlich kuendbar. '}Sichere Zahlung via Lemon Squeezy.
+            Alle Preise inkl. USt. {yearly ? 'Jährlich im Voraus. ' : 'Monatlich kündbar. '}Sichere Zahlung via Lemon Squeezy.
           </p>
         </Reveal>
       </div>
@@ -758,8 +758,8 @@ function PricingSection() {
 function TrustSection() {
   const badges = [
     { icon: <Lock className="h-5 w-5" />, label: 'DSGVO-konform', desc: 'Deine Daten bleiben in der EU' },
-    { icon: <Shield className="h-5 w-5" />, label: 'SSL-verschluesselt', desc: 'Bankgrade Verschluesselung' },
-    { icon: <Heart className="h-5 w-5" />, label: 'Made in Austria', desc: 'Gebaut fuer oesterreichisches Steuerrecht' },
+    { icon: <Shield className="h-5 w-5" />, label: 'SSL-verschlüsselt', desc: 'Bankgrade Verschluesselung' },
+    { icon: <Heart className="h-5 w-5" />, label: 'Made in Austria', desc: 'Gebaut für österreichisches Steuerrecht' },
     { icon: <Calculator className="h-5 w-5" />, label: 'Aktuelle Werte', desc: '2024, 2025 & 2026 Steuerdaten' },
   ]
 
@@ -797,11 +797,11 @@ function FAQSection() {
   const faqs = [
     {
       q: 'Was genau berechnet der SVS Checker?',
-      a: 'Der SVS Checker berechnet deine endgueltigen SVS-Beitraege (PV, KV, UV, Selbstaendigenvorsorge), die voraussichtliche Nachzahlung, die Einkommensteuer-Prognose und dein echtes Netto – basierend auf deinem tatsaechlichen Jahresgewinn.',
+      a: 'Der SVS Checker berechnet deine endgültigen SVS-Beiträge (PV, KV, UV, Selbständigenvorsorge), die voraussichtliche Nachzahlung, die Einkommensteuer-Prognose und dein echtes Netto – basierend auf deinem tatsächlichen Jahresgewinn.',
     },
     {
       q: 'Sind die Berechnungen rechtlich verbindlich?',
-      a: 'Nein. Der SVS Checker ist ein Prognose-Tool und ersetzt keine Steuerberatung. Alle Berechnungen basieren auf den aktuellen gesetzlichen Grundlagen, aber die endgueltigen Bescheide der SVS und des Finanzamts koennen abweichen.',
+      a: 'Nein. Der SVS Checker ist ein Prognose-Tool und ersetzt keine Steuerberatung. Alle Berechnungen basieren auf den aktuellen gesetzlichen Grundlagen, aber die endgültigen Bescheide der SVS und des Finanzamts können abweichen.',
     },
     {
       q: 'Was ist der Unterschied zwischen Free und Pro?',
@@ -809,18 +809,18 @@ function FAQSection() {
     },
     {
       q: 'Was ist die Nachzahlungsfalle?',
-      a: 'Die SVS berechnet deine Beitraege zunaechst auf Basis deines Gewinns von vor 3 Jahren (vorlaeufige Beitragsgrundlage). Steigt dein Einkommen, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung. Der SVS Checker zeigt dir genau, wie hoch diese ausfallen wird.',
+      a: 'Die SVS berechnet deine Beiträge zunächst auf Basis deines Gewinns von vor 3 Jahren (vorläufige Beitragsgrundlage). Steigt dein Einkommen, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung. Der SVS Checker zeigt dir genau, wie hoch diese ausfallen wird.',
     },
     {
-      q: 'Kann ich den Rechner auch nutzen, wenn ich angestellt UND selbstaendig bin?',
-      a: 'Ja! Der Misch-Einkommen Rechner (Pro-Feature) ist genau dafuer gebaut. Er berechnet die Differenz-Vorschreibung, beruecksichtigt die doppelte Sozialversicherung und zeigt dir das kombinierte Netto aus beiden Einkunftsarten.',
+      q: 'Kann ich den Rechner auch nutzen, wenn ich angestellt UND selbständig bin?',
+      a: 'Ja! Der Misch-Einkommen Rechner (Pro-Feature) ist genau dafür gebaut. Er berechnet die Differenz-Vorschreibung, berücksichtigt die doppelte Sozialversicherung und zeigt dir das kombinierte Netto aus beiden Einkunftsarten.',
     },
     {
-      q: 'Sind die Werte fuer 2026 schon verfuegbar?',
-      a: 'Ja! Wir haben bereits die neuen Werte fuer 2026 eingebaut: Familienbonus Plus (2.100 EUR), angepasster AVAB, aktualisierter Verkehrsabsetzbetrag (481 EUR) und Kindermehrbetrag (727 EUR).',
+      q: 'Sind die Werte für 2026 schon verfügbar?',
+      a: 'Ja! Wir haben bereits die neuen Werte für 2026 eingebaut: Familienbonus Plus (2.100 EUR), angepasster AVAB, aktualisierter Verkehrsabsetzbetrag (481 EUR) und Kindermehrbetrag (727 EUR).',
     },
     {
-      q: 'Wie kann ich mein Abo kuendigen?',
+      q: 'Wie kann ich mein Abo kündigen?',
       a: 'Jederzeit mit einem Klick im Dashboard unter Einstellungen. Die Kuendigung wird sofort wirksam am Ende des aktuellen Abrechnungszeitraums. Keine versteckten Fristen, keine Tricks.',
     },
   ]
@@ -889,7 +889,7 @@ function FinalCTA() {
             </Button>
           </Link>
           <p className="text-blue-200/30 text-sm mt-6">
-            Kostenlos. Keine Kreditkarte. Keine Registrierung noetig.
+            Kostenlos. Keine Kreditkarte. Keine Registrierung nötig.
           </p>
         </Reveal>
       </div>
@@ -935,12 +935,12 @@ const FAQ_JSONLD = {
     {
       '@type': 'Question',
       name: 'Was genau berechnet der SVS Checker?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Der SVS Checker berechnet deine endgueltigen SVS-Beitraege (PV, KV, UV, Selbstaendigenvorsorge), die voraussichtliche Nachzahlung, die Einkommensteuer-Prognose und dein echtes Netto – basierend auf deinem tatsaechlichen Jahresgewinn.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Der SVS Checker berechnet deine endgültigen SVS-Beiträge (PV, KV, UV, Selbständigenvorsorge), die voraussichtliche Nachzahlung, die Einkommensteuer-Prognose und dein echtes Netto – basierend auf deinem tatsächlichen Jahresgewinn.' },
     },
     {
       '@type': 'Question',
       name: 'Sind die Berechnungen rechtlich verbindlich?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Nein. Der SVS Checker ist ein Prognose-Tool und ersetzt keine Steuerberatung. Alle Berechnungen basieren auf den aktuellen gesetzlichen Grundlagen, aber die endgueltigen Bescheide der SVS und des Finanzamts koennen abweichen.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Nein. Der SVS Checker ist ein Prognose-Tool und ersetzt keine Steuerberatung. Alle Berechnungen basieren auf den aktuellen gesetzlichen Grundlagen, aber die endgültigen Bescheide der SVS und des Finanzamts können abweichen.' },
     },
     {
       '@type': 'Question',
@@ -950,21 +950,21 @@ const FAQ_JSONLD = {
     {
       '@type': 'Question',
       name: 'Was ist die SVS-Nachzahlungsfalle?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Die SVS berechnet deine Beitraege zunaechst auf Basis deines Gewinns von vor 3 Jahren (vorlaeufige Beitragsgrundlage). Steigt dein Einkommen, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung. Der SVS Checker zeigt dir genau, wie hoch diese ausfallen wird.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Die SVS berechnet deine Beiträge zunächst auf Basis deines Gewinns von vor 3 Jahren (vorläufige Beitragsgrundlage). Steigt dein Einkommen, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung. Der SVS Checker zeigt dir genau, wie hoch diese ausfallen wird.' },
     },
     {
       '@type': 'Question',
-      name: 'Kann ich den Rechner auch nutzen, wenn ich angestellt UND selbstaendig bin?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Ja! Der Misch-Einkommen Rechner (Pro-Feature) ist genau dafuer gebaut. Er berechnet die Differenz-Vorschreibung, beruecksichtigt die doppelte Sozialversicherung und zeigt dir das kombinierte Netto aus beiden Einkunftsarten.' },
+      name: 'Kann ich den Rechner auch nutzen, wenn ich angestellt UND selbständig bin?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Ja! Der Misch-Einkommen Rechner (Pro-Feature) ist genau dafür gebaut. Er berechnet die Differenz-Vorschreibung, berücksichtigt die doppelte Sozialversicherung und zeigt dir das kombinierte Netto aus beiden Einkunftsarten.' },
     },
     {
       '@type': 'Question',
-      name: 'Sind die Werte fuer 2026 schon verfuegbar?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Ja! Wir haben bereits die neuen Werte fuer 2026 eingebaut: Familienbonus Plus (2.100 EUR), angepasster AVAB, aktualisierter Verkehrsabsetzbetrag (481 EUR) und Kindermehrbetrag (727 EUR).' },
+      name: 'Sind die Werte für 2026 schon verfügbar?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Ja! Wir haben bereits die neuen Werte für 2026 eingebaut: Familienbonus Plus (2.100 EUR), angepasster AVAB, aktualisierter Verkehrsabsetzbetrag (481 EUR) und Kindermehrbetrag (727 EUR).' },
     },
     {
       '@type': 'Question',
-      name: 'Wie kann ich mein Abo kuendigen?',
+      name: 'Wie kann ich mein Abo kündigen?',
       acceptedAnswer: { '@type': 'Answer', text: 'Jederzeit mit einem Klick im Dashboard unter Einstellungen. Die Kuendigung wird sofort wirksam am Ende des aktuellen Abrechnungszeitraums. Keine versteckten Fristen, keine Tricks.' },
     },
   ],

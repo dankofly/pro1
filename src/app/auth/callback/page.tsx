@@ -60,7 +60,7 @@ export default function AuthCallbackPage() {
               <div className="flex justify-center">
                 <Loader2 className="h-10 w-10 text-blue-600 animate-spin" />
               </div>
-              <CardTitle>E-Mail wird bestaetigt...</CardTitle>
+              <CardTitle>E-Mail wird bestätigt...</CardTitle>
               <CardDescription>Bitte warte einen Moment.</CardDescription>
             </>
           )}
@@ -71,7 +71,7 @@ export default function AuthCallbackPage() {
                   <CheckCircle className="h-8 w-8 text-green-600" />
                 </div>
               </div>
-              <CardTitle>E-Mail bestaetigt!</CardTitle>
+              <CardTitle>E-Mail bestätigt!</CardTitle>
               <CardDescription>Du wirst gleich weitergeleitet...</CardDescription>
             </>
           )}
@@ -82,7 +82,7 @@ export default function AuthCallbackPage() {
                   <AlertCircle className="h-8 w-8 text-red-600" />
                 </div>
               </div>
-              <CardTitle>Fehler bei der Bestaetigung</CardTitle>
+              <CardTitle>Fehler bei der Bestätigung</CardTitle>
               <CardDescription>
                 Der Link ist abgelaufen oder ungueltig. Bitte registriere dich erneut.
               </CardDescription>

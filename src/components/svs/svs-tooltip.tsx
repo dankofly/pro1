@@ -5,19 +5,19 @@ import { Info } from 'lucide-react'
 
 const definitions: Record<string, string> = {
   Beitragsgrundlage:
-    'Die Beitragsgrundlage ist der Betrag, auf den Ihre SVS-Beitraege berechnet werden. Sie basiert auf Ihrem Gewinn laut Einkommensteuerbescheid.',
+    'Die Beitragsgrundlage ist der Betrag, auf den Ihre SVS-Beiträge berechnet werden. Sie basiert auf Ihrem Gewinn laut Einkommensteuerbescheid.',
   Nachzahlungsfalle:
-    'Die SVS berechnet Ihre Beitraege zunaechst auf Basis alter Einkuenfte (vorlaeufig). Steigt Ihr Gewinn, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung.',
+    'Die SVS berechnet Ihre Beiträge zunächst auf Basis alter Einkünfte (vorläufig). Steigt Ihr Gewinn, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung.',
   'Höchstbeitragsgrundlage':
-    'Der maximale Betrag (EUR 84.840/Jahr), auf den SVS-Beitraege berechnet werden. Einkommen darueber ist beitragsfrei.',
+    'Der maximale Betrag (EUR 84.840/Jahr), auf den SVS-Beiträge berechnet werden. Einkommen darüber ist beitragsfrei.',
   'Geringfügigkeitsgrenze':
     'Unter EUR 6.221,28 Jahresgewinn sind Sie von der Pflichtversicherung bei der SVS ausgenommen.',
   'Vorläufige Beitragsgrundlage':
-    'Die SVS schreibt Ihnen zunaechst Beitraege auf Basis Ihres Gewinns vor 3 Jahren vor. Diese werden nach dem Steuerbescheid nachtraeglich korrigiert.',
+    'Die SVS schreibt Ihnen zunächst Beiträge auf Basis Ihres Gewinns vor 3 Jahren vor. Diese werden nach dem Steuerbescheid nachträglich korrigiert.',
   'Endgültige Beitragsgrundlage':
-    'Die tatsaechliche Berechnungsbasis nach Vorliegen des Einkommensteuerbescheids. Die Differenz zur vorlaeufigen fuehrt zu Nach- oder Rueckzahlungen.',
+    'Die tatsächliche Berechnungsbasis nach Vorliegen des Einkommensteuerbescheids. Die Differenz zur vorläufigen führt zu Nach- oder Rückzahlungen.',
   'Selbständigenvorsorge':
-    'Die Mitarbeitervorsorge fuer Selbstaendige (1,53%) – ein Pendant zur Abfertigung Neu. Das Geld fliesst in eine Vorsorgekasse.',
+    'Die Mitarbeitervorsorge für Selbständige (1,53%) – ein Pendant zur Abfertigung Neu. Das Geld fließt in eine Vorsorgekasse.',
 }
 
 interface SvsTooltipProps {

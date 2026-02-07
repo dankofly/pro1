@@ -133,7 +133,7 @@ function AdminContent() {
           </Card>
           <Card className="glass">
             <CardHeader className="pb-2">
-              <CardDescription>Verfuegbar</CardDescription>
+              <CardDescription>Verfügbar</CardDescription>
             </CardHeader>
             <CardContent>
               <p className="text-3xl font-bold text-green-600">{freeCount}</p>
@@ -153,7 +153,7 @@ function AdminContent() {
         <Card className="glass">
           <CardHeader>
             <CardTitle>Neue Codes generieren</CardTitle>
-            <CardDescription>Erstelle Promo-Codes fuer SVS Checker Pro Vollzugang</CardDescription>
+            <CardDescription>Erstelle Promo-Codes für SVS Checker Pro Vollzugang</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="flex flex-wrap items-end gap-4">
@@ -218,7 +218,7 @@ function AdminContent() {
                             Eingeloest {promo.redeemed_at ? new Date(promo.redeemed_at).toLocaleDateString('de-AT') : ''}
                           </Badge>
                         ) : (
-                          <Badge className="bg-green-100 text-green-700 border-green-200">Verfuegbar</Badge>
+                          <Badge className="bg-green-100 text-green-700 border-green-200">Verfügbar</Badge>
                         )}
                       </TableCell>
                       <TableCell className="text-sm text-muted-foreground">

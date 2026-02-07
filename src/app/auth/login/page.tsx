@@ -32,7 +32,7 @@ function LoginPageInner() {
     if (error) {
       setError(
         error.message === 'Invalid login credentials'
-          ? 'Ungueltige Anmeldedaten. Bitte ueberpruefe E-Mail und Passwort.'
+          ? 'Ungültige Anmeldedaten. Bitte überprüfe E-Mail und Passwort.'
           : error.message,
       )
       setLoading(false)
@@ -86,7 +86,7 @@ function LoginPageInner() {
               <Alert>
                 <CheckCircle className="h-4 w-4" />
                 <AlertDescription>
-                  Falls ein Konto mit dieser E-Mail existiert, haben wir dir einen Link zum Zuruecksetzen gesendet.
+                  Falls ein Konto mit dieser E-Mail existiert, haben wir dir einen Link zum Zurücksetzen gesendet.
                 </AlertDescription>
               </Alert>
             )}
@@ -142,7 +142,7 @@ function LoginPageInner() {
               </Link>
             </p>
             <Link href="/rechner" className="text-sm text-muted-foreground hover:underline text-center">
-              Zurueck zum Rechner
+              Zurück zum Rechner
             </Link>
           </CardFooter>
         </form>

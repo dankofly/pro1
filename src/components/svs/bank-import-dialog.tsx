@@ -50,7 +50,7 @@ export function BankImportDialog({ open, onOpenChange, onImport }: BankImportDia
       setColumns(detected)
 
       if (detected.length === 0) {
-        setError('Keine Einnahmen-Spalten erkannt. Bitte pruefe das CSV-Format.')
+        setError('Keine Einnahmen-Spalten erkannt. Bitte prüfe das CSV-Format.')
         return
       }
 
@@ -84,7 +84,7 @@ export function BankImportDialog({ open, onOpenChange, onImport }: BankImportDia
           <DialogDescription>
             {step === 'upload' && 'Lade einen CSV-Kontoauszug hoch, um deinen Gewinn automatisch zu erkennen.'}
             {step === 'select' && 'Waehle die Spalte, die deine Einnahmen enthaelt.'}
-            {step === 'confirm' && 'Pruefe den erkannten Gewinn und uebernimm ihn.'}
+            {step === 'confirm' && 'Prüfe den erkannten Gewinn und übernimm ihn.'}
           </DialogDescription>
         </DialogHeader>
 
@@ -175,17 +175,17 @@ export function BankImportDialog({ open, onOpenChange, onImport }: BankImportDia
         <DialogFooter className="flex gap-2">
           {step === 'select' && (
             <Button variant="ghost" size="sm" onClick={() => { setStep('upload'); setError(null) }}>
-              Zurueck
+              Zurück
             </Button>
           )}
           {step === 'confirm' && (
             <>
               <Button variant="ghost" size="sm" onClick={() => setStep('select')}>
-                Zurueck
+                Zurück
               </Button>
               <Button onClick={handleConfirm} className="gap-2">
                 <Check className="h-4 w-4" />
-                Gewinn uebernehmen
+                Gewinn übernehmen
               </Button>
             </>
           )}

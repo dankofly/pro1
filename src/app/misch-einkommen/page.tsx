@@ -106,7 +106,7 @@ function WasserfallChart({ result }: { result: MischResult }) {
           <TrendingDown className="h-5 w-5 text-blue-600" />
           Wasserfall: Vom Brutto zum Netto
         </CardTitle>
-        <CardDescription>Schritt fuer Schritt Abzuege auf einen Blick</CardDescription>
+        <CardDescription>Schritt für Schritt Abzüge auf einen Blick</CardDescription>
       </CardHeader>
       <CardContent className="space-y-2">
         {result.wasserfall.map((step, i) => {
@@ -193,7 +193,7 @@ function ProGate() {
       <h2 className="text-2xl font-bold mb-3">SVS Checker Pro Feature</h2>
       <p className="text-muted-foreground mb-6 max-w-md mx-auto">
         Der Misch-Einkommen Rechner ist Teil von SVS Checker Pro.
-        Berechne Anstellung + Nebengewerbe kombiniert mit allen Absetzbetraegen.
+        Berechne Anstellung + Nebengewerbe kombiniert mit allen Absetzbeträgen.
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
         <Link href="/pricing">
@@ -215,16 +215,16 @@ function ProGate() {
 
 function SavingsSummary({ result }: { result: MischResult }) {
   const kinderCount = result.absetzbetraege.familienbonus > 0 || result.absetzbetraege.kindermehrbetrag > 0
-  const hasAbsetzbetraege = result.absetzbetraege.gesamt > 0 || result.absetzbetraege.kindermehrbetrag > 0
+  const hasAbsetzbeträge = result.absetzbetraege.gesamt > 0 || result.absetzbetraege.kindermehrbetrag > 0
 
-  if (!hasAbsetzbetraege) return null
+  if (!hasAbsetzbeträge) return null
 
-  // Berechne wie viel die Absetzbetraege tatsaechlich an Steuer sparen
-  const steuerOhneAbsetzbetraege = result.steuerGesamt.steuerBrutto
-  const steuerMitAbsetzbetraege = result.steuerGesamt.steuerNetto
-  const tatsaechlicheErsparnis = steuerOhneAbsetzbetraege - steuerMitAbsetzbetraege
+  // Berechne wie viel die Absetzbeträge tatsaechlich an Steuer sparen
+  const steuerOhneAbsetzbeträge = result.steuerGesamt.steuerBrutto
+  const steuerMitAbsetzbeträge = result.steuerGesamt.steuerNetto
+  const tatsächlicheErsparnis = steuerOhneAbsetzbeträge - steuerMitAbsetzbeträge
 
-  if (tatsaechlicheErsparnis <= 0 && result.absetzbetraege.kindermehrbetrag <= 0) return null
+  if (tatsächlicheErsparnis <= 0 && result.absetzbetraege.kindermehrbetrag <= 0) return null
 
   const yc = YEAR_CONFIGS[result.year]
   const yearLabel = result.year === '2026' ? '2026' : result.year
@@ -236,10 +236,10 @@ function SavingsSummary({ result }: { result: MischResult }) {
         <span className="font-semibold text-sm">Deine Steuerersparnis {yearLabel}</span>
       </div>
 
-      {tatsaechlicheErsparnis > 0 && (
+      {tatsächlicheErsparnis > 0 && (
         <p className="text-emerald-800 text-sm">
-          Durch deine Absetzbetraege sparst du{' '}
-          <strong>{formatEuro(tatsaechlicheErsparnis)}</strong> an Steuern.
+          Durch deine Absetzbeträge sparst du{' '}
+          <strong>{formatEuro(tatsächlicheErsparnis)}</strong> an Steuern.
         </p>
       )}
 
@@ -330,7 +330,7 @@ function MischContent() {
                   </Select>
                   {year === '2026' && (
                     <Badge variant="outline" className="text-amber-600 border-amber-300 bg-amber-50 text-xs">
-                      Prognose – vorbehaltlich gesetzlicher Aenderungen
+                      Prognose – vorbehaltlich gesetzlicher Änderungen
                     </Badge>
                   )}
                 </div>
@@ -346,7 +346,7 @@ function MischContent() {
                     <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50">
                       <Briefcase className="h-4 w-4 text-blue-600" />
                     </div>
-                    Einkuenfte aus Anstellung
+                    Einkünfte aus Anstellung
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -382,7 +382,7 @@ function MischContent() {
                     <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-50">
                       <Store className="h-4 w-4 text-emerald-600" />
                     </div>
-                    Einkuenfte aus Gewerbe
+                    Einkünfte aus Gewerbe
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -424,14 +424,14 @@ function MischContent() {
               </Card>
             </div>
 
-            {/* ── Absetzbetraege ─────────────────────── */}
+            {/* ── Absetzbeträge ─────────────────────── */}
             <Card className="glass">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
                   <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-50">
                     <Users className="h-4 w-4 text-violet-600" />
                   </div>
-                  Absetzbetraege {year}
+                  Absetzbeträge {year}
                 </CardTitle>
                 <CardDescription>Reduzieren deine Steuerlast direkt</CardDescription>
               </CardHeader>
@@ -446,7 +446,7 @@ function MischContent() {
                     <KinderInput
                       value={kinderUeber18}
                       onChange={setKinderUeber18}
-                      label={`Kinder ueber 18 (FBP EUR ${yc.familienbonusOver18.toLocaleString('de-AT')})`}
+                      label={`Kinder über 18 (FBP EUR ${yc.familienbonusOver18.toLocaleString('de-AT')})`}
                     />
                     <div className="flex items-center justify-between">
                       <Label htmlFor="avab" className="text-sm">Alleinverdiener/-erzieher</Label>
@@ -473,7 +473,7 @@ function MischContent() {
                       </div>
                     )}
                     <div className="flex justify-between font-medium border-t pt-1">
-                      <span>Gesamt Absetzbetraege</span>
+                      <span>Gesamt Absetzbeträge</span>
                       <span className="font-mono text-emerald-600">
                         {formatEuro(result.absetzbetraege.gesamt + result.absetzbetraege.kindermehrbetrag)}
                       </span>
@@ -509,12 +509,12 @@ function MischContent() {
                       <p className="text-3xl font-bold text-emerald-400">
                         {(result.nebengewerbeNettoCent * 100).toFixed(0)} Cent
                       </p>
-                      <p className="text-slate-400 text-xs mt-1">bleiben uebrig</p>
+                      <p className="text-slate-400 text-xs mt-1">bleiben übrig</p>
                     </div>
                     <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10">
                       <p className="text-slate-300 text-xs mb-1">Grenzsteuersatz</p>
                       <p className="text-3xl font-bold text-amber-400">{pct(result.steuerGesamt.grenzsteuersatz)}</p>
-                      <p className="text-slate-400 text-xs mt-1">naechste Tarifstufe</p>
+                      <p className="text-slate-400 text-xs mt-1">nächste Tarifstufe</p>
                     </div>
                   </div>
                 ) : (
@@ -524,11 +524,11 @@ function MischContent() {
                 {jahresgewinn > 0 && (
                   <div className="mt-6 grid sm:grid-cols-2 gap-3">
                     <div className="bg-white/5 rounded-lg p-3 text-sm">
-                      <span className="text-slate-400">Zusaetzliche SVS:</span>
+                      <span className="text-slate-400">Zusätzliche SVS:</span>
                       <span className="float-right font-mono text-red-300">-{formatEuro(result.gewerbe.svsGesamt)}</span>
                     </div>
                     <div className="bg-white/5 rounded-lg p-3 text-sm">
-                      <span className="text-slate-400">Zusaetzliche Steuer:</span>
+                      <span className="text-slate-400">Zusätzliche Steuer:</span>
                       <span className="float-right font-mono text-red-300">-{formatEuro(result.steuerDifferenz)}</span>
                     </div>
                     <div className="bg-white/5 rounded-lg p-3 text-sm">
@@ -550,11 +550,11 @@ function MischContent() {
                 <AlertTriangle className="h-4 w-4 text-amber-600" />
                 <AlertDescription className="text-amber-800">
                   <strong>Achtung Versicherungsgrenze!</strong>{' '}
-                  Dein Gewinn ueberschreitet die SVS-Versicherungsgrenze von {formatEuro(CONFIG.versicherungsgrenze)} um nur{' '}
+                  Dein Gewinn überschreitet die SVS-Versicherungsgrenze von {formatEuro(CONFIG.versicherungsgrenze)} um nur{' '}
                   <strong>{formatEuro(result.gewerbe.differenzZurGrenze)}</strong>.
-                  Dadurch werden <strong>{formatEuro(result.gewerbe.svsMehrkosten)}</strong> an zusaetzlichen SVS-Beitraegen (PV + KV + MV) faellig.
+                  Dadurch werden <strong>{formatEuro(result.gewerbe.svsMehrkosten)}</strong> an zusätzlichen SVS-Beiträgen (PV + KV + MV) fällig.
                   {result.gewerbe.differenzZurGrenze < result.gewerbe.svsMehrkosten && (
-                    <> Ueberlege, ob du deinen Gewinn um {formatEuro(result.gewerbe.differenzZurGrenze)} reduzieren kannst, um {formatEuro(result.gewerbe.svsMehrkosten)} zu sparen.</>
+                    <> Überlege, ob du deinen Gewinn um {formatEuro(result.gewerbe.differenzZurGrenze)} reduzieren kannst, um {formatEuro(result.gewerbe.svsMehrkosten)} zu sparen.</>
                   )}
                 </AlertDescription>
               </Alert>
@@ -606,7 +606,7 @@ function MischContent() {
                       <span className="font-mono text-red-600">{formatEuro(result.steuerGesamt.steuerBrutto)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Absetzbetraege</span>
+                      <span className="text-muted-foreground">Absetzbeträge</span>
                       <span className="font-mono text-emerald-600">-{formatEuro(result.steuerGesamt.absetzbetraege)}</span>
                     </div>
                     {result.steuerGesamt.kindermehrbetrag > 0 && (
@@ -677,8 +677,8 @@ function MischContent() {
 
         {/* Footer */}
         <footer className="text-center py-8 text-xs text-muted-foreground space-y-2">
-          <p className="font-medium text-foreground/70">SVS Checker – Misch-Einkommen Rechner fuer Oesterreich</p>
-          <p>Alle Angaben ohne Gewaehr. Kein Ersatz fuer professionelle Steuerberatung. Werte {year}{year === '2026' ? ' (Prognose)' : ''}.</p>
+          <p className="font-medium text-foreground/70">SVS Checker – Misch-Einkommen Rechner für Österreich</p>
+          <p>Alle Angaben ohne Gewähr. Kein Ersatz für professionelle Steuerberatung. Werte {year}{year === '2026' ? ' (Prognose)' : ''}.</p>
           <div className="flex items-center justify-center gap-3 pt-1">
             <Link href="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
             <span>·</span>

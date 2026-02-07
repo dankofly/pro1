@@ -69,7 +69,7 @@ export function BeitragsDetails({ result }: BeitragsDetailsProps) {
           </tbody>
           <tfoot>
             <tr className="bg-blue-50/50 rounded-lg">
-              <td className="py-3 pl-2 font-semibold text-blue-800 rounded-l-lg">Gesamt (endgueltig)</td>
+              <td className="py-3 pl-2 font-semibold text-blue-800 rounded-l-lg">Gesamt (endgültig)</td>
               <td className="py-3 text-right font-mono text-blue-600">26,83 % + UV</td>
               <td className="py-3 pr-2 text-right font-mono font-bold text-blue-700 text-base rounded-r-lg">
                 {formatEuro(result.endgueltigeSVS)}

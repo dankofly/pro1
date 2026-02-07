@@ -100,7 +100,7 @@ function DashboardContent() {
       toast.error('Fehler beim Loeschen.')
     } else {
       setCalculations((prev) => prev.filter((c) => c.id !== id))
-      toast.success('Berechnung geloescht.')
+      toast.success('Berechnung gelöscht.')
     }
   }, [])
 
@@ -238,7 +238,7 @@ function DashboardContent() {
                 <Gift className="h-5 w-5 text-amber-500" />
                 Promo-Code einloesen
               </CardTitle>
-              <CardDescription>Hast du einen Promo-Code? Loese ihn hier ein fuer SVS Checker Pro.</CardDescription>
+              <CardDescription>Hast du einen Promo-Code? Löse ihn hier ein für SVS Checker Pro.</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex items-center gap-3">
@@ -281,7 +281,7 @@ function DashboardContent() {
                   <TableRow>
                     <TableHead>Datum</TableHead>
                     <TableHead className="text-right">Gewinn</TableHead>
-                    <TableHead className="text-right">SVS endgueltig</TableHead>
+                    <TableHead className="text-right">SVS endgültig</TableHead>
                     <TableHead className="text-right">Nachzahlung</TableHead>
                     <TableHead className="text-right">Steuerersparnis</TableHead>
                     <TableHead className="w-10"></TableHead>
@@ -327,9 +327,9 @@ function DashboardContent() {
                           </AlertDialogTrigger>
                           <AlertDialogContent>
                             <AlertDialogHeader>
-                              <AlertDialogTitle>Berechnung loeschen?</AlertDialogTitle>
+                              <AlertDialogTitle>Berechnung löschen?</AlertDialogTitle>
                               <AlertDialogDescription>
-                                Willst du diese Berechnung wirklich loeschen? Das kann nicht rueckgaengig gemacht werden.
+                                Willst du diese Berechnung wirklich löschen? Das kann nicht rückgängig gemacht werden.
                               </AlertDialogDescription>
                             </AlertDialogHeader>
                             <AlertDialogFooter>
@@ -356,7 +356,7 @@ function DashboardContent() {
                     {loadingMore ? 'Laden...' : (
                       <>
                         <ChevronDown className="h-4 w-4 mr-1" />
-                        Aeltere Berechnungen laden
+                        Ältere Berechnungen laden
                       </>
                     )}
                   </Button>
@@ -368,7 +368,7 @@ function DashboardContent() {
         </Card>
 
         <footer className="text-center py-8 text-xs text-muted-foreground space-y-2">
-          <p>SVS Checker – Alle Angaben ohne Gewaehr.</p>
+          <p>SVS Checker – Alle Angaben ohne Gewähr.</p>
           <div className="flex items-center justify-center gap-3">
             <Link href="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
             <span>·</span>

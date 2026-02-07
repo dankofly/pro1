@@ -3,7 +3,7 @@
 // Anstellung + Nebengewerbe kombiniert
 //
 // Jahresabhaengige Absetzbetraege (Inflationsanpassung).
-// Fuer neues Jahr: YEAR_CONFIGS ergaenzen.
+// Für neues Jahr: YEAR_CONFIGS ergänzen.
 // ============================================================
 
 // ── Jahresauswahl ────────────────────────────────────────────

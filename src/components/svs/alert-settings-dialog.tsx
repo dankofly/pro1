@@ -54,7 +54,7 @@ export function AlertSettingsDialog({
             Smart Alerts
           </DialogTitle>
           <DialogDescription>
-            Werde gewarnt, wenn deine Nachzahlung einen Schwellwert uebersteigt.
+            Werde gewarnt, wenn deine Nachzahlung einen Schwellwert übersteigt.
           </DialogDescription>
         </DialogHeader>
 
@@ -128,7 +128,7 @@ export function AlertSettingsDialog({
                   <Alert className="bg-blue-50 border-blue-200">
                     <Info className="h-4 w-4 text-blue-500" />
                     <AlertDescription className="text-blue-800 text-xs">
-                      Du erhaeltst eine Browser-Benachrichtigung, wenn sich deine Nachzahlung aendert und den Schwellwert uebersteigt.
+                      Du erhältst eine Browser-Benachrichtigung, wenn sich deine Nachzahlung ändert und den Schwellwert übersteigt.
                     </AlertDescription>
                   </Alert>
                 )}

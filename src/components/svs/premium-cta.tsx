@@ -71,7 +71,7 @@ export function PremiumCTA({
               )}
               <Building2 className="h-5 w-5 mb-2 text-blue-300" />
               <div className="font-semibold text-sm">Bank-Anbindung</div>
-              <div className="text-white/50 text-xs mb-3">CSV-Import deiner Kontoauszuege</div>
+              <div className="text-white/50 text-xs mb-3">CSV-Import deiner Kontoauszüge</div>
               <span className="text-xs font-medium bg-white/10 px-2 py-1 rounded-md">
                 {locked ? 'Pro Feature' : 'CSV importieren'}
               </span>
@@ -89,7 +89,7 @@ export function PremiumCTA({
               )}
               <FileDown className="h-5 w-5 mb-2 text-blue-300" />
               <div className="font-semibold text-sm">PDF-Export</div>
-              <div className="text-white/50 text-xs mb-3">Berichte fuer deinen Steuerberater</div>
+              <div className="text-white/50 text-xs mb-3">Berichte für deinen Steuerberater</div>
               {locked ? (
                 <span className="text-xs font-medium bg-white/10 px-2 py-1 rounded-md">Pro Feature</span>
               ) : (

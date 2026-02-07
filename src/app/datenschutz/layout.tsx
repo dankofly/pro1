@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Datenschutzerklaerung',
-  description: 'Datenschutzerklaerung von SVS Checker. Informationen zur Datenverarbeitung gemaess DSGVO.',
+  title: 'Datenschutzerklärung',
+  description: 'Datenschutzerklärung von SVS Checker. Informationen zur Datenverarbeitung gemäß DSGVO.',
   alternates: { canonical: '/datenschutz' },
 }
 
