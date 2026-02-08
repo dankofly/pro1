@@ -180,7 +180,7 @@ function Hero() {
 
             <Reveal delay={100}>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight font-heading">
-                SVS-Nachzahlung?{' '}
+                SVS-Nachzahlung?<br />
                 <span className="bg-gradient-to-r from-emerald-400 to-emerald-300 bg-clip-text text-transparent">
                   Nie wieder überrascht.
                 </span>
