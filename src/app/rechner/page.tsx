@@ -20,38 +20,10 @@ import { SteuerTipps } from '@/components/svs/steuer-tipps'
 import { PremiumCTA } from '@/components/svs/premium-cta'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Switch } from '@/components/ui/switch'
-import { Label } from '@/components/ui/label'
-import { Info, Save, Lock, Check, Crown, Zap } from 'lucide-react'
+import { Info, Save, Lock } from 'lucide-react'
 import { toast } from 'sonner'
 import { useSmartAlerts } from '@/hooks/use-smart-alerts'
 import { UpgradeDialog } from '@/components/svs/upgrade-dialog'
-import { STRIPE_PLANS } from '@/lib/stripe'
-
-const FREE_FEATURES = [
-  'SVS-Beitragsrechner',
-  'Wahrheits-Tabelle',
-]
-
-const BASIC_FEATURES = [
-  'Alles aus Free',
-  'Einkommensteuer-Prognose',
-  'Berechnungen speichern',
-  'Dashboard mit Verlauf',
-  'Einfacher Export',
-]
-
-const PRO_FEATURES = [
-  'Alles aus Sicherheits-Plan',
-  'Misch-Einkommen Rechner',
-  'Familienbonus & Absetzbeträge',
-  'Wasserfall-Analyse',
-  'PDF-Export für Steuerberater',
-  'Smart Alerts & Push',
-  'Prioritäts-Support',
-]
 
 function HomeContent() {
   const { user, subscription, handleLogout: _handleLogout } = useAppShell()
@@ -61,7 +33,6 @@ function HomeContent() {
   const [upgradeOpen, setUpgradeOpen] = useState(false)
   const [upgradeFeature, setUpgradeFeature] = useState('')
   const [upgradeRequiredPlan, setUpgradeRequiredPlan] = useState<'basic' | 'pro'>('basic')
-  const [yearly, setYearly] = useState(false)
 
   const result = useMemo(() => calculateSvs(gewinn, vorschreibung), [gewinn, vorschreibung])
   const steuerTipps = useMemo(() => calculateSteuerTipps(gewinn, result.endgueltigeSVS), [gewinn, result.endgueltigeSVS])
@@ -221,135 +192,6 @@ function HomeContent() {
               feature={upgradeFeature}
               requiredPlan={upgradeRequiredPlan}
             />
-
-            {/* Pricing Cards */}
-            {!subscription.isPro && (
-              <div className="rounded-2xl bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 p-6 sm:p-8">
-                <div className="text-center mb-6">
-                  <h2 className="text-2xl font-bold text-white mb-2">Wähle deinen Plan</h2>
-                  <p className="text-blue-200 text-sm">
-                    Starte kostenlos, upgrade jederzeit.
-                  </p>
-
-                  {/* Toggle */}
-                  <div className="flex items-center justify-center gap-3 mt-5">
-                    <Label htmlFor="billing-rechner" className="text-blue-200 text-sm">Monatlich</Label>
-                    <Switch id="billing-rechner" checked={yearly} onCheckedChange={setYearly} />
-                    <Label htmlFor="billing-rechner" className="text-blue-200 text-sm">Jährlich</Label>
-                    {yearly && (
-                      <Badge className="bg-green-500/20 text-green-300 border-green-400/30">
-                        Spare 2 Monate!
-                      </Badge>
-                    )}
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {/* Free */}
-                  <Card className="bg-white/5 border-white/10 text-white backdrop-blur-sm">
-                    <CardHeader>
-                      <CardDescription className="text-blue-200">Für den schnellen Check</CardDescription>
-                      <CardTitle className="text-2xl">Free</CardTitle>
-                      <div className="pt-2">
-                        <span className="text-4xl font-bold">0 EUR</span>
-                        <span className="text-blue-200 text-sm ml-1">/ für immer</span>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                      {FREE_FEATURES.map((f) => (
-                        <div key={f} className="flex items-center gap-2 text-sm">
-                          <Check className="h-4 w-4 text-green-400 shrink-0" />
-                          <span className="text-blue-100">{f}</span>
-                        </div>
-                      ))}
-                    </CardContent>
-                    <CardFooter>
-                      {subscription.isFree ? (
-                        <Button variant="outline" className="w-full bg-white/10 border-white/20 text-white" disabled>
-                          Aktueller Plan
-                        </Button>
-                      ) : (
-                        <Button variant="outline" className="w-full bg-white/10 border-white/20 text-white" disabled>
-                          Inkludiert
-                        </Button>
-                      )}
-                    </CardFooter>
-                  </Card>
-
-                  {/* Basic */}
-                  <Card className="bg-white/5 border-white/10 text-white backdrop-blur-sm">
-                    <CardHeader>
-                      <CardDescription className="text-blue-200">Für Einsteiger</CardDescription>
-                      <CardTitle className="text-2xl">Sicherheits-Plan</CardTitle>
-                      <div className="pt-2">
-                        <span className="text-4xl font-bold">{(yearly ? STRIPE_PLANS.basic_yearly : STRIPE_PLANS.basic_monthly).priceDisplay} EUR</span>
-                        <span className="text-blue-200 text-sm ml-1">/ {yearly ? 'Jahr' : 'Monat'}</span>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                      {BASIC_FEATURES.map((f) => (
-                        <div key={f} className="flex items-center gap-2 text-sm">
-                          <Check className="h-4 w-4 text-green-400 shrink-0" />
-                          <span className="text-blue-100">{f}</span>
-                        </div>
-                      ))}
-                    </CardContent>
-                    <CardFooter>
-                      {subscription.isBasic && !subscription.isPro ? (
-                        <Button variant="outline" className="w-full bg-white/10 border-white/20 text-white" disabled>
-                          Aktueller Plan
-                        </Button>
-                      ) : (
-                        <Button asChild className="w-full">
-                          <Link href="/pricing">Jetzt starten</Link>
-                        </Button>
-                      )}
-                    </CardFooter>
-                  </Card>
-
-                  {/* Pro - Highlighted */}
-                  <Card className="bg-white/10 border-amber-400/30 text-white backdrop-blur-sm ring-2 ring-amber-400/30 relative">
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                      <Badge className="bg-amber-500 text-white border-0 shadow-lg">
-                        <Zap className="h-3 w-3 mr-1" />
-                        Beliebtester Plan
-                      </Badge>
-                    </div>
-                    <CardHeader className="pt-8">
-                      <CardDescription className="text-amber-200">Für Profis</CardDescription>
-                      <CardTitle className="flex items-center gap-2 text-2xl">
-                        <Crown className="h-5 w-5 text-amber-400" />
-                        SVS Checker Pro
-                      </CardTitle>
-                      <div className="pt-2">
-                        <span className="text-4xl font-bold">{(yearly ? STRIPE_PLANS.pro_yearly : STRIPE_PLANS.pro_monthly).priceDisplay} EUR</span>
-                        <span className="text-blue-200 text-sm ml-1">/ {yearly ? 'Jahr' : 'Monat'}</span>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="space-y-3">
-                      {PRO_FEATURES.map((f) => (
-                        <div key={f} className="flex items-center gap-2 text-sm">
-                          <Check className="h-4 w-4 text-amber-400 shrink-0" />
-                          <span className="text-blue-100">{f}</span>
-                        </div>
-                      ))}
-                    </CardContent>
-                    <CardFooter>
-                      <Button asChild className="w-full bg-amber-500 hover:bg-amber-600 text-white">
-                        <Link href="/pricing">
-                          <Crown className="h-4 w-4 mr-1" />
-                          Jetzt upgraden
-                        </Link>
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                </div>
-
-                <p className="text-center text-xs mt-6 text-blue-200/50">
-                  Alle Preise inkl. USt. Monatlich kündbar. Sichere Zahlung via Stripe.
-                </p>
-              </div>
-            )}
 
             <footer className="text-center py-8 text-xs text-muted-foreground space-y-2">
               <p className="font-medium text-foreground/70">SVS Checker - Beitragsrechner für Selbständige in Österreich</p>
