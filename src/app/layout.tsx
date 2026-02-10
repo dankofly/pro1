@@ -71,6 +71,9 @@ export const metadata: Metadata = {
     },
   },
   manifest: '/manifest.json',
+  other: {
+    'theme-color': '#0f172a',
+  },
 }
 
 export default function RootLayout({
@@ -79,7 +82,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="de-AT">
+    <html lang="de-AT" style={{ colorScheme: 'dark' }}>
       <body className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${ibmPlex.variable} antialiased min-h-screen`}>
         <JsonLd data={{
           '@context': 'https://schema.org',

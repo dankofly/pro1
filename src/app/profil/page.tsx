@@ -33,7 +33,7 @@ function ProfilContent() {
     subscription.status === 'active'
       ? 'Aktiv'
       : subscription.status === 'cancelled'
-        ? 'Gekuendigt'
+        ? 'Gekündigt'
         : subscription.status === 'past_due'
           ? 'Zahlung ausstehend'
           : subscription.status === 'trialing'
@@ -74,7 +74,7 @@ function ProfilContent() {
           <div className="flex items-center gap-3">
             <Link href="/" className="md:hidden font-bold text-sm hover:opacity-80 transition-opacity">SVS Checker</Link>
             <div className="flex items-center gap-2">
-              <User className="h-4 w-4 text-muted-foreground" />
+              <User aria-hidden="true" className="h-4 w-4 text-muted-foreground" />
               <h1 className="text-sm font-semibold">Mein Profil</h1>
             </div>
           </div>
@@ -87,12 +87,12 @@ function ProfilContent() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100">
-                <User className="h-5 w-5 text-slate-600" />
+                <User aria-hidden="true" className="h-5 w-5 text-slate-600" />
               </div>
               <div>
                 <p className="text-base font-semibold">{user.user_metadata?.full_name || 'Benutzer'}</p>
                 <p className="text-sm font-normal text-muted-foreground flex items-center gap-1">
-                  <Mail className="h-3 w-3" />
+                  <Mail aria-hidden="true" className="h-3 w-3" />
                   {user.email}
                 </p>
               </div>
@@ -104,7 +104,7 @@ function ProfilContent() {
         <Card className="bg-slate-900 text-white border-slate-800">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <Crown className="h-5 w-5 text-amber-400" />
+              <Crown aria-hidden="true" className="h-5 w-5 text-amber-400" />
               Mein Abo
             </CardTitle>
             <CardDescription className="text-slate-400">
@@ -133,8 +133,8 @@ function ProfilContent() {
 
             {subscription.currentPeriodEnd && (
               <div className="flex items-center gap-2 text-sm text-slate-400">
-                <Calendar className="h-4 w-4" />
-                Naechste Abrechnung: {new Date(subscription.currentPeriodEnd).toLocaleDateString('de-AT')}
+                <Calendar aria-hidden="true" className="h-4 w-4" />
+                Nächste Abrechnung: {new Date(subscription.currentPeriodEnd).toLocaleDateString('de-AT')}
               </div>
             )}
 
@@ -154,7 +154,7 @@ function ProfilContent() {
               {subscription.isFree && (
                 <Link href="/pricing">
                   <Button size="sm" className="bg-amber-500 hover:bg-amber-600 text-white">
-                    <Crown className="h-4 w-4 mr-1" />
+                    <Crown aria-hidden="true" className="h-4 w-4 mr-1" />
                     Upgraden
                   </Button>
                 </Link>
@@ -211,7 +211,7 @@ function ProfilContent() {
               className="w-full text-red-600 hover:text-red-700 hover:bg-red-50 border-red-200"
               onClick={onLogout}
             >
-              <LogOut className="h-4 w-4 mr-2" />
+              <LogOut aria-hidden="true" className="h-4 w-4 mr-2" />
               Abmelden
             </Button>
           </CardContent>

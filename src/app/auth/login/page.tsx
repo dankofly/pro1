@@ -93,7 +93,7 @@ function LoginPageInner() {
             <div className="space-y-2">
               <Label htmlFor="email">E-Mail</Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Mail aria-hidden="true" className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="email"
                   type="email"
@@ -102,6 +102,8 @@ function LoginPageInner() {
                   onChange={(e) => setEmail(e.target.value)}
                   className="pl-10"
                   required
+                  autoComplete="email"
+                  spellCheck={false}
                 />
               </div>
             </div>
@@ -117,7 +119,7 @@ function LoginPageInner() {
                 </button>
               </div>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Lock aria-hidden="true" className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="password"
                   type="password"
@@ -127,13 +129,14 @@ function LoginPageInner() {
                   className="pl-10"
                   required
                   minLength={8}
+                  autoComplete="current-password"
                 />
               </div>
             </div>
           </CardContent>
           <CardFooter className="flex flex-col gap-3">
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? 'Anmelden...' : 'Anmelden'}
+              {loading ? 'Anmelden\u2026' : 'Anmelden'}
             </Button>
             <p className="text-sm text-muted-foreground text-center">
               Noch kein Konto?{' '}

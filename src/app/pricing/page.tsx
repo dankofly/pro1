@@ -24,18 +24,15 @@ const BASIC_FEATURES = [
   'Berechnungen speichern',
   'Dashboard mit Verlauf',
   'Einfacher Export',
-  'E-Mail Erinnerungen',
 ]
 
 const PRO_FEATURES = [
   'Alles aus Sicherheits-Plan',
-  'Misch-Einkommen Rechner (Anstellung + Gewerbe)',
-  'Bank-Anbindung (CSV-Import)',
+  'Misch-Einkommen Rechner',
+  'Familienbonus & Absetzbeträge',
+  'Wasserfall-Analyse',
   'PDF-Export für Steuerberater',
   'Smart Alerts & Push',
-  'Absetzbeträge & Familienbonus',
-  'Steuer-Optimierung Tipps',
-  'Vergleichs-Modus & Wasserfall-Analyse',
   'Prioritäts-Support',
 ]
 
@@ -67,7 +64,7 @@ function CheckoutReturn() {
       <div className="min-h-[calc(100vh-3.5rem)] bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 flex items-center justify-center">
         <div className="text-center space-y-4">
           <Loader2 className="h-10 w-10 text-white animate-spin mx-auto" />
-          <p className="text-white text-lg">Zahlung wird verarbeitet...</p>
+          <p className="text-white text-lg">Zahlung wird verarbeitet\u2026</p>
         </div>
       </div>
     )
@@ -229,7 +226,7 @@ function PricingContent() {
           {/* Free */}
           <Card className="bg-white/5 border-white/10 text-white backdrop-blur-sm">
             <CardHeader>
-              <CardDescription className="text-blue-200">Für den Einstieg</CardDescription>
+              <CardDescription className="text-blue-200">Für den schnellen Check</CardDescription>
               <CardTitle className="text-2xl">Free</CardTitle>
               <div className="pt-2">
                 <span className="text-4xl font-bold">0 EUR</span>

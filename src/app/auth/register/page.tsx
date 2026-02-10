@@ -100,7 +100,7 @@ function RegisterPageInner() {
             <div className="space-y-2">
               <Label htmlFor="name">Name</Label>
               <div className="relative">
-                <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <User aria-hidden="true" className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="name"
                   type="text"
@@ -108,13 +108,14 @@ function RegisterPageInner() {
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   className="pl-10"
+                  autoComplete="name"
                 />
               </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="email">E-Mail</Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Mail aria-hidden="true" className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="email"
                   type="email"
@@ -123,13 +124,15 @@ function RegisterPageInner() {
                   onChange={(e) => setEmail(e.target.value)}
                   className="pl-10"
                   required
+                  autoComplete="email"
+                  spellCheck={false}
                 />
               </div>
             </div>
             <div className="space-y-2">
               <Label htmlFor="password">Passwort</Label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Lock aria-hidden="true" className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   id="password"
                   type="password"
@@ -139,13 +142,14 @@ function RegisterPageInner() {
                   className="pl-10"
                   required
                   minLength={8}
+                  autoComplete="new-password"
                 />
               </div>
             </div>
           </CardContent>
           <CardFooter className="flex flex-col gap-3">
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? 'Registrieren...' : 'Konto erstellen'}
+              {loading ? 'Registrieren\u2026' : 'Konto erstellen'}
             </Button>
             <p className="text-sm text-muted-foreground text-center">
               Bereits registriert?{' '}

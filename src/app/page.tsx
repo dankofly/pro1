@@ -65,7 +65,7 @@ function Reveal({
   return (
     <div
       ref={ref}
-      className={`transition-all duration-700 ease-out ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} ${className}`}
+      className={`transition-all duration-700 ease-out motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
@@ -111,7 +111,7 @@ function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 w-full z-50 transition-[background-color,border-color,box-shadow] duration-300 ${
         scrolled
           ? 'bg-slate-900/90 backdrop-blur-xl border-b border-white/10 shadow-lg'
           : 'bg-transparent'
@@ -290,7 +290,7 @@ function Hero() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce motion-reduce:animate-none">
         <ChevronDown className="h-6 w-6 text-white/30" />
       </div>
     </section>
@@ -302,7 +302,7 @@ const REVIEWS = [
   { name: 'Sandra K.', role: 'Texterin', text: 'In 30 Sekunden mein echtes Netto berechnet. Mein Steuerberater war beeindruckt.' },
   { name: 'Thomas W.', role: 'IT-Freelancer', text: 'Der Misch-Einkommen Rechner hat mir 2 Stunden beim Steuerberater gespart. Absolut genial.' },
   { name: 'David P.', role: 'Berater', text: 'Die Nachzahlungs-Prognose war auf den Euro genau. Besser als jeder Excel-Rechner.' },
-  { name: 'Julia H.', role: 'Online-Haendlerin', text: 'Familienbonus, AVAB, alles automatisch dabei. Ich spar mir den Gang zum Steuerberater.' },
+  { name: 'Julia H.', role: 'Online-Händlerin', text: 'Familienbonus, AVAB, alles automatisch dabei. Ich spar mir den Gang zum Steuerberater.' },
   { name: 'Stefan B.', role: 'Webentwickler', text: 'Nutze den Rechner jeden Monat. Die Wasserfall-Analyse zeigt mir genau wo mein Geld hingeht.' },
   { name: 'Anna G.', role: 'Coach', text: 'Endlich ein Tool das Selbständige in Österreich wirklich verstehen. Klare Empfehlung!' },
 ]
@@ -360,7 +360,7 @@ function ProblemSection() {
     {
       icon: <TrendingUp className="h-6 w-6" />,
       title: 'Die Falle',
-      desc: 'Die SVS rechnet mit deinem Gewinn von vor 3 Jahren. Steigt dein Einkommen, kommt eine saftige Nachzahlung – oft tausende Euro, voellig unerwartet.',
+      desc: 'Die SVS rechnet mit deinem Gewinn von vor 3 Jahren. Steigt dein Einkommen, kommt eine saftige Nachzahlung – oft tausende Euro, völlig unerwartet.',
       color: 'text-red-400',
       bg: 'bg-red-500/10',
       border: 'border-red-500/20',
@@ -566,7 +566,7 @@ function PricingSection() {
       monthlyPrice: '0',
       yearlyPrice: '0',
       unit: yearly ? 'für immer' : 'für immer',
-      desc: 'Für den Einstieg',
+      desc: 'Für den schnellen Check',
       isFree: true,
       features: [
         { text: 'SVS-Beitragsrechner', included: true },
@@ -649,8 +649,11 @@ function PricingSection() {
               Monatlich
             </span>
             <button
+              role="switch"
+              aria-checked={yearly}
+              aria-label="Jährliche Abrechnung"
               onClick={() => setYearly(!yearly)}
-              className={`relative w-14 h-7 rounded-full transition-colors duration-300 ${
+              className={`relative w-14 h-7 rounded-full transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 ${
                 yearly ? 'bg-emerald-500' : 'bg-white/20'
               }`}
             >
@@ -758,7 +761,7 @@ function PricingSection() {
 function TrustSection() {
   const badges = [
     { icon: <Lock className="h-5 w-5" />, label: 'DSGVO-konform', desc: 'Deine Daten bleiben in der EU' },
-    { icon: <Shield className="h-5 w-5" />, label: 'SSL-verschlüsselt', desc: 'Bankgrade Verschluesselung' },
+    { icon: <Shield className="h-5 w-5" />, label: 'SSL-verschlüsselt', desc: 'Bankgrade Verschlüsselung' },
     { icon: <Heart className="h-5 w-5" />, label: 'Made in Austria', desc: 'Gebaut für österreichisches Steuerrecht' },
     { icon: <Calculator className="h-5 w-5" />, label: 'Aktuelle Werte', desc: '2024, 2025 & 2026 Steuerdaten' },
   ]
@@ -769,7 +772,7 @@ function TrustSection() {
         <Reveal>
           <div className="text-center mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-white font-heading">
-              Vertrauenswuerdig & sicher
+              Vertrauenswürdig & sicher
             </h2>
           </div>
         </Reveal>
@@ -805,7 +808,7 @@ function FAQSection() {
     },
     {
       q: 'Was ist der Unterschied zwischen Free und Pro?',
-      a: 'Die Free-Version bietet den SVS-Beitragsrechner und die Wahrheits-Tabelle. Der Sicherheits-Plan (9,90 EUR/Monat) fuegt die Einkommensteuer-Prognose, Speichern und Export hinzu. SVS Checker Pro (19,90 EUR/Monat) bietet alles plus Misch-Einkommen Rechner, Familienbonus-Berechnung, Wasserfall-Analyse und PDF-Export.',
+      a: 'Die Free-Version bietet den SVS-Beitragsrechner und die Wahrheits-Tabelle. Der Sicherheits-Plan (9,90 EUR/Monat) fügt die Einkommensteuer-Prognose, Speichern und Export hinzu. SVS Checker Pro (19,90 EUR/Monat) bietet alles plus Misch-Einkommen Rechner, Familienbonus-Berechnung, Wasserfall-Analyse und PDF-Export.',
     },
     {
       q: 'Was ist die Nachzahlungsfalle?',
@@ -916,7 +919,7 @@ function Footer() {
             <span>·</span>
             <Link href="/pricing" className="hover:text-blue-200 transition-colors">Preise</Link>
           </div>
-          <p className="text-xs text-blue-200/30">
+          <p className="text-xs text-blue-200/30" suppressHydrationWarning>
             &copy; {new Date().getFullYear()} SVS Checker. Alle Rechte vorbehalten.
             <span className="mx-1">·</span>
             <a href="https://hypeakz.io" target="_blank" rel="noopener noreferrer" className="text-blue-200/40 hover:text-blue-200 transition-colors">App by Hypeakz.io</a>
@@ -945,7 +948,7 @@ const FAQ_JSONLD = {
     {
       '@type': 'Question',
       name: 'Was ist der Unterschied zwischen Free und Pro?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Die Free-Version bietet den SVS-Beitragsrechner und die Wahrheits-Tabelle. Der Sicherheits-Plan (9,90 EUR/Monat) fuegt die Einkommensteuer-Prognose, Speichern und Export hinzu. SVS Checker Pro (19,90 EUR/Monat) bietet alles plus Misch-Einkommen Rechner, Familienbonus-Berechnung, Wasserfall-Analyse und PDF-Export.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Die Free-Version bietet den SVS-Beitragsrechner und die Wahrheits-Tabelle. Der Sicherheits-Plan (9,90 EUR/Monat) fügt die Einkommensteuer-Prognose, Speichern und Export hinzu. SVS Checker Pro (19,90 EUR/Monat) bietet alles plus Misch-Einkommen Rechner, Familienbonus-Berechnung, Wasserfall-Analyse und PDF-Export.' },
     },
     {
       '@type': 'Question',
