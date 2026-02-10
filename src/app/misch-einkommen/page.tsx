@@ -196,16 +196,16 @@ function ProGate() {
         Berechne Anstellung + Nebengewerbe kombiniert mit allen Absetzbeträgen.
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-        <Link href="/pricing">
-          <Button className="bg-amber-500 hover:bg-amber-600 text-white gap-2">
+        <Button asChild className="bg-amber-500 hover:bg-amber-600 text-white gap-2">
+          <Link href="/pricing">
             <Crown className="h-4 w-4" /> Jetzt upgraden
-          </Button>
-        </Link>
-        <Link href="/rechner">
-          <Button variant="outline" className="gap-2">
+          </Link>
+        </Button>
+        <Button asChild variant="outline" className="gap-2">
+          <Link href="/rechner">
             Kostenloser Rechner
-          </Button>
-        </Link>
+          </Link>
+        </Button>
       </div>
     </div>
   )

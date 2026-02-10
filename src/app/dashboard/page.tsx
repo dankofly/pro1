@@ -195,12 +195,12 @@ function DashboardContent() {
                 <p className="text-slate-300 text-sm">
                   Schalte alle Pro-Werkzeuge frei: PDF-Export, Bank-Anbindung und Smart Alerts.
                 </p>
-                <Link href="/pricing">
-                  <Button className="bg-amber-500 hover:bg-amber-600 text-white">
+                <Button asChild className="bg-amber-500 hover:bg-amber-600 text-white">
+                  <Link href="/pricing">
                     <Crown className="h-4 w-4 mr-1" />
                     Preise ansehen
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </div>
             ) : (
               <div className="space-y-3">
@@ -270,9 +270,9 @@ function DashboardContent() {
               <div className="text-center py-12 space-y-3">
                 <Calculator className="h-12 w-12 text-muted-foreground mx-auto" />
                 <p className="text-muted-foreground">Noch keine Berechnungen gespeichert.</p>
-                <Link href="/rechner">
-                  <Button>Erste Berechnung erstellen</Button>
-                </Link>
+                <Button asChild>
+                  <Link href="/rechner">Erste Berechnung erstellen</Link>
+                </Button>
               </div>
             ) : (
               <>

@@ -133,16 +133,12 @@ function Navbar() {
           </div>
         </div>
         <div className="flex items-center gap-3">
-          <Link href="/auth/login">
-            <Button variant="ghost" size="sm" className="text-blue-200 hover:text-white hover:bg-white/10">
-              Anmelden
-            </Button>
-          </Link>
-          <Link href="/rechner">
-            <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/25">
-              Jetzt berechnen
-            </Button>
-          </Link>
+          <Button asChild variant="ghost" size="sm" className="text-blue-200 hover:text-white hover:bg-white/10">
+            <Link href="/auth/login">Anmelden</Link>
+          </Button>
+          <Button asChild size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/25">
+            <Link href="/rechner">Jetzt berechnen</Link>
+          </Button>
         </div>
       </div>
     </nav>
@@ -196,22 +192,23 @@ function Hero() {
 
             <Reveal delay={300}>
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Link href="/rechner">
-                  <Button size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-xl shadow-emerald-500/25 text-base px-8 h-12 w-full sm:w-auto">
+                <Button asChild size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-xl shadow-emerald-500/25 text-base px-8 h-12 w-full sm:w-auto">
+                  <Link href="/rechner">
                     Jetzt gratis berechnen
                     <ArrowRight className="h-4 w-4 ml-2" />
-                  </Button>
-                </Link>
-                <a href="#features">
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="border-white/20 text-white hover:bg-white/10 text-base px-8 h-12 w-full sm:w-auto bg-transparent"
-                  >
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className="border-white/20 text-white hover:bg-white/10 text-base px-8 h-12 w-full sm:w-auto bg-transparent"
+                >
+                  <a href="#features">
                     Mehr erfahren
                     <ChevronDown className="h-4 w-4 ml-2" />
-                  </Button>
-                </a>
+                  </a>
+                </Button>
               </div>
             </Reveal>
 
@@ -728,18 +725,19 @@ function PricingSection() {
                       ))}
                     </div>
 
-                    <Link href={tier.href}>
-                      <Button
-                        className={`w-full ${
-                          tier.highlight
-                            ? 'bg-amber-500 hover:bg-amber-600 text-white shadow-lg shadow-amber-500/25'
-                            : 'bg-white/10 hover:bg-white/20 text-white border border-white/10'
-                        }`}
-                      >
+                    <Button
+                      asChild
+                      className={`w-full ${
+                        tier.highlight
+                          ? 'bg-amber-500 hover:bg-amber-600 text-white shadow-lg shadow-amber-500/25'
+                          : 'bg-white/10 hover:bg-white/20 text-white border border-white/10'
+                      }`}
+                    >
+                      <Link href={tier.href}>
                         {tier.highlight && <Crown className="h-4 w-4 mr-1.5" />}
                         {tier.cta}
-                      </Button>
-                    </Link>
+                      </Link>
+                    </Button>
                   </CardContent>
                 </Card>
               </Reveal>
@@ -885,12 +883,12 @@ function FinalCTA() {
           <p className="text-blue-200/60 text-lg mb-8 max-w-md mx-auto">
             Starte jetzt kostenlos und berechne in 30 Sekunden, was die SVS wirklich von dir will.
           </p>
-          <Link href="/rechner">
-            <Button size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-xl shadow-emerald-500/25 text-base px-10 h-13">
+          <Button asChild size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-xl shadow-emerald-500/25 text-base px-10 h-13">
+            <Link href="/rechner">
               Jetzt gratis berechnen
               <ArrowRight className="h-4 w-4 ml-2" />
-            </Button>
-          </Link>
+            </Link>
+          </Button>
           <p className="text-blue-200/30 text-sm mt-6">
             Kostenlos. Keine Kreditkarte. Keine Registrierung nötig.
           </p>

@@ -110,12 +110,12 @@ export function AppSidebar({ user, plan, onLogout }: AppSidebarProps) {
           </div>
         ) : (
           <div className="space-y-2">
-            <Link href="/auth/login" className="block">
-              <Button variant="ghost" size="sm" className="w-full justify-start text-slate-300 hover:text-white hover:bg-white/5 h-8">
+            <Button asChild variant="ghost" size="sm" className="w-full justify-start text-slate-300 hover:text-white hover:bg-white/5 h-8">
+              <Link href="/auth/login">
                 <User className="h-3.5 w-3.5 mr-2" />
                 <span className="text-xs">Anmelden</span>
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
         )}
       </div>

@@ -42,12 +42,12 @@ export function SvsHeader({ user, onSave, onLogout, saving, alertActive, plan }:
             {user ? (
               <>
                 {plan === 'free' && (
-                  <Link href="/pricing">
-                    <Button variant="outline" size="sm" className="bg-amber-500/20 border-amber-400/30 text-amber-200 hover:bg-amber-500/30 hover:text-white">
+                  <Button asChild variant="outline" size="sm" className="bg-amber-500/20 border-amber-400/30 text-amber-200 hover:bg-amber-500/30 hover:text-white">
+                    <Link href="/pricing">
                       <Crown className="h-4 w-4 mr-1" />
                       Upgrade
-                    </Button>
-                  </Link>
+                    </Link>
+                  </Button>
                 )}
                 {onSave && (
                   <Button
@@ -62,27 +62,27 @@ export function SvsHeader({ user, onSave, onLogout, saving, alertActive, plan }:
                   </Button>
                 )}
                 {plan === 'pro' && (
-                  <Link href="/misch-einkommen">
-                    <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white">
+                  <Button asChild variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white">
+                    <Link href="/misch-einkommen">
                       <Briefcase className="h-4 w-4 mr-1" />
                       Misch-Einkommen
-                    </Button>
-                  </Link>
+                    </Link>
+                  </Button>
                 )}
                 {user && isAdmin(user.email) && (
-                  <Link href="/admin">
-                    <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white">
+                  <Button asChild variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white">
+                    <Link href="/admin">
                       <Shield className="h-4 w-4 mr-1" />
                       Admin
-                    </Button>
-                  </Link>
+                    </Link>
+                  </Button>
                 )}
-                <Link href="/dashboard">
-                  <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white">
+                <Button asChild variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white">
+                  <Link href="/dashboard">
                     <User className="h-4 w-4 mr-1" />
                     Dashboard
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
                 <Button
                   variant="ghost"
                   size="sm"
@@ -94,18 +94,18 @@ export function SvsHeader({ user, onSave, onLogout, saving, alertActive, plan }:
               </>
             ) : (
               <>
-                <Link href="/pricing">
-                  <Button variant="outline" size="sm" className="bg-amber-500/20 border-amber-400/30 text-amber-200 hover:bg-amber-500/30 hover:text-white">
+                <Button asChild variant="outline" size="sm" className="bg-amber-500/20 border-amber-400/30 text-amber-200 hover:bg-amber-500/30 hover:text-white">
+                  <Link href="/pricing">
                     <Crown className="h-4 w-4 mr-1" />
                     Preise
-                  </Button>
-                </Link>
-                <Link href="/auth/login">
-                  <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white">
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white">
+                  <Link href="/auth/login">
                     <LogIn className="h-4 w-4 mr-1" />
                     Anmelden
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               </>
             )}
           </div>

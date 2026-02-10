@@ -105,9 +105,9 @@ function HomeContent() {
                 {saving ? 'Speichert...' : 'Speichern'}
               </Button>
             ) : (
-              <Link href="/auth/login">
-                <Button variant="outline" size="sm" className="h-8">Anmelden</Button>
-              </Link>
+              <Button asChild variant="outline" size="sm" className="h-8">
+                <Link href="/auth/login">Anmelden</Link>
+              </Button>
             )}
           </div>
         </div>

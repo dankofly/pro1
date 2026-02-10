@@ -65,9 +65,9 @@ function RegisterPageInner() {
             </CardDescription>
           </CardHeader>
           <CardFooter className="flex flex-col gap-3">
-            <Link href={loginHref} className="w-full">
-              <Button className="w-full">Zum Login</Button>
-            </Link>
+            <Button asChild className="w-full">
+              <Link href={loginHref}>Zum Login</Link>
+            </Button>
             <Link href="/rechner" className="text-sm text-muted-foreground hover:underline text-center">
               Zurück zum Rechner
             </Link>

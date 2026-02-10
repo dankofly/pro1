@@ -69,12 +69,12 @@ export function UpgradeDialog({ open, onOpenChange, feature, requiredPlan }: Upg
         </div>
 
         <DialogFooter className="flex flex-col gap-2 sm:flex-col">
-          <Link href="/pricing" className="w-full">
-            <Button className="w-full gap-2">
+          <Button asChild className="w-full gap-2">
+            <Link href="/pricing">
               <ArrowRight className="h-4 w-4" />
               Jetzt upgraden
-            </Button>
-          </Link>
+            </Link>
+          </Button>
           <Button variant="ghost" size="sm" onClick={() => onOpenChange(false)}>
             Vielleicht später
           </Button>

@@ -86,14 +86,12 @@ function CheckoutReturn() {
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col gap-3">
-            <Link href="/rechner" className="w-full">
-              <Button className="w-full">Zum Rechner</Button>
-            </Link>
-            <Link href="/dashboard" className="w-full">
-              <Button variant="outline" className="w-full bg-white/10 border-white/20 text-white hover:bg-white/20">
-                Zum Dashboard
-              </Button>
-            </Link>
+            <Button asChild className="w-full">
+              <Link href="/rechner">Zum Rechner</Link>
+            </Button>
+            <Button asChild variant="outline" className="w-full bg-white/10 border-white/20 text-white hover:bg-white/20">
+              <Link href="/dashboard">Zum Dashboard</Link>
+            </Button>
           </CardContent>
         </Card>
       </div>
@@ -247,11 +245,9 @@ function PricingContent() {
                   Aktueller Plan
                 </Button>
               ) : (
-                <Link href="/rechner" className="w-full">
-                  <Button variant="outline" className="w-full bg-white/10 border-white/20 text-white hover:bg-white/20">
-                    Zum Rechner
-                  </Button>
-                </Link>
+                <Button asChild variant="outline" className="w-full bg-white/10 border-white/20 text-white hover:bg-white/20">
+                  <Link href="/rechner">Zum Rechner</Link>
+                </Button>
               )}
             </CardFooter>
           </Card>

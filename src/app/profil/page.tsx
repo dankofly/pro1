@@ -7,7 +7,9 @@ import { AppShell, useAppShell } from '@/components/svs/app-shell'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Crown, ExternalLink, User, Mail, Calendar, LogOut, Loader2 } from 'lucide-react'
+import { Input } from '@/components/ui/input'
+import { Alert, AlertDescription } from '@/components/ui/alert'
+import { Crown, ExternalLink, User, Mail, Calendar, LogOut, Loader2, Ticket, CheckCircle, AlertCircle } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 
 function ProfilContent() {
@@ -43,6 +45,38 @@ function ProfilContent() {
               : subscription.status ?? 'Unbekannt'
 
   const [portalLoading, setPortalLoading] = useState(false)
+  const [promoCode, setPromoCode] = useState('')
+  const [promoLoading, setPromoLoading] = useState(false)
+  const [promoError, setPromoError] = useState<string | null>(null)
+  const [promoSuccess, setPromoSuccess] = useState(false)
+
+  const redeemPromo = async () => {
+    if (!promoCode.trim()) return
+    setPromoLoading(true)
+    setPromoError(null)
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      const res = await fetch('/api/promo/redeem', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${session?.access_token}`,
+        },
+        body: JSON.stringify({ code: promoCode.trim() }),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        setPromoError(data.error || 'Fehler beim Einlösen')
+      } else {
+        setPromoSuccess(true)
+        setTimeout(() => window.location.reload(), 1500)
+      }
+    } catch {
+      setPromoError('Netzwerkfehler. Bitte versuche es erneut.')
+    } finally {
+      setPromoLoading(false)
+    }
+  }
 
   const openPortal = async () => {
     setPortalLoading(true)
@@ -152,12 +186,12 @@ function ProfilContent() {
                 </Button>
               )}
               {subscription.isFree && (
-                <Link href="/pricing">
-                  <Button size="sm" className="bg-amber-500 hover:bg-amber-600 text-white">
+                <Button asChild size="sm" className="bg-amber-500 hover:bg-amber-600 text-white">
+                  <Link href="/pricing">
                     <Crown aria-hidden="true" className="h-4 w-4 mr-1" />
                     Upgraden
-                  </Button>
-                </Link>
+                  </Link>
+                </Button>
               )}
             </div>
           </CardContent>
@@ -194,14 +228,61 @@ function ProfilContent() {
               })}
             </div>
             {!subscription.isPro && (
-              <Link href="/pricing" className="block mt-4">
-                <Button variant="outline" size="sm" className="w-full">
+              <Button asChild variant="outline" size="sm" className="w-full mt-4">
+                <Link href="/pricing">
                   Alle Features freischalten
-                </Button>
-              </Link>
+                </Link>
+              </Button>
             )}
           </CardContent>
         </Card>
+
+        {/* Promo Code – nur für Free-User */}
+        {subscription.isFree && (
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-base">
+                <Ticket aria-hidden="true" className="h-5 w-5 text-emerald-500" />
+                Promo-Code einlösen
+              </CardTitle>
+              <CardDescription>
+                Hast du einen Promo-Code? Gib ihn hier ein, um Pro freizuschalten.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              {promoError && (
+                <Alert variant="destructive">
+                  <AlertCircle aria-hidden="true" className="h-4 w-4" />
+                  <AlertDescription>{promoError}</AlertDescription>
+                </Alert>
+              )}
+              {promoSuccess && (
+                <Alert>
+                  <CheckCircle aria-hidden="true" className="h-4 w-4" />
+                  <AlertDescription>Code eingelöst! Pro wird aktiviert\u2026</AlertDescription>
+                </Alert>
+              )}
+              {!promoSuccess && (
+                <form
+                  onSubmit={(e) => { e.preventDefault(); redeemPromo() }}
+                  className="flex gap-2"
+                >
+                  <Input
+                    placeholder="CODE eingeben"
+                    value={promoCode}
+                    onChange={(e) => setPromoCode(e.target.value)}
+                    className="uppercase"
+                    maxLength={20}
+                    disabled={promoLoading}
+                  />
+                  <Button type="submit" size="sm" disabled={promoLoading || !promoCode.trim()}>
+                    {promoLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : 'Einlösen'}
+                  </Button>
+                </form>
+              )}
+            </CardContent>
+          </Card>
+        )}
 
         {/* Account Actions */}
         <Card>
