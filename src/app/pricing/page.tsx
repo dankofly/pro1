@@ -4,38 +4,13 @@ import { AppShell, useAppShell } from '@/components/svs/app-shell'
 import { STRIPE_PLANS, getStripePromise } from '@/lib/stripe'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Switch } from '@/components/ui/switch'
-import { Label } from '@/components/ui/label'
-import { Check, Crown, Calculator, Zap, ArrowLeft, Loader2, CheckCircle } from 'lucide-react'
+import { Check, X, Crown, Zap, ArrowLeft, Loader2, CheckCircle } from 'lucide-react'
 import { toast } from 'sonner'
 import { EmbeddedCheckoutProvider, EmbeddedCheckout } from '@stripe/react-stripe-js'
 import Link from 'next/link'
 import { useState, useCallback, useEffect } from 'react'
-
-const FREE_FEATURES = [
-  'SVS-Beitragsrechner',
-  'Wahrheits-Tabelle',
-]
-
-const BASIC_FEATURES = [
-  'Alles aus Free',
-  'Einkommensteuer-Prognose',
-  'Berechnungen speichern',
-  'Dashboard mit Verlauf',
-  'Einfacher Export',
-]
-
-const PRO_FEATURES = [
-  'Alles aus Sicherheits-Plan',
-  'Misch-Einkommen Rechner',
-  'Familienbonus & Absetzbeträge',
-  'Wasserfall-Analyse',
-  'PDF-Export für Steuerberater',
-  'Smart Alerts & Push',
-  'Prioritäts-Support',
-]
 
 const stripePromise = getStripePromise()
 
@@ -198,159 +173,228 @@ function PricingContent() {
     )
   }
 
-  return (
-    <div className="min-h-[calc(100vh-3.5rem)] bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900">
-      {/* Header */}
-      <div className="text-center pt-12 pb-8 px-4">
-        <div className="flex justify-center mb-4">
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20">
-            <Calculator className="h-8 w-8 text-white" />
-          </div>
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-bold text-white mb-3">Wähle deinen Plan</h1>
-        <p className="text-blue-200 text-lg max-w-md mx-auto">
-          Starte kostenlos, upgrade jederzeit.
-        </p>
+  const tiers = [
+    {
+      name: 'Free',
+      monthlyPrice: '0',
+      yearlyPrice: '0',
+      unit: 'für immer',
+      desc: 'Für den schnellen Check',
+      isFree: true,
+      features: [
+        { text: 'SVS-Beitragsrechner', included: true },
+        { text: 'Wahrheits-Tabelle', included: true },
+        { text: 'Einkommensteuer-Prognose', included: false },
+        { text: 'Misch-Einkommen Rechner', included: false },
+        { text: 'Familienbonus & Absetzbeträge', included: false },
+        { text: 'Wasserfall-Analyse', included: false },
+        { text: 'PDF-Export', included: false },
+      ],
+      highlight: false,
+      isCurrentPlan: subscription.isFree,
+      isIncluded: false,
+      cta: 'Jetzt gratis starten',
+      onAction: null as (() => void) | null,
+      href: '/rechner',
+    },
+    {
+      name: 'Sicherheits-Plan',
+      monthlyPrice: '9,90',
+      yearlyPrice: '8,25',
+      yearlyTotal: '99',
+      unit: 'pro Monat',
+      desc: 'Für Einsteiger',
+      isFree: false,
+      features: [
+        { text: 'Alles aus Free', included: true },
+        { text: 'Einkommensteuer-Prognose', included: true },
+        { text: 'Berechnungen speichern', included: true },
+        { text: 'Dashboard mit Verlauf', included: true },
+        { text: 'Einfacher Export', included: true },
+        { text: 'Misch-Einkommen Rechner', included: false },
+        { text: 'Familienbonus & Absetzbeträge', included: false },
+      ],
+      highlight: false,
+      isCurrentPlan: subscription.isBasic && !subscription.isPro,
+      isIncluded: subscription.isPro,
+      cta: 'Jetzt starten',
+      onAction: () => handleCheckout(basicPlan.priceId),
+      href: null as string | null,
+    },
+    {
+      name: 'SVS Checker Pro',
+      monthlyPrice: '19,90',
+      yearlyPrice: '16,58',
+      yearlyTotal: '199',
+      unit: 'pro Monat',
+      desc: 'Für Profis',
+      isFree: false,
+      features: [
+        { text: 'Alles aus Sicherheits-Plan', included: true },
+        { text: 'Misch-Einkommen Rechner', included: true },
+        { text: 'Familienbonus & Absetzbeträge', included: true },
+        { text: 'Wasserfall-Analyse', included: true },
+        { text: 'PDF-Export für Steuerberater', included: true },
+        { text: 'Smart Alerts & Push', included: true },
+        { text: 'Prioritäts-Support', included: true },
+      ],
+      highlight: true,
+      isCurrentPlan: subscription.isPro,
+      isIncluded: false,
+      cta: 'Jetzt upgraden',
+      onAction: () => handleCheckout(proPlan.priceId),
+      href: null as string | null,
+    },
+  ]
 
-        {/* Toggle */}
-        <div className="flex items-center justify-center gap-3 mt-8">
-          <Label htmlFor="billing" className="text-blue-200 text-sm">Monatlich</Label>
-          <Switch id="billing" checked={yearly} onCheckedChange={setYearly} />
-          <Label htmlFor="billing" className="text-blue-200 text-sm">Jährlich</Label>
+  return (
+    <div className="min-h-[calc(100vh-3.5rem)] bg-slate-900">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
+        {/* Header */}
+        <div className="text-center mb-10">
+          <Badge className="bg-amber-500/10 text-amber-400 border-amber-500/20 mb-4">
+            Preise
+          </Badge>
+          <h1 className="text-3xl sm:text-4xl font-bold text-white">
+            Starte kostenlos, upgrade wenn du bereit bist
+          </h1>
+          <p className="mt-4 text-blue-200/60 max-w-2xl mx-auto text-lg">
+            Keine versteckten Kosten. Monatlich kündbar. Sichere Zahlung via Stripe.
+          </p>
+        </div>
+
+        {/* Billing Toggle */}
+        <div className="flex items-center justify-center gap-4 mb-12">
+          <span className={`text-sm font-medium transition-colors ${!yearly ? 'text-white' : 'text-blue-200/40'}`}>
+            Monatlich
+          </span>
+          <button
+            role="switch"
+            aria-checked={yearly}
+            aria-label="Jährliche Abrechnung"
+            onClick={() => setYearly(!yearly)}
+            className={`relative w-14 h-7 rounded-full transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 ${
+              yearly ? 'bg-emerald-500' : 'bg-white/20'
+            }`}
+          >
+            <div
+              className={`absolute top-0.5 left-0.5 w-6 h-6 rounded-full bg-white shadow-md transition-transform duration-300 ${
+                yearly ? 'translate-x-7' : 'translate-x-0'
+              }`}
+            />
+          </button>
+          <span className={`text-sm font-medium transition-colors ${yearly ? 'text-white' : 'text-blue-200/40'}`}>
+            Jährlich
+          </span>
           {yearly && (
-            <Badge className="bg-green-500/20 text-green-300 border-green-400/30">
-              Spare 2 Monate!
+            <Badge className="bg-emerald-500/15 text-emerald-400 border-emerald-500/25 text-xs">
+              Spare 20%
             </Badge>
           )}
         </div>
-      </div>
 
-      {/* Pricing Cards */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 pb-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Pricing Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {tiers.map((tier) => {
+            const price = yearly ? tier.yearlyPrice : tier.monthlyPrice
+            return (
+              <Card
+                key={tier.name}
+                className={`relative h-full ${
+                  tier.highlight
+                    ? 'bg-white/10 border-amber-400/30 ring-2 ring-amber-400/20'
+                    : 'bg-white/[0.03] border-white/10'
+                } backdrop-blur-sm`}
+              >
+                {tier.highlight && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                    <Badge className="bg-amber-500 text-white border-0 shadow-lg">
+                      <Zap className="h-3 w-3 mr-1" />
+                      Beliebtester Plan
+                    </Badge>
+                  </div>
+                )}
+                <CardContent className={`p-6 sm:p-8 ${tier.highlight ? 'pt-10' : ''}`}>
+                  <p className="text-blue-200/60 text-sm">{tier.desc}</p>
+                  <h3 className="text-xl font-bold text-white mt-1 flex items-center gap-2">
+                    {tier.highlight && <Crown className="h-5 w-5 text-amber-400" />}
+                    {tier.name}
+                  </h3>
+                  <div className="mt-4 mb-1">
+                    <span className="text-4xl font-extrabold text-white font-mono">{price} EUR</span>
+                    <span className="text-blue-200/50 text-sm ml-2">/ {tier.unit}</span>
+                  </div>
+                  <div className="mb-6 h-5">
+                    {yearly && !tier.isFree && 'yearlyTotal' in tier && (
+                      <div className="flex items-center gap-2">
+                        <span className="text-blue-200/30 text-xs line-through">{tier.monthlyPrice} EUR/Monat</span>
+                        <span className="text-emerald-400 text-xs font-medium">{tier.yearlyTotal} EUR/Jahr</span>
+                      </div>
+                    )}
+                  </div>
 
-          {/* Free */}
-          <Card className="bg-white/5 border-white/10 text-white backdrop-blur-sm">
-            <CardHeader>
-              <CardDescription className="text-blue-200">Für den schnellen Check</CardDescription>
-              <CardTitle className="text-2xl">Free</CardTitle>
-              <div className="pt-2">
-                <span className="text-4xl font-bold">0 EUR</span>
-                <span className="text-blue-200 text-sm ml-1">/ für immer</span>
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              {FREE_FEATURES.map((f) => (
-                <div key={f} className="flex items-center gap-2 text-sm">
-                  <Check className="h-4 w-4 text-green-400 shrink-0" />
-                  <span className="text-blue-100">{f}</span>
-                </div>
-              ))}
-            </CardContent>
-            <CardFooter>
-              {subscription.isFree ? (
-                <Button variant="outline" className="w-full bg-white/10 border-white/20 text-white" disabled>
-                  Aktueller Plan
-                </Button>
-              ) : (
-                <Button asChild variant="outline" className="w-full bg-white/10 border-white/20 text-white hover:bg-white/20">
-                  <Link href="/rechner">Zum Rechner</Link>
-                </Button>
-              )}
-            </CardFooter>
-          </Card>
+                  <div className="space-y-3 mb-8">
+                    {tier.features.map((f) => (
+                      <div key={f.text} className="flex items-center gap-2.5 text-sm">
+                        {f.included ? (
+                          <Check className={`h-4 w-4 shrink-0 ${tier.highlight ? 'text-amber-400' : 'text-emerald-400'}`} />
+                        ) : (
+                          <X className="h-4 w-4 shrink-0 text-white/20" />
+                        )}
+                        <span className={f.included ? 'text-blue-100' : 'text-white/30'}>
+                          {f.text}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
 
-          {/* Basic */}
-          <Card className="bg-white/5 border-white/10 text-white backdrop-blur-sm">
-            <CardHeader>
-              <CardDescription className="text-blue-200">Für Einsteiger</CardDescription>
-              <CardTitle className="text-2xl">Sicherheits-Plan</CardTitle>
-              <div className="pt-2">
-                <span className="text-4xl font-bold">{basicPlan.priceDisplay} EUR</span>
-                <span className="text-blue-200 text-sm ml-1">/ {yearly ? 'Jahr' : 'Monat'}</span>
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              {BASIC_FEATURES.map((f) => (
-                <div key={f} className="flex items-center gap-2 text-sm">
-                  <Check className="h-4 w-4 text-green-400 shrink-0" />
-                  <span className="text-blue-100">{f}</span>
-                </div>
-              ))}
-            </CardContent>
-            <CardFooter>
-              {subscription.isBasic && !subscription.isPro ? (
-                <Button variant="outline" className="w-full bg-white/10 border-white/20 text-white" disabled>
-                  Aktueller Plan
-                </Button>
-              ) : subscription.isPro ? (
-                <Button variant="outline" className="w-full bg-white/10 border-white/20 text-white" disabled>
-                  Inkludiert
-                </Button>
-              ) : (
-                <Button
-                  className="w-full"
-                  onClick={() => handleCheckout(basicPlan.priceId)}
-                  disabled={checkoutLoading}
-                >
-                  {checkoutLoading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
-                  Jetzt starten
-                </Button>
-              )}
-            </CardFooter>
-          </Card>
-
-          {/* Pro - Highlighted */}
-          <Card className="bg-white/10 border-amber-400/30 text-white backdrop-blur-sm ring-2 ring-amber-400/30 relative">
-            <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-              <Badge className="bg-amber-500 text-white border-0 shadow-lg">
-                <Zap className="h-3 w-3 mr-1" />
-                Beliebtester Plan
-              </Badge>
-            </div>
-            <CardHeader className="pt-8">
-              <CardDescription className="text-amber-200">Für Profis</CardDescription>
-              <CardTitle className="flex items-center gap-2 text-2xl">
-                <Crown className="h-5 w-5 text-amber-400" />
-                SVS Checker Pro
-              </CardTitle>
-              <div className="pt-2">
-                <span className="text-4xl font-bold">{proPlan.priceDisplay} EUR</span>
-                <span className="text-blue-200 text-sm ml-1">/ {yearly ? 'Jahr' : 'Monat'}</span>
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              {PRO_FEATURES.map((f) => (
-                <div key={f} className="flex items-center gap-2 text-sm">
-                  <Check className="h-4 w-4 text-amber-400 shrink-0" />
-                  <span className="text-blue-100">{f}</span>
-                </div>
-              ))}
-            </CardContent>
-            <CardFooter>
-              {subscription.isPro ? (
-                <Button variant="outline" className="w-full bg-white/10 border-white/20 text-white" disabled>
-                  Aktueller Plan
-                </Button>
-              ) : (
-                <Button
-                  className="w-full bg-amber-500 hover:bg-amber-600 text-white"
-                  onClick={() => handleCheckout(proPlan.priceId)}
-                  disabled={checkoutLoading}
-                >
-                  {checkoutLoading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
-                  <Crown className="h-4 w-4 mr-1" />
-                  Jetzt upgraden
-                </Button>
-              )}
-            </CardFooter>
-          </Card>
+                  {tier.isCurrentPlan ? (
+                    <Button variant="outline" className="w-full bg-white/10 border-white/20 text-white" disabled>
+                      Aktueller Plan
+                    </Button>
+                  ) : tier.isIncluded ? (
+                    <Button variant="outline" className="w-full bg-white/10 border-white/20 text-white" disabled>
+                      Inkludiert
+                    </Button>
+                  ) : tier.href ? (
+                    <Button
+                      asChild
+                      className={`w-full ${
+                        tier.highlight
+                          ? 'bg-amber-500 hover:bg-amber-600 text-white shadow-lg shadow-amber-500/25'
+                          : 'bg-white/10 hover:bg-white/20 text-white border border-white/10'
+                      }`}
+                    >
+                      <Link href={tier.href}>
+                        {tier.highlight && <Crown className="h-4 w-4 mr-1.5" />}
+                        {tier.cta}
+                      </Link>
+                    </Button>
+                  ) : (
+                    <Button
+                      className={`w-full ${
+                        tier.highlight
+                          ? 'bg-amber-500 hover:bg-amber-600 text-white shadow-lg shadow-amber-500/25'
+                          : 'bg-white/10 hover:bg-white/20 text-white border border-white/10'
+                      }`}
+                      onClick={tier.onAction ?? undefined}
+                      disabled={checkoutLoading}
+                    >
+                      {checkoutLoading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : null}
+                      {tier.highlight && <Crown className="h-4 w-4 mr-1.5" />}
+                      {tier.cta}
+                    </Button>
+                  )}
+                </CardContent>
+              </Card>
+            )
+          })}
         </div>
 
         {/* Footer */}
         <div className="text-center text-xs mt-12 space-y-2">
-          <p className="text-blue-200/50">
-            Alle Preise inkl. USt. Monatlich kündbar. Sichere Zahlung via Stripe.
+          <p className="text-blue-200/30">
+            Alle Preise inkl. USt. {yearly ? 'Jährlich im Voraus. ' : 'Monatlich kündbar. '}Sichere Zahlung via Stripe.
           </p>
           <div className="flex items-center justify-center gap-3 text-blue-200/40">
             <Link href="/impressum" className="hover:text-blue-200 transition-colors">Impressum</Link>
