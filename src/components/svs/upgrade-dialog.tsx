@@ -76,7 +76,7 @@ export function UpgradeDialog({ open, onOpenChange, feature, requiredPlan }: Upg
             </Button>
           </Link>
           <Button variant="ghost" size="sm" onClick={() => onOpenChange(false)}>
-            Vielleicht spaeter
+            Vielleicht später
           </Button>
         </DialogFooter>
       </DialogContent>

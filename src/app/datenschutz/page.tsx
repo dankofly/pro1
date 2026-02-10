@@ -38,7 +38,7 @@ function DatenschutzContent() {
             <ul className="list-disc pl-6 space-y-1">
               <li>Bestandsdaten (z.B. Name, E-Mail-Adresse)</li>
               <li>Nutzungsdaten (z.B. besuchte Seiten, Zugriffszeit)</li>
-              <li>Meta-/Kommunikationsdaten (z.B. IP-Adresse, Geraeteinformationen)</li>
+              <li>Meta-/Kommunikationsdaten (z.B. IP-Adresse, Geräteinformationen)</li>
               <li>Zahlungsdaten (verarbeitet durch Lemon Squeezy als Zahlungsdienstleister)</li>
               <li>Berechnungsdaten (z.B. Gewinn, SVS-Vorschreibung – nur bei registrierten Nutzern)</li>
             </ul>
@@ -59,7 +59,7 @@ function DatenschutzContent() {
             </p>
             <ul className="list-disc pl-6 space-y-1">
               <li><strong>Einwilligung (Art. 6 Abs. 1 lit. a DSGVO)</strong> – Die betroffene Person hat ihre Einwilligung in die Verarbeitung der sie betreffenden personenbezogenen Daten für einen oder mehrere bestimmte Zwecke gegeben.</li>
-              <li><strong>Vertragserfullung (Art. 6 Abs. 1 lit. b DSGVO)</strong> – Die Verarbeitung ist für die Erfüllung eines Vertrags, dessen Vertragspartei die betroffene Person ist, oder zur Durchfuhrung vorvertraglicher Massnahmen erforderlich.</li>
+              <li><strong>Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO)</strong> – Die Verarbeitung ist für die Erfüllung eines Vertrags, dessen Vertragspartei die betroffene Person ist, oder zur Durchführung vorvertraglicher Massnahmen erforderlich.</li>
               <li><strong>Berechtigte Interessen (Art. 6 Abs. 1 lit. f DSGVO)</strong> – Die Verarbeitung ist zur Wahrung der berechtigten Interessen des Verantwortlichen oder eines Dritten erforderlich.</li>
             </ul>
           </section>
@@ -85,7 +85,7 @@ function DatenschutzContent() {
               sicheren und effizienten Bereitstellung unserer Website (Art. 6 Abs. 1 lit. f DSGVO).
             </p>
             <p>
-              Netlify verfuegt über EU-Standardvertragsklauseln als Garantie für die Datenübermittlung
+              Netlify verfügt über EU-Standardvertragsklauseln als Garantie für die Datenübermittlung
               in die USA. Weitere Informationen:{' '}
               <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
                 https://www.netlify.com/privacy/
@@ -106,7 +106,7 @@ function DatenschutzContent() {
             </ul>
             <p>
               Die Registrierung ist erforderlich, um erweiterte Funktionen nutzen zu können (z.B.
-              Speichern von Berechnungen, Dashboard). Die Verarbeitung erfolgt zur Vertragserfullung
+              Speichern von Berechnungen, Dashboard). Die Verarbeitung erfolgt zur Vertragserfüllung
               (Art. 6 Abs. 1 lit. b DSGVO).
             </p>
             <p>
@@ -134,10 +134,10 @@ function DatenschutzContent() {
             </ul>
             <p>
               <strong>Ohne Registrierung</strong> werden keinerlei Berechnungsdaten gespeichert oder an
-              Server übermittelt. Die Berechnungen erfolgen ausschliesslich lokal in Ihrem Browser.
+              Server übermittelt. Die Berechnungen erfolgen ausschließlich lokal in Ihrem Browser.
             </p>
             <p>
-              Die Verarbeitung gespeicherter Berechnungen erfolgt zur Vertragserfullung
+              Die Verarbeitung gespeicherter Berechnungen erfolgt zur Vertragserfüllung
               (Art. 6 Abs. 1 lit. b DSGVO).
             </p>
           </section>
@@ -148,7 +148,7 @@ function DatenschutzContent() {
             <p>
               Für kostenpflichtige Abonnements nutzen wir <strong>Lemon Squeezy</strong> (Lemon Squeezy, LLC,
               16192 Coastal Highway, Lewes, Delaware 19958, USA) als Merchant of Record. Lemon Squeezy
-              verarbeitet als eigenstaendiger Verantwortlicher:
+              verarbeitet als eigenständiger Verantwortlicher:
             </p>
             <ul className="list-disc pl-6 space-y-1">
               <li>Zahlungsinformationen (Kreditkarte, PayPal etc.)</li>
@@ -162,7 +162,7 @@ function DatenschutzContent() {
               Verwaltungs-URLs über einen verschlüsselten Webhook.
             </p>
             <p>
-              Die Verarbeitung erfolgt zur Vertragserfullung (Art. 6 Abs. 1 lit. b DSGVO). Weitere
+              Die Verarbeitung erfolgt zur Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO). Weitere
               Informationen:{' '}
               <a href="https://www.lemonsqueezy.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
                 https://www.lemonsqueezy.com/privacy
@@ -178,12 +178,12 @@ function DatenschutzContent() {
               Analyse-Tools (kein Google Analytics, kein Facebook Pixel etc.).
             </p>
             <p>
-              Wir verwenden ausschliesslich technisch notwendige Speicherung im Browser (Local Storage)
+              Wir verwenden ausschließlich technisch notwendige Speicherung im Browser (Local Storage)
               für:
             </p>
             <ul className="list-disc pl-6 space-y-1">
               <li>Authentifizierungs-Token (nach dem Login)</li>
-              <li>Benutzereinstellungen (z.B. Alert-Praeferenzen)</li>
+              <li>Benutzereinstellungen (z.B. Alert-Präferenzen)</li>
             </ul>
             <p>
               Diese Speicherung ist für den Betrieb der Website technisch erforderlich und erfolgt
@@ -200,7 +200,7 @@ function DatenschutzContent() {
             </p>
             <ul className="list-disc pl-6 space-y-1">
               <li>Sie Ihre ausdrückliche Einwilligung dazu erteilt haben (Art. 6 Abs. 1 lit. a DSGVO)</li>
-              <li>die Weitergabe zur Vertragserfullung erforderlich ist (Art. 6 Abs. 1 lit. b DSGVO)</li>
+              <li>die Weitergabe zur Vertragserfüllung erforderlich ist (Art. 6 Abs. 1 lit. b DSGVO)</li>
               <li>eine gesetzliche Verpflichtung besteht (Art. 6 Abs. 1 lit. c DSGVO)</li>
             </ul>
             <p>
@@ -209,7 +209,7 @@ function DatenschutzContent() {
             <ul className="list-disc pl-6 space-y-1">
               <li><strong>Supabase</strong> – Datenbank und Authentifizierung (EU-Region)</li>
               <li><strong>Netlify</strong> – Website-Hosting und Content Delivery</li>
-              <li><strong>Lemon Squeezy</strong> – Zahlungsabwicklung (als eigenstaendiger Verantwortlicher)</li>
+              <li><strong>Lemon Squeezy</strong> – Zahlungsabwicklung (als eigenständiger Verantwortlicher)</li>
             </ul>
           </section>
 
@@ -219,14 +219,14 @@ function DatenschutzContent() {
             <p>
               Wir verwenden innerhalb des Website-Besuchs das verbreitete SSL-Verfahren (Secure
               Socket Layer) in Verbindung mit der jeweils höchsten Verschlüsselungsstufe, die von
-              Ihrem Browser unterstuetzt wird. Ob eine einzelne Seite unseres Internetauftrittes
+              Ihrem Browser unterstützt wird. Ob eine einzelne Seite unseres Internetauftrittes
               verschlüsselt übertragen wird, erkennen Sie an der geschlossenen Darstellung des
-              Schluessel- beziehungsweise Schloss-Symbols in der Adressleiste Ihres Browsers.
+              Schlüssel- beziehungsweise Schloss-Symbols in der Adressleiste Ihres Browsers.
             </p>
             <p>
-              Passwoerter werden mittels branchenüblicher Hashing-Verfahren (bcrypt) gespeichert und
+              Passwörter werden mittels branchenüblicher Hashing-Verfahren (bcrypt) gespeichert und
               sind für uns nicht einsehbar. Datenbankzugriffe sind durch Row Level Security (RLS)
-              abgesichert, sodass jeder Nutzer ausschliesslich auf seine eigenen Daten zugreifen kann.
+              abgesichert, sodass jeder Nutzer ausschließlich auf seine eigenen Daten zugreifen kann.
             </p>
           </section>
 
@@ -234,7 +234,7 @@ function DatenschutzContent() {
           <section>
             <h2 className="text-xl font-semibold mb-3">11. Speicherdauer</h2>
             <p>
-              Personenbezogene Daten werden gelöscht, sobald der Zweck der Speicherung entfaellt:
+              Personenbezogene Daten werden gelöscht, sobald der Zweck der Speicherung entfällt:
             </p>
             <ul className="list-disc pl-6 space-y-1">
               <li><strong>Kontodaten</strong> – bis zur Löschung des Benutzerkontos durch den Nutzer</li>
@@ -252,9 +252,9 @@ function DatenschutzContent() {
             </p>
             <ul className="list-disc pl-6 space-y-1">
               <li><strong>Auskunftsrecht (Art. 15 DSGVO)</strong> – Sie haben das Recht, eine Bestätigung darüber zu verlangen, ob personenbezogene Daten verarbeitet werden und Auskunft über diese Daten zu erhalten.</li>
-              <li><strong>Recht auf Berichtigung (Art. 16 DSGVO)</strong> – Sie haben das Recht, die Berichtigung unrichtiger oder die Vervollstaendigung unvollstaendiger personenbezogener Daten zu verlangen.</li>
+              <li><strong>Recht auf Berichtigung (Art. 16 DSGVO)</strong> – Sie haben das Recht, die Berichtigung unrichtiger oder die Vervollständigung unvollständiger personenbezogener Daten zu verlangen.</li>
               <li><strong>Recht auf Löschung (Art. 17 DSGVO)</strong> – Sie haben das Recht, die Löschung Ihrer personenbezogenen Daten zu verlangen.</li>
-              <li><strong>Recht auf Einschraenkung (Art. 18 DSGVO)</strong> – Sie haben das Recht, die Einschraenkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.</li>
+              <li><strong>Recht auf Einschränkung (Art. 18 DSGVO)</strong> – Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.</li>
               <li><strong>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</strong> – Sie haben das Recht, Ihre Daten in einem strukturierten, gängigen und maschinenlesbaren Format zu erhalten.</li>
               <li><strong>Widerspruchsrecht (Art. 21 DSGVO)</strong> – Sie haben das Recht, jederzeit gegen die Verarbeitung Ihrer personenbezogenen Daten Widerspruch einzulegen.</li>
               <li><strong>Recht auf Widerruf (Art. 7 Abs. 3 DSGVO)</strong> – Sie haben das Recht, erteilte Einwilligungen jederzeit zu widerrufen.</li>
@@ -288,9 +288,9 @@ function DatenschutzContent() {
 
           {/* 14. Drittlandtransfer */}
           <section>
-            <h2 className="text-xl font-semibold mb-3">14. Datenübermittlung in Drittlaender</h2>
+            <h2 className="text-xl font-semibold mb-3">14. Datenübermittlung in Drittländer</h2>
             <p>
-              Soweit wir Daten in einem Drittland (d.h. ausserhalb der EU/des EWR) verarbeiten oder dies
+              Soweit wir Daten in einem Drittland (d.h. außerhalb der EU/des EWR) verarbeiten oder dies
               im Rahmen der Inanspruchnahme von Diensten Dritter geschieht, erfolgt dies nur, wenn es
               zur Erfüllung unserer (vor)vertraglichen Pflichten, auf Grundlage Ihrer Einwilligung,
               aufgrund einer rechtlichen Verpflichtung oder auf Grundlage unserer berechtigten Interessen geschieht.

@@ -821,7 +821,7 @@ function FAQSection() {
     },
     {
       q: 'Wie kann ich mein Abo kündigen?',
-      a: 'Jederzeit mit einem Klick im Dashboard unter Einstellungen. Die Kuendigung wird sofort wirksam am Ende des aktuellen Abrechnungszeitraums. Keine versteckten Fristen, keine Tricks.',
+      a: 'Jederzeit mit einem Klick im Dashboard unter Einstellungen. Die Kündigung wird sofort wirksam am Ende des aktuellen Abrechnungszeitraums. Keine versteckten Fristen, keine Tricks.',
     },
   ]
 
@@ -834,7 +834,7 @@ function FAQSection() {
               FAQ
             </Badge>
             <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              Haeufig gestellte Fragen
+              Häufig gestellte Fragen
             </h2>
           </div>
         </Reveal>
@@ -965,7 +965,7 @@ const FAQ_JSONLD = {
     {
       '@type': 'Question',
       name: 'Wie kann ich mein Abo kündigen?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Jederzeit mit einem Klick im Dashboard unter Einstellungen. Die Kuendigung wird sofort wirksam am Ende des aktuellen Abrechnungszeitraums. Keine versteckten Fristen, keine Tricks.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Jederzeit mit einem Klick im Dashboard unter Einstellungen. Die Kündigung wird sofort wirksam am Ende des aktuellen Abrechnungszeitraums. Keine versteckten Fristen, keine Tricks.' },
     },
   ],
 }
