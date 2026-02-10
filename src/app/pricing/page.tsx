@@ -9,6 +9,7 @@ import { Badge } from '@/components/ui/badge'
 import { Switch } from '@/components/ui/switch'
 import { Label } from '@/components/ui/label'
 import { Check, Crown, Calculator, Zap, ArrowLeft, Loader2, CheckCircle } from 'lucide-react'
+import { toast } from 'sonner'
 import { EmbeddedCheckoutProvider, EmbeddedCheckout } from '@stripe/react-stripe-js'
 import Link from 'next/link'
 import { useState, useCallback, useEffect } from 'react'
@@ -123,13 +124,9 @@ function PricingContent() {
   const [clientSecret, setClientSecret] = useState<string | null>(null)
   const [checkoutLoading, setCheckoutLoading] = useState(false)
 
-  // Check for return from checkout
-  const params = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null
-  const sessionId = params?.get('session_id')
-
-  if (sessionId) {
-    return <CheckoutReturn />
-  }
+  const fetchClientSecret = useCallback(() => {
+    return Promise.resolve(clientSecret!)
+  }, [clientSecret])
 
   const handleCheckout = async (priceId: string) => {
     if (!user) {
@@ -150,19 +147,30 @@ function PricingContent() {
       })
 
       const data = await res.json()
+      if (!res.ok) {
+        toast.error(data.error || 'Checkout konnte nicht gestartet werden.')
+        return
+      }
       if (data.clientSecret) {
         setClientSecret(data.clientSecret)
+      } else {
+        toast.error('Keine Antwort vom Zahlungsanbieter. Bitte versuche es erneut.')
       }
     } catch (err) {
       console.error('Checkout error:', err)
+      toast.error('Verbindungsfehler. Bitte versuche es erneut.')
     } finally {
       setCheckoutLoading(false)
     }
   }
 
-  const fetchClientSecret = useCallback(() => {
-    return Promise.resolve(clientSecret!)
-  }, [clientSecret])
+  // Check for return from checkout
+  const params = typeof window !== 'undefined' ? new URLSearchParams(window.location.search) : null
+  const sessionId = params?.get('session_id')
+
+  if (sessionId) {
+    return <CheckoutReturn />
+  }
 
   const basicPlan = yearly ? STRIPE_PLANS.basic_yearly : STRIPE_PLANS.basic_monthly
   const proPlan = yearly ? STRIPE_PLANS.pro_yearly : STRIPE_PLANS.pro_monthly
