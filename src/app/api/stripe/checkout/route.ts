@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import type Stripe from 'stripe'
 import { getSupabaseAdmin } from '@/lib/supabase-admin'
 import { getStripeServer } from '@/lib/stripe-server'
 import { STRIPE_PLANS } from '@/lib/stripe'
@@ -32,7 +33,7 @@ export async function POST(request: NextRequest) {
       .single()
 
     const stripe = getStripeServer()
-    const sessionParams: Record<string, unknown> = {
+    const params: Stripe.Checkout.SessionCreateParams = {
       mode: 'subscription',
       ui_mode: 'embedded',
       line_items: [{ price: priceId, quantity: 1 }],
@@ -44,16 +45,17 @@ export async function POST(request: NextRequest) {
 
     // Reuse existing Stripe customer if available
     if (existingSub?.stripe_customer_id && existingSub.stripe_customer_id !== 'promo') {
-      sessionParams.customer = existingSub.stripe_customer_id
+      params.customer = existingSub.stripe_customer_id
     } else {
-      sessionParams.customer_email = user.email
+      params.customer_email = user.email
     }
 
-    const session = await stripe.checkout.sessions.create(sessionParams)
+    const session = await stripe.checkout.sessions.create(params)
 
     return NextResponse.json({ clientSecret: session.client_secret })
-  } catch (err) {
+  } catch (err: unknown) {
     console.error('Checkout session error:', err)
-    return NextResponse.json({ error: 'Server-Fehler' }, { status: 500 })
+    const message = err instanceof Error ? err.message : 'Unbekannter Fehler'
+    return NextResponse.json({ error: `Checkout-Fehler: ${message}` }, { status: 500 })
   }
 }
