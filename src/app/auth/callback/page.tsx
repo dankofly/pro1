@@ -84,7 +84,7 @@ export default function AuthCallbackPage() {
               </div>
               <CardTitle>Fehler bei der Bestätigung</CardTitle>
               <CardDescription>
-                Der Link ist abgelaufen oder ungueltig. Bitte registriere dich erneut.
+                Der Link ist abgelaufen oder ungültig. Bitte registriere dich erneut.
               </CardDescription>
             </>
           )}

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
-import { isActiveStatus, type PlanTier } from '@/lib/lemonsqueezy'
+import { isActiveStatus, type PlanTier } from '@/lib/stripe'
 import type { User } from '@supabase/supabase-js'
 
 export interface SubscriptionInfo {

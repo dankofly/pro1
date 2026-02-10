@@ -121,11 +121,11 @@ function DashboardContent() {
 
     const json = await res.json().catch(() => ({}))
     if (res.ok) {
-      toast.success('Code eingeloest! Du hast jetzt SVS Checker Pro.')
+      toast.success('Code eingelöst! Du hast jetzt SVS Checker Pro.')
       setPromoCode('')
       subscription.refresh()
     } else {
-      toast.error(json.error || 'Fehler beim Einloesen')
+      toast.error(json.error || 'Fehler beim Einlösen')
     }
     setRedeeming(false)
   }
@@ -236,7 +236,7 @@ function DashboardContent() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Gift className="h-5 w-5 text-amber-500" />
-                Promo-Code einloesen
+                Promo-Code einlösen
               </CardTitle>
               <CardDescription>Hast du einen Promo-Code? Löse ihn hier ein für SVS Checker Pro.</CardDescription>
             </CardHeader>
@@ -250,7 +250,7 @@ function DashboardContent() {
                   onKeyDown={(e) => e.key === 'Enter' && handleRedeemPromo()}
                 />
                 <Button onClick={handleRedeemPromo} disabled={redeeming || !promoCode.trim()}>
-                  {redeeming ? 'Einloesen...' : 'Einloesen'}
+                  {redeeming ? 'Einlösen...' : 'Einlösen'}
                 </Button>
               </div>
             </CardContent>

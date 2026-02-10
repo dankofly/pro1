@@ -47,9 +47,9 @@ export async function POST(request: NextRequest) {
     // Subscription auf Pro setzen (gleicher Upsert wie beim Webhook)
     const { error: subError } = await admin.from('subscriptions').upsert({
       user_id: user.id,
-      lemonsqueezy_subscription_id: `promo_${promoId}`,
-      lemonsqueezy_customer_id: 'promo',
-      lemonsqueezy_order_id: null,
+      stripe_subscription_id: `promo_${promoId}`,
+      stripe_customer_id: 'promo',
+      stripe_order_id: null,
       variant_id: 'promo',
       plan: 'pro',
       status: 'active',

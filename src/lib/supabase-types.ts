@@ -54,9 +54,9 @@ export interface Database {
         Row: {
           id: string
           user_id: string
-          lemonsqueezy_subscription_id: string
-          lemonsqueezy_customer_id: string
-          lemonsqueezy_order_id: string | null
+          stripe_subscription_id: string
+          stripe_customer_id: string
+          stripe_order_id: string | null
           variant_id: string
           plan: 'basic' | 'pro'
           status: string
@@ -71,9 +71,9 @@ export interface Database {
         }
         Insert: {
           user_id: string
-          lemonsqueezy_subscription_id: string
-          lemonsqueezy_customer_id: string
-          lemonsqueezy_order_id?: string | null
+          stripe_subscription_id: string
+          stripe_customer_id: string
+          stripe_order_id?: string | null
           variant_id: string
           plan: 'basic' | 'pro'
           status?: string

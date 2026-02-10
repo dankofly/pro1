@@ -1,13 +1,14 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { AppShell, useAppShell } from '@/components/svs/app-shell'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Crown, ExternalLink, User, Mail, Calendar, Shield, LogOut } from 'lucide-react'
+import { Crown, ExternalLink, User, Mail, Calendar, LogOut, Loader2 } from 'lucide-react'
+import { supabase } from '@/lib/supabase'
 
 function ProfilContent() {
   const router = useRouter()
@@ -35,11 +36,30 @@ function ProfilContent() {
         ? 'Gekuendigt'
         : subscription.status === 'past_due'
           ? 'Zahlung ausstehend'
-          : subscription.status === 'on_trial'
+          : subscription.status === 'trialing'
             ? 'Testphase'
             : subscription.isFree
               ? 'Kostenlos'
               : subscription.status ?? 'Unbekannt'
+
+  const [portalLoading, setPortalLoading] = useState(false)
+
+  const openPortal = async () => {
+    setPortalLoading(true)
+    try {
+      const { data: { session } } = await supabase.auth.getSession()
+      const res = await fetch('/api/stripe/portal', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${session?.access_token}` },
+      })
+      const data = await res.json()
+      if (data.url) window.location.href = data.url
+    } catch (err) {
+      console.error('Portal error:', err)
+    } finally {
+      setPortalLoading(false)
+    }
+  }
 
   const onLogout = async () => {
     await handleLogout()
@@ -119,13 +139,17 @@ function ProfilContent() {
             )}
 
             <div className="flex flex-wrap gap-3 pt-2">
-              {subscription.customerPortalUrl && (
-                <a href={subscription.customerPortalUrl} target="_blank" rel="noopener noreferrer">
-                  <Button variant="outline" size="sm" className="bg-white/10 border-white/20 text-white hover:bg-white/20">
-                    <ExternalLink className="h-4 w-4 mr-1" />
-                    Abo verwalten
-                  </Button>
-                </a>
+              {subscription.isActive && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="bg-white/10 border-white/20 text-white hover:bg-white/20"
+                  onClick={openPortal}
+                  disabled={portalLoading}
+                >
+                  {portalLoading ? <Loader2 className="h-4 w-4 mr-1 animate-spin" /> : <ExternalLink className="h-4 w-4 mr-1" />}
+                  Abo verwalten
+                </Button>
               )}
               {subscription.isFree && (
                 <Link href="/pricing">

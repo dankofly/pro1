@@ -59,7 +59,7 @@ function DatenschutzContent() {
             </p>
             <ul className="list-disc pl-6 space-y-1">
               <li><strong>Einwilligung (Art. 6 Abs. 1 lit. a DSGVO)</strong> – Die betroffene Person hat ihre Einwilligung in die Verarbeitung der sie betreffenden personenbezogenen Daten für einen oder mehrere bestimmte Zwecke gegeben.</li>
-              <li><strong>Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO)</strong> – Die Verarbeitung ist für die Erfüllung eines Vertrags, dessen Vertragspartei die betroffene Person ist, oder zur Durchführung vorvertraglicher Massnahmen erforderlich.</li>
+              <li><strong>Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO)</strong> – Die Verarbeitung ist für die Erfüllung eines Vertrags, dessen Vertragspartei die betroffene Person ist, oder zur Durchführung vorvertraglicher Maßnahmen erforderlich.</li>
               <li><strong>Berechtigte Interessen (Art. 6 Abs. 1 lit. f DSGVO)</strong> – Die Verarbeitung ist zur Wahrung der berechtigten Interessen des Verantwortlichen oder eines Dritten erforderlich.</li>
             </ul>
           </section>
@@ -146,8 +146,8 @@ function DatenschutzContent() {
           <section>
             <h2 className="text-xl font-semibold mb-3">7. Zahlungsabwicklung</h2>
             <p>
-              Für kostenpflichtige Abonnements nutzen wir <strong>Lemon Squeezy</strong> (Lemon Squeezy, LLC,
-              16192 Coastal Highway, Lewes, Delaware 19958, USA) als Merchant of Record. Lemon Squeezy
+              Für kostenpflichtige Abonnements nutzen wir <strong>Stripe</strong> (Stripe, Inc.,
+              354 Oyster Point Blvd, South San Francisco, CA 94080, USA) als Zahlungsdienstleister. Stripe
               verarbeitet als eigenständiger Verantwortlicher:
             </p>
             <ul className="list-disc pl-6 space-y-1">
@@ -158,14 +158,14 @@ function DatenschutzContent() {
             </ul>
             <p>
               Wir selbst speichern <strong>keine</strong> Zahlungsinformationen (Kreditkartennummern etc.).
-              Wir erhalten von Lemon Squeezy lediglich den Abonnement-Status, die Kundennummer und
-              Verwaltungs-URLs über einen verschlüsselten Webhook.
+              Wir erhalten von Stripe lediglich den Abonnement-Status und die Kundennummer
+              über einen verschlüsselten Webhook.
             </p>
             <p>
               Die Verarbeitung erfolgt zur Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO). Weitere
               Informationen:{' '}
-              <a href="https://www.lemonsqueezy.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-                https://www.lemonsqueezy.com/privacy
+              <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                https://stripe.com/privacy
               </a>
             </p>
           </section>
@@ -209,7 +209,7 @@ function DatenschutzContent() {
             <ul className="list-disc pl-6 space-y-1">
               <li><strong>Supabase</strong> – Datenbank und Authentifizierung (EU-Region)</li>
               <li><strong>Netlify</strong> – Website-Hosting und Content Delivery</li>
-              <li><strong>Lemon Squeezy</strong> – Zahlungsabwicklung (als eigenständiger Verantwortlicher)</li>
+              <li><strong>Stripe</strong> – Zahlungsabwicklung (als eigenständiger Verantwortlicher)</li>
             </ul>
           </section>
 
@@ -296,7 +296,7 @@ function DatenschutzContent() {
               aufgrund einer rechtlichen Verpflichtung oder auf Grundlage unserer berechtigten Interessen geschieht.
             </p>
             <p>
-              Die Datenübermittlung in die USA (Netlify, Lemon Squeezy) erfolgt auf Grundlage von
+              Die Datenübermittlung in die USA (Netlify, Stripe) erfolgt auf Grundlage von
               EU-Standardvertragsklauseln (Art. 46 Abs. 2 lit. c DSGVO) und ggf. dem EU-U.S. Data
               Privacy Framework.
             </p>

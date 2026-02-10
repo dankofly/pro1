@@ -6,7 +6,7 @@ import { Calculator, LogIn, User, LogOut, Save, Crown, Briefcase, Shield } from 
 import { SvsTooltip } from './svs-tooltip'
 import Link from 'next/link'
 import { isAdmin } from '@/lib/admin'
-import type { PlanTier } from '@/lib/lemonsqueezy'
+import type { PlanTier } from '@/lib/stripe'
 
 interface HeaderProps {
   user?: { email: string } | null

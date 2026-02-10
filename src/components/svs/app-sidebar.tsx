@@ -6,7 +6,7 @@ import { Calculator, BarChart3, Clock, Crown, Shield, LogOut, User } from 'lucid
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { isAdmin } from '@/lib/admin'
-import type { PlanTier } from '@/lib/lemonsqueezy'
+import type { PlanTier } from '@/lib/stripe'
 
 interface AppSidebarProps {
   user?: { email: string } | null

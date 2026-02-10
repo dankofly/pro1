@@ -584,8 +584,8 @@ function PricingSection() {
     {
       name: 'Sicherheits-Plan',
       monthlyPrice: '9,90',
-      yearlyPrice: '7,90',
-      yearlyTotal: '94,80',
+      yearlyPrice: '8,25',
+      yearlyTotal: '99',
       unit: yearly ? 'pro Monat' : 'pro Monat',
       desc: 'Für Einsteiger',
       isFree: false,
@@ -605,8 +605,8 @@ function PricingSection() {
     {
       name: 'SVS Checker Pro',
       monthlyPrice: '19,90',
-      yearlyPrice: '15,90',
-      yearlyTotal: '190,80',
+      yearlyPrice: '16,58',
+      yearlyTotal: '199',
       unit: yearly ? 'pro Monat' : 'pro Monat',
       desc: 'Für Profis',
       isFree: false,
@@ -617,7 +617,7 @@ function PricingSection() {
         { text: 'Wasserfall-Analyse', included: true },
         { text: 'PDF-Export für Steuerberater', included: true },
         { text: 'Smart Alerts & Push', included: true },
-        { text: 'Prioritaets-Support', included: true },
+        { text: 'Prioritäts-Support', included: true },
       ],
       cta: 'Jetzt upgraden',
       href: '/pricing',
@@ -637,7 +637,7 @@ function PricingSection() {
               Starte kostenlos, upgrade wenn du bereit bist
             </h2>
             <p className="mt-4 text-blue-200/60 max-w-2xl mx-auto text-lg">
-              Keine versteckten Kosten. Monatlich kündbar. Sichere Zahlung via Lemon Squeezy.
+              Keine versteckten Kosten. Monatlich kündbar. Sichere Zahlung via Stripe.
             </p>
           </div>
         </Reveal>
@@ -746,7 +746,7 @@ function PricingSection() {
 
         <Reveal delay={300}>
           <p className="text-center text-blue-200/30 text-xs mt-8">
-            Alle Preise inkl. USt. {yearly ? 'Jährlich im Voraus. ' : 'Monatlich kündbar. '}Sichere Zahlung via Lemon Squeezy.
+            Alle Preise inkl. USt. {yearly ? 'Jährlich im Voraus. ' : 'Monatlich kündbar. '}Sichere Zahlung via Stripe.
           </p>
         </Reveal>
       </div>
