@@ -189,7 +189,7 @@ function RechnerContent() {
         <div className="grid grid-cols-1 lg:grid-cols-[360px_minmax(0,1fr)] gap-8">
 
           {/* Left - Inputs (sticky on desktop, scrollable) */}
-          <div className="lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto scrollbar-hide space-y-4 lg:pr-3 lg:pl-1 lg:pb-4">
+          <div className="lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto scrollbar-thin space-y-4 lg:pr-3 lg:pl-1 lg:pb-4">
             <YearSelector
               year={input.year}
               onYearChange={(y: TaxYear) => setField('year', y)}
