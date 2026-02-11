@@ -38,6 +38,8 @@ import { PauschalierungVergleich } from '@/components/rechner/pauschalierung-ver
 import { GmbhVergleichTabelle } from '@/components/rechner/gmbh-vergleich-tabelle'
 import { GewinnmaximiererVergleich } from '@/components/rechner/gewinnmaximierer-vergleich'
 import { GewinnfreibetragInfo } from '@/components/rechner/gewinnfreibetrag-info'
+import { PresetSelector } from '@/components/rechner/preset-selector'
+import { GeldflussDiagramm } from '@/components/rechner/geldfluss-diagramm'
 
 import { Button } from '@/components/ui/button'
 import { Alert, AlertDescription } from '@/components/ui/alert'
@@ -183,7 +185,7 @@ function RechnerContent() {
       </div>
 
       {/* Split Screen */}
-      <div ref={mainContentRef} tabIndex={-1} className="max-w-7xl mx-auto px-4 sm:px-6 py-6 outline-none">
+      <div ref={mainContentRef} id="main-content" tabIndex={-1} className="max-w-7xl mx-auto px-4 sm:px-6 py-6 outline-none">
         <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-6">
 
           {/* Left - Inputs (sticky on desktop, scrollable) */}
@@ -192,6 +194,8 @@ function RechnerContent() {
               year={input.year}
               onYearChange={(y: TaxYear) => setField('year', y)}
             />
+
+            <PresetSelector currentInput={input} dispatch={dispatch} />
 
             <UmsatzAufwaendeSection
               jahresumsatz={input.jahresumsatz}
@@ -303,6 +307,15 @@ function RechnerContent() {
                 netto={svs.echtesNetto}
               />
             </div>
+
+            <GeldflussDiagramm
+              umsatz={result.umsatz}
+              aufwaende={result.aufwaendeEffektiv}
+              gewinn={result.gewinn}
+              svs={svs.endgueltigeSVS}
+              est={svs.einkommensteuer}
+              netto={svs.echtesNetto}
+            />
 
             {!svs.belowMinimum && (
               <>

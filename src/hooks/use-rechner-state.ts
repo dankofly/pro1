@@ -82,6 +82,9 @@ function rechnerReducer(state: RechnerInput, action: RechnerAction): RechnerInpu
     case 'LOAD_SAVED':
       return action.input
 
+    case 'LOAD_PRESET':
+      return { ...state, ...action.preset }
+
     default:
       return state
   }

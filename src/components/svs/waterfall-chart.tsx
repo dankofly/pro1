@@ -27,7 +27,7 @@ function WaterfallBar({ label, amount, total, color, isResult }: {
         </span>
       </div>
       <div className="flex-1 flex items-center gap-2">
-        <div className="flex-1 h-8 bg-slate-100 rounded-md overflow-hidden">
+        <div className="flex-1 h-8 bg-primary/5 rounded-md overflow-hidden">
           <div
             className={`h-full ${color} rounded-md transition-all duration-500 ease-out`}
             style={{ width: `${animated}%` }}
@@ -43,7 +43,7 @@ function WaterfallBar({ label, amount, total, color, isResult }: {
 
 export function WaterfallChart({ gewinn, result }: WaterfallChartProps) {
   return (
-    <div className="glass rounded-xl p-4 sm:p-5 space-y-3">
+    <div className="glass rounded-xl p-4 sm:p-5 space-y-3" role="img" aria-label="Abzugs-Wasserfall: Vom Brutto-Gewinn zum Netto">
       <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-4">
         Abzugs-Wasserfall
       </p>
@@ -51,7 +51,7 @@ export function WaterfallChart({ gewinn, result }: WaterfallChartProps) {
         label="Brutto-Gewinn"
         amount={gewinn}
         total={gewinn}
-        color="bg-slate-600"
+        color="bg-primary"
       />
       <WaterfallBar
         label="− SVS Beiträge"
@@ -82,7 +82,7 @@ export function WaterfallChart({ gewinn, result }: WaterfallChartProps) {
           color="bg-orange-400"
         />
       )}
-      <div className="border-t border-dashed border-slate-200 pt-3">
+      <div className="border-t border-dashed border-border pt-3">
         <WaterfallBar
           label="Echtes Netto"
           amount={result.echtesNetto}

@@ -111,8 +111,8 @@ export function UmsatzAufwaendeSection({
     <div className="glass rounded-2xl p-5 sm:p-6">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
-        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900">
-          <Receipt className="h-4 w-4 text-white" />
+        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary">
+          <Receipt className="h-4 w-4 text-primary-foreground" />
         </div>
         <h2 className="text-lg font-semibold tracking-tight font-heading">
           Umsatz & Aufwände
@@ -130,7 +130,7 @@ export function UmsatzAufwaendeSection({
           suffix="/ Jahr"
         />
 
-        <div className="border-t border-slate-200/60" />
+        <div className="border-t border-border/60" />
 
         {/* Aufwände Gesamt */}
         {!detailOpen && (
@@ -212,7 +212,7 @@ export function UmsatzAufwaendeSection({
         </Collapsible>
 
         {/* Computed Gewinn */}
-        <div className="border-t border-slate-200/60 pt-4">
+        <div className="border-t border-border/60 pt-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <TrendingUp className="h-4 w-4 text-emerald-600" />

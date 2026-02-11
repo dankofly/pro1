@@ -100,6 +100,14 @@ const config: Config = {
   			'scale-in': {
   				from: { opacity: '0', transform: 'scale(0.95)' },
   				to: { opacity: '1', transform: 'scale(1)' }
+  			},
+  			'pulse-subtle': {
+  				'0%, 100%': { opacity: '1' },
+  				'50%': { opacity: '0.7' },
+  			},
+  			'shimmer': {
+  				'0%': { backgroundPosition: '-200% 0' },
+  				'100%': { backgroundPosition: '200% 0' },
   			}
   		},
   		animation: {
@@ -107,7 +115,9 @@ const config: Config = {
   			'accordion-up': 'accordion-up 0.2s ease-out',
   			'fade-up': 'fade-up 0.4s ease-out',
   			'slide-in': 'slide-in 0.3s ease-out',
-  			'scale-in': 'scale-in 0.2s ease-out'
+  			'scale-in': 'scale-in 0.2s ease-out',
+  			'pulse-subtle': 'pulse-subtle 2s ease-in-out infinite',
+  			'shimmer': 'shimmer 2s ease-in-out infinite'
   		}
   	}
   },

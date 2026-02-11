@@ -91,7 +91,7 @@ export function InvestitionenSection({ investitionen, afa, isPro, dispatch }: In
         <CollapsibleContent>
           <ProSectionWrapper isPro={isPro} featureName="Investitionen & AfA">
             <div className="space-y-4 px-5 pb-5">
-              <div className="border-t border-slate-200/60" />
+              <div className="border-t border-border/60" />
               <InvestRow
                 id="invest-einrichtung"
                 label="Einrichtung & Büroausstattung (8 Jahre)"

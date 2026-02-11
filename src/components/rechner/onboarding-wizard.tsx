@@ -44,16 +44,16 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
       <div className="w-full max-w-lg">
         {/* Progress */}
         <div className="flex items-center justify-center gap-2 mb-8">
-          <div className={`h-2 w-16 rounded-full transition-colors ${step >= 1 ? 'bg-slate-900' : 'bg-slate-200'}`} />
-          <div className={`h-2 w-16 rounded-full transition-colors ${step >= 2 ? 'bg-slate-900' : 'bg-slate-200'}`} />
+          <div className={`h-2 w-16 rounded-full transition-colors ${step >= 1 ? 'bg-primary' : 'bg-slate-200'}`} />
+          <div className={`h-2 w-16 rounded-full transition-colors ${step >= 2 ? 'bg-primary' : 'bg-slate-200'}`} />
         </div>
 
         {step === 1 && (
           <div className="glass rounded-2xl p-6 sm:p-8 space-y-6 animate-fade-up">
             <div className="text-center space-y-2">
               <div className="flex justify-center">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100">
-                  <Building2 className="h-6 w-6 text-foreground" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
+                  <Building2 className="h-6 w-6 text-primary" />
                 </div>
               </div>
               <h2 className="text-xl font-bold tracking-tight">Dein Unternehmen</h2>
@@ -110,8 +110,8 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
           <div className="glass rounded-2xl p-6 sm:p-8 space-y-6 animate-fade-up">
             <div className="text-center space-y-2">
               <div className="flex justify-center">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100">
-                  <Shield className="h-6 w-6 text-foreground" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
+                  <Shield className="h-6 w-6 text-primary" />
                 </div>
               </div>
               <h2 className="text-xl font-bold tracking-tight">Versicherung</h2>
@@ -143,7 +143,7 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
                 {VERSICHERUNGSARTEN.map((va) => (
                   <label
                     key={va.value}
-                    className="flex items-start gap-3 rounded-xl border border-border p-3 cursor-pointer hover:bg-muted/50 transition-colors has-[:checked]:border-slate-900 has-[:checked]:bg-slate-50"
+                    className="flex items-start gap-3 rounded-xl border border-border p-3 cursor-pointer hover:bg-muted/50 transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/5"
                   >
                     <RadioGroupItem value={va.value} className="mt-0.5" />
                     <div>

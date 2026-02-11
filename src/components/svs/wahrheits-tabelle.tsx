@@ -16,11 +16,11 @@ export function WahrheitsTabelle({ gewinn, result, year }: WahrheitsTabelleProps
   const nettoPercent = gewinn > 0 ? (result.echtesNetto / gewinn) * 100 : 0
 
   return (
-    <div className="glass-dark rounded-2xl p-5 sm:p-6 text-white">
+    <div className="glass-dark rounded-2xl p-5 sm:p-6 text-white blue-glow" aria-label="Finanz-Übersicht: Gewinn, Abzüge und Netto">
       <div className="flex items-center justify-between pb-3">
         <div className="flex items-center gap-2 text-sm font-semibold text-white/80 uppercase tracking-wide">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10">
-            <Eye className="h-4 w-4 text-white" />
+            <Eye className="h-4 w-4 text-white/90" />
           </div>
           Die Wahrheits-Tabelle
         </div>

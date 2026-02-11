@@ -30,12 +30,12 @@ export function HeroNumber({ echtesNetto, gewinn }: HeroNumberProps) {
       <p className="text-sm font-medium text-muted-foreground mb-2 uppercase tracking-wider">
         Das bleibt dir wirklich
       </p>
-      <p className="text-5xl sm:text-6xl lg:text-7xl font-bold text-emerald-500 num-transition tracking-tight font-mono">
+      <p className="text-5xl sm:text-6xl lg:text-7xl font-bold text-emerald-500 num-transition tracking-tight font-mono" aria-live="polite" aria-atomic="true">
         {formatted}
       </p>
       <div className="flex items-center justify-center gap-3 mt-4">
         <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200 font-mono">
-          <TrendingUp className="h-3 w-3 mr-1" />
+          <TrendingUp className="h-3 w-3 mr-1" aria-hidden="true" />
           {nettoPercent.toFixed(1)}% Netto
         </Badge>
         <div className="flex items-center gap-2">

@@ -75,7 +75,7 @@ export function WeitereEinkuenfteSection({
         <CollapsibleContent>
           <ProSectionWrapper isPro={isPro} featureName="Weitere Einkünfte">
             <div className="space-y-4 px-5 pb-5">
-              <div className="border-t border-slate-200/60" />
+              <div className="border-t border-border/60" />
 
               <WEInput
                 id="brutto-entgelt"

@@ -227,6 +227,7 @@ export type RechnerAction =
   | { type: 'COMPLETE_ONBOARDING'; stammdaten: Stammdaten }
   | { type: 'RESET' }
   | { type: 'LOAD_SAVED'; input: RechnerInput }
+  | { type: 'LOAD_PRESET'; preset: Partial<RechnerInput> }
 
 // ── Default Values ──────────────────────────────────────────
 

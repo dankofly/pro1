@@ -4,20 +4,20 @@
 
 @layer base {
   :root {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
+    --background: 210 33% 98%;
+    --foreground: 213 32% 12%;
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 213 32% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 222 47% 11%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
-    --muted: 210 40% 96%;
+    --popover-foreground: 213 32% 12%;
+    --primary: 207 100% 38%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 33% 96%;
+    --secondary-foreground: 213 32% 12%;
+    --muted: 210 33% 96%;
     --muted-foreground: 215 16% 47%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222 47% 11%;
+    --accent: 28 91% 54%;
+    --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
     --success: 160 84% 39%;
@@ -26,60 +26,60 @@
     --warning-foreground: 0 0% 100%;
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 222 47% 11%;
+    --ring: 207 100% 38%;
     --radius: 0.75rem;
-    --chart-1: 160 84% 39%;
-    --chart-2: 222 47% 11%;
-    --chart-3: 0 84% 60%;
-    --chart-4: 38 92% 50%;
+    --chart-1: 207 100% 38%;
+    --chart-2: 28 91% 54%;
+    --chart-3: 160 84% 39%;
+    --chart-4: 0 84% 60%;
     --chart-5: 215 16% 47%;
-    --sidebar-background: 222 47% 11%;
-    --sidebar-foreground: 210 40% 96%;
-    --sidebar-primary: 160 84% 39%;
+    --sidebar-background: 210 40% 14%;
+    --sidebar-foreground: 210 33% 96%;
+    --sidebar-primary: 207 100% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 217 33% 17%;
-    --sidebar-accent-foreground: 210 40% 96%;
-    --sidebar-border: 217 33% 17%;
-    --sidebar-ring: 160 84% 39%;
+    --sidebar-accent: 210 35% 20%;
+    --sidebar-accent-foreground: 210 33% 96%;
+    --sidebar-border: 210 35% 20%;
+    --sidebar-ring: 207 100% 50%;
   }
 
   .dark {
-    --background: 222 47% 11%;
+    --background: 215 28% 10%;
     --foreground: 210 40% 98%;
-    --card: 217 33% 17%;
+    --card: 215 25% 15%;
     --card-foreground: 210 40% 98%;
-    --popover: 217 33% 17%;
+    --popover: 215 25% 15%;
     --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222 47% 11%;
-    --secondary: 217 33% 17%;
+    --primary: 207 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 215 25% 18%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 217 33% 17%;
+    --muted: 215 25% 18%;
     --muted-foreground: 215 20% 65%;
-    --accent: 217 33% 17%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 63% 31%;
+    --accent: 28 91% 54%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 63% 45%;
     --destructive-foreground: 210 40% 98%;
     --success: 160 84% 39%;
     --success-foreground: 0 0% 100%;
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
-    --border: 217 33% 17%;
-    --input: 217 33% 17%;
-    --ring: 212 27% 84%;
-    --chart-1: 160 84% 39%;
-    --chart-2: 210 40% 98%;
-    --chart-3: 0 84% 60%;
-    --chart-4: 38 92% 50%;
+    --border: 215 25% 20%;
+    --input: 215 25% 20%;
+    --ring: 207 100% 50%;
+    --chart-1: 207 100% 50%;
+    --chart-2: 28 91% 54%;
+    --chart-3: 160 84% 39%;
+    --chart-4: 0 84% 60%;
     --chart-5: 215 20% 65%;
-    --sidebar-background: 222 47% 11%;
+    --sidebar-background: 215 28% 10%;
     --sidebar-foreground: 210 40% 96%;
-    --sidebar-primary: 160 84% 39%;
+    --sidebar-primary: 207 100% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 217 33% 17%;
+    --sidebar-accent: 215 25% 18%;
     --sidebar-accent-foreground: 210 40% 96%;
-    --sidebar-border: 217 33% 17%;
-    --sidebar-ring: 160 84% 39%;
+    --sidebar-border: 215 25% 20%;
+    --sidebar-ring: 207 100% 50%;
   }
 }
 
@@ -95,21 +95,26 @@
 @layer components {
   /* Card styles */
   .glass {
-    @apply bg-white border border-slate-200 shadow-sm;
+    @apply bg-white border border-slate-200/80 shadow-sm;
   }
   .glass-dark {
-    @apply bg-slate-900 border border-slate-700/50 shadow-lg;
+    @apply bg-[hsl(207,70%,18%)] border border-[hsl(207,50%,25%)] shadow-lg;
   }
   .glass-subtle {
-    @apply bg-slate-50 border border-slate-200;
+    @apply bg-slate-50/80 border border-slate-200/60;
   }
 
-  /* Gold Glow for Pro Features */
+  /* Pro Feature Glow (Orange accent) */
   .gold-glow {
-    box-shadow: 0 0 30px rgba(245, 158, 11, 0.15), 0 0 60px rgba(245, 158, 11, 0.05);
+    box-shadow: 0 0 30px rgba(245, 130, 32, 0.15), 0 0 60px rgba(245, 130, 32, 0.05);
   }
   .gold-glow-strong {
-    box-shadow: 0 0 30px rgba(245, 158, 11, 0.3), 0 0 60px rgba(245, 158, 11, 0.1);
+    box-shadow: 0 0 30px rgba(245, 130, 32, 0.3), 0 0 60px rgba(245, 130, 32, 0.1);
+  }
+
+  /* Blue primary glow */
+  .blue-glow {
+    box-shadow: 0 0 30px rgba(0, 115, 194, 0.15), 0 0 60px rgba(0, 115, 194, 0.05);
   }
 
   /* Infinite scroll carousel */
@@ -129,6 +134,40 @@
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     font-variant-numeric: tabular-nums;
   }
+
+  /* Micro-interactions */
+  .card-hover {
+    @apply transition-all duration-200;
+  }
+  .card-hover:hover {
+    @apply shadow-md -translate-y-0.5;
+  }
+
+  /* Input focus glow */
+  .input-glow:focus-within {
+    box-shadow: 0 0 0 3px hsl(207 100% 38% / 0.1);
+  }
+
+  /* Smooth value change flash */
+  @keyframes value-flash {
+    0% { background-color: hsl(207 100% 38% / 0.1); }
+    100% { background-color: transparent; }
+  }
+  .value-flash {
+    animation: value-flash 0.6s ease-out;
+  }
+
+  /* Staggered fade-in for lists */
+  .stagger-fade > * {
+    opacity: 0;
+    animation: fade-up 0.4s ease-out forwards;
+  }
+  .stagger-fade > *:nth-child(1) { animation-delay: 0ms; }
+  .stagger-fade > *:nth-child(2) { animation-delay: 50ms; }
+  .stagger-fade > *:nth-child(3) { animation-delay: 100ms; }
+  .stagger-fade > *:nth-child(4) { animation-delay: 150ms; }
+  .stagger-fade > *:nth-child(5) { animation-delay: 200ms; }
+  .stagger-fade > *:nth-child(6) { animation-delay: 250ms; }
 
   /* Status dot pulse */
   .pulse-dot {

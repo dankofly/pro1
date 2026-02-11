@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { Label } from '@/components/ui/label'
 import {
   Collapsible, CollapsibleTrigger, CollapsibleContent,
 } from '@/components/ui/collapsible'
@@ -54,7 +53,7 @@ export function PauschalierungSection({
         <CollapsibleContent>
           <ProSectionWrapper isPro={isPro} featureName="Pauschalierung">
             <div className="space-y-4 px-5 pb-5">
-              <div className="border-t border-slate-200/60" />
+              <div className="border-t border-border/60" />
               <RadioGroup
                 value={pauschalierungArt}
                 onValueChange={(v) => setArt(v as PauschalierungArt)}

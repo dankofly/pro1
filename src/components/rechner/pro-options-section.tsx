@@ -48,7 +48,7 @@ export function ProOptionsSection({ proOptions, year, isPro, dispatch }: ProOpti
         <CollapsibleContent>
           <ProSectionWrapper isPro={isPro} featureName="Steuer-Optimierung">
             <div className="space-y-6 px-5 pb-5">
-              <div className="border-t border-slate-200/60" />
+              <div className="border-t border-border/60" />
 
               {/* Kinder */}
               <div className="space-y-4">
@@ -105,7 +105,7 @@ export function ProOptionsSection({ proOptions, year, isPro, dispatch }: ProOpti
                 </div>
               </div>
 
-              <div className="border-t border-slate-200/60" />
+              <div className="border-t border-border/60" />
 
               {/* Alleinverdiener */}
               <div className="flex items-center justify-between gap-4">
@@ -119,7 +119,7 @@ export function ProOptionsSection({ proOptions, year, isPro, dispatch }: ProOpti
                 />
               </div>
 
-              <div className="border-t border-slate-200/60" />
+              <div className="border-t border-border/60" />
 
               {/* Pendler */}
               <div className="space-y-4">

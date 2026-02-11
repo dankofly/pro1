@@ -72,7 +72,7 @@ export function GewinnmaximiererSection({
         <CollapsibleContent>
           <ProSectionWrapper isPro={isPro} featureName="Gewinnmaximierer">
             <div className="space-y-4 px-5 pb-5">
-              <div className="border-t border-slate-200/60" />
+              <div className="border-t border-border/60" />
 
               <GMInput
                 id="zusatz-einnahmen"

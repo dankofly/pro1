@@ -40,13 +40,13 @@ export function BeitragsDetails({ result }: BeitragsDetailsProps) {
         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/10">
           <FileText className="h-4 w-4 text-blue-600" />
         </div>
-        Beitrags-Aufschluesselung
+        Beitrags-Aufschlüsselung
       </div>
 
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-slate-200/60">
+            <tr className="border-b border-border/60">
               <th className="text-left py-2.5 font-semibold text-muted-foreground">Beitragsart</th>
               <th className="text-right py-2.5 font-semibold text-muted-foreground">Satz</th>
               <th className="text-right py-2.5 font-semibold text-muted-foreground">Betrag / Jahr</th>
