@@ -3,14 +3,16 @@
 import { Badge } from '@/components/ui/badge'
 import { formatEuro } from '@/lib/format'
 import type { SvsResult } from '@/lib/svs-calculator'
+import type { TaxYear } from '@/lib/tax-constants'
 import { Eye } from 'lucide-react'
 
 interface WahrheitsTabelleProps {
   gewinn: number
   result: SvsResult
+  year: TaxYear
 }
 
-export function WahrheitsTabelle({ gewinn, result }: WahrheitsTabelleProps) {
+export function WahrheitsTabelle({ gewinn, result, year }: WahrheitsTabelleProps) {
   const nettoPercent = gewinn > 0 ? (result.echtesNetto / gewinn) * 100 : 0
 
   return (
@@ -47,11 +49,26 @@ export function WahrheitsTabelle({ gewinn, result }: WahrheitsTabelleProps) {
               <td className="py-3 text-right font-mono">{formatEuro(result.endgueltigeSVS)}</td>
               <td className="py-3 text-right font-mono">{formatEuro(result.endgueltigeSVS / 12)}</td>
             </tr>
-            <tr className="border-b border-white/10 text-red-300">
-              <td className="py-3">- Einkommensteuer</td>
-              <td className="py-3 text-right font-mono">{formatEuro(result.einkommensteuer)}</td>
-              <td className="py-3 text-right font-mono">{formatEuro(result.einkommensteuer / 12)}</td>
-            </tr>
+            {result.hasProOptions && (result.steuerBrutto - result.einkommensteuer) > 0 ? (
+              <>
+                <tr className="border-b border-white/10 text-red-300">
+                  <td className="py-3">- Einkommensteuer (Tarif)</td>
+                  <td className="py-3 text-right font-mono">{formatEuro(result.steuerBrutto)}</td>
+                  <td className="py-3 text-right font-mono">{formatEuro(result.steuerBrutto / 12)}</td>
+                </tr>
+                <tr className="border-b border-white/10 text-emerald-300">
+                  <td className="py-3">+ Absetzbeträge</td>
+                  <td className="py-3 text-right font-mono">{formatEuro(result.steuerBrutto - result.einkommensteuer)}</td>
+                  <td className="py-3 text-right font-mono">{formatEuro((result.steuerBrutto - result.einkommensteuer) / 12)}</td>
+                </tr>
+              </>
+            ) : (
+              <tr className="border-b border-white/10 text-red-300">
+                <td className="py-3">- Einkommensteuer</td>
+                <td className="py-3 text-right font-mono">{formatEuro(result.einkommensteuer)}</td>
+                <td className="py-3 text-right font-mono">{formatEuro(result.einkommensteuer / 12)}</td>
+              </tr>
+            )}
             <tr className="bg-emerald-500 text-white rounded-lg">
               <td className="py-3.5 pl-3 font-bold text-base rounded-l-lg">ECHTES NETTO</td>
               <td className="py-3.5 text-right font-mono font-bold text-base">{formatEuro(result.echtesNetto)}</td>
@@ -61,7 +78,7 @@ export function WahrheitsTabelle({ gewinn, result }: WahrheitsTabelleProps) {
         </table>
       </div>
       <p className="text-xs text-white/40 mt-3 text-center">
-        Tarifstufen 2024/25 - inkl. Grundfreibetrag (15%) - ohne Sonderfaelle
+        Tarifstufen {year} – inkl. Grundfreibetrag (15%){!result.hasProOptions && ' – ohne Sonderfälle'}
       </p>
     </div>
   )

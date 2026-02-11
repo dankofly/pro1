@@ -165,7 +165,7 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
           </div>
           <div className="mt-2 flex items-center justify-center gap-2">
             <span className="text-xs text-muted-foreground">
-              Annahme: ~27,5% Grenzsteuersatz
+              Grenzsteuersatz: {(result.grenzsteuersatz * 100).toFixed(0)}%
             </span>
           </div>
         </div>

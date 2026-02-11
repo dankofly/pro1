@@ -4,7 +4,7 @@ import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import { formatEuro } from '@/lib/format'
 import {
-  calculateMischEinkommen, CONFIG, YEAR_CONFIGS, TAX_YEARS,
+  calculateMischEinkommen, YEAR_CONFIGS, TAX_YEARS,
   type MischResult, type TaxYear,
 } from '@/lib/misch-einkommen'
 import { AppShell, useAppShell } from '@/components/svs/app-shell'
@@ -246,7 +246,7 @@ function SavingsSummary({ result }: { result: MischResult }) {
       {kinderCount && result.absetzbetraege.familienbonus > 0 && (
         <p className="text-emerald-700 text-xs">
           Davon Familienbonus Plus: {formatEuro(result.absetzbetraege.familienbonus)}/Jahr
-          (EUR {yc.familienbonusUnder18.toLocaleString('de-AT')}/Kind &lt;18J, EUR {yc.familienbonusOver18.toLocaleString('de-AT')}/Kind &gt;18J)
+          (EUR {yc.absetzbetraege.familienbonusUnder18.toLocaleString('de-AT')}/Kind &lt;18J, EUR {yc.absetzbetraege.familienbonusOver18.toLocaleString('de-AT')}/Kind &gt;18J)
         </p>
       )}
 
@@ -360,12 +360,12 @@ function MischContent() {
                   />
                   <div className="bg-blue-50 rounded-lg p-3 space-y-1 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">SV-Beitrag ({pct(CONFIG.employeeSvRate)})</span>
+                      <span className="text-muted-foreground">SV-Beitrag ({pct(yc.employeeSvRate)})</span>
                       <span className="font-mono text-red-600">-{formatEuro(result.anstellung.sv)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Werbungskostenpauschale</span>
-                      <span className="font-mono text-red-600">-{formatEuro(CONFIG.werbungskostenpauschale)}</span>
+                      <span className="font-mono text-red-600">-{formatEuro(yc.werbungskostenpauschale)}</span>
                     </div>
                     <div className="flex justify-between font-medium border-t pt-1">
                       <span>Steuerpflichtig</span>
@@ -396,15 +396,15 @@ function MischContent() {
                   />
                   <div className="bg-emerald-50 rounded-lg p-3 space-y-1 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">SVS PV ({pct(CONFIG.svsPvRate)})</span>
+                      <span className="text-muted-foreground">SVS PV ({pct(yc.svs.pvRate)})</span>
                       <span className="font-mono text-red-600">-{formatEuro(result.gewerbe.svsPv)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">SVS KV ({pct(CONFIG.svsKvRate)})</span>
+                      <span className="text-muted-foreground">SVS KV ({pct(yc.svs.kvRate)})</span>
                       <span className="font-mono text-red-600">-{formatEuro(result.gewerbe.svsKv)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">SVS MV ({pct(CONFIG.svsMvRate)})</span>
+                      <span className="text-muted-foreground">SVS MV ({pct(yc.svs.mvRate)})</span>
                       <span className="font-mono text-red-600">-{formatEuro(result.gewerbe.svsMv)}</span>
                     </div>
                     <div className="flex justify-between">
@@ -412,7 +412,7 @@ function MischContent() {
                       <span className="font-mono text-red-600">-{formatEuro(result.gewerbe.svsUv)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Gewinnfreibetrag ({pct(CONFIG.grundfreibetragRate)})</span>
+                      <span className="text-muted-foreground">Gewinnfreibetrag ({pct(yc.gewinnfreibetrag.grundfreibetragRate)})</span>
                       <span className="font-mono text-emerald-600">-{formatEuro(result.gewerbe.grundfreibetrag)}</span>
                     </div>
                     <div className="flex justify-between font-medium border-t pt-1">
@@ -441,12 +441,12 @@ function MischContent() {
                     <KinderInput
                       value={kinderUnter18}
                       onChange={setKinderUnter18}
-                      label={`Kinder unter 18 (FBP EUR ${yc.familienbonusUnder18.toLocaleString('de-AT')})`}
+                      label={`Kinder unter 18 (FBP EUR ${yc.absetzbetraege.familienbonusUnder18.toLocaleString('de-AT')})`}
                     />
                     <KinderInput
                       value={kinderUeber18}
                       onChange={setKinderUeber18}
-                      label={`Kinder über 18 (FBP EUR ${yc.familienbonusOver18.toLocaleString('de-AT')})`}
+                      label={`Kinder über 18 (FBP EUR ${yc.absetzbetraege.familienbonusOver18.toLocaleString('de-AT')})`}
                     />
                     <div className="flex items-center justify-between">
                       <Label htmlFor="avab" className="text-sm">Alleinverdiener/-erzieher</Label>
@@ -550,7 +550,7 @@ function MischContent() {
                 <AlertTriangle className="h-4 w-4 text-amber-600" />
                 <AlertDescription className="text-amber-800">
                   <strong>Achtung Versicherungsgrenze!</strong>{' '}
-                  Dein Gewinn überschreitet die SVS-Versicherungsgrenze von {formatEuro(CONFIG.versicherungsgrenze)} um nur{' '}
+                  Dein Gewinn überschreitet die SVS-Versicherungsgrenze von {formatEuro(yc.versicherungsgrenze)} um nur{' '}
                   <strong>{formatEuro(result.gewerbe.differenzZurGrenze)}</strong>.
                   Dadurch werden <strong>{formatEuro(result.gewerbe.svsMehrkosten)}</strong> an zusätzlichen SVS-Beiträgen (PV + KV + MV) fällig.
                   {result.gewerbe.differenzZurGrenze < result.gewerbe.svsMehrkosten && (
@@ -565,7 +565,7 @@ function MischContent() {
                 <ShieldCheck className="h-4 w-4 text-green-600" />
                 <AlertDescription className="text-green-800">
                   <strong>Unter der Versicherungsgrenze!</strong>{' '}
-                  Dein Gewinn von {formatEuro(jahresgewinn)} liegt unter {formatEuro(CONFIG.versicherungsgrenze)}.
+                  Dein Gewinn von {formatEuro(jahresgewinn)} liegt unter {formatEuro(yc.versicherungsgrenze)}.
                   Du zahlst nur die Unfallversicherung ({formatEuro(result.gewerbe.svsUv)}/Jahr). PV und KV entfallen.
                 </AlertDescription>
               </Alert>
@@ -650,7 +650,7 @@ function MischContent() {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {CONFIG.taxBrackets.filter(b => b.to !== Infinity || result.gesamtSteuerpflichtig > b.from).map((bracket, i) => {
+                    {yc.taxBrackets.filter(b => b.to !== Infinity || result.gesamtSteuerpflichtig > b.from).map((bracket, i) => {
                       const isActive = result.gesamtSteuerpflichtig > bracket.from
                       const inBracket = Math.max(0, Math.min(result.gesamtSteuerpflichtig, bracket.to) - bracket.from)
                       return (

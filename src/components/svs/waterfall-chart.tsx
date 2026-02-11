@@ -59,12 +59,29 @@ export function WaterfallChart({ gewinn, result }: WaterfallChartProps) {
         total={gewinn}
         color="bg-red-400"
       />
-      <WaterfallBar
-        label="− Einkommensteuer"
-        amount={-result.einkommensteuer}
-        total={gewinn}
-        color="bg-orange-400"
-      />
+      {result.hasProOptions && (result.steuerBrutto - result.einkommensteuer) > 0 ? (
+        <>
+          <WaterfallBar
+            label="− ESt (Tarif)"
+            amount={-result.steuerBrutto}
+            total={gewinn}
+            color="bg-orange-400"
+          />
+          <WaterfallBar
+            label="+ Absetzbeträge"
+            amount={result.steuerBrutto - result.einkommensteuer}
+            total={gewinn}
+            color="bg-emerald-400"
+          />
+        </>
+      ) : (
+        <WaterfallBar
+          label="− Einkommensteuer"
+          amount={-result.einkommensteuer}
+          total={gewinn}
+          color="bg-orange-400"
+        />
+      )}
       <div className="border-t border-dashed border-slate-200 pt-3">
         <WaterfallBar
           label="Echtes Netto"

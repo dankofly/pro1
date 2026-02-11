@@ -1,30 +1,44 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { formatEuro } from '@/lib/format'
+import { type TaxYear, YEAR_CONFIGS } from '@/lib/tax-constants'
 
-const BRACKETS = [
-  { from: 0, to: 12816, rate: 0, label: '0%', color: 'bg-emerald-400' },
-  { from: 12816, to: 20818, rate: 20, label: '20%', color: 'bg-emerald-500' },
-  { from: 20818, to: 34513, rate: 30, label: '30%', color: 'bg-amber-400' },
-  { from: 34513, to: 66612, rate: 40, label: '40%', color: 'bg-amber-500' },
-  { from: 66612, to: 99266, rate: 48, label: '48%', color: 'bg-orange-500' },
-  { from: 99266, to: 150000, rate: 50, label: '50%', color: 'bg-red-500' },
+const COLORS = [
+  'bg-emerald-400',
+  'bg-emerald-500',
+  'bg-amber-400',
+  'bg-amber-500',
+  'bg-orange-500',
+  'bg-red-400',
+  'bg-red-500',
 ]
 
 const MAX = 150000
 
 interface TaxBracketBarProps {
   steuerpflichtig: number
+  year: TaxYear
 }
 
-export function TaxBracketBar({ steuerpflichtig }: TaxBracketBarProps) {
+export function TaxBracketBar({ steuerpflichtig, year }: TaxBracketBarProps) {
+  const brackets = useMemo(() => {
+    return YEAR_CONFIGS[year].taxBrackets
+      .filter(b => b.from < MAX)
+      .map((b, i) => ({
+        from: b.from,
+        to: Math.min(b.to, MAX),
+        rate: Math.round(b.rate * 100),
+        label: `${Math.round(b.rate * 100)}%`,
+        color: COLORS[i] || COLORS[COLORS.length - 1],
+      }))
+  }, [year])
   const positionPercent = Math.min((steuerpflichtig / MAX) * 100, 100)
   const [openBracket, setOpenBracket] = useState<number | null>(null)
 
   // Find current bracket
-  const currentBracket = BRACKETS.findLast((b) => steuerpflichtig > b.from)
+  const currentBracket = brackets.findLast((b) => steuerpflichtig > b.from)
   const currentRate = currentBracket?.rate ?? 0
 
   return (
@@ -41,7 +55,7 @@ export function TaxBracketBar({ steuerpflichtig }: TaxBracketBarProps) {
       <div className="relative">
         {/* Bar */}
         <div className="flex h-3 rounded-full overflow-hidden gap-px">
-          {BRACKETS.map((b) => {
+          {brackets.map((b) => {
             const width = ((b.to - b.from) / MAX) * 100
             return (
               <Popover key={b.rate} open={openBracket === b.rate} onOpenChange={(open) => setOpenBracket(open ? b.rate : null)}>
@@ -77,7 +91,7 @@ export function TaxBracketBar({ steuerpflichtig }: TaxBracketBarProps) {
 
         {/* Labels */}
         <div className="flex justify-between mt-2">
-          {BRACKETS.map((b) => (
+          {brackets.map((b) => (
             <span
               key={b.rate}
               className={`text-[10px] font-mono ${steuerpflichtig >= b.from ? 'text-foreground font-medium' : 'text-muted-foreground/50'} transition-colors`}

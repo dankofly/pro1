@@ -2,101 +2,22 @@
 // Misch-Einkommen Rechner – Oesterreich 2024 / 2025 / 2026
 // Anstellung + Nebengewerbe kombiniert
 //
-// Jahresabhaengige Absetzbetraege (Inflationsanpassung).
-// Für neues Jahr: YEAR_CONFIGS ergänzen.
+// Importiert Steuer- und SV-Konstanten aus tax-constants.ts
+// (Single Source of Truth).
 // ============================================================
 
-// ── Jahresauswahl ────────────────────────────────────────────
+import {
+  type TaxYear,
+  TAX_YEARS,
+  YEAR_CONFIGS,
+  type AbsetzbetraegeConfig,
+  calcProgressiveTax,
+  getGrenzsteuersatz,
+  calcAvab,
+} from './tax-constants'
 
-export type TaxYear = '2024' | '2025' | '2026'
-
-export const TAX_YEARS: { value: TaxYear; label: string }[] = [
-  { value: '2024', label: '2024' },
-  { value: '2025', label: '2025' },
-  { value: '2026', label: '2026 (Prognose)' },
-]
-
-// ── Jahresabhaengige Absetzbetraege ─────────────────────────
-
-export interface AbsetzbetraegeConfig {
-  familienbonusUnder18: number
-  familienbonusOver18: number
-  avab1Kind: number
-  avab2Kinder: number
-  avab3Kinder: number
-  avabJeWeiteres: number
-  verkehrsabsetzbetrag: number
-  kindermehrbetrag: number
-}
-
-export const YEAR_CONFIGS: Record<TaxYear, AbsetzbetraegeConfig> = {
-  '2024': {
-    familienbonusUnder18: 2000,
-    familienbonusOver18: 700,
-    avab1Kind: 520,
-    avab2Kinder: 704,
-    avab3Kinder: 936,
-    avabJeWeiteres: 232,
-    verkehrsabsetzbetrag: 463,
-    kindermehrbetrag: 700,
-  },
-  '2025': {
-    familienbonusUnder18: 2000,
-    familienbonusOver18: 700,
-    avab1Kind: 572,
-    avab2Kinder: 750,
-    avab3Kinder: 989,
-    avabJeWeiteres: 239,
-    verkehrsabsetzbetrag: 463,
-    kindermehrbetrag: 700,
-  },
-  '2026': {
-    familienbonusUnder18: 2100,
-    familienbonusOver18: 735,
-    avab1Kind: 594,
-    avab2Kinder: 780,
-    avab3Kinder: 1027,
-    avabJeWeiteres: 260,
-    verkehrsabsetzbetrag: 481,
-    kindermehrbetrag: 727,
-  },
-}
-
-// ── Gemeinsame Konstanten (jahruebergreifend) ───────────────
-
-export const CONFIG = {
-  // ── Anstellung (DN-Anteil) ──────────────────────────────
-  // KV 3,87% + PV 10,25% + AV 3% + AK 0,5% + WF 0,5%
-  employeeSvRate: 0.1812,
-  werbungskostenpauschale: 132,
-  svHoechstbeitragsgrundlage: 72720, // Jahres-HBGL
-
-  // ── Selbstaendigkeit (SVS / GSVG) ──────────────────────
-  svsPvRate: 0.185,
-  svsKvRate: 0.068,
-  svsMvRate: 0.0153,
-  svsUvMonthly: 11.35,
-  svsMinBeitragsgrundlage: 6453.36,
-  svsMaxBeitragsgrundlage: 85260,
-
-  // ── Gewinnfreibetrag (§ 10 EStG) ───────────────────────
-  grundfreibetragRate: 0.15,
-  grundfreibetragMaxGewinn: 33000,
-
-  // ── Einkommensteuer-Tarif ──────────────────────────────
-  taxBrackets: [
-    { from: 0,       to: 12816,   rate: 0    },
-    { from: 12816,   to: 20818,   rate: 0.20 },
-    { from: 20818,   to: 34513,   rate: 0.30 },
-    { from: 34513,   to: 66612,   rate: 0.40 },
-    { from: 66612,   to: 99266,   rate: 0.48 },
-    { from: 99266,   to: 1000000, rate: 0.50 },
-    { from: 1000000, to: Infinity, rate: 0.55 },
-  ],
-
-  // ── Versicherungsgrenze Nebengewerbe ───────────────────
-  versicherungsgrenze: 6010.92,
-} as const
+// Re-export for consumers that import from this module
+export { type TaxYear, TAX_YEARS, YEAR_CONFIGS, type AbsetzbetraegeConfig }
 
 // ── Types ──────────────────────────────────────────────────
 
@@ -181,36 +102,40 @@ export interface MischResult {
 
 // ── Berechnungen ───────────────────────────────────────────
 
-export function calcAnstellung(brutto: number): AnstellungDetail {
-  const svBasis = Math.min(brutto, CONFIG.svHoechstbeitragsgrundlage)
-  const sv = svBasis * CONFIG.employeeSvRate
-  const steuerpflichtig = Math.max(0, brutto - sv - CONFIG.werbungskostenpauschale)
-  return { brutto, sv, werbungskosten: CONFIG.werbungskostenpauschale, steuerpflichtig }
+export function calcAnstellung(brutto: number, year: TaxYear): AnstellungDetail {
+  const cfg = YEAR_CONFIGS[year]
+  const svBasis = Math.min(brutto, cfg.svHoechstbeitragsgrundlageAngestellt)
+  const sv = svBasis * cfg.employeeSvRate
+  const steuerpflichtig = Math.max(0, brutto - sv - cfg.werbungskostenpauschale)
+  return { brutto, sv, werbungskosten: cfg.werbungskostenpauschale, steuerpflichtig }
 }
 
-export function calcGewerbe(gewinn: number): GewerbeDetail {
-  const ueberVersicherungsgrenze = gewinn > CONFIG.versicherungsgrenze
-  const differenzZurGrenze = gewinn - CONFIG.versicherungsgrenze
-  const svsUv = CONFIG.svsUvMonthly * 12
+export function calcGewerbe(gewinn: number, year: TaxYear): GewerbeDetail {
+  const cfg = YEAR_CONFIGS[year]
+  const ueberVersicherungsgrenze = gewinn > cfg.versicherungsgrenze
+  const differenzZurGrenze = gewinn - cfg.versicherungsgrenze
+  const svsUv = cfg.svs.uvMonthly * 12
 
   let svsPv = 0, svsKv = 0, svsMv = 0
   if (ueberVersicherungsgrenze) {
     const basis = Math.min(
-      Math.max(gewinn, CONFIG.svsMinBeitragsgrundlage),
-      CONFIG.svsMaxBeitragsgrundlage
+      Math.max(gewinn, cfg.svs.minBeitragsgrundlage),
+      cfg.svs.hoechstbeitrag
     )
-    svsPv = basis * CONFIG.svsPvRate
-    svsKv = basis * CONFIG.svsKvRate
-    svsMv = basis * CONFIG.svsMvRate
+    svsPv = basis * cfg.svs.pvRate
+    svsKv = basis * cfg.svs.kvRate
+    svsMv = basis * cfg.svs.mvRate
   }
 
   const svsGesamt = svsPv + svsKv + svsMv + svsUv
   const svsMehrkosten = ueberVersicherungsgrenze ? svsPv + svsKv + svsMv : 0
 
-  const grundfreibetragBasis = Math.min(gewinn, CONFIG.grundfreibetragMaxGewinn)
-  const grundfreibetrag = grundfreibetragBasis * CONFIG.grundfreibetragRate
+  // Steuerlicher Gewinn (nach SVS als Betriebsausgabe) als Basis für GFB (§10 EStG)
+  const steuerGewinn = Math.max(0, gewinn - svsGesamt)
+  const grundfreibetragBasis = Math.min(steuerGewinn, cfg.gewinnfreibetrag.grundfreibetragMaxGewinn)
+  const grundfreibetrag = grundfreibetragBasis * cfg.gewinnfreibetrag.grundfreibetragRate
 
-  const steuerpflichtig = Math.max(0, gewinn - svsGesamt - grundfreibetrag)
+  const steuerpflichtig = Math.max(0, steuerGewinn - grundfreibetrag)
 
   return {
     gewinn, svsPv, svsKv, svsMv, svsUv, svsGesamt,
@@ -220,24 +145,16 @@ export function calcGewerbe(gewinn: number): GewerbeDetail {
 }
 
 export function calcAbsetzbetraege(input: MischInput): AbsetzbetraegeDetail {
-  const yc = YEAR_CONFIGS[input.year]
-  const verkehrsabsetzbetrag = input.bruttoGehalt > 0 ? yc.verkehrsabsetzbetrag : 0
+  const cfg = YEAR_CONFIGS[input.year].absetzbetraege
+  const verkehrsabsetzbetrag = input.bruttoGehalt > 0 ? cfg.verkehrsabsetzbetrag : 0
   const familienbonus =
-    input.kinderUnter18 * yc.familienbonusUnder18 +
-    input.kinderUeber18 * yc.familienbonusOver18
+    input.kinderUnter18 * cfg.familienbonusUnder18 +
+    input.kinderUeber18 * cfg.familienbonusOver18
 
   let alleinverdiener = 0
   if (input.alleinverdiener) {
     const kinder = input.kinderUnter18 + input.kinderUeber18
-    if (kinder <= 1) {
-      alleinverdiener = yc.avab1Kind
-    } else if (kinder === 2) {
-      alleinverdiener = yc.avab2Kinder
-    } else if (kinder === 3) {
-      alleinverdiener = yc.avab3Kinder
-    } else {
-      alleinverdiener = yc.avab3Kinder + (kinder - 3) * yc.avabJeWeiteres
-    }
+    alleinverdiener = calcAvab(kinder, input.year)
   }
 
   return {
@@ -245,22 +162,6 @@ export function calcAbsetzbetraege(input: MischInput): AbsetzbetraegeDetail {
     kindermehrbetrag: 0, // wird in calcSteuer berechnet
     gesamt: verkehrsabsetzbetrag + familienbonus + alleinverdiener,
   }
-}
-
-export function calcProgressiveTax(taxableIncome: number): number {
-  let tax = 0
-  for (const b of CONFIG.taxBrackets) {
-    if (taxableIncome <= b.from) break
-    tax += (Math.min(taxableIncome, b.to) - b.from) * b.rate
-  }
-  return tax
-}
-
-function grenzsteuersatz(taxableIncome: number): number {
-  for (let i = CONFIG.taxBrackets.length - 1; i >= 0; i--) {
-    if (taxableIncome > CONFIG.taxBrackets[i].from) return CONFIG.taxBrackets[i].rate
-  }
-  return 0
 }
 
 // Steuerberechnung mit korrekter Absetzbetrags-Reihenfolge:
@@ -275,8 +176,8 @@ function calcSteuer(
   year: TaxYear,
   kinderCount: number,
 ): SteuerDetail {
-  const yc = YEAR_CONFIGS[year]
-  const steuerBrutto = calcProgressiveTax(steuerpflichtig)
+  const cfg = YEAR_CONFIGS[year].absetzbetraege
+  const steuerBrutto = calcProgressiveTax(steuerpflichtig, year)
 
   // 1. Verkehrsabsetzbetrag (senkt Steuer auf min 0)
   let remaining = Math.max(0, steuerBrutto - absetz.verkehrsabsetzbetrag)
@@ -291,7 +192,7 @@ function calcSteuer(
   // 4. Kindermehrbetrag: Wenn FBP nicht voll genutzt werden konnte
   let kindermehrbetrag = 0
   if (kinderCount > 0 && absetz.familienbonus > steuerVorFBP) {
-    const maxKMB = yc.kindermehrbetrag * kinderCount
+    const maxKMB = cfg.kindermehrbetrag * kinderCount
     const unusedFBP = absetz.familienbonus - steuerVorFBP
     kindermehrbetrag = Math.min(unusedFBP, maxKMB)
   }
@@ -304,7 +205,7 @@ function calcSteuer(
     absetzbetraege: absetz.gesamt,
     kindermehrbetrag,
     steuerNetto,
-    grenzsteuersatz: grenzsteuersatz(steuerpflichtig),
+    grenzsteuersatz: getGrenzsteuersatz(steuerpflichtig, year),
     durchschnittssteuersatz: steuerpflichtig > 0 ? steuerNetto / steuerpflichtig : 0,
   }
 }
@@ -312,8 +213,8 @@ function calcSteuer(
 // ── Hauptberechnung ────────────────────────────────────────
 
 export function calculateMischEinkommen(input: MischInput): MischResult {
-  const anstellung = calcAnstellung(input.bruttoGehalt)
-  const gewerbe = calcGewerbe(input.jahresgewinn)
+  const anstellung = calcAnstellung(input.bruttoGehalt, input.year)
+  const gewerbe = calcGewerbe(input.jahresgewinn, input.year)
   const absetzbetraege = calcAbsetzbetraege(input)
   const kinderCount = input.kinderUnter18 + input.kinderUeber18
 

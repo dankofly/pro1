@@ -2,12 +2,14 @@
 
 import { useState, useMemo, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
-import { calculateSvs, calculateSteuerTipps } from '@/lib/svs-calculator'
-import { SVS } from '@/lib/svs-constants'
+import { calculateSvs, calculateSteuerTipps, type ProOptions } from '@/lib/svs-calculator'
+import { type TaxYear, YEAR_CONFIGS } from '@/lib/tax-constants'
 import { formatEuro } from '@/lib/format'
 import Link from 'next/link'
 import { AppShell, useAppShell } from '@/components/svs/app-shell'
 import { InputSection } from '@/components/svs/input-section'
+import { YearSelector } from '@/components/svs/year-selector'
+import { ProOptionsAccordion } from '@/components/svs/pro-options-accordion'
 import { HeroNumber } from '@/components/svs/hero-number'
 import { StatusBadge } from '@/components/svs/status-badge'
 import { TaxBracketBar } from '@/components/svs/tax-bracket-bar'
@@ -29,14 +31,31 @@ function HomeContent() {
   const { user, subscription, handleLogout: _handleLogout } = useAppShell()
   const [gewinn, setGewinn] = useState(40000)
   const [vorschreibung, setVorschreibung] = useState(450)
+  const [year, setYear] = useState<TaxYear>('2025')
+  const [proOptions, setProOptions] = useState<ProOptions>({
+    kinderUnter18: 0,
+    kinderUeber18: 0,
+    alleinverdiener: false,
+    pendlerKm: 0,
+    pendlerOeffentlich: true,
+    investitionen: 0,
+  })
   const [saving, setSaving] = useState(false)
   const [upgradeOpen, setUpgradeOpen] = useState(false)
   const [upgradeFeature, setUpgradeFeature] = useState('')
   const [upgradeRequiredPlan, setUpgradeRequiredPlan] = useState<'basic' | 'pro'>('basic')
 
-  const result = useMemo(() => calculateSvs(gewinn, vorschreibung), [gewinn, vorschreibung])
-  const steuerTipps = useMemo(() => calculateSteuerTipps(gewinn, result.endgueltigeSVS), [gewinn, result.endgueltigeSVS])
+  const result = useMemo(
+    () => calculateSvs(gewinn, vorschreibung, year, subscription.isPro ? proOptions : undefined),
+    [gewinn, vorschreibung, year, proOptions, subscription.isPro]
+  )
+  const steuerTipps = useMemo(
+    () => calculateSteuerTipps(gewinn, result.endgueltigeSVS, year),
+    [gewinn, result.endgueltigeSVS, year]
+  )
   const { prefs: alertPrefs, isExceeded: alertActive, updatePrefs: updateAlertPrefs, requestNotificationPermission } = useSmartAlerts(result.nachzahlung)
+
+  const geringfuegigkeit = YEAR_CONFIGS[year].svs.geringfuegigkeit
 
   const handleImportGewinn = useCallback((value: number) => {
     setGewinn(Math.round(value))
@@ -81,8 +100,6 @@ function HomeContent() {
     }
   }, [user, subscription.isFree, handleUpgradeRequired, gewinn, vorschreibung, result])
 
-  const steuerpflichtig = Math.max(0, gewinn - result.endgueltigeSVS - Math.min(gewinn, 33000) * 0.15)
-
   return (
     <>
       {/* Top bar */}
@@ -119,11 +136,19 @@ function HomeContent() {
 
           {/* Left - Inputs (sticky on desktop) */}
           <div className="lg:sticky lg:top-20 lg:self-start space-y-4">
+            <YearSelector year={year} onYearChange={setYear} />
             <InputSection
               gewinn={gewinn}
               setGewinn={setGewinn}
               vorschreibung={vorschreibung}
               setVorschreibung={setVorschreibung}
+            />
+            <ProOptionsAccordion
+              proOptions={proOptions}
+              onProOptionsChange={setProOptions}
+              year={year}
+              isPro={subscription.isPro}
+              onUpgradeRequired={handleUpgradeRequired}
             />
           </div>
 
@@ -134,7 +159,7 @@ function HomeContent() {
                 <Info className="h-4 w-4 text-blue-500" />
                 <AlertDescription className="text-blue-800">
                   <span className="font-medium">Unter der Geringfügigkeitsgrenze:</span>{' '}
-                  Bei einem Jahresgewinn unter {formatEuro(SVS.GERINGFUEGIGKEIT)} besteht keine Pflichtversicherung bei der SVS.
+                  Bei einem Jahresgewinn unter {formatEuro(geringfuegigkeit)} besteht keine Pflichtversicherung bei der SVS.
                 </AlertDescription>
               </Alert>
             )}
@@ -144,14 +169,14 @@ function HomeContent() {
                 <HeroNumber echtesNetto={result.echtesNetto} gewinn={gewinn} />
                 {subscription.isBasic ? (
                   <>
-                    <TaxBracketBar steuerpflichtig={steuerpflichtig} />
+                    <TaxBracketBar steuerpflichtig={result.steuerpflichtig} year={year} />
                     <WaterfallChart gewinn={gewinn} result={result} />
-                    <WahrheitsTabelle gewinn={gewinn} result={result} />
-                    <SteuerTipps tipps={steuerTipps} gewinn={gewinn} />
+                    <WahrheitsTabelle gewinn={gewinn} result={result} year={year} />
+                    <SteuerTipps tipps={steuerTipps} gewinn={gewinn} year={year} />
                   </>
                 ) : (
                   <>
-                    <WahrheitsTabelle gewinn={gewinn} result={result} />
+                    <WahrheitsTabelle gewinn={gewinn} result={result} year={year} />
                     <div className="glass rounded-2xl p-6 relative overflow-hidden">
                       <div className="absolute inset-0 bg-background/60 backdrop-blur-sm z-10 flex flex-col items-center justify-center gap-3">
                         <Lock className="h-6 w-6 text-muted-foreground" />
@@ -161,7 +186,7 @@ function HomeContent() {
                         </Button>
                       </div>
                       <div className="opacity-30 pointer-events-none" aria-hidden="true">
-                        <TaxBracketBar steuerpflichtig={steuerpflichtig} />
+                        <TaxBracketBar steuerpflichtig={result.steuerpflichtig} year={year} />
                       </div>
                     </div>
                   </>
@@ -195,7 +220,7 @@ function HomeContent() {
 
             <footer className="text-center py-8 text-xs text-muted-foreground space-y-2">
               <p className="font-medium text-foreground/70">SVS Checker - Beitragsrechner für Selbständige in Österreich</p>
-              <p>Alle Angaben ohne Gewähr. Kein Ersatz für professionelle Steuerberatung. Werte 2024/25.</p>
+              <p>Alle Angaben ohne Gewähr. Kein Ersatz für professionelle Steuerberatung. Werte {year}.</p>
               <div className="flex items-center justify-center gap-3 pt-1">
                 <Link href="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
                 <span>·</span>

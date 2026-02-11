@@ -7,14 +7,16 @@ import { Badge } from '@/components/ui/badge'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { formatEuro } from '@/lib/format'
 import type { SteuerTipp } from '@/lib/svs-calculator'
+import type { TaxYear } from '@/lib/tax-constants'
 import { Lightbulb, ChevronDown, Monitor, CreditCard, TrendingDown } from 'lucide-react'
 
 interface SteuerTippsProps {
   tipps: SteuerTipp
   gewinn: number
+  year: TaxYear
 }
 
-export function SteuerTipps({ tipps, gewinn }: SteuerTippsProps) {
+export function SteuerTipps({ tipps, gewinn, year }: SteuerTippsProps) {
   const [open, setOpen] = useState(false)
 
   const hasIfb = tipps.ifbInvestition > 0
@@ -102,7 +104,7 @@ export function SteuerTipps({ tipps, gewinn }: SteuerTippsProps) {
             )}
 
             <p className="text-xs text-muted-foreground text-center pt-1">
-              Keine Steuerberatung. Besprich konkrete Maßnahmen mit deinem Steuerberater.
+              Werte {year}. Keine Steuerberatung. Besprich konkrete Maßnahmen mit deinem Steuerberater.
             </p>
           </div>
         </CollapsibleContent>
