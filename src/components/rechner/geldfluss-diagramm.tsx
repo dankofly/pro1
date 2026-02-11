@@ -45,26 +45,26 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
   const flowVals = [umsatz, afterAufwaende, afterSvs, afterEst]
 
   return (
-    <div className="glass rounded-2xl p-4 sm:p-5 overflow-hidden">
+    <div className="glass rounded-2xl p-4 sm:p-5">
       <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-3">
         Geldfluss-Diagramm
       </p>
 
       {/* Top labels */}
-      <div className="flex justify-between items-end mb-1 px-1">
-        <div>
+      <div className="flex justify-between items-end mb-1 px-1 gap-2">
+        <div className="min-w-0">
           <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Umsatz</p>
-          <p className="text-sm font-bold font-mono text-primary">{formatEuro(umsatz)}</p>
+          <p className="text-sm font-bold font-mono text-primary truncate">{formatEuro(umsatz)}</p>
         </div>
-        <div className="text-right">
+        <div className="text-right min-w-0">
           <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Netto</p>
-          <p className="text-sm font-bold font-mono text-emerald-600">{formatEuro(netto)}</p>
+          <p className="text-sm font-bold font-mono text-emerald-600 truncate">{formatEuro(netto)}</p>
         </div>
       </div>
 
       <svg
         viewBox={`0 0 ${svgWidth} ${svgHeight}`}
-        className="w-full h-auto"
+        className="w-full h-auto max-w-full"
         role="img"
         aria-label={`Geldfluss: ${formatEuro(umsatz)} Umsatz minus ${formatEuro(aufwaende)} Aufwände, ${formatEuro(svs)} SVS, ${formatEuro(est)} ESt ergibt ${formatEuro(netto)} Netto`}
       >
