@@ -92,7 +92,7 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
               `}
               fill={isLast ? 'hsl(160, 84%, 39%)' : 'hsl(207, 100%, 38%)'}
               opacity={isLast ? 0.85 : 0.7 + i * 0.05}
-              className="transition-all duration-500"
+              className="transition-[d,opacity] duration-500"
             />
           )
         })}
@@ -115,7 +115,7 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
                 rx={4}
                 fill={ded.color}
                 opacity={0.65}
-                className="transition-all duration-500"
+                className="transition-opacity duration-500"
               />
               <text
                 x={x}

@@ -95,7 +95,7 @@ function RechnerContent() {
     try {
       const { error } = await supabase.from('calculations').insert({
         user_id: user.id,
-        label: `Berechnung ${new Date().toLocaleDateString('de-AT')}`,
+        label: `Berechnung ${new Intl.DateTimeFormat('de-AT').format(new Date())}`,
         jahresgewinn: result.gewinn,
         monatliche_vorschreibung: vorschreibung,
         beitragsgrundlage: svs.beitragsgrundlage,
@@ -132,7 +132,7 @@ function RechnerContent() {
   if (!mounted) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
-        <p className="text-muted-foreground">Laden...</p>
+        <p className="text-muted-foreground">Laden…</p>
       </div>
     )
   }
@@ -173,7 +173,7 @@ function RechnerContent() {
                 className="h-8"
               >
                 <Save className="h-3.5 w-3.5 mr-1.5" />
-                {saving ? 'Speichert...' : 'Speichern'}
+                {saving ? 'Speichert…' : 'Speichern'}
               </Button>
             ) : (
               <Button asChild variant="outline" size="sm" className="h-8">
@@ -185,7 +185,7 @@ function RechnerContent() {
       </div>
 
       {/* Split Screen */}
-      <div ref={mainContentRef} id="main-content" tabIndex={-1} className="max-w-7xl mx-auto px-4 sm:px-6 py-6 outline-none overflow-x-hidden">
+      <div ref={mainContentRef} id="main-content" tabIndex={-1} className="max-w-7xl mx-auto px-4 sm:px-6 py-6 focus:outline-none focus-visible:outline-none overflow-x-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-[360px_minmax(0,1fr)] gap-8">
 
           {/* Left - Inputs (sticky on desktop, scrollable) */}
@@ -268,7 +268,7 @@ function RechnerContent() {
           <div className="space-y-5 min-w-0 overflow-hidden">
             {svs.belowMinimum && (
               <Alert className="bg-blue-50 border-blue-200">
-                <Info className="h-4 w-4 text-blue-500" />
+                <Info className="h-4 w-4 text-blue-500" aria-hidden="true" />
                 <AlertDescription className="text-blue-800">
                   <span className="font-medium">Unter der Versicherungsgrenze:</span>{' '}
                   Bei einem Jahresgewinn unter {formatEuro(versicherungsgrenze)} besteht als Neuer Selbständiger keine Pflichtversicherung bei der SVS.
@@ -278,7 +278,7 @@ function RechnerContent() {
 
             {svs.usesMinBeitragsgrundlage && (
               <Alert className="bg-amber-50 border-amber-200">
-                <Info className="h-4 w-4 text-amber-500" />
+                <Info className="h-4 w-4 text-amber-500" aria-hidden="true" />
                 <AlertDescription className="text-amber-800">
                   <span className="font-medium">Mindestbeitragsgrundlage:</span>{' '}
                   SVS wird auf der Mindestbeitragsgrundlage von {formatEuro(minBeitragsgrundlage)} berechnet, da dein Gewinn darunter liegt.
@@ -288,7 +288,7 @@ function RechnerContent() {
 
             {svs.isJungunternehmer && (
               <Alert className="bg-green-50 border-green-200">
-                <Info className="h-4 w-4 text-green-500" />
+                <Info className="h-4 w-4 text-green-500" aria-hidden="true" />
                 <AlertDescription className="text-green-800">
                   <span className="font-medium">Jungunternehmer-Bonus:</span>{' '}
                   Reduzierter KV-Beitragssatz (3,84% statt 6,80%) im {Number(input.year) - input.stammdaten.gruendungsJahr + 1}. Kalenderjahr.
@@ -332,7 +332,7 @@ function RechnerContent() {
                 ) : (
                   <div className="glass rounded-2xl p-6 relative overflow-hidden">
                     <div className="absolute inset-0 bg-background/60 backdrop-blur-sm z-10 flex flex-col items-center justify-center gap-3">
-                      <Lock className="h-5 w-5 text-muted-foreground" />
+                      <Lock className="h-5 w-5 text-muted-foreground" aria-hidden="true" />
                       <p className="text-sm font-medium text-muted-foreground text-center px-4">Detailanalyse ab Sicherheits-Plan</p>
                       <Button size="sm" onClick={() => handleUpgradeRequired('Detailanalyse', 'basic')}>
                         Jetzt freischalten
@@ -408,9 +408,9 @@ function RechnerContent() {
               <p className="font-medium text-foreground/70">SVS Checker - Beitragsrechner für Selbständige in Österreich</p>
               <p>Alle Angaben ohne Gewähr. Kein Ersatz für professionelle Steuerberatung. Werte {input.year}.</p>
               <div className="flex items-center justify-center gap-3 pt-1">
-                <Link href="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
+                <Link href="/impressum" className="hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm">Impressum</Link>
                 <span>·</span>
-                <Link href="/datenschutz" className="hover:text-foreground transition-colors">Datenschutz</Link>
+                <Link href="/datenschutz" className="hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm">Datenschutz</Link>
               </div>
             </footer>
           </div>

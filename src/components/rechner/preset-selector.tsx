@@ -24,7 +24,7 @@ export function PresetSelector({ currentInput, dispatch }: PresetSelectorProps) 
           key={preset.id}
           type="button"
           onClick={() => dispatch({ type: 'LOAD_PRESET', preset: preset.input })}
-          className={`rounded-full px-3 py-1.5 text-xs font-medium border transition-all duration-200
+          className={`rounded-full px-3 py-1.5 text-xs font-medium border transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
             ${isActive(preset)
               ? 'border-primary bg-primary/5 text-primary shadow-sm'
               : 'border-border hover:border-primary/50 hover:bg-primary/5 text-muted-foreground hover:text-foreground'
