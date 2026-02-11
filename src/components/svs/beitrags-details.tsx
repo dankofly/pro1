@@ -24,9 +24,12 @@ function MiniProgressBar({ value, max, color }: { value: number; max: number; co
 export function BeitragsDetails({ result }: BeitragsDetailsProps) {
   const maxBeitrag = Math.max(result.pvBeitrag, result.kvBeitrag, result.mvBeitrag, result.uvBeitrag, 1)
 
+  const kvSatz = result.isJungunternehmer ? '3,84 %' : '6,80 %'
+  const gesamtPct = result.isJungunternehmer ? '23,87 %' : '26,83 %'
+
   const beitraege = [
     { label: 'Pensionsversicherung (PV)', satz: '18,50 %', betrag: result.pvBeitrag, color: 'bg-blue-500' },
-    { label: 'Krankenversicherung (KV)', satz: '6,80 %', betrag: result.kvBeitrag, color: 'bg-emerald-500' },
+    { label: result.isJungunternehmer ? 'Krankenversicherung (KV) *' : 'Krankenversicherung (KV)', satz: kvSatz, betrag: result.kvBeitrag, color: 'bg-emerald-500' },
     { label: null, tooltip: 'Selbständigenvorsorge', suffix: ' (MV)', satz: '1,53 %', betrag: result.mvBeitrag, color: 'bg-amber-500' },
     { label: 'Unfallversicherung (UV)', satz: 'fix', betrag: result.uvBeitrag, color: 'bg-purple-500' },
   ]
@@ -70,7 +73,7 @@ export function BeitragsDetails({ result }: BeitragsDetailsProps) {
           <tfoot>
             <tr className="bg-blue-50/50 rounded-lg">
               <td className="py-3 pl-2 font-semibold text-blue-800 rounded-l-lg">Gesamt (endgültig)</td>
-              <td className="py-3 text-right font-mono text-blue-600">26,83 % + UV</td>
+              <td className="py-3 text-right font-mono text-blue-600">{gesamtPct} + UV</td>
               <td className="py-3 pr-2 text-right font-mono font-bold text-blue-700 text-base rounded-r-lg">
                 {formatEuro(result.endgueltigeSVS)}
               </td>
@@ -89,10 +92,20 @@ export function BeitragsDetails({ result }: BeitragsDetailsProps) {
         )}
         {result.belowMinimum && (
           <span className="ml-2 text-muted-foreground font-medium">
-            (unter <SvsTooltip term="Geringfügigkeitsgrenze" />)
+            (unter Versicherungsgrenze)
+          </span>
+        )}
+        {result.usesMinBeitragsgrundlage && (
+          <span className="ml-2 text-amber-600 font-medium">
+            (Mindestbeitragsgrundlage)
           </span>
         )}
       </div>
+      {result.isJungunternehmer && (
+        <p className="mt-2 text-xs text-green-700">
+          * Reduzierter KV-Satz (3,84%) durch Jungunternehmer-Regelung (NeuFöG)
+        </p>
+      )}
     </div>
   )
 }

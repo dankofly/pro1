@@ -9,6 +9,7 @@ import {
   calcAvab,
   type TaxYear,
 } from './tax-constants'
+import type { Versicherungsart, WeitereEinkuenfteInput } from './rechner-types'
 
 // ── Interfaces ───────────────────────────────────────────────
 
@@ -19,6 +20,13 @@ export interface ProOptions {
   pendlerKm: number
   pendlerOeffentlich: boolean
   investitionen: number
+}
+
+/** Stammdaten-Kontext für SVS-Berechnung */
+export interface StammdatenContext {
+  versicherungsart: Versicherungsart
+  jungunternehmer: boolean
+  gruendungsJahr: number
 }
 
 export interface SvsResult {
@@ -38,6 +46,8 @@ export interface SvsResult {
   riskPercent: number
   belowMinimum: boolean
   cappedAtMax: boolean
+  usesMinBeitragsgrundlage: boolean
+  isJungunternehmer: boolean
 
   // Gewinnfreibetrag
   grundfreibetrag: number
@@ -93,6 +103,7 @@ export function calculateEinkommensteuer(
   svsSumme: number,
   year: TaxYear = '2025',
   proOptions?: ProOptions,
+  weitereEinkuenfte?: WeitereEinkuenfteInput,
 ): EinkommensteuerDetail {
   const cfg = YEAR_CONFIGS[year]
 
@@ -109,13 +120,32 @@ export function calculateEinkommensteuer(
   // 2. IFB (nur bei Pro + Investitionen — Basis: steuerlicher Gewinn)
   const ifb = proOptions ? calcActualIFB(steuerGewinn, proOptions.investitionen, year) : 0
 
-  // 3. Steuerpflichtiges Einkommen
-  const steuerpflichtig = Math.max(0, steuerGewinn - grundfreibetrag - ifb)
+  // 3. Selbständiges steuerpflichtiges Einkommen
+  const selfEmploymentTaxable = Math.max(0, steuerGewinn - grundfreibetrag - ifb)
 
-  // 5. Tarifsteuer (progressiv)
+  // 4. Weitere Einkünfte (Anstellung, Vermietung)
+  let weitereEinkuenfteTaxable = 0
+  if (weitereEinkuenfte) {
+    // Brutto-Entgelt (14 Gehälter) minus DN-SV minus Werbungskostenpauschale
+    if (weitereEinkuenfte.bruttoEntgeltMonatlich > 0) {
+      const brutto14 = weitereEinkuenfte.bruttoEntgeltMonatlich * 14
+      const svBasis = Math.min(brutto14, cfg.svHoechstbeitragsgrundlageAngestellt)
+      const sv = svBasis * cfg.employeeSvRate
+      weitereEinkuenfteTaxable += Math.max(0, brutto14 - sv - cfg.werbungskostenpauschale)
+    }
+    // Vermietungseinkünfte (netto)
+    if (weitereEinkuenfte.vermietungsEinkuenfte > 0) {
+      weitereEinkuenfteTaxable += weitereEinkuenfte.vermietungsEinkuenfte
+    }
+  }
+
+  // 5. Gesamt steuerpflichtiges Einkommen
+  const steuerpflichtig = selfEmploymentTaxable + weitereEinkuenfteTaxable
+
+  // 6. Tarifsteuer (progressiv)
   const steuerBrutto = calcProgressiveTax(steuerpflichtig, year)
 
-  // 6. Absetzbeträge (nur bei Pro)
+  // 7. Absetzbeträge (nur bei Pro)
   let familienbonusAbzug = 0
   let avabAbzug = 0
   let kindermehrbetrag = 0
@@ -203,17 +233,51 @@ export function calculateSvs(
   monatlicheVorschreibung: number,
   year: TaxYear = '2025',
   proOptions?: ProOptions,
+  stammdaten?: StammdatenContext,
+  weitereEinkuenfte?: WeitereEinkuenfteInput,
 ): SvsResult {
   const cfg = YEAR_CONFIGS[year]
   const svs = cfg.svs
+  const selectedYear = Number(year)
 
-  // SVS-Beiträge
-  const belowMinimum = gewinn < svs.geringfuegigkeit
+  // ── Jungunternehmer-Status prüfen ──
+  // Gilt in den ersten 2 Kalenderjahren nach Gründung
+  const isJungunternehmer = !!(
+    stammdaten?.jungunternehmer &&
+    selectedYear <= stammdaten.gruendungsJahr + 1
+  )
+
+  // ── KV-Rate (reduziert für Jungunternehmer: 3,84% statt 6,80%) ──
+  const kvRate = isJungunternehmer ? svs.kvRateJungunternehmer : svs.kvRate
+
+  // ── Beitragsgrundlage je nach Versicherungsart ──
+  const isNeueSelbstaendige = stammdaten?.versicherungsart === 'gsvg_neu'
+
+  let beitragsgrundlage: number
+  let belowMinimum: boolean
+  let usesMinBeitragsgrundlage = false
+
+  if (isNeueSelbstaendige) {
+    // Neue Selbständige (GSVG): Keine Pflichtversicherung unter Versicherungsgrenze
+    belowMinimum = gewinn < cfg.versicherungsgrenze
+    beitragsgrundlage = belowMinimum ? 0 : Math.min(gewinn, svs.hoechstbeitrag)
+  } else {
+    // Gewerbetreibende (GSVG) / FSVG: Immer pflichtversichert, Mindestbeitragsgrundlage
+    belowMinimum = false
+    const clampedGewinn = Math.max(0, gewinn)
+    if (clampedGewinn < svs.minBeitragsgrundlage) {
+      beitragsgrundlage = svs.minBeitragsgrundlage
+      usesMinBeitragsgrundlage = true
+    } else {
+      beitragsgrundlage = Math.min(clampedGewinn, svs.hoechstbeitrag)
+    }
+  }
+
   const cappedAtMax = gewinn > svs.hoechstbeitrag
-  const beitragsgrundlage = belowMinimum ? 0 : Math.min(gewinn, svs.hoechstbeitrag)
 
+  // ── SVS-Beiträge berechnen ──
   const pvBeitrag = beitragsgrundlage * svs.pvRate
-  const kvBeitrag = beitragsgrundlage * svs.kvRate
+  const kvBeitrag = beitragsgrundlage * kvRate
   const mvBeitrag = beitragsgrundlage * svs.mvRate
   const uvBeitrag = belowMinimum ? 0 : svs.uvMonthly * 12
 
@@ -222,11 +286,11 @@ export function calculateSvs(
   const nachzahlung = endgueltigeSVS - vorlaeufigeSVS
   const sparEmpfehlung = nachzahlung > 0 ? nachzahlung / 12 : 0
 
-  // Einkommensteuer
-  const est = calculateEinkommensteuer(gewinn, endgueltigeSVS, year, proOptions)
+  // ── Einkommensteuer ──
+  const est = calculateEinkommensteuer(gewinn, endgueltigeSVS, year, proOptions, weitereEinkuenfte)
   const einkommensteuer = est.steuerNetto
 
-  // Netto
+  // Netto (nur selbständiger Gewinn minus SVS und ESt)
   const echtesNetto = gewinn - endgueltigeSVS - einkommensteuer
 
   // Steuerersparnis durch SVS (mit echtem Grenzsteuersatz)
@@ -255,6 +319,8 @@ export function calculateSvs(
     riskPercent,
     belowMinimum,
     cappedAtMax,
+    usesMinBeitragsgrundlage,
+    isJungunternehmer,
 
     grundfreibetrag: est.grundfreibetrag,
     gewinnfreibetragInvestition: est.ifb,

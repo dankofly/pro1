@@ -70,7 +70,9 @@ function RechnerContent() {
     [result.gewinn, svs.endgueltigeSVS, input.year]
   )
 
-  const geringfuegigkeit = YEAR_CONFIGS[input.year].svs.geringfuegigkeit
+  const yearConfig = YEAR_CONFIGS[input.year]
+  const versicherungsgrenze = yearConfig.versicherungsgrenze
+  const minBeitragsgrundlage = yearConfig.svs.minBeitragsgrundlage
 
   const handleUpgradeRequired = useCallback((feature: string, plan: 'basic' | 'pro') => {
     setUpgradeFeature(feature)
@@ -264,8 +266,28 @@ function RechnerContent() {
               <Alert className="bg-blue-50 border-blue-200">
                 <Info className="h-4 w-4 text-blue-500" />
                 <AlertDescription className="text-blue-800">
-                  <span className="font-medium">Unter der Geringfügigkeitsgrenze:</span>{' '}
-                  Bei einem Jahresgewinn unter {formatEuro(geringfuegigkeit)} besteht keine Pflichtversicherung bei der SVS.
+                  <span className="font-medium">Unter der Versicherungsgrenze:</span>{' '}
+                  Bei einem Jahresgewinn unter {formatEuro(versicherungsgrenze)} besteht als Neuer Selbständiger keine Pflichtversicherung bei der SVS.
+                </AlertDescription>
+              </Alert>
+            )}
+
+            {svs.usesMinBeitragsgrundlage && (
+              <Alert className="bg-amber-50 border-amber-200">
+                <Info className="h-4 w-4 text-amber-500" />
+                <AlertDescription className="text-amber-800">
+                  <span className="font-medium">Mindestbeitragsgrundlage:</span>{' '}
+                  SVS wird auf der Mindestbeitragsgrundlage von {formatEuro(minBeitragsgrundlage)} berechnet, da dein Gewinn darunter liegt.
+                </AlertDescription>
+              </Alert>
+            )}
+
+            {svs.isJungunternehmer && (
+              <Alert className="bg-green-50 border-green-200">
+                <Info className="h-4 w-4 text-green-500" />
+                <AlertDescription className="text-green-800">
+                  <span className="font-medium">Jungunternehmer-Bonus:</span>{' '}
+                  Reduzierter KV-Beitragssatz (3,84% statt 6,80%) im {Number(input.year) - input.stammdaten.gruendungsJahr + 1}. Kalenderjahr.
                 </AlertDescription>
               </Alert>
             )}

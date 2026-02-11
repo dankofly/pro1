@@ -11,9 +11,10 @@ import type {
   VorauszahlungenResult,
   ArbeitsplatzpauschaleType,
   PauschalierungArt,
+  WeitereEinkuenfteInput,
 } from './rechner-types'
 import type { TaxYear } from './tax-constants'
-import type { ProOptions } from './svs-calculator'
+import type { ProOptions, StammdatenContext } from './svs-calculator'
 import { calculateSvs, calculateSteuerTipps } from './svs-calculator'
 import { calculateAfA, getTotalInvestments } from './afa-calculator'
 import { calculateGmbh } from './gmbh-calculator'
@@ -82,6 +83,24 @@ function toSvsProOptions(input: RechnerInput): ProOptions {
   }
 }
 
+/** StammdatenContext für SVS-Calculator konvertieren */
+function toStammdatenContext(input: RechnerInput): StammdatenContext {
+  return {
+    versicherungsart: input.stammdaten.versicherungsart,
+    jungunternehmer: input.stammdaten.jungunternehmer,
+    gruendungsJahr: input.stammdaten.gruendungsJahr,
+  }
+}
+
+/** Weitere Einkünfte nur wenn tatsächlich Werte vorhanden */
+function getWeitereEinkuenfte(input: RechnerInput): WeitereEinkuenfteInput | undefined {
+  const we = input.weitereEinkuenfte
+  if (we.bruttoEntgeltMonatlich > 0 || we.vermietungsEinkuenfte > 0) {
+    return we
+  }
+  return undefined
+}
+
 /** Prüft ob Pauschalierung verfügbar ist */
 export function isPauschalierungVerfuegbar(art: PauschalierungArt, umsatz: number): boolean {
   if (art === 'keine') return true
@@ -93,6 +112,8 @@ function calcPauschalierung(
   input: RechnerInput,
   standardNetto: number,
   proOptions: ProOptions,
+  stammdaten: StammdatenContext,
+  weitereEinkuenfte: WeitereEinkuenfteInput | undefined,
 ): PauschalierungResult | null {
   const art = input.pauschalierungArt
   if (art === 'keine') return null
@@ -103,7 +124,7 @@ function calcPauschalierung(
   const gewinnPauschal = Math.max(0, input.jahresumsatz - pauschalAufwaende)
 
   // SVS+ESt auf pauschalierten Gewinn berechnen
-  const svsResult = calculateSvs(gewinnPauschal, 0, input.year, proOptions)
+  const svsResult = calculateSvs(gewinnPauschal, 0, input.year, proOptions, stammdaten, weitereEinkuenfte)
   const echtesNettoPauschal = svsResult.echtesNetto
 
   return {
@@ -123,6 +144,8 @@ function calcGewinnmaximierer(
   basisGewinn: number,
   basisNetto: number,
   proOptions: ProOptions,
+  stammdaten: StammdatenContext,
+  weitereEinkuenfte: WeitereEinkuenfteInput | undefined,
 ): GewinnmaximiererResult | null {
   const { zusatzEinnahmen, zusatzAufwaende } = input.gewinnmaximierer
   if (zusatzEinnahmen <= 0 && zusatzAufwaende <= 0) return null
@@ -131,7 +154,7 @@ function calcGewinnmaximierer(
   const aufwaendeMit = calcEffektiveAufwaende(input) + zusatzAufwaende
   const gewinnMit = Math.max(0, umsatzMit - aufwaendeMit)
 
-  const svsResult = calculateSvs(gewinnMit, 0, input.year, proOptions)
+  const svsResult = calculateSvs(gewinnMit, 0, input.year, proOptions, stammdaten, weitereEinkuenfte)
   const nettoMit = svsResult.echtesNetto
   const nettoDifferenz = nettoMit - basisNetto
 
@@ -187,15 +210,16 @@ export function calculateAll(input: RechnerInput): RechnerResult {
   // 2. AfA
   const afa = calculateAfA(input.investitionen)
 
-  // 3. ProOptions konvertieren
+  // 3. Kontext-Objekte
   const proOptions = toSvsProOptions(input)
+  const stammdaten = toStammdatenContext(input)
+  const weitereEinkuenfte = getWeitereEinkuenfte(input)
 
   // 4. Haupt-SVS+ESt Berechnung
-  // Vorschreibung = 0, da wir die Vorauszahlungen separat tracken
-  const svs = calculateSvs(gewinn, 0, year, proOptions)
+  const svs = calculateSvs(gewinn, 0, year, proOptions, stammdaten, weitereEinkuenfte)
 
   // 5. Pauschalierung (wenn aktiv)
-  const pauschalierung = calcPauschalierung(input, svs.echtesNetto, proOptions)
+  const pauschalierung = calcPauschalierung(input, svs.echtesNetto, proOptions, stammdaten, weitereEinkuenfte)
 
   // 6. GmbH Vergleich (wenn aktiv)
   const gmbh = input.gmbh.aktiv
@@ -209,7 +233,7 @@ export function calculateAll(input: RechnerInput): RechnerResult {
 
   // 7. Gewinnmaximierer
   const gewinnmaximierer = calcGewinnmaximierer(
-    input, gewinn, svs.echtesNetto, proOptions,
+    input, gewinn, svs.echtesNetto, proOptions, stammdaten, weitereEinkuenfte,
   )
 
   // 8. Vorauszahlungen

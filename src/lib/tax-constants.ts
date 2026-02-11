@@ -29,6 +29,7 @@ export interface TaxBracket {
 export interface SvsRatesConfig {
   pvRate: number              // Pensionsversicherung (GSVG)
   kvRate: number              // Krankenversicherung (GSVG)
+  kvRateJungunternehmer: number // KV reduziert für Jungunternehmer (3,84%)
   mvRate: number              // Selbständigenvorsorge (1,53% der KV-BGL)
   uvMonthly: number           // Unfallversicherung fix/Monat
   gesamtRate: number          // PV + KV + MV
@@ -112,6 +113,7 @@ const CONFIG_2024: YearConfig = {
   svs: {
     pvRate: 0.185,
     kvRate: 0.068,
+    kvRateJungunternehmer: 0.0384, // 6,80% - 2,96% NeuFöG-Bonus
     mvRate: 0.0153,
     uvMonthly: 11.35,
     gesamtRate: 0.185 + 0.068 + 0.0153, // 0.2683
@@ -151,6 +153,7 @@ const CONFIG_2025: YearConfig = {
   svs: {
     pvRate: 0.185,
     kvRate: 0.068,
+    kvRateJungunternehmer: 0.0384, // 6,80% - 2,96% NeuFöG-Bonus
     mvRate: 0.0153,
     uvMonthly: 12.07,
     gesamtRate: 0.185 + 0.068 + 0.0153,
@@ -190,6 +193,7 @@ const CONFIG_2026: YearConfig = {
   svs: {
     pvRate: 0.185,
     kvRate: 0.068,
+    kvRateJungunternehmer: 0.0384, // 6,80% - 2,96% NeuFöG-Bonus
     mvRate: 0.0153,
     uvMonthly: 12.95,
     gesamtRate: 0.185 + 0.068 + 0.0153,
