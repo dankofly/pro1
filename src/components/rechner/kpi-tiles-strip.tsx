@@ -16,7 +16,7 @@ function KpiTile({ label, value, color, barColor, pctOfUmsatz }: KpiTileProps) {
   const formatted = Math.round(animated).toLocaleString('de-AT')
 
   return (
-    <div className="glass rounded-xl p-3 min-w-[110px] flex-1 relative overflow-hidden transition-shadow duration-200 hover:shadow-md snap-start">
+    <div className="glass rounded-xl p-3 min-w-[100px] relative overflow-hidden transition-shadow duration-200 hover:shadow-md snap-start">
       <div className={`absolute top-0 left-0 right-0 h-0.5 ${barColor}`} />
       <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider truncate">
         {label}
@@ -75,15 +75,12 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
       </div>
 
       {/* Secondary KPIs */}
-      <div className="relative">
-        <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1 snap-x snap-mandatory scroll-smooth">
-          <KpiTile label="Umsatz" value={umsatz} color="text-foreground" barColor="bg-primary" />
-          <KpiTile label="Aufwände" value={aufwaende} color="text-destructive" barColor="bg-destructive" pctOfUmsatz={pct(aufwaende)} />
-          <KpiTile label="Gewinn" value={gewinn} color="text-emerald-600" barColor="bg-emerald-500" pctOfUmsatz={pct(gewinn)} />
-          <KpiTile label="SVS" value={svs} color="text-orange-600" barColor="bg-orange-500" pctOfUmsatz={pct(svs)} />
-          <KpiTile label="ESt" value={est} color="text-amber-600" barColor="bg-amber-500" pctOfUmsatz={pct(est)} />
-        </div>
-        <div className="absolute right-0 top-0 bottom-1 w-6 bg-gradient-to-l from-background to-transparent pointer-events-none sm:hidden" />
+      <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
+        <KpiTile label="Umsatz" value={umsatz} color="text-foreground" barColor="bg-primary" />
+        <KpiTile label="Aufwände" value={aufwaende} color="text-destructive" barColor="bg-destructive" pctOfUmsatz={pct(aufwaende)} />
+        <KpiTile label="Gewinn" value={gewinn} color="text-emerald-600" barColor="bg-emerald-500" pctOfUmsatz={pct(gewinn)} />
+        <KpiTile label="SVS" value={svs} color="text-orange-600" barColor="bg-orange-500" pctOfUmsatz={pct(svs)} />
+        <KpiTile label="ESt" value={est} color="text-amber-600" barColor="bg-amber-500" pctOfUmsatz={pct(est)} />
       </div>
     </div>
   )

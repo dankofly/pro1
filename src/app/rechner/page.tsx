@@ -185,8 +185,8 @@ function RechnerContent() {
       </div>
 
       {/* Split Screen */}
-      <div ref={mainContentRef} id="main-content" tabIndex={-1} className="max-w-7xl mx-auto px-4 sm:px-6 py-6 outline-none">
-        <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-6">
+      <div ref={mainContentRef} id="main-content" tabIndex={-1} className="max-w-7xl mx-auto px-4 sm:px-6 py-6 outline-none overflow-x-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-[380px_minmax(0,1fr)] gap-6">
 
           {/* Left - Inputs (sticky on desktop, scrollable) */}
           <div className="lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto space-y-4 lg:pr-1 lg:scrollbar-thin">
@@ -265,7 +265,7 @@ function RechnerContent() {
           </div>
 
           {/* Right - Results */}
-          <div className="space-y-5">
+          <div className="space-y-5 min-w-0">
             {svs.belowMinimum && (
               <Alert className="bg-blue-50 border-blue-200">
                 <Info className="h-4 w-4 text-blue-500" />

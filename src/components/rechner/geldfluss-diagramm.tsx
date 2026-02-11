@@ -30,13 +30,6 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
   const afterSvs = Math.max(afterAufwaende - svs, 0)
   const afterEst = Math.max(netto, 0)
 
-  // 4 segments
-  const segments = [
-    { from: umsatz, to: afterAufwaende, label: '' },
-    { from: afterAufwaende, to: afterSvs, label: '' },
-    { from: afterSvs, to: afterEst, label: '' },
-  ]
-
   // Column x-positions (5 points)
   const colCount = 4
   const colSpacing = usableW / colCount
@@ -52,7 +45,7 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
   const flowVals = [umsatz, afterAufwaende, afterSvs, afterEst]
 
   return (
-    <div className="glass rounded-2xl p-4 sm:p-5">
+    <div className="glass rounded-2xl p-4 sm:p-5 overflow-hidden">
       <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-3">
         Geldfluss-Diagramm
       </p>
@@ -73,10 +66,10 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
         viewBox={`0 0 ${svgWidth} ${svgHeight}`}
         className="w-full h-auto"
         role="img"
-        aria-label={`Geldfluss: ${formatEuro(umsatz)} Umsatz minus ${formatEuro(aufwaende)} Aufw\u00e4nde, ${formatEuro(svs)} SVS, ${formatEuro(est)} ESt ergibt ${formatEuro(netto)} Netto`}
+        aria-label={`Geldfluss: ${formatEuro(umsatz)} Umsatz minus ${formatEuro(aufwaende)} Aufwände, ${formatEuro(svs)} SVS, ${formatEuro(est)} ESt ergibt ${formatEuro(netto)} Netto`}
       >
         {/* Main flow bars */}
-        {flowVals.map((val, i) => {
+        {flowVals.map((_, i) => {
           if (i >= flowVals.length - 1) return null
           const x1 = colX(i)
           const x2 = colX(i + 1)

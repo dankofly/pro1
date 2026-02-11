@@ -18,13 +18,13 @@ export function PresetSelector({ currentInput, dispatch }: PresetSelectorProps) 
   }
 
   return (
-    <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1 snap-x" role="group" aria-label="Schnellstart-Szenarien">
+    <div className="flex flex-wrap gap-1.5" role="group" aria-label="Schnellstart-Szenarien">
       {RECHNER_PRESETS.map((preset) => (
         <button
           key={preset.id}
           type="button"
           onClick={() => dispatch({ type: 'LOAD_PRESET', preset: preset.input })}
-          className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-medium border transition-all duration-200 snap-start
+          className={`rounded-full px-3 py-1.5 text-xs font-medium border transition-all duration-200
             ${isActive(preset)
               ? 'border-primary bg-primary/5 text-primary shadow-sm'
               : 'border-border hover:border-primary/50 hover:bg-primary/5 text-muted-foreground hover:text-foreground'
