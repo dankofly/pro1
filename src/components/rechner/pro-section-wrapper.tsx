@@ -19,8 +19,8 @@ export function ProSectionWrapper({
 
   return (
     <div className="relative min-h-[120px]">
-      <div className="absolute inset-0 bg-background/60 backdrop-blur-sm z-10 flex flex-col items-center justify-center gap-3 rounded-2xl">
-        <Lock className="h-5 w-5 text-muted-foreground" />
+      <div className="absolute inset-0 bg-background/70 backdrop-blur-md z-10 flex flex-col items-center justify-center gap-3 rounded-2xl">
+        <Lock className="h-4 w-4 text-muted-foreground/60" />
         <p className="text-sm font-medium text-muted-foreground text-center px-4">
           {featureName} – Pro Feature
         </p>

@@ -18,20 +18,19 @@ export function PresetSelector({ currentInput, dispatch }: PresetSelectorProps) 
   }
 
   return (
-    <div className="flex flex-wrap gap-1.5" role="group" aria-label="Schnellstart-Szenarien">
+    <div className="flex flex-wrap gap-2" role="group" aria-label="Schnellstart-Szenarien">
       {RECHNER_PRESETS.map((preset) => (
         <button
           key={preset.id}
           type="button"
           onClick={() => dispatch({ type: 'LOAD_PRESET', preset: preset.input })}
-          className={`rounded-full px-3 py-1.5 text-xs font-medium border transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
+          className={`rounded-lg px-3 py-1.5 text-xs font-medium border transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
             ${isActive(preset)
-              ? 'border-primary bg-primary/5 text-primary shadow-sm'
+              ? 'bg-primary text-primary-foreground border-primary'
               : 'border-border hover:border-primary/50 hover:bg-primary/5 text-muted-foreground hover:text-foreground'
             }`}
           title={preset.description}
         >
-          <span className="mr-1">{preset.emoji}</span>
           {preset.label}
         </button>
       ))}

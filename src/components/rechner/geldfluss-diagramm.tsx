@@ -37,27 +37,27 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
 
   // Deductions branching out
   const deductions = [
-    { value: aufwaende, idx: 1, color: '#ef4444', label: 'Aufw.' },
-    { value: svs, idx: 2, color: '#f58220', label: 'SVS' },
-    { value: est, idx: 3, color: '#eab308', label: 'ESt' },
+    { value: aufwaende, idx: 1, color: '#e05858', label: 'Aufw.' },
+    { value: svs, idx: 2, color: '#e68f3c', label: 'SVS' },
+    { value: est, idx: 3, color: '#d4a72c', label: 'ESt' },
   ]
 
   const flowVals = [umsatz, afterAufwaende, afterSvs, afterEst]
 
   return (
-    <div className="glass rounded-2xl p-4 sm:p-5">
-      <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-3">
+    <div className="card-surface p-4 sm:p-5">
+      <p className="section-header mb-3">
         Geldfluss-Diagramm
       </p>
 
       {/* Top labels */}
       <div className="flex justify-between items-end mb-1 px-1 gap-2">
         <div className="min-w-0">
-          <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Umsatz</p>
+          <p className="section-header">Umsatz</p>
           <p className="text-sm font-bold font-mono text-primary truncate">{formatEuro(umsatz)}</p>
         </div>
         <div className="text-right min-w-0">
-          <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Netto</p>
+          <p className="section-header">Netto</p>
           <p className="text-sm font-bold font-mono text-emerald-600 truncate">{formatEuro(netto)}</p>
         </div>
       </div>
@@ -65,6 +65,7 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
       <svg
         viewBox={`0 0 ${svgWidth} ${svgHeight}`}
         className="w-full h-auto max-w-full"
+        preserveAspectRatio="xMidYMid meet"
         role="img"
         aria-label={`Geldfluss: ${formatEuro(umsatz)} Umsatz minus ${formatEuro(aufwaende)} Aufwände, ${formatEuro(svs)} SVS, ${formatEuro(est)} ESt ergibt ${formatEuro(netto)} Netto`}
       >
@@ -90,8 +91,8 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
                 C${midX},${y2Top + h2} ${midX},${y1Top + h1} ${x1},${y1Top + h1}
                 Z
               `}
-              fill={isLast ? 'hsl(160, 84%, 39%)' : 'hsl(207, 100%, 38%)'}
-              opacity={isLast ? 0.85 : 0.7 + i * 0.05}
+              fill={isLast ? 'hsl(160, 72%, 42%)' : 'hsl(207, 90%, 42%)'}
+              opacity={isLast ? 0.85 : 0.8 + i * 0.05}
               className="transition-[d,opacity] duration-500"
             />
           )
@@ -112,7 +113,7 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
                 y={yFlowBottom + 2}
                 width={32}
                 height={dedH}
-                rx={4}
+                rx={6}
                 fill={ded.color}
                 opacity={0.65}
                 className="transition-opacity duration-500"
@@ -123,7 +124,7 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
                 textAnchor="middle"
                 fill="currentColor"
                 className="text-muted-foreground"
-                style={{ fontSize: '10px', fontWeight: 500 }}
+                style={{ fontSize: '9px', fontWeight: 500, letterSpacing: '0.05em' }}
               >
                 {ded.label}
               </text>
@@ -133,7 +134,7 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
                 textAnchor="middle"
                 fill="currentColor"
                 className="text-foreground"
-                style={{ fontSize: '10px', fontFamily: 'monospace', fontWeight: 600 }}
+                style={{ fontSize: '10px', fontFamily: 'monospace', fontWeight: 600, letterSpacing: '-0.01em' }}
               >
                 {formatEuro(ded.value)}
               </text>

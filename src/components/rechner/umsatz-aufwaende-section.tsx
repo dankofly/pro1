@@ -38,13 +38,13 @@ function EuroInput({
       <Label htmlFor={id} className="text-sm font-medium">{label}</Label>
       <div className="flex items-center gap-3">
         <div className="relative flex-1 max-w-[220px]">
-          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm font-medium">EUR</span>
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">EUR</span>
           <Input
             id={id}
             value={value > 0 ? value.toLocaleString('de-AT') : ''}
             onChange={handleInput}
             placeholder="0"
-            className="pl-12 text-right font-mono text-lg font-semibold h-12 rounded-xl"
+            className="pl-10 text-right font-mono text-base font-semibold h-11 rounded-lg bg-muted/30 border-transparent focus:bg-background focus:border-primary/20"
           />
         </div>
         {suffix && <span className="text-sm text-muted-foreground">{suffix}</span>}
@@ -57,9 +57,9 @@ function EuroInput({
         className="py-1"
       />
       <div className="flex justify-between text-xs text-muted-foreground">
-        <span>EUR 0</span>
-        <span>EUR {(max / 2).toLocaleString('de-AT')}</span>
-        <span>EUR {max.toLocaleString('de-AT')}</span>
+        <span>0</span>
+        <span>{max >= 1000000 ? `${max / 2000000}M` : `${(max / 2000).toFixed(0)}k`}</span>
+        <span>{max >= 1000000 ? `${max / 1000000}M` : `${(max / 1000).toFixed(0)}k`}</span>
       </div>
     </div>
   )
@@ -108,13 +108,13 @@ export function UmsatzAufwaendeSection({
   }
 
   return (
-    <div className="glass rounded-2xl p-5 sm:p-6">
+    <div className="card-surface p-4 sm:p-5">
       {/* Header */}
-      <div className="flex items-center gap-3 mb-6">
-        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary">
-          <Receipt className="h-4 w-4 text-primary-foreground" />
+      <div className="flex items-center gap-3 mb-5">
+        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/60">
+          <Receipt className="h-3.5 w-3.5 text-muted-foreground" />
         </div>
-        <h2 className="text-lg font-semibold tracking-tight font-heading">
+        <h2 className="text-sm font-semibold tracking-tight font-heading">
           Umsatz & Aufwände
         </h2>
       </div>
@@ -130,7 +130,7 @@ export function UmsatzAufwaendeSection({
           suffix="/ Jahr"
         />
 
-        <div className="border-t border-border/60" />
+        <div className="divider" />
 
         {/* Aufwände Gesamt */}
         {!detailOpen && (
@@ -212,13 +212,13 @@ export function UmsatzAufwaendeSection({
         </Collapsible>
 
         {/* Computed Gewinn */}
-        <div className="border-t border-border/60 pt-4">
+        <div className="divider pt-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <TrendingUp className="h-4 w-4 text-emerald-600" />
+              <TrendingUp className="h-4 w-4 text-muted-foreground" />
               <span className="text-sm font-semibold text-foreground">Gewinn</span>
             </div>
-            <span className="text-lg font-bold font-mono text-emerald-600 tabular-nums">
+            <span className="text-base font-bold font-mono text-foreground tabular-nums">
               {formatEuro(gewinn)}
             </span>
           </div>

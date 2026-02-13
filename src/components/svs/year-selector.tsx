@@ -19,15 +19,15 @@ interface YearSelectorProps {
 
 export function YearSelector({ year, onYearChange }: YearSelectorProps) {
   return (
-    <div className="glass rounded-2xl p-4">
+    <div className="card-surface p-3">
       <div className="flex flex-wrap items-center gap-3">
         <div className="flex items-center gap-2">
-          <CalendarDays className="h-4 w-4 text-muted-foreground" />
+          <CalendarDays className="h-3.5 w-3.5 text-muted-foreground" />
           <Label className="text-sm font-medium">Steuerjahr</Label>
         </div>
 
         <Select value={year} onValueChange={(v) => onYearChange(v as TaxYear)}>
-          <SelectTrigger className="w-[140px] rounded-xl">
+          <SelectTrigger className="w-[140px] rounded-lg">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>

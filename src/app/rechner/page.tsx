@@ -11,7 +11,7 @@ import { useRechnerState } from '@/hooks/use-rechner-state'
 
 // Existing SVS result components
 import { YearSelector } from '@/components/svs/year-selector'
-import { HeroNumber } from '@/components/svs/hero-number'
+// HeroNumber removed — redundant with KPI hero card
 import { StatusBadge } from '@/components/svs/status-badge'
 import { TaxBracketBar } from '@/components/svs/tax-bracket-bar'
 import { WaterfallChart } from '@/components/svs/waterfall-chart'
@@ -42,9 +42,9 @@ import { PresetSelector } from '@/components/rechner/preset-selector'
 import { GeldflussDiagramm } from '@/components/rechner/geldfluss-diagramm'
 
 import { Button } from '@/components/ui/button'
-import { Alert, AlertDescription } from '@/components/ui/alert'
+// Alert replaced with custom left-border accent divs
 import { Badge } from '@/components/ui/badge'
-import { Info, Save, Lock, Settings2 } from 'lucide-react'
+import { Save, Lock, Settings2 } from 'lucide-react'
 import { toast } from 'sonner'
 
 import type { Stammdaten } from '@/lib/rechner-types'
@@ -145,10 +145,12 @@ function RechnerContent() {
   return (
     <>
       {/* Top bar */}
-      <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-lg border-b border-border/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-3">
+      <div className="sticky top-0 z-30 bg-[hsl(var(--surface))] border-b border-border/40">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+          <div className="flex items-center gap-2">
             <Link href="/" className="md:hidden font-bold text-sm hover:opacity-80 transition-opacity">SVS Checker</Link>
+            <span className="section-header hidden sm:inline">Dashboard</span>
+            <span className="text-border/60 mx-1 hidden sm:inline">/</span>
             <StatusBadge riskPercent={svs.riskPercent} />
             <Badge variant="outline" className="text-xs text-muted-foreground border-border/50 hidden sm:inline-flex">
               {input.year}
@@ -161,12 +163,11 @@ function RechnerContent() {
               onClick={resetOnboarding}
               className="h-8 text-xs text-muted-foreground"
             >
-              <Settings2 className="h-3.5 w-3.5 mr-1" />
-              Stammdaten
+              <Settings2 className="h-3.5 w-3.5 sm:mr-1" />
+              <span className="hidden sm:inline">Stammdaten</span>
             </Button>
             {user ? (
               <Button
-                variant="outline"
                 size="sm"
                 onClick={handleSave}
                 disabled={saving}
@@ -185,11 +186,11 @@ function RechnerContent() {
       </div>
 
       {/* Split Screen */}
-      <div ref={mainContentRef} id="main-content" tabIndex={-1} className="max-w-7xl mx-auto px-4 sm:px-6 py-6 focus:outline-none focus-visible:outline-none overflow-x-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-[360px_minmax(0,1fr)] gap-8">
+      <div ref={mainContentRef} id="main-content" tabIndex={-1} className="max-w-[1400px] mx-auto px-4 sm:px-6 py-8 focus:outline-none focus-visible:outline-none overflow-x-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-[340px_minmax(0,1fr)] gap-10 lg:gap-12">
 
           {/* Left - Inputs (sticky on desktop, scrollable) */}
-          <div className="lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto scrollbar-thin space-y-4 lg:pr-3 lg:pl-1 lg:pb-4">
+          <div className="lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto scrollbar-thin space-y-3 lg:pr-4">
             <YearSelector
               year={input.year}
               onYearChange={(y: TaxYear) => setField('year', y)}
@@ -265,35 +266,35 @@ function RechnerContent() {
           </div>
 
           {/* Right - Results */}
-          <div className="space-y-5 min-w-0 overflow-hidden">
+          <div className="space-y-6 min-w-0 overflow-hidden">
             {svs.belowMinimum && (
-              <Alert className="bg-blue-50 border-blue-200">
-                <Info className="h-4 w-4 text-blue-500" aria-hidden="true" />
-                <AlertDescription className="text-blue-800">
+              <div className="flex gap-3 bg-[hsl(var(--surface))] border border-border/40 border-l-2 border-l-blue-500 rounded-lg p-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 mt-1.5" />
+                <p className="text-sm text-foreground">
                   <span className="font-medium">Unter der Versicherungsgrenze:</span>{' '}
                   Bei einem Jahresgewinn unter {formatEuro(versicherungsgrenze)} besteht als Neuer Selbständiger keine Pflichtversicherung bei der SVS.
-                </AlertDescription>
-              </Alert>
+                </p>
+              </div>
             )}
 
             {svs.usesMinBeitragsgrundlage && (
-              <Alert className="bg-amber-50 border-amber-200">
-                <Info className="h-4 w-4 text-amber-500" aria-hidden="true" />
-                <AlertDescription className="text-amber-800">
+              <div className="flex gap-3 bg-[hsl(var(--surface))] border border-border/40 border-l-2 border-l-amber-500 rounded-lg p-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0 mt-1.5" />
+                <p className="text-sm text-foreground">
                   <span className="font-medium">Mindestbeitragsgrundlage:</span>{' '}
                   SVS wird auf der Mindestbeitragsgrundlage von {formatEuro(minBeitragsgrundlage)} berechnet, da dein Gewinn darunter liegt.
-                </AlertDescription>
-              </Alert>
+                </p>
+              </div>
             )}
 
             {svs.isJungunternehmer && (
-              <Alert className="bg-green-50 border-green-200">
-                <Info className="h-4 w-4 text-green-500" aria-hidden="true" />
-                <AlertDescription className="text-green-800">
+              <div className="flex gap-3 bg-[hsl(var(--surface))] border border-border/40 border-l-2 border-l-emerald-500 rounded-lg p-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-1.5" />
+                <p className="text-sm text-foreground">
                   <span className="font-medium">Jungunternehmer-Bonus:</span>{' '}
                   Reduzierter KV-Beitragssatz (3,84% statt 6,80%) im {Number(input.year) - input.stammdaten.gruendungsJahr + 1}. Kalenderjahr.
-                </AlertDescription>
-              </Alert>
+                </p>
+              </div>
             )}
 
             {/* KPI Tiles - Desktop only (mobile version is in sidebar above) */}
@@ -319,8 +320,6 @@ function RechnerContent() {
 
             {!svs.belowMinimum && (
               <>
-                <HeroNumber echtesNetto={svs.echtesNetto} gewinn={result.gewinn} />
-
                 <WahrheitsTabelle gewinn={result.gewinn} result={svs} year={input.year} />
 
                 {subscription.isBasic ? (
@@ -330,9 +329,9 @@ function RechnerContent() {
                     <SteuerTipps tipps={steuerTipps} gewinn={result.gewinn} year={input.year} />
                   </>
                 ) : (
-                  <div className="glass rounded-2xl p-6 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-background/60 backdrop-blur-sm z-10 flex flex-col items-center justify-center gap-3">
-                      <Lock className="h-5 w-5 text-muted-foreground" aria-hidden="true" />
+                  <div className="card-surface p-6 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-background/70 backdrop-blur-md z-10 flex flex-col items-center justify-center gap-3">
+                      <Lock className="h-4 w-4 text-muted-foreground/60" aria-hidden="true" />
                       <p className="text-sm font-medium text-muted-foreground text-center px-4">Detailanalyse ab Sicherheits-Plan</p>
                       <Button size="sm" onClick={() => handleUpgradeRequired('Detailanalyse', 'basic')}>
                         Jetzt freischalten
@@ -404,10 +403,9 @@ function RechnerContent() {
               requiredPlan={upgradeRequiredPlan}
             />
 
-            <footer className="text-center py-8 text-xs text-muted-foreground space-y-2">
-              <p className="font-medium text-foreground/70">SVS Checker - Beitragsrechner für Selbständige in Österreich</p>
+            <footer className="text-center py-8 text-xs text-muted-foreground">
               <p>Alle Angaben ohne Gewähr. Kein Ersatz für professionelle Steuerberatung. Werte {input.year}.</p>
-              <div className="flex items-center justify-center gap-3 pt-1">
+              <div className="flex items-center justify-center gap-3 pt-2">
                 <Link href="/impressum" className="hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm">Impressum</Link>
                 <span>·</span>
                 <Link href="/datenschutz" className="hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm">Datenschutz</Link>

@@ -18,6 +18,7 @@ const config: Config = {
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
+  			surface: 'hsl(var(--surface))',
   			card: {
   				DEFAULT: 'hsl(var(--card))',
   				foreground: 'hsl(var(--card-foreground))'
@@ -108,6 +109,10 @@ const config: Config = {
   			'shimmer': {
   				'0%': { backgroundPosition: '-200% 0' },
   				'100%': { backgroundPosition: '200% 0' },
+  			},
+  			'count-up': {
+  				from: { opacity: '0', transform: 'translateY(6px)' },
+  				to: { opacity: '1', transform: 'translateY(0)' },
   			}
   		},
   		animation: {
@@ -117,7 +122,8 @@ const config: Config = {
   			'slide-in': 'slide-in 0.3s ease-out',
   			'scale-in': 'scale-in 0.2s ease-out',
   			'pulse-subtle': 'pulse-subtle 2s ease-in-out infinite',
-  			'shimmer': 'shimmer 2s ease-in-out infinite'
+  			'shimmer': 'shimmer 2s ease-in-out infinite',
+  			'count-up': 'count-up 0.3s ease-out'
   		}
   	}
   },

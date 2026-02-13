@@ -27,7 +27,7 @@ function WaterfallBar({ label, amount, total, color, isResult }: {
         </span>
       </div>
       <div className="flex-1 flex items-center gap-2">
-        <div className="flex-1 h-8 bg-primary/5 rounded-md overflow-hidden">
+        <div className="flex-1 h-6 bg-muted/40 rounded-md overflow-hidden">
           <div
             className={`h-full ${color} rounded-md transition-all duration-500 ease-out`}
             style={{ width: `${animated}%` }}
@@ -43,8 +43,8 @@ function WaterfallBar({ label, amount, total, color, isResult }: {
 
 export function WaterfallChart({ gewinn, result }: WaterfallChartProps) {
   return (
-    <div className="glass rounded-xl p-4 sm:p-5 space-y-3" role="img" aria-label="Abzugs-Wasserfall: Vom Brutto-Gewinn zum Netto">
-      <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-4">
+    <div className="card-surface p-4 sm:p-5 space-y-3" role="img" aria-label="Abzugs-Wasserfall: Vom Brutto-Gewinn zum Netto">
+      <p className="section-header mb-4">
         Abzugs-Wasserfall
       </p>
       <WaterfallBar

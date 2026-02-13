@@ -7,28 +7,30 @@ interface KpiTileProps {
   label: string
   value: number
   color: string
-  barColor: string
+  dotColor: string
   pctOfUmsatz?: number
 }
 
-function KpiTile({ label, value, color, barColor, pctOfUmsatz }: KpiTileProps) {
+function KpiTile({ label, value, color, dotColor, pctOfUmsatz }: KpiTileProps) {
   const animated = useAnimatedNumber(value)
   const formatted = Math.round(animated).toLocaleString('de-AT')
 
   return (
-    <div className="glass rounded-xl p-3 min-w-0 relative transition-shadow duration-200 hover:shadow-md snap-start">
-      <div className={`absolute top-0 left-0 right-0 h-0.5 rounded-t-xl ${barColor}`} />
-      <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider truncate">
-        {label}
-      </p>
-      <p className={`text-sm sm:text-base font-bold font-mono tabular-nums mt-0.5 ${color}`}>
-        &euro; {formatted}
-      </p>
-      {pctOfUmsatz !== undefined && pctOfUmsatz > 0 && (
-        <p className="text-[10px] font-mono text-muted-foreground/70 mt-0.5">
-          {pctOfUmsatz.toFixed(1)}%
+    <div className="card-surface p-3 min-w-0 transition-colors duration-200 hover:border-[hsl(var(--border-subtle))]">
+      <div className="flex items-center gap-1.5 mb-1">
+        <span className={`w-1.5 h-1.5 rounded-full ${dotColor} shrink-0`} />
+        <p className="text-[11px] font-medium text-muted-foreground truncate">
+          {label}
         </p>
-      )}
+      </div>
+      <p className={`text-base font-bold font-mono tabular-nums ${color}`} style={{ letterSpacing: '-0.01em' }}>
+        &euro; {formatted}
+        {pctOfUmsatz !== undefined && pctOfUmsatz > 0 && (
+          <span className="text-[10px] font-normal text-muted-foreground/60 ml-1">
+            ({pctOfUmsatz.toFixed(0)}%)
+          </span>
+        )}
+      </p>
     </div>
   )
 }
@@ -53,19 +55,19 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
   return (
     <div className="space-y-3">
       {/* Hero: Netto */}
-      <div className="rounded-2xl bg-primary text-primary-foreground p-4 sm:p-5 relative" role="status" aria-label={`Echtes Netto: ${nettoFormatted} Euro`}>
-        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent pointer-events-none rounded-2xl" />
+      <div className="rounded-2xl bg-gradient-to-br from-[hsl(207,100%,40%)] to-[hsl(210,100%,30%)] text-primary-foreground p-5 sm:p-6 relative animate-fade-up" role="status" aria-label={`Echtes Netto: ${nettoFormatted} Euro`}>
+        <div className="absolute bottom-0 right-0 w-32 h-32 bg-white/[0.03] rounded-full -mr-12 -mb-12 pointer-events-none" />
         <div className="relative">
           <div className="flex items-center justify-between gap-2 mb-1">
-            <p className="text-xs font-medium text-primary-foreground/70 uppercase tracking-wider whitespace-nowrap">
+            <p className="text-[11px] font-medium text-primary-foreground/70 uppercase tracking-wider whitespace-nowrap">
               Dein echtes Netto
             </p>
-            <span className="flex items-center gap-1 text-xs font-mono bg-white/10 rounded-full px-2 py-0.5 shrink-0">
+            <span className="flex items-center gap-1 text-xs font-mono bg-white/[0.08] border border-white/[0.12] rounded-full px-2 py-0.5 shrink-0">
               <TrendingUp className="h-3 w-3" aria-hidden="true" />
               {nettoPct.toFixed(1)}%
             </span>
           </div>
-          <p className="text-3xl sm:text-4xl font-bold font-mono tabular-nums tracking-tight">
+          <p className="text-4xl sm:text-5xl font-bold font-mono tabular-nums" style={{ letterSpacing: '-0.02em' }}>
             &euro; {nettoFormatted}
           </p>
           <p className="text-sm font-mono text-primary-foreground/60 mt-1">
@@ -75,12 +77,12 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
       </div>
 
       {/* Secondary KPIs */}
-      <div className="grid grid-cols-3 sm:grid-cols-5 gap-2">
-        <KpiTile label="Umsatz" value={umsatz} color="text-foreground" barColor="bg-primary" />
-        <KpiTile label="Aufwände" value={aufwaende} color="text-destructive" barColor="bg-destructive" pctOfUmsatz={pct(aufwaende)} />
-        <KpiTile label="Gewinn" value={gewinn} color="text-emerald-600" barColor="bg-emerald-500" pctOfUmsatz={pct(gewinn)} />
-        <KpiTile label="SVS" value={svs} color="text-orange-600" barColor="bg-orange-500" pctOfUmsatz={pct(svs)} />
-        <KpiTile label="ESt" value={est} color="text-amber-600" barColor="bg-amber-500" pctOfUmsatz={pct(est)} />
+      <div className="grid grid-cols-5 gap-2">
+        <KpiTile label="Umsatz" value={umsatz} color="text-foreground" dotColor="bg-primary" />
+        <KpiTile label="Aufwände" value={aufwaende} color="text-destructive" dotColor="bg-destructive" pctOfUmsatz={pct(aufwaende)} />
+        <KpiTile label="Gewinn" value={gewinn} color="text-emerald-600" dotColor="bg-emerald-500" pctOfUmsatz={pct(gewinn)} />
+        <KpiTile label="SVS" value={svs} color="text-orange-600" dotColor="bg-orange-500" pctOfUmsatz={pct(svs)} />
+        <KpiTile label="ESt" value={est} color="text-amber-600" dotColor="bg-amber-500" pctOfUmsatz={pct(est)} />
       </div>
     </div>
   )

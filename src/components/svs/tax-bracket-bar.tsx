@@ -42,9 +42,9 @@ export function TaxBracketBar({ steuerpflichtig, year }: TaxBracketBarProps) {
   const currentRate = currentBracket?.rate ?? 0
 
   return (
-    <div className="glass rounded-xl p-4 sm:p-5">
+    <div className="card-surface p-4 sm:p-5">
       <div className="flex items-center justify-between mb-3">
-        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+        <p className="section-header">
           Deine Steuerstufe
         </p>
         <span className="text-sm font-bold font-mono text-foreground">
@@ -54,7 +54,7 @@ export function TaxBracketBar({ steuerpflichtig, year }: TaxBracketBarProps) {
 
       <div className="relative">
         {/* Bar */}
-        <div className="flex h-3 rounded-full overflow-hidden gap-px">
+        <div className="flex h-2 rounded-full overflow-hidden gap-px">
           {brackets.map((b) => {
             const width = ((b.to - b.from) / MAX) * 100
             return (
@@ -84,7 +84,7 @@ export function TaxBracketBar({ steuerpflichtig, year }: TaxBracketBarProps) {
             style={{ left: `${positionPercent}%` }}
           >
             <div className="relative -translate-x-1/2">
-              <div className="w-0 h-0 border-l-[5px] border-r-[5px] border-t-[6px] border-l-transparent border-r-transparent border-t-foreground" />
+              <div className="w-0 h-0 border-l-[5px] border-r-[5px] border-t-[6px] border-l-transparent border-r-transparent border-t-primary" />
             </div>
           </div>
         )}

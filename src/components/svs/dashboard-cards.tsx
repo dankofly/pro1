@@ -20,10 +20,10 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {/* Gefahren-Barometer */}
-      <div className="glass rounded-2xl p-5 transition-all duration-300 hover:shadow-xl">
+      <div className="card-surface p-5">
         <div className="flex items-center gap-2 mb-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-500/10">
-            <Zap className="h-4 w-4 text-amber-500" />
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/60">
+            <Zap className="h-3.5 w-3.5 text-muted-foreground" />
           </div>
           <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
             Gefahren-Barometer
@@ -36,18 +36,10 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
       </div>
 
       {/* Nachzahlungs-Alarm */}
-      <div className="glass rounded-2xl p-5 transition-all duration-300 hover:shadow-xl">
+      <div className="card-surface p-5">
         <div className="flex items-center gap-2 mb-3">
-          <div
-            className={`flex h-9 w-9 items-center justify-center rounded-xl ${
-              result.nachzahlung > 0 ? 'bg-red-500/10' : 'bg-emerald-500/10'
-            }`}
-          >
-            <AlertTriangle
-              className={`h-4 w-4 ${
-                result.nachzahlung > 0 ? 'text-red-500' : 'text-emerald-500'
-              }`}
-            />
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/60">
+            <AlertTriangle className="h-3.5 w-3.5 text-muted-foreground" />
           </div>
           <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
             Nachzahlungs-Alarm
@@ -56,13 +48,13 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
         <div className="text-center py-2">
           {result.nachzahlung > 0 ? (
             <>
-              <p className="text-3xl sm:text-4xl font-bold text-red-500 num-transition font-mono">
+              <p className="text-2xl sm:text-3xl font-bold text-red-500 num-transition font-mono">
                 {formatEuroShort(Math.round(animatedNachzahlung))}
               </p>
               <p className="text-sm text-muted-foreground mt-1">
                 geschätzte Nachzahlung
               </p>
-              <div className="mt-3 p-2.5 rounded-xl bg-red-500/10">
+              <div className="mt-3 p-3 rounded-lg bg-muted/40 border border-border/40">
                 <p className="text-xs text-red-600">
                   Deine Vorschreibung ({formatEuro(vorschreibung)}) ist{' '}
                   <span className="font-bold">
@@ -74,13 +66,13 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
             </>
           ) : result.nachzahlung < 0 ? (
             <>
-              <p className="text-3xl sm:text-4xl font-bold text-emerald-500 num-transition font-mono">
+              <p className="text-2xl sm:text-3xl font-bold text-emerald-500 num-transition font-mono">
                 {formatEuroShort(Math.round(animatedNachzahlung))}
               </p>
               <p className="text-sm text-muted-foreground mt-1">
                 voraussichtliche Gutschrift
               </p>
-              <div className="mt-3 p-2.5 rounded-xl bg-emerald-500/10">
+              <div className="mt-3 p-3 rounded-lg bg-muted/40 border border-border/40">
                 <p className="text-xs text-emerald-600">
                   Du zahlst aktuell mehr als nötig. Die SVS wird dir die
                   Differenz gutschreiben.
@@ -89,7 +81,7 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
             </>
           ) : (
             <>
-              <p className="text-3xl sm:text-4xl font-bold text-muted-foreground num-transition font-mono">
+              <p className="text-2xl sm:text-3xl font-bold text-muted-foreground num-transition font-mono">
                 &euro; 0
               </p>
               <p className="text-sm text-muted-foreground mt-1">
@@ -101,24 +93,24 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
       </div>
 
       {/* Spar-Empfehlung */}
-      <div className="glass rounded-2xl p-5 transition-all duration-300 hover:shadow-xl">
+      <div className="card-surface p-5">
         <div className="flex items-center gap-2 mb-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-500/10">
-            <Wallet className="h-4 w-4 text-blue-500" />
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/60">
+            <Wallet className="h-3.5 w-3.5 text-muted-foreground" />
           </div>
           <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
             Spar-Empfehlung
           </span>
         </div>
         <div className="text-center py-2">
-          <p className="text-3xl sm:text-4xl font-bold text-blue-600 num-transition font-mono">
+          <p className="text-2xl sm:text-3xl font-bold text-blue-600 num-transition font-mono">
             {formatEuroShort(Math.round(animatedSpar))}
           </p>
           <p className="text-sm text-muted-foreground mt-1">
             pro Monat auf ein Unterkonto legen
           </p>
           {result.sparEmpfehlung > 0 && (
-            <div className="mt-3 p-2.5 rounded-xl bg-blue-500/10">
+            <div className="mt-3 p-3 rounded-lg bg-muted/40 border border-border/40">
               <p className="text-xs text-blue-600">
                 Lege jeden Monat diesen Betrag zur Seite, um die Nachzahlung
                 stressfrei zu stemmen.
@@ -126,7 +118,7 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
             </div>
           )}
           {result.sparEmpfehlung === 0 && result.nachzahlung < 0 && (
-            <div className="mt-3 p-2.5 rounded-xl bg-emerald-500/10">
+            <div className="mt-3 p-3 rounded-lg bg-muted/40 border border-border/40">
               <p className="text-xs text-emerald-600">
                 Keine Rücklage nötig – du bist aktuell gut aufgestellt!
               </p>
@@ -136,23 +128,23 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
       </div>
 
       {/* Steuer-Hebel */}
-      <div className="glass rounded-2xl p-5 transition-all duration-300 hover:shadow-xl">
+      <div className="card-surface p-5">
         <div className="flex items-center gap-2 mb-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/10">
-            <CircleDollarSign className="h-4 w-4 text-emerald-500" />
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/60">
+            <CircleDollarSign className="h-3.5 w-3.5 text-muted-foreground" />
           </div>
           <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
             Steuer-Hebel
           </span>
         </div>
         <div className="text-center py-2">
-          <p className="text-3xl sm:text-4xl font-bold text-emerald-500 num-transition font-mono">
+          <p className="text-2xl sm:text-3xl font-bold text-emerald-500 num-transition font-mono">
             - {formatEuroShort(Math.round(animatedSteuer))}
           </p>
           <p className="text-sm text-muted-foreground mt-1">
             geschätzte Steuerersparnis
           </p>
-          <div className="mt-3 p-2.5 rounded-xl bg-emerald-500/10">
+          <div className="mt-3 p-3 rounded-lg bg-muted/40 border border-border/40">
             <p className="text-xs text-emerald-600">
               SVS-Beiträge sind{' '}
               <span className="font-semibold">Betriebsausgaben</span> und senken

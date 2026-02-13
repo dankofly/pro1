@@ -73,25 +73,25 @@ export function InvestitionenSection({ investitionen, afa, isPro, dispatch }: In
 
   return (
     <Collapsible open={open} onOpenChange={setOpen}>
-      <div className="glass rounded-2xl">
+      <div className="card-surface">
         <CollapsibleTrigger asChild>
-          <button type="button" className="flex w-full items-center gap-3 p-5 text-left">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-violet-100">
-              <Landmark className="h-4 w-4 text-violet-600" />
+          <button type="button" className="flex w-full items-center gap-3 px-4 py-3.5 text-left">
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-muted/60">
+              <Landmark className="h-3.5 w-3.5 text-muted-foreground" />
             </div>
             <div className="flex-1 min-w-0">
-              <h2 className="text-base font-semibold tracking-tight">Investitionen & AfA</h2>
-              <p className="text-xs text-muted-foreground mt-0.5 truncate">
+              <h2 className="text-sm font-semibold tracking-tight">Investitionen & AfA</h2>
+              <p className="text-xs text-muted-foreground truncate">
                 {afa.gesamt > 0 ? `AfA: ${formatEuro(afa.gesamt)}/Jahr` : 'Abschreibungen für Anlagegüter'}
               </p>
             </div>
-            <ChevronDown className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform ${open ? 'rotate-180' : ''}`} />
+            <ChevronDown className={`h-4 w-4 shrink-0 text-muted-foreground transition-transform ${open ? 'rotate-180' : ''}`} />
           </button>
         </CollapsibleTrigger>
         <CollapsibleContent>
           <ProSectionWrapper isPro={isPro} featureName="Investitionen & AfA">
             <div className="space-y-4 px-5 pb-5">
-              <div className="border-t border-border/60" />
+              <div className="divider" />
               <InvestRow
                 id="invest-einrichtung"
                 label="Einrichtung & Büroausstattung (8 Jahre)"
@@ -120,10 +120,10 @@ export function InvestitionenSection({ investitionen, afa, isPro, dispatch }: In
                 onMethodeChange={(m) => setInvest('maschinenMethode', m)}
               />
               {afa.gesamt > 0 && (
-                <div className="bg-violet-50 rounded-lg p-3 text-sm">
+                <div className="bg-muted/40 rounded-lg p-3 border border-border/40 text-sm">
                   <div className="flex justify-between font-medium">
                     <span>Gesamt-AfA / Jahr</span>
-                    <span className="font-mono text-violet-700">{formatEuro(afa.gesamt)}</span>
+                    <span className="font-mono text-foreground">{formatEuro(afa.gesamt)}</span>
                   </div>
                   <p className="text-xs text-muted-foreground mt-1">
                     Wird als Betriebsausgabe abgezogen

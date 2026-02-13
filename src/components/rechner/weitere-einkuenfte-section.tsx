@@ -57,25 +57,25 @@ export function WeitereEinkuenfteSection({
 
   return (
     <Collapsible open={open} onOpenChange={setOpen}>
-      <div className="glass rounded-2xl">
+      <div className="card-surface">
         <CollapsibleTrigger asChild>
-          <button type="button" className="flex w-full items-center gap-3 p-5 text-left">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-100">
-              <Briefcase className="h-4 w-4 text-indigo-600" />
+          <button type="button" className="flex w-full items-center gap-3 px-4 py-3.5 text-left">
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-muted/60">
+              <Briefcase className="h-3.5 w-3.5 text-muted-foreground" />
             </div>
             <div className="flex-1 min-w-0">
-              <h2 className="text-base font-semibold tracking-tight">Weitere Einkünfte</h2>
-              <p className="text-xs text-muted-foreground mt-0.5 truncate">
+              <h2 className="text-sm font-semibold tracking-tight">Weitere Einkünfte</h2>
+              <p className="text-xs text-muted-foreground truncate">
                 Gehalt, Vermietung, etc.
               </p>
             </div>
-            <ChevronDown className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform ${open ? 'rotate-180' : ''}`} />
+            <ChevronDown className={`h-4 w-4 shrink-0 text-muted-foreground transition-transform ${open ? 'rotate-180' : ''}`} />
           </button>
         </CollapsibleTrigger>
         <CollapsibleContent>
           <ProSectionWrapper isPro={isPro} featureName="Weitere Einkünfte">
-            <div className="space-y-4 px-5 pb-5">
-              <div className="border-t border-border/60" />
+            <div className="space-y-4 px-4 pb-4">
+              <div className="divider" />
 
               <WEInput
                 id="brutto-entgelt"

@@ -12,7 +12,7 @@ interface BeitragsDetailsProps {
 function MiniProgressBar({ value, max, color }: { value: number; max: number; color: string }) {
   const percent = max > 0 ? Math.min((value / max) * 100, 100) : 0
   return (
-    <div className="w-full h-1.5 bg-slate-200/60 rounded-full overflow-hidden mt-1">
+    <div className="w-full h-1 bg-muted rounded-full overflow-hidden mt-1">
       <div
         className={`h-full rounded-full transition-all duration-500 ${color}`}
         style={{ width: `${percent}%` }}
@@ -35,10 +35,10 @@ export function BeitragsDetails({ result }: BeitragsDetailsProps) {
   ]
 
   return (
-    <div className="glass rounded-2xl p-5 sm:p-6 transition-all duration-300 hover:shadow-xl">
-      <div className="flex items-center gap-2 text-lg font-semibold mb-4">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/10">
-          <FileText className="h-4 w-4 text-blue-600" />
+    <div className="card-surface p-5 sm:p-6">
+      <div className="flex items-center gap-2 text-base font-semibold mb-4">
+        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/60">
+          <FileText className="h-3.5 w-3.5 text-muted-foreground" />
         </div>
         Beitrags-Aufschlüsselung
       </div>
@@ -71,10 +71,10 @@ export function BeitragsDetails({ result }: BeitragsDetailsProps) {
             ))}
           </tbody>
           <tfoot>
-            <tr className="bg-blue-50/50 rounded-lg">
-              <td className="py-3 pl-2 font-semibold text-blue-800 rounded-l-lg">Gesamt (endgültig)</td>
-              <td className="py-3 text-right font-mono text-blue-600">{gesamtPct} + UV</td>
-              <td className="py-3 pr-2 text-right font-mono font-bold text-blue-700 text-base rounded-r-lg">
+            <tr className="bg-primary/[0.04] rounded-lg">
+              <td className="py-3 pl-2 font-semibold text-foreground rounded-l-lg">Gesamt (endgültig)</td>
+              <td className="py-3 text-right font-mono text-muted-foreground">{gesamtPct} + UV</td>
+              <td className="py-3 pr-2 text-right font-mono font-bold text-foreground text-base rounded-r-lg">
                 {formatEuro(result.endgueltigeSVS)}
               </td>
             </tr>

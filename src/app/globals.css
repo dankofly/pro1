@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 210 33% 98%;
+    --background: 220 20% 97.5%;
     --foreground: 213 32% 12%;
     --card: 0 0% 100%;
     --card-foreground: 213 32% 12%;
@@ -28,6 +28,10 @@
     --input: 214 32% 91%;
     --ring: 207 100% 38%;
     --radius: 0.75rem;
+    --surface: 0 0% 100%;
+    --border-subtle: 220 13% 91%;
+    --border-card: 220 13% 93%;
+    --shadow-card: 220 40% 88%;
     --chart-1: 207 100% 38%;
     --chart-2: 28 91% 54%;
     --chart-3: 160 84% 39%;
@@ -67,6 +71,10 @@
     --border: 215 25% 20%;
     --input: 215 25% 20%;
     --ring: 207 100% 50%;
+    --surface: 215 25% 15%;
+    --border-subtle: 215 25% 22%;
+    --border-card: 215 25% 20%;
+    --shadow-card: 215 40% 8%;
     --chart-1: 207 100% 50%;
     --chart-2: 28 91% 54%;
     --chart-3: 160 84% 39%;
@@ -93,7 +101,19 @@
 }
 
 @layer components {
-  /* Card styles */
+  /* Card surfaces — refined, minimal */
+  .card-surface {
+    background-color: hsl(var(--surface));
+    border: 1px solid hsl(var(--border-card));
+    box-shadow: 0 1px 3px 0 hsl(var(--shadow-card) / 0.08), 0 1px 2px -1px hsl(var(--shadow-card) / 0.06);
+    border-radius: 0.75rem;
+  }
+  .card-surface-dark {
+    @apply bg-[hsl(207,70%,18%)] border border-[hsl(207,50%,25%)];
+    box-shadow: 0 4px 24px -4px rgba(0, 60, 120, 0.25);
+  }
+
+  /* Legacy card styles (kept for components not yet migrated) */
   .glass {
     @apply bg-white border border-slate-200/80 shadow-sm;
   }
@@ -104,6 +124,23 @@
     @apply bg-slate-50/80 border border-slate-200/60;
   }
 
+  /* Section typography */
+  .section-header {
+    @apply text-[11px] font-semibold uppercase text-muted-foreground;
+    letter-spacing: 0.08em;
+  }
+
+  /* Mono number formatting */
+  .mono-value {
+    @apply font-mono font-semibold tabular-nums;
+    letter-spacing: -0.01em;
+  }
+
+  /* Divider */
+  .divider {
+    @apply border-t border-border/50;
+  }
+
   /* Pro Feature Glow (Orange accent) */
   .gold-glow {
     box-shadow: 0 0 30px rgba(245, 130, 32, 0.15), 0 0 60px rgba(245, 130, 32, 0.05);
@@ -112,9 +149,9 @@
     box-shadow: 0 0 30px rgba(245, 130, 32, 0.3), 0 0 60px rgba(245, 130, 32, 0.1);
   }
 
-  /* Blue primary glow */
+  /* Blue primary glow — refined */
   .blue-glow {
-    box-shadow: 0 0 30px rgba(0, 115, 194, 0.15), 0 0 60px rgba(0, 115, 194, 0.05);
+    box-shadow: 0 0 24px rgba(0, 115, 194, 0.10), 0 0 48px rgba(0, 115, 194, 0.03);
   }
 
   /* Infinite scroll carousel */
@@ -137,10 +174,10 @@
 
   /* Micro-interactions */
   .card-hover {
-    @apply transition-all duration-200;
+    @apply transition-colors duration-200;
   }
   .card-hover:hover {
-    @apply shadow-md -translate-y-0.5;
+    border-color: hsl(var(--border-subtle));
   }
 
   /* Input focus glow */
@@ -157,17 +194,17 @@
     animation: value-flash 0.6s ease-out;
   }
 
-  /* Staggered fade-in for lists */
+  /* Staggered fade-in for lists — tighter timing */
   .stagger-fade > * {
     opacity: 0;
     animation: fade-up 0.4s ease-out forwards;
   }
   .stagger-fade > *:nth-child(1) { animation-delay: 0ms; }
-  .stagger-fade > *:nth-child(2) { animation-delay: 50ms; }
-  .stagger-fade > *:nth-child(3) { animation-delay: 100ms; }
-  .stagger-fade > *:nth-child(4) { animation-delay: 150ms; }
-  .stagger-fade > *:nth-child(5) { animation-delay: 200ms; }
-  .stagger-fade > *:nth-child(6) { animation-delay: 250ms; }
+  .stagger-fade > *:nth-child(2) { animation-delay: 40ms; }
+  .stagger-fade > *:nth-child(3) { animation-delay: 80ms; }
+  .stagger-fade > *:nth-child(4) { animation-delay: 120ms; }
+  .stagger-fade > *:nth-child(5) { animation-delay: 160ms; }
+  .stagger-fade > *:nth-child(6) { animation-delay: 200ms; }
 
   /* Status dot pulse */
   .pulse-dot {
@@ -206,23 +243,23 @@
     background-color: hsl(var(--muted-foreground));
   }
 
-  /* Custom range slider */
+  /* Custom range slider — clean monochrome */
   input[type="range"] {
-    @apply w-full h-2 rounded-full appearance-none cursor-pointer;
-    background: linear-gradient(to right, hsl(var(--success)), hsl(var(--warning)), hsl(var(--destructive)));
+    @apply w-full h-1.5 rounded-full appearance-none cursor-pointer;
+    background: hsl(var(--border));
   }
   input[type="range"]::-webkit-slider-thumb {
-    @apply appearance-none w-6 h-6 rounded-full bg-white shadow-lg shadow-slate-900/20 cursor-pointer border-2 border-slate-200;
+    @apply appearance-none w-5 h-5 rounded-full bg-white shadow-md shadow-slate-900/15 cursor-pointer border-2 border-primary/30;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
   input[type="range"]::-webkit-slider-thumb:hover {
-    @apply scale-110 shadow-xl;
+    @apply scale-110 border-primary/50;
   }
   input[type="range"]::-webkit-slider-thumb:active {
     @apply scale-95;
   }
   input[type="range"]::-moz-range-thumb {
-    @apply w-6 h-6 rounded-full bg-white shadow-lg shadow-slate-900/20 cursor-pointer border-2 border-slate-200;
+    @apply w-5 h-5 rounded-full bg-white shadow-md shadow-slate-900/15 cursor-pointer border-2 border-primary/30;
   }
 }
 

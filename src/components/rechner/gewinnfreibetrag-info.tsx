@@ -12,9 +12,11 @@ export function GewinnfreibetragInfo({ result }: GewinnfreibetragInfoProps) {
   if (result.grundfreibetrag <= 0 && result.gewinnfreibetragInvestition <= 0) return null
 
   return (
-    <div className="glass rounded-xl p-4 space-y-2">
+    <div className="card-surface p-4 space-y-2">
       <div className="flex items-center gap-2 text-sm font-medium text-foreground">
-        <Info className="h-4 w-4 text-blue-500" />
+        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/60">
+          <Info className="h-3.5 w-3.5 text-muted-foreground" />
+        </div>
         Gewinnfreibetrag
       </div>
       <div className="text-sm text-muted-foreground space-y-1">

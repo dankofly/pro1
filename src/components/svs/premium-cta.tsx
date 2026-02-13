@@ -44,7 +44,7 @@ export function PremiumCTA({
 
   return (
     <>
-      <div className="gold-glow glass-dark rounded-2xl overflow-hidden relative text-white">
+      <div className="card-surface-dark rounded-xl overflow-hidden relative text-white">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
         <div className="absolute bottom-0 left-0 w-40 h-40 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
         <div className="relative p-6 sm:p-8">
@@ -62,14 +62,14 @@ export function PremiumCTA({
             {/* Bank-Anbindung */}
             <button
               onClick={() => locked ? onUpgradeRequired('Bank-Anbindung', 'pro') : setBankOpen(true)}
-              className="glass-dark rounded-xl p-4 border border-white/10 hover:bg-white/20 transition-all duration-300 text-left relative group"
+              className="rounded-lg p-4 border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] transition-all duration-300 text-left relative group"
             >
               {locked && (
-                <div className="absolute inset-0 backdrop-blur-[2px] bg-white/5 rounded-xl z-10 flex items-center justify-center">
-                  <Lock className="h-5 w-5 text-white/50" />
+                <div className="absolute inset-0 backdrop-blur-[2px] bg-white/5 rounded-lg z-10 flex items-center justify-center">
+                  <Lock className="h-4 w-4 text-white/50" />
                 </div>
               )}
-              <Building2 className="h-5 w-5 mb-2 text-blue-300" />
+              <Building2 className="h-4 w-4 mb-2 text-white/60" />
               <div className="font-semibold text-sm">Bank-Anbindung</div>
               <div className="text-white/50 text-xs mb-3">CSV-Import deiner Kontoauszüge</div>
               <span className="text-xs font-medium bg-white/10 px-2 py-1 rounded-md">
@@ -80,14 +80,14 @@ export function PremiumCTA({
             {/* PDF-Export */}
             <button
               onClick={() => locked ? onUpgradeRequired('PDF-Export', 'pro') : undefined}
-              className="glass-dark rounded-xl p-4 border border-white/10 hover:bg-white/20 transition-all duration-300 text-left relative group"
+              className="rounded-lg p-4 border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] transition-all duration-300 text-left relative group"
             >
               {locked && (
-                <div className="absolute inset-0 backdrop-blur-[2px] bg-white/5 rounded-xl z-10 flex items-center justify-center">
-                  <Lock className="h-5 w-5 text-white/50" />
+                <div className="absolute inset-0 backdrop-blur-[2px] bg-white/5 rounded-lg z-10 flex items-center justify-center">
+                  <Lock className="h-4 w-4 text-white/50" />
                 </div>
               )}
-              <FileDown className="h-5 w-5 mb-2 text-blue-300" />
+              <FileDown className="h-4 w-4 mb-2 text-white/60" />
               <div className="font-semibold text-sm">PDF-Export</div>
               <div className="text-white/50 text-xs mb-3">Berichte für deinen Steuerberater</div>
               {locked ? (
@@ -108,11 +108,11 @@ export function PremiumCTA({
             {/* Smart Alerts */}
             <button
               onClick={() => locked ? onUpgradeRequired('Smart Alerts', 'pro') : setAlertOpen(true)}
-              className="glass-dark rounded-xl p-4 border border-white/10 hover:bg-white/20 transition-all duration-300 text-left relative group"
+              className="rounded-lg p-4 border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] transition-all duration-300 text-left relative group"
             >
               {locked && (
-                <div className="absolute inset-0 backdrop-blur-[2px] bg-white/5 rounded-xl z-10 flex items-center justify-center">
-                  <Lock className="h-5 w-5 text-white/50" />
+                <div className="absolute inset-0 backdrop-blur-[2px] bg-white/5 rounded-lg z-10 flex items-center justify-center">
+                  <Lock className="h-4 w-4 text-white/50" />
                 </div>
               )}
               {!locked && alertActive && (
@@ -121,7 +121,7 @@ export function PremiumCTA({
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500" />
                 </span>
               )}
-              <BellRing className="h-5 w-5 mb-2 text-blue-300" />
+              <BellRing className="h-4 w-4 mb-2 text-white/60" />
               <div className="font-semibold text-sm">Smart Alerts</div>
               <div className="text-white/50 text-xs mb-3">Nachzahlungs-Warnungen</div>
               <span className="text-xs font-medium bg-white/10 px-2 py-1 rounded-md">
