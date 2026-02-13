@@ -360,24 +360,24 @@ function ProblemSection() {
   const problems = [
     {
       icon: <TrendingUp className="h-6 w-6" />,
-      title: 'Die Falle',
-      desc: 'Die SVS rechnet mit deinem Gewinn von vor 3 Jahren. Steigt dein Einkommen, kommt eine saftige Nachzahlung – oft tausende Euro, völlig unerwartet.',
+      title: 'Kein Gesamtbild',
+      desc: 'SVS-Beiträge, Einkommensteuer, Vorauszahlungen, Nachzahlungen – als Selbständiger in Österreich hast du es mit vier verschiedenen Abrechnungslogiken zu tun. Ohne zentrale Übersicht fehlt dir die wichtigste Zahl: was am Jahresende wirklich übrig bleibt.',
       color: 'text-red-400',
       bg: 'bg-red-500/10',
       border: 'border-red-500/20',
     },
     {
       icon: <Shield className="h-6 w-6" />,
-      title: 'Die Ungewissheit',
-      desc: 'Vorläufige Beiträge, endgültige Bescheide, Geringfügigkeitsgrenze, Höchstbeitragsgrundlage – wer blickt da noch durch? Du weißt nie, was am Ende wirklich übrig bleibt.',
+      title: 'Nachzahlungen ohne Vorwarnung',
+      desc: 'Die SVS rechnet mit deinem Gewinn von vor 3 Jahren. Steigt dein Einkommen, folgen Nachforderungen bei SVS und Finanzamt – oft im selben Quartal, ohne Vorankündigung.',
       color: 'text-amber-400',
       bg: 'bg-amber-500/10',
       border: 'border-amber-500/20',
     },
     {
       icon: <Users className="h-6 w-6" />,
-      title: 'Der Misch-Masch',
-      desc: 'Angestellt und gleichzeitig selbständig? Dann wird es richtig kompliziert: Differenz-Vorschreibung, doppelte SV, Absetzbeträge – eine Formel, die kein normaler Mensch im Kopf hat.',
+      title: 'Steuerlast ist nicht planbar',
+      desc: 'Progression, Absetzbeträge, Gewinnfreibetrag, Pauschalierung – die Stellschrauben sind da, aber ohne Rechenmodell bleiben Optimierungen auf der Strecke.',
       color: 'text-blue-400',
       bg: 'bg-blue-500/10',
       border: 'border-blue-500/20',
@@ -393,10 +393,10 @@ function ProblemSection() {
               Das Problem
             </Badge>
             <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              Warum Selbständige jedes Jahr böse überrascht werden
+              Nicht die Steuer ist das Problem – der fehlende Überblick ist es
             </h2>
             <p className="mt-4 text-blue-200/60 max-w-2xl mx-auto text-lg">
-              Die SVS-Abrechnung ist bewusst kompliziert. Ohne die richtigen Zahlen tappst du im Dunkeln.
+              Selbständige in Österreich zahlen SVS, Einkommensteuer und Vorauszahlungen an unterschiedliche Stellen. Ohne zentrale Jahresprognose fehlt die Grundlage für jede finanzielle Entscheidung.
             </p>
           </div>
         </Reveal>
@@ -413,7 +413,7 @@ function ProblemSection() {
                 <p className="text-blue-200/60 leading-relaxed text-lg">{problems[0].desc}</p>
                 <div className="mt-6 flex items-center gap-3 text-sm text-red-400/80">
                   <span className="flex h-2 w-2 rounded-full bg-red-400" />
-                  Betrifft 80% aller Selbständigen in Österreich
+                  Betrifft jeden Selbständigen in Österreich – vom EPU bis zur GmbH
                 </div>
               </CardContent>
             </Card>
