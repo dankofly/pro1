@@ -38,6 +38,7 @@ import { PauschalierungVergleich } from '@/components/rechner/pauschalierung-ver
 import { GmbhVergleichTabelle } from '@/components/rechner/gmbh-vergleich-tabelle'
 import { GewinnmaximiererVergleich } from '@/components/rechner/gewinnmaximierer-vergleich'
 import { GewinnfreibetragInfo } from '@/components/rechner/gewinnfreibetrag-info'
+import { AiTaxAdvisor } from '@/components/rechner/ai-tax-advisor'
 import { PresetSelector } from '@/components/rechner/preset-selector'
 import { GeldflussDiagramm } from '@/components/rechner/geldfluss-diagramm'
 
@@ -372,6 +373,14 @@ function RechnerContent() {
                     basisNetto={svs.echtesNetto}
                   />
                 )}
+
+                {/* KI-Steuerberater */}
+                <AiTaxAdvisor
+                  input={input}
+                  result={result}
+                  isPro={subscription.isPro}
+                  onUpgradeRequired={handleUpgradeRequired}
+                />
 
                 {/* Gewinnfreibetrag Info */}
                 <GewinnfreibetragInfo result={svs} />
