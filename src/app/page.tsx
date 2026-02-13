@@ -26,6 +26,10 @@ import {
   Heart,
   Star,
   CalendarDays,
+  Sparkles,
+  Building2,
+  BarChart3,
+  Layers,
 } from 'lucide-react'
 
 /* ─── Scroll-reveal hook ─── */
@@ -548,6 +552,53 @@ function FeaturesSection() {
             </div>
           </div>
         </Reveal>
+
+        {/* KI-Steuerberater – Highlight Card */}
+        <Reveal delay={250}>
+          <div className="mt-8 relative group">
+            <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-amber-500/20 opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="relative bg-white/[0.05] border border-amber-500/20 rounded-2xl p-6 sm:p-8">
+              <div className="flex flex-col sm:flex-row items-start gap-5">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/15 shrink-0">
+                  <Sparkles className="h-6 w-6 text-amber-400" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <h4 className="text-xl font-bold text-white font-heading">KI-Steuerberater</h4>
+                    <Badge className="bg-amber-500/15 text-amber-400 border-amber-500/25 text-xs">
+                      Pro · Powered by AI
+                    </Badge>
+                  </div>
+                  <p className="text-blue-200/60 leading-relaxed">
+                    Dein persönlicher KI-Steuerexperte analysiert deine Zahlen und gibt dir konkrete
+                    Optimierungsstrategien mit Euro-Beträgen — direkt, praxisorientiert und auf
+                    deine Situation zugeschnitten.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Pro Rechner Features – 4-col Grid */}
+        <Reveal delay={300}>
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { icon: <Building2 className="h-4 w-4 text-blue-400" />, bg: 'bg-blue-500/10', title: 'GmbH-Vergleich', desc: 'Vergleiche die Steuerbelastung als EPU vs. GmbH — mit konkreten Netto-Zahlen.' },
+              { icon: <Layers className="h-4 w-4 text-purple-400" />, bg: 'bg-purple-500/10', title: 'Pauschalierung', desc: 'Prüfe automatisch ob eine Pauschalierung für dich günstiger wäre.' },
+              { icon: <BarChart3 className="h-4 w-4 text-emerald-400" />, bg: 'bg-emerald-500/10', title: 'Gewinnmaximierer', desc: 'Simuliere Zusatzumsätze und sieh die Auswirkung auf Steuern und Netto.' },
+              { icon: <Calculator className="h-4 w-4 text-amber-400" />, bg: 'bg-amber-500/10', title: 'Investitionen & AfA', desc: 'Berechne Abschreibungen für Einrichtung, EDV und Maschinen.' },
+            ].map((f) => (
+              <div key={f.title} className="bg-white/[0.03] border border-white/10 rounded-xl p-4">
+                <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${f.bg} mb-3`}>
+                  {f.icon}
+                </div>
+                <h4 className="font-semibold text-white text-sm font-heading">{f.title}</h4>
+                <p className="text-xs text-blue-200/50 mt-1 leading-relaxed">{f.desc}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
       </div>
     </section>
   )
@@ -568,10 +619,10 @@ function PricingSection() {
       features: [
         { text: 'SVS-Beitragsrechner', included: true },
         { text: 'Wahrheits-Tabelle', included: true },
+        { text: 'Geldfluss-Diagramm', included: true },
         { text: 'Einkommensteuer-Prognose', included: false },
-        { text: 'Misch-Einkommen Rechner', included: false },
-        { text: 'Familienbonus & Absetzbeträge', included: false },
-        { text: 'Wasserfall-Analyse', included: false },
+        { text: 'KI-Steuerberater', included: false },
+        { text: 'GmbH-Vergleich', included: false },
         { text: 'PDF-Export', included: false },
       ],
       cta: 'Jetzt gratis starten',
@@ -609,12 +660,15 @@ function PricingSection() {
       isFree: false,
       features: [
         { text: 'Alles aus Sicherheits-Plan', included: true },
+        { text: 'KI-Steuerberater', included: true },
         { text: 'Misch-Einkommen Rechner', included: true },
+        { text: 'GmbH-Vergleich', included: true },
+        { text: 'Pauschalierung Vergleich', included: true },
+        { text: 'Gewinnmaximierer', included: true },
+        { text: 'Investitionen & AfA', included: true },
         { text: 'Familienbonus & Absetzbeträge', included: true },
-        { text: 'Wasserfall-Analyse', included: true },
         { text: 'PDF-Export für Steuerberater', included: true },
         { text: 'Smart Alerts & Push', included: true },
-        { text: 'Prioritäts-Support', included: true },
       ],
       cta: 'Jetzt upgraden',
       href: '/pricing',
@@ -806,7 +860,7 @@ function FAQSection() {
     },
     {
       q: 'Was ist der Unterschied zwischen Free und Pro?',
-      a: 'Die Free-Version bietet den SVS-Beitragsrechner und die Wahrheits-Tabelle. Der Sicherheits-Plan (9,90 EUR/Monat) fügt die Einkommensteuer-Prognose, Speichern und Export hinzu. SVS Checker Pro (19,90 EUR/Monat) bietet alles plus Misch-Einkommen Rechner, Familienbonus-Berechnung, Wasserfall-Analyse und PDF-Export.',
+      a: 'Die Free-Version bietet den SVS-Beitragsrechner, die Wahrheits-Tabelle und das Geldfluss-Diagramm. Der Sicherheits-Plan (9,90 EUR/Monat) fügt die Einkommensteuer-Prognose, Speichern und Export hinzu. SVS Checker Pro (19,90 EUR/Monat) bietet alles plus KI-Steuerberater, GmbH-Vergleich, Pauschalierung, Gewinnmaximierer, Investitionen & AfA, Misch-Einkommen Rechner, Familienbonus-Berechnung und PDF-Export.',
     },
     {
       q: 'Was ist die Nachzahlungsfalle?',
@@ -946,7 +1000,7 @@ const FAQ_JSONLD = {
     {
       '@type': 'Question',
       name: 'Was ist der Unterschied zwischen Free und Pro?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Die Free-Version bietet den SVS-Beitragsrechner und die Wahrheits-Tabelle. Der Sicherheits-Plan (9,90 EUR/Monat) fügt die Einkommensteuer-Prognose, Speichern und Export hinzu. SVS Checker Pro (19,90 EUR/Monat) bietet alles plus Misch-Einkommen Rechner, Familienbonus-Berechnung, Wasserfall-Analyse und PDF-Export.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Die Free-Version bietet den SVS-Beitragsrechner, die Wahrheits-Tabelle und das Geldfluss-Diagramm. Der Sicherheits-Plan (9,90 EUR/Monat) fügt die Einkommensteuer-Prognose, Speichern und Export hinzu. SVS Checker Pro (19,90 EUR/Monat) bietet alles plus KI-Steuerberater, GmbH-Vergleich, Pauschalierung, Gewinnmaximierer, Investitionen & AfA, Misch-Einkommen Rechner, Familienbonus-Berechnung und PDF-Export.' },
     },
     {
       '@type': 'Question',
