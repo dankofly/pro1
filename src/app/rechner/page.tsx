@@ -189,8 +189,8 @@ function RechnerContent() {
       <div ref={mainContentRef} id="main-content" tabIndex={-1} className="max-w-[1400px] mx-auto px-4 sm:px-6 py-8 focus:outline-none focus-visible:outline-none overflow-x-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-[340px_minmax(0,1fr)] gap-10 lg:gap-12">
 
-          {/* Left - Inputs (sticky on desktop, scrollable) */}
-          <div className="lg:sticky lg:top-20 lg:self-start lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto scrollbar-thin space-y-3 lg:pr-4">
+          {/* Left - Inputs */}
+          <div className="space-y-3 lg:pr-4">
             <YearSelector
               year={input.year}
               onYearChange={(y: TaxYear) => setField('year', y)}

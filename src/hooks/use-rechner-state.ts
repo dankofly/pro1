@@ -1,6 +1,6 @@
 'use client'
 
-import { useReducer, useMemo, useEffect, useCallback } from 'react'
+import { useReducer, useMemo, useEffect, useCallback, useState } from 'react'
 import type {
   RechnerInput,
   RechnerResult,
@@ -146,16 +146,17 @@ export function useRechnerState(): UseRechnerStateReturn {
   const result = useMemo(() => calculateAll(input), [input])
 
   // Onboarding
-  const isOnboarded = useMemo(() => {
+  const [isOnboarded, setIsOnboarded] = useState(() => {
     if (typeof window === 'undefined') return false
     return localStorage.getItem(LS_KEY_ONBOARDED) === 'true'
-  }, [])
+  })
 
   const completeOnboarding = useCallback((stammdaten: Stammdaten) => {
     dispatch({ type: 'COMPLETE_ONBOARDING', stammdaten })
     if (typeof window !== 'undefined') {
       localStorage.setItem(LS_KEY_ONBOARDED, 'true')
     }
+    setIsOnboarded(true)
   }, [])
 
   const resetOnboarding = useCallback(() => {
@@ -163,6 +164,7 @@ export function useRechnerState(): UseRechnerStateReturn {
       localStorage.removeItem(LS_KEY_ONBOARDED)
     }
     dispatch({ type: 'RESET' })
+    setIsOnboarded(false)
   }, [])
 
   const setField = useCallback(<K extends keyof RechnerInput>(field: K, value: RechnerInput[K]) => {
