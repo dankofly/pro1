@@ -180,17 +180,17 @@ function Hero() {
 
             <Reveal delay={100}>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight font-heading">
-                SVS-Nachzahlung?<br />
+                Dein Gewinn.<br />
                 <span className="bg-gradient-to-r from-emerald-400 to-emerald-300 bg-clip-text text-transparent">
-                  Nie wieder überrascht.
+                  Dein echtes Netto.
                 </span>
               </h1>
             </Reveal>
 
             <Reveal delay={200}>
               <p className="mt-6 text-lg sm:text-xl text-blue-200/80 leading-relaxed max-w-lg mx-auto lg:mx-0">
-                Berechne in Sekunden, was die SVS wirklich von dir will – inklusive Einkommensteuer,
-                Familienbonus und echtem Netto. Mit Werten für 2024, 2025 und 2026.
+                SVS-Beiträge, Einkommensteuer, Nachzahlung und echtes Netto – alles in einem Dashboard.
+                Damit du weißt, was wirklich übrig bleibt.
               </p>
             </Reveal>
 
@@ -198,7 +198,7 @@ function Hero() {
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Button asChild size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-xl shadow-emerald-500/25 text-base px-8 h-12 w-full sm:w-auto">
                   <Link href="/rechner">
-                    Jetzt gratis berechnen
+                    Kostenlos starten
                     <ArrowRight className="h-4 w-4 ml-2" />
                   </Link>
                 </Button>
