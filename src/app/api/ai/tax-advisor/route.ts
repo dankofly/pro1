@@ -134,7 +134,7 @@ export async function POST(request: NextRequest) {
     const userMessage = buildUserMessage(body)
 
     // 5. Stream with Gemini
-    const result = streamText({
+    const streamResult = streamText({
       model: google('gemini-2.0-flash'),
       system: SYSTEM_PROMPT,
       messages: [{ role: 'user', content: userMessage }],
@@ -142,12 +142,27 @@ export async function POST(request: NextRequest) {
       temperature: 0.7,
     })
 
-    const response = result.toTextStreamResponse()
+    // Convert textStream to plain-text ReadableStream<Uint8Array>
+    const encoder = new TextEncoder()
+    const readable = new ReadableStream({
+      async start(controller) {
+        try {
+          for await (const chunk of streamResult.textStream) {
+            controller.enqueue(encoder.encode(chunk))
+          }
+          controller.close()
+        } catch (err) {
+          controller.error(err)
+        }
+      },
+    })
 
-    // Add rate limit headers
-    response.headers.set('X-RateLimit-Remaining', String(remaining))
-
-    return response
+    return new Response(readable, {
+      headers: {
+        'Content-Type': 'text/plain; charset=utf-8',
+        'X-RateLimit-Remaining': String(remaining),
+      },
+    })
   } catch (err: unknown) {
     console.error('AI Tax Advisor error:', err)
     const message = err instanceof Error ? err.message : 'Unbekannter Fehler'

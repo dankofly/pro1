@@ -122,6 +122,10 @@ export function AiTaxAdvisor({ input, result, isPro, onUpgradeRequired }: AiTaxA
         setText(accumulated)
       }
 
+      if (!accumulated.trim()) {
+        throw new Error('Leere Antwort vom KI-Modell erhalten. Bitte versuche es erneut.')
+      }
+
       setState('done')
     } catch (err: unknown) {
       if (err instanceof Error && err.name === 'AbortError') return
