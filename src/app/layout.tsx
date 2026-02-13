@@ -23,13 +23,13 @@ const ibmPlex = IBM_Plex_Sans({
   display: 'swap',
 })
 
-const SITE_URL = 'https://svs-checker.app'
+const SITE_URL = 'https://steuerboard.pro'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'SVS Checker – SVS-Beitragsrechner für Selbständige in Österreich',
-    template: '%s | SVS Checker',
+    default: 'SteuerBoard.pro – Dein Steuer-Dashboard für Österreich',
+    template: '%s | SteuerBoard.pro',
   },
   description:
     'Berechne in Sekunden deine SVS-Beiträge, Nachzahlung und dein echtes Netto als Selbständiger in Österreich. Kostenlos, DSGVO-konform, mit Werten für 2024–2026.',
@@ -45,14 +45,14 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'de_AT',
     url: SITE_URL,
-    siteName: 'SVS Checker',
-    title: 'SVS Checker – SVS-Beitragsrechner für Selbständige in Österreich',
+    siteName: 'SteuerBoard.pro',
+    title: 'SteuerBoard.pro – Dein Steuer-Dashboard für Österreich',
     description:
       'Berechne in Sekunden deine SVS-Beiträge, Nachzahlung und dein echtes Netto. Kostenlos starten, keine Registrierung nötig.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SVS Checker – SVS-Beitragsrechner für Selbständige',
+    title: 'SteuerBoard.pro – Dein Steuer-Dashboard für Selbständige',
     description:
       'SVS-Nachzahlung berechnen, Einkommensteuer-Prognose, echtes Netto. Für Selbständige in Österreich.',
   },
@@ -90,9 +90,9 @@ export default function RootLayout({
         <JsonLd data={{
           '@context': 'https://schema.org',
           '@type': 'Organization',
-          name: 'SVS Checker',
+          name: 'SteuerBoard.pro',
           url: SITE_URL,
-          description: 'SVS-Beitragsrechner für Selbständige in Österreich',
+          description: 'Dein Steuer-Dashboard für Selbständige in Österreich',
           founder: {
             '@type': 'Person',
             name: 'Daniel Kofler',

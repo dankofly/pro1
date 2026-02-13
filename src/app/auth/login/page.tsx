@@ -71,7 +71,7 @@ function LoginPageInner() {
               <Calculator className="h-8 w-8 text-blue-600" />
             </div>
           </div>
-          <CardTitle className="text-2xl">SVS Checker</CardTitle>
+          <CardTitle className="text-2xl">SteuerBoard.pro</CardTitle>
           <CardDescription>Melde dich an, um deine Berechnungen zu speichern</CardDescription>
         </CardHeader>
         <form onSubmit={handleLogin}>

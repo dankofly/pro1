@@ -26,7 +26,7 @@ function ProfilContent() {
 
   const planLabel =
     subscription.plan === 'pro'
-      ? 'SVS Checker Pro'
+      ? 'SteuerBoard Pro'
       : subscription.plan === 'basic'
         ? 'Sicherheits-Plan'
         : 'Free'
@@ -106,7 +106,7 @@ function ProfilContent() {
       <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-lg border-b border-border/50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 h-14 flex items-center">
           <div className="flex items-center gap-3">
-            <Link href="/" className="md:hidden font-bold text-sm hover:opacity-80 transition-opacity">SVS Checker</Link>
+            <Link href="/" className="md:hidden font-bold text-sm hover:opacity-80 transition-opacity">SteuerBoard.pro</Link>
             <div className="flex items-center gap-2">
               <User aria-hidden="true" className="h-4 w-4 text-muted-foreground" />
               <h1 className="text-sm font-semibold">Mein Profil</h1>
@@ -299,7 +299,7 @@ function ProfilContent() {
         </Card>
 
         <footer className="text-center py-8 text-xs text-muted-foreground space-y-2">
-          <p>SVS Checker – Alle Angaben ohne Gewähr.</p>
+          <p>SteuerBoard.pro – Alle Angaben ohne Gewähr.</p>
           <div className="flex items-center justify-center gap-3">
             <Link href="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
             <span>·</span>

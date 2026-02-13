@@ -24,7 +24,7 @@ export const STRIPE_PLANS = {
     plan: 'pro' as const,
     interval: 'month' as const,
     price: 1990,
-    label: 'SVS Checker Pro',
+    label: 'SteuerBoard Pro',
     priceDisplay: '19,90',
   },
   pro_yearly: {
@@ -32,7 +32,7 @@ export const STRIPE_PLANS = {
     plan: 'pro' as const,
     interval: 'year' as const,
     price: 19900,
-    label: 'SVS Checker Pro',
+    label: 'SteuerBoard Pro',
     priceDisplay: '199',
   },
 } as const

@@ -1,7 +1,7 @@
 {
-  "name": "SVS Checker",
-  "short_name": "SVS Checker",
-  "description": "SVS-Beitragsrechner für Selbständige in Österreich",
+  "name": "SteuerBoard.pro",
+  "short_name": "SteuerBoard",
+  "description": "Dein Steuer-Dashboard für Selbständige in Österreich",
   "start_url": "/rechner",
   "display": "standalone",
   "background_color": "#020617",

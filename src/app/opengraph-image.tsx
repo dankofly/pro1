@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og'
 
-export const alt = 'SVS Checker – SVS-Beitragsrechner für Selbständige in Österreich'
+export const alt = 'SteuerBoard.pro – Dein Steuer-Dashboard für Österreich'
 export const size = { width: 1200, height: 630 }
 export const contentType = 'image/png'
 
@@ -44,7 +44,7 @@ export default function OgImage() {
             S
           </div>
           <span style={{ fontSize: 36, color: 'white', fontWeight: 700 }}>
-            SVS Checker
+            SteuerBoard.pro
           </span>
         </div>
         <div
@@ -58,7 +58,7 @@ export default function OgImage() {
             marginBottom: 24,
           }}
         >
-          SVS-Beitragsrechner für Selbständige in Österreich
+          Dein Steuer-Dashboard für Österreich
         </div>
         <div
           style={{

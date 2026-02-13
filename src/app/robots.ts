@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/dashboard', '/profil', '/admin', '/auth/', '/api/'],
       },
     ],
-    sitemap: 'https://svs-checker.app/sitemap.xml',
+    sitemap: 'https://steuerboard.pro/sitemap.xml',
   }
 }

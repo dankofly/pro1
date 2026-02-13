@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Impressum',
-  description: 'Impressum von SVS Checker (HYPEAKZ.IO). Angaben gemaess ECG und MedienG.',
+  description: 'Impressum von SteuerBoard.pro (HYPEAKZ.IO). Angaben gemäß ECG und MedienG.',
   alternates: { canonical: '/impressum' },
 }
 

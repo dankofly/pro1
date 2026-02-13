@@ -50,7 +50,7 @@ export function PremiumCTA({
         <div className="relative p-6 sm:p-8">
           <Badge variant="outline" className="mb-4 bg-white/10 text-white border-white/20 backdrop-blur-sm">
             <span className="w-1.5 h-1.5 bg-green-400 rounded-full mr-1.5" />
-            SVS Checker Pro
+            SteuerBoard Pro
           </Badge>
 
           <h3 className="text-xl sm:text-2xl font-bold mb-2">Deine Pro-Werkzeuge</h3>

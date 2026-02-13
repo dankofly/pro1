@@ -1,12 +1,12 @@
-# SVS Checker
+# SteuerBoard.pro
 
-> SVS-Beitragsrechner für Selbständige in Österreich. Berechne SVS-Beiträge, Nachzahlung, Einkommensteuer und echtes Netto.
+> Dein Steuer-Dashboard für Selbständige in Österreich. Berechne SVS-Beiträge, Nachzahlung, Einkommensteuer und echtes Netto.
 
-## Über SVS Checker
+## Über SteuerBoard.pro
 
-SVS Checker ist ein Online-Tool für selbständige Personen in Österreich, die ihre Sozialversicherungsbeitraege (SVS) und Einkommensteuer berechnen möchten. Das Tool berechnet:
+SteuerBoard.pro ist ein Online-Tool für selbständige Personen in Österreich, die ihre Sozialversicherungsbeiträge (SVS) und Einkommensteuer berechnen möchten. Das Tool berechnet:
 
-- Endgueltige SVS-Beiträge (Pensionsversicherung, Krankenversicherung, Unfallversicherung, Selbständigenvorsorge)
+- Endgültige SVS-Beiträge (Pensionsversicherung, Krankenversicherung, Unfallversicherung, Selbständigenvorsorge)
 - SVS-Nachzahlung basierend auf vorläufiger vs. endgültiger Beitragsgrundlage
 - Einkommensteuer-Prognose nach österreichischem Steuertarif
 - Echtes Netto nach Abzug aller Abgaben
@@ -17,22 +17,22 @@ Aktuelle Werte für 2024, 2025 und 2026.
 
 ## Seiten
 
-- [Startseite](https://svs-checker.app/): Übersicht, Features, Preise und FAQ
-- [SVS-Beitragsrechner](https://svs-checker.app/rechner): Kostenloser SVS-Rechner mit Echtzeit-Prognose
-- [Misch-Einkommen Rechner](https://svs-checker.app/misch-einkommen): Berechnung für Angestellte mit Nebengewerbe (Pro-Feature)
-- [Preise](https://svs-checker.app/pricing): Free, Sicherheits-Plan (9,90 EUR/Monat), Pro (19,90 EUR/Monat)
-- [Impressum](https://svs-checker.app/impressum): Betreiber HYPEAKZ.IO, Daniel Kofler, Österreich
-- [Datenschutz](https://svs-checker.app/datenschutz): DSGVO-konforme Datenschutzerklärung
+- [Startseite](https://steuerboard.pro/): Übersicht, Features, Preise und FAQ
+- [SVS-Beitragsrechner](https://steuerboard.pro/rechner): Kostenloser SVS-Rechner mit Echtzeit-Prognose
+- [Misch-Einkommen Rechner](https://steuerboard.pro/misch-einkommen): Berechnung für Angestellte mit Nebengewerbe (Pro-Feature)
+- [Preise](https://steuerboard.pro/pricing): Free, Sicherheits-Plan (9,90 EUR/Monat), Pro (19,90 EUR/Monat)
+- [Impressum](https://steuerboard.pro/impressum): Betreiber HYPEAKZ.IO, Daniel Kofler, Österreich
+- [Datenschutz](https://steuerboard.pro/datenschutz): DSGVO-konforme Datenschutzerklärung
 
 ## FAQ
 
-### Was berechnet der SVS Checker?
-Endgueltige SVS-Beiträge (PV, KV, UV, Selbständigenvorsorge), voraussichtliche Nachzahlung, Einkommensteuer-Prognose und echtes Netto basierend auf dem tatsächlichen Jahresgewinn.
+### Was berechnet SteuerBoard.pro?
+Endgültige SVS-Beiträge (PV, KV, UV, Selbständigenvorsorge), voraussichtliche Nachzahlung, Einkommensteuer-Prognose und echtes Netto basierend auf dem tatsächlichen Jahresgewinn.
 
 ### Sind die Berechnungen verbindlich?
-Nein, der SVS Checker ist ein Prognose-Tool und ersetzt keine Steuerberatung. Alle Berechnungen basieren auf den aktuellen gesetzlichen Grundlagen.
+Nein, SteuerBoard.pro ist ein Prognose-Tool und ersetzt keine Steuerberatung. Alle Berechnungen basieren auf den aktuellen gesetzlichen Grundlagen.
 
-### Was kostet der SVS Checker?
+### Was kostet SteuerBoard.pro?
 Die Basisversion ist kostenlos. Sicherheits-Plan: 9,90 EUR/Monat. Pro: 19,90 EUR/Monat. Monatlich kündbar.
 
 ### Was ist die SVS-Nachzahlungsfalle?

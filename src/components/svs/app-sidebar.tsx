@@ -34,7 +34,7 @@ export function AppSidebar({ user, plan, onLogout }: AppSidebarProps) {
             <Calculator className="h-5 w-5 text-white" />
           </div>
           <div>
-            <p className="font-bold text-sm tracking-tight font-heading">SVS Checker</p>
+            <p className="font-bold text-sm tracking-tight font-heading">SteuerBoard.pro</p>
             <p className="text-[11px] text-slate-400">Beitragsrechner AT</p>
           </div>
         </Link>

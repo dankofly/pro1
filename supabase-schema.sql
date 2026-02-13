@@ -1,5 +1,5 @@
 -- ============================================================
--- SVS Checker – Supabase Schema
+-- SteuerBoard.pro – Supabase Schema
 -- ============================================================
 
 -- Section: Promo Codes

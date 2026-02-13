@@ -2,12 +2,12 @@ import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'Preise – SVS Checker Plaene',
+  title: 'Preise – SteuerBoard.pro Pläne',
   description:
-    'SVS Checker Preise: Kostenloser SVS-Beitragsrechner, Sicherheits-Plan ab 9,90 EUR/Monat, Pro ab 19,90 EUR/Monat. Monatlich kündbar.',
+    'SteuerBoard.pro Preise: Kostenloser SVS-Beitragsrechner, Sicherheits-Plan ab 9,90 EUR/Monat, Pro ab 19,90 EUR/Monat. Monatlich kündbar.',
   alternates: { canonical: '/pricing' },
   openGraph: {
-    title: 'SVS Checker Preise – Starte kostenlos',
+    title: 'SteuerBoard.pro Preise – Starte kostenlos',
     description: 'Free, Sicherheits-Plan und Pro: Alle Features und Preise im Überblick.',
     url: '/pricing',
   },
@@ -19,7 +19,7 @@ export default function PricingLayout({ children }: { children: React.ReactNode 
       <JsonLd data={{
         '@context': 'https://schema.org',
         '@type': 'WebApplication',
-        name: 'SVS Checker',
+        name: 'SteuerBoard.pro',
         applicationCategory: 'FinanceApplication',
         offers: [
           {
@@ -38,7 +38,7 @@ export default function PricingLayout({ children }: { children: React.ReactNode 
           },
           {
             '@type': 'Offer',
-            name: 'SVS Checker Pro',
+            name: 'SteuerBoard Pro',
             price: '19.90',
             priceCurrency: 'EUR',
             description: 'Misch-Einkommen, Familienbonus, Wasserfall-Analyse, PDF-Export',

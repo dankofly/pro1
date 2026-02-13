@@ -190,9 +190,9 @@ function ProGate() {
           <Lock className="h-8 w-8 text-amber-600" />
         </div>
       </div>
-      <h2 className="text-2xl font-bold mb-3">SVS Checker Pro Feature</h2>
+      <h2 className="text-2xl font-bold mb-3">SteuerBoard Pro Feature</h2>
       <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-        Der Misch-Einkommen Rechner ist Teil von SVS Checker Pro.
+        Der Misch-Einkommen Rechner ist Teil von SteuerBoard Pro.
         Berechne Anstellung + Nebengewerbe kombiniert mit allen Absetzbeträgen.
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -288,7 +288,7 @@ function MischContent() {
       <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-lg border-b border-border/50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Link href="/" className="md:hidden font-bold text-sm hover:opacity-80 transition-opacity">SVS Checker</Link>
+            <Link href="/" className="md:hidden font-bold text-sm hover:opacity-80 transition-opacity">SteuerBoard.pro</Link>
             <div className="flex items-center gap-2">
               <Calculator className="h-4 w-4 text-muted-foreground" />
               <h1 className="text-sm font-semibold">Misch-Einkommen Rechner</h1>
@@ -677,7 +677,7 @@ function MischContent() {
 
         {/* Footer */}
         <footer className="text-center py-8 text-xs text-muted-foreground space-y-2">
-          <p className="font-medium text-foreground/70">SVS Checker – Misch-Einkommen Rechner für Österreich</p>
+          <p className="font-medium text-foreground/70">SteuerBoard.pro – Misch-Einkommen Rechner für Österreich</p>
           <p>Alle Angaben ohne Gewähr. Kein Ersatz für professionelle Steuerberatung. Werte {year}{year === '2026' ? ' (Prognose)' : ''}.</p>
           <div className="flex items-center justify-center gap-3 pt-1">
             <Link href="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>

@@ -222,7 +222,7 @@ function PricingContent() {
       href: null as string | null,
     },
     {
-      name: 'SVS Checker Pro',
+      name: 'SteuerBoard Pro',
       monthlyPrice: '19,90',
       yearlyPrice: '16,58',
       yearlyTotal: '199',

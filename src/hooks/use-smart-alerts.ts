@@ -8,7 +8,7 @@ export interface AlertPreferences {
   notificationsEnabled: boolean
 }
 
-const STORAGE_KEY = 'svs-checker-alert-prefs'
+const STORAGE_KEY = 'steuerboard-alert-prefs'
 const DEFAULT_PREFS: AlertPreferences = {
   enabled: false,
   threshold: 1000,
@@ -50,7 +50,7 @@ export function useSmartAlerts(nachzahlung: number) {
       Math.abs(nachzahlung - lastNotifiedRef.current) > 100
     ) {
       lastNotifiedRef.current = nachzahlung
-      new Notification('SVS Checker – Nachzahlungs-Warnung', {
+      new Notification('SteuerBoard.pro – Nachzahlungs-Warnung', {
         body: `Deine geschätzte Nachzahlung beträgt €${Math.round(nachzahlung).toLocaleString('de-AT')} und übersteigt deinen Schwellwert von €${Math.round(prefs.threshold).toLocaleString('de-AT')}.`,
         icon: '/favicon.ico',
       })

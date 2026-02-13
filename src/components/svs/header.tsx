@@ -33,7 +33,7 @@ export function SvsHeader({ user, onSave, onLogout, saving, alertActive, plan }:
               )}
             </div>
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">SVS Checker</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">SteuerBoard.pro</h1>
               <p className="text-blue-200 text-sm sm:text-base font-light">Dein SVS-Beitragsrechner</p>
             </div>
           </div>
@@ -133,7 +133,7 @@ export function SvsHeader({ user, onSave, onLogout, saving, alertActive, plan }:
           {plan && plan !== 'free' && (
             <Badge variant="outline" className="bg-amber-500/20 text-amber-200 border-amber-400/30">
               <Crown className="h-3 w-3 mr-1" />
-              {plan === 'pro' ? 'SVS Checker Pro' : 'Sicherheits-Plan'}
+              {plan === 'pro' ? 'SteuerBoard Pro' : 'Sicherheits-Plan'}
             </Badge>
           )}
         </div>

@@ -127,7 +127,7 @@ function Navbar() {
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/20">
               <Calculator className="h-4 w-4 text-emerald-400" />
             </div>
-            <span className="font-bold text-white text-lg font-heading">SVS Checker</span>
+            <span className="font-bold text-white text-lg font-heading">SteuerBoard.pro</span>
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm text-blue-200">
             <a href="#problem" className="hover:text-white transition-colors">Problem</a>
@@ -244,7 +244,7 @@ function Hero() {
                   <div className="w-3 h-3 rounded-full bg-red-400/60" />
                   <div className="w-3 h-3 rounded-full bg-amber-400/60" />
                   <div className="w-3 h-3 rounded-full bg-emerald-400/60" />
-                  <span className="ml-3 text-xs text-white/30 font-mono">svs-checker.at</span>
+                  <span className="ml-3 text-xs text-white/30 font-mono">steuerboard.pro</span>
                 </div>
 
                 {/* Mock Hero Number */}
@@ -651,7 +651,7 @@ function PricingSection() {
       highlight: false,
     },
     {
-      name: 'SVS Checker Pro',
+      name: 'SteuerBoard Pro',
       monthlyPrice: '19,90',
       yearlyPrice: '16,58',
       yearlyTotal: '199',
@@ -851,20 +851,20 @@ function TrustSection() {
 function FAQSection() {
   const faqs = [
     {
-      q: 'Was genau berechnet der SVS Checker?',
-      a: 'Der SVS Checker berechnet deine endgültigen SVS-Beiträge (PV, KV, UV, Selbständigenvorsorge), die voraussichtliche Nachzahlung, die Einkommensteuer-Prognose und dein echtes Netto – basierend auf deinem tatsächlichen Jahresgewinn.',
+      q: 'Was genau berechnet SteuerBoard.pro?',
+      a: 'SteuerBoard.pro berechnet deine endgültigen SVS-Beiträge (PV, KV, UV, Selbständigenvorsorge), die voraussichtliche Nachzahlung, die Einkommensteuer-Prognose und dein echtes Netto – basierend auf deinem tatsächlichen Jahresgewinn.',
     },
     {
       q: 'Sind die Berechnungen rechtlich verbindlich?',
-      a: 'Nein. Der SVS Checker ist ein Prognose-Tool und ersetzt keine Steuerberatung. Alle Berechnungen basieren auf den aktuellen gesetzlichen Grundlagen, aber die endgültigen Bescheide der SVS und des Finanzamts können abweichen.',
+      a: 'Nein. SteuerBoard.pro ist ein Prognose-Tool und ersetzt keine Steuerberatung. Alle Berechnungen basieren auf den aktuellen gesetzlichen Grundlagen, aber die endgültigen Bescheide der SVS und des Finanzamts können abweichen.',
     },
     {
       q: 'Was ist der Unterschied zwischen Free und Pro?',
-      a: 'Die Free-Version bietet den SVS-Beitragsrechner, die Wahrheits-Tabelle und das Geldfluss-Diagramm. Der Sicherheits-Plan (9,90 EUR/Monat) fügt die Einkommensteuer-Prognose, Speichern und Export hinzu. SVS Checker Pro (19,90 EUR/Monat) bietet alles plus KI-Steuerberater, GmbH-Vergleich, Pauschalierung, Gewinnmaximierer, Investitionen & AfA, Misch-Einkommen Rechner, Familienbonus-Berechnung und PDF-Export.',
+      a: 'Die Free-Version bietet den SVS-Beitragsrechner, die Wahrheits-Tabelle und das Geldfluss-Diagramm. Der Sicherheits-Plan (9,90 EUR/Monat) fügt die Einkommensteuer-Prognose, Speichern und Export hinzu. SteuerBoard Pro (19,90 EUR/Monat) bietet alles plus KI-Steuerberater, GmbH-Vergleich, Pauschalierung, Gewinnmaximierer, Investitionen & AfA, Misch-Einkommen Rechner, Familienbonus-Berechnung und PDF-Export.',
     },
     {
       q: 'Was ist die Nachzahlungsfalle?',
-      a: 'Die SVS berechnet deine Beiträge zunächst auf Basis deines Gewinns von vor 3 Jahren (vorläufige Beitragsgrundlage). Steigt dein Einkommen, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung. Der SVS Checker zeigt dir genau, wie hoch diese ausfallen wird.',
+      a: 'Die SVS berechnet deine Beiträge zunächst auf Basis deines Gewinns von vor 3 Jahren (vorläufige Beitragsgrundlage). Steigt dein Einkommen, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung. SteuerBoard.pro zeigt dir genau, wie hoch diese ausfallen wird.',
     },
     {
       q: 'Kann ich den Rechner auch nutzen, wenn ich angestellt UND selbständig bin?',
@@ -962,7 +962,7 @@ function Footer() {
             <div className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-500/20">
               <Calculator className="h-3.5 w-3.5 text-emerald-400" />
             </div>
-            <span className="font-semibold text-white text-sm">SVS Checker</span>
+            <span className="font-semibold text-white text-sm">SteuerBoard.pro</span>
           </div>
           <div className="flex items-center gap-4 text-xs text-blue-200/40">
             <Link href="/impressum" className="hover:text-blue-200 transition-colors">Impressum</Link>
@@ -972,7 +972,7 @@ function Footer() {
             <Link href="/pricing" className="hover:text-blue-200 transition-colors">Preise</Link>
           </div>
           <p className="text-xs text-blue-200/30" suppressHydrationWarning>
-            &copy; {new Date().getFullYear()} SVS Checker. Alle Rechte vorbehalten.
+            &copy; {new Date().getFullYear()} SteuerBoard.pro. Alle Rechte vorbehalten.
             <span className="mx-1">·</span>
             <a href="https://hypeakz.io" target="_blank" rel="noopener noreferrer" className="text-blue-200/40 hover:text-blue-200 transition-colors">App by Hypeakz.io</a>
           </p>
@@ -989,23 +989,23 @@ const FAQ_JSONLD = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'Was genau berechnet der SVS Checker?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Der SVS Checker berechnet deine endgültigen SVS-Beiträge (PV, KV, UV, Selbständigenvorsorge), die voraussichtliche Nachzahlung, die Einkommensteuer-Prognose und dein echtes Netto – basierend auf deinem tatsächlichen Jahresgewinn.' },
+      name: 'Was genau berechnet SteuerBoard.pro?',
+      acceptedAnswer: { '@type': 'Answer', text: 'SteuerBoard.pro berechnet deine endgültigen SVS-Beiträge (PV, KV, UV, Selbständigenvorsorge), die voraussichtliche Nachzahlung, die Einkommensteuer-Prognose und dein echtes Netto – basierend auf deinem tatsächlichen Jahresgewinn.' },
     },
     {
       '@type': 'Question',
       name: 'Sind die Berechnungen rechtlich verbindlich?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Nein. Der SVS Checker ist ein Prognose-Tool und ersetzt keine Steuerberatung. Alle Berechnungen basieren auf den aktuellen gesetzlichen Grundlagen, aber die endgültigen Bescheide der SVS und des Finanzamts können abweichen.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Nein. SteuerBoard.pro ist ein Prognose-Tool und ersetzt keine Steuerberatung. Alle Berechnungen basieren auf den aktuellen gesetzlichen Grundlagen, aber die endgültigen Bescheide der SVS und des Finanzamts können abweichen.' },
     },
     {
       '@type': 'Question',
       name: 'Was ist der Unterschied zwischen Free und Pro?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Die Free-Version bietet den SVS-Beitragsrechner, die Wahrheits-Tabelle und das Geldfluss-Diagramm. Der Sicherheits-Plan (9,90 EUR/Monat) fügt die Einkommensteuer-Prognose, Speichern und Export hinzu. SVS Checker Pro (19,90 EUR/Monat) bietet alles plus KI-Steuerberater, GmbH-Vergleich, Pauschalierung, Gewinnmaximierer, Investitionen & AfA, Misch-Einkommen Rechner, Familienbonus-Berechnung und PDF-Export.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Die Free-Version bietet den SVS-Beitragsrechner, die Wahrheits-Tabelle und das Geldfluss-Diagramm. Der Sicherheits-Plan (9,90 EUR/Monat) fügt die Einkommensteuer-Prognose, Speichern und Export hinzu. SteuerBoard Pro (19,90 EUR/Monat) bietet alles plus KI-Steuerberater, GmbH-Vergleich, Pauschalierung, Gewinnmaximierer, Investitionen & AfA, Misch-Einkommen Rechner, Familienbonus-Berechnung und PDF-Export.' },
     },
     {
       '@type': 'Question',
       name: 'Was ist die SVS-Nachzahlungsfalle?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Die SVS berechnet deine Beiträge zunächst auf Basis deines Gewinns von vor 3 Jahren (vorläufige Beitragsgrundlage). Steigt dein Einkommen, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung. Der SVS Checker zeigt dir genau, wie hoch diese ausfallen wird.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Die SVS berechnet deine Beiträge zunächst auf Basis deines Gewinns von vor 3 Jahren (vorläufige Beitragsgrundlage). Steigt dein Einkommen, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung. SteuerBoard.pro zeigt dir genau, wie hoch diese ausfallen wird.' },
     },
     {
       '@type': 'Question',

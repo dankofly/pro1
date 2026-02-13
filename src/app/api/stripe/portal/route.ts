@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
 
     const portalSession = await getStripeServer().billingPortal.sessions.create({
       customer: sub.stripe_customer_id,
-      return_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://svs-checker.app'}/profil`,
+      return_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://steuerboard.pro'}/profil`,
     })
 
     return NextResponse.json({ url: portalSession.url })

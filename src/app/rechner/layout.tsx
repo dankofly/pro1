@@ -19,8 +19,8 @@ export default function RechnerLayout({ children }: { children: React.ReactNode 
       <JsonLd data={{
         '@context': 'https://schema.org',
         '@type': 'WebApplication',
-        name: 'SVS Checker Beitragsrechner',
-        url: 'https://svs-checker.app/rechner',
+        name: 'SteuerBoard.pro Beitragsrechner',
+        url: 'https://steuerboard.pro/rechner',
         applicationCategory: 'FinanceApplication',
         operatingSystem: 'All',
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },

@@ -121,7 +121,7 @@ function DashboardContent() {
 
     const json = await res.json().catch(() => ({}))
     if (res.ok) {
-      toast.success('Code eingelöst! Du hast jetzt SVS Checker Pro.')
+      toast.success('Code eingelöst! Du hast jetzt SteuerBoard Pro.')
       setPromoCode('')
       subscription.refresh()
     } else {
@@ -138,7 +138,7 @@ function DashboardContent() {
       <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-lg border-b border-border/50">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center">
           <div className="flex items-center gap-3">
-            <Link href="/" className="md:hidden font-bold text-sm hover:opacity-80 transition-opacity">SVS Checker</Link>
+            <Link href="/" className="md:hidden font-bold text-sm hover:opacity-80 transition-opacity">SteuerBoard.pro</Link>
             <h1 className="text-sm font-semibold">Meine Berechnungen</h1>
           </div>
         </div>
@@ -206,7 +206,7 @@ function DashboardContent() {
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <Badge className="bg-amber-500/20 text-amber-300 border-amber-400/30">
-                    {subscription.plan === 'pro' ? 'SVS Checker Pro' : 'Sicherheits-Plan'}
+                    {subscription.plan === 'pro' ? 'SteuerBoard Pro' : 'Sicherheits-Plan'}
                   </Badge>
                   <Badge variant="outline" className="border-green-400/40 text-green-400">
                     {subscription.status}
@@ -238,7 +238,7 @@ function DashboardContent() {
                 <Gift className="h-5 w-5 text-amber-500" />
                 Promo-Code einlösen
               </CardTitle>
-              <CardDescription>Hast du einen Promo-Code? Löse ihn hier ein für SVS Checker Pro.</CardDescription>
+              <CardDescription>Hast du einen Promo-Code? Löse ihn hier ein für SteuerBoard Pro.</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex items-center gap-3">
@@ -368,7 +368,7 @@ function DashboardContent() {
         </Card>
 
         <footer className="text-center py-8 text-xs text-muted-foreground space-y-2">
-          <p>SVS Checker – Alle Angaben ohne Gewähr.</p>
+          <p>SteuerBoard.pro – Alle Angaben ohne Gewähr.</p>
           <div className="flex items-center justify-center gap-3">
             <Link href="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
             <span>·</span>

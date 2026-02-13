@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
       subscription_data: {
         metadata: { user_id: user.id },
       },
-      return_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://svs-checker.app'}/pricing?session_id={CHECKOUT_SESSION_ID}`,
+      return_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://steuerboard.pro'}/pricing?session_id={CHECKOUT_SESSION_ID}`,
     }
 
     // Reuse existing Stripe customer if available

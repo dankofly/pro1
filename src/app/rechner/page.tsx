@@ -149,7 +149,7 @@ function RechnerContent() {
       <div className="sticky top-0 z-30 bg-[hsl(var(--surface))] border-b border-border/40">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Link href="/" className="md:hidden font-bold text-sm hover:opacity-80 transition-opacity">SVS Checker</Link>
+            <Link href="/" className="md:hidden font-bold text-sm hover:opacity-80 transition-opacity">SteuerBoard.pro</Link>
             <span className="section-header hidden sm:inline">Dashboard</span>
             <span className="text-border/60 mx-1 hidden sm:inline">/</span>
             <StatusBadge riskPercent={svs.riskPercent} />

@@ -21,7 +21,7 @@ export function generateSvsReport({ gewinn, vorschreibung, result, steuerTipps }
   doc.setTextColor(255, 255, 255)
   doc.setFontSize(22)
   doc.setFont('helvetica', 'bold')
-  doc.text('SVS Checker', 14, 16)
+  doc.text('SteuerBoard.pro', 14, 16)
   doc.setFontSize(10)
   doc.setFont('helvetica', 'normal')
   doc.text(`Beitragsberechnung | ${dateStr}`, 14, 25)
@@ -159,7 +159,7 @@ export function generateSvsReport({ gewinn, vorschreibung, result, steuerTipps }
   doc.setFontSize(8)
   doc.setTextColor(150, 150, 150)
   doc.text(
-    'Erstellt mit SVS Checker | Keine Steuerberatung. Alle Angaben ohne Gewähr. Werte 2024/25.',
+    'Erstellt mit SteuerBoard.pro | Keine Steuerberatung. Alle Angaben ohne Gewähr. Werte 2024/25.',
     105, pageHeight - 10, { align: 'center' }
   )
 
