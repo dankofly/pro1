@@ -16,9 +16,9 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
   if (umsatz <= 0) return null
 
   const svgWidth = 600
-  const svgHeight = 180
-  const padTop = 28
-  const padBottom = 40
+  const svgHeight = 170
+  const padTop = 16
+  const padBottom = 30
   const padX = 12
   const usableH = svgHeight - padTop - padBottom
   const usableW = svgWidth - padX * 2
@@ -102,45 +102,51 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
           )
         })}
 
-        {/* Deduction branches */}
+        {/* Deduction hairlines + labels */}
         {deductions.map((ded) => {
           const x = colX(ded.idx)
           const flowH = scaleH(flowVals[ded.idx - 1])
           const yCenter = padTop + usableH / 2
           const yFlowBottom = yCenter + flowH / 2
-          const dedH = Math.max(scaleH(ded.value) * 0.45, 8)
+          const labelY = svgHeight - 6
 
           return (
             <g key={`ded-${ded.idx}`}>
-              <rect
-                x={x - 16}
-                y={yFlowBottom + 2}
-                width={32}
-                height={dedH}
-                rx={6}
-                fill={ded.color}
-                opacity={0.65}
-                className="transition-opacity duration-500"
+              {/* Vertical hairline */}
+              <line
+                x1={x} y1={yFlowBottom + 1}
+                x2={x} y2={labelY - 14}
+                stroke={ded.color}
+                strokeWidth={0.75}
+                opacity={0.35}
+                className="transition-all duration-500"
               />
+              {/* Small dot at beam junction */}
+              <circle
+                cx={x} cy={yFlowBottom + 1}
+                r={2.5}
+                fill={ded.color}
+                opacity={0.7}
+                className="transition-all duration-500"
+              />
+              {/* Label + amount on one line */}
               <text
                 x={x}
-                y={yFlowBottom + dedH + 14}
+                y={labelY}
                 textAnchor="middle"
                 fill="currentColor"
-                className="text-muted-foreground"
-                style={{ fontSize: '9px', fontWeight: 500, letterSpacing: '0.05em' }}
               >
-                {ded.label}
-              </text>
-              <text
-                x={x}
-                y={yFlowBottom + dedH + 26}
-                textAnchor="middle"
-                fill="currentColor"
-                className="text-foreground"
-                style={{ fontSize: '10px', fontFamily: 'monospace', fontWeight: 600, letterSpacing: '-0.01em' }}
-              >
-                {formatEuro(ded.value)}
+                <tspan
+                  style={{ fontSize: '9.5px', fontWeight: 500, letterSpacing: '0.02em' }}
+                  opacity={0.5}
+                >
+                  {ded.label}
+                </tspan>
+                <tspan
+                  style={{ fontSize: '10.5px', fontFamily: 'ui-monospace, monospace', fontWeight: 600 }}
+                >
+                  {' '}{formatEuro(ded.value)}
+                </tspan>
               </text>
             </g>
           )

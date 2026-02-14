@@ -11,8 +11,8 @@ import {
   Collapsible, CollapsibleTrigger, CollapsibleContent,
 } from '@/components/ui/collapsible'
 import { formatEuro } from '@/lib/format'
-import type { RechnerAction, AufwaendeBreakdown, ArbeitsplatzpauschaleType } from '@/lib/rechner-types'
-import { ChevronDown, Receipt, TrendingUp } from 'lucide-react'
+import type { RechnerAction, AufwaendeBreakdown, ArbeitsplatzpauschaleType, VorauszahlungenInput, VorauszahlungenResult } from '@/lib/rechner-types'
+import { ChevronDown, Receipt, TrendingUp, Wallet } from 'lucide-react'
 import { FieldInfo } from '@/components/ui/field-info'
 import { FIELD_DEFS } from '@/lib/field-definitions'
 
@@ -22,6 +22,8 @@ interface UmsatzAufwaendeSectionProps {
   aufwaendeGesamt: number
   aufwaendeDetailed: boolean
   gewinn: number
+  vorauszahlungen: VorauszahlungenInput
+  vorauszahlungenResult: VorauszahlungenResult
   dispatch: React.Dispatch<RechnerAction>
 }
 
@@ -94,9 +96,12 @@ function SmallEuroInput({
 }
 
 export function UmsatzAufwaendeSection({
-  jahresumsatz, aufwaende, aufwaendeGesamt, aufwaendeDetailed, gewinn, dispatch,
+  jahresumsatz, aufwaende, aufwaendeGesamt, aufwaendeDetailed, gewinn,
+  vorauszahlungen, vorauszahlungenResult, dispatch,
 }: UmsatzAufwaendeSectionProps) {
   const [detailOpen, setDetailOpen] = useState(aufwaendeDetailed)
+  const [vzOpen, setVzOpen] = useState(false)
+  const [svMode, setSvMode] = useState<'monatlich' | 'jaehrlich'>('monatlich')
 
   const setUmsatz = (v: number) => dispatch({ type: 'SET_FIELD', field: 'jahresumsatz', value: v })
   const setAufwaendeGesamt = (v: number) => dispatch({ type: 'SET_FIELD', field: 'aufwaendeGesamt', value: v })
@@ -104,9 +109,22 @@ export function UmsatzAufwaendeSection({
   const setAufwand = (field: keyof AufwaendeBreakdown, value: unknown) =>
     dispatch({ type: 'SET_AUFWAND', field, value })
 
+  const setVz = (field: keyof VorauszahlungenInput, value: number) =>
+    dispatch({ type: 'SET_VORAUSZAHLUNG', field, value })
+
   const toggleDetailed = (open: boolean) => {
     setDetailOpen(open)
     dispatch({ type: 'SET_FIELD', field: 'aufwaendeDetailed', value: open })
+  }
+
+  // SV monthly/yearly conversion
+  const svDisplayValue = svMode === 'monatlich'
+    ? Math.round(vorauszahlungen.svVorauszahlung / 12)
+    : vorauszahlungen.svVorauszahlung
+  const svMax = svMode === 'monatlich' ? 10000 : 120000
+  const svStep = svMode === 'monatlich' ? 50 : 500
+  const handleSvChange = (v: number) => {
+    setVz('svVorauszahlung', svMode === 'monatlich' ? v * 12 : v)
   }
 
   return (
@@ -235,6 +253,160 @@ export function UmsatzAufwaendeSection({
             Umsatz minus Betriebsausgaben
           </p>
         </div>
+
+        {/* Vorauszahlungen */}
+        <Collapsible open={vzOpen} onOpenChange={setVzOpen}>
+          <div className="divider" />
+          <CollapsibleTrigger asChild>
+            <button
+              type="button"
+              className="flex w-full items-center gap-3 py-2 text-left"
+            >
+              <Wallet className="h-4 w-4 text-muted-foreground shrink-0" />
+              <span className="flex-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                {vzOpen ? 'Vorauszahlungen' : 'Vorauszahlungen eintragen'}
+              </span>
+              <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform ${vzOpen ? 'rotate-180' : ''}`} />
+            </button>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <div className="space-y-4 pt-3">
+              {/* SV-Vorauszahlung with monthly/yearly toggle */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between gap-2">
+                  <Label className="text-sm text-muted-foreground">
+                    SV-Vorauszahlung <FieldInfo text={FIELD_DEFS.svVorauszahlung} />
+                  </Label>
+                  <div className="flex rounded-lg border border-border overflow-hidden text-xs">
+                    <button
+                      type="button"
+                      onClick={() => setSvMode('monatlich')}
+                      className={`px-2.5 py-1 transition-colors ${
+                        svMode === 'monatlich'
+                          ? 'bg-primary text-primary-foreground'
+                          : 'text-muted-foreground hover:text-foreground'
+                      }`}
+                    >
+                      mtl.
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSvMode('jaehrlich')}
+                      className={`px-2.5 py-1 transition-colors ${
+                        svMode === 'jaehrlich'
+                          ? 'bg-primary text-primary-foreground'
+                          : 'text-muted-foreground hover:text-foreground'
+                      }`}
+                    >
+                      jährl.
+                    </button>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="relative w-full max-w-[200px]">
+                    <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">EUR</span>
+                    <Input
+                      id="sv-vz"
+                      value={svDisplayValue > 0 ? svDisplayValue.toLocaleString('de-AT') : ''}
+                      onChange={(e) => {
+                        const raw = e.target.value.replace(/[^0-9]/g, '')
+                        handleSvChange(Math.min(Number(raw) || 0, svMax))
+                      }}
+                      placeholder="0"
+                      className="pl-10 text-right font-mono text-sm h-9 rounded-lg"
+                    />
+                  </div>
+                  <span className="text-xs text-muted-foreground shrink-0">
+                    / {svMode === 'monatlich' ? 'Monat' : 'Jahr'}
+                  </span>
+                </div>
+                <Slider
+                  value={[svDisplayValue]}
+                  onValueChange={([v]) => handleSvChange(v)}
+                  max={svMax}
+                  step={svStep}
+                  className="py-1"
+                />
+                <div className="flex justify-between text-[11px] text-muted-foreground">
+                  <span>0</span>
+                  <span>{(svMax / 2).toLocaleString('de-AT')}</span>
+                  <span>{svMax.toLocaleString('de-AT')}</span>
+                </div>
+              </div>
+
+              {vorauszahlungenResult.svDifferenz !== 0 && vorauszahlungen.svVorauszahlung > 0 && (
+                <div className={`rounded-lg p-2.5 text-xs ${
+                  vorauszahlungenResult.svDifferenz > 0
+                    ? 'bg-amber-50 text-amber-800'
+                    : 'bg-emerald-50 text-emerald-800'
+                }`}>
+                  {vorauszahlungenResult.svDifferenz > 0
+                    ? `Voraussichtliche Nachzahlung: ${formatEuro(vorauszahlungenResult.svDifferenz)}`
+                    : `Voraussichtliche Gutschrift: ${formatEuro(Math.abs(vorauszahlungenResult.svDifferenz))}`
+                  }
+                </div>
+              )}
+
+              {/* SV-Nachzahlung Vorjahr */}
+              <SmallEuroInput
+                id="sv-nachzahlung"
+                value={vorauszahlungen.svNachzahlungVorjahr}
+                onChange={(v) => setVz('svNachzahlungVorjahr', v)}
+                label="SV-Nachzahlung Vorjahr"
+                max={100000}
+                info={FIELD_DEFS.svNachzahlungVorjahr}
+              />
+
+              {/* ESt-Vorauszahlung with slider */}
+              <div className="space-y-2">
+                <Label htmlFor="est-vz" className="text-sm text-muted-foreground">
+                  ESt-Vorauszahlung (jährlich) <FieldInfo text={FIELD_DEFS.estVorauszahlung} />
+                </Label>
+                <div className="flex items-center gap-2">
+                  <div className="relative w-full max-w-[200px]">
+                    <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">EUR</span>
+                    <Input
+                      id="est-vz"
+                      value={vorauszahlungen.estVorauszahlung > 0 ? vorauszahlungen.estVorauszahlung.toLocaleString('de-AT') : ''}
+                      onChange={(e) => {
+                        const raw = e.target.value.replace(/[^0-9]/g, '')
+                        setVz('estVorauszahlung', Math.min(Number(raw) || 0, 200000))
+                      }}
+                      placeholder="0"
+                      className="pl-10 text-right font-mono text-sm h-9 rounded-lg"
+                    />
+                  </div>
+                  <span className="text-xs text-muted-foreground shrink-0">/ Jahr</span>
+                </div>
+                <Slider
+                  value={[vorauszahlungen.estVorauszahlung]}
+                  onValueChange={([v]) => setVz('estVorauszahlung', v)}
+                  max={200000}
+                  step={500}
+                  className="py-1"
+                />
+                <div className="flex justify-between text-[11px] text-muted-foreground">
+                  <span>0</span>
+                  <span>100k</span>
+                  <span>200k</span>
+                </div>
+              </div>
+
+              {vorauszahlungenResult.estDifferenz !== 0 && vorauszahlungen.estVorauszahlung > 0 && (
+                <div className={`rounded-lg p-2.5 text-xs ${
+                  vorauszahlungenResult.estDifferenz > 0
+                    ? 'bg-amber-50 text-amber-800'
+                    : 'bg-emerald-50 text-emerald-800'
+                }`}>
+                  {vorauszahlungenResult.estDifferenz > 0
+                    ? `Voraussichtliche ESt-Nachzahlung: ${formatEuro(vorauszahlungenResult.estDifferenz)}`
+                    : `Voraussichtliche ESt-Gutschrift: ${formatEuro(Math.abs(vorauszahlungenResult.estDifferenz))}`
+                  }
+                </div>
+              )}
+            </div>
+          </CollapsibleContent>
+        </Collapsible>
       </div>
     </div>
   )

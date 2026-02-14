@@ -30,7 +30,7 @@ import { UmsatzAufwaendeSection } from '@/components/rechner/umsatz-aufwaende-se
 import { KpiTilesStrip } from '@/components/rechner/kpi-tiles-strip'
 import { InvestitionenSection } from '@/components/rechner/investitionen-section'
 import { PauschalierungSection } from '@/components/rechner/pauschalierung-section'
-import { VorauszahlungenSection } from '@/components/rechner/vorauszahlungen-section'
+// VorauszahlungenSection integrated into UmsatzAufwaendeSection
 import { WeitereEinkuenfteSection } from '@/components/rechner/weitere-einkuenfte-section'
 import { GmbhVergleichSection } from '@/components/rechner/gmbh-vergleich-section'
 import { GewinnmaximiererSection } from '@/components/rechner/gewinnmaximierer-section'
@@ -204,6 +204,8 @@ function RechnerContent() {
               aufwaendeGesamt={input.aufwaendeGesamt}
               aufwaendeDetailed={input.aufwaendeDetailed}
               gewinn={result.gewinn}
+              vorauszahlungen={input.vorauszahlungen}
+              vorauszahlungenResult={result.vorauszahlungen}
               dispatch={dispatch}
             />
 
@@ -230,12 +232,6 @@ function RechnerContent() {
               pauschalierungArt={input.pauschalierungArt}
               jahresumsatz={input.jahresumsatz}
               isPro={subscription.isPro}
-              dispatch={dispatch}
-            />
-
-            <VorauszahlungenSection
-              vorauszahlungen={input.vorauszahlungen}
-              result={result.vorauszahlungen}
               dispatch={dispatch}
             />
 
