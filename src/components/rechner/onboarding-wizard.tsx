@@ -11,6 +11,8 @@ import {
 import type { Stammdaten, Versicherungsart } from '@/lib/rechner-types'
 import { DEFAULT_STAMMDATEN } from '@/lib/rechner-types'
 import { ArrowRight, ArrowLeft, Sparkles, Building2, Shield } from 'lucide-react'
+import { FieldInfo } from '@/components/ui/field-info'
+import { FIELD_DEFS } from '@/lib/field-definitions'
 
 interface OnboardingWizardProps {
   onComplete: (stammdaten: Stammdaten) => void
@@ -64,7 +66,7 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
 
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label className="text-sm font-medium">Gründungsmonat</Label>
+                <Label className="text-sm font-medium">Gründungsmonat <FieldInfo text={FIELD_DEFS.gruendungsMonat} /></Label>
                 <Select
                   value={String(data.gruendungsMonat)}
                   onValueChange={(v) => setData({ ...data, gruendungsMonat: Number(v) })}
@@ -81,7 +83,7 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-sm font-medium">Gründungsjahr</Label>
+                <Label className="text-sm font-medium">Gründungsjahr <FieldInfo text={FIELD_DEFS.gruendungsJahr} /></Label>
                 <Select
                   value={String(data.gruendungsJahr)}
                   onValueChange={(v) => setData({ ...data, gruendungsJahr: Number(v) })}
@@ -122,7 +124,7 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
 
             <div className="flex items-center justify-between gap-4">
               <div>
-                <Label className="text-sm font-medium">Jungunternehmer</Label>
+                <Label className="text-sm font-medium">Jungunternehmer <FieldInfo text={FIELD_DEFS.jungunternehmer} /></Label>
                 <p className="text-xs text-muted-foreground mt-0.5">
                   Vergünstigte SV-Beiträge in den ersten 2 Kalenderjahren
                 </p>
@@ -134,7 +136,7 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
             </div>
 
             <div className="space-y-3">
-              <Label className="text-sm font-medium">Versicherungsart</Label>
+              <Label className="text-sm font-medium">Versicherungsart <FieldInfo text={FIELD_DEFS.versicherungsart} /></Label>
               <RadioGroup
                 value={data.versicherungsart}
                 onValueChange={(v) => setData({ ...data, versicherungsart: v as Versicherungsart })}

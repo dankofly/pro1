@@ -7,7 +7,9 @@ import {
 } from '@/components/ui/collapsible'
 import type { RechnerAction, PauschalierungArt } from '@/lib/rechner-types'
 import { isPauschalierungVerfuegbar } from '@/lib/rechner-engine'
-import { ChevronDown, Calculator } from 'lucide-react'
+import { ChevronDown, Calculator, Crown } from 'lucide-react'
+import { FieldInfo } from '@/components/ui/field-info'
+import { FIELD_DEFS } from '@/lib/field-definitions'
 import { ProSectionWrapper } from './pro-section-wrapper'
 
 interface PauschalierungSectionProps {
@@ -42,7 +44,7 @@ export function PauschalierungSection({
               <Calculator className="h-3.5 w-3.5 text-muted-foreground" />
             </div>
             <div className="flex-1 min-w-0">
-              <h2 className="text-sm font-semibold tracking-tight">Pauschalierung</h2>
+              <h2 className="text-sm font-semibold tracking-tight flex items-center gap-1.5">Pauschalierung <Crown className="h-3 w-3 text-amber-400" /> <FieldInfo text={FIELD_DEFS.pauschalierungArt} /></h2>
               <p className="text-xs text-muted-foreground truncate">
                 {pauschalierungArt === 'keine' ? 'Nicht aktiv' : OPTIONEN.find(o => o.value === pauschalierungArt)?.label}
               </p>

@@ -11,7 +11,9 @@ import {
 import { useState } from 'react'
 import { formatEuro } from '@/lib/format'
 import type { RechnerAction, InvestitionenInput, AfaMethode, AfaResult } from '@/lib/rechner-types'
-import { ChevronDown, Landmark } from 'lucide-react'
+import { ChevronDown, Crown, Landmark } from 'lucide-react'
+import { FieldInfo } from '@/components/ui/field-info'
+import { FIELD_DEFS } from '@/lib/field-definitions'
 import { ProSectionWrapper } from './pro-section-wrapper'
 
 interface InvestitionenSectionProps {
@@ -22,10 +24,10 @@ interface InvestitionenSectionProps {
 }
 
 function InvestRow({
-  id, label, value, methode, afaJahr, onValueChange, onMethodeChange,
+  id, label, value, methode, afaJahr, onValueChange, onMethodeChange, info,
 }: {
   id: string; label: string; value: number; methode: AfaMethode
-  afaJahr: number; onValueChange: (v: number) => void; onMethodeChange: (m: AfaMethode) => void
+  afaJahr: number; onValueChange: (v: number) => void; onMethodeChange: (m: AfaMethode) => void; info?: string
 }) {
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value.replace(/[^0-9]/g, '')
@@ -34,7 +36,7 @@ function InvestRow({
 
   return (
     <div className="space-y-2">
-      <Label htmlFor={id} className="text-sm text-muted-foreground">{label}</Label>
+      <Label htmlFor={id} className="text-sm text-muted-foreground">{label}{info && <FieldInfo text={info} />}</Label>
       <div className="flex items-center gap-2">
         <div className="relative flex-1">
           <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">EUR</span>
@@ -80,7 +82,7 @@ export function InvestitionenSection({ investitionen, afa, isPro, dispatch }: In
               <Landmark className="h-3.5 w-3.5 text-muted-foreground" />
             </div>
             <div className="flex-1 min-w-0">
-              <h2 className="text-sm font-semibold tracking-tight">Investitionen & AfA</h2>
+              <h2 className="text-sm font-semibold tracking-tight flex items-center gap-1.5">Investitionen & AfA <Crown className="h-3 w-3 text-amber-400" /></h2>
               <p className="text-xs text-muted-foreground truncate">
                 {afa.gesamt > 0 ? `AfA: ${formatEuro(afa.gesamt)}/Jahr` : 'Abschreibungen für Anlagegüter'}
               </p>
@@ -100,6 +102,7 @@ export function InvestitionenSection({ investitionen, afa, isPro, dispatch }: In
                 afaJahr={afa.einrichtungJahr}
                 onValueChange={(v) => setInvest('einrichtung', v)}
                 onMethodeChange={(m) => setInvest('einrichtungMethode', m)}
+                info={FIELD_DEFS.einrichtung}
               />
               <InvestRow
                 id="invest-edv"
@@ -109,6 +112,7 @@ export function InvestitionenSection({ investitionen, afa, isPro, dispatch }: In
                 afaJahr={afa.edvJahr}
                 onValueChange={(v) => setInvest('edv', v)}
                 onMethodeChange={(m) => setInvest('edvMethode', m)}
+                info={FIELD_DEFS.edv}
               />
               <InvestRow
                 id="invest-maschinen"
@@ -118,6 +122,7 @@ export function InvestitionenSection({ investitionen, afa, isPro, dispatch }: In
                 afaJahr={afa.maschinenJahr}
                 onValueChange={(v) => setInvest('maschinen', v)}
                 onMethodeChange={(m) => setInvest('maschinenMethode', m)}
+                info={FIELD_DEFS.maschinen}
               />
               {afa.gesamt > 0 && (
                 <div className="bg-muted/40 rounded-lg p-3 border border-border/40 text-sm">

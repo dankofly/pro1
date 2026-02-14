@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Calculator, BarChart3, Clock, Crown, User, Shield, Menu, LogOut } from 'lucide-react'
+import { Calculator, BarChart3, Clock, Crown, HelpCircle, User, Shield, Menu, LogOut } from 'lucide-react'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -15,6 +15,7 @@ const NAV_ITEMS = [
   { href: '/misch-einkommen', label: 'Optimierung', icon: BarChart3, requiresPro: true },
   { href: '/dashboard', label: 'Verlauf', icon: Clock },
   { href: '/pricing', label: 'Pro-Vorteile', icon: Crown },
+  { href: '/faq', label: 'FAQ', icon: HelpCircle },
   { href: '/profil', label: 'Profil', icon: User },
 ]
 

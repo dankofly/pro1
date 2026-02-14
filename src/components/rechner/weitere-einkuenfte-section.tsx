@@ -7,7 +7,9 @@ import {
   Collapsible, CollapsibleTrigger, CollapsibleContent,
 } from '@/components/ui/collapsible'
 import type { RechnerAction, WeitereEinkuenfteInput } from '@/lib/rechner-types'
-import { ChevronDown, Briefcase } from 'lucide-react'
+import { ChevronDown, Briefcase, Crown } from 'lucide-react'
+import { FieldInfo } from '@/components/ui/field-info'
+import { FIELD_DEFS } from '@/lib/field-definitions'
 import { ProSectionWrapper } from './pro-section-wrapper'
 
 interface WeitereEinkuenfteSectionProps {
@@ -17,10 +19,10 @@ interface WeitereEinkuenfteSectionProps {
 }
 
 function WEInput({
-  id, value, onChange, label, hint, suffix, max = 200000,
+  id, value, onChange, label, hint, suffix, max = 200000, info,
 }: {
   id: string; value: number; onChange: (v: number) => void
-  label: string; hint?: string; suffix?: string; max?: number
+  label: string; hint?: string; suffix?: string; max?: number; info?: string
 }) {
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value.replace(/[^0-9]/g, '')
@@ -28,7 +30,7 @@ function WEInput({
   }
   return (
     <div className="space-y-1.5">
-      <Label htmlFor={id} className="text-sm text-muted-foreground">{label}</Label>
+      <Label htmlFor={id} className="text-sm text-muted-foreground">{label}{info && <FieldInfo text={info} />}</Label>
       <div className="flex items-center gap-2">
         <div className="relative w-full max-w-[200px]">
           <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">EUR</span>
@@ -64,7 +66,7 @@ export function WeitereEinkuenfteSection({
               <Briefcase className="h-3.5 w-3.5 text-muted-foreground" />
             </div>
             <div className="flex-1 min-w-0">
-              <h2 className="text-sm font-semibold tracking-tight">Weitere Einkünfte</h2>
+              <h2 className="text-sm font-semibold tracking-tight flex items-center gap-1.5">Weitere Einkünfte <Crown className="h-3 w-3 text-amber-400" /></h2>
               <p className="text-xs text-muted-foreground truncate">
                 Gehalt, Vermietung, etc.
               </p>
@@ -85,6 +87,7 @@ export function WeitereEinkuenfteSection({
                 suffix="/ Monat"
                 hint="Erhöht die Einkommensteuer-Bemessungsgrundlage"
                 max={20000}
+                info={FIELD_DEFS.bruttoEntgeltMonatlich}
               />
 
               <WEInput
@@ -95,6 +98,7 @@ export function WeitereEinkuenfteSection({
                 suffix="/ Jahr"
                 hint="Netto-Einkünfte aus Vermietung und Verpachtung"
                 max={500000}
+                info={FIELD_DEFS.vermietungsEinkuenfte}
               />
             </div>
           </ProSectionWrapper>

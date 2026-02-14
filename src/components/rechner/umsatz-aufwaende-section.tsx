@@ -13,6 +13,8 @@ import {
 import { formatEuro } from '@/lib/format'
 import type { RechnerAction, AufwaendeBreakdown, ArbeitsplatzpauschaleType } from '@/lib/rechner-types'
 import { ChevronDown, Receipt, TrendingUp } from 'lucide-react'
+import { FieldInfo } from '@/components/ui/field-info'
+import { FIELD_DEFS } from '@/lib/field-definitions'
 
 interface UmsatzAufwaendeSectionProps {
   jahresumsatz: number
@@ -24,10 +26,10 @@ interface UmsatzAufwaendeSectionProps {
 }
 
 function EuroInput({
-  id, value, onChange, max = 2000000, label, suffix,
+  id, value, onChange, max = 2000000, label, suffix, info,
 }: {
   id: string; value: number; onChange: (v: number) => void
-  max?: number; label: string; suffix?: string
+  max?: number; label: string; suffix?: string; info?: string
 }) {
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value.replace(/[^0-9]/g, '')
@@ -35,7 +37,7 @@ function EuroInput({
   }
   return (
     <div className="space-y-3">
-      <Label htmlFor={id} className="text-sm font-medium">{label}</Label>
+      <Label htmlFor={id} className="text-sm font-medium">{label}{info && <FieldInfo text={info} />}</Label>
       <div className="flex items-center gap-3">
         <div className="relative flex-1 max-w-[220px]">
           <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">EUR</span>
@@ -66,9 +68,9 @@ function EuroInput({
 }
 
 function SmallEuroInput({
-  id, value, onChange, label, max = 500000,
+  id, value, onChange, label, max = 500000, info,
 }: {
-  id: string; value: number; onChange: (v: number) => void; label: string; max?: number
+  id: string; value: number; onChange: (v: number) => void; label: string; max?: number; info?: string
 }) {
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value.replace(/[^0-9]/g, '')
@@ -76,7 +78,7 @@ function SmallEuroInput({
   }
   return (
     <div className="flex items-center justify-between gap-3">
-      <Label htmlFor={id} className="text-sm text-muted-foreground min-w-0">{label}</Label>
+      <Label htmlFor={id} className="text-sm text-muted-foreground min-w-0">{label}{info && <FieldInfo text={info} />}</Label>
       <div className="relative w-36 shrink-0">
         <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">EUR</span>
         <Input
@@ -128,6 +130,7 @@ export function UmsatzAufwaendeSection({
           max={2000000}
           label="Jahresumsatz (netto, ohne USt)"
           suffix="/ Jahr"
+          info={FIELD_DEFS.jahresumsatz}
         />
 
         <div className="divider" />
@@ -141,6 +144,7 @@ export function UmsatzAufwaendeSection({
             max={1000000}
             label="Betriebsausgaben gesamt"
             suffix="/ Jahr"
+            info={FIELD_DEFS.aufwaendeGesamt}
           />
         )}
 
@@ -162,23 +166,26 @@ export function UmsatzAufwaendeSection({
                 value={aufwaende.personalkosten}
                 onChange={(v) => setAufwand('personalkosten', v)}
                 label="Personal- / Fremdkosten"
+                info={FIELD_DEFS.personalkosten}
               />
               <SmallEuroInput
                 id="wareneinkauf"
                 value={aufwaende.wareneinkauf}
                 onChange={(v) => setAufwand('wareneinkauf', v)}
                 label="Wareneinkauf / Material"
+                info={FIELD_DEFS.wareneinkauf}
               />
               <SmallEuroInput
                 id="reisekosten"
                 value={aufwaende.reisekosten}
                 onChange={(v) => setAufwand('reisekosten', v)}
                 label="Reise- / Fahrtkosten"
+                info={FIELD_DEFS.reisekosten}
               />
 
               {/* Arbeitsplatzpauschale */}
               <div className="flex items-center justify-between gap-3">
-                <Label className="text-sm text-muted-foreground">Arbeitsplatzpauschale</Label>
+                <Label className="text-sm text-muted-foreground">Arbeitsplatzpauschale <FieldInfo text={FIELD_DEFS.arbeitsplatzpauschale} /></Label>
                 <Select
                   value={aufwaende.arbeitsplatzpauschale}
                   onValueChange={(v) => setAufwand('arbeitsplatzpauschale', v as ArbeitsplatzpauschaleType)}
@@ -200,12 +207,14 @@ export function UmsatzAufwaendeSection({
                 onChange={(v) => setAufwand('oepnvPauschale', v)}
                 label="ÖPNV-Kosten (50% absetzbar)"
                 max={10000}
+                info={FIELD_DEFS.oepnvPauschale}
               />
               <SmallEuroInput
                 id="sonstige"
                 value={aufwaende.sonstigeAufwaende}
                 onChange={(v) => setAufwand('sonstigeAufwaende', v)}
                 label="Sonstige Aufwände"
+                info={FIELD_DEFS.sonstigeAufwaende}
               />
             </div>
           </CollapsibleContent>

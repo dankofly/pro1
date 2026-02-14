@@ -8,7 +8,9 @@ import {
   Collapsible, CollapsibleTrigger, CollapsibleContent,
 } from '@/components/ui/collapsible'
 import type { RechnerAction, GmbhInput } from '@/lib/rechner-types'
-import { ChevronDown, Building } from 'lucide-react'
+import { ChevronDown, Building, Crown } from 'lucide-react'
+import { FieldInfo } from '@/components/ui/field-info'
+import { FIELD_DEFS } from '@/lib/field-definitions'
 import { ProSectionWrapper } from './pro-section-wrapper'
 
 interface GmbhVergleichSectionProps {
@@ -37,7 +39,7 @@ export function GmbhVergleichSection({ gmbh, isPro, dispatch }: GmbhVergleichSec
               <Building className="h-3.5 w-3.5 text-muted-foreground" />
             </div>
             <div className="flex-1 min-w-0">
-              <h2 className="text-sm font-semibold tracking-tight">GmbH-Vergleich</h2>
+              <h2 className="text-sm font-semibold tracking-tight flex items-center gap-1.5">GmbH-Vergleich <Crown className="h-3 w-3 text-amber-400" /></h2>
               <p className="text-xs text-muted-foreground truncate">
                 {gmbh.aktiv ? 'Aktiv' : 'EPU vs. GmbH Vergleich'}
               </p>
@@ -52,7 +54,7 @@ export function GmbhVergleichSection({ gmbh, isPro, dispatch }: GmbhVergleichSec
 
               <div className="flex items-center justify-between gap-4">
                 <div>
-                  <Label className="text-sm font-medium">GmbH-Vergleich aktivieren</Label>
+                  <Label className="text-sm font-medium">GmbH-Vergleich aktivieren <FieldInfo text={FIELD_DEFS.gmbhAktiv} /></Label>
                   <p className="text-xs text-muted-foreground mt-0.5">
                     Berechnet die Gesamtbelastung bei GmbH-Struktur
                   </p>
@@ -66,7 +68,7 @@ export function GmbhVergleichSection({ gmbh, isPro, dispatch }: GmbhVergleichSec
               {gmbh.aktiv && (
                 <div className="space-y-2">
                   <Label htmlFor="gf-gehalt" className="text-sm text-muted-foreground">
-                    Geschäftsführer-Gehalt (brutto/Monat)
+                    Geschäftsführer-Gehalt (brutto/Monat) <FieldInfo text={FIELD_DEFS.gfGehaltMonatlich} />
                   </Label>
                   <div className="relative w-full max-w-[200px]">
                     <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">EUR</span>

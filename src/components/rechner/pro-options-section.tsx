@@ -12,6 +12,8 @@ import type { RechnerAction, ProOptionsInput } from '@/lib/rechner-types'
 import type { TaxYear } from '@/lib/tax-constants'
 import { YEAR_CONFIGS } from '@/lib/tax-constants'
 import { ChevronDown, Crown, Minus, Plus, Train } from 'lucide-react'
+import { FieldInfo } from '@/components/ui/field-info'
+import { FIELD_DEFS } from '@/lib/field-definitions'
 import { ProSectionWrapper } from './pro-section-wrapper'
 
 interface ProOptionsSectionProps {
@@ -56,7 +58,7 @@ export function ProOptionsSection({ proOptions, year, isPro, dispatch }: ProOpti
 
                 <div className="flex items-center justify-between gap-4">
                   <div className="min-w-0">
-                    <p className="text-sm text-muted-foreground">Kinder unter 18</p>
+                    <p className="text-sm text-muted-foreground">Kinder unter 18 <FieldInfo text={FIELD_DEFS.kinderUnter18} /></p>
                     <p className="text-xs text-muted-foreground">
                       FBP {cfg.absetzbetraege.familienbonusUnder18.toLocaleString('de-AT')} EUR / Kind
                     </p>
@@ -81,7 +83,7 @@ export function ProOptionsSection({ proOptions, year, isPro, dispatch }: ProOpti
 
                 <div className="flex items-center justify-between gap-4">
                   <div className="min-w-0">
-                    <p className="text-sm text-muted-foreground">Kinder über 18</p>
+                    <p className="text-sm text-muted-foreground">Kinder über 18 <FieldInfo text={FIELD_DEFS.kinderUeber18} /></p>
                     <p className="text-xs text-muted-foreground">
                       FBP {cfg.absetzbetraege.familienbonusOver18.toLocaleString('de-AT')} EUR / Kind
                     </p>
@@ -110,7 +112,7 @@ export function ProOptionsSection({ proOptions, year, isPro, dispatch }: ProOpti
               {/* Alleinverdiener */}
               <div className="flex items-center justify-between gap-4">
                 <div className="min-w-0">
-                  <Label className="text-sm font-medium">Alleinverdiener / Alleinerzieher</Label>
+                  <Label className="text-sm font-medium">Alleinverdiener / Alleinerzieher <FieldInfo text={FIELD_DEFS.alleinverdiener} /></Label>
                   <p className="text-xs text-muted-foreground mt-0.5">AVAB/AEAB bei mind. 1 Kind</p>
                 </div>
                 <Switch
@@ -124,7 +126,7 @@ export function ProOptionsSection({ proOptions, year, isPro, dispatch }: ProOpti
               {/* Pendler */}
               <div className="space-y-4">
                 <div className="flex items-baseline justify-between gap-2">
-                  <Label className="text-sm font-medium">Pendlerkilometer</Label>
+                  <Label className="text-sm font-medium">Pendlerkilometer <FieldInfo text={FIELD_DEFS.pendlerKm} /></Label>
                   <span className="text-sm font-mono font-semibold tabular-nums">{proOptions.pendlerKm} km</span>
                 </div>
                 <Slider

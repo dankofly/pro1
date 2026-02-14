@@ -9,6 +9,8 @@ import {
 import { formatEuro } from '@/lib/format'
 import type { RechnerAction, VorauszahlungenInput, VorauszahlungenResult } from '@/lib/rechner-types'
 import { ChevronDown, Wallet } from 'lucide-react'
+import { FieldInfo } from '@/components/ui/field-info'
+import { FIELD_DEFS } from '@/lib/field-definitions'
 
 interface VorauszahlungenSectionProps {
   vorauszahlungen: VorauszahlungenInput
@@ -17,10 +19,10 @@ interface VorauszahlungenSectionProps {
 }
 
 function VzInput({
-  id, value, onChange, label, hint, max = 200000,
+  id, value, onChange, label, hint, max = 200000, info,
 }: {
   id: string; value: number; onChange: (v: number) => void
-  label: string; hint?: string; max?: number
+  label: string; hint?: string; max?: number; info?: string
 }) {
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const raw = e.target.value.replace(/[^0-9]/g, '')
@@ -28,7 +30,7 @@ function VzInput({
   }
   return (
     <div className="space-y-1.5">
-      <Label htmlFor={id} className="text-sm text-muted-foreground">{label}</Label>
+      <Label htmlFor={id} className="text-sm text-muted-foreground">{label}{info && <FieldInfo text={info} />}</Label>
       <div className="relative w-full max-w-[200px]">
         <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">EUR</span>
         <Input
@@ -79,6 +81,7 @@ export function VorauszahlungenSection({
               onChange={(v) => setVz('svVorauszahlung', v)}
               label="SV-Vorauszahlungen (jährlich)"
               hint="Aus deiner SVS-Vorschreibung"
+              info={FIELD_DEFS.svVorauszahlung}
             />
 
             {result.svDifferenz !== 0 && vorauszahlungen.svVorauszahlung > 0 && (
@@ -100,6 +103,7 @@ export function VorauszahlungenSection({
               onChange={(v) => setVz('svNachzahlungVorjahr', v)}
               label="SV-Nachzahlung Vorjahr"
               hint="Falls bekannt"
+              info={FIELD_DEFS.svNachzahlungVorjahr}
             />
 
             <VzInput
@@ -108,6 +112,7 @@ export function VorauszahlungenSection({
               onChange={(v) => setVz('estVorauszahlung', v)}
               label="ESt-Vorauszahlungen (jährlich)"
               hint="Aus deinem Einkommensteuerbescheid"
+              info={FIELD_DEFS.estVorauszahlung}
             />
 
             {result.estDifferenz !== 0 && vorauszahlungen.estVorauszahlung > 0 && (
