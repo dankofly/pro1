@@ -1,6 +1,7 @@
 'use client'
 
 import { formatEuro } from '@/lib/format'
+import { ArrowRightLeft } from 'lucide-react'
 
 interface GeldflussDiagrammProps {
   umsatz: number
@@ -46,9 +47,12 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
 
   return (
     <div className="card-surface p-4 sm:p-5">
-      <p className="section-header mb-3">
-        Geldfluss-Diagramm
-      </p>
+      <div className="flex items-center gap-2 mb-3">
+        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/60">
+          <ArrowRightLeft className="h-3.5 w-3.5 text-muted-foreground" />
+        </div>
+        <span className="text-sm font-semibold text-foreground">Geldfluss-Diagramm</span>
+      </div>
 
       {/* Top labels */}
       <div className="flex justify-between items-end mb-1 px-1 gap-2">

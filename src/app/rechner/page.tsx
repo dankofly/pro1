@@ -7,6 +7,7 @@ import { formatEuro } from '@/lib/format'
 import { type TaxYear, YEAR_CONFIGS } from '@/lib/tax-constants'
 import { calculateSteuerTipps } from '@/lib/svs-calculator'
 import { AppShell, useAppShell } from '@/components/svs/app-shell'
+import { MobileNav } from '@/components/svs/mobile-nav'
 import { useRechnerState } from '@/hooks/use-rechner-state'
 
 // Existing SVS result components
@@ -41,11 +42,12 @@ import { GewinnfreibetragInfo } from '@/components/rechner/gewinnfreibetrag-info
 import { AiTaxAdvisor } from '@/components/rechner/ai-tax-advisor'
 import { PresetSelector } from '@/components/rechner/preset-selector'
 import { GeldflussDiagramm } from '@/components/rechner/geldfluss-diagramm'
+import { SectionDivider } from '@/components/rechner/section-divider'
 
 import { Button } from '@/components/ui/button'
 // Alert replaced with custom left-border accent divs
 import { Badge } from '@/components/ui/badge'
-import { Save, Lock, Settings2 } from 'lucide-react'
+import { Save, Lock, Settings2, ChevronDown } from 'lucide-react'
 import { toast } from 'sonner'
 
 import type { Stammdaten } from '@/lib/rechner-types'
@@ -60,6 +62,8 @@ function RechnerContent() {
   const [upgradeFeature, setUpgradeFeature] = useState('')
   const [upgradeRequiredPlan, setUpgradeRequiredPlan] = useState<'basic' | 'pro'>('basic')
   const [mounted, setMounted] = useState(false)
+  const [showBeitragsDetails, setShowBeitragsDetails] = useState(false)
+  const [showMonthlyOverview, setShowMonthlyOverview] = useState(false)
   const mainContentRef = useRef<HTMLDivElement>(null)
 
   // Avoid hydration mismatch (localStorage read)
@@ -149,7 +153,7 @@ function RechnerContent() {
       <div className="sticky top-0 z-30 bg-[hsl(var(--surface))] border-b border-border/40">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Link href="/" className="md:hidden font-bold text-sm hover:opacity-80 transition-opacity">SteuerBoard.pro</Link>
+            <MobileNav />
             <span className="section-header hidden sm:inline">Dashboard</span>
             <span className="text-border/60 mx-1 hidden sm:inline">/</span>
             <StatusBadge riskPercent={svs.riskPercent} />
@@ -310,6 +314,11 @@ function RechnerContent() {
               />
             </div>
 
+            {/* Actionable Insights — direkt nach KPIs (5-Sekunden-Regel) */}
+            {!svs.belowMinimum && (
+              <DashboardCards result={svs} vorschreibung={vorschreibung} />
+            )}
+
             <GeldflussDiagramm
               umsatz={result.umsatz}
               aufwaende={result.aufwaendeEffektiv}
@@ -322,6 +331,9 @@ function RechnerContent() {
             {!svs.belowMinimum && (
               <>
                 <WahrheitsTabelle gewinn={result.gewinn} result={svs} year={input.year} />
+
+                {/* ── Detailanalyse ── */}
+                <SectionDivider title="Detailanalyse" />
 
                 {subscription.isBasic ? (
                   <>
@@ -344,7 +356,11 @@ function RechnerContent() {
                   </div>
                 )}
 
-                {/* Pauschalierung Vergleich (Pro) */}
+                {/* ── Pro-Vergleiche ── */}
+                {subscription.isPro && (result.pauschalierung || result.gmbh || result.gewinnmaximierer) && (
+                  <SectionDivider title="Pro-Vergleiche" />
+                )}
+
                 {result.pauschalierung && subscription.isPro && (
                   <PauschalierungVergleich
                     pauschalierung={result.pauschalierung}
@@ -354,7 +370,6 @@ function RechnerContent() {
                   />
                 )}
 
-                {/* GmbH Vergleich (Pro) */}
                 {result.gmbh && subscription.isPro && (
                   <GmbhVergleichTabelle
                     gmbh={result.gmbh}
@@ -365,7 +380,6 @@ function RechnerContent() {
                   />
                 )}
 
-                {/* Gewinnmaximierer Vergleich (Pro) */}
                 {result.gewinnmaximierer && subscription.isPro && (
                   <GewinnmaximiererVergleich
                     result={result.gewinnmaximierer}
@@ -385,9 +399,26 @@ function RechnerContent() {
                 {/* Gewinnfreibetrag Info */}
                 <GewinnfreibetragInfo result={svs} />
 
-                <DashboardCards result={svs} vorschreibung={vorschreibung} />
-                <BeitragsDetails result={svs} />
-                <MonthlyOverview result={svs} vorschreibung={vorschreibung} />
+                {/* ── Weitere Details (collapsible) ── */}
+                <SectionDivider title="Weitere Details" />
+
+                <button
+                  onClick={() => setShowBeitragsDetails(!showBeitragsDetails)}
+                  className="card-surface w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-foreground hover:bg-muted/30 transition-colors"
+                >
+                  Beitragsdetails
+                  <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${showBeitragsDetails ? 'rotate-180' : ''}`} />
+                </button>
+                {showBeitragsDetails && <BeitragsDetails result={svs} />}
+
+                <button
+                  onClick={() => setShowMonthlyOverview(!showMonthlyOverview)}
+                  className="card-surface w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-foreground hover:bg-muted/30 transition-colors"
+                >
+                  Monatsübersicht
+                  <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${showMonthlyOverview ? 'rotate-180' : ''}`} />
+                </button>
+                {showMonthlyOverview && <MonthlyOverview result={svs} vorschreibung={vorschreibung} />}
               </>
             )}
 

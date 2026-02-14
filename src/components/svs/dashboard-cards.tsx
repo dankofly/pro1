@@ -4,7 +4,7 @@ import { GaugeBarometer } from './gauge-barometer'
 import { formatEuro, formatEuroShort } from '@/lib/format'
 import { useAnimatedNumber } from '@/hooks/use-animated-number'
 import type { SvsResult } from '@/lib/svs-calculator'
-import { Zap, AlertTriangle, Wallet, CircleDollarSign } from 'lucide-react'
+import { Zap, AlertTriangle } from 'lucide-react'
 
 interface DashboardCardsProps {
   result: SvsResult
@@ -13,50 +13,44 @@ interface DashboardCardsProps {
 
 export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
   const animatedNachzahlung = useAnimatedNumber(Math.abs(result.nachzahlung))
-  const animatedSpar = useAnimatedNumber(result.sparEmpfehlung)
-  const animatedSteuer = useAnimatedNumber(result.steuerErsparnis)
-  const animatedEffektiv = useAnimatedNumber(result.effektiveSVS)
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
       {/* Gefahren-Barometer */}
-      <div className="card-surface p-5">
-        <div className="flex items-center gap-2 mb-3">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/60">
-            <Zap className="h-3.5 w-3.5 text-muted-foreground" />
+      <div className="card-surface p-4">
+        <div className="flex items-center gap-2 mb-2">
+          <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-muted/60">
+            <Zap className="h-3 w-3 text-muted-foreground" />
           </div>
-          <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+          <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wide">
             Gefahren-Barometer
           </span>
         </div>
         <GaugeBarometer riskPercent={result.riskPercent} />
-        <p className="text-xs text-muted-foreground text-center mt-2">
-          Nachzahlungsrisiko basierend auf vorläufiger vs. endgültiger Vorschreibung
-        </p>
       </div>
 
       {/* Nachzahlungs-Alarm */}
-      <div className="card-surface p-5">
-        <div className="flex items-center gap-2 mb-3">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/60">
-            <AlertTriangle className="h-3.5 w-3.5 text-muted-foreground" />
+      <div className="card-surface p-4">
+        <div className="flex items-center gap-2 mb-2">
+          <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-muted/60">
+            <AlertTriangle className="h-3 w-3 text-muted-foreground" />
           </div>
-          <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+          <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wide">
             Nachzahlungs-Alarm
           </span>
         </div>
-        <div className="text-center py-2">
+        <div className="text-center py-1">
           {result.nachzahlung > 0 ? (
             <>
-              <p className="text-2xl sm:text-3xl font-bold text-red-500 num-transition font-mono">
+              <p className="text-2xl font-bold text-red-500 num-transition font-mono">
                 {formatEuroShort(Math.round(animatedNachzahlung))}
               </p>
-              <p className="text-sm text-muted-foreground mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 geschätzte Nachzahlung
               </p>
-              <div className="mt-3 p-3 rounded-lg bg-muted/40 border border-border/40">
-                <p className="text-xs text-red-600">
-                  Deine Vorschreibung ({formatEuro(vorschreibung)}) ist{' '}
+              <div className="mt-2 p-2 rounded-lg bg-muted/40 border border-border/40">
+                <p className="text-[11px] text-red-600">
+                  Vorschreibung ({formatEuro(vorschreibung)}) ist{' '}
                   <span className="font-bold">
                     {formatEuro(result.endgueltigeMonatlich - vorschreibung)}
                   </span>{' '}
@@ -66,100 +60,23 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
             </>
           ) : result.nachzahlung < 0 ? (
             <>
-              <p className="text-2xl sm:text-3xl font-bold text-emerald-500 num-transition font-mono">
+              <p className="text-2xl font-bold text-emerald-500 num-transition font-mono">
                 {formatEuroShort(Math.round(animatedNachzahlung))}
               </p>
-              <p className="text-sm text-muted-foreground mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 voraussichtliche Gutschrift
               </p>
-              <div className="mt-3 p-3 rounded-lg bg-muted/40 border border-border/40">
-                <p className="text-xs text-emerald-600">
-                  Du zahlst aktuell mehr als nötig. Die SVS wird dir die
-                  Differenz gutschreiben.
-                </p>
-              </div>
             </>
           ) : (
             <>
-              <p className="text-2xl sm:text-3xl font-bold text-muted-foreground num-transition font-mono">
+              <p className="text-2xl font-bold text-muted-foreground num-transition font-mono">
                 &euro; 0
               </p>
-              <p className="text-sm text-muted-foreground mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 Keine Nachzahlung erwartet
               </p>
             </>
           )}
-        </div>
-      </div>
-
-      {/* Spar-Empfehlung */}
-      <div className="card-surface p-5">
-        <div className="flex items-center gap-2 mb-3">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/60">
-            <Wallet className="h-3.5 w-3.5 text-muted-foreground" />
-          </div>
-          <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-            Spar-Empfehlung
-          </span>
-        </div>
-        <div className="text-center py-2">
-          <p className="text-2xl sm:text-3xl font-bold text-blue-600 num-transition font-mono">
-            {formatEuroShort(Math.round(animatedSpar))}
-          </p>
-          <p className="text-sm text-muted-foreground mt-1">
-            pro Monat auf ein Unterkonto legen
-          </p>
-          {result.sparEmpfehlung > 0 && (
-            <div className="mt-3 p-3 rounded-lg bg-muted/40 border border-border/40">
-              <p className="text-xs text-blue-600">
-                Lege jeden Monat diesen Betrag zur Seite, um die Nachzahlung
-                stressfrei zu stemmen.
-              </p>
-            </div>
-          )}
-          {result.sparEmpfehlung === 0 && result.nachzahlung < 0 && (
-            <div className="mt-3 p-3 rounded-lg bg-muted/40 border border-border/40">
-              <p className="text-xs text-emerald-600">
-                Keine Rücklage nötig – du bist aktuell gut aufgestellt!
-              </p>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* Steuer-Hebel */}
-      <div className="card-surface p-5">
-        <div className="flex items-center gap-2 mb-3">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/60">
-            <CircleDollarSign className="h-3.5 w-3.5 text-muted-foreground" />
-          </div>
-          <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-            Steuer-Hebel
-          </span>
-        </div>
-        <div className="text-center py-2">
-          <p className="text-2xl sm:text-3xl font-bold text-emerald-500 num-transition font-mono">
-            - {formatEuroShort(Math.round(animatedSteuer))}
-          </p>
-          <p className="text-sm text-muted-foreground mt-1">
-            geschätzte Steuerersparnis
-          </p>
-          <div className="mt-3 p-3 rounded-lg bg-muted/40 border border-border/40">
-            <p className="text-xs text-emerald-600">
-              SVS-Beiträge sind{' '}
-              <span className="font-semibold">Betriebsausgaben</span> und senken
-              deine Einkommensteuer. Effektive Belastung:{' '}
-              <span className="font-bold font-mono">
-                {formatEuro(Math.round(animatedEffektiv))}
-              </span>
-              /Jahr
-            </p>
-          </div>
-          <div className="mt-2 flex items-center justify-center gap-2">
-            <span className="text-xs text-muted-foreground">
-              Grenzsteuersatz: {(result.grenzsteuersatz * 100).toFixed(0)}%
-            </span>
-          </div>
         </div>
       </div>
     </div>

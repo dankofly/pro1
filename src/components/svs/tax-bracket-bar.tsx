@@ -4,6 +4,7 @@ import { useState, useMemo } from 'react'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { formatEuro } from '@/lib/format'
 import { type TaxYear, YEAR_CONFIGS } from '@/lib/tax-constants'
+import { Percent } from 'lucide-react'
 
 const COLORS = [
   'bg-emerald-400',
@@ -44,9 +45,12 @@ export function TaxBracketBar({ steuerpflichtig, year }: TaxBracketBarProps) {
   return (
     <div className="card-surface p-4 sm:p-5">
       <div className="flex items-center justify-between mb-3">
-        <p className="section-header">
-          Deine Steuerstufe
-        </p>
+        <div className="flex items-center gap-2">
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/60">
+            <Percent className="h-3.5 w-3.5 text-muted-foreground" />
+          </div>
+          <span className="text-sm font-semibold text-foreground">Deine Steuerstufe</span>
+        </div>
         <span className="text-sm font-bold font-mono text-foreground">
           {currentRate}% Grenzsteuersatz
         </span>

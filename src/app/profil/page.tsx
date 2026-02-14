@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { AppShell, useAppShell } from '@/components/svs/app-shell'
+import { MobileNav } from '@/components/svs/mobile-nav'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
@@ -106,7 +107,7 @@ function ProfilContent() {
       <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-lg border-b border-border/50">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 h-14 flex items-center">
           <div className="flex items-center gap-3">
-            <Link href="/" className="md:hidden font-bold text-sm hover:opacity-80 transition-opacity">SteuerBoard.pro</Link>
+            <MobileNav />
             <div className="flex items-center gap-2">
               <User aria-hidden="true" className="h-4 w-4 text-muted-foreground" />
               <h1 className="text-sm font-semibold">Mein Profil</h1>
