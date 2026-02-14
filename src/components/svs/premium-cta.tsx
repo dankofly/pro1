@@ -2,14 +2,13 @@
 
 import { useState } from 'react'
 import { Badge } from '@/components/ui/badge'
-import { Building2, FileDown, BellRing } from 'lucide-react'
+import { FileText, TrendingUp, BarChart3, Sparkles, Download, ShieldCheck, Lock } from 'lucide-react'
 import { PdfExportButton } from './pdf-export-button'
 import { BankImportDialog } from './bank-import-dialog'
 import { AlertSettingsDialog } from './alert-settings-dialog'
 import type { SvsResult, SteuerTipp } from '@/lib/svs-calculator'
 import type { AlertPreferences } from '@/hooks/use-smart-alerts'
 import type { SubscriptionInfo } from '@/hooks/use-subscription'
-import { Lock } from 'lucide-react'
 
 interface PremiumCTAProps {
   gewinn: number
@@ -42,6 +41,46 @@ export function PremiumCTA({
   const [alertOpen, setAlertOpen] = useState(false)
   const locked = !subscription.isPro
 
+  const tools = [
+    {
+      icon: <FileText className="h-4 w-4 mb-2 text-white/60" />,
+      title: 'Steuerberater-Report',
+      desc: 'Kompakte Zusammenfassung deiner SVS-, Steuer- und Prognosedaten, vorbereitet für die Weitergabe an deinen Steuerberater.',
+      button: 'Report erstellen',
+      isPdf: true,
+    },
+    {
+      icon: <TrendingUp className="h-4 w-4 mb-2 text-white/60" />,
+      title: 'Nachzahlungs-Prognose',
+      desc: 'Detaillierte Einschätzung möglicher SVS- und Steuer-Nachforderungen inklusive Risikobewertung.',
+      button: 'Prognose exportieren',
+    },
+    {
+      icon: <BarChart3 className="h-4 w-4 mb-2 text-white/60" />,
+      title: 'Jahresvergleich',
+      desc: 'Vergleiche Vorjahr, aktuelles Jahr und Prognose. Erkenne Trends in Steuerlast und Nettoentwicklung.',
+      button: 'Vergleich anzeigen',
+    },
+    {
+      icon: <Sparkles className="h-4 w-4 mb-2 text-white/60" />,
+      title: 'AI Zusammenfassung',
+      desc: 'Automatische Analyse deiner Zahlen in Klartext, inklusive Hinweise zu Risiken und Steuerentwicklung.',
+      button: 'Zusammenfassung generieren',
+    },
+    {
+      icon: <Download className="h-4 w-4 mb-2 text-white/60" />,
+      title: 'Datenexport',
+      desc: 'Exportiere deine Berechnungen als CSV zur Weiterverarbeitung in Excel oder Controlling-Tools.',
+      button: 'CSV exportieren',
+    },
+    {
+      icon: <ShieldCheck className="h-4 w-4 mb-2 text-white/60" />,
+      title: 'Steuerreserve-Status',
+      desc: 'Dokumentiere empfohlene und tatsächliche Rücklagen. Behalte deine Steuerliquidität im Blick.',
+      button: 'Status anzeigen',
+    },
+  ]
+
   return (
     <>
       <div className="card-surface-dark rounded-xl overflow-hidden relative text-white">
@@ -55,79 +94,41 @@ export function PremiumCTA({
 
           <h3 className="text-xl sm:text-2xl font-bold mb-2">Deine Pro-Werkzeuge</h3>
           <p className="text-white/60 text-sm mb-6 max-w-md">
-            Bank-Anbindung, PDF-Berichte und Smart Alerts -- alles was du brauchst.
+            Strukturierte Reports, Prognosen und Datenexports, für volle Kontrolle über deine Steuerlage.
           </p>
 
-          <div className="grid sm:grid-cols-3 gap-3">
-            {/* Bank-Anbindung */}
-            <button
-              onClick={() => locked ? onUpgradeRequired('Bank-Anbindung', 'pro') : setBankOpen(true)}
-              className="rounded-lg p-4 border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] transition-all duration-300 text-left relative group"
-            >
-              {locked && (
-                <div className="absolute inset-0 backdrop-blur-[2px] bg-white/5 rounded-lg z-10 flex items-center justify-center">
-                  <Lock className="h-4 w-4 text-white/50" />
-                </div>
-              )}
-              <Building2 className="h-4 w-4 mb-2 text-white/60" />
-              <div className="font-semibold text-sm">Bank-Anbindung</div>
-              <div className="text-white/50 text-xs mb-3">CSV-Import deiner Kontoauszüge</div>
-              <span className="text-xs font-medium bg-white/10 px-2 py-1 rounded-md">
-                {locked ? 'Pro Feature' : 'CSV importieren'}
-              </span>
-            </button>
-
-            {/* PDF-Export */}
-            <button
-              onClick={() => locked ? onUpgradeRequired('PDF-Export', 'pro') : undefined}
-              className="rounded-lg p-4 border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] transition-all duration-300 text-left relative group"
-            >
-              {locked && (
-                <div className="absolute inset-0 backdrop-blur-[2px] bg-white/5 rounded-lg z-10 flex items-center justify-center">
-                  <Lock className="h-4 w-4 text-white/50" />
-                </div>
-              )}
-              <FileDown className="h-4 w-4 mb-2 text-white/60" />
-              <div className="font-semibold text-sm">PDF-Export</div>
-              <div className="text-white/50 text-xs mb-3">Berichte für deinen Steuerberater</div>
-              {locked ? (
-                <span className="text-xs font-medium bg-white/10 px-2 py-1 rounded-md">Pro Feature</span>
-              ) : (
-                <PdfExportButton
-                  gewinn={gewinn}
-                  vorschreibung={vorschreibung}
-                  result={result}
-                  steuerTipps={steuerTipps}
-                  variant="ghost"
-                  size="sm"
-                  className="text-white hover:text-white hover:bg-white/10 h-auto px-2 py-1 text-xs font-medium bg-white/10"
-                />
-              )}
-            </button>
-
-            {/* Smart Alerts */}
-            <button
-              onClick={() => locked ? onUpgradeRequired('Smart Alerts', 'pro') : setAlertOpen(true)}
-              className="rounded-lg p-4 border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] transition-all duration-300 text-left relative group"
-            >
-              {locked && (
-                <div className="absolute inset-0 backdrop-blur-[2px] bg-white/5 rounded-lg z-10 flex items-center justify-center">
-                  <Lock className="h-4 w-4 text-white/50" />
-                </div>
-              )}
-              {!locked && alertActive && (
-                <span className="absolute top-2 right-2 flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500" />
-                </span>
-              )}
-              <BellRing className="h-4 w-4 mb-2 text-white/60" />
-              <div className="font-semibold text-sm">Smart Alerts</div>
-              <div className="text-white/50 text-xs mb-3">Nachzahlungs-Warnungen</div>
-              <span className="text-xs font-medium bg-white/10 px-2 py-1 rounded-md">
-                {locked ? 'Pro Feature' : alertPrefs.enabled ? 'Einstellungen' : 'Aktivieren'}
-              </span>
-            </button>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {tools.map((tool) => (
+              <button
+                key={tool.title}
+                onClick={() => locked ? onUpgradeRequired(tool.title, 'pro') : undefined}
+                className="rounded-lg p-4 border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] transition-all duration-300 text-left relative group"
+              >
+                {locked && (
+                  <div className="absolute inset-0 backdrop-blur-[2px] bg-white/5 rounded-lg z-10 flex items-center justify-center">
+                    <Lock className="h-4 w-4 text-white/50" />
+                  </div>
+                )}
+                {tool.icon}
+                <div className="font-semibold text-sm">{tool.title}</div>
+                <div className="text-white/50 text-xs mb-3">{tool.desc}</div>
+                {tool.isPdf && !locked ? (
+                  <PdfExportButton
+                    gewinn={gewinn}
+                    vorschreibung={vorschreibung}
+                    result={result}
+                    steuerTipps={steuerTipps}
+                    variant="ghost"
+                    size="sm"
+                    className="text-white hover:text-white hover:bg-white/10 h-auto px-2 py-1 text-xs font-medium bg-white/10"
+                  />
+                ) : (
+                  <span className="text-xs font-medium bg-white/10 px-2 py-1 rounded-md">
+                    {locked ? 'Pro Feature' : tool.button}
+                  </span>
+                )}
+              </button>
+            ))}
           </div>
         </div>
       </div>
