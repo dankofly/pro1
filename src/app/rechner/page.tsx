@@ -128,11 +128,6 @@ function RechnerContent() {
     })
   }, [completeOnboarding])
 
-  const handleImportGewinn = useCallback((value: number) => {
-    setField('jahresumsatz', Math.round(value))
-    toast.success(`Umsatz von ${formatEuro(value)} übernommen.`)
-  }, [setField])
-
   // Show loading state during hydration
   if (!mounted) {
     return (
@@ -424,14 +419,13 @@ function RechnerContent() {
 
             <PremiumCTA
               gewinn={result.gewinn}
+              umsatz={result.umsatz}
+              aufwaende={result.aufwaendeEffektiv}
               vorschreibung={vorschreibung}
               result={svs}
               steuerTipps={steuerTipps}
-              onImportGewinn={handleImportGewinn}
-              alertPrefs={{ enabled: false, threshold: 0, notificationsEnabled: false }}
-              alertActive={false}
-              updateAlertPrefs={() => {}}
-              requestNotificationPermission={async () => false}
+              input={input}
+              rechnerResult={result}
               subscription={subscription}
               onUpgradeRequired={handleUpgradeRequired}
             />

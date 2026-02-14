@@ -4,80 +4,98 @@ import { useState } from 'react'
 import { Badge } from '@/components/ui/badge'
 import { FileText, TrendingUp, BarChart3, Sparkles, Download, ShieldCheck, Lock } from 'lucide-react'
 import { PdfExportButton } from './pdf-export-button'
-import { BankImportDialog } from './bank-import-dialog'
-import { AlertSettingsDialog } from './alert-settings-dialog'
+import { NachzahlungsPrognoseDialog } from '@/components/rechner/nachzahlungs-prognose-dialog'
+import { JahresvergleichDialog } from '@/components/rechner/jahresvergleich-dialog'
+import { AiZusammenfassungDialog } from '@/components/rechner/ai-zusammenfassung-dialog'
+import { SteuerreserveDialog } from '@/components/rechner/steuerreserve-dialog'
+import { generateCsvExport } from '@/lib/csv-export'
 import type { SvsResult, SteuerTipp } from '@/lib/svs-calculator'
-import type { AlertPreferences } from '@/hooks/use-smart-alerts'
+import type { RechnerInput, RechnerResult } from '@/lib/rechner-types'
 import type { SubscriptionInfo } from '@/hooks/use-subscription'
+import { toast } from 'sonner'
 
 interface PremiumCTAProps {
   gewinn: number
+  umsatz: number
+  aufwaende: number
   vorschreibung: number
   result: SvsResult
   steuerTipps: SteuerTipp
-  onImportGewinn: (gewinn: number) => void
-  alertPrefs: AlertPreferences
-  alertActive: boolean
-  updateAlertPrefs: (updates: Partial<AlertPreferences>) => void
-  requestNotificationPermission: () => Promise<boolean>
+  input: RechnerInput
+  rechnerResult: RechnerResult
   subscription: SubscriptionInfo
   onUpgradeRequired: (feature: string, plan: 'basic' | 'pro') => void
 }
 
 export function PremiumCTA({
   gewinn,
+  umsatz,
+  aufwaende,
   vorschreibung,
   result,
   steuerTipps,
-  onImportGewinn,
-  alertPrefs,
-  alertActive,
-  updateAlertPrefs,
-  requestNotificationPermission,
+  input,
+  rechnerResult,
   subscription,
   onUpgradeRequired,
 }: PremiumCTAProps) {
-  const [bankOpen, setBankOpen] = useState(false)
-  const [alertOpen, setAlertOpen] = useState(false)
+  const [prognoseOpen, setPrognoseOpen] = useState(false)
+  const [vergleichOpen, setVergleichOpen] = useState(false)
+  const [aiOpen, setAiOpen] = useState(false)
+  const [reserveOpen, setReserveOpen] = useState(false)
   const locked = !subscription.isPro
+
+  const handleCsvExport = () => {
+    try {
+      generateCsvExport({ gewinn, umsatz, aufwaende, vorschreibung, result })
+      toast.success('CSV-Export erfolgreich heruntergeladen')
+    } catch {
+      toast.error('CSV-Export fehlgeschlagen')
+    }
+  }
 
   const tools = [
     {
       icon: <FileText className="h-4 w-4 mb-2 text-white/60" />,
       title: 'Steuerberater-Report',
       desc: 'Kompakte Zusammenfassung deiner SVS-, Steuer- und Prognosedaten, vorbereitet für die Weitergabe an deinen Steuerberater.',
-      button: 'Report erstellen',
+      button: 'PDF exportieren',
       isPdf: true,
     },
     {
       icon: <TrendingUp className="h-4 w-4 mb-2 text-white/60" />,
       title: 'Nachzahlungs-Prognose',
       desc: 'Detaillierte Einschätzung möglicher SVS- und Steuer-Nachforderungen inklusive Risikobewertung.',
-      button: 'Prognose exportieren',
+      button: 'Prognose anzeigen',
+      action: () => setPrognoseOpen(true),
     },
     {
       icon: <BarChart3 className="h-4 w-4 mb-2 text-white/60" />,
       title: 'Jahresvergleich',
       desc: 'Vergleiche Vorjahr, aktuelles Jahr und Prognose. Erkenne Trends in Steuerlast und Nettoentwicklung.',
       button: 'Vergleich anzeigen',
+      action: () => setVergleichOpen(true),
     },
     {
       icon: <Sparkles className="h-4 w-4 mb-2 text-white/60" />,
       title: 'AI Zusammenfassung',
       desc: 'Automatische Analyse deiner Zahlen in Klartext, inklusive Hinweise zu Risiken und Steuerentwicklung.',
       button: 'Zusammenfassung generieren',
+      action: () => setAiOpen(true),
     },
     {
       icon: <Download className="h-4 w-4 mb-2 text-white/60" />,
       title: 'Datenexport',
       desc: 'Exportiere deine Berechnungen als CSV zur Weiterverarbeitung in Excel oder Controlling-Tools.',
       button: 'CSV exportieren',
+      action: handleCsvExport,
     },
     {
       icon: <ShieldCheck className="h-4 w-4 mb-2 text-white/60" />,
       title: 'Steuerreserve-Status',
       desc: 'Dokumentiere empfohlene und tatsächliche Rücklagen. Behalte deine Steuerliquidität im Blick.',
       button: 'Status anzeigen',
+      action: () => setReserveOpen(true),
     },
   ]
 
@@ -101,7 +119,7 @@ export function PremiumCTA({
             {tools.map((tool) => (
               <button
                 key={tool.title}
-                onClick={() => locked ? onUpgradeRequired(tool.title, 'pro') : undefined}
+                onClick={() => locked ? onUpgradeRequired(tool.title, 'pro') : tool.action?.()}
                 className="rounded-lg p-4 border border-white/10 bg-white/[0.04] hover:bg-white/[0.08] transition-all duration-300 text-left relative group"
               >
                 {locked && (
@@ -133,19 +151,33 @@ export function PremiumCTA({
         </div>
       </div>
 
-      <BankImportDialog
-        open={bankOpen}
-        onOpenChange={setBankOpen}
-        onImport={onImportGewinn}
+      <NachzahlungsPrognoseDialog
+        open={prognoseOpen}
+        onOpenChange={setPrognoseOpen}
+        result={result}
+        vorschreibung={vorschreibung}
       />
 
-      <AlertSettingsDialog
-        open={alertOpen}
-        onOpenChange={setAlertOpen}
-        prefs={alertPrefs}
-        updatePrefs={updateAlertPrefs}
-        requestNotificationPermission={requestNotificationPermission}
-        currentNachzahlung={result.nachzahlung}
+      <JahresvergleichDialog
+        open={vergleichOpen}
+        onOpenChange={setVergleichOpen}
+        gewinn={gewinn}
+        vorschreibung={vorschreibung}
+        input={input}
+      />
+
+      <AiZusammenfassungDialog
+        open={aiOpen}
+        onOpenChange={setAiOpen}
+        input={input}
+        result={rechnerResult}
+      />
+
+      <SteuerreserveDialog
+        open={reserveOpen}
+        onOpenChange={setReserveOpen}
+        result={result}
+        vorschreibung={vorschreibung}
       />
     </>
   )
