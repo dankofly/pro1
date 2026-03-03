@@ -48,8 +48,8 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
               <p className="text-xs text-muted-foreground mt-1">
                 geschätzte Nachzahlung
               </p>
-              <div className="mt-2 p-2 rounded-lg bg-muted/40 border border-border/40">
-                <p className="text-[11px] text-red-600">
+              <div className="mt-2 p-2 rounded-lg bg-red-50/50 dark:bg-red-950/20 border border-red-200/40 dark:border-red-800/20">
+                <p className="text-[11px] text-red-600 dark:text-red-400">
                   Vorschreibung ({formatEuro(vorschreibung)}) ist{' '}
                   <span className="font-bold">
                     {formatEuro(result.endgueltigeMonatlich - vorschreibung)}

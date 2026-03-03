@@ -46,8 +46,8 @@ export function TaxBracketBar({ steuerpflichtig, year }: TaxBracketBarProps) {
     <div className="card-surface p-4 sm:p-5">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/60">
-            <Percent className="h-3.5 w-3.5 text-muted-foreground" />
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-500/10">
+            <Percent className="h-3.5 w-3.5 text-amber-600" />
           </div>
           <span className="text-sm font-semibold text-foreground">Deine Steuerstufe</span>
         </div>

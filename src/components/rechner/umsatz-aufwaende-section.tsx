@@ -240,13 +240,13 @@ export function UmsatzAufwaendeSection({
 
         {/* Computed Gewinn */}
         <div className="pt-4">
-          <div className="rounded-lg bg-emerald-50/60 border border-emerald-200/40 p-3">
+          <div className="rounded-lg bg-emerald-50/60 dark:bg-emerald-950/30 border border-emerald-200/40 dark:border-emerald-800/30 p-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <TrendingUp className="h-4 w-4 text-emerald-600" />
+                <TrendingUp className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
                 <span className="text-sm font-semibold text-foreground">Gewinn</span>
               </div>
-              <span className="text-lg font-bold font-mono text-emerald-700 tabular-nums">
+              <span className="text-lg font-bold font-mono text-emerald-700 dark:text-emerald-400 tabular-nums">
                 {formatEuro(gewinn)}
               </span>
             </div>
@@ -339,8 +339,8 @@ export function UmsatzAufwaendeSection({
               {vorauszahlungenResult.svDifferenz !== 0 && vorauszahlungen.svVorauszahlung > 0 && (
                 <div className={`rounded-lg p-2.5 text-xs ${
                   vorauszahlungenResult.svDifferenz > 0
-                    ? 'bg-amber-50 text-amber-800'
-                    : 'bg-emerald-50 text-emerald-800'
+                    ? 'bg-amber-50 dark:bg-amber-950/30 text-amber-800 dark:text-amber-300'
+                    : 'bg-emerald-50 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300'
                 }`}>
                   {vorauszahlungenResult.svDifferenz > 0
                     ? `Voraussichtliche Nachzahlung: ${formatEuro(vorauszahlungenResult.svDifferenz)}`
@@ -397,8 +397,8 @@ export function UmsatzAufwaendeSection({
               {vorauszahlungenResult.estDifferenz !== 0 && vorauszahlungen.estVorauszahlung > 0 && (
                 <div className={`rounded-lg p-2.5 text-xs ${
                   vorauszahlungenResult.estDifferenz > 0
-                    ? 'bg-amber-50 text-amber-800'
-                    : 'bg-emerald-50 text-emerald-800'
+                    ? 'bg-amber-50 dark:bg-amber-950/30 text-amber-800 dark:text-amber-300'
+                    : 'bg-emerald-50 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300'
                 }`}>
                   {vorauszahlungenResult.estDifferenz > 0
                     ? `Voraussichtliche ESt-Nachzahlung: ${formatEuro(vorauszahlungenResult.estDifferenz)}`

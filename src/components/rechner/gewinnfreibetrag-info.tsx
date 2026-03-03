@@ -14,8 +14,8 @@ export function GewinnfreibetragInfo({ result }: GewinnfreibetragInfoProps) {
   return (
     <div className="card-surface p-4 space-y-2">
       <div className="flex items-center gap-2 text-sm font-medium text-foreground">
-        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/60">
-          <Info className="h-3.5 w-3.5 text-muted-foreground" />
+        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-sky-500/10">
+          <Info className="h-3.5 w-3.5 text-sky-600" />
         </div>
         Gewinnfreibetrag
       </div>

@@ -264,7 +264,7 @@ function RechnerContent() {
           {/* Right - Results */}
           <div className="space-y-7 min-w-0 overflow-hidden">
             {svs.belowMinimum && (
-              <div className="flex gap-3 bg-blue-50/50 border border-blue-200/50 border-l-[3px] border-l-blue-500 rounded-lg p-4 shadow-sm">
+              <div className="flex gap-3 bg-blue-50/50 dark:bg-blue-950/30 border border-blue-200/50 dark:border-blue-800/30 border-l-[3px] border-l-blue-500 rounded-lg p-4 shadow-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 mt-1.5" />
                 <p className="text-sm text-foreground">
                   <span className="font-medium">Unter der Versicherungsgrenze:</span>{' '}
@@ -274,7 +274,7 @@ function RechnerContent() {
             )}
 
             {svs.usesMinBeitragsgrundlage && (
-              <div className="flex gap-3 bg-amber-50/50 border border-amber-200/50 border-l-[3px] border-l-amber-500 rounded-lg p-4 shadow-sm">
+              <div className="flex gap-3 bg-amber-50/50 dark:bg-amber-950/30 border border-amber-200/50 dark:border-amber-800/30 border-l-[3px] border-l-amber-500 rounded-lg p-4 shadow-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0 mt-1.5" />
                 <p className="text-sm text-foreground">
                   <span className="font-medium">Mindestbeitragsgrundlage:</span>{' '}
@@ -284,7 +284,7 @@ function RechnerContent() {
             )}
 
             {svs.isJungunternehmer && (
-              <div className="flex gap-3 bg-emerald-50/50 border border-emerald-200/50 border-l-[3px] border-l-emerald-500 rounded-lg p-4 shadow-sm">
+              <div className="flex gap-3 bg-emerald-50/50 dark:bg-emerald-950/30 border border-emerald-200/50 dark:border-emerald-800/30 border-l-[3px] border-l-emerald-500 rounded-lg p-4 shadow-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-1.5" />
                 <p className="text-sm text-foreground">
                   <span className="font-medium">Jungunternehmer-Bonus:</span>{' '}

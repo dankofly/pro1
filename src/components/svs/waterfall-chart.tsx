@@ -46,8 +46,8 @@ export function WaterfallChart({ gewinn, result }: WaterfallChartProps) {
   return (
     <div className="card-surface p-4 sm:p-5 space-y-3" role="img" aria-label="Abzugs-Wasserfall: Vom Brutto-Gewinn zum Netto">
       <div className="flex items-center gap-2 mb-4">
-        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/60">
-          <BarChart2 className="h-3.5 w-3.5 text-muted-foreground" />
+        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-red-500/10">
+          <BarChart2 className="h-3.5 w-3.5 text-red-600" />
         </div>
         <span className="text-sm font-semibold text-foreground">Abzugs-Wasserfall</span>
       </div>
