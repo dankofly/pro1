@@ -26,6 +26,14 @@ export default function AuthCallbackPage() {
           setStatus('error')
           return
         }
+
+        // Password recovery flow → redirect to reset-password page
+        const hashParams = new URLSearchParams(hash.substring(1))
+        if (hashParams.get('type') === 'recovery') {
+          router.push('/auth/reset-password')
+          return
+        }
+
         setStatus('success')
         setTimeout(() => router.push(redirectTo), 1500)
         return
