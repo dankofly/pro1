@@ -43,11 +43,11 @@ export function TaxBracketBar({ steuerpflichtig, year }: TaxBracketBarProps) {
   const currentRate = currentBracket?.rate ?? 0
 
   return (
-    <div className="card-surface p-4 sm:p-5">
+    <div className="rounded-xl border border-amber-200/50 dark:border-amber-800/30 bg-gradient-to-br from-amber-50/50 to-white dark:from-amber-950/20 dark:to-[hsl(var(--surface))] p-4 sm:p-5 shadow-sm">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-500/10">
-            <Percent className="h-3.5 w-3.5 text-amber-600" />
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-500/15">
+            <Percent className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" />
           </div>
           <span className="text-sm font-semibold text-foreground">Deine Steuerstufe</span>
         </div>

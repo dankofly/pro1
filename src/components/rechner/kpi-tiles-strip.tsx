@@ -7,23 +7,21 @@ interface KpiTileProps {
   label: string
   value: number
   color: string
-  dotColor: string
+  bgTint: string
+  borderAccent: string
   pctOfUmsatz?: number
   pctColor?: string
 }
 
-function KpiTile({ label, value, color, dotColor, pctOfUmsatz, pctColor }: KpiTileProps) {
+function KpiTile({ label, value, color, bgTint, borderAccent, pctOfUmsatz, pctColor }: KpiTileProps) {
   const animated = useAnimatedNumber(value)
   const formatted = Math.round(animated).toLocaleString('de-AT')
 
   return (
-    <div className="card-surface p-3 min-w-0 group cursor-default">
-      <div className="flex items-center gap-1.5 mb-1">
-        <span className={`w-1.5 h-1.5 rounded-full ${dotColor} shrink-0`} />
-        <p className="text-[11px] font-medium text-muted-foreground truncate">
-          {label}
-        </p>
-      </div>
+    <div className={`rounded-xl border p-3 min-w-0 ${bgTint} ${borderAccent}`}>
+      <p className="text-[11px] font-medium text-muted-foreground truncate mb-1">
+        {label}
+      </p>
       <p className={`text-base font-bold font-mono tabular-nums ${color}`} style={{ letterSpacing: '-0.01em' }}>
         &euro; {formatted}
         {pctOfUmsatz !== undefined && pctOfUmsatz > 0 && (
@@ -87,11 +85,11 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
 
       {/* Secondary KPIs */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
-        <KpiTile label="Umsatz" value={umsatz} color="text-foreground" dotColor="bg-primary" />
-        <KpiTile label="Aufwände" value={aufwaende} color="text-destructive" dotColor="bg-destructive" pctOfUmsatz={pct(aufwaende)} pctColor={pct(aufwaende) > 40 ? 'text-red-500/70' : undefined} />
-        <KpiTile label="Gewinn" value={gewinn} color="text-emerald-600" dotColor="bg-emerald-500" pctOfUmsatz={pct(gewinn)} pctColor="text-emerald-500/70" />
-        <KpiTile label="SVS" value={svs} color="text-orange-600" dotColor="bg-orange-500" pctOfUmsatz={pct(svs)} pctColor="text-orange-500/70" />
-        <KpiTile label="ESt" value={est} color="text-amber-600" dotColor="bg-amber-500" pctOfUmsatz={pct(est)} pctColor={pct(est) > 30 ? 'text-amber-600/70' : undefined} />
+        <KpiTile label="Umsatz" value={umsatz} color="text-foreground" bgTint="bg-blue-50/60 dark:bg-blue-950/20" borderAccent="border-blue-200/50 dark:border-blue-800/30" />
+        <KpiTile label="Aufwände" value={aufwaende} color="text-destructive" bgTint="bg-red-50/60 dark:bg-red-950/20" borderAccent="border-red-200/50 dark:border-red-800/30" pctOfUmsatz={pct(aufwaende)} pctColor={pct(aufwaende) > 40 ? 'text-red-500/70' : undefined} />
+        <KpiTile label="Gewinn" value={gewinn} color="text-emerald-600 dark:text-emerald-400" bgTint="bg-emerald-50/60 dark:bg-emerald-950/20" borderAccent="border-emerald-200/50 dark:border-emerald-800/30" pctOfUmsatz={pct(gewinn)} pctColor="text-emerald-500/70" />
+        <KpiTile label="SVS" value={svs} color="text-orange-600 dark:text-orange-400" bgTint="bg-orange-50/60 dark:bg-orange-950/20" borderAccent="border-orange-200/50 dark:border-orange-800/30" pctOfUmsatz={pct(svs)} pctColor="text-orange-500/70" />
+        <KpiTile label="ESt" value={est} color="text-amber-600 dark:text-amber-400" bgTint="bg-amber-50/60 dark:bg-amber-950/20" borderAccent="border-amber-200/50 dark:border-amber-800/30" pctOfUmsatz={pct(est)} pctColor={pct(est) > 30 ? 'text-amber-600/70' : undefined} />
       </div>
     </div>
   )

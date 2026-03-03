@@ -46,10 +46,10 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
   const flowVals = [umsatz, afterAufwaende, afterSvs, afterEst]
 
   return (
-    <div className="card-elevated p-4 sm:p-5">
+    <div className="rounded-xl border border-teal-200/50 dark:border-teal-800/30 bg-gradient-to-br from-teal-50/60 to-white dark:from-teal-950/20 dark:to-[hsl(var(--surface))] p-4 sm:p-5 shadow-sm">
       <div className="flex items-center gap-2 mb-3">
-        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10">
-          <ArrowRightLeft className="h-3.5 w-3.5 text-primary" />
+        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-teal-500/15">
+          <ArrowRightLeft className="h-3.5 w-3.5 text-teal-600 dark:text-teal-400" />
         </div>
         <span className="text-sm font-semibold text-foreground">Geldfluss-Diagramm</span>
       </div>

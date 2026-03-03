@@ -190,7 +190,7 @@ function RechnerContent() {
         <div className="grid grid-cols-1 lg:grid-cols-[360px_minmax(0,1fr)] gap-10 lg:gap-14">
 
           {/* Left - Inputs */}
-          <div className="space-y-3.5 lg:pr-4">
+          <div className="space-y-3.5 lg:pr-6 lg:border-r lg:border-border/30">
             <YearSelector
               year={input.year}
               onYearChange={(y: TaxYear) => setField('year', y)}
