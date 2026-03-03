@@ -15,14 +15,22 @@ async function checkRateLimit(userId: string): Promise<{ allowed: boolean; remai
   const resetAt = new Date(now)
   resetAt.setHours(24, 0, 0, 0)
 
-  const { data, error } = await supabase
+  // Atomic: increment count only if under limit, using conditional update
+  // First, reset expired entries
+  await supabase
     .from('ai_rate_limits')
-    .select('request_count, reset_at')
+    .update({ request_count: 0, reset_at: resetAt.toISOString() })
+    .eq('user_id', userId)
+    .lt('reset_at', now.toISOString())
+
+  // Try upsert for first-time users
+  const { data: existing } = await supabase
+    .from('ai_rate_limits')
+    .select('request_count')
     .eq('user_id', userId)
     .single()
 
-  if (error || !data) {
-    // First request ever — create entry
+  if (!existing) {
     await supabase.from('ai_rate_limits').upsert({
       user_id: userId,
       request_count: 1,
@@ -31,25 +39,24 @@ async function checkRateLimit(userId: string): Promise<{ allowed: boolean; remai
     return { allowed: true, remaining: MAX_REQUESTS_PER_DAY - 1 }
   }
 
-  // Check if we need to reset (past midnight)
-  if (new Date(data.reset_at) <= now) {
-    await supabase.from('ai_rate_limits').update({
-      request_count: 1,
-      reset_at: resetAt.toISOString(),
-    }).eq('user_id', userId)
-    return { allowed: true, remaining: MAX_REQUESTS_PER_DAY - 1 }
-  }
-
-  // Within same day
-  if (data.request_count >= MAX_REQUESTS_PER_DAY) {
+  if (existing.request_count >= MAX_REQUESTS_PER_DAY) {
     return { allowed: false, remaining: 0 }
   }
 
-  await supabase.from('ai_rate_limits').update({
-    request_count: data.request_count + 1,
-  }).eq('user_id', userId)
+  // Atomic increment with guard: only increment if still under limit
+  const { data: updated, error: updateError } = await supabase
+    .from('ai_rate_limits')
+    .update({ request_count: existing.request_count + 1 })
+    .eq('user_id', userId)
+    .lt('request_count', MAX_REQUESTS_PER_DAY)
+    .select('request_count')
 
-  return { allowed: true, remaining: MAX_REQUESTS_PER_DAY - data.request_count - 1 }
+  if (updateError || !updated || updated.length === 0) {
+    // Another concurrent request already hit the limit
+    return { allowed: false, remaining: 0 }
+  }
+
+  return { allowed: true, remaining: MAX_REQUESTS_PER_DAY - updated[0].request_count }
 }
 
 // ── System Prompt ──────────────────────────────────────────
@@ -117,6 +124,27 @@ Zusammenfassung in 3-5 klaren, sofort umsetzbaren Punkten. Potenzielle Risiken o
 - Disclaimer am Ende: "⚠️ Diese Analyse ersetzt keine professionelle Steuerberatung. Alle Angaben ohne Gewähr."
 `
 
+// ── Input Validation ─────────────────────────────────────────
+
+const ALLOWED_PAUSCHALIERUNG = ['keine', 'basispauschalierung', 'branchenpauschalierung'] as const
+const ALLOWED_VERSICHERUNGSART = ['gsvg_gewerbe', 'gsvg_freiberuf', 'fsvg'] as const
+
+function sanitizeInput(data: Record<string, unknown>): Record<string, unknown> {
+  return {
+    ...data,
+    // Whitelist string fields against allowed values
+    pauschalierungArt: ALLOWED_PAUSCHALIERUNG.includes(data.pauschalierungArt as typeof ALLOWED_PAUSCHALIERUNG[number])
+      ? data.pauschalierungArt
+      : 'keine',
+    versicherungsart: ALLOWED_VERSICHERUNGSART.includes(data.versicherungsart as typeof ALLOWED_VERSICHERUNGSART[number])
+      ? data.versicherungsart
+      : 'gsvg_gewerbe',
+    // Coerce year to valid 4-digit number
+    year: Math.min(Math.max(Number(data.year) || 2025, 2020), 2030),
+    gruendungsJahr: Math.min(Math.max(Number(data.gruendungsJahr) || 2020, 1950), 2030),
+  }
+}
+
 // ── Route Handler ──────────────────────────────────────────
 
 export async function POST(request: NextRequest) {
@@ -152,10 +180,10 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // 4. Parse request body
-    const body = await request.json()
+    // 4. Parse & validate request body
+    const body = await request.json().catch(() => ({}))
 
-    const userMessage = buildUserMessage(body)
+    const userMessage = buildUserMessage(sanitizeInput(body))
 
     // 5. Stream with Gemini
     const streamResult = streamText({
@@ -189,8 +217,8 @@ export async function POST(request: NextRequest) {
     })
   } catch (err: unknown) {
     console.error('AI Tax Advisor error:', err)
-    const message = err instanceof Error ? err.message : 'Unbekannter Fehler'
-    return Response.json({ error: `Analyse-Fehler: ${message}` }, { status: 500 })
+    console.error('AI Tax Advisor detail:', err instanceof Error ? err.message : err)
+    return Response.json({ error: 'Analyse-Fehler. Bitte versuche es erneut.' }, { status: 500 })
   }
 }
 

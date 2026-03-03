@@ -10,10 +10,12 @@ export function getSupabaseAdmin(): SupabaseClient {
     const url = process.env.NEXT_PUBLIC_SUPABASE_URL
     const key = process.env.SUPABASE_SERVICE_ROLE_KEY
     if (!url) {
-      throw new Error(`NEXT_PUBLIC_SUPABASE_URL fehlt (env keys: ${Object.keys(process.env).filter(k => k.includes('SUPA')).join(', ') || 'keine SUPA* keys'})`)
+      console.error('NEXT_PUBLIC_SUPABASE_URL fehlt. Verfügbare SUPA* keys:', Object.keys(process.env).filter(k => k.includes('SUPA')).join(', ') || 'keine')
+      throw new Error('Supabase-Konfiguration fehlt')
     }
     if (!key) {
-      throw new Error(`SUPABASE_SERVICE_ROLE_KEY fehlt (env keys: ${Object.keys(process.env).filter(k => k.includes('SUPA')).join(', ') || 'keine SUPA* keys'})`)
+      console.error('SUPABASE_SERVICE_ROLE_KEY fehlt. Verfügbare SUPA* keys:', Object.keys(process.env).filter(k => k.includes('SUPA')).join(', ') || 'keine')
+      throw new Error('Supabase-Konfiguration fehlt')
     }
     _supabaseAdmin = createClient(url, key)
   }

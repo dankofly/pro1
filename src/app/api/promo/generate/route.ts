@@ -32,10 +32,10 @@ export async function POST(request: NextRequest) {
 
     const codes: string[] = []
     for (let i = 0; i < count; i++) {
-      const bytes = new Uint8Array(4)
+      const bytes = new Uint8Array(8)
       globalThis.crypto.getRandomValues(bytes)
       const raw = Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('').toUpperCase()
-      codes.push(`SVS-${raw.slice(0, 4)}-${raw.slice(4, 8)}`)
+      codes.push(`SVS-${raw.slice(0, 4)}-${raw.slice(4, 8)}-${raw.slice(8, 12)}-${raw.slice(12, 16)}`)
     }
 
     const rows = codes.map((code) => ({

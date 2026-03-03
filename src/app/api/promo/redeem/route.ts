@@ -1,6 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getSupabaseAdmin } from '@/lib/supabase-admin'
 
+const MAX_ATTEMPTS_PER_HOUR = 5
+
+async function checkPromoRateLimit(userId: string): Promise<boolean> {
+  const supabase = getSupabaseAdmin()
+  const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString()
+
+  // Count recent failed attempts (redeemed_by is null = code didn't exist or was already used)
+  const { count } = await supabase
+    .from('promo_attempts')
+    .select('*', { count: 'exact', head: true })
+    .eq('user_id', userId)
+    .gte('attempted_at', oneHourAgo)
+
+  return (count ?? 0) < MAX_ATTEMPTS_PER_HOUR
+}
+
+async function logPromoAttempt(userId: string): Promise<void> {
+  const supabase = getSupabaseAdmin()
+  await supabase.from('promo_attempts').insert({
+    user_id: userId,
+    attempted_at: new Date().toISOString(),
+  })
+}
+
 export async function POST(request: NextRequest) {
   try {
     const token = request.headers.get('authorization')?.replace('Bearer ', '')
@@ -11,6 +35,15 @@ export async function POST(request: NextRequest) {
     const { data: { user }, error: authError } = await getSupabaseAdmin().auth.getUser(token)
     if (authError || !user) {
       return NextResponse.json({ error: 'Ungültiges Token' }, { status: 401 })
+    }
+
+    // Rate limit: max 5 attempts per hour
+    const allowed = await checkPromoRateLimit(user.id)
+    if (!allowed) {
+      return NextResponse.json(
+        { error: 'Zu viele Versuche. Bitte versuche es in einer Stunde erneut.' },
+        { status: 429 }
+      )
     }
 
     const body = await request.json().catch(() => ({}))
@@ -39,6 +72,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (!redeemed || redeemed.length === 0) {
+      await logPromoAttempt(user.id)
       return NextResponse.json({ error: 'Code ungueltig oder bereits eingeloest' }, { status: 409 })
     }
 
