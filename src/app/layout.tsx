@@ -1,25 +1,19 @@
 import type { Metadata } from 'next'
-import { Space_Grotesk, JetBrains_Mono, IBM_Plex_Sans } from 'next/font/google'
+import { DM_Sans, DM_Mono } from 'next/font/google'
 import { Toaster } from '@/components/ui/sonner'
 import { JsonLd } from '@/components/json-ld'
 import './globals.css'
 
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-heading',
+const dmSans = DM_Sans({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-sans',
   display: 'swap',
 })
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
+const dmMono = DM_Mono({
+  weight: ['400', '500'],
+  subsets: ['latin', 'latin-ext'],
   variable: '--font-mono',
-  display: 'swap',
-})
-
-const ibmPlex = IBM_Plex_Sans({
-  weight: ['400', '500', '600', '700'],
-  subsets: ['latin'],
-  variable: '--font-body',
   display: 'swap',
 })
 
@@ -83,7 +77,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de-AT" style={{ colorScheme: 'dark' }}>
-      <body className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} ${ibmPlex.variable} antialiased min-h-screen`}>
+      <body className={`${dmSans.variable} ${dmMono.variable} antialiased min-h-screen`}>
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-primary focus:text-primary-foreground focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-medium">
           Zum Hauptinhalt springen
         </a>

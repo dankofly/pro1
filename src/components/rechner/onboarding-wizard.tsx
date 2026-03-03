@@ -58,7 +58,7 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
                   <Building2 className="h-6 w-6 text-primary" />
                 </div>
               </div>
-              <h2 className="text-xl font-bold tracking-tight">Dein Unternehmen</h2>
+              <h2 className="text-xl font-bold tracking-tight font-heading">Dein Unternehmen</h2>
               <p className="text-sm text-muted-foreground">
                 Wann hast du dein Unternehmen gegründet?
               </p>
@@ -116,7 +116,7 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
                   <Shield className="h-6 w-6 text-primary" />
                 </div>
               </div>
-              <h2 className="text-xl font-bold tracking-tight">Versicherung</h2>
+              <h2 className="text-xl font-bold tracking-tight font-heading">Versicherung</h2>
               <p className="text-sm text-muted-foreground">
                 Wie bist du sozialversichert?
               </p>

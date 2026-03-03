@@ -110,7 +110,7 @@ export function PremiumCTA({
             SteuerBoard Pro
           </Badge>
 
-          <h3 className="text-xl sm:text-2xl font-bold mb-2">Deine Pro-Werkzeuge</h3>
+          <h3 className="text-xl sm:text-2xl font-bold mb-2 font-heading">Deine Pro-Werkzeuge</h3>
           <p className="text-white/60 text-sm mb-6 max-w-md">
             Strukturierte Reports, Prognosen und Datenexports, für volle Kontrolle über deine Steuerlage.
           </p>

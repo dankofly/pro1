@@ -33,7 +33,7 @@ export function SvsHeader({ user, onSave, onLogout, saving, alertActive, plan }:
               )}
             </div>
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">SteuerBoard.pro</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight font-heading">SteuerBoard.pro</h1>
               <p className="text-blue-200 text-sm sm:text-base font-light">Dein SVS-Beitragsrechner</p>
             </div>
           </div>

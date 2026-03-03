@@ -68,12 +68,12 @@
     --success-foreground: 0 0% 100%;
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
-    --border: 215 25% 20%;
-    --input: 215 25% 20%;
+    --border: 215 25% 25%;
+    --input: 215 25% 25%;
     --ring: 207 100% 50%;
     --surface: 215 25% 15%;
-    --border-subtle: 215 25% 22%;
-    --border-card: 215 25% 20%;
+    --border-subtle: 215 25% 28%;
+    --border-card: 215 25% 25%;
     --shadow-card: 215 40% 8%;
     --chart-1: 207 100% 50%;
     --chart-2: 28 91% 54%;
@@ -126,8 +126,8 @@
 
   /* Section typography */
   .section-header {
-    @apply text-[11px] font-semibold uppercase text-muted-foreground;
-    letter-spacing: 0.08em;
+    @apply text-xs font-semibold uppercase text-muted-foreground;
+    letter-spacing: 0.06em;
   }
 
   /* Mono number formatting */
