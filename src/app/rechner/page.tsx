@@ -187,10 +187,10 @@ function RechnerContent() {
 
       {/* Split Screen */}
       <div ref={mainContentRef} id="main-content" tabIndex={-1} className="max-w-[1400px] mx-auto px-4 sm:px-6 py-8 focus:outline-none focus-visible:outline-none overflow-x-hidden">
-        <div className="grid grid-cols-1 lg:grid-cols-[340px_minmax(0,1fr)] gap-10 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[360px_minmax(0,1fr)] gap-10 lg:gap-14">
 
           {/* Left - Inputs */}
-          <div className="space-y-3 lg:pr-4">
+          <div className="space-y-3.5 lg:pr-4">
             <YearSelector
               year={input.year}
               onYearChange={(y: TaxYear) => setField('year', y)}
@@ -262,9 +262,9 @@ function RechnerContent() {
           </div>
 
           {/* Right - Results */}
-          <div className="space-y-6 min-w-0 overflow-hidden">
+          <div className="space-y-7 min-w-0 overflow-hidden">
             {svs.belowMinimum && (
-              <div className="flex gap-3 bg-[hsl(var(--surface))] border border-border/40 border-l-2 border-l-blue-500 rounded-lg p-4">
+              <div className="flex gap-3 bg-blue-50/50 border border-blue-200/50 border-l-[3px] border-l-blue-500 rounded-lg p-4 shadow-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 mt-1.5" />
                 <p className="text-sm text-foreground">
                   <span className="font-medium">Unter der Versicherungsgrenze:</span>{' '}
@@ -274,7 +274,7 @@ function RechnerContent() {
             )}
 
             {svs.usesMinBeitragsgrundlage && (
-              <div className="flex gap-3 bg-[hsl(var(--surface))] border border-border/40 border-l-2 border-l-amber-500 rounded-lg p-4">
+              <div className="flex gap-3 bg-amber-50/50 border border-amber-200/50 border-l-[3px] border-l-amber-500 rounded-lg p-4 shadow-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0 mt-1.5" />
                 <p className="text-sm text-foreground">
                   <span className="font-medium">Mindestbeitragsgrundlage:</span>{' '}
@@ -284,7 +284,7 @@ function RechnerContent() {
             )}
 
             {svs.isJungunternehmer && (
-              <div className="flex gap-3 bg-[hsl(var(--surface))] border border-border/40 border-l-2 border-l-emerald-500 rounded-lg p-4">
+              <div className="flex gap-3 bg-emerald-50/50 border border-emerald-200/50 border-l-[3px] border-l-emerald-500 rounded-lg p-4 shadow-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-1.5" />
                 <p className="text-sm text-foreground">
                   <span className="font-medium">Jungunternehmer-Bonus:</span>{' '}
@@ -395,7 +395,7 @@ function RechnerContent() {
 
                 <button
                   onClick={() => setShowBeitragsDetails(!showBeitragsDetails)}
-                  className="card-surface w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-foreground hover:bg-muted/30 transition-colors"
+                  className="card-surface w-full flex items-center justify-between px-4 py-3.5 text-sm font-semibold text-foreground cursor-pointer"
                 >
                   Beitragsdetails
                   <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${showBeitragsDetails ? 'rotate-180' : ''}`} />
@@ -404,7 +404,7 @@ function RechnerContent() {
 
                 <button
                   onClick={() => setShowMonthlyOverview(!showMonthlyOverview)}
-                  className="card-surface w-full flex items-center justify-between px-4 py-3 text-sm font-semibold text-foreground hover:bg-muted/30 transition-colors"
+                  className="card-surface w-full flex items-center justify-between px-4 py-3.5 text-sm font-semibold text-foreground cursor-pointer"
                 >
                   Monatsübersicht
                   <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${showMonthlyOverview ? 'rotate-180' : ''}`} />

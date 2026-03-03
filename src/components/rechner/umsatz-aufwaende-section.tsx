@@ -131,8 +131,8 @@ export function UmsatzAufwaendeSection({
     <div className="card-surface p-4 sm:p-5">
       {/* Header */}
       <div className="flex items-center gap-3 mb-5">
-        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/60">
-          <Receipt className="h-3.5 w-3.5 text-muted-foreground" />
+        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/10">
+          <Receipt className="h-3.5 w-3.5 text-primary" />
         </div>
         <h2 className="text-sm font-semibold tracking-tight font-heading">
           Umsatz & Aufwände
@@ -239,19 +239,21 @@ export function UmsatzAufwaendeSection({
         </Collapsible>
 
         {/* Computed Gewinn */}
-        <div className="divider pt-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <TrendingUp className="h-4 w-4 text-muted-foreground" />
-              <span className="text-sm font-semibold text-foreground">Gewinn</span>
+        <div className="pt-4">
+          <div className="rounded-lg bg-emerald-50/60 border border-emerald-200/40 p-3">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <TrendingUp className="h-4 w-4 text-emerald-600" />
+                <span className="text-sm font-semibold text-foreground">Gewinn</span>
+              </div>
+              <span className="text-lg font-bold font-mono text-emerald-700 tabular-nums">
+                {formatEuro(gewinn)}
+              </span>
             </div>
-            <span className="text-base font-bold font-mono text-foreground tabular-nums">
-              {formatEuro(gewinn)}
-            </span>
+            <p className="text-xs text-muted-foreground mt-1">
+              Umsatz minus Betriebsausgaben
+            </p>
           </div>
-          <p className="text-xs text-muted-foreground mt-1">
-            Umsatz minus Betriebsausgaben
-          </p>
         </div>
 
         {/* Vorauszahlungen */}

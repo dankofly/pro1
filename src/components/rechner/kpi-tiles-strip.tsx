@@ -17,7 +17,7 @@ function KpiTile({ label, value, color, dotColor, pctOfUmsatz, pctColor }: KpiTi
   const formatted = Math.round(animated).toLocaleString('de-AT')
 
   return (
-    <div className="card-surface p-3 min-w-0 transition-colors duration-200 hover:border-[hsl(var(--border-subtle))]">
+    <div className="card-surface p-3 min-w-0 group cursor-default">
       <div className="flex items-center gap-1.5 mb-1">
         <span className={`w-1.5 h-1.5 rounded-full ${dotColor} shrink-0`} />
         <p className="text-[11px] font-medium text-muted-foreground truncate">
@@ -63,7 +63,8 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
   return (
     <div className="space-y-3">
       {/* Hero: Netto */}
-      <div className="rounded-2xl bg-gradient-to-br from-[hsl(207,100%,40%)] to-[hsl(210,100%,30%)] text-primary-foreground p-5 sm:p-6 relative animate-fade-up" role="status" aria-label={`Echtes Netto: ${nettoFormatted} Euro`}>
+      <div className="rounded-2xl bg-gradient-to-br from-[hsl(207,100%,42%)] via-[hsl(210,100%,34%)] to-[hsl(215,100%,28%)] text-primary-foreground p-5 sm:p-6 relative animate-fade-up overflow-hidden shadow-lg shadow-blue-900/20" role="status" aria-label={`Echtes Netto: ${nettoFormatted} Euro`}>
+        <div className="absolute -top-12 -right-12 w-40 h-40 bg-white/[0.04] rounded-full pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-32 h-32 bg-white/[0.03] rounded-full -mr-12 -mb-12 pointer-events-none" />
         <div className="relative">
           <div className="flex items-center justify-between gap-2 mb-1">
@@ -85,7 +86,7 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
       </div>
 
       {/* Secondary KPIs */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
         <KpiTile label="Umsatz" value={umsatz} color="text-foreground" dotColor="bg-primary" />
         <KpiTile label="Aufwände" value={aufwaende} color="text-destructive" dotColor="bg-destructive" pctOfUmsatz={pct(aufwaende)} pctColor={pct(aufwaende) > 40 ? 'text-red-500/70' : undefined} />
         <KpiTile label="Gewinn" value={gewinn} color="text-emerald-600" dotColor="bg-emerald-500" pctOfUmsatz={pct(gewinn)} pctColor="text-emerald-500/70" />

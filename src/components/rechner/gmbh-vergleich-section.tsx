@@ -35,8 +35,8 @@ export function GmbhVergleichSection({ gmbh, isPro, dispatch }: GmbhVergleichSec
       <div className="card-surface">
         <CollapsibleTrigger asChild>
           <button type="button" className="flex w-full items-center gap-3 px-4 py-3.5 text-left">
-            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-muted/60">
-              <Building className="h-3.5 w-3.5 text-muted-foreground" />
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-indigo-500/10">
+              <Building className="h-3.5 w-3.5 text-indigo-600" />
             </div>
             <div className="flex-1 min-w-0">
               <h2 className="text-sm font-semibold tracking-tight flex items-center gap-1.5">GmbH-Vergleich <Crown className="h-3 w-3 text-amber-400" /></h2>

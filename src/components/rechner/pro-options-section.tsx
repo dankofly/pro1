@@ -35,8 +35,8 @@ export function ProOptionsSection({ proOptions, year, isPro, dispatch }: ProOpti
       <div className="card-surface">
         <CollapsibleTrigger asChild>
           <button type="button" className="flex w-full items-center gap-3 px-4 py-3.5 text-left">
-            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-muted/60">
-              <Crown className="h-3.5 w-3.5 text-muted-foreground" />
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-orange-500/10">
+              <Crown className="h-3.5 w-3.5 text-orange-600" />
             </div>
             <div className="flex-1 min-w-0">
               <h2 className="text-sm font-semibold tracking-tight">Steuer-Optimierung</h2>

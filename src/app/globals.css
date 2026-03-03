@@ -101,13 +101,50 @@
 }
 
 @layer components {
-  /* Card surfaces — refined, minimal */
+  /* Card surfaces — layered depth system */
   .card-surface {
     background-color: hsl(var(--surface));
     border: 1px solid hsl(var(--border-card));
-    box-shadow: 0 1px 3px 0 hsl(var(--shadow-card) / 0.08), 0 1px 2px -1px hsl(var(--shadow-card) / 0.06);
+    box-shadow:
+      0 1px 2px 0 hsl(var(--shadow-card) / 0.06),
+      0 4px 12px -2px hsl(var(--shadow-card) / 0.08);
+    border-radius: 0.75rem;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .card-surface:hover {
+    border-color: hsl(var(--border-subtle));
+    box-shadow:
+      0 2px 4px 0 hsl(var(--shadow-card) / 0.08),
+      0 8px 24px -4px hsl(var(--shadow-card) / 0.12);
+  }
+
+  /* Elevated card — higher prominence (KPI hero, key results) */
+  .card-elevated {
+    background-color: hsl(var(--surface));
+    border: 1px solid hsl(var(--border-card));
+    box-shadow:
+      0 2px 4px 0 hsl(var(--shadow-card) / 0.08),
+      0 8px 24px -4px hsl(var(--shadow-card) / 0.12),
+      0 0 0 1px hsl(var(--border-card) / 0.5);
+    border-radius: 0.75rem;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+  .card-elevated:hover {
+    box-shadow:
+      0 4px 8px 0 hsl(var(--shadow-card) / 0.10),
+      0 12px 32px -4px hsl(var(--shadow-card) / 0.16),
+      0 0 0 1px hsl(var(--border-subtle));
+    transform: translateY(-1px);
+  }
+
+  /* Inset surface — recessed look for input areas */
+  .card-inset {
+    background-color: hsl(var(--background));
+    border: 1px solid hsl(var(--border-card));
+    box-shadow: inset 0 1px 3px 0 hsl(var(--shadow-card) / 0.06);
     border-radius: 0.75rem;
   }
+
   .card-surface-dark {
     @apply bg-[hsl(207,70%,18%)] border border-[hsl(207,50%,25%)];
     box-shadow: 0 4px 24px -4px rgba(0, 60, 120, 0.25);
@@ -174,10 +211,23 @@
 
   /* Micro-interactions */
   .card-hover {
-    @apply transition-colors duration-200;
+    @apply transition-all duration-200;
   }
   .card-hover:hover {
     border-color: hsl(var(--border-subtle));
+    box-shadow: 0 2px 8px -2px hsl(var(--shadow-card) / 0.12);
+  }
+
+  /* Section accent line — colored left border for grouped sections */
+  .section-accent {
+    border-left: 2px solid hsl(var(--primary) / 0.2);
+    padding-left: 1rem;
+  }
+
+  /* Dashboard background texture — subtle dot grid */
+  .bg-grid {
+    background-image: radial-gradient(hsl(var(--border-card)) 1px, transparent 1px);
+    background-size: 24px 24px;
   }
 
   /* Input focus glow */

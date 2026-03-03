@@ -17,10 +17,10 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
       {/* Gefahren-Barometer */}
-      <div className="card-surface p-4">
+      <div className="card-elevated p-4">
         <div className="flex items-center gap-2 mb-2">
-          <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-muted/60">
-            <Zap className="h-3 w-3 text-muted-foreground" />
+          <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-primary/10">
+            <Zap className="h-3 w-3 text-primary" />
           </div>
           <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wide">
             Gefahren-Barometer
@@ -30,10 +30,10 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
       </div>
 
       {/* Nachzahlungs-Alarm */}
-      <div className="card-surface p-4">
+      <div className="card-elevated p-4">
         <div className="flex items-center gap-2 mb-2">
-          <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-muted/60">
-            <AlertTriangle className="h-3 w-3 text-muted-foreground" />
+          <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-amber-500/10">
+            <AlertTriangle className="h-3 w-3 text-amber-600" />
           </div>
           <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wide">
             Nachzahlungs-Alarm
