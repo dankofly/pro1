@@ -30,10 +30,9 @@ interface ChatMessage {
 
 const QUICKSTART_QUESTIONS = [
   'Wie viel Einkommensteuer zahle ich bei 60.000 € Gewinn?',
-  'GmbH oder Einzelunternehmen — was ist besser bei 100.000 € Gewinn?',
+  'GmbH oder Einzelunternehmen — was ist besser bei 100.000 €?',
   'Bin ich Kleinunternehmer bei 50.000 € Umsatz?',
   'Wie wird mein Bitcoin-Verkauf besteuert?',
-  'Welche Steuer fällt beim Wohnungsverkauf an?',
 ]
 
 const TOOL_LABELS: Record<string, string> = {
@@ -62,13 +61,6 @@ export function TaxChatbot({ isPro, onUpgradeRequired }: TaxChatbotProps) {
     }
   }, [messages, isLoading])
 
-  // Auto-resize textarea
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.style.height = 'auto'
-      inputRef.current.style.height = Math.min(inputRef.current.scrollHeight, 120) + 'px'
-    }
-  }, [inputText])
 
   const sendMessage = useCallback(async (text: string) => {
     if (!text.trim() || isLoading) return
@@ -299,7 +291,7 @@ export function TaxChatbot({ isPro, onUpgradeRequired }: TaxChatbotProps) {
             onChange={(e) => setInputText(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Stelle eine Steuerfrage..."
-            rows={1}
+            rows={3}
             disabled={isLoading}
             className="flex-1 resize-none rounded-xl border border-border bg-background px-4 py-2.5 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50"
           />
