@@ -13,7 +13,7 @@ function SteuerberaterContent() {
   const [upgradeOpen, setUpgradeOpen] = useState(false)
   const [upgradeFeature, setUpgradeFeature] = useState('')
 
-  const handleUpgradeRequired = (feature: string) => {
+  const handleUpgradeRequired = (feature: string, _plan?: 'basic' | 'pro') => {
     setUpgradeFeature(feature)
     setUpgradeOpen(true)
   }

@@ -119,11 +119,12 @@ export async function POST(request: NextRequest) {
 
     const client = new Anthropic({ apiKey })
 
-    const tools: Anthropic.Tool[] = TOOL_DEFINITIONS.map((t) => ({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const tools = TOOL_DEFINITIONS.map((t) => ({
       name: t.name,
       description: t.description,
-      input_schema: t.input_schema as Anthropic.Tool.InputSchema,
-    }))
+      input_schema: t.input_schema as any,
+    })) as Anthropic.Tool[]
 
     let toolsUsed: string[] = []
     let finalText = ''
@@ -136,7 +137,7 @@ export async function POST(request: NextRequest) {
       iterations++
 
       const response = await client.messages.create({
-        model: 'claude-sonnet-4-6-20250527',
+        model: 'claude-sonnet-4-6',
         max_tokens: 2048,
         system: SYSTEM_PROMPT,
         tools,
@@ -145,12 +146,12 @@ export async function POST(request: NextRequest) {
 
       // Check if Claude wants to use tools
       const toolUseBlocks = response.content.filter(
-        (block): block is Anthropic.ContentBlock & { type: 'tool_use' } => block.type === 'tool_use'
-      )
+        (block) => block.type === 'tool_use'
+      ) as Array<{ type: 'tool_use'; id: string; name: string; input: unknown }>
 
       const textBlocks = response.content.filter(
-        (block): block is Anthropic.TextBlock => block.type === 'text'
-      )
+        (block) => block.type === 'text'
+      ) as Array<{ type: 'text'; text: string }>
 
       if (toolUseBlocks.length === 0) {
         // No more tool calls — collect final text
@@ -159,7 +160,7 @@ export async function POST(request: NextRequest) {
       }
 
       // Execute tool calls
-      const toolResults: Anthropic.ToolResultBlockParam[] = []
+      const toolResults: Array<{ type: 'tool_result'; tool_use_id: string; content: string }> = []
       for (const toolUse of toolUseBlocks) {
         const result = executeTool(toolUse.name, toolUse.input as Record<string, unknown>)
         toolsUsed.push(toolUse.name)
