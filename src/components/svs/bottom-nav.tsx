@@ -2,12 +2,13 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Calculator, BarChart3, Clock, Crown, Shield, User } from 'lucide-react'
+import { Calculator, BarChart3, Clock, Crown, Shield, User, MessageSquare } from 'lucide-react'
 import { useAppShell } from './app-shell'
 import { isAdmin } from '@/lib/admin'
 
 const BASE_NAV_ITEMS = [
   { href: '/rechner', label: 'Rechner', icon: Calculator },
+  { href: '/steuerberater', label: 'Berater', icon: MessageSquare },
   { href: '/misch-einkommen', label: 'Optimierung', icon: BarChart3 },
   { href: '/dashboard', label: 'Verlauf', icon: Clock },
   { href: '/pricing', label: 'Pro', icon: Crown },
