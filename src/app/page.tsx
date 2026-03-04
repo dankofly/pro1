@@ -153,6 +153,20 @@ function Navbar() {
   )
 }
 
+/* ─── Ticker items ─── */
+const TICKER_ITEMS = [
+  { icon: Bot, text: 'KI-Steuerberater', color: 'text-emerald-400' },
+  { icon: Calculator, text: 'Einkommensteuer', color: 'text-blue-400' },
+  { icon: Building2, text: 'Körperschaftsteuer', color: 'text-violet-400' },
+  { icon: Receipt, text: 'Umsatzsteuer', color: 'text-cyan-400' },
+  { icon: Sparkles, text: 'Krypto-Steuer', color: 'text-amber-400' },
+  { icon: TrendingUp, text: 'Immobilienertragssteuer', color: 'text-rose-400' },
+  { icon: Layers, text: 'Sachbezug-Rechner', color: 'text-orange-400' },
+  { icon: BarChart3, text: 'Investitionsfreibetrag', color: 'text-teal-400' },
+  { icon: MessageSquare, text: '24/7 Sofort-Antworten', color: 'text-emerald-300' },
+  { icon: Zap, text: 'Claude AI powered', color: 'text-yellow-400' },
+]
+
 /* ─── Hero ─── */
 function Hero() {
   return (
@@ -291,6 +305,34 @@ function Hero() {
               </div>
             </div>
           </Reveal>
+        </div>
+      </div>
+
+      {/* AI Steuerberater Ticker */}
+      <div className="absolute bottom-20 left-0 right-0 overflow-hidden">
+        <div className="relative flex">
+          {/* Fade edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-40 bg-gradient-to-r from-slate-950 to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-40 bg-gradient-to-l from-slate-950 to-transparent z-10" />
+
+          <div className="flex animate-marquee whitespace-nowrap gap-6 sm:gap-10 py-3">
+            {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
+              <span key={i} className="inline-flex items-center gap-2 text-sm sm:text-base font-medium text-blue-200/60">
+                <item.icon className={`h-4 w-4 ${item.color} shrink-0`} />
+                {item.text}
+                <span className="text-white/10 ml-4 sm:ml-6">—</span>
+              </span>
+            ))}
+          </div>
+          <div className="flex animate-marquee2 whitespace-nowrap gap-6 sm:gap-10 py-3 absolute top-0" aria-hidden>
+            {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
+              <span key={i} className="inline-flex items-center gap-2 text-sm sm:text-base font-medium text-blue-200/60">
+                <item.icon className={`h-4 w-4 ${item.color} shrink-0`} />
+                {item.text}
+                <span className="text-white/10 ml-4 sm:ml-6">—</span>
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 
