@@ -8,7 +8,7 @@ import { isAdmin } from '@/lib/admin'
 
 const BASE_NAV_ITEMS = [
   { href: '/rechner', label: 'Rechner', icon: Calculator },
-  { href: '/steuerberater', label: 'Berater', icon: MessageSquare },
+  { href: '/steuerberater', label: 'AI Berater', icon: MessageSquare },
   { href: '/misch-einkommen', label: 'Optimierung', icon: BarChart3 },
   { href: '/dashboard', label: 'Verlauf', icon: Clock },
   { href: '/pricing', label: 'Pro', icon: Crown },

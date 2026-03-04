@@ -2,18 +2,19 @@ import { NextRequest } from 'next/server'
 import { generateText, jsonSchema } from 'ai'
 import { google } from '@ai-sdk/google'
 import { getSupabaseAdmin } from '@/lib/supabase-admin'
+import { isAdmin } from '@/lib/admin'
 import { SYSTEM_PROMPT } from '@/lib/tax-calculators/knowledge'
 import { executeTool, TOOL_DEFINITIONS } from '@/lib/tax-calculators'
 
 export const maxDuration = 60
 
-const MAX_REQUESTS_PER_DAY = 10
+const LIMITS = { pro: 20, basic: 10 } as const
 const MAX_MESSAGES = 20
 const MAX_TOOL_ITERATIONS = 5
 
-// ── Rate Limiting (reused from tax-advisor) ────────────────
+// ── Rate Limiting ─────────────────────────────────────────
 
-async function checkRateLimit(userId: string): Promise<{ allowed: boolean; remaining: number }> {
+async function checkRateLimit(userId: string, maxRequests: number): Promise<{ allowed: boolean; remaining: number }> {
   const supabase = getSupabaseAdmin()
   const now = new Date()
 
@@ -38,10 +39,10 @@ async function checkRateLimit(userId: string): Promise<{ allowed: boolean; remai
       request_count: 1,
       reset_at: resetAt.toISOString(),
     })
-    return { allowed: true, remaining: MAX_REQUESTS_PER_DAY - 1 }
+    return { allowed: true, remaining: maxRequests - 1 }
   }
 
-  if (existing.request_count >= MAX_REQUESTS_PER_DAY) {
+  if (existing.request_count >= maxRequests) {
     return { allowed: false, remaining: 0 }
   }
 
@@ -49,14 +50,14 @@ async function checkRateLimit(userId: string): Promise<{ allowed: boolean; remai
     .from('ai_rate_limits')
     .update({ request_count: existing.request_count + 1 })
     .eq('user_id', userId)
-    .lt('request_count', MAX_REQUESTS_PER_DAY)
+    .lt('request_count', maxRequests)
     .select('request_count')
 
   if (updateError || !updated || updated.length === 0) {
     return { allowed: false, remaining: 0 }
   }
 
-  return { allowed: true, remaining: MAX_REQUESTS_PER_DAY - updated[0].request_count }
+  return { allowed: true, remaining: maxRequests - updated[0].request_count }
 }
 
 // ── Build tools for Vercel AI SDK ──────────────────────────
@@ -107,13 +108,25 @@ export async function POST(request: NextRequest) {
       return Response.json({ error: 'Pro-Abo erforderlich' }, { status: 403 })
     }
 
-    // 3. Rate limit
-    const { allowed, remaining } = await checkRateLimit(user.id)
-    if (!allowed) {
-      return Response.json(
-        { error: 'Tageslimit erreicht. Du kannst morgen wieder eine Frage stellen.' },
-        { status: 429 }
-      )
+    // 3. Rate limit (admin = unlimited)
+    const userIsAdmin = isAdmin(user.email)
+    const dailyLimit = sub.plan === 'pro' ? LIMITS.pro : LIMITS.basic
+    let remaining: number
+    let limit: number
+
+    if (userIsAdmin) {
+      remaining = -1
+      limit = -1
+    } else {
+      const rateCheck = await checkRateLimit(user.id, dailyLimit)
+      if (!rateCheck.allowed) {
+        return Response.json(
+          { error: 'Tageslimit erreicht. Du kannst morgen wieder eine Frage stellen.' },
+          { status: 429 }
+        )
+      }
+      remaining = rateCheck.remaining
+      limit = dailyLimit
     }
 
     // 4. Parse request
@@ -194,6 +207,7 @@ export async function POST(request: NextRequest) {
       text: finalText,
       tools_used: uniqueTools,
       remaining,
+      limit,
     }, {
       headers: {
         'X-RateLimit-Remaining': String(remaining),

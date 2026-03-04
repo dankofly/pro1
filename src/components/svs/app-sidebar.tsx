@@ -16,7 +16,7 @@ interface AppSidebarProps {
 
 const NAV_ITEMS = [
   { href: '/rechner', label: 'Rechner', icon: Calculator },
-  { href: '/steuerberater', label: 'Steuerberater', icon: MessageSquare, requiresPro: true },
+  { href: '/steuerberater', label: 'AI Steuerberater', icon: MessageSquare, requiresPro: true },
   { href: '/misch-einkommen', label: 'Optimierung', icon: BarChart3, requiresPro: true },
   { href: '/dashboard', label: 'Verlauf', icon: Clock },
   { href: '/pricing', label: 'Pro-Vorteile', icon: Crown },

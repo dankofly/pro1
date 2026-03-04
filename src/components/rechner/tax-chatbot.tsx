@@ -50,6 +50,7 @@ export function TaxChatbot({ isPro, onUpgradeRequired }: TaxChatbotProps) {
   const [inputText, setInputText] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [remaining, setRemaining] = useState<number | null>(null)
+  const [limit, setLimit] = useState<number | null>(null)
   const [error, setError] = useState('')
   const scrollRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
@@ -111,6 +112,9 @@ export function TaxChatbot({ isPro, onUpgradeRequired }: TaxChatbotProps) {
       if (data.remaining !== undefined) {
         setRemaining(data.remaining)
       }
+      if (data.limit !== undefined) {
+        setLimit(data.limit)
+      }
 
       setMessages(prev => [...prev, assistantMessage])
     } catch (err: unknown) {
@@ -156,10 +160,28 @@ export function TaxChatbot({ isPro, onUpgradeRequired }: TaxChatbotProps) {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          {remaining !== null && (
-            <span className="text-[11px] text-muted-foreground tabular-nums">
-              {remaining}/10 heute
-            </span>
+          {remaining !== null && limit !== null && (
+            remaining === -1 ? (
+              <span className="text-[11px] text-muted-foreground">∞ Unbegrenzt</span>
+            ) : (
+              <div className="flex items-center gap-2">
+                <div className="w-24 h-2 rounded-full bg-muted/30 overflow-hidden">
+                  <div
+                    className={`h-full rounded-full transition-all duration-500 ${
+                      remaining / limit > 0.5
+                        ? 'bg-emerald-500'
+                        : remaining / limit > 0.25
+                          ? 'bg-amber-500'
+                          : 'bg-red-500'
+                    }`}
+                    style={{ width: `${(remaining / limit) * 100}%` }}
+                  />
+                </div>
+                <span className="text-[11px] text-muted-foreground tabular-nums">
+                  {remaining}/{limit}
+                </span>
+              </div>
+            )
           )}
           {messages.length > 0 && (
             <Button
@@ -293,7 +315,7 @@ export function TaxChatbot({ isPro, onUpgradeRequired }: TaxChatbotProps) {
             placeholder="Stelle eine Steuerfrage..."
             rows={3}
             disabled={isLoading}
-            className="flex-1 resize-none rounded-xl border border-border bg-background px-4 py-2.5 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50"
+            className="flex-1 min-h-[80px] resize-none rounded-xl border border-border bg-background px-4 py-2.5 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50"
           />
           <Button
             size="icon"

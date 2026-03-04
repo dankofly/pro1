@@ -164,7 +164,6 @@ const TICKER_ITEMS = [
   { icon: Layers, text: 'Sachbezug-Rechner', color: 'text-orange-400' },
   { icon: BarChart3, text: 'Investitionsfreibetrag', color: 'text-teal-400' },
   { icon: MessageSquare, text: '24/7 Sofort-Antworten', color: 'text-emerald-300' },
-  { icon: Zap, text: 'Claude AI powered', color: 'text-yellow-400' },
 ]
 
 /* ─── Hero ─── */
