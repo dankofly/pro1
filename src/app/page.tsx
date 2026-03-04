@@ -309,36 +309,31 @@ function Hero() {
       </div>
 
       {/* AI Steuerberater Ticker */}
-      <div className="absolute bottom-20 left-0 right-0 overflow-hidden">
+      <div className="absolute bottom-0 left-0 right-0 overflow-hidden border-t border-white/5 bg-slate-950/60 backdrop-blur-sm">
         <div className="relative flex">
           {/* Fade edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-40 bg-gradient-to-r from-slate-950 to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-40 bg-gradient-to-l from-slate-950 to-transparent z-10" />
+          <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-32 bg-gradient-to-r from-slate-950 to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-20 sm:w-32 bg-gradient-to-l from-slate-950 to-transparent z-10" />
 
-          <div className="flex animate-marquee whitespace-nowrap gap-6 sm:gap-10 py-3">
+          <div className="flex animate-marquee whitespace-nowrap gap-8 sm:gap-12 py-4">
             {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-              <span key={i} className="inline-flex items-center gap-2 text-sm sm:text-base font-medium text-blue-200/60">
-                <item.icon className={`h-4 w-4 ${item.color} shrink-0`} />
+              <span key={i} className="inline-flex items-center gap-2.5 text-base sm:text-lg font-semibold text-blue-100/70 tracking-wide">
+                <item.icon className={`h-5 w-5 sm:h-6 sm:w-6 ${item.color} shrink-0`} />
                 {item.text}
-                <span className="text-white/10 ml-4 sm:ml-6">—</span>
+                <span className="text-white/10 ml-6 sm:ml-8">·</span>
               </span>
             ))}
           </div>
-          <div className="flex animate-marquee2 whitespace-nowrap gap-6 sm:gap-10 py-3 absolute top-0" aria-hidden>
+          <div className="flex animate-marquee2 whitespace-nowrap gap-8 sm:gap-12 py-4 absolute top-0" aria-hidden>
             {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-              <span key={i} className="inline-flex items-center gap-2 text-sm sm:text-base font-medium text-blue-200/60">
-                <item.icon className={`h-4 w-4 ${item.color} shrink-0`} />
+              <span key={i} className="inline-flex items-center gap-2.5 text-base sm:text-lg font-semibold text-blue-100/70 tracking-wide">
+                <item.icon className={`h-5 w-5 sm:h-6 sm:w-6 ${item.color} shrink-0`} />
                 {item.text}
-                <span className="text-white/10 ml-4 sm:ml-6">—</span>
+                <span className="text-white/10 ml-6 sm:ml-8">·</span>
               </span>
             ))}
           </div>
         </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce motion-reduce:animate-none">
-        <ChevronDown className="h-6 w-6 text-white/30" />
       </div>
     </section>
   )
