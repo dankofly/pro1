@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Calculator, BarChart3, Clock, Crown, HelpCircle, User, Shield, Menu, LogOut, Receipt, Coins, Gift, TrendingUp, MessageSquare, FileBarChart } from 'lucide-react'
+import { Calculator, BarChart3, Clock, Crown, HelpCircle, User, Shield, Menu, LogOut, Receipt, Coins, Gift, TrendingUp, MessageSquare, FileBarChart, BookOpen } from 'lucide-react'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -27,6 +27,7 @@ const NAV_SECTIONS: NavSection[] = [
   {
     title: 'AI & Analyse',
     items: [
+      { href: '/steuerwissen', label: 'Steuer-Wissen', icon: BookOpen },
       { href: '/steuerberater', label: 'AI Steuerberater', icon: MessageSquare, requiresPro: true },
       { href: '/misch-einkommen', label: 'Optimierung', icon: BarChart3, requiresPro: true },
       { href: '/bilanz', label: 'Bilanz-Analyse', icon: FileBarChart, requiresPro: true },

@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Calculator, BarChart3, Clock, Crown, HelpCircle, Shield, LogOut, User, MessageSquare, Receipt, Coins, Gift, TrendingUp, FileBarChart } from 'lucide-react'
+import { Calculator, BarChart3, Clock, Crown, HelpCircle, Shield, LogOut, User, MessageSquare, Receipt, Coins, Gift, TrendingUp, FileBarChart, BookOpen } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { isAdmin } from '@/lib/admin'
@@ -31,6 +31,7 @@ const NAV_SECTIONS: NavSection[] = [
   {
     title: 'AI & Analyse',
     items: [
+      { href: '/steuerwissen', label: 'Steuer-Wissen', icon: BookOpen },
       { href: '/steuerberater', label: 'AI Steuerberater', icon: MessageSquare, requiresPro: true },
       { href: '/misch-einkommen', label: 'Optimierung', icon: BarChart3, requiresPro: true },
       { href: '/bilanz', label: 'Bilanz-Analyse', icon: FileBarChart, requiresPro: true },
