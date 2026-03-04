@@ -148,7 +148,7 @@ function RechnerContent() {
   return (
     <>
       {/* Top bar */}
-      <div className="sticky top-0 z-30 bg-[hsl(var(--surface))] border-b border-border/40">
+      <div className="sticky top-0 z-30 bg-[hsl(var(--surface))]/80 backdrop-blur-lg border-b border-border/40">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <MobileNav />
@@ -410,7 +410,8 @@ function RechnerContent() {
 
                 <button
                   onClick={() => setShowBeitragsDetails(!showBeitragsDetails)}
-                  className="card-surface w-full flex items-center justify-between px-4 py-3.5 text-sm font-semibold text-foreground cursor-pointer"
+                  aria-expanded={showBeitragsDetails}
+                  className="card-surface w-full flex items-center justify-between px-4 py-3.5 text-sm font-semibold text-foreground cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   Beitragsdetails
                   <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${showBeitragsDetails ? 'rotate-180' : ''}`} />
@@ -419,7 +420,8 @@ function RechnerContent() {
 
                 <button
                   onClick={() => setShowMonthlyOverview(!showMonthlyOverview)}
-                  className="card-surface w-full flex items-center justify-between px-4 py-3.5 text-sm font-semibold text-foreground cursor-pointer"
+                  aria-expanded={showMonthlyOverview}
+                  className="card-surface w-full flex items-center justify-between px-4 py-3.5 text-sm font-semibold text-foreground cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   Monatsübersicht
                   <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${showMonthlyOverview ? 'rotate-180' : ''}`} />

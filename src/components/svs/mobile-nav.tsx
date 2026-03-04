@@ -3,46 +3,13 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Calculator, BarChart3, Clock, Crown, HelpCircle, User, Shield, Menu, LogOut, Receipt, Coins, Gift, TrendingUp, MessageSquare, FileBarChart, BookOpen } from 'lucide-react'
+import { Calculator, Crown, User, Shield, Menu, LogOut } from 'lucide-react'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { useAppShell } from './app-shell'
 import { isAdmin } from '@/lib/admin'
-
-type NavItem = { href: string; label: string; icon: React.ComponentType<{ className?: string }>; requiresPro?: boolean }
-type NavSection = { title: string; items: NavItem[] }
-
-const NAV_SECTIONS: NavSection[] = [
-  {
-    title: 'Rechner',
-    items: [
-      { href: '/rechner', label: 'SVS-Rechner', icon: Calculator },
-      { href: '/einkommensteuer', label: 'Einkommensteuer', icon: Receipt },
-      { href: '/krypto-steuer', label: 'Krypto-Steuer', icon: Coins, requiresPro: true },
-      { href: '/sachbezug-rechner', label: 'Sachbezug', icon: Gift },
-      { href: '/investitionsfreibetrag', label: 'IFB-Rechner', icon: TrendingUp },
-    ],
-  },
-  {
-    title: 'AI & Analyse',
-    items: [
-      { href: '/steuerwissen', label: 'Steuer-Wissen', icon: BookOpen },
-      { href: '/steuerberater', label: 'AI Steuerberater', icon: MessageSquare, requiresPro: true },
-      { href: '/misch-einkommen', label: 'Optimierung', icon: BarChart3, requiresPro: true },
-      { href: '/bilanz', label: 'Bilanz-Analyse', icon: FileBarChart, requiresPro: true },
-    ],
-  },
-  {
-    title: 'Konto',
-    items: [
-      { href: '/dashboard', label: 'Verlauf', icon: Clock },
-      { href: '/pricing', label: 'Pro-Vorteile', icon: Crown },
-      { href: '/faq', label: 'FAQ', icon: HelpCircle },
-      { href: '/profil', label: 'Profil', icon: User },
-    ],
-  },
-]
+import { NAV_SECTIONS } from '@/lib/nav-config'
 
 export function MobileNav() {
   const [open, setOpen] = useState(false)
@@ -53,9 +20,8 @@ export function MobileNav() {
     <div className="md:hidden">
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
-          <Button variant="ghost" size="sm" className="h-8 w-8 p-0" aria-label="Menü öffnen">
+          <Button variant="ghost" size="sm" className="h-11 w-11 p-0 cursor-pointer" aria-label="Menü öffnen">
             <Menu className="h-5 w-5" />
-            <span className="sr-only">Menü öffnen</span>
           </Button>
         </SheetTrigger>
         <SheetContent side="left" className="w-[260px] p-0 bg-slate-900 text-white border-slate-800">
@@ -77,7 +43,7 @@ export function MobileNav() {
             {NAV_SECTIONS.map((section, si) => (
               <div key={section.title}>
                 {si > 0 && <div className="border-t border-white/5 mb-3" />}
-                <p className="px-3 mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+                <p className="px-3 mb-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500">
                   {section.title}
                 </p>
                 <div className="space-y-0.5">
@@ -88,7 +54,7 @@ export function MobileNav() {
                     return (
                       <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
                         <div
-                          className={`flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200
+                          className={`flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer
                             ${isActive
                               ? 'bg-emerald-500/15 text-emerald-400'
                               : 'text-slate-400 hover:text-white hover:bg-white/5'
@@ -112,7 +78,7 @@ export function MobileNav() {
                 <div className="border-t border-white/5 mb-3" />
                 <Link href="/admin" onClick={() => setOpen(false)}>
                   <div
-                    className={`flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200
+                    className={`flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer
                       ${pathname === '/admin'
                         ? 'bg-emerald-500/15 text-emerald-400'
                         : 'text-slate-400 hover:text-white hover:bg-white/5'
@@ -146,14 +112,14 @@ export function MobileNav() {
                   variant="ghost"
                   size="sm"
                   onClick={() => { handleLogout(); setOpen(false) }}
-                  className="w-full justify-start text-slate-400 hover:text-white hover:bg-white/5 h-8"
+                  className="w-full justify-start text-slate-400 hover:text-white hover:bg-white/5 h-10 cursor-pointer"
                 >
                   <LogOut className="h-3.5 w-3.5 mr-2" />
                   <span className="text-xs">Abmelden</span>
                 </Button>
               </div>
             ) : (
-              <Button asChild variant="ghost" size="sm" className="w-full justify-start text-slate-300 hover:text-white hover:bg-white/5 h-8">
+              <Button asChild variant="ghost" size="sm" className="w-full justify-start text-slate-300 hover:text-white hover:bg-white/5 h-10">
                 <Link href="/auth/login" onClick={() => setOpen(false)}>
                   <User className="h-3.5 w-3.5 mr-2" />
                   <span className="text-xs">Anmelden</span>

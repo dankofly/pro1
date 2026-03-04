@@ -52,8 +52,8 @@ function ResultCards({ result }: { result: KryptoResult }) {
       <Card className="glass">
         <CardHeader className="pb-2">
           <CardTitle className="flex items-center gap-2 text-base">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50">
-              <ShieldCheck className="h-4 w-4 text-blue-600" />
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/10">
+              <ShieldCheck className="h-4 w-4 text-blue-500" />
             </div>
             Altvermögen
           </CardTitle>
@@ -68,9 +68,9 @@ function ResultCards({ result }: { result: KryptoResult }) {
             <div className="flex justify-between items-center">
               <span className="text-sm text-muted-foreground">Status</span>
               {result.altvermoegen.steuerfrei ? (
-                <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200">Steuerfrei</Badge>
+                <Badge className="bg-emerald-500/100/10 text-emerald-400 border-emerald-500/30">Steuerfrei</Badge>
               ) : (
-                <Badge className="bg-red-100 text-red-700 border-red-200">Steuerpflichtig</Badge>
+                <Badge className="bg-red-500/10 text-red-400 border-red-500/30">Steuerpflichtig</Badge>
               )}
             </div>
             <p className="text-xs text-muted-foreground pt-1">{result.altvermoegen.info}</p>
@@ -82,8 +82,8 @@ function ResultCards({ result }: { result: KryptoResult }) {
       <Card className="glass">
         <CardHeader className="pb-2">
           <CardTitle className="flex items-center gap-2 text-base">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-50">
-              <TrendingUp className="h-4 w-4 text-amber-600" />
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500/10">
+              <TrendingUp className="h-4 w-4 text-amber-500" />
             </div>
             Neuvermögen
           </CardTitle>
@@ -93,13 +93,13 @@ function ResultCards({ result }: { result: KryptoResult }) {
           <div className="space-y-2">
             <div className="flex justify-between items-center">
               <span className="text-sm text-muted-foreground">Realisierter Gewinn</span>
-              <span className={`font-mono font-medium ${result.neuvermoegen.gewinn < 0 ? 'text-red-600' : ''}`}>
+              <span className={`font-mono font-medium ${result.neuvermoegen.gewinn < 0 ? 'text-red-400' : ''}`}>
                 {formatEuro(result.neuvermoegen.gewinn)}
               </span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-sm text-muted-foreground">KESt (27,5 %)</span>
-              <span className="font-mono font-medium text-red-600">
+              <span className="font-mono font-medium text-red-400">
                 {formatEuro(result.neuvermoegen.kest)}
               </span>
             </div>
@@ -116,8 +116,8 @@ function ResultCards({ result }: { result: KryptoResult }) {
       <Card className="glass">
         <CardHeader className="pb-2">
           <CardTitle className="flex items-center gap-2 text-base">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-50">
-              <Coins className="h-4 w-4 text-violet-600" />
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/10">
+              <Coins className="h-4 w-4 text-violet-500" />
             </div>
             Staking / Mining
           </CardTitle>
@@ -131,7 +131,7 @@ function ResultCards({ result }: { result: KryptoResult }) {
             </div>
             <div className="flex justify-between items-center">
               <span className="text-sm text-muted-foreground">KESt (27,5 %)</span>
-              <span className="font-mono font-medium text-red-600">
+              <span className="font-mono font-medium text-red-400">
                 {formatEuro(result.stakingKest)}
               </span>
             </div>
@@ -168,7 +168,7 @@ function InfoCards() {
       <Card className="glass">
         <CardHeader className="pb-2">
           <CardTitle className="flex items-center gap-2 text-base">
-            <Info className="h-4 w-4 text-blue-600" />
+            <Info className="h-4 w-4 text-blue-500" />
             Altvermögen vs. Neuvermögen
           </CardTitle>
         </CardHeader>
@@ -188,7 +188,7 @@ function InfoCards() {
       <Card className="glass">
         <CardHeader className="pb-2">
           <CardTitle className="flex items-center gap-2 text-base">
-            <ArrowRightLeft className="h-4 w-4 text-amber-600" />
+            <ArrowRightLeft className="h-4 w-4 text-amber-500" />
             Tausch Krypto zu Krypto
           </CardTitle>
         </CardHeader>
@@ -231,8 +231,8 @@ function TransaktionenTable({
     <Card className="glass">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-50">
-            <Bitcoin className="h-4 w-4 text-emerald-600" />
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10">
+            <Bitcoin className="h-4 w-4 text-emerald-500" />
           </div>
           Transaktionen
         </CardTitle>
@@ -318,7 +318,7 @@ function TransaktionenTable({
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="h-7 w-7 text-muted-foreground hover:text-red-600"
+                      className="h-10 w-10 cursor-pointer text-muted-foreground hover:text-red-400"
                       onClick={() => onRemove(tx.id)}
                       disabled={transaktionen.length <= 1}
                     >
@@ -347,7 +347,7 @@ function TransaktionenTable({
               variant="outline"
               size="sm"
               onClick={onUpgradeRequired}
-              className="gap-1.5 border-amber-300 text-amber-700 hover:bg-amber-50"
+              className="gap-1.5 border-amber-500/30 text-amber-400 hover:bg-amber-500/10"
             >
               <Crown className="h-3.5 w-3.5" />
               Mehr Transaktionen (Pro)
@@ -455,9 +455,9 @@ function KryptoSteuerContent() {
         </div>
 
         {/* Stichtag Alert */}
-        <Alert className="border-blue-300 bg-blue-50">
-          <Info className="h-4 w-4 text-blue-600" />
-          <AlertDescription className="text-blue-800">
+        <Alert className="border-blue-500/30 bg-blue-500/10">
+          <Info className="h-4 w-4 text-blue-500" />
+          <AlertDescription className="text-foreground">
             <strong>Stichtag 1. März 2021:</strong> Krypto-Assets, die davor angeschafft wurden
             (Altvermögen), unterliegen der alten Spekulationsfrist von 1 Jahr. Ab diesem Datum
             gilt pauschal 27,5 % KESt auf realisierte Gewinne (Neuvermögen).
@@ -476,13 +476,13 @@ function KryptoSteuerContent() {
 
         {/* Free-tier hint */}
         {!subscription.isPro && transaktionen.length >= maxTransaktionen && (
-          <Alert className="border-amber-300 bg-amber-50">
-            <Crown className="h-4 w-4 text-amber-600" />
-            <AlertDescription className="text-amber-800">
+          <Alert className="border-amber-500/30 bg-amber-500/10">
+            <Crown className="h-4 w-4 text-amber-500" />
+            <AlertDescription className="text-foreground">
               Im kostenlosen Plan ist nur 1 Transaktion möglich.{' '}
               <button
                 onClick={() => handleUpgradeRequired('Unbegrenzte Krypto-Transaktionen')}
-                className="font-semibold underline underline-offset-2 hover:text-amber-900"
+                className="font-semibold underline underline-offset-2 hover:text-amber-400"
               >
                 Upgrade auf Pro
               </button>{' '}
@@ -495,8 +495,8 @@ function KryptoSteuerContent() {
         <Card className="glass">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-50">
-                <Coins className="h-4 w-4 text-violet-600" />
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/10">
+                <Coins className="h-4 w-4 text-violet-500" />
               </div>
               Staking / Mining Erträge
             </CardTitle>

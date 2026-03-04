@@ -11,6 +11,7 @@ import { toast } from 'sonner'
 import { EmbeddedCheckoutProvider, EmbeddedCheckout } from '@stripe/react-stripe-js'
 import Link from 'next/link'
 import { useState, useCallback, useEffect } from 'react'
+import { MobileNav } from '@/components/svs/mobile-nav'
 
 function CheckoutReturn() {
   const [status, setStatus] = useState<'loading' | 'complete' | 'error'>('loading')
@@ -250,6 +251,14 @@ function PricingContent() {
 
   return (
     <div className="min-h-[calc(100vh-3.5rem)] bg-slate-900">
+      {/* Mobile header */}
+      <div className="sticky top-0 z-30 bg-slate-900/80 backdrop-blur-lg border-b border-white/10 md:hidden">
+        <div className="px-4 h-14 flex items-center">
+          <MobileNav />
+          <span className="ml-2 text-sm font-semibold text-white">Preise</span>
+        </div>
+      </div>
+
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
         {/* Header */}
         <div className="text-center mb-10">
@@ -274,7 +283,7 @@ function PricingContent() {
             aria-checked={yearly}
             aria-label="Jährliche Abrechnung"
             onClick={() => setYearly(!yearly)}
-            className={`relative w-14 h-7 rounded-full transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 ${
+            className={`relative w-14 h-7 rounded-full transition-colors duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 ${
               yearly ? 'bg-emerald-500' : 'bg-white/20'
             }`}
           >
@@ -395,13 +404,13 @@ function PricingContent() {
 
         {/* Footer */}
         <div className="text-center text-xs mt-12 space-y-2">
-          <p className="text-blue-200/30">
+          <p className="text-slate-400">
             Alle Preise inkl. USt. {yearly ? 'Jährlich im Voraus. ' : 'Monatlich kündbar. '}Sichere Zahlung via Stripe.
           </p>
-          <div className="flex items-center justify-center gap-3 text-blue-200/40">
-            <Link href="/impressum" className="hover:text-blue-200 transition-colors">Impressum</Link>
+          <div className="flex items-center justify-center gap-3 text-slate-500">
+            <Link href="/impressum" className="underline underline-offset-2 decoration-slate-600/30 hover:text-slate-300 transition-colors">Impressum</Link>
             <span>·</span>
-            <Link href="/datenschutz" className="hover:text-blue-200 transition-colors">Datenschutz</Link>
+            <Link href="/datenschutz" className="underline underline-offset-2 decoration-slate-600/30 hover:text-slate-300 transition-colors">Datenschutz</Link>
           </div>
         </div>
       </div>

@@ -2,10 +2,11 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Calculator, BarChart3, Clock, Crown, HelpCircle, Shield, LogOut, User, MessageSquare, Receipt, Coins, Gift, TrendingUp, FileBarChart, BookOpen } from 'lucide-react'
+import { Calculator, Crown, Shield, LogOut, User } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { isAdmin } from '@/lib/admin'
+import { NAV_SECTIONS } from '@/lib/nav-config'
 import type { PlanTier } from '@/lib/stripe'
 
 interface AppSidebarProps {
@@ -13,40 +14,6 @@ interface AppSidebarProps {
   plan?: PlanTier
   onLogout?: () => void
 }
-
-type NavItem = { href: string; label: string; icon: React.ComponentType<{ className?: string }>; requiresPro?: boolean }
-type NavSection = { title: string; items: NavItem[] }
-
-const NAV_SECTIONS: NavSection[] = [
-  {
-    title: 'Rechner',
-    items: [
-      { href: '/rechner', label: 'SVS-Rechner', icon: Calculator },
-      { href: '/einkommensteuer', label: 'Einkommensteuer', icon: Receipt },
-      { href: '/krypto-steuer', label: 'Krypto-Steuer', icon: Coins, requiresPro: true },
-      { href: '/sachbezug-rechner', label: 'Sachbezug', icon: Gift },
-      { href: '/investitionsfreibetrag', label: 'IFB-Rechner', icon: TrendingUp },
-    ],
-  },
-  {
-    title: 'AI & Analyse',
-    items: [
-      { href: '/steuerwissen', label: 'Steuer-Wissen', icon: BookOpen },
-      { href: '/steuerberater', label: 'AI Steuerberater', icon: MessageSquare, requiresPro: true },
-      { href: '/misch-einkommen', label: 'Optimierung', icon: BarChart3, requiresPro: true },
-      { href: '/bilanz', label: 'Bilanz-Analyse', icon: FileBarChart, requiresPro: true },
-    ],
-  },
-  {
-    title: 'Konto',
-    items: [
-      { href: '/dashboard', label: 'Verlauf', icon: Clock },
-      { href: '/pricing', label: 'Pro-Vorteile', icon: Crown },
-      { href: '/faq', label: 'FAQ', icon: HelpCircle },
-      { href: '/profil', label: 'Profil', icon: User },
-    ],
-  },
-]
 
 export function AppSidebar({ user, plan, onLogout }: AppSidebarProps) {
   const pathname = usePathname()
@@ -71,7 +38,7 @@ export function AppSidebar({ user, plan, onLogout }: AppSidebarProps) {
         {NAV_SECTIONS.map((section, si) => (
           <div key={section.title}>
             {si > 0 && <div className="border-t border-white/5 mb-3" />}
-            <p className="px-3 mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+            <p className="px-3 mb-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500">
               {section.title}
             </p>
             <div className="space-y-0.5">
@@ -80,9 +47,9 @@ export function AppSidebar({ user, plan, onLogout }: AppSidebarProps) {
                 const locked = item.requiresPro && plan !== 'pro'
 
                 return (
-                  <Link key={item.href} href={item.href}>
+                  <Link key={item.href} href={item.href} className="rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900">
                     <div
-                      className={`flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200
+                      className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer
                         ${isActive
                           ? 'bg-emerald-500/15 text-emerald-400'
                           : 'text-slate-400 hover:text-white hover:bg-white/5'
@@ -104,9 +71,9 @@ export function AppSidebar({ user, plan, onLogout }: AppSidebarProps) {
         {user && isAdmin(user.email) && (
           <div>
             <div className="border-t border-white/5 mb-3" />
-            <Link href="/admin">
+            <Link href="/admin" className="rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900">
               <div
-                className={`flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer
                   ${pathname === '/admin'
                     ? 'bg-emerald-500/15 text-emerald-400'
                     : 'text-slate-400 hover:text-white hover:bg-white/5'
@@ -141,7 +108,7 @@ export function AppSidebar({ user, plan, onLogout }: AppSidebarProps) {
               variant="ghost"
               size="sm"
               onClick={onLogout}
-              className="w-full justify-start text-slate-400 hover:text-white hover:bg-white/5 h-8"
+              className="w-full justify-start text-slate-400 hover:text-white hover:bg-white/5 h-10 cursor-pointer"
             >
               <LogOut className="h-3.5 w-3.5 mr-2" />
               <span className="text-xs">Abmelden</span>
@@ -149,7 +116,7 @@ export function AppSidebar({ user, plan, onLogout }: AppSidebarProps) {
           </div>
         ) : (
           <div className="space-y-2">
-            <Button asChild variant="ghost" size="sm" className="w-full justify-start text-slate-300 hover:text-white hover:bg-white/5 h-8">
+            <Button asChild variant="ghost" size="sm" className="w-full justify-start text-slate-300 hover:text-white hover:bg-white/5 h-10">
               <Link href="/auth/login">
                 <User className="h-3.5 w-3.5 mr-2" />
                 <span className="text-xs">Anmelden</span>

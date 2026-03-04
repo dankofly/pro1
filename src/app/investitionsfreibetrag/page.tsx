@@ -39,9 +39,8 @@ function pct(val: number) {
   return `${(val * 100).toFixed(1)} %`
 }
 
-let nextId = 1
 function makeId() {
-  return `inv_${Date.now()}_${nextId++}`
+  return crypto.randomUUID()
 }
 
 function emptyInvestition(): Investition {
@@ -131,7 +130,7 @@ function ComparisonChart({ result }: { result: IFBResult }) {
     <Card className="glass">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
-          <BarChart3 className="h-5 w-5 text-emerald-600" />
+          <BarChart3 className="h-5 w-5 text-emerald-400" />
           Steuervergleich: Vorher vs. Nachher
         </CardTitle>
         <CardDescription>
@@ -171,13 +170,13 @@ function ComparisonChart({ result }: { result: IFBResult }) {
               <Legend />
               <Bar
                 dataKey="Ohne Freibeträge"
-                fill="#ef4444"
+                fill="hsl(var(--chart-2))"
                 radius={[6, 6, 0, 0]}
                 maxBarSize={100}
               />
               <Bar
                 dataKey="Mit IFB + GFB"
-                fill="#10b981"
+                fill="hsl(var(--chart-1))"
                 radius={[6, 6, 0, 0]}
                 maxBarSize={100}
               />
@@ -185,7 +184,7 @@ function ComparisonChart({ result }: { result: IFBResult }) {
           </ResponsiveContainer>
         </div>
         {result.gesamteSteuerersparnis > 0 && (
-          <div className="mt-4 flex items-center justify-center gap-2 text-emerald-600 font-semibold">
+          <div className="mt-4 flex items-center justify-center gap-2 text-emerald-400 font-semibold">
             <TrendingDown className="h-4 w-4" />
             <span>Ersparnis: {formatEuro(result.gesamteSteuerersparnis)}</span>
           </div>
@@ -236,7 +235,7 @@ function GFBDetailTable({ result }: { result: IFBResult }) {
                   <TableCell>
                     <span className="font-medium">{stufe.stufe}</span>
                     {i === 0 && (
-                      <Badge variant="outline" className="ml-2 text-xs text-emerald-600 border-emerald-300">
+                      <Badge variant="outline" className="ml-2 text-xs text-emerald-400 border-emerald-500/30">
                         automatisch
                       </Badge>
                     )}
@@ -259,7 +258,7 @@ function GFBDetailTable({ result }: { result: IFBResult }) {
               <TableCell colSpan={3} className="font-semibold">
                 Gewinnfreibetrag gesamt
               </TableCell>
-              <TableCell className="text-right font-mono font-bold text-emerald-600">
+              <TableCell className="text-right font-mono font-bold text-emerald-400">
                 {formatEuro(result.gewinnfreibetrag)}
               </TableCell>
             </TableRow>
@@ -349,7 +348,7 @@ function InvestitionTable({
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="h-8 w-8 text-muted-foreground hover:text-red-600"
+                      className="h-10 w-10 cursor-pointer text-muted-foreground hover:text-red-400"
                       onClick={() => onRemove(inv.id)}
                       disabled={investitionen.length <= 1}
                     >
@@ -376,7 +375,7 @@ function InvestitionTable({
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-7 w-7 text-muted-foreground hover:text-red-600"
+                  className="h-11 w-11 cursor-pointer text-muted-foreground hover:text-red-400"
                   onClick={() => onRemove(inv.id)}
                   disabled={investitionen.length <= 1}
                 >
@@ -526,15 +525,15 @@ function IFBContent() {
               </div>
             )}
             {result.investitionenOeko > 0 && (
-              <div className="rounded-lg border border-emerald-200/50 bg-emerald-50/50 p-3">
-                <div className="flex items-center gap-1.5 text-xs text-emerald-700 mb-1">
+              <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3">
+                <div className="flex items-center gap-1.5 text-xs text-emerald-400 mb-1">
                   <Leaf className="h-3 w-3" />
                   Ökologisch
                 </div>
-                <p className="font-mono font-semibold text-sm text-emerald-700">
+                <p className="font-mono font-semibold text-sm text-emerald-400">
                   {formatEuro(result.investitionenOeko)}
                 </p>
-                <p className="text-xs text-emerald-600">IFB 22 %: {formatEuro(result.ifbOeko)}</p>
+                <p className="text-xs text-emerald-400">IFB 22 %: {formatEuro(result.ifbOeko)}</p>
               </div>
             )}
             <div className="rounded-lg border border-border/50 bg-muted/30 p-3">
@@ -605,8 +604,8 @@ function IFBContent() {
                 ? `Steuersatz: ${pct(result.effektiverSteuersatzOhne)} → ${pct(result.effektiverSteuersatzMit)}`
                 : ''
             }
-            icon={<TrendingDown className="h-4 w-4 text-emerald-600" />}
-            accent="text-emerald-600"
+            icon={<TrendingDown className="h-4 w-4 text-emerald-400" />}
+            accent="text-emerald-400"
           />
         </div>
 
@@ -633,12 +632,12 @@ function IFBContent() {
                     <span className="text-muted-foreground">
                       − Investitionsfreibetrag ({result.investitionenOeko > 0 ? '20 %/22 %' : '20 %'})
                     </span>
-                    <span className="font-mono text-emerald-600">−{formatEuro(result.ifbGesamt)}</span>
+                    <span className="font-mono text-emerald-400">−{formatEuro(result.ifbGesamt)}</span>
                   </div>
                 )}
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">− Gewinnfreibetrag (gestaffelt)</span>
-                  <span className="font-mono text-emerald-600">−{formatEuro(result.gewinnfreibetrag)}</span>
+                  <span className="font-mono text-emerald-400">−{formatEuro(result.gewinnfreibetrag)}</span>
                 </div>
                 <div className="flex justify-between font-medium border-t pt-2">
                   <span>Steuerpflichtiger Gewinn</span>
@@ -652,15 +651,15 @@ function IFBContent() {
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">ESt mit Freibeträgen</span>
-                  <span className="font-mono text-emerald-600">{formatEuro(result.steuerMit)}</span>
+                  <span className="font-mono text-emerald-400">{formatEuro(result.steuerMit)}</span>
                 </div>
                 {result.forschungspraemie > 0 && (
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">+ Forschungsprämie (14 % Gutschrift)</span>
-                    <span className="font-mono text-emerald-600">{formatEuro(result.forschungspraemie)}</span>
+                    <span className="font-mono text-emerald-400">{formatEuro(result.forschungspraemie)}</span>
                   </div>
                 )}
-                <div className="flex justify-between font-bold border-t pt-2 text-emerald-600">
+                <div className="flex justify-between font-bold border-t pt-2 text-emerald-400">
                   <span>Gesamte Steuerersparnis</span>
                   <span className="font-mono">{formatEuro(result.gesamteSteuerersparnis)}</span>
                 </div>

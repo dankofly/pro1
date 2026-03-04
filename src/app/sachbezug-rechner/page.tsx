@@ -67,7 +67,7 @@ function CO2Input({
   }
   return (
     <div className="space-y-1.5">
-      <Label htmlFor="co2" className="text-sm font-medium">CO2-Aussto&szlig; (WLTP)</Label>
+      <Label htmlFor="co2" className="text-sm font-medium">CO2-Ausstoß (WLTP)</Label>
       <div className="flex items-center gap-2">
         <Input
           id="co2"
@@ -89,7 +89,7 @@ function KinderCounter({ value, onChange }: {
       <Button
         variant="outline"
         size="icon"
-        className="h-7 w-7"
+        className="h-11 w-11 cursor-pointer"
         disabled={value <= 0}
         onClick={() => onChange(Math.max(0, value - 1))}
       >
@@ -99,7 +99,7 @@ function KinderCounter({ value, onChange }: {
       <Button
         variant="outline"
         size="icon"
-        className="h-7 w-7"
+        className="h-11 w-11 cursor-pointer"
         onClick={() => onChange(Math.min(10, value + 1))}
       >
         <Plus className="h-3 w-3" />
@@ -190,8 +190,8 @@ function ComparisonChart({ benefitsWert, aequivalentBrutto }: {
   benefitsWert: number; aequivalentBrutto: number
 }) {
   const data = [
-    { name: 'Benefits-Paket', wert: benefitsWert, fill: '#10b981' },
-    { name: 'Äquivalent Brutto', wert: aequivalentBrutto, fill: '#64748b' },
+    { name: 'Benefits-Paket', wert: benefitsWert, fill: 'hsl(var(--chart-1))' },
+    { name: 'Äquivalent Brutto', wert: aequivalentBrutto, fill: 'hsl(var(--muted-foreground))' },
   ]
 
   if (benefitsWert === 0 && aequivalentBrutto === 0) return null

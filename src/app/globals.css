@@ -150,15 +150,15 @@
     box-shadow: 0 4px 24px -4px rgba(0, 60, 120, 0.25);
   }
 
-  /* Legacy card styles (kept for components not yet migrated) */
+  /* Card styles — dark-mode aware via CSS variables */
   .glass {
-    @apply bg-white border border-slate-200/80 shadow-sm;
+    @apply bg-card border border-border shadow-sm;
   }
   .glass-dark {
-    @apply bg-[hsl(207,70%,18%)] border border-[hsl(207,50%,25%)] shadow-lg;
+    @apply bg-slate-900 border border-slate-700 shadow-lg;
   }
   .glass-subtle {
-    @apply bg-slate-50/80 border border-slate-200/60;
+    @apply bg-muted/80 border border-border/60;
   }
 
   /* Section typography */

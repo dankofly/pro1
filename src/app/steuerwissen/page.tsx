@@ -146,12 +146,18 @@ function SteuerwissenContent() {
 
   return (
     <div className="flex-1 flex flex-col min-h-0">
-      <MobileNav />
+      {/* Mobile header */}
+      <div className="sticky top-0 z-30 bg-[hsl(var(--surface))]/80 backdrop-blur-lg border-b border-border/40 md:hidden">
+        <div className="px-4 h-14 flex items-center">
+          <MobileNav />
+          <span className="ml-2 text-sm font-semibold text-foreground">Steuer-Wissen</span>
+        </div>
+      </div>
 
       <div className="flex-1 p-4 sm:p-6 pb-20 md:pb-6">
         <div className="max-w-3xl mx-auto">
           <div className="card-surface rounded-xl overflow-hidden">
-            <div className="flex flex-col h-[calc(100vh-8rem)] sm:h-[calc(100vh-6rem)] max-h-[800px]">
+            <div className="flex flex-col h-[calc(100dvh-8rem)] sm:h-[calc(100dvh-6rem)] max-h-[800px]">
 
               {/* ── Header ── */}
               <div className="flex items-center justify-between px-4 py-3 border-b border-border/40">
@@ -234,7 +240,7 @@ function SteuerwissenContent() {
                         <button
                           key={q}
                           onClick={() => sendMessage(q)}
-                          className="w-full text-left px-4 py-2.5 rounded-xl border border-border/60 text-sm text-foreground/80 hover:bg-accent hover:border-border transition-colors cursor-pointer"
+                          className="w-full text-left px-4 py-2.5 rounded-xl border border-border/60 text-sm text-foreground/80 hover:bg-accent hover:border-border transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                         >
                           {q}
                         </button>
@@ -314,9 +320,10 @@ function SteuerwissenContent() {
                 )}
               </div>
 
-              {/* ── CTA Banner ── */}
+              {/* ── CTA Banner (only on welcome + after 3+ messages) ── */}
+              {(messages.length === 0 || messages.filter(m => m.role === 'assistant').length >= 3) && (
               <div className="px-4 py-2">
-                <div className="bg-gradient-to-r from-amber-500/10 to-emerald-500/10 border border-amber-500/20 rounded-xl p-4">
+                <div className="bg-gradient-to-r from-amber-500/10 to-emerald-500/10 border border-amber-500/20 rounded-xl p-4 cursor-pointer">
                   <div className="flex items-start gap-3">
                     <Lightbulb className="h-5 w-5 text-amber-400 shrink-0 mt-0.5" />
                     <div>
@@ -336,6 +343,7 @@ function SteuerwissenContent() {
                   </div>
                 </div>
               </div>
+              )}
 
               {/* ── Rate limit reached message ── */}
               {limitReached && (
@@ -361,7 +369,7 @@ function SteuerwissenContent() {
 
               {/* ── Disclaimer ── */}
               <div className="px-4 py-1.5 text-center">
-                <p className="text-[10px] text-muted-foreground">
+                <p className="text-xs text-muted-foreground">
                   KI-Tutor basierend auf Lehrbuch Steuerrecht, 19. Auflage. Keine Rechtsberatung.
                 </p>
               </div>
@@ -383,7 +391,7 @@ function SteuerwissenContent() {
                     size="icon"
                     onClick={() => sendMessage(inputText)}
                     disabled={!inputText.trim() || isLoading || limitReached}
-                    className="h-10 w-10 rounded-xl shrink-0"
+                    className="h-10 w-10 rounded-xl shrink-0 cursor-pointer"
                   >
                     <Send className="h-4 w-4" />
                   </Button>

@@ -92,14 +92,14 @@ function KinderInput({ value, onChange, label, max = 6 }: {
     <div className="flex items-center justify-between">
       <Label className="text-sm">{label}</Label>
       <div className="flex items-center gap-2">
-        <Button variant="outline" size="icon" className="h-8 w-8" disabled={value <= 0}
+        <Button variant="outline" size="icon" className="h-11 w-11 cursor-pointer" disabled={value <= 0}
           onClick={() => onChange(Math.max(0, value - 1))}>
-          <Minus className="h-3 w-3" />
+          <Minus className="h-4 w-4" />
         </Button>
         <span className="w-8 text-center font-mono font-medium">{value}</span>
-        <Button variant="outline" size="icon" className="h-8 w-8" disabled={value >= max}
+        <Button variant="outline" size="icon" className="h-11 w-11 cursor-pointer" disabled={value >= max}
           onClick={() => onChange(Math.min(max, value + 1))}>
-          <Plus className="h-3 w-3" />
+          <Plus className="h-4 w-4" />
         </Button>
       </div>
     </div>
@@ -164,17 +164,17 @@ function WasserfallChart({ result }: { result: EStResult }) {
           <TrendingDown className="h-5 w-5 text-blue-600" />
           Wasserfall: Vom Brutto zum Netto
         </CardTitle>
-        <CardDescription>Schritt-fuer-Schritt Abzuege und Gutschriften</CardDescription>
+        <CardDescription>Schritt-für-Schritt Abzüge und Gutschriften</CardDescription>
       </CardHeader>
       <CardContent>
         {/* Desktop: Recharts BarChart */}
         <div className="hidden sm:block">
           <ResponsiveContainer width="100%" height={340}>
             <BarChart data={data} margin={{ top: 20, right: 20, left: 20, bottom: 60 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
               <XAxis
                 dataKey="name"
-                tick={{ fontSize: 11, fill: '#64748b' }}
+                tick={{ fontSize: 11, fill: 'hsl(var(--muted-foreground))' }}
                 angle={-35}
                 textAnchor="end"
                 interval={0}
@@ -182,12 +182,12 @@ function WasserfallChart({ result }: { result: EStResult }) {
               />
               <YAxis
                 tickFormatter={(v: number) => `${(v / 1000).toFixed(0)}k`}
-                tick={{ fontSize: 11, fill: '#64748b' }}
+                tick={{ fontSize: 11, fill: 'hsl(var(--muted-foreground))' }}
               />
               <Tooltip
                 formatter={(value) => formatEuro(Number(value))}
                 labelStyle={{ fontWeight: 600 }}
-                contentStyle={{ borderRadius: 12, border: '1px solid #e2e8f0' }}
+                contentStyle={{ borderRadius: 12, border: '1px solid hsl(var(--border))', background: 'hsl(var(--card))', color: 'hsl(var(--card-foreground))' }}
               />
               <ReferenceLine y={0} stroke="#94a3b8" />
               {/* Invisible bottom bar (stacks) */}
@@ -216,13 +216,13 @@ function WasserfallChart({ result }: { result: EStResult }) {
                 <div className="flex-1 relative h-6">
                   <div
                     className={`h-full rounded-md transition-all ${
-                      isLast ? 'bg-emerald-500' : step.typ === 'abzug' ? 'bg-red-400/70' : step.typ === 'bonus' ? 'bg-emerald-400/70' : 'bg-blue-500'
+                      isLast ? 'bg-emerald-500/100' : step.typ === 'abzug' ? 'bg-red-400/70' : step.typ === 'bonus' ? 'bg-emerald-400/70' : 'bg-blue-500/100'
                     }`}
                     style={{ width: `${barWidth}%` }}
                   />
                 </div>
                 <div className={`w-24 text-right font-mono text-xs shrink-0 ${
-                  isLast ? 'font-bold text-emerald-600' : step.betrag < 0 ? 'text-red-600' : step.typ === 'bonus' ? 'text-emerald-600' : ''
+                  isLast ? 'font-bold text-emerald-400' : step.betrag < 0 ? 'text-red-600' : step.typ === 'bonus' ? 'text-emerald-400' : ''
                 }`}>
                   {formatEuro(step.typ === 'ergebnis' || step.typ === 'start' ? step.laufend : step.betrag)}
                 </div>
@@ -238,7 +238,7 @@ function WasserfallChart({ result }: { result: EStResult }) {
 // ── Tarifstufen-Visualisierung ──────────────────────────────
 
 const BRACKET_COLORS = [
-  'bg-emerald-500', 'bg-emerald-400', 'bg-yellow-400',
+  'bg-emerald-500/100', 'bg-emerald-400', 'bg-yellow-400',
   'bg-orange-400', 'bg-orange-500', 'bg-red-400', 'bg-red-600',
 ]
 
@@ -293,7 +293,7 @@ function TarifstufenViz({ result, year }: { result: EStResult; year: TaxYear }) 
           {/* Remaining capacity (grey) */}
           {result.steuerbaresEinkommen < displayMax && (
             <div
-              className="bg-slate-200 h-full"
+              className="bg-muted h-full"
               style={{ width: `${((displayMax - result.steuerbaresEinkommen) / displayMax) * 100}%` }}
             />
           )}
@@ -343,7 +343,7 @@ function ResultCards({ result }: { result: EStResult }) {
           <p className="text-2xl sm:text-3xl font-bold text-amber-600">
             {pct(result.grenzsteuersatz)}
           </p>
-          <p className="text-muted-foreground text-xs mt-1">naechster Euro</p>
+          <p className="text-muted-foreground text-xs mt-1">nächster Euro</p>
         </CardContent>
       </Card>
 
@@ -357,13 +357,13 @@ function ResultCards({ result }: { result: EStResult }) {
         </CardContent>
       </Card>
 
-      <Card className="glass border-emerald-200 bg-emerald-50/50">
+      <Card className="glass border-emerald-500/30 bg-emerald-500/100/10">
         <CardContent className="p-4 sm:p-5">
-          <p className="text-emerald-700 text-xs mb-1">Netto nach Steuer</p>
-          <p className="text-2xl sm:text-3xl font-bold text-emerald-600">
+          <p className="text-emerald-400 text-xs mb-1">Netto nach Steuer</p>
+          <p className="text-2xl sm:text-3xl font-bold text-emerald-400">
             {formatEuro(result.netto)}
           </p>
-          <p className="text-emerald-600/60 text-xs mt-1">
+          <p className="text-emerald-400/60 text-xs mt-1">
             {formatEuro(result.netto / 12)}/Monat
           </p>
         </CardContent>
@@ -381,17 +381,17 @@ function SteuerersparnisHinweis({ result, year }: { result: EStResult; year: Tax
   if (tatsaechlicheErsparnis <= 0) return null
 
   return (
-    <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 space-y-2">
-      <div className="flex items-center gap-2 text-emerald-700">
+    <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-4 space-y-2">
+      <div className="flex items-center gap-2 text-emerald-400">
         <Sparkles className="h-4 w-4" />
         <span className="font-semibold text-sm">Deine Steuerersparnis {year}</span>
       </div>
-      <p className="text-emerald-800 text-sm">
-        Durch deine Absetzbetraege sparst du{' '}
+      <p className="text-emerald-400 text-sm">
+        Durch deine Absetzbeträge sparst du{' '}
         <strong>{formatEuro(tatsaechlicheErsparnis)}</strong> an Steuern.
       </p>
       {result.absetzbetraege.map((ab, i) => (
-        <p key={i} className="text-emerald-700 text-xs">
+        <p key={i} className="text-emerald-400 text-xs">
           {ab.name}: {formatEuro(ab.betrag)}
         </p>
       ))}
@@ -409,7 +409,7 @@ function ProFeatureOverlay({ children, label, isPro }: {
     <div className="relative">
       <div className="pointer-events-none select-none blur-sm opacity-50">{children}</div>
       <div className="absolute inset-0 flex items-center justify-center">
-        <Badge variant="outline" className="bg-white/90 text-amber-600 border-amber-300 gap-1 shadow-lg">
+        <Badge variant="outline" className="bg-background/90 text-amber-500 border-amber-500/30 gap-1 shadow-lg">
           <Lock className="h-3 w-3" /> {label} – Pro Feature
         </Badge>
       </div>
@@ -504,8 +504,8 @@ function EinkommensteuerContent() {
                 </SelectContent>
               </Select>
               {year === '2026' && (
-                <Badge variant="outline" className="text-amber-600 border-amber-300 bg-amber-50 text-xs">
-                  Prognose – vorbehaltlich gesetzlicher Aenderungen
+                <Badge variant="outline" className="text-amber-600 border-amber-300 bg-amber-500/10 text-xs">
+                  Prognose – vorbehaltlich gesetzlicher Änderungen
                 </Badge>
               )}
             </div>
@@ -518,12 +518,12 @@ function EinkommensteuerContent() {
           <Card className="glass">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/10">
                   <Receipt className="h-4 w-4 text-blue-600" />
                 </div>
                 Einkommen
               </CardTitle>
-              <CardDescription>Jahresbruttogehalt oder Gewinn aus selbstaendiger Taetigkeit</CardDescription>
+              <CardDescription>Jahresbruttogehalt oder Gewinn aus selbständiger Tätigkeit</CardDescription>
             </CardHeader>
             <CardContent className="space-y-5">
               <EuroInput
@@ -535,20 +535,20 @@ function EinkommensteuerContent() {
                 suffix="/ Jahr"
               />
               <div className="flex items-center justify-between">
-                <Label htmlFor="selbstaendig" className="text-sm">Selbstaendig (kein Verkehrsabsetzbetrag)</Label>
+                <Label htmlFor="selbstaendig" className="text-sm">Selbständig (kein Verkehrsabsetzbetrag)</Label>
                 <Switch id="selbstaendig" checked={isSelbstaendig} onCheckedChange={setIsSelbstaendig} />
               </div>
             </CardContent>
           </Card>
 
-          {/* Absetzbetraege */}
+          {/* Absetzbeträge */}
           <Card className="glass">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-50">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/10">
                   <Users className="h-4 w-4 text-violet-600" />
                 </div>
-                Absetzbetraege
+                Absetzbeträge
               </CardTitle>
               <CardDescription>Kinder, Alleinverdiener, Werbungskosten</CardDescription>
             </CardHeader>
@@ -562,7 +562,7 @@ function EinkommensteuerContent() {
               <KinderInput
                 value={kinderUeber18}
                 onChange={setKinderUeber18}
-                label={`Kinder ueber 18 (FBP EUR ${yc.absetzbetraege.familienbonusOver18.toLocaleString('de-AT')})`}
+                label={`Kinder über 18 (FBP EUR ${yc.absetzbetraege.familienbonusOver18.toLocaleString('de-AT')})`}
                 max={4}
               />
               <div className="flex items-center justify-between">
@@ -589,12 +589,12 @@ function EinkommensteuerContent() {
           <Card className="glass">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-50">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500/10">
                   <Crown className="h-4 w-4 text-amber-600" />
                 </div>
                 Pendlerpauschale
                 {!isPro && (
-                  <Badge variant="outline" className="ml-2 bg-amber-500/10 text-amber-600 border-amber-300/30 text-xs">
+                  <Badge variant="outline" className="ml-2 bg-amber-500/100/10 text-amber-600 border-amber-300/30 text-xs">
                     <Crown className="h-3 w-3 mr-1" /> Pro
                   </Badge>
                 )}
@@ -613,8 +613,8 @@ function EinkommensteuerContent() {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="keine">Keine Pendlerpauschale</SelectItem>
-                      <SelectItem value="klein">Kleines PP (oeff. Verkehr zumutbar)</SelectItem>
-                      <SelectItem value="gross">Grosses PP (oeff. Verkehr nicht zumutbar)</SelectItem>
+                      <SelectItem value="klein">Kleines PP (öff. Verkehr zumutbar)</SelectItem>
+                      <SelectItem value="gross">Großes PP (öff. Verkehr nicht zumutbar)</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -640,10 +640,10 @@ function EinkommensteuerContent() {
                 )}
               </div>
               {pendlerpauschale !== 'keine' && result.pendlerpauschale > 0 && (
-                <div className="bg-amber-50 rounded-lg p-3 text-sm">
+                <div className="bg-amber-500/10 rounded-lg p-3 text-sm">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Pendlerpauschale pro Jahr</span>
-                    <span className="font-mono text-emerald-600">{formatEuro(result.pendlerpauschale)}</span>
+                    <span className="font-mono text-emerald-400">{formatEuro(result.pendlerpauschale)}</span>
                   </div>
                 </div>
               )}
@@ -669,14 +669,14 @@ function EinkommensteuerContent() {
         <Card className="glass">
           <CardHeader>
             <CardTitle className="text-lg">Steuer-Detail {year}</CardTitle>
-            <CardDescription>Alle 7 Tarifstufen und angewandte Absetzbetraege</CardDescription>
+            <CardDescription>Alle 7 Tarifstufen und angewandte Absetzbeträge</CardDescription>
           </CardHeader>
           <CardContent>
             <Accordion type="multiple" defaultValue={['stufen', 'absetzbetraege']}>
               {/* Tarifstufen */}
               <AccordionItem value="stufen">
                 <AccordionTrigger className="text-sm font-medium">
-                  Tarifstufen-Aufschluesselung
+                  Tarifstufen-Aufschlüsselung
                 </AccordionTrigger>
                 <AccordionContent>
                   <Table>
@@ -721,10 +721,10 @@ function EinkommensteuerContent() {
                 </AccordionContent>
               </AccordionItem>
 
-              {/* Absetzbetraege */}
+              {/* Absetzbeträge */}
               <AccordionItem value="absetzbetraege">
                 <AccordionTrigger className="text-sm font-medium">
-                  Absetzbetraege & Gutschriften
+                  Absetzbeträge & Gutschriften
                 </AccordionTrigger>
                 <AccordionContent>
                   <div className="space-y-2">
@@ -732,16 +732,16 @@ function EinkommensteuerContent() {
                       result.absetzbetraege.map((ab, i) => (
                         <div key={i} className="flex justify-between text-sm py-1">
                           <span className="text-muted-foreground">{ab.name}</span>
-                          <span className="font-mono text-emerald-600">{formatEuro(ab.betrag)}</span>
+                          <span className="font-mono text-emerald-400">{formatEuro(ab.betrag)}</span>
                         </div>
                       ))
                     ) : (
-                      <p className="text-sm text-muted-foreground">Keine Absetzbetraege anwendbar.</p>
+                      <p className="text-sm text-muted-foreground">Keine Absetzbeträge anwendbar.</p>
                     )}
                     {result.absetzbetraege.length > 0 && (
                       <div className="flex justify-between text-sm py-1 border-t font-medium">
-                        <span>Gesamt Absetzbetraege</span>
-                        <span className="font-mono text-emerald-600">{formatEuro(result.absetzbetraegeGesamt)}</span>
+                        <span>Gesamt Absetzbeträge</span>
+                        <span className="font-mono text-emerald-400">{formatEuro(result.absetzbetraegeGesamt)}</span>
                       </div>
                     )}
                   </div>
@@ -778,12 +778,12 @@ function EinkommensteuerContent() {
                       <span className="font-mono text-red-600">{formatEuro(result.steuerBrutto)}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Absetzbetraege</span>
-                      <span className="font-mono text-emerald-600">-{formatEuro(result.absetzbetraegeGesamt)}</span>
+                      <span className="text-muted-foreground">Absetzbeträge</span>
+                      <span className="font-mono text-emerald-400">-{formatEuro(result.absetzbetraegeGesamt)}</span>
                     </div>
                     <div className="flex justify-between font-medium border-t pt-1">
                       <span>Steuer (effektiv)</span>
-                      <span className={`font-mono ${result.steuer < 0 ? 'text-emerald-600' : 'text-red-600'}`}>
+                      <span className={`font-mono ${result.steuer < 0 ? 'text-emerald-400' : 'text-red-600'}`}>
                         {formatEuro(Math.max(0, result.steuer))}
                       </span>
                     </div>
@@ -796,8 +796,8 @@ function EinkommensteuerContent() {
                       <span className="font-mono">{pct(result.grenzsteuersatz)}</span>
                     </div>
                     <div className="flex justify-between font-bold border-t pt-1 text-base">
-                      <span className="text-emerald-600">Netto nach Steuer</span>
-                      <span className="font-mono text-emerald-600">{formatEuro(result.netto)}</span>
+                      <span className="text-emerald-400">Netto nach Steuer</span>
+                      <span className="font-mono text-emerald-400">{formatEuro(result.netto)}</span>
                     </div>
                   </div>
                 </AccordionContent>
@@ -808,8 +808,8 @@ function EinkommensteuerContent() {
 
         {/* Footer */}
         <footer className="text-center py-8 text-xs text-muted-foreground space-y-2">
-          <p className="font-medium text-foreground/70">SteuerBoard.pro – Einkommensteuer-Rechner fuer Oesterreich</p>
-          <p>Alle Angaben ohne Gewaehr. Kein Ersatz fuer professionelle Steuerberatung. Werte {year}{year === '2026' ? ' (Prognose)' : ''}.</p>
+          <p className="font-medium text-foreground/70">SteuerBoard.pro – Einkommensteuer-Rechner für Österreich</p>
+          <p>Alle Angaben ohne Gewähr. Kein Ersatz für professionelle Steuerberatung. Werte {year}{year === '2026' ? ' (Prognose)' : ''}.</p>
           <div className="flex items-center justify-center gap-3 pt-1">
             <Link href="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
             <span>·</span>
