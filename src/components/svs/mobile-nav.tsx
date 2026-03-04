@@ -10,19 +10,37 @@ import { Badge } from '@/components/ui/badge'
 import { useAppShell } from './app-shell'
 import { isAdmin } from '@/lib/admin'
 
-const NAV_ITEMS = [
-  { href: '/rechner', label: 'SVS-Rechner', icon: Calculator },
-  { href: '/einkommensteuer', label: 'Einkommensteuer', icon: Receipt },
-  { href: '/krypto-steuer', label: 'Krypto-Steuer', icon: Coins, requiresPro: true },
-  { href: '/sachbezug-rechner', label: 'Sachbezug', icon: Gift },
-  { href: '/investitionsfreibetrag', label: 'IFB-Rechner', icon: TrendingUp },
-  { href: '/steuerberater', label: 'AI Steuerberater', icon: MessageSquare, requiresPro: true },
-  { href: '/misch-einkommen', label: 'Optimierung', icon: BarChart3, requiresPro: true },
-  { href: '/bilanz', label: 'Bilanz-Analyse', icon: FileBarChart, requiresPro: true },
-  { href: '/dashboard', label: 'Verlauf', icon: Clock },
-  { href: '/pricing', label: 'Pro-Vorteile', icon: Crown },
-  { href: '/faq', label: 'FAQ', icon: HelpCircle },
-  { href: '/profil', label: 'Profil', icon: User },
+type NavItem = { href: string; label: string; icon: React.ComponentType<{ className?: string }>; requiresPro?: boolean }
+type NavSection = { title: string; items: NavItem[] }
+
+const NAV_SECTIONS: NavSection[] = [
+  {
+    title: 'Rechner',
+    items: [
+      { href: '/rechner', label: 'SVS-Rechner', icon: Calculator },
+      { href: '/einkommensteuer', label: 'Einkommensteuer', icon: Receipt },
+      { href: '/krypto-steuer', label: 'Krypto-Steuer', icon: Coins, requiresPro: true },
+      { href: '/sachbezug-rechner', label: 'Sachbezug', icon: Gift },
+      { href: '/investitionsfreibetrag', label: 'IFB-Rechner', icon: TrendingUp },
+    ],
+  },
+  {
+    title: 'AI & Analyse',
+    items: [
+      { href: '/steuerberater', label: 'AI Steuerberater', icon: MessageSquare, requiresPro: true },
+      { href: '/misch-einkommen', label: 'Optimierung', icon: BarChart3, requiresPro: true },
+      { href: '/bilanz', label: 'Bilanz-Analyse', icon: FileBarChart, requiresPro: true },
+    ],
+  },
+  {
+    title: 'Konto',
+    items: [
+      { href: '/dashboard', label: 'Verlauf', icon: Clock },
+      { href: '/pricing', label: 'Pro-Vorteile', icon: Crown },
+      { href: '/faq', label: 'FAQ', icon: HelpCircle },
+      { href: '/profil', label: 'Profil', icon: User },
+    ],
+  },
 ]
 
 export function MobileNav() {
@@ -54,43 +72,56 @@ export function MobileNav() {
             </SheetTitle>
           </SheetHeader>
 
-          <nav className="flex-1 px-3 py-4 space-y-1">
-            {NAV_ITEMS.map((item) => {
-              const isActive = pathname === item.href
-              const locked = item.requiresPro && subscription.plan !== 'pro'
+          <nav className="flex-1 px-3 py-4 space-y-4 overflow-y-auto">
+            {NAV_SECTIONS.map((section, si) => (
+              <div key={section.title}>
+                {si > 0 && <div className="border-t border-white/5 mb-3" />}
+                <p className="px-3 mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+                  {section.title}
+                </p>
+                <div className="space-y-0.5">
+                  {section.items.map((item) => {
+                    const isActive = pathname === item.href
+                    const locked = item.requiresPro && subscription.plan !== 'pro'
 
-              return (
-                <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
+                    return (
+                      <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
+                        <div
+                          className={`flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200
+                            ${isActive
+                              ? 'bg-emerald-500/15 text-emerald-400'
+                              : 'text-slate-400 hover:text-white hover:bg-white/5'
+                            }`}
+                        >
+                          <item.icon className="h-4 w-4 shrink-0" />
+                          <span className="truncate">{item.label}</span>
+                          {locked && (
+                            <Crown className="h-3 w-3 text-amber-400 ml-auto shrink-0" />
+                          )}
+                        </div>
+                      </Link>
+                    )
+                  })}
+                </div>
+              </div>
+            ))}
+
+            {user && isAdmin(user.email ?? '') && (
+              <div>
+                <div className="border-t border-white/5 mb-3" />
+                <Link href="/admin" onClick={() => setOpen(false)}>
                   <div
-                    className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200
-                      ${isActive
+                    className={`flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all duration-200
+                      ${pathname === '/admin'
                         ? 'bg-emerald-500/15 text-emerald-400'
                         : 'text-slate-400 hover:text-white hover:bg-white/5'
                       }`}
                   >
-                    <item.icon className="h-4 w-4 shrink-0" />
-                    <span className="truncate">{item.label}</span>
-                    {locked && (
-                      <Crown className="h-3 w-3 text-amber-400 ml-auto shrink-0" />
-                    )}
+                    <Shield className="h-4 w-4 shrink-0" />
+                    <span>Admin</span>
                   </div>
                 </Link>
-              )
-            })}
-
-            {user && isAdmin(user.email ?? '') && (
-              <Link href="/admin" onClick={() => setOpen(false)}>
-                <div
-                  className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200
-                    ${pathname === '/admin'
-                      ? 'bg-emerald-500/15 text-emerald-400'
-                      : 'text-slate-400 hover:text-white hover:bg-white/5'
-                    }`}
-                >
-                  <Shield className="h-4 w-4 shrink-0" />
-                  <span>Admin</span>
-                </div>
-              </Link>
+              </div>
             )}
           </nav>
 
