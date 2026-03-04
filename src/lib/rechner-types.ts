@@ -81,6 +81,37 @@ export interface WeitereEinkuenfteInput {
   vermietungsEinkuenfte: number
 }
 
+// ── USt / Kleinunternehmerregelung ──────────────────────────
+
+export interface UstInput {
+  ustPflichtig: boolean        // true = Regelbesteuerung, false = KUR
+  vorsteuerJaehrlich: number   // Geschätzte Vorsteuer auf Einkäufe
+  ustSatz: number              // 0.20 | 0.10 | 0.13
+  b2bAnteil: number            // 0-100 (%) für Empfehlungslogik
+}
+
+export interface UstResult {
+  kurBerechtigt: boolean       // Umsatz <= €55.000
+  kurToleranz: boolean         // €55.000 < Umsatz <= €60.500
+  // Szenario KUR
+  kurNetto: number
+  kurVorsteuerVerlust: number
+  // Szenario Regel
+  ustBrutto: number
+  ustEinnahmen: number
+  vorsteuerAbzug: number
+  ustZahllast: number
+  regelNetto: number
+  // Vergleich
+  vorteilKur: number           // positiv = KUR besser
+  kurVorteilhaft: boolean
+  zahllastMonatlich: number
+  zahllastQuartal: number
+  // Empfehlung
+  empfehlung: 'kur' | 'regel'
+  empfehlungGrund: string
+}
+
 // ── ProOptions ──────────────────────────────────────────────
 
 export interface ProOptionsInput {
@@ -126,6 +157,9 @@ export interface RechnerInput {
 
   // ProOptions (Absetzbeträge)
   proOptions: ProOptionsInput
+
+  // USt / Kleinunternehmerregelung
+  ust: UstInput
 }
 
 // ── Computed Results ────────────────────────────────────────
@@ -181,6 +215,19 @@ export interface VorauszahlungenResult {
   estDifferenz: number
 }
 
+export interface RuecklagenResult {
+  svsMonatlich: number
+  estMonatlich: number
+  ustMonatlich: number
+  gesamtMonatlich: number
+  estQuartal: number
+  svsJaehrlich: number
+  estJaehrlich: number
+  ustJaehrlich: number
+  ruecklagenQuote: number
+  freiesNettoMonatlich: number
+}
+
 export interface RechnerResult {
   // Kern-Werte
   umsatz: number
@@ -208,6 +255,12 @@ export interface RechnerResult {
   // Steuer-Tipps
   steuerTipps: SteuerTipp
 
+  // USt / KUR
+  ustResult: UstResult
+
+  // Rücklagen
+  ruecklagen: RuecklagenResult
+
   // Meta
   year: TaxYear
 }
@@ -224,6 +277,7 @@ export type RechnerAction =
   | { type: 'SET_VORAUSZAHLUNG'; field: keyof VorauszahlungenInput; value: unknown }
   | { type: 'SET_WEITERE_EINKUENFTE'; field: keyof WeitereEinkuenfteInput; value: unknown }
   | { type: 'SET_PRO_OPTION'; field: keyof ProOptionsInput; value: unknown }
+  | { type: 'SET_UST'; field: keyof UstInput; value: unknown }
   | { type: 'COMPLETE_ONBOARDING'; stammdaten: Stammdaten }
   | { type: 'RESET' }
   | { type: 'LOAD_SAVED'; input: RechnerInput }
@@ -276,4 +330,5 @@ export const DEFAULT_RECHNER_INPUT: RechnerInput = {
     pendlerKm: 0,
     pendlerOeffentlich: true,
   },
+  ust: { ustPflichtig: false, vorsteuerJaehrlich: 0, ustSatz: 0.20, b2bAnteil: 0 },
 }

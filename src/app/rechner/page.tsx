@@ -42,6 +42,9 @@ import { GewinnfreibetragInfo } from '@/components/rechner/gewinnfreibetrag-info
 import { AiTaxAdvisor } from '@/components/rechner/ai-tax-advisor'
 import { PresetSelector } from '@/components/rechner/preset-selector'
 import { GeldflussDiagramm } from '@/components/rechner/geldfluss-diagramm'
+import { RuecklagenSection } from '@/components/rechner/ruecklagen-section'
+import { UstSection } from '@/components/rechner/ust-section'
+import { UstVergleichTabelle } from '@/components/rechner/ust-vergleich-tabelle'
 import { SectionDivider } from '@/components/rechner/section-divider'
 
 import { Button } from '@/components/ui/button'
@@ -235,6 +238,12 @@ function RechnerContent() {
               dispatch={dispatch}
             />
 
+            <UstSection
+              ust={input.ust}
+              jahresumsatz={input.jahresumsatz}
+              dispatch={dispatch}
+            />
+
             <WeitereEinkuenfteSection
               weitereEinkuenfte={input.weitereEinkuenfte}
               isPro={subscription.isPro}
@@ -309,6 +318,12 @@ function RechnerContent() {
             {!svs.belowMinimum && (
               <DashboardCards result={svs} vorschreibung={vorschreibung} />
             )}
+
+            <RuecklagenSection
+              ruecklagen={result.ruecklagen}
+            />
+
+            <UstVergleichTabelle ustResult={result.ustResult} />
 
             <GeldflussDiagramm
               umsatz={result.umsatz}

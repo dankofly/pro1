@@ -6,6 +6,8 @@
 import type {
   RechnerInput,
   RechnerResult,
+  RuecklagenResult,
+  UstResult,
   PauschalierungResult,
   GewinnmaximiererResult,
   VorauszahlungenResult,
@@ -14,6 +16,7 @@ import type {
   WeitereEinkuenfteInput,
 } from './rechner-types'
 import type { TaxYear } from './tax-constants'
+import { KUR_CONFIG } from './tax-constants'
 import type { ProOptions, StammdatenContext } from './svs-calculator'
 import { calculateSvs, calculateSteuerTipps } from './svs-calculator'
 import { calculateAfA, getTotalInvestments } from './afa-calculator'
@@ -198,6 +201,103 @@ function calcVorauszahlungen(
   }
 }
 
+/** USt / Kleinunternehmerregelung berechnen */
+export function calcUst(
+  umsatz: number,
+  vorsteuerJaehrlich: number,
+  ustSatz: number,
+  b2bAnteil: number,
+): UstResult {
+  const kurBerechtigt = umsatz <= KUR_CONFIG.grenze
+  const kurToleranz = umsatz > KUR_CONFIG.grenze && umsatz <= KUR_CONFIG.toleranz
+
+  // Szenario KUR: kein USt, kein Vorsteuerabzug
+  const kurNetto = umsatz
+  const kurVorsteuerVerlust = vorsteuerJaehrlich
+
+  // Szenario Regel: USt kassieren, Vorsteuer abziehen
+  const ustEinnahmen = umsatz * ustSatz
+  const vorsteuerAbzug = vorsteuerJaehrlich
+  const ustZahllast = ustEinnahmen - vorsteuerAbzug
+  const ustBrutto = umsatz + ustEinnahmen
+  const regelNetto = umsatz + vorsteuerAbzug // Netto-Effekt: Vorsteuer zurück
+
+  // Vergleich
+  const vorteilKur = kurNetto - regelNetto // = -vorsteuerAbzug
+  const kurVorteilhaft = vorteilKur > 0
+
+  // Empfehlung: B2B-Kunden ziehen USt ohnehin ab → KUR-Preisvorteil nur bei B2C
+  const b2cAnteil = 1 - b2bAnteil / 100
+  const effektiverKurVorteil = umsatz * ustSatz * b2cAnteil - vorsteuerJaehrlich
+
+  let empfehlung: 'kur' | 'regel'
+  let empfehlungGrund: string
+
+  if (!kurBerechtigt && !kurToleranz) {
+    empfehlung = 'regel'
+    empfehlungGrund = `Umsatz über der KUR-Grenze von € ${KUR_CONFIG.grenze.toLocaleString('de-AT')}`
+  } else if (effektiverKurVorteil > 0) {
+    empfehlung = 'kur'
+    empfehlungGrund = b2cAnteil >= 0.5
+      ? 'Überwiegend B2C-Kunden — KUR spart deinen Kunden die USt'
+      : 'Geringer Vorsteuerabzug — KUR-Vorteil überwiegt'
+  } else {
+    empfehlung = 'regel'
+    empfehlungGrund = vorsteuerAbzug > 0
+      ? 'Hoher Vorsteuerabzug — Regelbesteuerung ist günstiger'
+      : 'Überwiegend B2B-Kunden — USt ist für sie neutral'
+  }
+
+  const zahllastMonatlich = ustZahllast / 12
+  const zahllastQuartal = ustZahllast / 4
+
+  return {
+    kurBerechtigt,
+    kurToleranz,
+    kurNetto,
+    kurVorsteuerVerlust,
+    ustBrutto,
+    ustEinnahmen,
+    vorsteuerAbzug,
+    ustZahllast,
+    regelNetto,
+    vorteilKur,
+    kurVorteilhaft,
+    zahllastMonatlich,
+    zahllastQuartal,
+    empfehlung,
+    empfehlungGrund,
+  }
+}
+
+/** Rücklagen berechnen */
+export function calcRuecklagen(
+  umsatz: number,
+  aufwaende: number,
+  endgueltigeSVS: number,
+  einkommensteuer: number,
+  ustPflichtig: boolean,
+): RuecklagenResult {
+  const svsMonatlich = endgueltigeSVS / 12
+  const estMonatlich = Math.max(0, einkommensteuer) / 12
+  const ustJaehrlich = ustPflichtig ? umsatz * 0.20 : 0
+  const ustMonatlich = ustJaehrlich / 12
+  const gesamtMonatlich = svsMonatlich + estMonatlich + ustMonatlich
+
+  return {
+    svsMonatlich,
+    estMonatlich,
+    ustMonatlich,
+    gesamtMonatlich,
+    estQuartal: Math.max(0, einkommensteuer) / 4,
+    svsJaehrlich: endgueltigeSVS,
+    estJaehrlich: Math.max(0, einkommensteuer),
+    ustJaehrlich,
+    ruecklagenQuote: umsatz > 0 ? (gesamtMonatlich * 12) / umsatz : 0,
+    freiesNettoMonatlich: (umsatz - aufwaende) / 12 - gesamtMonatlich,
+  }
+}
+
 // ── Hauptberechnung ─────────────────────────────────────────
 
 export function calculateAll(input: RechnerInput): RechnerResult {
@@ -244,6 +344,18 @@ export function calculateAll(input: RechnerInput): RechnerResult {
   // 9. Steuer-Tipps
   const steuerTipps = calculateSteuerTipps(gewinn, svs.endgueltigeSVS, year)
 
+  // 10. USt / Kleinunternehmerregelung
+  const ustResult = calcUst(
+    input.jahresumsatz, input.ust.vorsteuerJaehrlich,
+    input.ust.ustSatz, input.ust.b2bAnteil,
+  )
+
+  // 11. Rücklagen (USt-Zahllast aus UstResult)
+  const ruecklagen = calcRuecklagen(
+    input.jahresumsatz, aufwaendeEffektiv,
+    svs.endgueltigeSVS, svs.einkommensteuer, input.ust.ustPflichtig,
+  )
+
   return {
     umsatz: input.jahresumsatz,
     aufwaendeEffektiv,
@@ -255,6 +367,8 @@ export function calculateAll(input: RechnerInput): RechnerResult {
     gewinnmaximierer,
     vorauszahlungen,
     steuerTipps,
+    ustResult,
+    ruecklagen,
     year,
   }
 }

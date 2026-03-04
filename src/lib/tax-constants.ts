@@ -107,6 +107,16 @@ const PENDLERPAUSCHALE: PendlerpauschaleConfig = {
   grossFrom60km: 3672,
 }
 
+// USt/Kleinunternehmerregelung — §6 Abs 1 Z 27 UStG (ab 2025)
+export const KUR_CONFIG = {
+  grenze: 55000,           // Umsatzgrenze netto/Jahr
+  toleranz: 60500,         // +10% einmaliges Überschreiten
+  grenzeEU: 100000,        // EU-weite KUR ab 2025
+  normalSatz: 0.20,
+  ermaessigtSatz10: 0.10,
+  ermaessigtSatz13: 0.13,
+} as const
+
 // ── 2024 ──────────────────────────────────────────────────────
 
 const CONFIG_2024: YearConfig = {

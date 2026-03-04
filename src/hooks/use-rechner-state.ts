@@ -70,6 +70,12 @@ function rechnerReducer(state: RechnerInput, action: RechnerAction): RechnerInpu
         proOptions: { ...state.proOptions, [action.field]: action.value },
       }
 
+    case 'SET_UST':
+      return {
+        ...state,
+        ust: { ...state.ust, [action.field]: action.value },
+      }
+
     case 'COMPLETE_ONBOARDING':
       return {
         ...state,
