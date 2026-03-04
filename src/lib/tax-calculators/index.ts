@@ -67,7 +67,7 @@ export const TOOL_DEFINITIONS = [
             properties: {
               bezeichnung: { type: 'string' as const },
               netto: { type: 'number' as const },
-              steuersatz: { type: 'integer' as const, enum: [0, 10, 13, 20] },
+              steuersatz: { type: 'number' as const, description: 'USt-Satz: 0, 10, 13 oder 20 Prozent' },
             },
             required: ['netto', 'steuersatz'],
           },
