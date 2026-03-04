@@ -12,8 +12,6 @@ import { EmbeddedCheckoutProvider, EmbeddedCheckout } from '@stripe/react-stripe
 import Link from 'next/link'
 import { useState, useCallback, useEffect } from 'react'
 
-const stripePromise = getStripePromise()
-
 function CheckoutReturn() {
   const [status, setStatus] = useState<'loading' | 'complete' | 'error'>('loading')
   const { subscription } = useAppShell()
@@ -164,7 +162,7 @@ function PricingContent() {
             Zurück zur Preisübersicht
           </Button>
           <div className="bg-white rounded-2xl overflow-hidden">
-            <EmbeddedCheckoutProvider stripe={stripePromise} options={{ fetchClientSecret }}>
+            <EmbeddedCheckoutProvider stripe={getStripePromise()} options={{ fetchClientSecret }}>
               <EmbeddedCheckout />
             </EmbeddedCheckoutProvider>
           </div>
@@ -297,6 +295,7 @@ function PricingContent() {
         </div>
 
         {/* Pricing Cards */}
+        <h2 className="sr-only">Verfügbare Pläne</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {tiers.map((tier) => {
             const price = yearly ? tier.yearlyPrice : tier.monthlyPrice

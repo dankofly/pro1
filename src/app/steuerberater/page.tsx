@@ -24,6 +24,7 @@ function SteuerberaterContent() {
 
       <div className="flex-1 p-4 sm:p-6 pb-20 md:pb-6">
         <div className="max-w-3xl mx-auto">
+          <h1 className="text-2xl font-bold text-white mb-4">KI-Steuerberater</h1>
           <TaxChatbot
             isPro={isPro}
             onUpgradeRequired={handleUpgradeRequired}

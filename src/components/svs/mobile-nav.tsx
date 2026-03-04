@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Calculator, BarChart3, Clock, Crown, HelpCircle, User, Shield, Menu, LogOut } from 'lucide-react'
+import { Calculator, BarChart3, Clock, Crown, HelpCircle, User, Shield, Menu, LogOut, Receipt, Coins, Gift, TrendingUp, MessageSquare, FileBarChart } from 'lucide-react'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -11,8 +11,14 @@ import { useAppShell } from './app-shell'
 import { isAdmin } from '@/lib/admin'
 
 const NAV_ITEMS = [
-  { href: '/rechner', label: 'Rechner', icon: Calculator },
+  { href: '/rechner', label: 'SVS-Rechner', icon: Calculator },
+  { href: '/einkommensteuer', label: 'Einkommensteuer', icon: Receipt },
+  { href: '/krypto-steuer', label: 'Krypto-Steuer', icon: Coins, requiresPro: true },
+  { href: '/sachbezug-rechner', label: 'Sachbezug', icon: Gift },
+  { href: '/investitionsfreibetrag', label: 'IFB-Rechner', icon: TrendingUp },
+  { href: '/steuerberater', label: 'AI Steuerberater', icon: MessageSquare, requiresPro: true },
   { href: '/misch-einkommen', label: 'Optimierung', icon: BarChart3, requiresPro: true },
+  { href: '/bilanz', label: 'Bilanz-Analyse', icon: FileBarChart, requiresPro: true },
   { href: '/dashboard', label: 'Verlauf', icon: Clock },
   { href: '/pricing', label: 'Pro-Vorteile', icon: Crown },
   { href: '/faq', label: 'FAQ', icon: HelpCircle },
@@ -28,7 +34,7 @@ export function MobileNav() {
     <div className="md:hidden">
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
-          <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+          <Button variant="ghost" size="sm" className="h-8 w-8 p-0" aria-label="Menü öffnen">
             <Menu className="h-5 w-5" />
             <span className="sr-only">Menü öffnen</span>
           </Button>

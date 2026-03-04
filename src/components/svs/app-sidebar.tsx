@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Calculator, BarChart3, Clock, Crown, HelpCircle, Shield, LogOut, User, MessageSquare } from 'lucide-react'
+import { Calculator, BarChart3, Clock, Crown, HelpCircle, Shield, LogOut, User, MessageSquare, Receipt, Coins, Gift, TrendingUp, FileBarChart } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { isAdmin } from '@/lib/admin'
@@ -15,9 +15,14 @@ interface AppSidebarProps {
 }
 
 const NAV_ITEMS = [
-  { href: '/rechner', label: 'Rechner', icon: Calculator },
+  { href: '/rechner', label: 'SVS-Rechner', icon: Calculator },
+  { href: '/einkommensteuer', label: 'Einkommensteuer', icon: Receipt },
+  { href: '/krypto-steuer', label: 'Krypto-Steuer', icon: Coins, requiresPro: true },
+  { href: '/sachbezug-rechner', label: 'Sachbezug', icon: Gift },
+  { href: '/investitionsfreibetrag', label: 'IFB-Rechner', icon: TrendingUp },
   { href: '/steuerberater', label: 'AI Steuerberater', icon: MessageSquare, requiresPro: true },
   { href: '/misch-einkommen', label: 'Optimierung', icon: BarChart3, requiresPro: true },
+  { href: '/bilanz', label: 'Bilanz-Analyse', icon: FileBarChart, requiresPro: true },
   { href: '/dashboard', label: 'Verlauf', icon: Clock },
   { href: '/pricing', label: 'Pro-Vorteile', icon: Crown },
   { href: '/faq', label: 'FAQ', icon: HelpCircle },

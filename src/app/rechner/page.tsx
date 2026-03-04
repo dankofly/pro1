@@ -152,7 +152,7 @@ function RechnerContent() {
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <MobileNav />
-            <span className="section-header hidden sm:inline">Dashboard</span>
+            <h1 className="section-header hidden sm:inline">SVS-Beitragsrechner {input.year}</h1>
             <span className="text-border/60 mx-1 hidden sm:inline">/</span>
             <StatusBadge riskPercent={svs.riskPercent} />
             <Badge variant="outline" className="text-xs text-muted-foreground border-border/50 hidden sm:inline-flex">
