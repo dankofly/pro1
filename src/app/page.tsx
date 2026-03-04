@@ -18,10 +18,8 @@ import {
   Users,
   ArrowRight,
   Check,
-  X,
   ChevronDown,
   Zap,
-  Crown,
   Lock,
   Heart,
   Star,
@@ -36,6 +34,7 @@ import {
   Bot,
 } from 'lucide-react'
 import { Testimonials } from '@/components/ui/testimonials-columns'
+import { Pricing } from '@/components/ui/pricing'
 
 /* ─── Scroll-reveal hook ─── */
 function useReveal() {
@@ -623,209 +622,75 @@ function FeaturesSection() {
 }
 
 /* ─── Pricing ─── */
+const PRICING_PLANS = [
+  {
+    name: 'Free',
+    price: 0,
+    yearlyPrice: 0,
+    period: 'für immer',
+    description: 'Für den schnellen Check',
+    isFree: true,
+    features: [
+      { text: 'SVS-Beitragsrechner', included: true },
+      { text: 'Wahrheits-Tabelle', included: true },
+      { text: 'Geldfluss-Diagramm', included: true },
+      { text: 'Einkommensteuer-Prognose', included: false },
+      { text: 'Steuer-Chatbot', included: false },
+      { text: 'GmbH-Vergleich', included: false },
+      { text: 'PDF-Export', included: false },
+    ],
+    buttonText: 'Jetzt gratis starten',
+    href: '/rechner',
+    isPopular: false,
+  },
+  {
+    name: 'Sicherheits-Plan',
+    price: 9.9,
+    yearlyPrice: 8.25,
+    yearlyTotal: 99,
+    period: 'pro Monat',
+    description: 'Für Einsteiger',
+    features: [
+      { text: 'Alles aus Free', included: true },
+      { text: 'Einkommensteuer-Prognose', included: true },
+      { text: 'Berechnungen speichern', included: true },
+      { text: 'Dashboard mit Verlauf', included: true },
+      { text: 'Einfacher Export', included: true },
+      { text: 'Steuer-Chatbot', included: false },
+      { text: 'Misch-Einkommen Rechner', included: false },
+    ],
+    buttonText: 'Jetzt starten',
+    href: '/pricing',
+    isPopular: false,
+  },
+  {
+    name: 'SteuerBoard Pro',
+    price: 19.9,
+    yearlyPrice: 16.58,
+    yearlyTotal: 199,
+    period: 'pro Monat',
+    description: 'Für Profis',
+    features: [
+      { text: 'Alles aus Sicherheits-Plan', included: true },
+      { text: 'Steuer-Chatbot (7 Rechner)', included: true },
+      { text: 'KI-Steuerberater', included: true },
+      { text: 'USt-Rechner & Rücklagen', included: true },
+      { text: 'Misch-Einkommen Rechner', included: true },
+      { text: 'GmbH-Vergleich', included: true },
+      { text: 'Pauschalierung Vergleich', included: true },
+      { text: 'Gewinnmaximierer', included: true },
+      { text: 'Investitionen & AfA', included: true },
+      { text: 'Familienbonus & Absetzbeträge', included: true },
+      { text: 'PDF-Export für Steuerberater', included: true },
+    ],
+    buttonText: 'Jetzt upgraden',
+    href: '/pricing',
+    isPopular: true,
+  },
+]
+
 function PricingSection() {
-  const [yearly, setYearly] = useState(false)
-
-  const tiers = [
-    {
-      name: 'Free',
-      monthlyPrice: '0',
-      yearlyPrice: '0',
-      unit: yearly ? 'für immer' : 'für immer',
-      desc: 'Für den schnellen Check',
-      isFree: true,
-      features: [
-        { text: 'SVS-Beitragsrechner', included: true },
-        { text: 'Wahrheits-Tabelle', included: true },
-        { text: 'Geldfluss-Diagramm', included: true },
-        { text: 'Einkommensteuer-Prognose', included: false },
-        { text: 'Steuer-Chatbot', included: false },
-        { text: 'GmbH-Vergleich', included: false },
-        { text: 'PDF-Export', included: false },
-      ],
-      cta: 'Jetzt gratis starten',
-      href: '/rechner',
-      highlight: false,
-    },
-    {
-      name: 'Sicherheits-Plan',
-      monthlyPrice: '9,90',
-      yearlyPrice: '8,25',
-      yearlyTotal: '99',
-      unit: yearly ? 'pro Monat' : 'pro Monat',
-      desc: 'Für Einsteiger',
-      isFree: false,
-      features: [
-        { text: 'Alles aus Free', included: true },
-        { text: 'Einkommensteuer-Prognose', included: true },
-        { text: 'Berechnungen speichern', included: true },
-        { text: 'Dashboard mit Verlauf', included: true },
-        { text: 'Einfacher Export', included: true },
-        { text: 'Steuer-Chatbot', included: false },
-        { text: 'Misch-Einkommen Rechner', included: false },
-      ],
-      cta: 'Jetzt starten',
-      href: '/pricing',
-      highlight: false,
-    },
-    {
-      name: 'SteuerBoard Pro',
-      monthlyPrice: '19,90',
-      yearlyPrice: '16,58',
-      yearlyTotal: '199',
-      unit: yearly ? 'pro Monat' : 'pro Monat',
-      desc: 'Für Profis',
-      isFree: false,
-      features: [
-        { text: 'Alles aus Sicherheits-Plan', included: true },
-        { text: 'Steuer-Chatbot (7 Rechner)', included: true },
-        { text: 'KI-Steuerberater', included: true },
-        { text: 'USt-Rechner & Rücklagen', included: true },
-        { text: 'Misch-Einkommen Rechner', included: true },
-        { text: 'GmbH-Vergleich', included: true },
-        { text: 'Pauschalierung Vergleich', included: true },
-        { text: 'Gewinnmaximierer', included: true },
-        { text: 'Investitionen & AfA', included: true },
-        { text: 'Familienbonus & Absetzbeträge', included: true },
-        { text: 'PDF-Export für Steuerberater', included: true },
-      ],
-      cta: 'Jetzt upgraden',
-      href: '/pricing',
-      highlight: true,
-    },
-  ]
-
-  return (
-    <section id="pricing" className="relative py-20 sm:py-28 bg-slate-900">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <Reveal>
-          <div className="text-center mb-10">
-            <Badge className="bg-amber-500/10 text-amber-400 border-amber-500/20 mb-4">
-              Preise
-            </Badge>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              Starte kostenlos, upgrade wenn du bereit bist
-            </h2>
-            <p className="mt-4 text-blue-200/60 max-w-2xl mx-auto text-lg">
-              Keine versteckten Kosten. Monatlich kündbar. Sichere Zahlung via Stripe.
-            </p>
-          </div>
-        </Reveal>
-
-        {/* Billing Toggle */}
-        <Reveal delay={100}>
-          <div className="flex items-center justify-center gap-4 mb-12">
-            <span className={`text-sm font-medium transition-colors ${!yearly ? 'text-white' : 'text-blue-200/40'}`}>
-              Monatlich
-            </span>
-            <button
-              role="switch"
-              aria-checked={yearly}
-              aria-label="Jährliche Abrechnung"
-              onClick={() => setYearly(!yearly)}
-              className={`relative w-14 h-7 rounded-full transition-colors duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 ${
-                yearly ? 'bg-emerald-500' : 'bg-white/20'
-              }`}
-            >
-              <div
-                className={`absolute top-0.5 left-0.5 w-6 h-6 rounded-full bg-white shadow-md transition-transform duration-300 ${
-                  yearly ? 'translate-x-7' : 'translate-x-0'
-                }`}
-              />
-            </button>
-            <span className={`text-sm font-medium transition-colors ${yearly ? 'text-white' : 'text-blue-200/40'}`}>
-              Jährlich
-            </span>
-            {yearly && (
-              <Badge className="bg-emerald-500/15 text-emerald-400 border-emerald-500/25 text-xs">
-                Spare 20%
-              </Badge>
-            )}
-          </div>
-        </Reveal>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {tiers.map((tier, i) => {
-            const price = yearly ? tier.yearlyPrice : tier.monthlyPrice
-            return (
-              <Reveal key={tier.name} delay={i * 150}>
-                <Card
-                  className={`relative h-full ${
-                    tier.highlight
-                      ? 'bg-white/10 border-amber-400/30 ring-2 ring-amber-400/20'
-                      : 'bg-white/[0.03] border-white/10'
-                  } backdrop-blur-sm`}
-                >
-                  {tier.highlight && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                      <Badge className="bg-amber-500 text-white border-0 shadow-lg">
-                        <Zap className="h-3 w-3 mr-1" />
-                        Beliebtester Plan
-                      </Badge>
-                    </div>
-                  )}
-                  <CardContent className={`p-6 sm:p-8 ${tier.highlight ? 'pt-10' : ''}`}>
-                    <p className="text-blue-200/60 text-sm">{tier.desc}</p>
-                    <h3 className="text-xl font-bold text-white mt-1 flex items-center gap-2">
-                      {tier.highlight && <Crown className="h-5 w-5 text-amber-400" />}
-                      {tier.name}
-                    </h3>
-                    <div className="mt-4 mb-1">
-                      <span className="text-4xl font-extrabold text-white font-mono">{price} EUR</span>
-                      <span className="text-blue-200/50 text-sm ml-2">/ {tier.unit}</span>
-                    </div>
-                    <div className="mb-6 h-5">
-                      {yearly && !tier.isFree && (
-                        <div className="flex items-center gap-2">
-                          <span className="text-blue-200/30 text-xs line-through">{tier.monthlyPrice} EUR/Monat</span>
-                          <span className="text-emerald-400 text-xs font-medium">{tier.yearlyTotal} EUR/Jahr</span>
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="space-y-3 mb-8">
-                      {tier.features.map((f) => (
-                        <div key={f.text} className="flex items-center gap-2.5 text-sm">
-                          {f.included ? (
-                            <Check className={`h-4 w-4 shrink-0 ${tier.highlight ? 'text-amber-400' : 'text-emerald-400'}`} />
-                          ) : (
-                            <X className="h-4 w-4 shrink-0 text-white/20" />
-                          )}
-                          <span className={f.included ? 'text-blue-100' : 'text-white/30'}>
-                            {f.text}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-
-                    <Button
-                      asChild
-                      className={`w-full ${
-                        tier.highlight
-                          ? 'bg-amber-500 hover:bg-amber-600 text-white shadow-lg shadow-amber-500/25'
-                          : 'bg-white/10 hover:bg-white/20 text-white border border-white/10'
-                      }`}
-                    >
-                      <Link href={tier.href}>
-                        {tier.highlight && <Crown className="h-4 w-4 mr-1.5" />}
-                        {tier.cta}
-                      </Link>
-                    </Button>
-                  </CardContent>
-                </Card>
-              </Reveal>
-            )
-          })}
-        </div>
-
-        <Reveal delay={300}>
-          <p className="text-center text-blue-200/30 text-xs mt-8">
-            Alle Preise inkl. USt. {yearly ? 'Jährlich im Voraus. ' : 'Monatlich kündbar. '}Sichere Zahlung via Stripe.
-          </p>
-        </Reveal>
-      </div>
-    </section>
-  )
+  return <Pricing plans={PRICING_PLANS} />
 }
 
 /* ─── Trust ─── */
