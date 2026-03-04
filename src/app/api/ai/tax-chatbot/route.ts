@@ -62,19 +62,23 @@ async function checkRateLimit(userId: string): Promise<{ allowed: boolean; remai
 // ── Build tools for Vercel AI SDK ──────────────────────────
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function buildTools(): Record<string, any> {
+function buildTools(): any {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const tools: Record<string, any> = {}
+  const result: Record<string, any> = {}
 
   for (const def of TOOL_DEFINITIONS) {
-    tools[def.name] = {
+    result[def.name] = {
       description: def.description,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      parameters: jsonSchema(def.input_schema as any),
+      inputSchema: jsonSchema(def.input_schema as any),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      execute: async (input: any) => {
+        return executeTool(def.name, input as Record<string, unknown>)
+      },
     }
   }
 
-  return tools
+  return result
 }
 
 // ── Route Handler ──────────────────────────────────────────
