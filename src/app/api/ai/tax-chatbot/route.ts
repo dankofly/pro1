@@ -4,6 +4,9 @@ import { getSupabaseAdmin } from '@/lib/supabase-admin'
 import { SYSTEM_PROMPT } from '@/lib/tax-calculators/knowledge'
 import { TOOL_DEFINITIONS, executeTool } from '@/lib/tax-calculators'
 
+// Allow up to 60s for Claude API with tool use loops
+export const maxDuration = 60
+
 const MAX_REQUESTS_PER_DAY = 10
 const MAX_TOOL_ITERATIONS = 5
 const MAX_MESSAGES = 20
@@ -133,7 +136,7 @@ export async function POST(request: NextRequest) {
       iterations++
 
       const response = await client.messages.create({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-sonnet-4-6-20250527',
         max_tokens: 2048,
         system: SYSTEM_PROMPT,
         tools,
@@ -194,9 +197,22 @@ export async function POST(request: NextRequest) {
       },
     })
   } catch (err: unknown) {
-    console.error('Tax Chatbot error:', err)
+    const message = err instanceof Error ? err.message : String(err)
+    console.error('Tax Chatbot error:', message, err)
+
+    // Return specific error for common issues
+    if (message.includes('401') || message.includes('authentication')) {
+      return Response.json({ error: 'API-Key ungültig. Bitte Administrator kontaktieren.' }, { status: 500 })
+    }
+    if (message.includes('model') || message.includes('not found')) {
+      return Response.json({ error: 'Modell nicht verfügbar. Bitte später erneut versuchen.' }, { status: 500 })
+    }
+    if (message.includes('timeout') || message.includes('ETIMEDOUT')) {
+      return Response.json({ error: 'Zeitüberschreitung. Bitte erneut versuchen.' }, { status: 504 })
+    }
+
     return Response.json(
-      { error: 'Chatbot-Fehler. Bitte versuche es erneut.' },
+      { error: `Chatbot-Fehler: ${message}` },
       { status: 500 }
     )
   }
