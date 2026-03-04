@@ -30,6 +30,10 @@ import {
   Building2,
   BarChart3,
   Layers,
+  MessageSquare,
+  Receipt,
+  PiggyBank,
+  Bot,
 } from 'lucide-react'
 
 /* ─── Scroll-reveal hook ─── */
@@ -553,26 +557,58 @@ function FeaturesSection() {
           </div>
         </Reveal>
 
-        {/* KI-Steuerberater – Highlight Card */}
+        {/* Steuer-Chatbot – Highlight Card */}
         <Reveal delay={250}>
           <div className="mt-8 relative group">
-            <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-amber-500/20 opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
-            <div className="relative bg-white/[0.05] border border-amber-500/20 rounded-2xl p-6 sm:p-8">
+            <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-emerald-500/20 via-blue-500/20 to-emerald-500/20 opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="relative bg-white/[0.05] border border-emerald-500/20 rounded-2xl p-6 sm:p-8">
               <div className="flex flex-col sm:flex-row items-start gap-5">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/15 shrink-0">
-                  <Sparkles className="h-6 w-6 text-amber-400" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/15 shrink-0">
+                  <MessageSquare className="h-6 w-6 text-emerald-400" />
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-2 mb-2">
-                    <h4 className="text-xl font-bold text-white font-heading">KI-Steuerberater</h4>
-                    <Badge className="bg-amber-500/15 text-amber-400 border-amber-500/25 text-xs">
-                      Pro · Powered by AI
+                    <h4 className="text-xl font-bold text-white font-heading">Steuer-Chatbot</h4>
+                    <Badge className="bg-emerald-500/15 text-emerald-400 border-emerald-500/25 text-xs">
+                      Pro · Powered by Claude AI
                     </Badge>
                   </div>
                   <p className="text-blue-200/60 leading-relaxed">
-                    Dein persönlicher KI-Steuerexperte analysiert deine Zahlen und gibt dir konkrete
-                    Optimierungsstrategien mit Euro-Beträgen — direkt, praxisorientiert und auf
-                    deine Situation zugeschnitten.
+                    Stelle Fragen zu ESt, KöSt, USt, Krypto, Immobilien, Sachbezug und Investitionsfreibetrag —
+                    dein KI-Steuerexperte rechnet in Echtzeit mit 7 spezialisierten Rechnern und
+                    gibt dir präzise Antworten basierend auf österreichischem Steuerrecht 2026.
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {['ESt', 'KöSt', 'USt', 'Krypto', 'ImmoESt', 'Sachbezug', 'IFB'].map((t) => (
+                      <span key={t} className="text-[11px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* KI-Steuerberater (Single-Question) */}
+        <Reveal delay={280}>
+          <div className="mt-4 relative group">
+            <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-amber-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="relative bg-white/[0.03] border border-amber-500/20 rounded-2xl p-5 sm:p-6">
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500/15 shrink-0">
+                  <Sparkles className="h-5 w-5 text-amber-400" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <h4 className="font-semibold text-white font-heading">KI-Steuerberater</h4>
+                    <Badge className="bg-amber-500/15 text-amber-400 border-amber-500/25 text-[10px] px-1.5 py-0">
+                      Pro
+                    </Badge>
+                  </div>
+                  <p className="text-sm text-blue-200/50">
+                    Persönliche Steueranalyse deiner Rechner-Ergebnisse — Optimierungsstrategien mit konkreten Euro-Beträgen.
                   </p>
                 </div>
               </div>
@@ -580,10 +616,12 @@ function FeaturesSection() {
           </div>
         </Reveal>
 
-        {/* Pro Rechner Features – 4-col Grid */}
+        {/* Pro Rechner Features – 6-item Grid */}
         <Reveal delay={300}>
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
+              { icon: <Receipt className="h-4 w-4 text-cyan-400" />, bg: 'bg-cyan-500/10', title: 'USt-Rechner', desc: 'Umsatzsteuer berechnen, Kleinunternehmer-Grenze prüfen und Vorsteuer verrechnen.' },
+              { icon: <PiggyBank className="h-4 w-4 text-pink-400" />, bg: 'bg-pink-500/10', title: 'Rücklagen-Rechner', desc: 'Berechne, wie viel du monatlich für SVS, ESt und USt zurücklegen solltest.' },
               { icon: <Building2 className="h-4 w-4 text-blue-400" />, bg: 'bg-blue-500/10', title: 'GmbH-Vergleich', desc: 'Vergleiche die Steuerbelastung als EPU vs. GmbH — mit konkreten Netto-Zahlen.' },
               { icon: <Layers className="h-4 w-4 text-purple-400" />, bg: 'bg-purple-500/10', title: 'Pauschalierung', desc: 'Prüfe automatisch ob eine Pauschalierung für dich günstiger wäre.' },
               { icon: <BarChart3 className="h-4 w-4 text-emerald-400" />, bg: 'bg-emerald-500/10', title: 'Gewinnmaximierer', desc: 'Simuliere Zusatzumsätze und sieh die Auswirkung auf Steuern und Netto.' },
@@ -621,7 +659,7 @@ function PricingSection() {
         { text: 'Wahrheits-Tabelle', included: true },
         { text: 'Geldfluss-Diagramm', included: true },
         { text: 'Einkommensteuer-Prognose', included: false },
-        { text: 'KI-Steuerberater', included: false },
+        { text: 'Steuer-Chatbot', included: false },
         { text: 'GmbH-Vergleich', included: false },
         { text: 'PDF-Export', included: false },
       ],
@@ -643,8 +681,8 @@ function PricingSection() {
         { text: 'Berechnungen speichern', included: true },
         { text: 'Dashboard mit Verlauf', included: true },
         { text: 'Einfacher Export', included: true },
+        { text: 'Steuer-Chatbot', included: false },
         { text: 'Misch-Einkommen Rechner', included: false },
-        { text: 'Familienbonus & Absetzbeträge', included: false },
       ],
       cta: 'Jetzt starten',
       href: '/pricing',
@@ -660,7 +698,9 @@ function PricingSection() {
       isFree: false,
       features: [
         { text: 'Alles aus Sicherheits-Plan', included: true },
+        { text: 'Steuer-Chatbot (7 Rechner)', included: true },
         { text: 'KI-Steuerberater', included: true },
+        { text: 'USt-Rechner & Rücklagen', included: true },
         { text: 'Misch-Einkommen Rechner', included: true },
         { text: 'GmbH-Vergleich', included: true },
         { text: 'Pauschalierung Vergleich', included: true },
@@ -668,7 +708,6 @@ function PricingSection() {
         { text: 'Investitionen & AfA', included: true },
         { text: 'Familienbonus & Absetzbeträge', included: true },
         { text: 'PDF-Export für Steuerberater', included: true },
-        { text: 'Smart Alerts & Push', included: true },
       ],
       cta: 'Jetzt upgraden',
       href: '/pricing',
@@ -860,7 +899,11 @@ function FAQSection() {
     },
     {
       q: 'Was ist der Unterschied zwischen Free und Pro?',
-      a: 'Die Free-Version bietet den SVS-Beitragsrechner, die Wahrheits-Tabelle und das Geldfluss-Diagramm. Der Sicherheits-Plan (9,90 EUR/Monat) fügt die Einkommensteuer-Prognose, Speichern und Export hinzu. SteuerBoard Pro (19,90 EUR/Monat) bietet alles plus KI-Steuerberater, GmbH-Vergleich, Pauschalierung, Gewinnmaximierer, Investitionen & AfA, Misch-Einkommen Rechner, Familienbonus-Berechnung und PDF-Export.',
+      a: 'Die Free-Version bietet den SVS-Beitragsrechner, die Wahrheits-Tabelle und das Geldfluss-Diagramm. Der Sicherheits-Plan (9,90 EUR/Monat) fügt die Einkommensteuer-Prognose, Speichern und Export hinzu. SteuerBoard Pro (19,90 EUR/Monat) bietet alles plus Steuer-Chatbot mit 7 Rechnern (ESt, KöSt, USt, Krypto, ImmoESt, Sachbezug, IFB), KI-Steuerberater, USt-Rechner, Rücklagen, GmbH-Vergleich, Pauschalierung, Gewinnmaximierer, Investitionen & AfA, Misch-Einkommen Rechner und Familienbonus-Berechnung.',
+    },
+    {
+      q: 'Was kann der Steuer-Chatbot?',
+      a: 'Der Steuer-Chatbot ist ein KI-Assistent powered by Claude AI, der deine Steuerfragen in Echtzeit beantwortet. Er hat Zugriff auf 7 spezialisierte Rechner: Einkommensteuer, Körperschaftsteuer, Umsatzsteuer, Krypto-Steuer, Immobilienertragsteuer, Sachbezug und Investitionsfreibetrag. Stelle Fragen wie „Wie viel ESt zahle ich bei 60.000 EUR?" oder „GmbH oder Einzelunternehmen?" — der Chatbot rechnet mit aktuellen Werten für 2026.',
     },
     {
       q: 'Was ist die Nachzahlungsfalle?',
@@ -1000,7 +1043,12 @@ const FAQ_JSONLD = {
     {
       '@type': 'Question',
       name: 'Was ist der Unterschied zwischen Free und Pro?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Die Free-Version bietet den SVS-Beitragsrechner, die Wahrheits-Tabelle und das Geldfluss-Diagramm. Der Sicherheits-Plan (9,90 EUR/Monat) fügt die Einkommensteuer-Prognose, Speichern und Export hinzu. SteuerBoard Pro (19,90 EUR/Monat) bietet alles plus KI-Steuerberater, GmbH-Vergleich, Pauschalierung, Gewinnmaximierer, Investitionen & AfA, Misch-Einkommen Rechner, Familienbonus-Berechnung und PDF-Export.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Die Free-Version bietet den SVS-Beitragsrechner, die Wahrheits-Tabelle und das Geldfluss-Diagramm. Der Sicherheits-Plan (9,90 EUR/Monat) fügt die Einkommensteuer-Prognose, Speichern und Export hinzu. SteuerBoard Pro (19,90 EUR/Monat) bietet alles plus Steuer-Chatbot mit 7 Rechnern, KI-Steuerberater, USt-Rechner, Rücklagen, GmbH-Vergleich, Pauschalierung, Gewinnmaximierer, Investitionen & AfA, Misch-Einkommen Rechner und Familienbonus-Berechnung.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Was kann der Steuer-Chatbot?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Der Steuer-Chatbot ist ein KI-Assistent powered by Claude AI, der deine Steuerfragen in Echtzeit beantwortet. Er hat Zugriff auf 7 spezialisierte Rechner: Einkommensteuer, Körperschaftsteuer, Umsatzsteuer, Krypto-Steuer, Immobilienertragsteuer, Sachbezug und Investitionsfreibetrag. Er rechnet mit aktuellen Werten für 2026.' },
     },
     {
       '@type': 'Question',
