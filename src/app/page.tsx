@@ -35,6 +35,7 @@ import {
   PiggyBank,
   Bot,
 } from 'lucide-react'
+import { Testimonials } from '@/components/ui/testimonials-columns'
 
 /* ─── Scroll-reveal hook ─── */
 function useReveal() {
@@ -332,63 +333,6 @@ function Hero() {
               </span>
             ))}
           </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-/* ─── Social Proof ─── */
-const REVIEWS = [
-  { name: 'Sandra K.', role: 'Texterin', text: 'In 30 Sekunden mein echtes Netto berechnet. Mein Steuerberater war beeindruckt.' },
-  { name: 'Thomas W.', role: 'IT-Freelancer', text: 'Der Misch-Einkommen Rechner hat mir 2 Stunden beim Steuerberater gespart. Absolut genial.' },
-  { name: 'David P.', role: 'Berater', text: 'Die Nachzahlungs-Prognose war auf den Euro genau. Besser als jeder Excel-Rechner.' },
-  { name: 'Julia H.', role: 'Online-Händlerin', text: 'Familienbonus, AVAB, alles automatisch dabei. Ich spar mir den Gang zum Steuerberater.' },
-  { name: 'Stefan B.', role: 'Webentwickler', text: 'Nutze den Rechner jeden Monat. Die Wasserfall-Analyse zeigt mir genau wo mein Geld hingeht.' },
-  { name: 'Anna G.', role: 'Coach', text: 'Endlich ein Tool das Selbständige in Österreich wirklich verstehen. Klare Empfehlung!' },
-]
-
-function SocialProof() {
-  return (
-    <section className="relative py-16 sm:py-20 bg-slate-950">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <Reveal>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 text-center mb-12">
-            <div className="flex">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-5 w-5 text-amber-400 fill-amber-400" />
-              ))}
-            </div>
-            <p className="text-blue-200/60 text-sm">
-              <span className="text-white font-semibold">4.9/5</span> von über 500+ Selbständigen
-            </p>
-          </div>
-        </Reveal>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {REVIEWS.map((r, i) => (
-            <Reveal key={r.name} delay={i * 100}>
-              <div className="bg-white/[0.04] border border-white/10 rounded-xl p-5 h-full">
-                <div className="flex mb-3">
-                  {[...Array(5)].map((_, j) => (
-                    <Star key={j} className="h-3.5 w-3.5 text-amber-400 fill-amber-400" />
-                  ))}
-                </div>
-                <p className="text-blue-100/80 text-sm leading-relaxed mb-4">
-                  &ldquo;{r.text}&rdquo;
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold font-heading">
-                    {r.name.split(' ').map(n => n[0]).join('')}
-                  </div>
-                  <div>
-                    <p className="text-white text-sm font-medium">{r.name}</p>
-                    <p className="text-blue-200/40 text-xs">{r.role}</p>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          ))}
         </div>
       </div>
     </section>
@@ -1116,7 +1060,7 @@ export default function LandingPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSONLD) }} />
       <Navbar />
       <Hero />
-      <SocialProof />
+      <Testimonials />
       <ProblemSection />
       <FeaturesSection />
       <PricingSection />
