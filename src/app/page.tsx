@@ -22,6 +22,7 @@ import {
   Zap,
   Lock,
   Heart,
+  Star,
   CalendarDays,
   Sparkles,
   Building2,
@@ -29,11 +30,11 @@ import {
   Layers,
   MessageSquare,
   Receipt,
+  PiggyBank,
   Bot,
 } from 'lucide-react'
 import { Testimonials } from '@/components/ui/testimonials-columns'
 import { Pricing } from '@/components/ui/pricing'
-import { BentoCard, BentoGrid } from '@/components/ui/bento-grid'
 
 /* ─── Scroll-reveal hook ─── */
 function useReveal() {
@@ -423,82 +424,31 @@ function ProblemSection() {
 }
 
 /* ─── Features ─── */
-const BENTO_FEATURES = [
-  {
-    Icon: Calculator,
-    name: 'Echtzeit-Prognose',
-    description: 'Zieh am Slider – und sieh sofort dein echtes Netto, die SVS-Nachzahlung und die Einkommensteuer. Kein Raten, kein Warten auf den Bescheid.',
-    href: '/rechner',
-    cta: 'Jetzt berechnen',
-    background: (
-      <div className="absolute inset-0 flex items-center justify-center opacity-20">
-        <div className="grid grid-cols-3 gap-3 p-6 w-full max-w-sm">
-          {[
-            { label: 'SVS', value: '7.124', c: 'text-blue-400' },
-            { label: 'Nachzahlung', value: '1.724', c: 'text-amber-400' },
-            { label: 'Netto', value: '28.742', c: 'text-emerald-400' },
-          ].map((s) => (
-            <div key={s.label} className="bg-white/5 rounded-lg p-2 text-center">
-              <p className="text-[9px] text-white/30 uppercase">{s.label}</p>
-              <p className={`text-xs font-bold ${s.c} font-mono`}>{s.value}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    ),
-    className: 'lg:row-start-1 lg:row-end-4 lg:col-start-2 lg:col-end-3',
-  },
-  {
-    Icon: MessageSquare,
-    name: 'Steuer-Chatbot',
-    description: 'Stelle Fragen zu ESt, KöSt, USt, Krypto und mehr — dein KI-Steuerexperte rechnet mit 7 spezialisierten Rechnern in Echtzeit.',
-    href: '/steuerberater',
-    cta: 'Chatbot testen',
-    background: (
-      <div className="absolute right-4 top-4 flex flex-wrap gap-1.5 opacity-30">
-        {['ESt', 'KöSt', 'USt', 'Krypto', 'ImmoESt', 'Sachbezug', 'IFB'].map((t) => (
-          <span key={t} className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/20">
-            {t}
-          </span>
-        ))}
-      </div>
-    ),
-    className: 'lg:col-start-1 lg:col-end-2 lg:row-start-1 lg:row-end-3',
-  },
-  {
-    Icon: Heart,
-    name: 'Familienbonus & Absetzbeträge',
-    description: 'AVAB, Familienbonus Plus, Verkehrsabsetzbetrag, Kindermehrbetrag – alles automatisch berechnet.',
-    href: '/rechner',
-    cta: 'Mehr erfahren',
-    background: <div />,
-    className: 'lg:col-start-1 lg:col-end-2 lg:row-start-3 lg:row-end-4',
-  },
-  {
-    Icon: CalendarDays,
-    name: '2026 Ready',
-    description: 'Neue Familienbonus-Werte (2.100 EUR), angepasster AVAB, aktueller Verkehrsabsetzbetrag – bereits eingebaut.',
-    href: '/rechner',
-    cta: 'Jetzt testen',
-    background: <div />,
-    className: 'lg:col-start-3 lg:col-end-3 lg:row-start-1 lg:row-end-2',
-  },
-  {
-    Icon: Sparkles,
-    name: 'KI-Steuerberater',
-    description: 'Persönliche Steueranalyse deiner Rechner-Ergebnisse — Optimierungsstrategien mit konkreten Euro-Beträgen.',
-    href: '/steuerberater',
-    cta: 'Analyse starten',
-    background: (
-      <div className="absolute right-4 top-4 opacity-20">
-        <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/30 text-[10px]">Pro</Badge>
-      </div>
-    ),
-    className: 'lg:col-start-3 lg:col-end-3 lg:row-start-2 lg:row-end-4',
-  },
-]
-
 function FeaturesSection() {
+  const features = [
+    {
+      icon: <Calculator className="h-6 w-6" />,
+      title: 'Echtzeit-Prognose',
+      desc: 'Zieh am Slider – und sieh sofort dein echtes Netto, die SVS-Nachzahlung und die Einkommensteuer. Kein Raten, kein Warten auf den Bescheid.',
+      color: 'text-emerald-400',
+      bg: 'bg-emerald-500/10',
+    },
+    {
+      icon: <Heart className="h-6 w-6" />,
+      title: 'Familienbonus & Absetzbeträge',
+      desc: 'AVAB, Familienbonus Plus, Verkehrsabsetzbetrag, Kindermehrbetrag – alles automatisch berechnet mit den korrekten Werten für jedes Jahr.',
+      color: 'text-blue-400',
+      bg: 'bg-blue-500/10',
+    },
+    {
+      icon: <CalendarDays className="h-6 w-6" />,
+      title: '2026 Ready',
+      desc: 'Neue Familienbonus-Werte (2.100 EUR), angepasster AVAB, aktueller Verkehrsabsetzbetrag – bereits eingebaut, bevor dein Steuerberater davon weiss.',
+      color: 'text-amber-400',
+      bg: 'bg-amber-500/10',
+    },
+  ]
+
   return (
     <section id="features" className="relative py-20 sm:py-28 bg-gradient-to-b from-slate-950 to-slate-900">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -516,12 +466,155 @@ function FeaturesSection() {
           </div>
         </Reveal>
 
-        <Reveal delay={150}>
-          <BentoGrid className="lg:grid-rows-3">
-            {BENTO_FEATURES.map((feature) => (
-              <BentoCard key={feature.name} {...feature} />
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+          {/* Lead feature – 3 cols with larger visual */}
+          <Reveal className="lg:col-span-3">
+            <div className="group relative h-full">
+              <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-emerald-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <Card className="relative bg-white/[0.03] border-white/10 h-full">
+                <CardContent className="p-6 sm:p-10">
+                  <div className={`flex h-14 w-14 items-center justify-center rounded-xl ${features[0].bg} ${features[0].color} mb-6`}>
+                    {features[0].icon}
+                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 font-heading">{features[0].title}</h3>
+                  <p className="text-blue-200/60 leading-relaxed text-lg">{features[0].desc}</p>
+                  <div className="mt-8 grid grid-cols-3 gap-4">
+                    {[
+                      { label: 'SVS Gesamt', value: '7.124 EUR', color: 'text-blue-300' },
+                      { label: 'Nachzahlung', value: '1.724 EUR', color: 'text-amber-300' },
+                      { label: 'Echtes Netto', value: '28.742 EUR', color: 'text-emerald-300' },
+                    ].map((s) => (
+                      <div key={s.label} className="bg-white/5 rounded-xl p-3 text-center">
+                        <p className="text-[10px] text-white/40 uppercase tracking-wider">{s.label}</p>
+                        <p className={`text-sm font-bold ${s.color} font-mono mt-0.5`}>{s.value}</p>
+                      </div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </Reveal>
+          {/* Secondary features – stacked in 2 cols */}
+          <div className="lg:col-span-2 space-y-6">
+            {features.slice(1).map((f, i) => (
+              <Reveal key={f.title} delay={(i + 1) * 150}>
+                <Card className="bg-white/[0.03] border-white/10 h-full">
+                  <CardContent className="p-6">
+                    <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${f.bg} ${f.color} mb-4`}>
+                      {f.icon}
+                    </div>
+                    <h3 className="text-lg font-bold text-white mb-2 font-heading">{f.title}</h3>
+                    <p className="text-blue-200/60 leading-relaxed text-sm">{f.desc}</p>
+                  </CardContent>
+                </Card>
+              </Reveal>
             ))}
-          </BentoGrid>
+          </div>
+        </div>
+
+        {/* Additional features – 2-col row */}
+        <Reveal delay={200}>
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="flex items-start gap-4 bg-white/[0.03] border border-white/10 rounded-xl p-5">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-500/10 shrink-0">
+                <TrendingUp className="h-5 w-5 text-purple-400" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-white font-heading">Misch-Einkommen Rechner</h4>
+                <p className="text-sm text-blue-200/50 mt-1">Angestellt + Gewerbe? Berechne die Differenz-Vorschreibung, doppelte SV und dein echtes kombiniertes Netto.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-4 bg-white/[0.03] border border-white/10 rounded-xl p-5">
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 shrink-0">
+                <Star className="h-5 w-5 text-emerald-400" />
+              </div>
+              <div>
+                <h4 className="font-semibold text-white font-heading">Wasserfall-Analyse</h4>
+                <p className="text-sm text-blue-200/50 mt-1">Sieh genau, wie sich dein Brutto zu Netto aufschlüsselt: SVS, Einkommensteuer und was wirklich bleibt.</p>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Steuer-Chatbot – Highlight Card */}
+        <Reveal delay={250}>
+          <div className="mt-8 relative group">
+            <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-emerald-500/20 via-blue-500/20 to-emerald-500/20 opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="relative bg-white/[0.05] border border-emerald-500/20 rounded-2xl p-6 sm:p-8">
+              <div className="flex flex-col sm:flex-row items-start gap-5">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/15 shrink-0">
+                  <MessageSquare className="h-6 w-6 text-emerald-400" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <h4 className="text-xl font-bold text-white font-heading">Steuer-Chatbot</h4>
+                    <Badge className="bg-emerald-500/15 text-emerald-400 border-emerald-500/25 text-xs">
+                      Pro · Powered by Claude AI
+                    </Badge>
+                  </div>
+                  <p className="text-blue-200/60 leading-relaxed">
+                    Stelle Fragen zu ESt, KöSt, USt, Krypto, Immobilien, Sachbezug und Investitionsfreibetrag —
+                    dein KI-Steuerexperte rechnet in Echtzeit mit 7 spezialisierten Rechnern und
+                    gibt dir präzise Antworten basierend auf österreichischem Steuerrecht 2026.
+                  </p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {['ESt', 'KöSt', 'USt', 'Krypto', 'ImmoESt', 'Sachbezug', 'IFB'].map((t) => (
+                      <span key={t} className="text-[11px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* KI-Steuerberater (Single-Question) */}
+        <Reveal delay={280}>
+          <div className="mt-4 relative group">
+            <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-amber-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="relative bg-white/[0.03] border border-amber-500/20 rounded-2xl p-5 sm:p-6">
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500/15 shrink-0">
+                  <Sparkles className="h-5 w-5 text-amber-400" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <h4 className="font-semibold text-white font-heading">KI-Steuerberater</h4>
+                    <Badge className="bg-amber-500/15 text-amber-400 border-amber-500/25 text-[10px] px-1.5 py-0">
+                      Pro
+                    </Badge>
+                  </div>
+                  <p className="text-sm text-blue-200/50">
+                    Persönliche Steueranalyse deiner Rechner-Ergebnisse — Optimierungsstrategien mit konkreten Euro-Beträgen.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        {/* Pro Rechner Features – 6-item Grid */}
+        <Reveal delay={300}>
+          <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {[
+              { icon: <Receipt className="h-4 w-4 text-cyan-400" />, bg: 'bg-cyan-500/10', title: 'USt-Rechner', desc: 'Umsatzsteuer berechnen, Kleinunternehmer-Grenze prüfen und Vorsteuer verrechnen.' },
+              { icon: <PiggyBank className="h-4 w-4 text-pink-400" />, bg: 'bg-pink-500/10', title: 'Rücklagen-Rechner', desc: 'Berechne, wie viel du monatlich für SVS, ESt und USt zurücklegen solltest.' },
+              { icon: <Building2 className="h-4 w-4 text-blue-400" />, bg: 'bg-blue-500/10', title: 'GmbH-Vergleich', desc: 'Vergleiche die Steuerbelastung als EPU vs. GmbH — mit konkreten Netto-Zahlen.' },
+              { icon: <Layers className="h-4 w-4 text-purple-400" />, bg: 'bg-purple-500/10', title: 'Pauschalierung', desc: 'Prüfe automatisch ob eine Pauschalierung für dich günstiger wäre.' },
+              { icon: <BarChart3 className="h-4 w-4 text-emerald-400" />, bg: 'bg-emerald-500/10', title: 'Gewinnmaximierer', desc: 'Simuliere Zusatzumsätze und sieh die Auswirkung auf Steuern und Netto.' },
+              { icon: <Calculator className="h-4 w-4 text-amber-400" />, bg: 'bg-amber-500/10', title: 'Investitionen & AfA', desc: 'Berechne Abschreibungen für Einrichtung, EDV und Maschinen.' },
+            ].map((f) => (
+              <div key={f.title} className="bg-white/[0.03] border border-white/10 rounded-xl p-4">
+                <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${f.bg} mb-3`}>
+                  {f.icon}
+                </div>
+                <h4 className="font-semibold text-white text-sm font-heading">{f.title}</h4>
+                <p className="text-xs text-blue-200/50 mt-1 leading-relaxed">{f.desc}</p>
+              </div>
+            ))}
+          </div>
         </Reveal>
       </div>
     </section>
