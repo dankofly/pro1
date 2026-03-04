@@ -1,15 +1,15 @@
 import { NextRequest } from 'next/server'
-import Anthropic from '@anthropic-ai/sdk'
+import { generateText, jsonSchema } from 'ai'
+import { google } from '@ai-sdk/google'
 import { getSupabaseAdmin } from '@/lib/supabase-admin'
 import { SYSTEM_PROMPT } from '@/lib/tax-calculators/knowledge'
-import { TOOL_DEFINITIONS, executeTool } from '@/lib/tax-calculators'
+import { executeTool, TOOL_DEFINITIONS } from '@/lib/tax-calculators'
 
-// Allow up to 60s for Claude API with tool use loops
 export const maxDuration = 60
 
 const MAX_REQUESTS_PER_DAY = 10
-const MAX_TOOL_ITERATIONS = 5
 const MAX_MESSAGES = 20
+const MAX_TOOL_ITERATIONS = 5
 
 // ── Rate Limiting (reused from tax-advisor) ────────────────
 
@@ -59,6 +59,24 @@ async function checkRateLimit(userId: string): Promise<{ allowed: boolean; remai
   return { allowed: true, remaining: MAX_REQUESTS_PER_DAY - updated[0].request_count }
 }
 
+// ── Build tools for Vercel AI SDK ──────────────────────────
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function buildTools(): Record<string, any> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const tools: Record<string, any> = {}
+
+  for (const def of TOOL_DEFINITIONS) {
+    tools[def.name] = {
+      description: def.description,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      parameters: jsonSchema(def.input_schema as any),
+    }
+  }
+
+  return tools
+}
+
 // ── Route Handler ──────────────────────────────────────────
 
 export async function POST(request: NextRequest) {
@@ -71,7 +89,7 @@ export async function POST(request: NextRequest) {
 
     const { data: { user }, error: authError } = await getSupabaseAdmin().auth.getUser(token)
     if (authError || !user) {
-      return Response.json({ error: 'Ungueltiges Token' }, { status: 401 })
+      return Response.json({ error: 'Ungültiges Token' }, { status: 401 })
     }
 
     // 2. Subscription check
@@ -102,95 +120,75 @@ export async function POST(request: NextRequest) {
       return Response.json({ error: 'Keine Nachrichten gesendet' }, { status: 400 })
     }
 
-    // Limit conversation length
     const truncatedMessages = incomingMessages.slice(-MAX_MESSAGES)
 
-    // 5. Build Claude messages
-    const claudeMessages: Anthropic.MessageParam[] = truncatedMessages.map((m) => ({
-      role: m.role === 'user' ? 'user' : 'assistant',
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const currentMessages: any[] = truncatedMessages.map((m) => ({
+      role: m.role === 'user' ? 'user' as const : 'assistant' as const,
       content: m.content,
     }))
 
-    // 6. Call Claude with Tool Use loop
-    const apiKey = process.env.ANTHROPIC_API_KEY
-    if (!apiKey) {
-      return Response.json({ error: 'API-Konfigurationsfehler' }, { status: 500 })
-    }
-
-    const client = new Anthropic({ apiKey })
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const tools = TOOL_DEFINITIONS.map((t) => ({
-      name: t.name,
-      description: t.description,
-      input_schema: t.input_schema as any,
-    })) as Anthropic.Tool[]
-
-    let toolsUsed: string[] = []
+    // 5. Call Gemini with manual tool loop
+    const tools = buildTools()
+    const toolsUsed: string[] = []
     let finalText = ''
-    let iterations = 0
 
-    // Tool Use loop: Claude may call tools, we execute them and continue
-    let currentMessages = [...claudeMessages]
-
-    while (iterations < MAX_TOOL_ITERATIONS) {
-      iterations++
-
-      const response = await client.messages.create({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 2048,
+    for (let i = 0; i < MAX_TOOL_ITERATIONS; i++) {
+      const result = await generateText({
+        model: google('gemini-2.0-flash'),
         system: SYSTEM_PROMPT,
-        tools,
         messages: currentMessages,
+        tools,
+        maxOutputTokens: 2048,
+        temperature: 0.7,
       })
 
-      // Check if Claude wants to use tools
-      const toolUseBlocks = response.content.filter(
-        (block) => block.type === 'tool_use'
-      ) as Array<{ type: 'tool_use'; id: string; name: string; input: unknown }>
-
-      const textBlocks = response.content.filter(
-        (block) => block.type === 'text'
-      ) as Array<{ type: 'text'; text: string }>
-
-      if (toolUseBlocks.length === 0) {
-        // No more tool calls — collect final text
-        finalText = textBlocks.map((b) => b.text).join('\n')
+      // If no tool calls, we're done
+      if (!result.toolCalls || result.toolCalls.length === 0) {
+        finalText = result.text
         break
       }
 
       // Execute tool calls
-      const toolResults: Array<{ type: 'tool_result'; tool_use_id: string; content: string }> = []
-      for (const toolUse of toolUseBlocks) {
-        const result = executeTool(toolUse.name, toolUse.input as Record<string, unknown>)
-        toolsUsed.push(toolUse.name)
-        toolResults.push({
-          type: 'tool_result',
-          tool_use_id: toolUse.id,
-          content: result,
-        })
-      }
+      const toolResults = result.toolCalls.map((tc) => {
+        toolsUsed.push(tc.toolName)
+        const output = executeTool(tc.toolName, tc.input as Record<string, unknown>)
+        return { toolCallId: tc.toolCallId, toolName: tc.toolName, result: output }
+      })
 
-      // Add assistant response + tool results to conversation
-      currentMessages = [
-        ...currentMessages,
-        { role: 'assistant' as const, content: response.content },
-        { role: 'user' as const, content: toolResults },
-      ]
+      // Append assistant message (with tool calls) and tool results to conversation
+      currentMessages.push({
+        role: 'assistant' as const,
+        content: result.toolCalls.map((tc) => ({
+          type: 'tool-call' as const,
+          toolCallId: tc.toolCallId,
+          toolName: tc.toolName,
+          args: tc.input,
+        })),
+      })
 
-      // If stop_reason is end_turn with text, we're done
-      if (response.stop_reason === 'end_turn' && textBlocks.length > 0) {
-        finalText = textBlocks.map((b) => b.text).join('\n')
-        break
+      currentMessages.push({
+        role: 'tool' as const,
+        content: toolResults.map((tr) => ({
+          type: 'tool-result' as const,
+          toolCallId: tr.toolCallId,
+          toolName: tr.toolName,
+          result: tr.result,
+        })),
+      })
+
+      // If there was also text in the response, capture it
+      if (result.text) {
+        finalText = result.text
       }
     }
 
     // Deduplicate tools used
-    toolsUsed = [...new Set(toolsUsed)]
+    const uniqueTools = [...new Set(toolsUsed)]
 
     return Response.json({
       text: finalText,
-      tools_used: toolsUsed,
+      tools_used: uniqueTools,
       remaining,
     }, {
       headers: {
@@ -200,17 +198,6 @@ export async function POST(request: NextRequest) {
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : String(err)
     console.error('Tax Chatbot error:', message, err)
-
-    // Return specific error for common issues
-    if (message.includes('401') || message.includes('authentication')) {
-      return Response.json({ error: 'API-Key ungültig. Bitte Administrator kontaktieren.' }, { status: 500 })
-    }
-    if (message.includes('model') || message.includes('not found')) {
-      return Response.json({ error: 'Modell nicht verfügbar. Bitte später erneut versuchen.' }, { status: 500 })
-    }
-    if (message.includes('timeout') || message.includes('ETIMEDOUT')) {
-      return Response.json({ error: 'Zeitüberschreitung. Bitte erneut versuchen.' }, { status: 504 })
-    }
 
     return Response.json(
       { error: `Chatbot-Fehler: ${message}` },

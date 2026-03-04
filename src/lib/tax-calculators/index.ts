@@ -1,6 +1,14 @@
 /**
- * Claude Tool definitions and dispatcher for Austrian Tax Calculators.
+ * Austrian Tax Calculators — Tool definitions and dispatcher.
  */
+
+export { calculateEinkommensteuer, type EinkommensteuerInput } from './einkommensteuer'
+export { calculateKoerperschaftsteuer, type KoerperschaftsteuerInput } from './koerperschaftsteuer'
+export { calculateUmsatzsteuer, type UmsatzsteuerInput } from './umsatzsteuer'
+export { calculateSachbezug, type SachbezugInput } from './sachbezug'
+export { calculateInvestitionsfreibetrag, type InvestitionsfreibetragInput } from './investitionsfreibetrag'
+export { calculateImmobilienertragssteuer, type ImmobilienertragssteuerInput } from './immobilienertragssteuer'
+export { calculateKryptoSteuer, type KryptoSteuerInput } from './krypto-steuer'
 
 import { calculateEinkommensteuer, type EinkommensteuerInput } from './einkommensteuer'
 import { calculateKoerperschaftsteuer, type KoerperschaftsteuerInput } from './koerperschaftsteuer'
