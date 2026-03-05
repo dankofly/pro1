@@ -71,7 +71,7 @@ export function Pricing({
   }
 
   return (
-    <section id="pricing" className="relative py-20 sm:py-28 bg-slate-900">
+    <section id="pricing" className="relative py-20 sm:py-28 bg-gradient-to-b from-slate-900 to-slate-950">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center space-y-4 mb-12">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white font-heading">
