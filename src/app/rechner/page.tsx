@@ -50,7 +50,8 @@ import { SectionDivider } from '@/components/rechner/section-divider'
 import { Button } from '@/components/ui/button'
 // Alert replaced with custom left-border accent divs
 import { Badge } from '@/components/ui/badge'
-import { Save, Lock, Settings2, ChevronDown } from 'lucide-react'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
+import { Save, Lock, Settings2, ChevronDown, HelpCircle } from 'lucide-react'
 import { toast } from 'sonner'
 
 import type { Stammdaten } from '@/lib/rechner-types'
@@ -449,6 +450,82 @@ function RechnerContent() {
               feature={upgradeFeature}
               requiredPlan={upgradeRequiredPlan}
             />
+
+            {/* ─── FAQ ─── */}
+            <section className="mt-12 card-surface p-5 sm:p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                <h2 className="text-[11px] font-semibold uppercase text-muted-foreground tracking-[0.08em]">
+                  Häufig gestellte Fragen zum SVS-Rechner
+                </h2>
+              </div>
+              <Accordion type="single" collapsible className="space-y-1">
+                <AccordionItem value="r-0" className="border-b-0">
+                  <AccordionTrigger className="text-sm text-left hover:no-underline py-3">
+                    Was berechnet der SVS-Beitragsrechner von SteuerBoard.pro?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                    Der Rechner ermittelt auf Basis deines Jahresgewinns (Umsatz minus Betriebsausgaben) deine SVS-Beiträge aufgeschlüsselt nach Pensionsversicherung (18,50 %), Krankenversicherung (6,80 %), Selbständigenvorsorge (1,53 %) und Unfallversicherung (pauschal 11,35 EUR/Monat). Zusätzlich berechnet er die Einkommensteuer nach dem progressiven Tarif (§ 33 EStG), die voraussichtliche SVS-Nachzahlung und dein echtes Netto — also was nach Abzug aller Abgaben tatsächlich auf deinem Konto bleibt.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="r-1" className="border-b-0">
+                  <AccordionTrigger className="text-sm text-left hover:no-underline py-3">
+                    Worin unterscheidet sich dieser Rechner vom WKO SVS-Rechner?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                    Der WKO SVS-Beitragsrechner liefert nur die SVS-Beiträge auf Basis einer Beitragsgrundlage — ohne Einkommensteuer, ohne Nachzahlung und ohne echtes Netto. SteuerBoard.pro berechnet alles in einem Schritt: SVS-Beiträge, Einkommensteuer-Prognose nach Tarifstufen, die voraussichtliche Nachzahlung (Differenz vorläufige vs. endgültige Beiträge), das Geldfluss-Diagramm (wer bekommt wie viel), die Wahrheits-Tabelle mit allen Positionen im Detail und monatliche Rücklagen-Empfehlungen. Außerdem bietet SteuerBoard einen KI-Steuerberater, GmbH-Vergleich, Pauschalierungs-Check und 7 weitere Steuerrechner.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="r-2" className="border-b-0">
+                  <AccordionTrigger className="text-sm text-left hover:no-underline py-3">
+                    Was ist die Beitragsgrundlage und wie wird sie ermittelt?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                    Die Beitragsgrundlage ist der Betrag, auf den deine SVS-Beiträge berechnet werden. Sie ergibt sich aus deinem Gewinn laut Einkommensteuerbescheid (§ 25 GSVG). Es gibt eine Mindestbeitragsgrundlage (ca. 500 EUR/Monat) und eine Höchstbeitragsgrundlage (ca. 7.070 EUR/Monat in 2025). Liegt dein Gewinn darunter, zahlst du die Mindestbeiträge; liegt er darüber, werden die Beiträge gedeckelt. Der Rechner zeigt dir genau, wo du innerhalb dieser Grenzen liegst.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="r-3" className="border-b-0">
+                  <AccordionTrigger className="text-sm text-left hover:no-underline py-3">
+                    Warum stimmen meine vorläufigen SVS-Beiträge nicht mit den endgültigen überein?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                    Die SVS berechnet deine Beiträge zunächst vorläufig auf Basis deines Gewinns von vor 3 Jahren (§ 25a GSVG). Sobald dein aktueller Steuerbescheid vorliegt, wird die endgültige Beitragsgrundlage festgestellt. Ist dein aktueller Gewinn höher als vor 3 Jahren, entsteht eine Nachzahlung — die sogenannte „Nachzahlungsfalle". Bei einer Gewinnsteigerung von 30.000 auf 60.000 EUR kann diese über 5.000 EUR betragen. Die Wahrheits-Tabelle in SteuerBoard zeigt dir Quartal für Quartal die Differenz zwischen vorläufig und endgültig.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="r-4" className="border-b-0">
+                  <AccordionTrigger className="text-sm text-left hover:no-underline py-3">
+                    Was zeigt die Wahrheits-Tabelle?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                    Die Wahrheits-Tabelle schlüsselt alle SVS-Positionen im Detail auf: vorläufige Beiträge (basierend auf dem Gewinn von vor 3 Jahren), endgültige Beiträge (basierend auf dem aktuellen Gewinn), die Differenz pro Quartal und die Gesamtnachzahlung bzw. Rückerstattung. So siehst du auf einen Blick, warum dein SVS-Bescheid höher oder niedriger ausfällt als erwartet.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="r-5" className="border-b-0">
+                  <AccordionTrigger className="text-sm text-left hover:no-underline py-3">
+                    Wie funktioniert das Geldfluss-Diagramm?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                    Das Geldfluss-Diagramm visualisiert, wie sich dein Jahresgewinn aufteilt: Was geht an die SVS (Sozialversicherung), was geht ans Finanzamt (Einkommensteuer) und was bleibt als echtes Netto bei dir. So siehst du die tatsächliche Abgabenbelastung in Prozent deines Gewinns — oft deutlich höher als der reine Einkommensteuersatz vermuten lässt.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="r-6" className="border-b-0">
+                  <AccordionTrigger className="text-sm text-left hover:no-underline py-3">
+                    Für welche Steuerjahre funktioniert der Rechner?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                    Der Rechner unterstützt die Steuerjahre 2024, 2025 und 2026 mit den jeweils gültigen Werten: SVS-Beitragssätze, Mindest- und Höchstbeitragsgrundlagen, Einkommensteuertarif, Gewinnfreibetrag, Familienbonus Plus (2.100 EUR ab 2026), AVAB (572 EUR), Verkehrsabsetzbetrag (481 EUR), Kindermehrbetrag (727 EUR) und Kleinunternehmergrenze (55.000 EUR). Du kannst per Klick zwischen den Jahren wechseln und die Auswirkung auf deine Abgaben vergleichen.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="r-7" className="border-b-0">
+                  <AccordionTrigger className="text-sm text-left hover:no-underline py-3">
+                    Sind die Berechnungen verbindlich?
+                  </AccordionTrigger>
+                  <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
+                    Nein. Alle Berechnungen sind Richtwerte auf Basis der aktuellen gesetzlichen Grundlagen (EStG, GSVG, FSVG) und erfolgen ohne Gewähr. Die endgültigen Bescheide der SVS und des Finanzamts können aufgrund individueller Sachverhalte abweichen. SteuerBoard.pro ersetzt keine professionelle Steuerberatung, hilft dir aber, deine Steuersituation besser einzuschätzen und vorbereitet ins Gespräch mit deinem Steuerberater zu gehen.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </section>
 
             <footer className="text-center py-8 text-xs text-muted-foreground">
               <p>Alle Angaben ohne Gewähr. Kein Ersatz für professionelle Steuerberatung. Werte {input.year}.</p>

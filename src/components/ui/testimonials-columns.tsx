@@ -161,7 +161,7 @@ export function Testimonials() {
               ))}
             </div>
             <p className="text-blue-200/60 text-sm">
-              <span className="text-white font-semibold">4.9/5</span> von über 500+ Selbständigen
+              <span className="text-white font-semibold">4.9/5</span> von schon 100+ Selbständigen
             </p>
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold text-white font-heading">

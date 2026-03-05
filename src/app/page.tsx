@@ -843,36 +843,48 @@ function TrustSection() {
 function FAQSection() {
   const faqs = [
     {
-      q: 'Was genau berechnet SteuerBoard.pro?',
-      a: 'SteuerBoard.pro berechnet deine endgültigen SVS-Beiträge (PV, KV, UV, Selbständigenvorsorge), die voraussichtliche Nachzahlung, die Einkommensteuer-Prognose und dein echtes Netto – basierend auf deinem tatsächlichen Jahresgewinn.',
+      q: 'Was ist SteuerBoard.pro und für wen ist es gedacht?',
+      a: 'SteuerBoard.pro ist ein interaktiver Steuer- und SVS-Rechner für österreichische Selbständige — Einzelunternehmer (EPU), Freiberufler und Gewerbetreibende, die bei der SVS (Sozialversicherung der Selbständigen) nach GSVG oder FSVG versichert sind. Du gibst Umsatz und Betriebsausgaben ein und erhältst sofort eine Berechnung deiner SVS-Beiträge (Pensionsversicherung, Krankenversicherung, Unfallversicherung, Selbständigenvorsorge), der Einkommensteuer nach dem progressiven Tarif (§ 33 EStG) und deines echten Nettos — also was wirklich auf deinem Konto bleibt.',
     },
     {
-      q: 'Sind die Berechnungen rechtlich verbindlich?',
-      a: 'Nein. SteuerBoard.pro ist ein Prognose-Tool und ersetzt keine Steuerberatung. Alle Berechnungen basieren auf den aktuellen gesetzlichen Grundlagen, aber die endgültigen Bescheide der SVS und des Finanzamts können abweichen.',
+      q: 'Warum SteuerBoard.pro und nicht der WKO SVS-Rechner?',
+      a: 'Der WKO SVS-Beitragsrechner berechnet nur die reinen SVS-Beiträge — ohne Einkommensteuer, ohne Nachzahlungsprognose und ohne echtes Netto. SteuerBoard.pro geht deutlich weiter: Du siehst die voraussichtliche SVS-Nachzahlung (die sogenannte „Nachzahlungsfalle"), die Einkommensteuer-Prognose nach Tarifstufen, das Geldfluss-Diagramm (was geht an SVS, Finanzamt und was bleibt netto), die Wahrheits-Tabelle mit vorläufigen vs. endgültigen Beiträgen, einen KI-Steuerberater, GmbH-Vergleich, Pauschalierungs-Check und 7 spezialisierte Steuerrechner. Der WKO-Rechner ist ein einfacher Beitragsrechner — SteuerBoard ist eine komplette Steuerplanungs-Plattform.',
     },
     {
-      q: 'Was ist der Unterschied zwischen Free und Pro?',
-      a: 'Die Free-Version bietet den SVS-Beitragsrechner, die Wahrheits-Tabelle und das Geldfluss-Diagramm. Der Sicherheits-Plan (9,90 EUR/Monat) fügt die Einkommensteuer-Prognose, Speichern und Export hinzu. SteuerBoard Pro (19,90 EUR/Monat) bietet alles plus Steuer-Chatbot mit 7 Rechnern (ESt, KöSt, USt, Krypto, ImmoESt, Sachbezug, IFB), KI-Steuerberater, USt-Rechner, Rücklagen, GmbH-Vergleich, Pauschalierung, Gewinnmaximierer, Investitionen & AfA, Misch-Einkommen Rechner und Familienbonus-Berechnung.',
+      q: 'Welche Features bietet SteuerBoard.pro?',
+      a: 'Free (kostenlos): SVS-Beitragsrechner, Wahrheits-Tabelle, Geldfluss-Diagramm, Sachbezug-Rechner, Steuer-Wissen Bot und aktuelle Werte für 2024–2026. Sicherheits-Plan (9,90 EUR/Monat): zusätzlich Einkommensteuer-Prognose, Familienbonus & Absetzbeträge, Berechnungen speichern, Dashboard mit Verlauf und Export. SteuerBoard Pro (19,90 EUR/Monat): alles plus Steuer-Chatbot mit 7 Rechnern (ESt, KöSt, USt, Krypto, ImmoESt, Sachbezug, IFB), KI-Steuerberater mit persönlicher Optimierung, Misch-Einkommen Rechner für Angestellte mit Nebeneinkünften, GmbH-Vergleich (EPU vs. GmbH mit Break-Even), Pauschalierungs-Vergleich, USt-Rechner & monatliche Rücklagen, Gewinnmaximierer, Investitionen & AfA und PDF-Export für den Steuerberater.',
     },
     {
-      q: 'Was kann der Steuer-Chatbot?',
-      a: 'Der Steuer-Chatbot ist ein KI-Assistent powered by Claude AI, der deine Steuerfragen in Echtzeit beantwortet. Er hat Zugriff auf 7 spezialisierte Rechner: Einkommensteuer, Körperschaftsteuer, Umsatzsteuer, Krypto-Steuer, Immobilienertragsteuer, Sachbezug und Investitionsfreibetrag. Stelle Fragen wie „Wie viel ESt zahle ich bei 60.000 EUR?" oder „GmbH oder Einzelunternehmen?" — der Chatbot rechnet mit aktuellen Werten für 2026.',
+      q: 'Was ist die SVS-Nachzahlungsfalle und wie schützt SteuerBoard davor?',
+      a: 'Die SVS berechnet deine Beiträge zunächst vorläufig — auf Basis deines Gewinns von vor 3 Jahren (§ 25a GSVG). Steigt dein Einkommen, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung, die viele Selbständige unvorbereitet trifft. Bei einer Gewinnsteigerung von 30.000 auf 60.000 EUR kann die Nachzahlung über 5.000 EUR betragen. SteuerBoard.pro zeigt dir die exakte Differenz zwischen vorläufigen und endgültigen Beiträgen, berechnet monatliche Rücklagen und warnt dich rechtzeitig.',
     },
     {
-      q: 'Was ist die Nachzahlungsfalle?',
-      a: 'Die SVS berechnet deine Beiträge zunächst auf Basis deines Gewinns von vor 3 Jahren (vorläufige Beitragsgrundlage). Steigt dein Einkommen, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung. SteuerBoard.pro zeigt dir genau, wie hoch diese ausfallen wird.',
+      q: 'Wie wird die Einkommensteuer für Selbständige in Österreich berechnet?',
+      a: 'Die Einkommensteuer wird auf dein steuerpflichtiges Einkommen nach dem progressiven Tarif gemäß § 33 EStG berechnet: 0 % bis 12.816 EUR, 20 % bis 20.818 EUR, 30 % bis 34.513 EUR, 40 % bis 66.612 EUR, 48 % bis 99.266 EUR, 50 % bis 1 Mio. EUR. SteuerBoard zieht automatisch SVS-Beiträge, den Gewinnfreibetrag (§ 10 EStG, bis zu 15 % vom Gewinn) und Absetzbeträge wie Familienbonus Plus (2.100 EUR/Kind), AVAB (572 EUR), Verkehrsabsetzbetrag (481 EUR) und Pendlerpauschale ab. Du siehst Grenzsteuersatz und Durchschnittssteuersatz auf einen Blick.',
     },
     {
-      q: 'Kann ich den Rechner auch nutzen, wenn ich angestellt UND selbständig bin?',
-      a: 'Ja! Der Misch-Einkommen Rechner (Pro-Feature) ist genau dafür gebaut. Er berechnet die Differenz-Vorschreibung, berücksichtigt die doppelte Sozialversicherung und zeigt dir das kombinierte Netto aus beiden Einkunftsarten.',
+      q: 'Was kann der KI-Steuer-Chatbot?',
+      a: 'Der Steuer-Chatbot (Pro-Feature) ist ein KI-Assistent powered by Claude AI, der deine Steuerfragen in Echtzeit beantwortet und mit aktuellen österreichischen Werten für 2026 rechnet. Er hat Zugriff auf 7 spezialisierte Rechner: Einkommensteuer, Körperschaftsteuer (23 % KöSt), Umsatzsteuer (inkl. Kleinunternehmerregelung § 6 Abs. 1 Z 27 UStG), Krypto-Steuer (27,5 % KESt), Immobilienertragsteuer (30 % ImmoESt), Sachbezug und Investitionsfreibetrag (§ 11 EStG, 10–15 %). Stelle Fragen wie „Wie viel ESt zahle ich bei 80.000 EUR Gewinn?" oder „Lohnt sich eine GmbH ab welchem Gewinn?".',
     },
     {
-      q: 'Sind die Werte für 2026 schon verfügbar?',
-      a: 'Ja! Wir haben bereits die neuen Werte für 2026 eingebaut: Familienbonus Plus (2.100 EUR), angepasster AVAB, aktualisierter Verkehrsabsetzbetrag (481 EUR) und Kindermehrbetrag (727 EUR).',
+      q: 'Funktioniert SteuerBoard auch bei Misch-Einkommen (angestellt und selbständig)?',
+      a: 'Ja. Der Misch-Einkommen Rechner (Pro-Feature) ist speziell für Personen mit unselbständigen und selbständigen Einkünften gebaut. Er berechnet die Differenz-Vorschreibung der SVS, berücksichtigt die doppelte Sozialversicherung (ASVG + GSVG) und ermittelt das kombinierte echte Netto aus beiden Einkunftsarten. Das ist besonders relevant für Angestellte mit Nebeneinkünften über der Geringfügigkeitsgrenze.',
+    },
+    {
+      q: 'Wann lohnt sich eine GmbH statt Einzelunternehmen?',
+      a: 'Der GmbH-Vergleich (Pro-Feature) berechnet den Break-Even-Punkt zwischen EPU und GmbH. Bei einer GmbH fallen 23 % Körperschaftsteuer (KöSt) plus 27,5 % Kapitalertragsteuer (KESt) auf Ausschüttungen an, dafür entfällt die SVS des Geschäftsführers zugunsten von ASVG-Beiträgen. Typischerweise lohnt sich eine GmbH ab ca. 60.000–80.000 EUR Gewinn — SteuerBoard zeigt dir den exakten Punkt für deine Situation mit konkreten EUR-Beträgen.',
+    },
+    {
+      q: 'Welche Steuerjahre unterstützt SteuerBoard?',
+      a: 'SteuerBoard.pro enthält die aktuellen Werte für 2024, 2025 und 2026 — inklusive der neuen Werte ab 2026: Familienbonus Plus (2.100 EUR), angepasster AVAB (572 EUR), Verkehrsabsetzbetrag (481 EUR), Kindermehrbetrag (727 EUR), Kleinunternehmergrenze (55.000 EUR netto) und aktualisierte SVS-Mindest- und Höchstbeitragsgrundlagen.',
+    },
+    {
+      q: 'Ersetzt SteuerBoard.pro einen Steuerberater?',
+      a: 'Nein. SteuerBoard.pro ist ein Planungs- und Orientierungstool. Alle Berechnungen basieren auf den aktuellen gesetzlichen Grundlagen (EStG, GSVG, FSVG, UStG, KStG), sind aber Richtwerte ohne Gewähr. Die endgültigen Bescheide der SVS und des Finanzamts können abweichen. Für verbindliche Auskünfte, komplexe Gestaltungen oder individuelle Steueroptimierung empfehlen wir eine professionelle Steuerberatung. SteuerBoard hilft dir, vorbereitet ins Gespräch zu gehen — mit konkreten Zahlen und einem PDF-Export.',
     },
     {
       q: 'Wie kann ich mein Abo kündigen?',
-      a: 'Jederzeit mit einem Klick im Dashboard unter Einstellungen. Die Kündigung wird sofort wirksam am Ende des aktuellen Abrechnungszeitraums. Keine versteckten Fristen, keine Tricks.',
+      a: 'Jederzeit mit einem Klick unter Profil → Abo verwalten. Du wirst zum Stripe-Kundenportal weitergeleitet, wo du sofort kündigen kannst. Du behältst Zugriff auf Pro-Features bis zum Ende des bezahlten Zeitraums. Keine versteckten Fristen, keine Kündigungsgebühren, keine Tricks. Die Zahlung läuft sicher über Stripe — wir speichern keine Kreditkartendaten.',
     },
   ]
 
@@ -985,43 +997,53 @@ const FAQ_JSONLD = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'Was genau berechnet SteuerBoard.pro?',
-      acceptedAnswer: { '@type': 'Answer', text: 'SteuerBoard.pro berechnet deine endgültigen SVS-Beiträge (PV, KV, UV, Selbständigenvorsorge), die voraussichtliche Nachzahlung, die Einkommensteuer-Prognose und dein echtes Netto – basierend auf deinem tatsächlichen Jahresgewinn.' },
+      name: 'Was ist SteuerBoard.pro und für wen ist es gedacht?',
+      acceptedAnswer: { '@type': 'Answer', text: 'SteuerBoard.pro ist ein interaktiver Steuer- und SVS-Rechner für österreichische Selbständige — Einzelunternehmer (EPU), Freiberufler und Gewerbetreibende, die bei der SVS nach GSVG oder FSVG versichert sind. Du gibst Umsatz und Betriebsausgaben ein und erhältst sofort eine Berechnung deiner SVS-Beiträge, der Einkommensteuer nach dem progressiven Tarif (§ 33 EStG) und deines echten Nettos.' },
     },
     {
       '@type': 'Question',
-      name: 'Sind die Berechnungen rechtlich verbindlich?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Nein. SteuerBoard.pro ist ein Prognose-Tool und ersetzt keine Steuerberatung. Alle Berechnungen basieren auf den aktuellen gesetzlichen Grundlagen, aber die endgültigen Bescheide der SVS und des Finanzamts können abweichen.' },
+      name: 'Warum SteuerBoard.pro und nicht der WKO SVS-Rechner?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Der WKO SVS-Beitragsrechner berechnet nur die reinen SVS-Beiträge — ohne Einkommensteuer, ohne Nachzahlungsprognose und ohne echtes Netto. SteuerBoard.pro zeigt zusätzlich die voraussichtliche SVS-Nachzahlung, die Einkommensteuer-Prognose nach Tarifstufen, das Geldfluss-Diagramm, die Wahrheits-Tabelle mit vorläufigen vs. endgültigen Beiträgen, einen KI-Steuerberater, GmbH-Vergleich, Pauschalierungs-Check und 7 spezialisierte Steuerrechner.' },
     },
     {
       '@type': 'Question',
-      name: 'Was ist der Unterschied zwischen Free und Pro?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Die Free-Version bietet den SVS-Beitragsrechner, die Wahrheits-Tabelle und das Geldfluss-Diagramm. Der Sicherheits-Plan (9,90 EUR/Monat) fügt die Einkommensteuer-Prognose, Speichern und Export hinzu. SteuerBoard Pro (19,90 EUR/Monat) bietet alles plus Steuer-Chatbot mit 7 Rechnern, KI-Steuerberater, USt-Rechner, Rücklagen, GmbH-Vergleich, Pauschalierung, Gewinnmaximierer, Investitionen & AfA, Misch-Einkommen Rechner und Familienbonus-Berechnung.' },
+      name: 'Was ist die SVS-Nachzahlungsfalle und wie schützt SteuerBoard davor?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Die SVS berechnet Beiträge zunächst vorläufig auf Basis des Gewinns von vor 3 Jahren (§ 25a GSVG). Steigt das Einkommen, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung. Bei einer Gewinnsteigerung von 30.000 auf 60.000 EUR kann die Nachzahlung über 5.000 EUR betragen. SteuerBoard.pro zeigt die exakte Differenz und berechnet monatliche Rücklagen.' },
     },
     {
       '@type': 'Question',
-      name: 'Was kann der Steuer-Chatbot?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Der Steuer-Chatbot ist ein KI-Assistent powered by Claude AI, der deine Steuerfragen in Echtzeit beantwortet. Er hat Zugriff auf 7 spezialisierte Rechner: Einkommensteuer, Körperschaftsteuer, Umsatzsteuer, Krypto-Steuer, Immobilienertragsteuer, Sachbezug und Investitionsfreibetrag. Er rechnet mit aktuellen Werten für 2026.' },
+      name: 'Wie wird die Einkommensteuer für Selbständige in Österreich berechnet?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Die Einkommensteuer wird nach dem progressiven Tarif gemäß § 33 EStG berechnet: 0 % bis 12.816 EUR, 20 % bis 20.818 EUR, 30 % bis 34.513 EUR, 40 % bis 66.612 EUR, 48 % bis 99.266 EUR, 50 % bis 1 Mio. EUR. SteuerBoard zieht automatisch SVS-Beiträge, den Gewinnfreibetrag (§ 10 EStG) und Absetzbeträge wie Familienbonus Plus (2.100 EUR/Kind), AVAB (572 EUR) und Verkehrsabsetzbetrag (481 EUR) ab.' },
     },
     {
       '@type': 'Question',
-      name: 'Was ist die SVS-Nachzahlungsfalle?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Die SVS berechnet deine Beiträge zunächst auf Basis deines Gewinns von vor 3 Jahren (vorläufige Beitragsgrundlage). Steigt dein Einkommen, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung. SteuerBoard.pro zeigt dir genau, wie hoch diese ausfallen wird.' },
+      name: 'Was kann der KI-Steuer-Chatbot?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Der Steuer-Chatbot ist ein KI-Assistent powered by Claude AI mit Zugriff auf 7 spezialisierte Rechner: Einkommensteuer, Körperschaftsteuer (23 % KöSt), Umsatzsteuer (inkl. Kleinunternehmerregelung), Krypto-Steuer (27,5 % KESt), Immobilienertragsteuer (30 % ImmoESt), Sachbezug und Investitionsfreibetrag. Er rechnet mit aktuellen österreichischen Werten für 2026.' },
     },
     {
       '@type': 'Question',
-      name: 'Kann ich den Rechner auch nutzen, wenn ich angestellt UND selbständig bin?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Ja! Der Misch-Einkommen Rechner (Pro-Feature) ist genau dafür gebaut. Er berechnet die Differenz-Vorschreibung, berücksichtigt die doppelte Sozialversicherung und zeigt dir das kombinierte Netto aus beiden Einkunftsarten.' },
+      name: 'Funktioniert SteuerBoard auch bei Misch-Einkommen (angestellt und selbständig)?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Ja. Der Misch-Einkommen Rechner berechnet die Differenz-Vorschreibung der SVS, berücksichtigt die doppelte Sozialversicherung (ASVG + GSVG) und ermittelt das kombinierte echte Netto aus beiden Einkunftsarten.' },
     },
     {
       '@type': 'Question',
-      name: 'Sind die Werte für 2026 schon verfügbar?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Ja! Wir haben bereits die neuen Werte für 2026 eingebaut: Familienbonus Plus (2.100 EUR), angepasster AVAB, aktualisierter Verkehrsabsetzbetrag (481 EUR) und Kindermehrbetrag (727 EUR).' },
+      name: 'Wann lohnt sich eine GmbH statt Einzelunternehmen?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Bei einer GmbH fallen 23 % Körperschaftsteuer plus 27,5 % KESt auf Ausschüttungen an. Typischerweise lohnt sich eine GmbH ab ca. 60.000–80.000 EUR Gewinn. SteuerBoard berechnet den exakten Break-Even-Punkt für die individuelle Situation.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Welche Steuerjahre unterstützt SteuerBoard?',
+      acceptedAnswer: { '@type': 'Answer', text: 'SteuerBoard.pro enthält aktuelle Werte für 2024, 2025 und 2026 — inklusive Familienbonus Plus (2.100 EUR), AVAB (572 EUR), Verkehrsabsetzbetrag (481 EUR), Kindermehrbetrag (727 EUR), Kleinunternehmergrenze (55.000 EUR) und aktualisierte SVS-Beitragsgrundlagen.' },
+    },
+    {
+      '@type': 'Question',
+      name: 'Ersetzt SteuerBoard.pro einen Steuerberater?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Nein. SteuerBoard.pro ist ein Planungs- und Orientierungstool. Alle Berechnungen basieren auf den aktuellen gesetzlichen Grundlagen (EStG, GSVG, FSVG, UStG, KStG), sind aber Richtwerte ohne Gewähr. Für verbindliche Auskünfte empfehlen wir eine professionelle Steuerberatung.' },
     },
     {
       '@type': 'Question',
       name: 'Wie kann ich mein Abo kündigen?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Jederzeit mit einem Klick im Dashboard unter Einstellungen. Die Kündigung wird sofort wirksam am Ende des aktuellen Abrechnungszeitraums. Keine versteckten Fristen, keine Tricks.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Jederzeit mit einem Klick unter Profil → Abo verwalten. Du wirst zum Stripe-Kundenportal weitergeleitet und behältst Zugriff bis zum Ende des bezahlten Zeitraums. Keine versteckten Fristen, keine Kündigungsgebühren.' },
     },
   ],
 }
