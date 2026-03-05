@@ -51,7 +51,7 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
         </div>
 
         {step === 1 && (
-          <div className="glass rounded-2xl p-6 sm:p-8 space-y-6 animate-fade-up">
+          <div className="glass rounded-2xl p-5 sm:p-8 space-y-6 animate-fade-up">
             <div className="text-center space-y-2">
               <div className="flex justify-center">
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
@@ -64,14 +64,14 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
               <div className="space-y-2">
                 <Label className="text-sm font-medium">Gründungsmonat <FieldInfo text={FIELD_DEFS.gruendungsMonat} /></Label>
                 <Select
                   value={String(data.gruendungsMonat)}
                   onValueChange={(v) => setData({ ...data, gruendungsMonat: Number(v) })}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger className="h-12 sm:h-10 text-base sm:text-sm">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -88,7 +88,7 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
                   value={String(data.gruendungsJahr)}
                   onValueChange={(v) => setData({ ...data, gruendungsJahr: Number(v) })}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger className="h-12 sm:h-10 text-base sm:text-sm">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -101,7 +101,7 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
             </div>
 
             <div className="flex justify-end">
-              <Button onClick={() => setStep(2)} className="gap-2">
+              <Button onClick={() => setStep(2)} className="gap-2 h-12 sm:h-10 px-6 text-base sm:text-sm">
                 Weiter <ArrowRight className="h-4 w-4" />
               </Button>
             </div>
@@ -109,7 +109,7 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
         )}
 
         {step === 2 && (
-          <div className="glass rounded-2xl p-6 sm:p-8 space-y-6 animate-fade-up">
+          <div className="glass rounded-2xl p-5 sm:p-8 space-y-6 animate-fade-up">
             <div className="text-center space-y-2">
               <div className="flex justify-center">
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
@@ -122,7 +122,7 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
               </p>
             </div>
 
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center justify-between gap-4 min-h-[44px]">
               <div>
                 <Label className="text-sm font-medium">Jungunternehmer <FieldInfo text={FIELD_DEFS.jungunternehmer} /></Label>
                 <p className="text-xs text-muted-foreground mt-0.5">
@@ -145,7 +145,7 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
                 {VERSICHERUNGSARTEN.map((va) => (
                   <label
                     key={va.value}
-                    className="flex items-start gap-3 rounded-xl border border-border p-3 cursor-pointer hover:bg-muted/50 transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/5"
+                    className="flex items-start gap-3 rounded-xl border border-border p-3.5 sm:p-3 cursor-pointer hover:bg-muted/50 transition-colors has-[:checked]:border-primary has-[:checked]:bg-primary/5"
                   >
                     <RadioGroupItem value={va.value} className="mt-0.5" />
                     <div>
@@ -157,11 +157,11 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
               </RadioGroup>
             </div>
 
-            <div className="flex justify-between">
-              <Button variant="outline" onClick={() => setStep(1)} className="gap-2">
+            <div className="flex justify-between gap-3">
+              <Button variant="outline" onClick={() => setStep(1)} className="gap-2 h-12 sm:h-10 text-base sm:text-sm">
                 <ArrowLeft className="h-4 w-4" /> Zurück
               </Button>
-              <Button onClick={handleComplete} className="gap-2">
+              <Button onClick={handleComplete} className="gap-2 h-12 sm:h-10 text-base sm:text-sm">
                 <Sparkles className="h-4 w-4" /> Rechner starten
               </Button>
             </div>

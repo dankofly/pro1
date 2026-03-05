@@ -41,14 +41,15 @@ function EuroInput({
     <div className="space-y-3">
       <Label htmlFor={id} className="text-sm font-medium">{label}{info && <FieldInfo text={info} />}</Label>
       <div className="flex items-center gap-3">
-        <div className="relative flex-1 max-w-[220px]">
+        <div className="relative flex-1 sm:max-w-[220px]">
           <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">EUR</span>
           <Input
             id={id}
+            inputMode="numeric"
             value={value > 0 ? value.toLocaleString('de-AT') : ''}
             onChange={handleInput}
             placeholder="0"
-            className="pl-10 text-right font-mono text-base font-semibold h-11 rounded-lg bg-muted/30 border-transparent focus:bg-background focus:border-primary/20"
+            className="pl-10 text-right font-mono text-base font-semibold h-12 sm:h-11 rounded-lg bg-muted/30 border-transparent focus:bg-background focus:border-primary/20"
           />
         </div>
         {suffix && <span className="text-sm text-muted-foreground">{suffix}</span>}
@@ -58,7 +59,7 @@ function EuroInput({
         onValueChange={([v]) => onChange(v)}
         max={max}
         step={500}
-        className="py-1"
+        className="py-2"
       />
       <div className="flex justify-between text-xs text-muted-foreground">
         <span>0</span>
@@ -79,16 +80,17 @@ function SmallEuroInput({
     onChange(Math.min(Number(raw) || 0, max))
   }
   return (
-    <div className="flex items-center justify-between gap-3">
+    <div className="space-y-1.5 sm:space-y-0 sm:flex sm:items-center sm:justify-between sm:gap-3">
       <Label htmlFor={id} className="text-sm text-muted-foreground min-w-0">{label}{info && <FieldInfo text={info} />}</Label>
-      <div className="relative w-36 shrink-0">
+      <div className="relative w-full sm:w-36 sm:shrink-0">
         <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">EUR</span>
         <Input
           id={id}
+          inputMode="numeric"
           value={value > 0 ? value.toLocaleString('de-AT') : ''}
           onChange={handleInput}
           placeholder="0"
-          className="pl-10 text-right font-mono text-sm h-9 rounded-lg"
+          className="pl-10 text-right font-mono text-base sm:text-sm h-12 sm:h-9 rounded-lg"
         />
       </div>
     </div>
@@ -171,14 +173,14 @@ export function UmsatzAufwaendeSection({
           <CollapsibleTrigger asChild>
             <button
               type="button"
-              className="flex w-full items-center justify-between text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-1"
+              className="flex w-full items-center justify-between text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2 min-h-[44px]"
             >
               <span>{detailOpen ? 'Aufwände im Detail' : 'Aufwände aufschlüsseln'}</span>
               <ChevronDown className={`h-4 w-4 transition-transform ${detailOpen ? 'rotate-180' : ''}`} />
             </button>
           </CollapsibleTrigger>
           <CollapsibleContent>
-            <div className="space-y-3 pt-3">
+            <div className="space-y-4 sm:space-y-3 pt-3">
               <SmallEuroInput
                 id="personalkosten"
                 value={aufwaende.personalkosten}
@@ -202,13 +204,13 @@ export function UmsatzAufwaendeSection({
               />
 
               {/* Arbeitsplatzpauschale */}
-              <div className="flex items-center justify-between gap-3">
+              <div className="space-y-1.5 sm:space-y-0 sm:flex sm:items-center sm:justify-between sm:gap-3">
                 <Label className="text-sm text-muted-foreground">Arbeitsplatzpauschale <FieldInfo text={FIELD_DEFS.arbeitsplatzpauschale} /></Label>
                 <Select
                   value={aufwaende.arbeitsplatzpauschale}
                   onValueChange={(v) => setAufwand('arbeitsplatzpauschale', v as ArbeitsplatzpauschaleType)}
                 >
-                  <SelectTrigger className="w-36 h-9 text-sm">
+                  <SelectTrigger className="w-full sm:w-36 h-12 sm:h-9 text-base sm:text-sm">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -262,7 +264,7 @@ export function UmsatzAufwaendeSection({
           <CollapsibleTrigger asChild>
             <button
               type="button"
-              className="flex w-full items-center gap-3 py-2 text-left"
+              className="flex w-full items-center gap-3 py-2 min-h-[44px] text-left"
             >
               <Wallet className="h-4 w-4 text-muted-foreground shrink-0" />
               <span className="flex-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
@@ -283,7 +285,7 @@ export function UmsatzAufwaendeSection({
                     <button
                       type="button"
                       onClick={() => setSvMode('monatlich')}
-                      className={`px-2.5 py-1 transition-colors ${
+                      className={`px-3.5 py-2 min-h-[44px] sm:min-h-0 sm:py-1.5 transition-colors ${
                         svMode === 'monatlich'
                           ? 'bg-primary text-primary-foreground'
                           : 'text-muted-foreground hover:text-foreground'
@@ -294,7 +296,7 @@ export function UmsatzAufwaendeSection({
                     <button
                       type="button"
                       onClick={() => setSvMode('jaehrlich')}
-                      className={`px-2.5 py-1 transition-colors ${
+                      className={`px-3.5 py-2 min-h-[44px] sm:min-h-0 sm:py-1.5 transition-colors ${
                         svMode === 'jaehrlich'
                           ? 'bg-primary text-primary-foreground'
                           : 'text-muted-foreground hover:text-foreground'
@@ -305,17 +307,18 @@ export function UmsatzAufwaendeSection({
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="relative w-full max-w-[200px]">
+                  <div className="relative w-full sm:max-w-[200px]">
                     <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">EUR</span>
                     <Input
                       id="sv-vz"
+                      inputMode="numeric"
                       value={svDisplayValue > 0 ? svDisplayValue.toLocaleString('de-AT') : ''}
                       onChange={(e) => {
                         const raw = e.target.value.replace(/[^0-9]/g, '')
                         handleSvChange(Math.min(Number(raw) || 0, svMax))
                       }}
                       placeholder="0"
-                      className="pl-10 text-right font-mono text-sm h-9 rounded-lg"
+                      className="pl-10 text-right font-mono text-base sm:text-sm h-12 sm:h-9 rounded-lg"
                     />
                   </div>
                   <span className="text-xs text-muted-foreground shrink-0">
@@ -327,7 +330,7 @@ export function UmsatzAufwaendeSection({
                   onValueChange={([v]) => handleSvChange(v)}
                   max={svMax}
                   step={svStep}
-                  className="py-1"
+                  className="py-2"
                 />
                 <div className="flex justify-between text-[11px] text-muted-foreground">
                   <span>0</span>
@@ -365,17 +368,18 @@ export function UmsatzAufwaendeSection({
                   ESt-Vorauszahlung (jährlich) <FieldInfo text={FIELD_DEFS.estVorauszahlung} />
                 </Label>
                 <div className="flex items-center gap-2">
-                  <div className="relative w-full max-w-[200px]">
+                  <div className="relative w-full sm:max-w-[200px]">
                     <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">EUR</span>
                     <Input
                       id="est-vz"
+                      inputMode="numeric"
                       value={vorauszahlungen.estVorauszahlung > 0 ? vorauszahlungen.estVorauszahlung.toLocaleString('de-AT') : ''}
                       onChange={(e) => {
                         const raw = e.target.value.replace(/[^0-9]/g, '')
                         setVz('estVorauszahlung', Math.min(Number(raw) || 0, 200000))
                       }}
                       placeholder="0"
-                      className="pl-10 text-right font-mono text-sm h-9 rounded-lg"
+                      className="pl-10 text-right font-mono text-base sm:text-sm h-12 sm:h-9 rounded-lg"
                     />
                   </div>
                   <span className="text-xs text-muted-foreground shrink-0">/ Jahr</span>
@@ -385,7 +389,7 @@ export function UmsatzAufwaendeSection({
                   onValueChange={([v]) => setVz('estVorauszahlung', v)}
                   max={200000}
                   step={500}
-                  className="py-1"
+                  className="py-2"
                 />
                 <div className="flex justify-between text-[11px] text-muted-foreground">
                   <span>0</span>

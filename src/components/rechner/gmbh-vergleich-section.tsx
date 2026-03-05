@@ -70,14 +70,15 @@ export function GmbhVergleichSection({ gmbh, isPro, dispatch }: GmbhVergleichSec
                   <Label htmlFor="gf-gehalt" className="text-sm text-muted-foreground">
                     Geschäftsführer-Gehalt (brutto/Monat) <FieldInfo text={FIELD_DEFS.gfGehaltMonatlich} />
                   </Label>
-                  <div className="relative w-full max-w-[200px]">
+                  <div className="relative w-full sm:max-w-[200px]">
                     <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">EUR</span>
                     <Input
                       id="gf-gehalt"
+                      inputMode="numeric"
                       value={gmbh.gfGehaltMonatlich > 0 ? gmbh.gfGehaltMonatlich.toLocaleString('de-AT') : ''}
                       onChange={handleGehalt}
                       placeholder="3.000"
-                      className="pl-10 text-right font-mono text-sm h-9 rounded-lg"
+                      className="pl-10 text-right font-mono text-base sm:text-sm h-12 sm:h-9 rounded-lg"
                     />
                   </div>
                   <p className="text-xs text-muted-foreground">

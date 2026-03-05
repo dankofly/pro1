@@ -22,7 +22,7 @@ function KpiTile({ label, value, color, bgTint, borderAccent, pctOfUmsatz, pctCo
       <p className="text-[11px] font-medium text-muted-foreground truncate mb-1">
         {label}
       </p>
-      <p className={`text-base font-bold font-mono tabular-nums ${color}`} style={{ letterSpacing: '-0.01em' }}>
+      <p className={`text-sm sm:text-base font-bold font-mono tabular-nums ${color}`} style={{ letterSpacing: '-0.01em' }}>
         &euro; {formatted}
         {pctOfUmsatz !== undefined && pctOfUmsatz > 0 && (
           <span className={`text-[10px] font-normal ml-1 ${pctColor || 'text-muted-foreground/60'}`}>

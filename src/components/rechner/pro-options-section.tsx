@@ -64,7 +64,7 @@ export function ProOptionsSection({ proOptions, year, isPro, dispatch }: ProOpti
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Button variant="outline" size="icon" className="h-8 w-8 rounded-lg"
+                    <Button variant="outline" size="icon" className="h-10 w-10 sm:h-8 sm:w-8 rounded-lg"
                       disabled={proOptions.kinderUnter18 <= 0}
                       onClick={() => setOpt('kinderUnter18', Math.max(0, proOptions.kinderUnter18 - 1))}
                     >
@@ -73,7 +73,7 @@ export function ProOptionsSection({ proOptions, year, isPro, dispatch }: ProOpti
                     <span className="w-8 text-center font-mono text-sm font-semibold tabular-nums">
                       {proOptions.kinderUnter18}
                     </span>
-                    <Button variant="outline" size="icon" className="h-8 w-8 rounded-lg"
+                    <Button variant="outline" size="icon" className="h-10 w-10 sm:h-8 sm:w-8 rounded-lg"
                       onClick={() => setOpt('kinderUnter18', Math.min(10, proOptions.kinderUnter18 + 1))}
                     >
                       <Plus className="h-3.5 w-3.5" />
@@ -89,7 +89,7 @@ export function ProOptionsSection({ proOptions, year, isPro, dispatch }: ProOpti
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Button variant="outline" size="icon" className="h-8 w-8 rounded-lg"
+                    <Button variant="outline" size="icon" className="h-10 w-10 sm:h-8 sm:w-8 rounded-lg"
                       disabled={proOptions.kinderUeber18 <= 0}
                       onClick={() => setOpt('kinderUeber18', Math.max(0, proOptions.kinderUeber18 - 1))}
                     >
@@ -98,7 +98,7 @@ export function ProOptionsSection({ proOptions, year, isPro, dispatch }: ProOpti
                     <span className="w-8 text-center font-mono text-sm font-semibold tabular-nums">
                       {proOptions.kinderUeber18}
                     </span>
-                    <Button variant="outline" size="icon" className="h-8 w-8 rounded-lg"
+                    <Button variant="outline" size="icon" className="h-10 w-10 sm:h-8 sm:w-8 rounded-lg"
                       onClick={() => setOpt('kinderUeber18', Math.min(10, proOptions.kinderUeber18 + 1))}
                     >
                       <Plus className="h-3.5 w-3.5" />

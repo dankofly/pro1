@@ -27,7 +27,7 @@ export function YearSelector({ year, onYearChange }: YearSelectorProps) {
         </div>
 
         <Select value={year} onValueChange={(v) => onYearChange(v as TaxYear)}>
-          <SelectTrigger className="w-[140px] rounded-lg">
+          <SelectTrigger className="w-[140px] h-12 sm:h-10 text-base sm:text-sm rounded-lg">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>

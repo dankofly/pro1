@@ -32,14 +32,15 @@ function WEInput({
     <div className="space-y-1.5">
       <Label htmlFor={id} className="text-sm text-muted-foreground">{label}{info && <FieldInfo text={info} />}</Label>
       <div className="flex items-center gap-2">
-        <div className="relative w-full max-w-[200px]">
+        <div className="relative w-full sm:max-w-[200px]">
           <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">EUR</span>
           <Input
             id={id}
+            inputMode="numeric"
             value={value > 0 ? value.toLocaleString('de-AT') : ''}
             onChange={handleInput}
             placeholder="0"
-            className="pl-10 text-right font-mono text-sm h-9 rounded-lg"
+            className="pl-10 text-right font-mono text-base sm:text-sm h-12 sm:h-9 rounded-lg"
           />
         </div>
         {suffix && <span className="text-xs text-muted-foreground">{suffix}</span>}

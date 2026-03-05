@@ -42,14 +42,15 @@ function InvestRow({
           <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">EUR</span>
           <Input
             id={id}
+            inputMode="numeric"
             value={value > 0 ? value.toLocaleString('de-AT') : ''}
             onChange={handleInput}
             placeholder="0"
-            className="pl-10 text-right font-mono text-sm h-9 rounded-lg"
+            className="pl-10 text-right font-mono text-base sm:text-sm h-12 sm:h-9 rounded-lg"
           />
         </div>
         <Select value={methode} onValueChange={(v) => onMethodeChange(v as AfaMethode)}>
-          <SelectTrigger className="w-28 h-9 text-xs">
+          <SelectTrigger className="w-28 h-12 sm:h-9 text-sm sm:text-xs">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>

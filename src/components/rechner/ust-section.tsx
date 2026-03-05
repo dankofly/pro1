@@ -88,7 +88,7 @@ export function UstSection({ ust, jahresumsatz, dispatch }: UstSectionProps) {
                   type="button"
                   disabled={kurNichtMoeglich}
                   onClick={() => setUst('ustPflichtig', false)}
-                  className={`flex items-center gap-2.5 rounded-lg border px-3 py-2 text-left text-sm transition-colors ${
+                  className={`flex items-center gap-2.5 rounded-lg border px-3 py-3 sm:py-2 text-left text-sm transition-colors ${
                     !ust.ustPflichtig
                       ? 'border-blue-500/40 bg-blue-500/5 text-foreground dark:border-blue-400/30 dark:bg-blue-500/10'
                       : 'border-border/50 text-muted-foreground hover:bg-muted/40'
@@ -104,7 +104,7 @@ export function UstSection({ ust, jahresumsatz, dispatch }: UstSectionProps) {
                 <button
                   type="button"
                   onClick={() => setUst('ustPflichtig', true)}
-                  className={`flex items-center gap-2.5 rounded-lg border px-3 py-2 text-left text-sm transition-colors cursor-pointer ${
+                  className={`flex items-center gap-2.5 rounded-lg border px-3 py-3 sm:py-2 text-left text-sm transition-colors cursor-pointer ${
                     ust.ustPflichtig
                       ? 'border-blue-500/40 bg-blue-500/5 text-foreground dark:border-blue-400/30 dark:bg-blue-500/10'
                       : 'border-border/50 text-muted-foreground hover:bg-muted/40'
@@ -134,7 +134,7 @@ export function UstSection({ ust, jahresumsatz, dispatch }: UstSectionProps) {
                       key={rate}
                       type="button"
                       onClick={() => setUst('ustSatz', rate)}
-                      className={`rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors cursor-pointer ${
+                      className={`rounded-lg border px-3 py-2.5 sm:py-1.5 text-sm font-medium transition-colors cursor-pointer ${
                         ust.ustSatz === rate
                           ? 'border-blue-500/40 bg-blue-500/5 text-blue-700 dark:border-blue-400/30 dark:bg-blue-500/10 dark:text-blue-400'
                           : 'border-border/50 text-muted-foreground hover:bg-muted/40'
@@ -155,14 +155,15 @@ export function UstSection({ ust, jahresumsatz, dispatch }: UstSectionProps) {
               <Label htmlFor="vorsteuer" className="text-sm text-muted-foreground">
                 Vorsteuer auf Einkäufe (jährlich)
               </Label>
-              <div className="relative w-full max-w-[200px]">
+              <div className="relative w-full sm:max-w-[200px]">
                 <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">EUR</span>
                 <Input
                   id="vorsteuer"
+                  inputMode="numeric"
                   value={ust.vorsteuerJaehrlich > 0 ? ust.vorsteuerJaehrlich.toLocaleString('de-AT') : ''}
                   onChange={handleVorsteuer}
                   placeholder="0"
-                  className="pl-10 text-right font-mono text-sm h-9 rounded-lg"
+                  className="pl-10 text-right font-mono text-base sm:text-sm h-12 sm:h-9 rounded-lg"
                 />
               </div>
               <p className="text-xs text-muted-foreground">
@@ -183,7 +184,7 @@ export function UstSection({ ust, jahresumsatz, dispatch }: UstSectionProps) {
                 step={5}
                 value={ust.b2bAnteil}
                 onChange={(e) => setUst('b2bAnteil', Number(e.target.value))}
-                className="w-full accent-blue-500 h-1.5 cursor-pointer"
+                className="w-full accent-blue-500 h-2 cursor-pointer touch-action-manipulation"
               />
               <div className="flex justify-between text-xs text-muted-foreground">
                 <span>Nur B2C</span>
