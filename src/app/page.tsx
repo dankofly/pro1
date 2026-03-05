@@ -32,6 +32,8 @@ import {
   Receipt,
   PiggyBank,
   Bot,
+  Menu,
+  X,
 } from 'lucide-react'
 import { Testimonials } from '@/components/ui/testimonials-columns'
 import { Pricing } from '@/components/ui/pricing'
@@ -108,8 +110,16 @@ function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: str
 }
 
 /* ─── Navbar ─── */
+const NAV_LINKS = [
+  { href: '#problem', label: 'Problem', isAnchor: true },
+  { href: '/features', label: 'Features', isAnchor: false },
+  { href: '#pricing', label: 'Preise', isAnchor: true },
+  { href: '#faq', label: 'FAQ', isAnchor: true },
+]
+
 function Navbar() {
   const [scrolled, setScrolled] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20)
@@ -117,10 +127,16 @@ function Navbar() {
     return () => window.removeEventListener('scroll', handler)
   }, [])
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [mobileOpen])
+
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-[background-color,border-color,box-shadow] duration-300 ${
-        scrolled
+        scrolled || mobileOpen
           ? 'bg-slate-900/90 backdrop-blur-xl border-b border-white/10 shadow-lg'
           : 'bg-transparent'
       }`}
@@ -134,19 +150,69 @@ function Navbar() {
             <span className="font-bold text-white text-lg font-heading">SteuerBoard.pro</span>
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm text-blue-200">
-            <a href="#problem" className="hover:text-white transition-colors">Problem</a>
-            <Link href="/features" className="hover:text-white transition-colors">Features</Link>
-            <a href="#pricing" className="hover:text-white transition-colors">Preise</a>
-            <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
+            {NAV_LINKS.map((l) =>
+              l.isAnchor ? (
+                <a key={l.href} href={l.href} className="hover:text-white transition-colors">{l.label}</a>
+              ) : (
+                <Link key={l.href} href={l.href} className="hover:text-white transition-colors">{l.label}</Link>
+              )
+            )}
           </div>
         </div>
-        <div className="flex items-center gap-3">
-          <Button asChild variant="ghost" size="sm" className="text-blue-200 hover:text-white hover:bg-white/10">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex text-blue-200 hover:text-white hover:bg-white/10">
             <Link href="/auth/login">Anmelden</Link>
           </Button>
           <Button asChild size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/25">
             <Link href="/rechner">Jetzt berechnen</Link>
           </Button>
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="md:hidden flex h-9 w-9 items-center justify-center rounded-lg text-white hover:bg-white/10 transition-colors cursor-pointer"
+            aria-label={mobileOpen ? 'Menü schließen' : 'Menü öffnen'}
+          >
+            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      <div
+        className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${
+          mobileOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <div className="bg-slate-900/95 backdrop-blur-xl border-t border-white/5 px-4 pb-6 pt-2 space-y-1">
+          {NAV_LINKS.map((l) =>
+            l.isAnchor ? (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setMobileOpen(false)}
+                className="block py-3 px-4 text-base text-blue-200 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+              >
+                {l.label}
+              </a>
+            ) : (
+              <Link
+                key={l.href}
+                href={l.href}
+                onClick={() => setMobileOpen(false)}
+                className="block py-3 px-4 text-base text-blue-200 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+              >
+                {l.label}
+              </Link>
+            )
+          )}
+          <div className="pt-3 border-t border-white/5">
+            <Link
+              href="/auth/login"
+              onClick={() => setMobileOpen(false)}
+              className="block py-3 px-4 text-base text-blue-200 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+            >
+              Anmelden
+            </Link>
+          </div>
         </div>
       </div>
     </nav>
@@ -234,15 +300,15 @@ function Hero() {
             </Reveal>
 
             <Reveal delay={400}>
-              <div className="mt-10 flex items-center gap-6 justify-center lg:justify-start text-sm text-blue-300/60">
+              <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 justify-center lg:justify-start text-sm text-blue-300/60">
                 <span className="flex items-center gap-1.5">
-                  <Check className="h-4 w-4 text-emerald-500" /> Kostenlos starten
+                  <Check className="h-4 w-4 text-emerald-500 shrink-0" /> Kostenlos starten
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <Check className="h-4 w-4 text-emerald-500" /> Keine Kreditkarte
+                  <Check className="h-4 w-4 text-emerald-500 shrink-0" /> Keine Kreditkarte
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <Check className="h-4 w-4 text-emerald-500" /> DSGVO-konform
+                  <Check className="h-4 w-4 text-emerald-500 shrink-0" /> DSGVO-konform
                 </span>
               </div>
             </Reveal>
@@ -546,7 +612,7 @@ function FeaturesSection() {
                   <MessageSquare className="h-6 w-6 text-emerald-400" />
                 </div>
                 <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-2">
+                  <div className="flex flex-wrap items-center gap-2 mb-2">
                     <h4 className="text-xl font-bold text-white font-heading">Steuer-Chatbot</h4>
                     <Badge className="bg-emerald-500/15 text-emerald-400 border-emerald-500/25 text-xs">
                       Pro · Powered by Claude AI
