@@ -269,11 +269,11 @@ function ProfilContent() {
                   className="flex gap-2"
                 >
                   <Input
-                    placeholder="CODE eingeben"
+                    placeholder="SVS-XXXX-XXXX-XXXX-XXXX"
                     value={promoCode}
                     onChange={(e) => setPromoCode(e.target.value)}
-                    className="uppercase"
-                    maxLength={20}
+                    className="uppercase font-mono"
+                    maxLength={30}
                     disabled={promoLoading}
                   />
                   <Button type="submit" size="sm" disabled={promoLoading || !promoCode.trim()}>

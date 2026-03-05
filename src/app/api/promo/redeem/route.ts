@@ -7,7 +7,6 @@ async function checkPromoRateLimit(userId: string): Promise<boolean> {
   const supabase = getSupabaseAdmin()
   const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString()
 
-  // Count recent failed attempts (redeemed_by is null = code didn't exist or was already used)
   const { count } = await supabase
     .from('promo_attempts')
     .select('*', { count: 'exact', head: true })
@@ -49,36 +48,61 @@ export async function POST(request: NextRequest) {
     const body = await request.json().catch(() => ({}))
     const code = ((body.code as string) || '').trim().toUpperCase()
 
-    if (!code || code.length > 20) {
+    if (!code || code.length > 30) {
       return NextResponse.json({ error: 'Ungültiger Code' }, { status: 400 })
     }
 
     const admin = getSupabaseAdmin()
 
-    // Atomic redeem: update only if code exists AND is not yet redeemed
+    // Step 1: Check if the code exists at all
+    const { data: existing, error: lookupError } = await admin
+      .from('promo_codes')
+      .select('id, code, redeemed_by')
+      .eq('code', code)
+      .maybeSingle()
+
+    if (lookupError) {
+      console.error('Promo lookup error:', lookupError)
+      return NextResponse.json({ error: 'Fehler beim Einlösen' }, { status: 500 })
+    }
+
+    if (!existing) {
+      console.log(`Promo: Code "${code}" (${code.length} chars) not found in DB`)
+      await logPromoAttempt(user.id)
+      return NextResponse.json({ error: 'Code ungültig' }, { status: 404 })
+    }
+
+    if (existing.redeemed_by) {
+      console.log(`Promo: Code "${code}" already redeemed by ${existing.redeemed_by}`)
+      await logPromoAttempt(user.id)
+      return NextResponse.json({ error: 'Code wurde bereits eingelöst' }, { status: 409 })
+    }
+
+    // Step 2: Atomic redeem — update only if still unredeemed (race condition safe)
     const { data: redeemed, error: redeemError } = await admin
       .from('promo_codes')
       .update({
         redeemed_by: user.id,
         redeemed_at: new Date().toISOString(),
       })
-      .eq('code', code)
+      .eq('id', existing.id)
       .is('redeemed_by', null)
       .select('id')
 
     if (redeemError) {
       console.error('Promo redeem error:', redeemError)
-      return NextResponse.json({ error: 'Fehler beim Einloesen' }, { status: 500 })
+      return NextResponse.json({ error: 'Fehler beim Einlösen' }, { status: 500 })
     }
 
     if (!redeemed || redeemed.length === 0) {
+      // Race condition: someone else redeemed it between our check and update
       await logPromoAttempt(user.id)
-      return NextResponse.json({ error: 'Code ungueltig oder bereits eingeloest' }, { status: 409 })
+      return NextResponse.json({ error: 'Code wurde gerade eben eingelöst' }, { status: 409 })
     }
 
     const promoId = redeemed[0].id
 
-    // Subscription auf Pro setzen (gleicher Upsert wie beim Webhook)
+    // Step 3: Subscription auf Pro setzen
     const { error: subError } = await admin.from('subscriptions').upsert({
       user_id: user.id,
       stripe_subscription_id: `promo_${promoId}`,
@@ -101,6 +125,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Fehler beim Aktivieren' }, { status: 500 })
     }
 
+    console.log(`Promo: Code "${code}" redeemed by ${user.id} (${user.email})`)
     return NextResponse.json({ success: true, plan: 'pro' })
   } catch (err) {
     console.error('Promo redeem error:', err)
