@@ -412,7 +412,7 @@ function RechnerContent() {
                 <button
                   onClick={() => setShowBeitragsDetails(!showBeitragsDetails)}
                   aria-expanded={showBeitragsDetails}
-                  className="card-surface w-full flex items-center justify-between px-4 py-3.5 text-sm font-semibold text-foreground cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="card-surface w-full flex items-center justify-between px-4 py-4 sm:py-3.5 min-h-[48px] text-sm font-semibold text-foreground cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   Beitragsdetails
                   <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${showBeitragsDetails ? 'rotate-180' : ''}`} />
@@ -422,7 +422,7 @@ function RechnerContent() {
                 <button
                   onClick={() => setShowMonthlyOverview(!showMonthlyOverview)}
                   aria-expanded={showMonthlyOverview}
-                  className="card-surface w-full flex items-center justify-between px-4 py-3.5 text-sm font-semibold text-foreground cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  className="card-surface w-full flex items-center justify-between px-4 py-4 sm:py-3.5 min-h-[48px] text-sm font-semibold text-foreground cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   Monatsübersicht
                   <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${showMonthlyOverview ? 'rotate-180' : ''}`} />
@@ -533,6 +533,8 @@ function RechnerContent() {
                 <Link href="/impressum" className="hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm">Impressum</Link>
                 <span>·</span>
                 <Link href="/datenschutz" className="hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm">Datenschutz</Link>
+                <span>·</span>
+                <Link href="/agb" className="hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm">AGB</Link>
               </div>
             </footer>
           </div>

@@ -442,7 +442,7 @@ function ProblemSection() {
               Das Problem
             </Badge>
             <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              Nicht die Steuer ist das Problem – der fehlende Überblick ist es
+              Nicht die Steuer ist das Problem –{' '}<br className="hidden sm:block" />der fehlende Überblick ist es
             </h2>
             <p className="mt-4 text-blue-200/60 max-w-2xl mx-auto text-lg">
               Selbständige in Österreich zahlen SVS, Einkommensteuer und Vorauszahlungen an unterschiedliche Stellen. Ohne zentrale Jahresprognose fehlt die Grundlage für jede finanzielle Entscheidung.
@@ -976,6 +976,8 @@ function Footer() {
             <Link href="/impressum" className="hover:text-blue-200 transition-colors">Impressum</Link>
             <span>·</span>
             <Link href="/datenschutz" className="hover:text-blue-200 transition-colors">Datenschutz</Link>
+            <span>·</span>
+            <Link href="/agb" className="hover:text-blue-200 transition-colors">AGB</Link>
             <span>·</span>
             <Link href="/pricing" className="hover:text-blue-200 transition-colors">Preise</Link>
           </div>
