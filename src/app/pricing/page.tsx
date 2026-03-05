@@ -5,13 +5,20 @@ import { STRIPE_PLANS, getStripePromise } from '@/lib/stripe'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
+import { Label } from '@/components/ui/label'
+import { Switch } from '@/components/ui/switch'
 import { Badge } from '@/components/ui/badge'
-import { Check, X, Crown, Zap, ArrowLeft, Loader2, CheckCircle } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { useMediaQuery } from '@/hooks/use-media-query'
+import { motion } from 'motion/react'
+import { Check, X, Crown, Star, ArrowLeft, Loader2, CheckCircle } from 'lucide-react'
 import { toast } from 'sonner'
 import { EmbeddedCheckoutProvider, EmbeddedCheckout } from '@stripe/react-stripe-js'
 import Link from 'next/link'
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import { MobileNav } from '@/components/svs/mobile-nav'
+import confetti from 'canvas-confetti'
+import NumberFlow from '@number-flow/react'
 
 function CheckoutReturn() {
   const [status, setStatus] = useState<'loading' | 'complete' | 'error'>('loading')
@@ -36,7 +43,7 @@ function CheckoutReturn() {
 
   if (status === 'loading') {
     return (
-      <div className="min-h-[calc(100vh-3.5rem)] bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 flex items-center justify-center">
+      <div className="min-h-[calc(100vh-3.5rem)] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center">
         <div className="text-center space-y-4">
           <Loader2 className="h-10 w-10 text-white animate-spin mx-auto" />
           <p className="text-white text-lg">Zahlung wird verarbeitet\u2026</p>
@@ -47,7 +54,7 @@ function CheckoutReturn() {
 
   if (status === 'complete') {
     return (
-      <div className="min-h-[calc(100vh-3.5rem)] bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 flex items-center justify-center px-4">
+      <div className="min-h-[calc(100vh-3.5rem)] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center px-4">
         <Card className="w-full max-w-md bg-white/10 border-white/20 text-white">
           <CardHeader className="text-center space-y-3">
             <div className="flex justify-center">
@@ -74,7 +81,7 @@ function CheckoutReturn() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-3.5rem)] bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 flex items-center justify-center px-4">
+    <div className="min-h-[calc(100vh-3.5rem)] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center px-4">
       <Card className="w-full max-w-md bg-white/10 border-white/20 text-white">
         <CardHeader className="text-center space-y-3">
           <CardTitle>Fehler bei der Zahlung</CardTitle>
@@ -94,13 +101,39 @@ function CheckoutReturn() {
 
 function PricingContent() {
   const { user, subscription } = useAppShell()
-  const [yearly, setYearly] = useState(false)
+  const [isMonthly, setIsMonthly] = useState(true)
   const [clientSecret, setClientSecret] = useState<string | null>(null)
   const [checkoutLoading, setCheckoutLoading] = useState(false)
+  const isDesktop = useMediaQuery('(min-width: 768px)')
+  const switchRef = useRef<HTMLButtonElement>(null)
 
   const fetchClientSecret = useCallback(() => {
     return Promise.resolve(clientSecret!)
   }, [clientSecret])
+
+  const handleToggle = (checked: boolean) => {
+    setIsMonthly(!checked)
+    if (checked && switchRef.current) {
+      const rect = switchRef.current.getBoundingClientRect()
+      const x = rect.left + rect.width / 2
+      const y = rect.top + rect.height / 2
+
+      confetti({
+        particleCount: 50,
+        spread: 60,
+        origin: {
+          x: x / window.innerWidth,
+          y: y / window.innerHeight,
+        },
+        colors: ['#22c55e', '#10b981', '#f59e0b', '#3b82f6'],
+        ticks: 200,
+        gravity: 1.2,
+        decay: 0.94,
+        startVelocity: 30,
+        shapes: ['circle'],
+      })
+    }
+  }
 
   const handleCheckout = async (priceId: string) => {
     if (!user) {
@@ -146,13 +179,13 @@ function PricingContent() {
     return <CheckoutReturn />
   }
 
-  const basicPlan = yearly ? STRIPE_PLANS.basic_yearly : STRIPE_PLANS.basic_monthly
-  const proPlan = yearly ? STRIPE_PLANS.pro_yearly : STRIPE_PLANS.pro_monthly
+  const basicPlan = !isMonthly ? STRIPE_PLANS.basic_yearly : STRIPE_PLANS.basic_monthly
+  const proPlan = !isMonthly ? STRIPE_PLANS.pro_yearly : STRIPE_PLANS.pro_monthly
 
   // Show Embedded Checkout
   if (clientSecret) {
     return (
-      <div className="min-h-[calc(100vh-3.5rem)] bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900">
+      <div className="min-h-[calc(100vh-3.5rem)] bg-gradient-to-b from-slate-900 to-slate-950">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
           <Button
             variant="ghost"
@@ -172,11 +205,12 @@ function PricingContent() {
     )
   }
 
+  // Order: Free (left) → SteuerBoard Pro (center) → Sicherheits-Plan (right)
   const tiers = [
     {
       name: 'Free',
-      monthlyPrice: '0',
-      yearlyPrice: '0',
+      price: 0,
+      yearlyPrice: 0,
       unit: 'für immer',
       desc: 'Für den schnellen Check',
       isFree: true,
@@ -197,34 +231,10 @@ function PricingContent() {
       href: '/rechner',
     },
     {
-      name: 'Sicherheits-Plan',
-      monthlyPrice: '9,90',
-      yearlyPrice: '8,25',
-      yearlyTotal: '99',
-      unit: 'pro Monat',
-      desc: 'Für Einsteiger',
-      isFree: false,
-      features: [
-        { text: 'Alles aus Free', included: true },
-        { text: 'Einkommensteuer-Prognose', included: true },
-        { text: 'Berechnungen speichern', included: true },
-        { text: 'Dashboard mit Verlauf', included: true },
-        { text: 'Einfacher Export', included: true },
-        { text: 'Misch-Einkommen Rechner', included: false },
-        { text: 'Familienbonus & Absetzbeträge', included: false },
-      ],
-      highlight: false,
-      isCurrentPlan: subscription.isBasic && !subscription.isPro,
-      isIncluded: subscription.isPro,
-      cta: 'Jetzt starten',
-      onAction: () => handleCheckout(basicPlan.priceId),
-      href: null as string | null,
-    },
-    {
       name: 'SteuerBoard Pro',
-      monthlyPrice: '19,90',
-      yearlyPrice: '16,58',
-      yearlyTotal: '199',
+      price: 19.9,
+      yearlyPrice: 16.58,
+      yearlyTotal: 199,
       unit: 'pro Monat',
       desc: 'Für Profis',
       isFree: false,
@@ -247,10 +257,34 @@ function PricingContent() {
       onAction: () => handleCheckout(proPlan.priceId),
       href: null as string | null,
     },
+    {
+      name: 'Sicherheits-Plan',
+      price: 9.9,
+      yearlyPrice: 8.25,
+      yearlyTotal: 99,
+      unit: 'pro Monat',
+      desc: 'Für Einsteiger',
+      isFree: false,
+      features: [
+        { text: 'Alles aus Free', included: true },
+        { text: 'Einkommensteuer-Prognose', included: true },
+        { text: 'Berechnungen speichern', included: true },
+        { text: 'Dashboard mit Verlauf', included: true },
+        { text: 'Einfacher Export', included: true },
+        { text: 'Misch-Einkommen Rechner', included: false },
+        { text: 'Familienbonus & Absetzbeträge', included: false },
+      ],
+      highlight: false,
+      isCurrentPlan: subscription.isBasic && !subscription.isPro,
+      isIncluded: subscription.isPro,
+      cta: 'Jetzt starten',
+      onAction: () => handleCheckout(basicPlan.priceId),
+      href: null as string | null,
+    },
   ]
 
   return (
-    <div className="min-h-[calc(100vh-3.5rem)] bg-slate-900">
+    <div className="min-h-[calc(100vh-3.5rem)] bg-gradient-to-b from-slate-900 to-slate-950">
       {/* Mobile header */}
       <div className="sticky top-0 z-30 bg-slate-900/80 backdrop-blur-lg border-b border-white/10 md:hidden">
         <div className="px-4 h-14 flex items-center">
@@ -261,98 +295,132 @@ function PricingContent() {
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20">
         {/* Header */}
-        <div className="text-center mb-10">
-          <Badge className="bg-amber-500/10 text-amber-400 border-amber-500/20 mb-4">
-            Preise
-          </Badge>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white">
+        <div className="text-center space-y-4 mb-12">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white font-heading">
             Starte kostenlos, upgrade wenn du bereit bist
           </h1>
-          <p className="mt-4 text-blue-200/60 max-w-2xl mx-auto text-lg">
-            Keine versteckten Kosten. Monatlich kündbar. Sichere Zahlung via Stripe.
+          <p className="text-blue-200/60 text-lg whitespace-pre-line max-w-2xl mx-auto">
+            Keine versteckten Kosten. Monatlich kündbar.{'\n'}Sichere Zahlung via Stripe.
           </p>
         </div>
 
-        {/* Billing Toggle */}
-        <div className="flex items-center justify-center gap-4 mb-12">
-          <span className={`text-sm font-medium transition-colors ${!yearly ? 'text-white' : 'text-blue-200/40'}`}>
+        {/* Billing Toggle with Confetti */}
+        <div className="flex items-center justify-center gap-3 mb-12">
+          <span className={cn('text-sm font-medium transition-colors', isMonthly ? 'text-white' : 'text-blue-200/40')}>
             Monatlich
           </span>
-          <button
-            role="switch"
-            aria-checked={yearly}
-            aria-label="Jährliche Abrechnung"
-            onClick={() => setYearly(!yearly)}
-            className={`relative w-14 h-7 rounded-full transition-colors duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 ${
-              yearly ? 'bg-emerald-500' : 'bg-white/20'
-            }`}
-          >
-            <div
-              className={`absolute top-0.5 left-0.5 w-6 h-6 rounded-full bg-white shadow-md transition-transform duration-300 ${
-                yearly ? 'translate-x-7' : 'translate-x-0'
-              }`}
-            />
-          </button>
-          <span className={`text-sm font-medium transition-colors ${yearly ? 'text-white' : 'text-blue-200/40'}`}>
+          <label className="relative inline-flex items-center cursor-pointer">
+            <Label>
+              <Switch
+                ref={switchRef as React.Ref<HTMLButtonElement>}
+                checked={!isMonthly}
+                onCheckedChange={handleToggle}
+                className="data-[state=checked]:bg-emerald-500 data-[state=unchecked]:bg-white/20 border-0"
+              />
+            </Label>
+          </label>
+          <span className={cn('text-sm font-medium transition-colors', !isMonthly ? 'text-white' : 'text-blue-200/40')}>
             Jährlich
           </span>
-          {yearly && (
-            <Badge className="bg-emerald-500/15 text-emerald-400 border-emerald-500/25 text-xs">
+          {!isMonthly && (
+            <span className="ml-1 text-xs font-semibold text-emerald-400 bg-emerald-500/15 border border-emerald-500/25 rounded-full px-2.5 py-0.5">
               Spare 20%
-            </Badge>
+            </span>
           )}
         </div>
 
-        {/* Pricing Cards */}
+        {/* Pricing Cards with Motion */}
         <h2 className="sr-only">Verfügbare Pläne</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {tiers.map((tier) => {
-            const price = yearly ? tier.yearlyPrice : tier.monthlyPrice
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+          {tiers.map((tier, index) => {
+            const displayPrice = isMonthly ? tier.price : tier.yearlyPrice
+
             return (
-              <Card
+              <motion.div
                 key={tier.name}
-                className={`relative h-full ${
+                initial={{ y: 50, opacity: 0 }}
+                whileInView={
+                  isDesktop
+                    ? {
+                        y: tier.highlight ? -20 : 0,
+                        opacity: 1,
+                        x: index === 2 ? -30 : index === 0 ? 30 : 0,
+                        scale: index === 0 || index === 2 ? 0.94 : 1.0,
+                      }
+                    : { y: 0, opacity: 1 }
+                }
+                viewport={{ once: true }}
+                transition={{
+                  duration: 1.6,
+                  type: 'spring',
+                  stiffness: 100,
+                  damping: 30,
+                  delay: 0.4,
+                  opacity: { duration: 0.5 },
+                }}
+                className={cn(
+                  'rounded-2xl border p-6 sm:p-8 text-center relative backdrop-blur-sm',
                   tier.highlight
-                    ? 'bg-white/10 border-amber-400/30 ring-2 ring-amber-400/20'
-                    : 'bg-white/[0.03] border-white/10'
-                } backdrop-blur-sm`}
+                    ? 'bg-white/10 border-amber-400/30 ring-2 ring-amber-400/20 z-10'
+                    : 'bg-white/[0.03] border-white/10 z-0',
+                  'flex flex-col',
+                  !tier.highlight && 'mt-5 md:mt-0',
+                  index === 0 && 'origin-right',
+                  index === 2 && 'origin-left',
+                )}
               >
                 {tier.highlight && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <Badge className="bg-amber-500 text-white border-0 shadow-lg">
-                      <Zap className="h-3 w-3 mr-1" />
+                    <span className="inline-flex items-center bg-amber-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-lg">
+                      <Star className="h-3.5 w-3.5 fill-current mr-1" />
                       Beliebtester Plan
-                    </Badge>
+                    </span>
                   </div>
                 )}
-                <CardContent className={`p-6 sm:p-8 ${tier.highlight ? 'pt-10' : ''}`}>
+                <div className="flex-1 flex flex-col">
                   <p className="text-blue-200/60 text-sm">{tier.desc}</p>
-                  <h3 className="text-xl font-bold text-white mt-1 flex items-center gap-2">
+                  <h3 className="text-xl font-bold text-white mt-1 flex items-center justify-center gap-2">
                     {tier.highlight && <Crown className="h-5 w-5 text-amber-400" />}
                     {tier.name}
                   </h3>
-                  <div className="mt-4 mb-1">
-                    <span className="text-4xl font-extrabold text-white font-mono">{price} EUR</span>
-                    <span className="text-blue-200/50 text-sm ml-2">/ {tier.unit}</span>
-                  </div>
-                  <div className="mb-6 h-5">
-                    {yearly && !tier.isFree && 'yearlyTotal' in tier && (
-                      <div className="flex items-center gap-2">
-                        <span className="text-blue-200/30 text-xs line-through">{tier.monthlyPrice} EUR/Monat</span>
-                        <span className="text-emerald-400 text-xs font-medium">{tier.yearlyTotal} EUR/Jahr</span>
-                      </div>
-                    )}
+
+                  <div className="mt-6 flex items-baseline justify-center gap-x-1">
+                    <span className="text-5xl font-extrabold text-white font-mono tracking-tight">
+                      <NumberFlow
+                        value={displayPrice}
+                        format={{
+                          style: 'currency',
+                          currency: 'EUR',
+                          minimumFractionDigits: tier.isFree ? 0 : 2,
+                          maximumFractionDigits: 2,
+                        }}
+                        transformTiming={{
+                          duration: 500,
+                          easing: 'ease-out',
+                        }}
+                        willChange
+                        className="tabular-nums"
+                      />
+                    </span>
                   </div>
 
-                  <div className="space-y-3 mb-8">
+                  <p className="text-xs text-blue-200/40 mt-1">
+                    {tier.isFree
+                      ? 'für immer'
+                      : isMonthly
+                        ? 'pro Monat'
+                        : `${tier.yearlyTotal} EUR/Jahr`}
+                  </p>
+
+                  <div className="space-y-3 mt-6 mb-8 flex-1">
                     {tier.features.map((f) => (
                       <div key={f.text} className="flex items-center gap-2.5 text-sm">
                         {f.included ? (
-                          <Check className={`h-4 w-4 shrink-0 ${tier.highlight ? 'text-amber-400' : 'text-emerald-400'}`} />
+                          <Check className={cn('h-4 w-4 shrink-0', tier.highlight ? 'text-amber-400' : 'text-emerald-400')} />
                         ) : (
                           <X className="h-4 w-4 shrink-0 text-white/20" />
                         )}
-                        <span className={f.included ? 'text-blue-100' : 'text-white/30'}>
+                        <span className={cn('text-left', f.included ? 'text-blue-100' : 'text-white/30')}>
                           {f.text}
                         </span>
                       </div>
@@ -360,21 +428,24 @@ function PricingContent() {
                   </div>
 
                   {tier.isCurrentPlan ? (
-                    <Button variant="outline" className="w-full bg-white/10 border-white/20 text-white" disabled>
+                    <Button variant="outline" className="w-full bg-white/10 border-white/20 text-white cursor-default" disabled>
                       Aktueller Plan
                     </Button>
                   ) : tier.isIncluded ? (
-                    <Button variant="outline" className="w-full bg-white/10 border-white/20 text-white" disabled>
+                    <Button variant="outline" className="w-full bg-white/10 border-white/20 text-white cursor-default" disabled>
                       Inkludiert
                     </Button>
                   ) : tier.href ? (
                     <Button
                       asChild
-                      className={`w-full ${
+                      className={cn(
+                        'w-full gap-2 text-base font-semibold cursor-pointer',
+                        'transform-gpu ring-offset-current transition-all duration-300 ease-out',
+                        'hover:ring-2 hover:ring-offset-1',
                         tier.highlight
-                          ? 'bg-amber-500 hover:bg-amber-600 text-white shadow-lg shadow-amber-500/25'
-                          : 'bg-white/10 hover:bg-white/20 text-white border border-white/10'
-                      }`}
+                          ? 'bg-amber-500 text-white border-amber-500 hover:bg-amber-600 hover:ring-amber-400 shadow-lg shadow-amber-500/25'
+                          : 'bg-white/10 text-white border-white/10 hover:bg-white/20 hover:ring-white/30',
+                      )}
                     >
                       <Link href={tier.href}>
                         {tier.highlight && <Crown className="h-4 w-4 mr-1.5" />}
@@ -383,11 +454,14 @@ function PricingContent() {
                     </Button>
                   ) : (
                     <Button
-                      className={`w-full ${
+                      className={cn(
+                        'w-full gap-2 text-base font-semibold cursor-pointer',
+                        'transform-gpu ring-offset-current transition-all duration-300 ease-out',
+                        'hover:ring-2 hover:ring-offset-1',
                         tier.highlight
-                          ? 'bg-amber-500 hover:bg-amber-600 text-white shadow-lg shadow-amber-500/25'
-                          : 'bg-white/10 hover:bg-white/20 text-white border border-white/10'
-                      }`}
+                          ? 'bg-amber-500 text-white border-amber-500 hover:bg-amber-600 hover:ring-amber-400 shadow-lg shadow-amber-500/25'
+                          : 'bg-white/10 text-white border-white/10 hover:bg-white/20 hover:ring-white/30',
+                      )}
                       onClick={tier.onAction ?? undefined}
                       disabled={checkoutLoading}
                     >
@@ -396,22 +470,20 @@ function PricingContent() {
                       {tier.cta}
                     </Button>
                   )}
-                </CardContent>
-              </Card>
+                </div>
+              </motion.div>
             )
           })}
         </div>
 
         {/* Footer */}
-        <div className="text-center text-xs mt-12 space-y-2">
-          <p className="text-slate-400">
-            Alle Preise inkl. USt. {yearly ? 'Jährlich im Voraus. ' : 'Monatlich kündbar. '}Sichere Zahlung via Stripe.
-          </p>
-          <div className="flex items-center justify-center gap-3 text-slate-500">
-            <Link href="/impressum" className="underline underline-offset-2 decoration-slate-600/30 hover:text-slate-300 transition-colors">Impressum</Link>
-            <span>·</span>
-            <Link href="/datenschutz" className="underline underline-offset-2 decoration-slate-600/30 hover:text-slate-300 transition-colors">Datenschutz</Link>
-          </div>
+        <p className="text-center text-blue-200/30 text-xs mt-8">
+          Alle Preise inkl. USt. {isMonthly ? 'Monatlich kündbar.' : 'Jährlich im Voraus.'} Sichere Zahlung via Stripe.
+        </p>
+        <div className="flex items-center justify-center gap-3 text-xs text-blue-200/20 mt-3">
+          <Link href="/impressum" className="hover:text-blue-200/40 transition-colors">Impressum</Link>
+          <span>·</span>
+          <Link href="/datenschutz" className="hover:text-blue-200/40 transition-colors">Datenschutz</Link>
         </div>
       </div>
     </div>

@@ -136,8 +136,8 @@ export function Pricing({
                 className={cn(
                   'rounded-2xl border p-6 sm:p-8 text-center lg:flex lg:flex-col lg:justify-center relative backdrop-blur-sm',
                   plan.isPopular
-                    ? 'bg-white/10 border-amber-400/30 ring-2 ring-amber-400/20'
-                    : 'bg-white/[0.03] border-white/10',
+                    ? 'bg-white/10 border-amber-400/30 ring-2 ring-amber-400/20 z-10'
+                    : 'bg-white/[0.03] border-white/10 z-0',
                   'flex flex-col',
                   !plan.isPopular && 'mt-5 md:mt-0',
                   index === 0 && 'origin-right',
