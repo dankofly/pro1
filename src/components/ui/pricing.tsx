@@ -6,7 +6,7 @@ import { Switch } from '@/components/ui/switch'
 import { useMediaQuery } from '@/hooks/use-media-query'
 import { cn } from '@/lib/utils'
 import { motion } from 'motion/react'
-import { Check, Crown, Star, X } from 'lucide-react'
+import { Check, ChevronDown, Crown, Star, X } from 'lucide-react'
 import Link from 'next/link'
 import { useState, useRef } from 'react'
 import confetti from 'canvas-confetti'
@@ -35,14 +35,67 @@ interface PricingProps {
   plans: PricingPlan[]
   title?: string
   description?: string
+  visibleCount?: number
+}
+
+function FeatureList({
+  features,
+  isPopular,
+  visibleCount,
+  isExpanded,
+  onToggle,
+}: {
+  features: PricingFeature[]
+  isPopular: boolean
+  visibleCount: number
+  isExpanded: boolean
+  onToggle: () => void
+}) {
+  const hasMore = features.length > visibleCount
+  const visible = isExpanded ? features : features.slice(0, visibleCount)
+  const hiddenCount = features.length - visibleCount
+
+  return (
+    <div className="space-y-3 mt-6 mb-8 flex-1">
+      {visible.map((f, idx) => (
+        <div key={idx} className="flex items-center gap-2.5 text-sm">
+          {f.included ? (
+            <Check className={cn('h-4 w-4 shrink-0', isPopular ? 'text-amber-400' : 'text-emerald-400')} />
+          ) : (
+            <X className="h-4 w-4 shrink-0 text-white/20" />
+          )}
+          <span className={cn('text-left', f.included ? 'text-blue-100' : 'text-white/30')}>
+            {f.text}
+          </span>
+        </div>
+      ))}
+      {hasMore && (
+        <button
+          onClick={onToggle}
+          className="flex items-center gap-1.5 text-xs font-medium text-blue-300/60 hover:text-blue-200 transition-colors pt-1 cursor-pointer"
+        >
+          <ChevronDown className={cn('h-3.5 w-3.5 transition-transform duration-200', isExpanded && 'rotate-180')} />
+          {isExpanded ? 'Weniger anzeigen' : `+${hiddenCount} weitere Features`}
+        </button>
+      )}
+      <Link
+        href="/features"
+        className="block text-xs font-medium text-emerald-400/70 hover:text-emerald-400 transition-colors pt-1"
+      >
+        Alle Features im Detail →
+      </Link>
+    </div>
+  )
 }
 
 export function Pricing({
   plans,
   title = 'Starte kostenlos, upgrade wenn du bereit bist',
   description = 'Keine versteckten Kosten. Monatlich kündbar.\nSichere Zahlung via Stripe.',
+  visibleCount = 10,
 }: PricingProps) {
   const [isMonthly, setIsMonthly] = useState(true)
+  const [expanded, setExpanded] = useState<Record<number, boolean>>({})
   const isDesktop = useMediaQuery('(min-width: 768px)')
   const switchRef = useRef<HTMLButtonElement>(null)
 
@@ -187,20 +240,13 @@ export function Pricing({
                         : `${plan.yearlyTotal} EUR/Jahr`}
                   </p>
 
-                  <div className="space-y-3 mt-6 mb-8 flex-1">
-                    {plan.features.map((f, idx) => (
-                      <div key={idx} className="flex items-center gap-2.5 text-sm">
-                        {f.included ? (
-                          <Check className={cn('h-4 w-4 shrink-0', plan.isPopular ? 'text-amber-400' : 'text-emerald-400')} />
-                        ) : (
-                          <X className="h-4 w-4 shrink-0 text-white/20" />
-                        )}
-                        <span className={cn('text-left', f.included ? 'text-blue-100' : 'text-white/30')}>
-                          {f.text}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
+                  <FeatureList
+                    features={plan.features}
+                    isPopular={plan.isPopular}
+                    visibleCount={visibleCount}
+                    isExpanded={!!expanded[index]}
+                    onToggle={() => setExpanded((p) => ({ ...p, [index]: !p[index] }))}
+                  />
 
                   <Link
                     href={plan.href}

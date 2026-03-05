@@ -10,7 +10,7 @@ import { Switch } from '@/components/ui/switch'
 import { cn } from '@/lib/utils'
 import { useMediaQuery } from '@/hooks/use-media-query'
 import { motion } from 'motion/react'
-import { Check, X, Crown, Star, ArrowLeft, Loader2, CheckCircle } from 'lucide-react'
+import { Check, ChevronDown, X, Crown, Star, ArrowLeft, Loader2, CheckCircle } from 'lucide-react'
 import { toast } from 'sonner'
 import { EmbeddedCheckoutProvider, EmbeddedCheckout } from '@stripe/react-stripe-js'
 import Link from 'next/link'
@@ -103,6 +103,7 @@ function PricingContent() {
   const [isMonthly, setIsMonthly] = useState(true)
   const [clientSecret, setClientSecret] = useState<string | null>(null)
   const [checkoutLoading, setCheckoutLoading] = useState(false)
+  const [expanded, setExpanded] = useState<Record<number, boolean>>({})
   const isDesktop = useMediaQuery('(min-width: 768px)')
   const switchRef = useRef<HTMLButtonElement>(null)
 
@@ -204,6 +205,8 @@ function PricingContent() {
     )
   }
 
+  const VISIBLE_COUNT = 10
+
   // Order: Free (left) → SteuerBoard Pro (center) → Sicherheits-Plan (right)
   const tiers = [
     {
@@ -217,9 +220,22 @@ function PricingContent() {
         { text: 'SVS-Beitragsrechner', included: true },
         { text: 'Wahrheits-Tabelle', included: true },
         { text: 'Geldfluss-Diagramm', included: true },
+        { text: 'Sachbezug-Rechner', included: true },
+        { text: 'Steuer-Wissen Bot', included: true },
+        { text: '2026 Ready', included: true },
         { text: 'Einkommensteuer-Prognose', included: false },
+        { text: 'Steuer-Chatbot (7 Rechner)', included: false },
         { text: 'KI-Steuerberater', included: false },
+        { text: 'Misch-Einkommen Rechner', included: false },
         { text: 'GmbH-Vergleich', included: false },
+        { text: 'Pauschalierung Vergleich', included: false },
+        { text: 'USt-Rechner & Rücklagen', included: false },
+        { text: 'Gewinnmaximierer', included: false },
+        { text: 'Investitionen & AfA', included: false },
+        { text: 'Krypto-Steuer', included: false },
+        { text: 'Berechnungen speichern', included: false },
+        { text: 'Dashboard mit Verlauf', included: false },
+        { text: 'Familienbonus & Absetzbeträge', included: false },
         { text: 'PDF-Export', included: false },
       ],
       highlight: false,
@@ -238,16 +254,26 @@ function PricingContent() {
       desc: 'Für Profis',
       isFree: false,
       features: [
-        { text: 'Alles aus Sicherheits-Plan', included: true },
+        { text: 'Steuer-Chatbot (7 Rechner)', included: true },
         { text: 'KI-Steuerberater', included: true },
         { text: 'Misch-Einkommen Rechner', included: true },
         { text: 'GmbH-Vergleich', included: true },
         { text: 'Pauschalierung Vergleich', included: true },
+        { text: 'USt-Rechner & Rücklagen', included: true },
         { text: 'Gewinnmaximierer', included: true },
         { text: 'Investitionen & AfA', included: true },
-        { text: 'Familienbonus & Absetzbeträge', included: true },
+        { text: 'Krypto-Steuer', included: true },
         { text: 'PDF-Export für Steuerberater', included: true },
-        { text: 'Smart Alerts & Push', included: true },
+        { text: 'Einkommensteuer-Prognose', included: true },
+        { text: 'Familienbonus & Absetzbeträge', included: true },
+        { text: 'Berechnungen speichern', included: true },
+        { text: 'Dashboard mit Verlauf', included: true },
+        { text: 'SVS-Beitragsrechner', included: true },
+        { text: 'Wahrheits-Tabelle', included: true },
+        { text: 'Geldfluss-Diagramm', included: true },
+        { text: 'Sachbezug-Rechner', included: true },
+        { text: 'Steuer-Wissen Bot', included: true },
+        { text: '2026 Ready', included: true },
       ],
       highlight: true,
       isCurrentPlan: subscription.isPro,
@@ -265,13 +291,26 @@ function PricingContent() {
       desc: 'Für Einsteiger',
       isFree: false,
       features: [
-        { text: 'Alles aus Free', included: true },
         { text: 'Einkommensteuer-Prognose', included: true },
+        { text: 'Familienbonus & Absetzbeträge', included: true },
         { text: 'Berechnungen speichern', included: true },
         { text: 'Dashboard mit Verlauf', included: true },
         { text: 'Einfacher Export', included: true },
+        { text: 'SVS-Beitragsrechner', included: true },
+        { text: 'Wahrheits-Tabelle', included: true },
+        { text: 'Geldfluss-Diagramm', included: true },
+        { text: 'Sachbezug-Rechner', included: true },
+        { text: 'Steuer-Wissen Bot', included: true },
+        { text: 'Steuer-Chatbot (7 Rechner)', included: false },
+        { text: 'KI-Steuerberater', included: false },
         { text: 'Misch-Einkommen Rechner', included: false },
-        { text: 'Familienbonus & Absetzbeträge', included: false },
+        { text: 'GmbH-Vergleich', included: false },
+        { text: 'Pauschalierung Vergleich', included: false },
+        { text: 'USt-Rechner & Rücklagen', included: false },
+        { text: 'Gewinnmaximierer', included: false },
+        { text: 'Investitionen & AfA', included: false },
+        { text: 'Krypto-Steuer', included: false },
+        { text: 'PDF-Export für Steuerberater', included: false },
       ],
       highlight: false,
       isCurrentPlan: subscription.isBasic && !subscription.isPro,
@@ -411,20 +450,43 @@ function PricingContent() {
                         : `${tier.yearlyTotal} EUR/Jahr`}
                   </p>
 
-                  <div className="space-y-3 mt-6 mb-8 flex-1">
-                    {tier.features.map((f) => (
-                      <div key={f.text} className="flex items-center gap-2.5 text-sm">
-                        {f.included ? (
-                          <Check className={cn('h-4 w-4 shrink-0', tier.highlight ? 'text-amber-400' : 'text-emerald-400')} />
-                        ) : (
-                          <X className="h-4 w-4 shrink-0 text-white/20" />
+                  {(() => {
+                    const isExp = !!expanded[index]
+                    const hasMore = tier.features.length > VISIBLE_COUNT
+                    const visible = isExp ? tier.features : tier.features.slice(0, VISIBLE_COUNT)
+                    const hiddenCount = tier.features.length - VISIBLE_COUNT
+                    return (
+                      <div className="space-y-3 mt-6 mb-8 flex-1">
+                        {visible.map((f) => (
+                          <div key={f.text} className="flex items-center gap-2.5 text-sm">
+                            {f.included ? (
+                              <Check className={cn('h-4 w-4 shrink-0', tier.highlight ? 'text-amber-400' : 'text-emerald-400')} />
+                            ) : (
+                              <X className="h-4 w-4 shrink-0 text-white/20" />
+                            )}
+                            <span className={cn('text-left', f.included ? 'text-blue-100' : 'text-white/30')}>
+                              {f.text}
+                            </span>
+                          </div>
+                        ))}
+                        {hasMore && (
+                          <button
+                            onClick={() => setExpanded((p) => ({ ...p, [index]: !p[index] }))}
+                            className="flex items-center gap-1.5 text-xs font-medium text-blue-300/60 hover:text-blue-200 transition-colors pt-1 cursor-pointer"
+                          >
+                            <ChevronDown className={cn('h-3.5 w-3.5 transition-transform duration-200', isExp && 'rotate-180')} />
+                            {isExp ? 'Weniger anzeigen' : `+${hiddenCount} weitere Features`}
+                          </button>
                         )}
-                        <span className={cn('text-left', f.included ? 'text-blue-100' : 'text-white/30')}>
-                          {f.text}
-                        </span>
+                        <Link
+                          href="/features"
+                          className="block text-xs font-medium text-emerald-400/70 hover:text-emerald-400 transition-colors pt-1"
+                        >
+                          Alle Features im Detail →
+                        </Link>
                       </div>
-                    ))}
-                  </div>
+                    )
+                  })()}
 
                   {tier.isCurrentPlan ? (
                     <Button variant="outline" className="w-full bg-white/10 border-white/20 text-white cursor-default" disabled>
