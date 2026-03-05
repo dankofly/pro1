@@ -7,7 +7,6 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
-import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 import { useMediaQuery } from '@/hooks/use-media-query'
 import { motion } from 'motion/react'
@@ -284,7 +283,7 @@ function PricingContent() {
   ]
 
   return (
-    <div className="min-h-[calc(100vh-3.5rem)] bg-gradient-to-b from-slate-900 to-slate-950">
+    <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-950">
       {/* Mobile header */}
       <div className="sticky top-0 z-30 bg-slate-900/80 backdrop-blur-lg border-b border-white/10 md:hidden">
         <div className="px-4 h-14 flex items-center">
