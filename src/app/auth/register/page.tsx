@@ -11,6 +11,22 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Calculator, Mail, Lock, User, AlertCircle, CheckCircle } from 'lucide-react'
 
+function translateAuthError(msg: string): string {
+  const map: Record<string, string> = {
+    'User already registered': 'Diese E-Mail-Adresse ist bereits registriert.',
+    'email rate limit exceeded': 'E-Mail-Limit erreicht. Bitte versuche es in einer Stunde erneut.',
+    'over_email_send_rate_limit': 'E-Mail-Limit erreicht. Bitte versuche es in einer Stunde erneut.',
+    'Password should be at least 6 characters': 'Das Passwort muss mindestens 6 Zeichen lang sein.',
+    'Unable to validate email address: invalid format': 'Ungültige E-Mail-Adresse.',
+    'Signup requires a valid password': 'Bitte gib ein gültiges Passwort ein.',
+  }
+  // Also handle dynamic "Email address ... is invalid" messages
+  if (msg.toLowerCase().includes('email address') && msg.toLowerCase().includes('invalid')) {
+    return 'Ungültige E-Mail-Adresse. Bitte überprüfe deine Eingabe.'
+  }
+  return map[msg] ?? msg
+}
+
 function RegisterPageInner() {
   const searchParams = useSearchParams()
   const redirectParam = searchParams.get('redirect') || ''
@@ -40,7 +56,7 @@ function RegisterPageInner() {
     })
 
     if (error) {
-      setError(error.message)
+      setError(translateAuthError(error.message))
       setLoading(false)
       return
     }

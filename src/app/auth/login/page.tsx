@@ -12,6 +12,18 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Calculator, Mail, Lock, AlertCircle, CheckCircle } from 'lucide-react'
 
+function translateAuthError(msg: string): string {
+  const map: Record<string, string> = {
+    'Invalid login credentials': 'Ungültige Anmeldedaten. Bitte überprüfe E-Mail und Passwort.',
+    'Email not confirmed': 'Bitte bestätige zuerst deine E-Mail-Adresse.',
+    'email rate limit exceeded': 'E-Mail-Limit erreicht. Bitte versuche es in einer Stunde erneut.',
+    'over_email_send_rate_limit': 'E-Mail-Limit erreicht. Bitte versuche es in einer Stunde erneut.',
+    'For security purposes, you can only request this once every 60 seconds': 'Aus Sicherheitsgründen kannst du dies nur alle 60 Sekunden anfordern.',
+    'User already registered': 'Diese E-Mail ist bereits registriert.',
+  }
+  return map[msg] ?? msg
+}
+
 function LoginPageInner() {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -30,11 +42,7 @@ function LoginPageInner() {
     const { error } = await supabase.auth.signInWithPassword({ email, password })
 
     if (error) {
-      setError(
-        error.message === 'Invalid login credentials'
-          ? 'Ungültige Anmeldedaten. Bitte überprüfe E-Mail und Passwort.'
-          : error.message,
-      )
+      setError(translateAuthError(error.message))
       setLoading(false)
       return
     }
@@ -52,7 +60,7 @@ function LoginPageInner() {
       redirectTo: `${window.location.origin}/auth/callback`,
     })
     if (error) {
-      setError(error.message)
+      setError(translateAuthError(error.message))
     } else {
       setResetSent(true)
     }
