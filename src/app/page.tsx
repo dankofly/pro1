@@ -135,7 +135,7 @@ function Navbar() {
           </div>
           <div className="hidden md:flex items-center gap-6 text-sm text-blue-200">
             <a href="#problem" className="hover:text-white transition-colors">Problem</a>
-            <a href="#features" className="hover:text-white transition-colors">Features</a>
+            <Link href="/features" className="hover:text-white transition-colors">Features</Link>
             <a href="#pricing" className="hover:text-white transition-colors">Preise</a>
             <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
           </div>
