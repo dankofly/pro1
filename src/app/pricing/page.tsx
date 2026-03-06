@@ -165,7 +165,10 @@ function PricingContent() {
       }
     } catch (err) {
       console.error('Checkout error:', err)
-      toast.error('Verbindungsfehler. Bitte versuche es erneut.')
+      const message = err instanceof TypeError && err.message === 'Failed to fetch'
+        ? 'Keine Internetverbindung. Bitte prüfe deine Verbindung und versuche es erneut.'
+        : 'Verbindung zum Zahlungsanbieter fehlgeschlagen. Bitte versuche es in wenigen Sekunden erneut.'
+      toast.error(message)
     } finally {
       setCheckoutLoading(false)
     }

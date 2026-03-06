@@ -26,7 +26,7 @@ export function useSubscription(user: User | null, authLoading: boolean = false)
   const [loading, setLoading] = useState(true)
 
   const CACHE_KEY = 'sub_cache'
-  const CACHE_TTL = 5 * 60 * 1000 // 5 minutes
+  const CACHE_TTL = 60 * 1000 // 1 minute
 
   const applyData = useCallback((data: { plan: string; status: string; current_period_end: string | null; customer_portal_url: string | null } | null) => {
     if (!data) {
@@ -67,11 +67,17 @@ export function useSubscription(user: User | null, authLoading: boolean = false)
 
     setLoading(true)
     try {
-      const { data, error } = await supabase
+      const timeout = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error('Subscription fetch timeout')), 10000)
+      )
+
+      const query = supabase
         .from('subscriptions')
         .select('plan, status, current_period_end, customer_portal_url')
         .eq('user_id', user.id)
         .single()
+
+      const { data, error } = await Promise.race([query, timeout])
 
       if (error || !data) {
         applyData(null)

@@ -102,7 +102,10 @@ export async function POST(request: NextRequest) {
 
     const promoId = redeemed[0].id
 
-    // Step 3: Subscription auf Pro setzen
+    // Step 3: Subscription auf Pro setzen (1 Jahr gültig)
+    const promoExpiry = new Date()
+    promoExpiry.setFullYear(promoExpiry.getFullYear() + 1)
+
     const { error: subError } = await admin.from('subscriptions').upsert({
       user_id: user.id,
       stripe_subscription_id: `promo_${promoId}`,
@@ -112,9 +115,9 @@ export async function POST(request: NextRequest) {
       plan: 'pro',
       status: 'active',
       billing_interval: 'year',
-      current_period_end: null,
+      current_period_end: promoExpiry.toISOString(),
       renews_at: null,
-      ends_at: null,
+      ends_at: promoExpiry.toISOString(),
       update_payment_method_url: null,
       customer_portal_url: null,
       updated_at: new Date().toISOString(),

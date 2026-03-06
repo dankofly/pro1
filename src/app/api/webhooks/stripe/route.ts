@@ -92,7 +92,10 @@ export async function POST(request: NextRequest) {
           updated_at: new Date().toISOString(),
         }, { onConflict: 'user_id' })
 
-        if (error) console.error('Webhook upsert error:', error)
+        if (error) {
+          console.error('Webhook upsert error:', error)
+          return NextResponse.json({ error: 'DB upsert failed' }, { status: 500 })
+        }
         break
       }
 
@@ -120,7 +123,10 @@ export async function POST(request: NextRequest) {
           })
           .eq('stripe_subscription_id', subscription.id)
 
-        if (error) console.error('Webhook update error:', error)
+        if (error) {
+          console.error('Webhook update error:', error)
+          return NextResponse.json({ error: 'DB update failed' }, { status: 500 })
+        }
         break
       }
 
@@ -142,7 +148,10 @@ export async function POST(request: NextRequest) {
             })
             .eq('stripe_subscription_id', subscriptionId)
 
-          if (error) console.error('Webhook payment_failed update error:', error)
+          if (error) {
+            console.error('Webhook payment_failed update error:', error)
+            return NextResponse.json({ error: 'DB update failed' }, { status: 500 })
+          }
         }
         break
       }

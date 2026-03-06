@@ -20,8 +20,15 @@ export async function POST(request: NextRequest) {
       .eq('user_id', user.id)
       .single()
 
-    if (!sub?.stripe_customer_id || sub.stripe_customer_id === 'promo') {
+    if (!sub?.stripe_customer_id) {
       return NextResponse.json({ error: 'Kein aktives Abo gefunden' }, { status: 404 })
+    }
+
+    if (sub.stripe_customer_id === 'promo') {
+      return NextResponse.json(
+        { error: 'Dein Pro-Zugang wurde per Promo-Code aktiviert. Ein Kundenportal ist nur für zahlende Abonnements verfügbar.' },
+        { status: 400 }
+      )
     }
 
     const portalSession = await getStripeServer().billingPortal.sessions.create({
