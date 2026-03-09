@@ -99,7 +99,7 @@ const faqSections: FaqSection[] = [
     items: [
       {
         q: 'Was sind die drei Preispläne?',
-        a: 'Free (kostenlos): SVS-Beitragsrechner, Wahrheits-Tabelle, Geldfluss-Diagramm, Sachbezug-Rechner, Steuer-Wissen Bot. Sicherheits-Plan (9,90 EUR/Monat oder 99 EUR/Jahr): zusätzlich Einkommensteuer-Prognose, Familienbonus & Absetzbeträge, Berechnungen speichern, Dashboard mit Verlauf und Export. SteuerBoard Pro (19,90 EUR/Monat oder 199 EUR/Jahr): alles plus Steuer-Chatbot mit 7 Rechnern, KI-Steuerberater, Misch-Einkommen Rechner, GmbH-Vergleich, Pauschalierungs-Vergleich, USt-Rechner & Rücklagen, Gewinnmaximierer, Investitionen & AfA, Krypto-Steuer und PDF-Export.',
+        a: 'Free (kostenlos): SVS-Beitragsrechner, Wahrheits-Tabelle, Geldfluss-Diagramm, Sachbezug-Rechner, Steuer-Wissen Bot. Sicherheits-Plan (12,90 EUR/Monat oder 119 EUR/Jahr): zusätzlich Einkommensteuer-Prognose, Familienbonus & Absetzbeträge, Berechnungen speichern, Dashboard mit Verlauf und Export. SteuerBoard Pro (24,90 EUR/Monat oder 239 EUR/Jahr): alles plus Steuer-Chatbot mit 7 Rechnern, KI-Steuerberater, Misch-Einkommen Rechner, GmbH-Vergleich, Pauschalierungs-Vergleich, USt-Rechner & Rücklagen, Gewinnmaximierer, Investitionen & AfA, Krypto-Steuer und PDF-Export.',
       },
       {
         q: 'Was kann der KI-Steuer-Chatbot?',

@@ -26,7 +26,7 @@ export default function BilanzLayout({ children }: { children: React.ReactNode }
         operatingSystem: 'All',
         offers: {
           '@type': 'Offer',
-          price: '19.90',
+          price: '24.90',
           priceCurrency: 'EUR',
           description: 'Pro-Plan für vollen Zugriff inkl. AI Forecast',
         },

@@ -503,7 +503,7 @@ export default function FeaturesPage() {
         {/* Sicherheits-Plan */}
         <TierSection
           title="Sicherheits-Plan"
-          subtitle="9,90 EUR/Monat · Einkommensteuer-Prognose & Speichern"
+          subtitle="12,90 EUR/Monat · Einkommensteuer-Prognose & Speichern"
           badge="Basic"
           badgeColor="bg-blue-500/10 text-blue-400 border-blue-500/20"
           features={BASIC_FEATURES}
@@ -521,7 +521,7 @@ export default function FeaturesPage() {
         {/* Pro */}
         <TierSection
           title="SteuerBoard Pro"
-          subtitle="19,90 EUR/Monat · Alles, plus KI-Power und 7 Rechner"
+          subtitle="24,90 EUR/Monat · Alles, plus KI-Power und 7 Rechner"
           badge="Pro"
           badgeColor="bg-amber-500/10 text-amber-400 border-amber-500/20"
           features={PRO_FEATURES}

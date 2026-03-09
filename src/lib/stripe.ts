@@ -4,36 +4,36 @@ import { loadStripe, type Stripe as StripeClient } from '@stripe/stripe-js'
 
 export const STRIPE_PLANS = {
   basic_monthly: {
-    priceId: 'price_1SzNcl058l4G2yAGac6wVS5U',
+    priceId: 'price_1T92la058l4G2yAGDn1eZkrV',
     plan: 'basic' as const,
     interval: 'month' as const,
-    price: 990,
+    price: 1290,
     label: 'Sicherheits-Plan',
-    priceDisplay: '9,90',
+    priceDisplay: '12,90',
   },
   basic_yearly: {
-    priceId: 'price_1SzNcl058l4G2yAGHBnR6EFc',
+    priceId: 'price_1T92ld058l4G2yAG1xQbwqbO',
     plan: 'basic' as const,
     interval: 'year' as const,
-    price: 9900,
+    price: 11900,
     label: 'Sicherheits-Plan',
-    priceDisplay: '99',
+    priceDisplay: '119',
   },
   pro_monthly: {
-    priceId: 'price_1SzNcl058l4G2yAGIojL3EuJ',
+    priceId: 'price_1T92le058l4G2yAGXYMfQRq6',
     plan: 'pro' as const,
     interval: 'month' as const,
-    price: 1990,
+    price: 2490,
     label: 'SteuerBoard Pro',
-    priceDisplay: '19,90',
+    priceDisplay: '24,90',
   },
   pro_yearly: {
-    priceId: 'price_1SzNcl058l4G2yAGwN9wLihg',
+    priceId: 'price_1T92lg058l4G2yAGKwNvUhLP',
     plan: 'pro' as const,
     interval: 'year' as const,
-    price: 19900,
+    price: 23900,
     label: 'SteuerBoard Pro',
-    priceDisplay: '199',
+    priceDisplay: '239',
   },
 } as const
 

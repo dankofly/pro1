@@ -726,9 +726,9 @@ const PRICING_PLANS = [
   },
   {
     name: 'SteuerBoard Pro',
-    price: 19.9,
-    yearlyPrice: 16.58,
-    yearlyTotal: 199,
+    price: 24.9,
+    yearlyPrice: 19.92,
+    yearlyTotal: 239,
     period: 'pro Monat',
     description: 'Für Profis',
     features: [
@@ -761,9 +761,9 @@ const PRICING_PLANS = [
   },
   {
     name: 'Sicherheits-Plan',
-    price: 9.9,
-    yearlyPrice: 8.25,
-    yearlyTotal: 99,
+    price: 12.9,
+    yearlyPrice: 9.92,
+    yearlyTotal: 119,
     period: 'pro Monat',
     description: 'Für Einsteiger',
     features: [
@@ -797,7 +797,14 @@ const PRICING_PLANS = [
 ]
 
 function PricingSection() {
-  return <Pricing plans={PRICING_PLANS} />
+  return (
+    <>
+      <Pricing plans={PRICING_PLANS} />
+      <p className="text-center text-sm text-slate-400 max-w-2xl mx-auto mt-6 px-4">
+        SteuerBoard kann sich doppelt lohnen: Die Kosten sind oft steuerlich absetzbar. Wie viel du effektiv sparst, kannst du direkt mit SteuerBoard Pro berechnen.
+      </p>
+    </>
+  )
 }
 
 /* ─── Trust ─── */
@@ -851,7 +858,7 @@ function FAQSection() {
     },
     {
       q: 'Welche Features bietet SteuerBoard.pro?',
-      a: 'Free (kostenlos): SVS-Beitragsrechner, Wahrheits-Tabelle, Geldfluss-Diagramm, Sachbezug-Rechner, Steuer-Wissen Bot und aktuelle Werte für 2024–2026. Sicherheits-Plan (9,90 EUR/Monat): zusätzlich Einkommensteuer-Prognose, Familienbonus & Absetzbeträge, Berechnungen speichern, Dashboard mit Verlauf und Export. SteuerBoard Pro (19,90 EUR/Monat): alles plus Steuer-Chatbot mit 7 Rechnern (ESt, KöSt, USt, Krypto, ImmoESt, Sachbezug, IFB), KI-Steuerberater mit persönlicher Optimierung, Misch-Einkommen Rechner für Angestellte mit Nebeneinkünften, GmbH-Vergleich (EPU vs. GmbH mit Break-Even), Pauschalierungs-Vergleich, USt-Rechner & monatliche Rücklagen, Gewinnmaximierer, Investitionen & AfA und PDF-Export für den Steuerberater.',
+      a: 'Free (kostenlos): SVS-Beitragsrechner, Wahrheits-Tabelle, Geldfluss-Diagramm, Sachbezug-Rechner, Steuer-Wissen Bot und aktuelle Werte für 2024–2026. Sicherheits-Plan (12,90 EUR/Monat): zusätzlich Einkommensteuer-Prognose, Familienbonus & Absetzbeträge, Berechnungen speichern, Dashboard mit Verlauf und Export. SteuerBoard Pro (24,90 EUR/Monat): alles plus Steuer-Chatbot mit 7 Rechnern (ESt, KöSt, USt, Krypto, ImmoESt, Sachbezug, IFB), KI-Steuerberater mit persönlicher Optimierung, Misch-Einkommen Rechner für Angestellte mit Nebeneinkünften, GmbH-Vergleich (EPU vs. GmbH mit Break-Even), Pauschalierungs-Vergleich, USt-Rechner & monatliche Rücklagen, Gewinnmaximierer, Investitionen & AfA und PDF-Export für den Steuerberater.',
     },
     {
       q: 'Was ist die SVS-Nachzahlungsfalle und wie schützt SteuerBoard davor?',

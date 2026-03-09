@@ -15,8 +15,8 @@ interface UpgradeDialogProps {
 
 export function UpgradeDialog({ open, onOpenChange, feature, requiredPlan }: UpgradeDialogProps) {
   const planLabel = requiredPlan === 'pro' ? 'SteuerBoard Pro' : 'Sicherheits-Plan'
-  const monthlyPrice = requiredPlan === 'pro' ? '19,90' : '9,90'
-  const yearlyPrice = requiredPlan === 'pro' ? '199' : '99'
+  const monthlyPrice = requiredPlan === 'pro' ? '24,90' : '12,90'
+  const yearlyPrice = requiredPlan === 'pro' ? '239' : '119'
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>

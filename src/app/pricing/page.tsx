@@ -250,9 +250,9 @@ function PricingContent() {
     },
     {
       name: 'SteuerBoard Pro',
-      price: 19.9,
-      yearlyPrice: 16.58,
-      yearlyTotal: 199,
+      price: 24.9,
+      yearlyPrice: 19.92,
+      yearlyTotal: 239,
       unit: 'pro Monat',
       desc: 'Für Profis',
       isFree: false,
@@ -287,9 +287,9 @@ function PricingContent() {
     },
     {
       name: 'Sicherheits-Plan',
-      price: 9.9,
-      yearlyPrice: 8.25,
-      yearlyTotal: 99,
+      price: 12.9,
+      yearlyPrice: 9.92,
+      yearlyTotal: 119,
       unit: 'pro Monat',
       desc: 'Für Einsteiger',
       isFree: false,
@@ -539,6 +539,11 @@ function PricingContent() {
             )
           })}
         </div>
+
+        {/* Tax deductibility hint */}
+        <p className="text-center text-sm text-slate-400 max-w-2xl mx-auto mt-8 px-4">
+          SteuerBoard kann sich doppelt lohnen: Die Kosten sind oft steuerlich absetzbar. Wie viel du effektiv sparst, kannst du direkt mit SteuerBoard Pro berechnen.
+        </p>
 
         {/* Footer */}
         <p className="text-center text-blue-200/30 text-xs mt-8">
