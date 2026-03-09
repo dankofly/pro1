@@ -800,7 +800,7 @@ function PricingSection() {
   return (
     <>
       <Pricing plans={PRICING_PLANS} />
-      <p className="text-center text-sm text-slate-400 max-w-2xl mx-auto mt-6 px-4">
+      <p className="text-center text-base text-slate-400 max-w-2xl mx-auto mt-10 px-4">
         SteuerBoard kann sich doppelt lohnen: Die Kosten sind oft steuerlich absetzbar. Wie viel du effektiv sparst, kannst du direkt mit SteuerBoard Pro berechnen.
       </p>
     </>
