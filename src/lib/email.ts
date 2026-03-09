@@ -224,8 +224,12 @@ async function sendEmail(params: EmailParams): Promise<boolean> {
     })
     console.log(`Email sent: "${params.subject}" → ${params.to}`)
     return true
-  } catch (error) {
-    console.error('SendGrid error:', error)
+  } catch (error: unknown) {
+    const sgError = error as { response?: { body?: unknown }; message?: string }
+    console.error('SendGrid error:', sgError.message)
+    if (sgError.response?.body) {
+      console.error('SendGrid response body:', JSON.stringify(sgError.response.body))
+    }
     return false
   }
 }

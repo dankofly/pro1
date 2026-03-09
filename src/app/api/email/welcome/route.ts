@@ -15,7 +15,11 @@ export async function POST(request: NextRequest) {
     }
 
     const name = user.user_metadata?.full_name
-    await sendWelcomeEmail(user.email!, name)
+    const sent = await sendWelcomeEmail(user.email!, name)
+
+    if (!sent) {
+      return NextResponse.json({ error: 'E-Mail konnte nicht gesendet werden. SENDGRID_API_KEY prüfen.' }, { status: 502 })
+    }
 
     return NextResponse.json({ sent: true })
   } catch (err) {
