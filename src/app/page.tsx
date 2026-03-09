@@ -35,7 +35,6 @@ import {
   Menu,
   X,
 } from 'lucide-react'
-import { Testimonials } from '@/components/ui/testimonials-columns'
 import { Pricing } from '@/components/ui/pricing'
 
 /* ─── Scroll-reveal hook ─── */
@@ -1057,7 +1056,6 @@ export default function LandingPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSONLD) }} />
       <Navbar />
       <Hero />
-      <Testimonials />
       <ProblemSection />
       <FeaturesSection />
       <PricingSection />
