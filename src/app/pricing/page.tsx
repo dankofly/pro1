@@ -540,14 +540,14 @@ function PricingContent() {
           })}
         </div>
 
-        {/* Tax deductibility hint */}
-        <p className="text-center text-base text-slate-400 max-w-2xl mx-auto mt-12 px-4">
-          SteuerBoard kann sich doppelt lohnen: Die Kosten sind oft steuerlich absetzbar. Wie viel du effektiv sparst, kannst du direkt mit SteuerBoard Pro berechnen.
-        </p>
-
         {/* Footer */}
         <p className="text-center text-blue-200/30 text-xs mt-8">
           Alle Preise inkl. USt. {isMonthly ? 'Monatlich kündbar.' : 'Jährlich im Voraus.'} Sichere Zahlung via Stripe.
+        </p>
+
+        {/* Tax deductibility hint */}
+        <p className="text-center text-base text-slate-400 max-w-2xl mx-auto mt-4 px-4">
+          SteuerBoard kann sich doppelt lohnen: Die Kosten sind oft steuerlich absetzbar. Wie viel du effektiv sparst, kannst du direkt mit SteuerBoard Pro berechnen.
         </p>
         <div className="flex items-center justify-center gap-3 text-xs text-blue-200/20 mt-3">
           <Link href="/impressum" className="hover:text-blue-200/40 transition-colors">Impressum</Link>
