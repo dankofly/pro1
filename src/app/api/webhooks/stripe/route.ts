@@ -3,6 +3,11 @@ import type Stripe from 'stripe'
 import { getSupabaseAdmin } from '@/lib/supabase-admin'
 import { getStripeServer } from '@/lib/stripe-server'
 import { getPlanByPriceId } from '@/lib/stripe'
+import {
+  sendSubscriptionConfirmEmail,
+  sendCancellationEmail,
+  sendPaymentFailedEmail,
+} from '@/lib/email'
 
 // In newer Stripe SDK, current_period_end is on SubscriptionItem, not Subscription
 function getItemPeriodEnd(subscription: Stripe.Subscription): string | null {
@@ -96,6 +101,17 @@ export async function POST(request: NextRequest) {
           console.error('Webhook upsert error:', error)
           return NextResponse.json({ error: 'DB upsert failed' }, { status: 500 })
         }
+
+        // Send branded subscription confirmation email
+        const { data: { user: subUser } } = await admin.auth.admin.getUserById(userId)
+        if (subUser?.email) {
+          sendSubscriptionConfirmEmail(
+            subUser.email,
+            data.plan,
+            data.interval,
+            subUser.user_metadata?.full_name,
+          ).catch((e) => console.error('Subscription email failed:', e))
+        }
         break
       }
 
@@ -127,6 +143,25 @@ export async function POST(request: NextRequest) {
           console.error('Webhook update error:', error)
           return NextResponse.json({ error: 'DB update failed' }, { status: 500 })
         }
+
+        // Send cancellation email when subscription is cancelled or set to cancel
+        if (event.type === 'customer.subscription.deleted' || subscription.cancel_at_period_end) {
+          const cancelUserId = subscription.metadata.user_id
+          if (cancelUserId) {
+            const { data: { user: cancelUser } } = await admin.auth.admin.getUserById(cancelUserId)
+            if (cancelUser?.email) {
+              const endsAt = subscription.cancel_at
+                ? new Date(subscription.cancel_at * 1000).toISOString()
+                : data.periodEnd
+              sendCancellationEmail(
+                cancelUser.email,
+                data.plan,
+                endsAt,
+                cancelUser.user_metadata?.full_name,
+              ).catch((e) => console.error('Cancellation email failed:', e))
+            }
+          }
+        }
         break
       }
 
@@ -151,6 +186,15 @@ export async function POST(request: NextRequest) {
           if (error) {
             console.error('Webhook payment_failed update error:', error)
             return NextResponse.json({ error: 'DB update failed' }, { status: 500 })
+          }
+
+          // Send payment failed email
+          const customerEmail = typeof invoice.customer_email === 'string'
+            ? invoice.customer_email
+            : null
+          if (customerEmail) {
+            sendPaymentFailedEmail(customerEmail).catch((e) =>
+              console.error('Payment failed email error:', e))
           }
         }
         break

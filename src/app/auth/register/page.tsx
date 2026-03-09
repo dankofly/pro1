@@ -46,7 +46,7 @@ function RegisterPageInner() {
     setLoading(true)
     setError(null)
 
-    const { error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -59,6 +59,14 @@ function RegisterPageInner() {
       setError(translateAuthError(error.message))
       setLoading(false)
       return
+    }
+
+    // Send branded welcome email (fire & forget)
+    if (data.session?.access_token) {
+      fetch('/api/email/welcome', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${data.session.access_token}` },
+      }).catch(() => {})
     }
 
     setSuccess(true)
