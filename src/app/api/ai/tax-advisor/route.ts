@@ -2,62 +2,11 @@ import { NextRequest } from 'next/server'
 import { streamText } from 'ai'
 import { google } from '@ai-sdk/google'
 import { getSupabaseAdmin } from '@/lib/supabase-admin'
+import { checkAiRateLimit } from '@/lib/rate-limit'
+
+export const maxDuration = 60
 
 const MAX_REQUESTS_PER_DAY = 10
-
-// ── Rate Limiting ──────────────────────────────────────────
-
-async function checkRateLimit(userId: string): Promise<{ allowed: boolean; remaining: number }> {
-  const supabase = getSupabaseAdmin()
-  const now = new Date()
-
-  // Reset time: midnight Vienna time
-  const resetAt = new Date(now)
-  resetAt.setHours(24, 0, 0, 0)
-
-  // Atomic: increment count only if under limit, using conditional update
-  // First, reset expired entries
-  await supabase
-    .from('ai_rate_limits')
-    .update({ request_count: 0, reset_at: resetAt.toISOString() })
-    .eq('user_id', userId)
-    .lt('reset_at', now.toISOString())
-
-  // Try upsert for first-time users
-  const { data: existing } = await supabase
-    .from('ai_rate_limits')
-    .select('request_count')
-    .eq('user_id', userId)
-    .single()
-
-  if (!existing) {
-    await supabase.from('ai_rate_limits').upsert({
-      user_id: userId,
-      request_count: 1,
-      reset_at: resetAt.toISOString(),
-    })
-    return { allowed: true, remaining: MAX_REQUESTS_PER_DAY - 1 }
-  }
-
-  if (existing.request_count >= MAX_REQUESTS_PER_DAY) {
-    return { allowed: false, remaining: 0 }
-  }
-
-  // Atomic increment with guard: only increment if still under limit
-  const { data: updated, error: updateError } = await supabase
-    .from('ai_rate_limits')
-    .update({ request_count: existing.request_count + 1 })
-    .eq('user_id', userId)
-    .lt('request_count', MAX_REQUESTS_PER_DAY)
-    .select('request_count')
-
-  if (updateError || !updated || updated.length === 0) {
-    // Another concurrent request already hit the limit
-    return { allowed: false, remaining: 0 }
-  }
-
-  return { allowed: true, remaining: MAX_REQUESTS_PER_DAY - updated[0].request_count }
-}
 
 // ── System Prompt ──────────────────────────────────────────
 
@@ -174,7 +123,7 @@ export async function POST(request: NextRequest) {
     }
 
     // 3. Rate limit
-    const { allowed, remaining } = await checkRateLimit(user.id)
+    const { allowed, remaining } = await checkAiRateLimit(user.id, MAX_REQUESTS_PER_DAY)
     if (!allowed) {
       return Response.json(
         { error: 'Tageslimit erreicht. Du kannst morgen wieder eine Analyse starten.' },

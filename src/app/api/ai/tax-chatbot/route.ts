@@ -3,6 +3,7 @@ import { generateText, jsonSchema } from 'ai'
 import { google } from '@ai-sdk/google'
 import { getSupabaseAdmin } from '@/lib/supabase-admin'
 import { isAdmin } from '@/lib/admin'
+import { checkAiRateLimit } from '@/lib/rate-limit'
 import { SYSTEM_PROMPT } from '@/lib/tax-calculators/knowledge'
 import { executeTool, TOOL_DEFINITIONS } from '@/lib/tax-calculators'
 
@@ -11,54 +12,6 @@ export const maxDuration = 60
 const LIMITS = { pro: 20, basic: 10 } as const
 const MAX_MESSAGES = 20
 const MAX_TOOL_ITERATIONS = 5
-
-// ── Rate Limiting ─────────────────────────────────────────
-
-async function checkRateLimit(userId: string, maxRequests: number): Promise<{ allowed: boolean; remaining: number }> {
-  const supabase = getSupabaseAdmin()
-  const now = new Date()
-
-  const resetAt = new Date(now)
-  resetAt.setHours(24, 0, 0, 0)
-
-  await supabase
-    .from('ai_rate_limits')
-    .update({ request_count: 0, reset_at: resetAt.toISOString() })
-    .eq('user_id', userId)
-    .lt('reset_at', now.toISOString())
-
-  const { data: existing } = await supabase
-    .from('ai_rate_limits')
-    .select('request_count')
-    .eq('user_id', userId)
-    .single()
-
-  if (!existing) {
-    await supabase.from('ai_rate_limits').upsert({
-      user_id: userId,
-      request_count: 1,
-      reset_at: resetAt.toISOString(),
-    })
-    return { allowed: true, remaining: maxRequests - 1 }
-  }
-
-  if (existing.request_count >= maxRequests) {
-    return { allowed: false, remaining: 0 }
-  }
-
-  const { data: updated, error: updateError } = await supabase
-    .from('ai_rate_limits')
-    .update({ request_count: existing.request_count + 1 })
-    .eq('user_id', userId)
-    .lt('request_count', maxRequests)
-    .select('request_count')
-
-  if (updateError || !updated || updated.length === 0) {
-    return { allowed: false, remaining: 0 }
-  }
-
-  return { allowed: true, remaining: maxRequests - updated[0].request_count }
-}
 
 // ── Build tools for Vercel AI SDK ──────────────────────────
 
@@ -118,7 +71,7 @@ export async function POST(request: NextRequest) {
       remaining = -1
       limit = -1
     } else {
-      const rateCheck = await checkRateLimit(user.id, dailyLimit)
+      const rateCheck = await checkAiRateLimit(user.id, dailyLimit)
       if (!rateCheck.allowed) {
         return Response.json(
           { error: 'Tageslimit erreicht. Du kannst morgen wieder eine Frage stellen.' },

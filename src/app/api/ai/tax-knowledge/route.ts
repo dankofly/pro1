@@ -4,6 +4,7 @@ import { google } from '@ai-sdk/google'
 import { createHash } from 'crypto'
 import { getSupabaseAdmin } from '@/lib/supabase-admin'
 import { isAdmin } from '@/lib/admin'
+import { checkAiRateLimit } from '@/lib/rate-limit'
 import { routeToChapters } from '@/lib/tax-knowledge/router'
 import { loadChapter, CHAPTERS } from '@/lib/tax-knowledge/index'
 
@@ -70,58 +71,6 @@ function getClientIp(request: NextRequest): string {
   return '127.0.0.1'
 }
 
-// ── Rate Limiting ───────────────────────────────────────────
-
-async function checkRateLimit(
-  userId: string,
-  maxRequests: number
-): Promise<{ allowed: boolean; remaining: number }> {
-  const supabase = getSupabaseAdmin()
-  const now = new Date()
-
-  const resetAt = new Date(now)
-  resetAt.setHours(24, 0, 0, 0)
-
-  // Reset expired counters
-  await supabase
-    .from('ai_rate_limits')
-    .update({ request_count: 0, reset_at: resetAt.toISOString() })
-    .eq('user_id', userId)
-    .lt('reset_at', now.toISOString())
-
-  const { data: existing } = await supabase
-    .from('ai_rate_limits')
-    .select('request_count')
-    .eq('user_id', userId)
-    .single()
-
-  if (!existing) {
-    await supabase.from('ai_rate_limits').upsert({
-      user_id: userId,
-      request_count: 1,
-      reset_at: resetAt.toISOString(),
-    })
-    return { allowed: true, remaining: maxRequests - 1 }
-  }
-
-  if (existing.request_count >= maxRequests) {
-    return { allowed: false, remaining: 0 }
-  }
-
-  const { data: updated, error: updateError } = await supabase
-    .from('ai_rate_limits')
-    .update({ request_count: existing.request_count + 1 })
-    .eq('user_id', userId)
-    .lt('request_count', maxRequests)
-    .select('request_count')
-
-  if (updateError || !updated || updated.length === 0) {
-    return { allowed: false, remaining: 0 }
-  }
-
-  return { allowed: true, remaining: maxRequests - updated[0].request_count }
-}
-
 // ── Route Handler ───────────────────────────────────────────
 
 export async function POST(request: NextRequest) {
@@ -174,7 +123,7 @@ export async function POST(request: NextRequest) {
         ? user.id
         : ipToUuid(getClientIp(request))
 
-      const rateCheck = await checkRateLimit(rateLimitKey, dailyLimit)
+      const rateCheck = await checkAiRateLimit(rateLimitKey, dailyLimit)
       if (!rateCheck.allowed) {
         return Response.json(
           {

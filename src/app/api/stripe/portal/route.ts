@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getSupabaseAdmin } from '@/lib/supabase-admin'
 import { getStripeServer } from '@/lib/stripe-server'
-import { rateLimit, getClientIp } from '@/lib/rate-limit'
+import { checkIpRateLimit, getClientIp } from '@/lib/rate-limit'
 
 export async function POST(request: NextRequest) {
   try {
-    // Rate limit: 10 portal requests per minute per IP
+    // Rate limit: 10 portal requests per minute per IP (DB-backed)
     const ip = getClientIp(request)
-    const rl = rateLimit(`portal:${ip}`, { limit: 10, windowSeconds: 60 })
+    const rl = await checkIpRateLimit(`portal:${ip}`, 10, 60)
     if (!rl.allowed) {
       return NextResponse.json({ error: 'Zu viele Anfragen. Bitte warte kurz.' }, { status: 429 })
     }
