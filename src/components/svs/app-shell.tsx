@@ -44,6 +44,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const handleLogout = useCallback(async () => {
     await supabase.auth.signOut()
     setUser(null)
+    try { sessionStorage.removeItem('sub_cache') } catch { /* ignore */ }
     toast.success('Erfolgreich abgemeldet.')
   }, [])
 

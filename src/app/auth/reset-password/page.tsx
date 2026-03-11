@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
@@ -18,6 +18,13 @@ export default function ResetPasswordPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
+  const [sessionValid, setSessionValid] = useState<boolean | null>(null)
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data, error: err }) => {
+      setSessionValid(!err && !!data.user)
+    })
+  }, [])
 
   const handleReset = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -63,7 +70,24 @@ export default function ResetPasswordPage() {
           <CardTitle className="text-2xl">Neues Passwort setzen</CardTitle>
           <CardDescription>Gib dein neues Passwort ein</CardDescription>
         </CardHeader>
-        {success ? (
+        {sessionValid === null ? (
+          <CardContent className="text-center py-8">
+            <p className="text-sm text-muted-foreground">Wird überprüft...</p>
+          </CardContent>
+        ) : sessionValid === false ? (
+          <CardContent className="text-center space-y-3 pb-8">
+            <div className="flex justify-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-red-50">
+                <AlertCircle className="h-8 w-8 text-red-600" />
+              </div>
+            </div>
+            <p className="font-semibold">Link ungültig oder abgelaufen</p>
+            <p className="text-sm text-muted-foreground">Bitte fordere einen neuen Passwort-Reset an.</p>
+            <Button asChild variant="outline" className="mt-2">
+              <Link href="/auth/login">Zurück zum Login</Link>
+            </Button>
+          </CardContent>
+        ) : success ? (
           <CardContent className="text-center space-y-3 pb-8">
             <div className="flex justify-center">
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-green-50">

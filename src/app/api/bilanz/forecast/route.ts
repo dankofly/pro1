@@ -218,7 +218,8 @@ export async function POST(request: NextRequest) {
       .eq('user_id', user.id)
       .single()
 
-    if (!sub || sub.plan !== 'pro' || !['active', 'trialing'].includes(sub.status)) {
+    const { isAdmin } = await import('@/lib/admin')
+    if (!isAdmin(user.email) && (!sub || sub.plan !== 'pro' || !['active', 'trialing', 'past_due'].includes(sub.status))) {
       return Response.json({ error: 'Pro-Abo erforderlich' }, { status: 403 })
     }
 

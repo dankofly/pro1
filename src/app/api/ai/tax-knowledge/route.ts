@@ -145,7 +145,10 @@ export async function POST(request: NextRequest) {
             .eq('user_id', data.user.id)
             .single()
 
-          if (sub && ['active', 'trialing'].includes(sub.status)) {
+          const { isAdmin } = await import('@/lib/admin')
+          if (isAdmin(data.user.email)) {
+            userPlan = 'pro'
+          } else if (sub && ['active', 'trialing', 'past_due'].includes(sub.status)) {
             userPlan = sub.plan // 'basic' | 'pro'
           } else {
             userPlan = 'free'

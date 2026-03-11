@@ -104,13 +104,13 @@ export async function POST(request: NextRequest) {
       .eq('user_id', user.id)
       .single()
 
-    if (!sub || sub.plan !== 'pro' || !['active', 'trialing'].includes(sub.status)) {
+    const userIsAdmin = isAdmin(user.email)
+    if (!userIsAdmin && (!sub || sub.plan !== 'pro' || !['active', 'trialing', 'past_due'].includes(sub.status))) {
       return Response.json({ error: 'Pro-Abo erforderlich' }, { status: 403 })
     }
 
     // 3. Rate limit (admin = unlimited)
-    const userIsAdmin = isAdmin(user.email)
-    const dailyLimit = sub.plan === 'pro' ? LIMITS.pro : LIMITS.basic
+    const dailyLimit = sub?.plan === 'pro' || userIsAdmin ? LIMITS.pro : LIMITS.basic
     let remaining: number
     let limit: number
 
