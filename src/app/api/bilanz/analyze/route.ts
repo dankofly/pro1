@@ -1,5 +1,8 @@
 import { NextRequest } from 'next/server'
 import { getSupabaseAdmin } from '@/lib/supabase-admin'
+import { isAdmin } from '@/lib/admin'
+
+export const maxDuration = 60
 
 // ── Types ────────────────────────────────────────────────────
 
@@ -320,11 +323,12 @@ export async function POST(request: NextRequest) {
       .eq('user_id', user.id)
       .single()
 
-    if (!sub || !['active', 'trialing'].includes(sub.status)) {
+    const adminOverride = isAdmin(user.email)
+    if (!adminOverride && (!sub || !['active', 'trialing', 'past_due'].includes(sub.status))) {
       return Response.json({ error: 'Aktives Abo erforderlich.' }, { status: 403 })
     }
 
-    if (!['basic', 'pro'].includes(sub.plan)) {
+    if (!adminOverride && (!sub || !['basic', 'pro'].includes(sub.plan))) {
       return Response.json({ error: 'Basic- oder Pro-Abo erforderlich.' }, { status: 403 })
     }
 

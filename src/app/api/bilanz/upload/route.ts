@@ -2,6 +2,8 @@ import { NextRequest } from 'next/server'
 import Papa from 'papaparse'
 import { getSupabaseAdmin } from '@/lib/supabase-admin'
 
+export const maxDuration = 60
+
 // ── Types ────────────────────────────────────────────────────
 
 interface BilanzAktiva {
