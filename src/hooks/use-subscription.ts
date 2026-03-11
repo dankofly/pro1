@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { supabase } from '@/lib/supabase'
 import { isActiveStatus, type PlanTier } from '@/lib/stripe'
+import { isAdmin } from '@/lib/admin'
 import type { User } from '@supabase/supabase-js'
 
 export interface SubscriptionInfo {
@@ -104,14 +105,15 @@ export function useSubscription(user: User | null, authLoading: boolean = false)
   }, [fetchSubscription])
 
   const isActive = plan !== 'free' && status !== null && isActiveStatus(status)
+  const adminOverride = isAdmin(user?.email)
 
   return {
-    plan,
-    status,
-    isFree: plan === 'free',
-    isBasic: plan === 'basic' || plan === 'pro',
-    isPro: plan === 'pro',
-    isActive,
+    plan: adminOverride ? 'pro' : plan,
+    status: adminOverride ? 'active' : status,
+    isFree: adminOverride ? false : plan === 'free',
+    isBasic: adminOverride ? true : plan === 'basic' || plan === 'pro',
+    isPro: adminOverride ? true : plan === 'pro',
+    isActive: adminOverride ? true : isActive,
     currentPeriodEnd,
     customerPortalUrl,
     loading,
