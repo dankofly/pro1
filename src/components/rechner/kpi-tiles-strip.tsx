@@ -59,9 +59,9 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
       : 'bg-red-500/20 border-red-400/30'
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-3" aria-live="polite" aria-atomic="true">
       {/* Hero: Netto */}
-      <div className="rounded-2xl bg-gradient-to-br from-[hsl(207,100%,42%)] via-[hsl(210,100%,34%)] to-[hsl(215,100%,28%)] text-primary-foreground p-5 sm:p-6 relative animate-fade-up overflow-hidden shadow-lg shadow-blue-900/20" role="status" aria-label={`Echtes Netto: ${nettoFormatted} Euro`}>
+      <div className="rounded-2xl bg-gradient-to-br from-[hsl(207,100%,42%)] via-[hsl(210,100%,34%)] to-[hsl(215,100%,28%)] text-primary-foreground p-5 sm:p-6 relative animate-fade-up overflow-hidden shadow-lg shadow-blue-900/20" role="status" aria-label={`Echtes Netto: ${nettoFormatted} Euro, ${nettoPct.toFixed(1)} Prozent vom Umsatz`}>
         <div className="absolute -top-12 -right-12 w-40 h-40 bg-white/[0.04] rounded-full pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-32 h-32 bg-white/[0.03] rounded-full -mr-12 -mb-12 pointer-events-none" />
         <div className="relative">

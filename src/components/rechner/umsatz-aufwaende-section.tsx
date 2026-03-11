@@ -60,6 +60,7 @@ function EuroInput({
         max={max}
         step={500}
         className="py-2"
+        aria-label={label}
       />
       <div className="flex justify-between text-xs text-muted-foreground">
         <span>0</span>

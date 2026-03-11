@@ -19,6 +19,7 @@ import {
   LogIn,
 } from 'lucide-react'
 import { toast } from 'sonner'
+import { escapeHtml } from '@/lib/sanitize-html'
 
 // ── Types ────────────────────────────────────────────────────
 
@@ -419,7 +420,7 @@ function MarkdownContent({ text }: { text: string }) {
 }
 
 function renderMarkdown(md: string): string {
-  return md
+  return escapeHtml(md)
     .replace(/^### (.+)$/gm, '<h3 class="text-sm font-semibold text-foreground mt-3 mb-1">$1</h3>')
     .replace(/^## (.+)$/gm, '<h2 class="text-base font-semibold text-foreground mt-3 mb-1">$1</h2>')
     .replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-foreground">$1</strong>')

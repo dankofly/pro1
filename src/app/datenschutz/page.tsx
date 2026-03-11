@@ -39,7 +39,7 @@ function DatenschutzContent() {
               <li>Bestandsdaten (z.B. Name, E-Mail-Adresse)</li>
               <li>Nutzungsdaten (z.B. besuchte Seiten, Zugriffszeit)</li>
               <li>Meta-/Kommunikationsdaten (z.B. IP-Adresse, Geräteinformationen)</li>
-              <li>Zahlungsdaten (verarbeitet durch Lemon Squeezy als Zahlungsdienstleister)</li>
+              <li>Zahlungsdaten (verarbeitet durch Stripe als Zahlungsdienstleister)</li>
               <li>Berechnungsdaten (z.B. Gewinn, SVS-Vorschreibung – nur bei registrierten Nutzern)</li>
             </ul>
             <p><strong>Betroffene Personen:</strong></p>

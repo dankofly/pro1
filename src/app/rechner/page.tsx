@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useMemo, useCallback, useEffect, useRef } from 'react'
+import { useState, useMemo, useCallback, useEffect, useRef, type ReactNode } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { formatEuro } from '@/lib/format'
@@ -53,8 +53,47 @@ import { Badge } from '@/components/ui/badge'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { Save, Lock, Settings2, ChevronDown, HelpCircle } from 'lucide-react'
 import { toast } from 'sonner'
+import { Skeleton } from '@/components/ui/skeleton'
+import { useScrollReveal } from '@/hooks/use-scroll-reveal'
 
 import type { Stammdaten } from '@/lib/rechner-types'
+
+function ScrollReveal({ children, delay = 0 }: { children: ReactNode; delay?: number }) {
+  const { ref, visible } = useScrollReveal(0.08)
+  return (
+    <div
+      ref={ref}
+      className={`transition-all duration-700 ease-out motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+      style={{ transitionDelay: `${delay}ms` }}
+    >
+      {children}
+    </div>
+  )
+}
+
+function RechnerSkeleton() {
+  return (
+    <div className="max-w-[1400px] mx-auto px-4 sm:px-6 py-8">
+      <div className="grid grid-cols-1 lg:grid-cols-[360px_minmax(0,1fr)] gap-10 lg:gap-14">
+        <div className="space-y-4">
+          <Skeleton className="h-10 w-full rounded-lg" />
+          <Skeleton className="h-32 w-full rounded-xl" />
+          <Skeleton className="h-48 w-full rounded-xl" />
+        </div>
+        <div className="space-y-4">
+          <Skeleton className="h-36 w-full rounded-2xl" />
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <Skeleton key={i} className="h-16 rounded-xl" />
+            ))}
+          </div>
+          <Skeleton className="h-24 w-full rounded-xl" />
+          <Skeleton className="h-40 w-full rounded-xl" />
+        </div>
+      </div>
+    </div>
+  )
+}
 
 function RechnerContent() {
   const { user, subscription } = useAppShell()
@@ -68,10 +107,21 @@ function RechnerContent() {
   const [mounted, setMounted] = useState(false)
   const [showBeitragsDetails, setShowBeitragsDetails] = useState(false)
   const [showMonthlyOverview, setShowMonthlyOverview] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
   const mainContentRef = useRef<HTMLDivElement>(null)
 
   // Avoid hydration mismatch (localStorage read)
   useEffect(() => setMounted(true), [])
+
+  // Scroll progress for the sticky header bar
+  useEffect(() => {
+    const handler = () => {
+      const h = document.documentElement.scrollHeight - window.innerHeight
+      setScrollProgress(h > 0 ? Math.min(window.scrollY / h, 1) : 0)
+    }
+    window.addEventListener('scroll', handler, { passive: true })
+    return () => window.removeEventListener('scroll', handler)
+  }, [])
 
   const svs = result.svs
   const vorschreibung = input.vorauszahlungen.svVorauszahlung / 12
@@ -134,11 +184,7 @@ function RechnerContent() {
 
   // Show loading state during hydration
   if (!mounted) {
-    return (
-      <div className="flex items-center justify-center min-h-[60vh]">
-        <p className="text-muted-foreground">Laden…</p>
-      </div>
-    )
+    return <RechnerSkeleton />
   }
 
   // Show onboarding wizard if not yet completed
@@ -150,6 +196,10 @@ function RechnerContent() {
     <>
       {/* Top bar */}
       <div className="sticky top-0 z-30 bg-[hsl(var(--surface))]/80 backdrop-blur-lg border-b border-border/40">
+        <div
+          className="absolute bottom-0 left-0 h-[2px] bg-primary/40 transition-[width] duration-150 ease-out"
+          style={{ width: `${scrollProgress * 100}%` }}
+        />
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <MobileNav />
@@ -320,27 +370,37 @@ function RechnerContent() {
               <DashboardCards result={svs} vorschreibung={vorschreibung} />
             )}
 
-            <RuecklagenSection
-              ruecklagen={result.ruecklagen}
-            />
+            <ScrollReveal>
+              <RuecklagenSection
+                ruecklagen={result.ruecklagen}
+              />
+            </ScrollReveal>
 
-            <UstVergleichTabelle ustResult={result.ustResult} />
+            <ScrollReveal delay={50}>
+              <UstVergleichTabelle ustResult={result.ustResult} />
+            </ScrollReveal>
 
-            <GeldflussDiagramm
-              umsatz={result.umsatz}
-              aufwaende={result.aufwaendeEffektiv}
-              gewinn={result.gewinn}
-              svs={svs.endgueltigeSVS}
-              est={svs.einkommensteuer}
-              netto={svs.echtesNetto}
-            />
+            <ScrollReveal delay={100}>
+              <GeldflussDiagramm
+                umsatz={result.umsatz}
+                aufwaende={result.aufwaendeEffektiv}
+                gewinn={result.gewinn}
+                svs={svs.endgueltigeSVS}
+                est={svs.einkommensteuer}
+                netto={svs.echtesNetto}
+              />
+            </ScrollReveal>
 
             {!svs.belowMinimum && (
               <>
-                <WahrheitsTabelle gewinn={result.gewinn} result={svs} year={input.year} />
+                <ScrollReveal>
+                  <WahrheitsTabelle gewinn={result.gewinn} result={svs} year={input.year} />
+                </ScrollReveal>
 
                 {/* ── Detailanalyse ── */}
-                <SectionDivider title="Detailanalyse" />
+                <ScrollReveal>
+                  <SectionDivider title="Detailanalyse" />
+                </ScrollReveal>
 
                 {subscription.isBasic ? (
                   <>

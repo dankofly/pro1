@@ -33,9 +33,9 @@ export function WahrheitsTabelle({ gewinn, result, year }: WahrheitsTabelleProps
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-white/10">
-              <th className="text-left py-2.5 font-semibold text-white/60">Posten</th>
-              <th className="text-right py-2.5 font-semibold text-white/60">Jährlich</th>
-              <th className="text-right py-2.5 font-semibold text-white/60">Monatlich</th>
+              <th scope="col" className="text-left py-2.5 font-semibold text-white/60">Posten</th>
+              <th scope="col" className="text-right py-2.5 font-semibold text-white/60">Jährlich</th>
+              <th scope="col" className="text-right py-2.5 font-semibold text-white/60">Monatlich</th>
             </tr>
           </thead>
           <tbody>

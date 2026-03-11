@@ -10,7 +10,7 @@ import { Switch } from '@/components/ui/switch'
 import { cn } from '@/lib/utils'
 import { useMediaQuery } from '@/hooks/use-media-query'
 import { motion } from 'motion/react'
-import { Check, ChevronDown, X, Crown, Star, ArrowLeft, Loader2, CheckCircle } from 'lucide-react'
+import { Check, ChevronDown, X, Crown, Star, ArrowLeft, Loader2, CheckCircle, Shield, CreditCard, CalendarX } from 'lucide-react'
 import { toast } from 'sonner'
 import { EmbeddedCheckoutProvider, EmbeddedCheckout } from '@stripe/react-stripe-js'
 import Link from 'next/link'
@@ -543,13 +543,51 @@ function PricingContent() {
         {/* Footer */}
         <p className="text-center text-blue-200/30 text-xs mt-8">
           Alle Preise inkl. USt. {isMonthly ? 'Monatlich kündbar.' : 'Jährlich im Voraus.'} Sichere Zahlung via Stripe.
+          <br />
+          <span className="text-blue-200/20">Preise gelten für Steuerjahr 2026 — Werte werden jährlich aktualisiert.</span>
         </p>
 
+        {/* Trust Signals */}
+        <div className="flex flex-wrap items-center justify-center gap-6 mt-8">
+          <div className="flex items-center gap-2 text-blue-200/40 text-xs">
+            <Shield className="h-4 w-4" />
+            <span>256-bit SSL-Verschlüsselung</span>
+          </div>
+          <div className="flex items-center gap-2 text-blue-200/40 text-xs">
+            <CreditCard className="h-4 w-4" />
+            <span>Sichere Zahlung via Stripe</span>
+          </div>
+          <div className="flex items-center gap-2 text-blue-200/40 text-xs">
+            <CalendarX className="h-4 w-4" />
+            <span>Monatlich kündbar</span>
+          </div>
+        </div>
+
         {/* Tax deductibility hint */}
-        <p className="text-center text-base text-slate-400 max-w-2xl mx-auto mt-4 px-4">
+        <p className="text-center text-base text-slate-400 max-w-2xl mx-auto mt-6 px-4">
           SteuerBoard kann sich doppelt lohnen: Die Kosten sind oft steuerlich absetzbar. Wie viel du effektiv sparst, kannst du direkt mit SteuerBoard Pro berechnen.
         </p>
-        <div className="flex items-center justify-center gap-3 text-xs text-blue-200/20 mt-3">
+
+        {/* Pricing FAQ */}
+        <div className="max-w-2xl mx-auto mt-12 space-y-4">
+          <h2 className="text-lg font-semibold text-white text-center mb-6">Häufige Fragen zur Zahlung</h2>
+          {[
+            { q: 'Kann ich jederzeit kündigen?', a: 'Ja, du kannst monatliche Abos jederzeit zum Ende der Laufzeit kündigen. Bei Jahresabos läuft das Abo bis zum Ende des Jahres.' },
+            { q: 'Was passiert nach der Kündigung?', a: 'Du behältst den Zugang bis zum Ende deiner bezahlten Laufzeit. Danach wechselst du automatisch zum kostenlosen Free-Plan. Deine gespeicherten Berechnungen bleiben erhalten.' },
+            { q: 'Ist SteuerBoard steuerlich absetzbar?', a: 'Ja, als Betriebsausgabe kannst du die Kosten für SteuerBoard in der Regel steuerlich geltend machen. Die genaue Absetzbarkeit hängt von deiner individuellen Situation ab.' },
+            { q: 'Welche Zahlungsmethoden werden akzeptiert?', a: 'Wir akzeptieren alle gängigen Kreditkarten (Visa, Mastercard, AMEX), SEPA-Lastschrift, Apple Pay und Google Pay über unseren Zahlungspartner Stripe.' },
+          ].map(({ q, a }) => (
+            <details key={q} className="group rounded-xl border border-white/10 bg-white/[0.03] overflow-hidden">
+              <summary className="flex items-center justify-between cursor-pointer px-5 py-4 text-sm font-medium text-white hover:bg-white/[0.03] transition-colors">
+                {q}
+                <ChevronDown className="h-4 w-4 text-white/40 group-open:rotate-180 transition-transform" />
+              </summary>
+              <p className="px-5 pb-4 text-sm text-blue-200/60 leading-relaxed">{a}</p>
+            </details>
+          ))}
+        </div>
+
+        <div className="flex items-center justify-center gap-3 text-xs text-blue-200/20 mt-8">
           <Link href="/impressum" className="hover:text-blue-200/40 transition-colors">Impressum</Link>
           <span>·</span>
           <Link href="/datenschutz" className="hover:text-blue-200/40 transition-colors">Datenschutz</Link>

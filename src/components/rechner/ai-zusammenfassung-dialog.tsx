@@ -7,6 +7,7 @@ import { supabase } from '@/lib/supabase'
 import { Sparkles, RefreshCw, AlertCircle } from 'lucide-react'
 import { toast } from 'sonner'
 import type { RechnerInput, RechnerResult } from '@/lib/rechner-types'
+import { escapeHtml } from '@/lib/sanitize-html'
 
 interface AiZusammenfassungDialogProps {
   open: boolean
@@ -221,7 +222,7 @@ export function AiZusammenfassungDialog({ open, onOpenChange, input, result }: A
 }
 
 function AiMarkdown({ text }: { text: string }) {
-  const html = text
+  const html = escapeHtml(text)
     .replace(/^### (.+)$/gm, '<h3 class="text-sm font-semibold text-foreground mt-4 mb-1.5">$1</h3>')
     .replace(/^## (.+)$/gm, '<h2 class="text-base font-semibold text-foreground mt-4 mb-1.5">$1</h2>')
     .replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-foreground">$1</strong>')

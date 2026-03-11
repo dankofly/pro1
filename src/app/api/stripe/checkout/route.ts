@@ -3,11 +3,19 @@ import type Stripe from 'stripe'
 import { getSupabaseAdmin } from '@/lib/supabase-admin'
 import { getStripeServer } from '@/lib/stripe-server'
 import { STRIPE_PLANS } from '@/lib/stripe'
+import { rateLimit, getClientIp } from '@/lib/rate-limit'
 
 const VALID_PRICE_IDS = new Set<string>(Object.values(STRIPE_PLANS).map(p => p.priceId))
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limit: 10 checkout attempts per minute per IP
+    const ip = getClientIp(request)
+    const rl = rateLimit(`checkout:${ip}`, { limit: 10, windowSeconds: 60 })
+    if (!rl.allowed) {
+      return NextResponse.json({ error: 'Zu viele Anfragen. Bitte warte kurz.' }, { status: 429 })
+    }
+
     const token = request.headers.get('authorization')?.replace('Bearer ', '')
     if (!token) {
       return NextResponse.json({ error: 'Nicht angemeldet' }, { status: 401 })

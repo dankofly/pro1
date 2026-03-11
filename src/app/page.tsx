@@ -276,7 +276,16 @@ function Hero() {
               </p>
             </Reveal>
 
-            <Reveal delay={300}>
+            <Reveal delay={250}>
+              <div className="mt-6 inline-flex items-center gap-3 bg-white/[0.06] border border-white/10 rounded-xl px-5 py-3">
+                <span className="text-sm text-blue-200/60">Durchschnittliche SVS-Nachzahlung:</span>
+                <span className="text-2xl font-bold text-amber-400 tabular-nums font-mono">
+                  &euro; <AnimatedCounter target={3200} />
+                </span>
+              </div>
+            </Reveal>
+
+            <Reveal delay={350}>
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Button asChild size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-xl shadow-emerald-500/25 text-base px-8 h-12 w-full sm:w-auto">
                   <Link href="/rechner">
@@ -298,7 +307,7 @@ function Hero() {
               </div>
             </Reveal>
 
-            <Reveal delay={400}>
+            <Reveal delay={450}>
               <div className="mt-10 flex flex-wrap items-center gap-x-6 gap-y-2 justify-center lg:justify-start text-sm text-blue-300/60">
                 <span className="flex items-center gap-1.5">
                   <Check className="h-4 w-4 text-emerald-500 shrink-0" /> Kostenlos starten

@@ -4,6 +4,16 @@ import { Lock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
+const FEATURE_DESCRIPTIONS: Record<string, string> = {
+  'KI-Steuerberater': 'Persönliche Steueranalyse deiner Zahlen durch KI — Optimierungspotenzial erkennen.',
+  'Steuer-Chatbot': 'Fragen zu ESt, KöSt, USt, Krypto und mehr — der Chatbot rechnet mit 2026-Werten.',
+  'Investitionen & AfA': 'Berechne Abschreibungen und Investitionsfreibetrag für deine Anschaffungen.',
+  'Pauschalierung': 'Vergleiche Pauschalierung mit Einnahmen-Ausgaben-Rechnung.',
+  'Weitere Einkünfte': 'Misch-Einkommen aus Dienstverhältnis und Selbstständigkeit berechnen.',
+  'GmbH-Vergleich': 'Lohnt sich eine GmbH? Vergleiche Steuerbelastung direkt.',
+  'Gewinnmaximierer': 'Finde den optimalen Gewinn für minimale Steuerlast.',
+}
+
 interface ProSectionWrapperProps {
   isPro: boolean
   featureName: string
@@ -17,13 +27,20 @@ export function ProSectionWrapper({
 }: ProSectionWrapperProps) {
   if (isPro) return <>{children}</>
 
+  const description = FEATURE_DESCRIPTIONS[featureName]
+
   return (
     <div className="relative min-h-[120px]">
-      <div className="absolute inset-0 bg-background/70 backdrop-blur-md z-10 flex flex-col items-center justify-center gap-3 rounded-2xl">
+      <div className="absolute inset-0 bg-background/70 backdrop-blur-md z-10 flex flex-col items-center justify-center gap-2.5 rounded-2xl px-6">
         <Lock className="h-4 w-4 text-muted-foreground/60" />
-        <p className="text-sm font-medium text-muted-foreground text-center px-4">
+        <p className="text-sm font-medium text-muted-foreground text-center">
           {featureName} – Pro Feature
         </p>
+        {description && (
+          <p className="text-xs text-muted-foreground/70 text-center max-w-xs">
+            {description}
+          </p>
+        )}
         {onUpgradeRequired ? (
           <Button size="sm" onClick={() => onUpgradeRequired(featureName, requiredPlan)}>
             Jetzt freischalten

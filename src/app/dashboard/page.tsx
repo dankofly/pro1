@@ -32,6 +32,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Calculator, Trash2, Crown, ExternalLink, Gift, ChevronDown } from 'lucide-react'
 import { toast } from 'sonner'
+import { Skeleton } from '@/components/ui/skeleton'
 import type { Calculation } from '@/lib/supabase-types'
 
 function DashboardContent() {
@@ -266,14 +267,32 @@ function DashboardContent() {
           </CardHeader>
           <CardContent>
             {loading ? (
-              <p className="text-center text-muted-foreground py-8">Laden...</p>
+              <div className="space-y-3 py-4">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <div key={i} className="flex items-center gap-4">
+                    <Skeleton className="h-4 w-24 rounded" />
+                    <Skeleton className="h-4 w-20 rounded ml-auto" />
+                    <Skeleton className="h-4 w-20 rounded" />
+                    <Skeleton className="h-6 w-16 rounded-full" />
+                    <Skeleton className="h-4 w-16 rounded" />
+                    <Skeleton className="h-8 w-8 rounded" />
+                  </div>
+                ))}
+              </div>
             ) : calculations.length === 0 ? (
-              <div className="text-center py-12 space-y-3">
+              <div className="text-center py-12 space-y-5">
                 <Calculator className="h-12 w-12 text-muted-foreground mx-auto" />
-                <p className="text-muted-foreground">Noch keine Berechnungen gespeichert.</p>
-                <Button asChild>
-                  <Link href="/rechner">Erste Berechnung erstellen</Link>
-                </Button>
+                <div className="space-y-1">
+                  <p className="text-base font-medium">Noch keine Berechnungen gespeichert</p>
+                  <p className="text-sm text-muted-foreground max-w-sm mx-auto">
+                    So funktioniert&apos;s: Daten eingeben, Ergebnis prüfen, Berechnung speichern — und hier im Verlauf vergleichen.
+                  </p>
+                </div>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
+                  <Button asChild>
+                    <Link href="/rechner">Erste Berechnung erstellen</Link>
+                  </Button>
+                </div>
               </div>
             ) : (
               <>

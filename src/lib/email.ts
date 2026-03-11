@@ -1,4 +1,5 @@
 import sgMail from '@sendgrid/mail'
+import { STRIPE_PLANS } from '@/lib/stripe'
 
 if (process.env.SENDGRID_API_KEY) {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY)
@@ -118,10 +119,11 @@ export async function sendSubscriptionConfirmEmail(
   name?: string,
 ) {
   const displayName = name || 'Steuerprofi'
-  const planName = plan === 'pro' ? 'SteuerBoard Pro' : 'Sicherheits-Plan'
-  const priceDisplay = plan === 'pro'
-    ? (interval === 'year' ? '239 EUR/Jahr' : '24,90 EUR/Monat')
-    : (interval === 'year' ? '119 EUR/Jahr' : '12,90 EUR/Monat')
+  const planKey = `${plan}_${interval === 'year' ? 'yearly' : 'monthly'}` as keyof typeof STRIPE_PLANS
+  const planConfig = STRIPE_PLANS[planKey]
+  const planName = planConfig.label
+  const intervalLabel = interval === 'year' ? 'Jahr' : 'Monat'
+  const priceDisplay = `${planConfig.priceDisplay} EUR/${intervalLabel}`
 
   const proFeatures = plan === 'pro'
     ? `<ul style="margin:0 0 16px;padding-left:20px;color:#334155;font-size:15px;line-height:2">

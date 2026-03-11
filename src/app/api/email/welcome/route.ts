@@ -1,9 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getSupabaseAdmin } from '@/lib/supabase-admin'
 import { sendWelcomeEmail } from '@/lib/email'
+import { rateLimit, getClientIp } from '@/lib/rate-limit'
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limit: 3 welcome emails per hour per IP
+    const ip = getClientIp(request)
+    const rl = rateLimit(`email:${ip}`, { limit: 3, windowSeconds: 3600 })
+    if (!rl.allowed) {
+      return NextResponse.json({ error: 'Zu viele Anfragen. Bitte warte.' }, { status: 429 })
+    }
+
     const token = request.headers.get('authorization')?.replace('Bearer ', '')
     if (!token) {
       return NextResponse.json({ error: 'Nicht angemeldet' }, { status: 401 })

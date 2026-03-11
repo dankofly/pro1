@@ -95,9 +95,8 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
                 C${midX},${y2Top + h2} ${midX},${y1Top + h1} ${x1},${y1Top + h1}
                 Z
               `}
-              fill={isLast ? 'hsl(160, 72%, 42%)' : 'hsl(207, 90%, 42%)'}
+              className={`transition-[d,opacity] duration-500 ${isLast ? 'fill-emerald-500 dark:fill-emerald-400' : 'fill-blue-600 dark:fill-blue-400'}`}
               opacity={isLast ? 0.85 : 0.8 + i * 0.05}
-              className="transition-[d,opacity] duration-500"
             />
           )
         })}

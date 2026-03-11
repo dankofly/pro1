@@ -13,6 +13,7 @@ import { DEFAULT_STAMMDATEN } from '@/lib/rechner-types'
 import { ArrowRight, ArrowLeft, Sparkles, Building2, Shield } from 'lucide-react'
 import { FieldInfo } from '@/components/ui/field-info'
 import { FIELD_DEFS } from '@/lib/field-definitions'
+import confetti from 'canvas-confetti'
 
 interface OnboardingWizardProps {
   onComplete: (stammdaten: Stammdaten) => void
@@ -38,6 +39,15 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
   const years = Array.from({ length: currentYear - 2009 }, (_, i) => currentYear - i)
 
   const handleComplete = () => {
+    confetti({
+      particleCount: 80,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ['#22c55e', '#10b981', '#3b82f6', '#f59e0b'],
+      ticks: 150,
+      gravity: 1.2,
+      decay: 0.94,
+    })
     onComplete(data)
   }
 
@@ -100,7 +110,14 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
               </div>
             </div>
 
-            <div className="flex justify-end">
+            <div className="flex items-center justify-between">
+              <button
+                type="button"
+                onClick={() => onComplete(DEFAULT_STAMMDATEN)}
+                className="text-xs text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
+              >
+                Überspringen
+              </button>
               <Button onClick={() => setStep(2)} className="gap-2 h-12 sm:h-10 px-6 text-base sm:text-sm">
                 Weiter <ArrowRight className="h-4 w-4" />
               </Button>
