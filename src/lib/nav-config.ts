@@ -1,4 +1,4 @@
-import { Clock, Crown, HelpCircle, User, Settings } from 'lucide-react'
+import { Clock, Crown, HelpCircle, User, SlidersHorizontal } from 'lucide-react'
 import { getVisibleRechner } from './rechner-registry'
 import type { Branche } from './user-preferences'
 
@@ -34,13 +34,18 @@ export function getNavSections(branche: Branche, visibleRechner: string[]): NavS
     }))
 
   return [
+    {
+      title: 'Profil',
+      items: [
+        { href: '/einstellungen', label: 'Onboarding', icon: SlidersHorizontal },
+      ],
+    },
     { title: 'Rechner', items: rechnerItems },
     { title: 'AI & Analyse', items: aiItems },
     {
       title: 'Konto',
       items: [
         { href: '/dashboard', label: 'Verlauf', icon: Clock },
-        { href: '/einstellungen', label: 'Einstellungen', icon: Settings },
         { href: '/pricing', label: 'Pro-Vorteile', icon: Crown },
         { href: '/faq', label: 'FAQ', icon: HelpCircle },
         { href: '/profil', label: 'Profil', icon: User },

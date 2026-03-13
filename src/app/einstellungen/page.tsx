@@ -9,16 +9,19 @@ import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { Settings, Briefcase, LayoutDashboard, RotateCcw } from 'lucide-react'
+import { SlidersHorizontal, Briefcase, LayoutDashboard, RotateCcw, Check } from 'lucide-react'
 import { BRANCHEN, type Branche } from '@/lib/user-preferences'
 import { RECHNER_REGISTRY, getDefaultRechnerForBranche } from '@/lib/rechner-registry'
+import { toast } from 'sonner'
 
 function EinstellungenContent() {
   const router = useRouter()
   const { preferences, setPreferences } = useAppShell()
   const [showResetConfirm, setShowResetConfirm] = useState(false)
+  const [saved, setSaved] = useState(false)
 
   const currentBranche = preferences.branche
+  const currentBrancheInfo = BRANCHEN.find((b) => b.value === currentBranche)
   const activeRechnerIds = preferences.visibleRechner.length > 0
     ? preferences.visibleRechner
     : getDefaultRechnerForBranche(currentBranche)
@@ -28,6 +31,7 @@ function EinstellungenContent() {
       branche,
       visibleRechner: getDefaultRechnerForBranche(branche),
     })
+    setSaved(false)
   }
 
   const handleRechnerToggle = (rechnerId: string, enabled: boolean) => {
@@ -39,10 +43,15 @@ function EinstellungenContent() {
       if (idx >= 0) current.splice(idx, 1)
     }
     setPreferences({ visibleRechner: current })
+    setSaved(false)
+  }
+
+  const handleSave = () => {
+    setSaved(true)
+    toast.success('Onboarding-Profil gespeichert!')
   }
 
   const handleReset = () => {
-    // Clear onboarding + preferences
     try {
       localStorage.removeItem('rechner_onboarded')
       localStorage.removeItem('rechner_input')
@@ -59,14 +68,20 @@ function EinstellungenContent() {
     <>
       {/* Top bar */}
       <div className="sticky top-0 z-30 bg-background/80 backdrop-blur-lg border-b border-border/50">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 h-14 flex items-center">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <MobileNav />
             <div className="flex items-center gap-2">
-              <Settings aria-hidden="true" className="h-4 w-4 text-muted-foreground" />
-              <h1 className="text-sm font-semibold">Einstellungen</h1>
+              <SlidersHorizontal aria-hidden="true" className="h-4 w-4 text-muted-foreground" />
+              <h1 className="text-sm font-semibold">Onboarding</h1>
             </div>
           </div>
+          {currentBrancheInfo && (
+            <Badge variant="outline" className="text-xs border-primary/30 text-primary gap-1.5">
+              <span>{currentBrancheInfo.icon}</span>
+              {currentBrancheInfo.label}
+            </Badge>
+          )}
         </div>
       </div>
 
@@ -155,7 +170,10 @@ function EinstellungenContent() {
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => setPreferences({ visibleRechner: getDefaultRechnerForBranche(currentBranche) })}
+                onClick={() => {
+                  setPreferences({ visibleRechner: getDefaultRechnerForBranche(currentBranche) })
+                  setSaved(false)
+                }}
                 className="text-xs"
               >
                 Auf Branchenstandard zurücksetzen
@@ -163,6 +181,23 @@ function EinstellungenContent() {
             </div>
           </CardContent>
         </Card>
+
+        {/* Save / Confirmation */}
+        <div className="flex items-center justify-between gap-4 rounded-xl border border-border/50 bg-muted/30 p-4">
+          {saved ? (
+            <div className="flex items-center gap-2 text-sm text-emerald-600">
+              <Check className="h-4 w-4" />
+              <span>Profil gespeichert</span>
+            </div>
+          ) : (
+            <p className="text-sm text-muted-foreground">
+              Änderungen werden sofort in der Navigation übernommen.
+            </p>
+          )}
+          <Button size="sm" onClick={handleSave} className="shrink-0">
+            {saved ? 'Gespeichert' : 'Speichern'}
+          </Button>
+        </div>
 
         {/* Onboarding zurücksetzen */}
         <Card>

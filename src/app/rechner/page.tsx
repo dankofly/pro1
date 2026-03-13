@@ -57,7 +57,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { useScrollReveal } from '@/hooks/use-scroll-reveal'
 
 import type { Stammdaten } from '@/lib/rechner-types'
-import { useUserPreferences } from '@/lib/user-preferences'
+import { useUserPreferences, BRANCHEN } from '@/lib/user-preferences'
 import { getDefaultRechnerForBranche } from '@/lib/rechner-registry'
 import type { Branche } from '@/lib/user-preferences'
 
@@ -99,10 +99,11 @@ function RechnerSkeleton() {
 }
 
 function RechnerContent() {
-  const { user, subscription } = useAppShell()
+  const { user, subscription, preferences } = useAppShell()
   const rechner = useRechnerState()
   const { input, result, dispatch, isOnboarded, completeOnboarding, resetOnboarding, setField } = rechner
   const { setPrefs } = useUserPreferences()
+  const brancheInfo = BRANCHEN.find((b) => b.value === preferences.branche)
 
   const [saving, setSaving] = useState(false)
   const [upgradeOpen, setUpgradeOpen] = useState(false)
@@ -216,6 +217,12 @@ function RechnerContent() {
             <h1 className="section-header hidden sm:inline">SVS-Beitragsrechner {input.year}</h1>
             <span className="text-border/60 mx-1 hidden sm:inline">/</span>
             <StatusBadge riskPercent={svs.riskPercent} />
+            {brancheInfo && (
+              <Badge variant="outline" className="text-xs border-primary/30 text-primary gap-1 hidden sm:inline-flex">
+                <span>{brancheInfo.icon}</span>
+                {brancheInfo.label}
+              </Badge>
+            )}
             <Badge variant="outline" className="text-xs text-muted-foreground border-border/50 hidden sm:inline-flex">
               {input.year}
             </Badge>
