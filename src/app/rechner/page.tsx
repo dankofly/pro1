@@ -199,7 +199,18 @@ function RechnerContent() {
 
   // Show onboarding wizard if not yet completed
   if (!isOnboarded) {
-    return <OnboardingWizard onComplete={handleOnboardingComplete} />
+    return (
+      <div className="flex flex-col items-center">
+        <OnboardingWizard onComplete={handleOnboardingComplete} />
+        <button
+          type="button"
+          onClick={() => completeOnboarding(input.stammdaten)}
+          className="mt-4 mb-8 text-sm text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4"
+        >
+          Direkt zum Rechner
+        </button>
+      </div>
+    )
   }
 
   return (

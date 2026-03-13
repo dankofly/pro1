@@ -16,6 +16,86 @@ import { ChevronDown, Receipt, TrendingUp, Wallet } from 'lucide-react'
 import { FieldInfo } from '@/components/ui/field-info'
 import { FIELD_DEFS } from '@/lib/field-definitions'
 
+/* ------------------------------------------------------------------ */
+/*  Progressive slider scale                                           */
+/*  Maps slider position (0–1000) to Euro value using piecewise        */
+/*  linear segments so the lower range gets more precision.            */
+/* ------------------------------------------------------------------ */
+
+type ScaleSegment = { pos: number; val: number }
+
+/** Default breakpoints: 50% of slider = first ~5% of max value range */
+function getSegments(max: number): ScaleSegment[] {
+  if (max <= 20000) {
+    // Small ranges (e.g. SV monthly 10k): 50% = 2k, 80% = 5k
+    return [
+      { pos: 0, val: 0 },
+      { pos: 500, val: max * 0.2 },
+      { pos: 800, val: max * 0.5 },
+      { pos: 1000, val: max },
+    ]
+  }
+  if (max <= 200000) {
+    // Medium ranges (e.g. ESt 200k, SV yearly 120k): 50% = 30k, 80% = 100k
+    return [
+      { pos: 0, val: 0 },
+      { pos: 500, val: Math.min(30000, max * 0.25) },
+      { pos: 800, val: Math.min(100000, max * 0.7) },
+      { pos: 1000, val: max },
+    ]
+  }
+  // Large ranges (e.g. Umsatz 2M, Aufwände 1M): 50% = 100k, 80% = 500k
+  return [
+    { pos: 0, val: 0 },
+    { pos: 500, val: 100000 },
+    { pos: 800, val: Math.min(500000, max * 0.5) },
+    { pos: 1000, val: max },
+  ]
+}
+
+function valueToSlider(value: number, max: number): number {
+  const segs = getSegments(max)
+  const clamped = Math.min(Math.max(value, 0), max)
+  for (let i = 1; i < segs.length; i++) {
+    if (clamped <= segs[i].val) {
+      const prev = segs[i - 1]
+      const curr = segs[i]
+      const ratio = (clamped - prev.val) / (curr.val - prev.val || 1)
+      return prev.pos + ratio * (curr.pos - prev.pos)
+    }
+  }
+  return 1000
+}
+
+function sliderToValue(pos: number, max: number): number {
+  const segs = getSegments(max)
+  const clamped = Math.min(Math.max(pos, 0), 1000)
+  for (let i = 1; i < segs.length; i++) {
+    if (clamped <= segs[i].pos) {
+      const prev = segs[i - 1]
+      const curr = segs[i]
+      const ratio = (clamped - prev.pos) / (curr.pos - prev.pos || 1)
+      const raw = prev.val + ratio * (curr.val - prev.val)
+      // Round to clean steps
+      if (raw <= 10000) return Math.round(raw / 100) * 100
+      if (raw <= 100000) return Math.round(raw / 500) * 500
+      if (raw <= 500000) return Math.round(raw / 1000) * 1000
+      return Math.round(raw / 5000) * 5000
+    }
+  }
+  return max
+}
+
+function getScaleLabels(max: number): string[] {
+  const segs = getSegments(max)
+  return segs.map(s => {
+    if (s.val === 0) return '0'
+    if (s.val >= 1000000) return `${(s.val / 1000000).toFixed(s.val % 1000000 === 0 ? 0 : 1)}M`
+    if (s.val >= 1000) return `${(s.val / 1000).toFixed(0)}k`
+    return String(s.val)
+  })
+}
+
 interface UmsatzAufwaendeSectionProps {
   jahresumsatz: number
   aufwaende: AufwaendeBreakdown
@@ -55,17 +135,15 @@ function EuroInput({
         {suffix && <span className="text-sm text-muted-foreground">{suffix}</span>}
       </div>
       <Slider
-        value={[value]}
-        onValueChange={([v]) => onChange(v)}
-        max={max}
-        step={500}
+        value={[valueToSlider(value, max)]}
+        onValueChange={([v]) => onChange(sliderToValue(v, max))}
+        max={1000}
+        step={1}
         className="py-2"
         aria-label={label}
       />
       <div className="flex justify-between text-xs text-muted-foreground">
-        <span>0</span>
-        <span>{max >= 1000000 ? `${max / 2000000}M` : `${(max / 2000).toFixed(0)}k`}</span>
-        <span>{max >= 1000000 ? `${max / 1000000}M` : `${(max / 1000).toFixed(0)}k`}</span>
+        {getScaleLabels(max).map((l, i) => <span key={i}>{l}</span>)}
       </div>
     </div>
   )
@@ -125,7 +203,6 @@ export function UmsatzAufwaendeSection({
     ? Math.round(vorauszahlungen.svVorauszahlung / 12)
     : vorauszahlungen.svVorauszahlung
   const svMax = svMode === 'monatlich' ? 10000 : 120000
-  const svStep = svMode === 'monatlich' ? 50 : 500
   const handleSvChange = (v: number) => {
     setVz('svVorauszahlung', svMode === 'monatlich' ? v * 12 : v)
   }
@@ -327,16 +404,14 @@ export function UmsatzAufwaendeSection({
                   </span>
                 </div>
                 <Slider
-                  value={[svDisplayValue]}
-                  onValueChange={([v]) => handleSvChange(v)}
-                  max={svMax}
-                  step={svStep}
+                  value={[valueToSlider(svDisplayValue, svMax)]}
+                  onValueChange={([v]) => handleSvChange(sliderToValue(v, svMax))}
+                  max={1000}
+                  step={1}
                   className="py-2"
                 />
                 <div className="flex justify-between text-[11px] text-muted-foreground">
-                  <span>0</span>
-                  <span>{(svMax / 2).toLocaleString('de-AT')}</span>
-                  <span>{svMax.toLocaleString('de-AT')}</span>
+                  {getScaleLabels(svMax).map((l, i) => <span key={i}>{l}</span>)}
                 </div>
               </div>
 
@@ -386,16 +461,14 @@ export function UmsatzAufwaendeSection({
                   <span className="text-xs text-muted-foreground shrink-0">/ Jahr</span>
                 </div>
                 <Slider
-                  value={[vorauszahlungen.estVorauszahlung]}
-                  onValueChange={([v]) => setVz('estVorauszahlung', v)}
-                  max={200000}
-                  step={500}
+                  value={[valueToSlider(vorauszahlungen.estVorauszahlung, 200000)]}
+                  onValueChange={([v]) => setVz('estVorauszahlung', sliderToValue(v, 200000))}
+                  max={1000}
+                  step={1}
                   className="py-2"
                 />
                 <div className="flex justify-between text-[11px] text-muted-foreground">
-                  <span>0</span>
-                  <span>100k</span>
-                  <span>200k</span>
+                  {getScaleLabels(200000).map((l, i) => <span key={i}>{l}</span>)}
                 </div>
               </div>
 
