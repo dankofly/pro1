@@ -113,7 +113,20 @@ const config: Config = {
   			'count-up': {
   				from: { opacity: '0', transform: 'translateY(6px)' },
   				to: { opacity: '1', transform: 'translateY(0)' },
-  			}
+  			},
+  			'glow-pulse': {
+  				'0%, 100%': { boxShadow: '0 0 20px 0 var(--tw-shadow-color, rgba(59,130,246,0.3))' },
+  				'50%': { boxShadow: '0 0 40px 8px var(--tw-shadow-color, rgba(59,130,246,0.5))' },
+  			},
+  			'ring-fill': {
+  				from: { strokeDashoffset: '339.292' },
+  				to: { strokeDashoffset: 'var(--ring-target)' },
+  			},
+  			'float': {
+  				'0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+  				'33%': { transform: 'translate(10px, -10px) scale(1.05)' },
+  				'66%': { transform: 'translate(-5px, 5px) scale(0.97)' },
+  			},
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
@@ -123,7 +136,10 @@ const config: Config = {
   			'scale-in': 'scale-in 0.2s ease-out',
   			'pulse-subtle': 'pulse-subtle 2s ease-in-out infinite',
   			'shimmer': 'shimmer 2s ease-in-out infinite',
-  			'count-up': 'count-up 0.3s ease-out'
+  			'count-up': 'count-up 0.3s ease-out',
+  			'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
+  			'ring-fill': 'ring-fill 1.2s ease-out forwards',
+  			'float': 'float 8s ease-in-out infinite',
   		}
   	}
   },
