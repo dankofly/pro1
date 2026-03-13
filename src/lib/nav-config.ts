@@ -37,8 +37,8 @@ export function getNavSections(branche: Branche, visibleRechner: string[]): NavS
     {
       title: 'Profil',
       items: [
-        { href: '/einstellungen/wizard', label: 'Wizard', icon: Sparkles },
-        { href: '/einstellungen', label: 'Onboarding', icon: SlidersHorizontal },
+        { href: '/einstellungen/wizard', label: 'Einrichtung', icon: Sparkles },
+        { href: '/einstellungen', label: 'Einstellungen', icon: SlidersHorizontal },
       ],
     },
     { title: 'Rechner', items: rechnerItems },

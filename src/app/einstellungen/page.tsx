@@ -13,25 +13,12 @@ import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from '@/components/ui/select'
-import { SlidersHorizontal, Briefcase, LayoutDashboard, Shield, Building2, Sparkles } from 'lucide-react'
+import { SlidersHorizontal, Briefcase, LayoutDashboard, Shield, Building2, Sparkles, Check } from 'lucide-react'
 import { BRANCHEN, type Branche } from '@/lib/user-preferences'
 import { RECHNER_REGISTRY, getDefaultRechnerForBranche } from '@/lib/rechner-registry'
 import type { Stammdaten, Versicherungsart } from '@/lib/rechner-types'
 import { DEFAULT_STAMMDATEN } from '@/lib/rechner-types'
-import { toast } from 'sonner'
-
-const MONATE = [
-  'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni',
-  'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember',
-]
-
-const VERSICHERUNGSARTEN: { value: Versicherungsart; label: string; desc: string }[] = [
-  { value: 'gsvg_gewerbe', label: 'Gewerbetreibender (GSVG)', desc: 'Gewerbe, Handel, Handwerk' },
-  { value: 'gsvg_neu', label: 'Neuer Selbständiger (GSVG)', desc: 'Freiberufler, Werkvertrag, IT' },
-  { value: 'fsvg_arzt', label: 'Arzt (FSVG)', desc: 'Ärztekammer-Mitglied' },
-  { value: 'fsvg_patent', label: 'Apotheker / Patentanwalt / ZT (FSVG)', desc: 'Freier Beruf mit Kammermitgliedschaft' },
-  { value: 'bsvg', label: 'Land- & Forstwirt (BSVG)', desc: 'Bauern-Sozialversicherung' },
-]
+import { MONATE, VERSICHERUNGSARTEN } from '@/lib/rechner-constants'
 
 function EinstellungenContent() {
   const { preferences, setPreferences } = useAppShell()
@@ -52,6 +39,21 @@ function EinstellungenContent() {
       }
     } catch { /* ignore */ }
   }, [])
+
+  // Auto-save stammdaten on changes
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      try {
+        const existing = localStorage.getItem('rechner_input')
+        const input = existing ? JSON.parse(existing) : {}
+        input.stammdaten = stammdaten
+        localStorage.setItem('rechner_input', JSON.stringify(input))
+        localStorage.setItem('rechner_onboarded', 'true')
+      } catch { /* ignore */ }
+      setPreferences({ onboardingCompleted: true })
+    }, 500)
+    return () => clearTimeout(timeout)
+  }, [stammdaten, setPreferences])
 
   const currentBranche = preferences.branche
   const currentBrancheInfo = BRANCHEN.find((b) => b.value === currentBranche)
@@ -75,20 +77,6 @@ function EinstellungenContent() {
       if (idx >= 0) current.splice(idx, 1)
     }
     setPreferences({ visibleRechner: current })
-  }
-
-  const handleSave = () => {
-    // Save stammdaten to rechner localStorage
-    try {
-      const existing = localStorage.getItem('rechner_input')
-      const input = existing ? JSON.parse(existing) : {}
-      input.stammdaten = stammdaten
-      localStorage.setItem('rechner_input', JSON.stringify(input))
-      localStorage.setItem('rechner_onboarded', 'true')
-    } catch { /* ignore */ }
-
-    setPreferences({ onboardingCompleted: true })
-    toast.success('Einstellungen gespeichert!')
   }
 
   return (
@@ -199,7 +187,7 @@ function EinstellungenContent() {
                   <span className="text-base mt-0.5 shrink-0">{b.icon}</span>
                   <div className="min-w-0">
                     <p className="text-xs font-medium leading-tight">{b.label}</p>
-                    <p className="text-[10px] text-muted-foreground mt-0.5 leading-snug hidden sm:block">{b.desc}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5 leading-snug hidden sm:block">{b.desc}</p>
                   </div>
                 </button>
               ))}
@@ -289,7 +277,7 @@ function EinstellungenContent() {
                         )}
                       </div>
                       {isDefault && !isActive && (
-                        <p className="text-[10px] text-muted-foreground">Empfohlen für deine Branche</p>
+                        <p className="text-xs text-muted-foreground">Empfohlen für deine Branche</p>
                       )}
                     </div>
                   </div>
@@ -306,7 +294,7 @@ function EinstellungenContent() {
                 variant="outline"
                 size="sm"
                 onClick={() => setPreferences({ visibleRechner: getDefaultRechnerForBranche(currentBranche) })}
-                className="text-xs"
+                className="text-xs min-h-[44px]"
               >
                 Auf Branchenstandard zurücksetzen
               </Button>
@@ -314,13 +302,14 @@ function EinstellungenContent() {
           </CardContent>
         </Card>
 
-        {/* Speichern */}
-        <div className="flex items-center justify-end gap-4 rounded-xl border border-border/50 bg-muted/30 p-4">
-          <p className="text-sm text-muted-foreground mr-auto">
-            Änderungen an Branche und Rechnern werden sofort übernommen.
-          </p>
-          <Button size="sm" onClick={handleSave} className="shrink-0">
-            Speichern
+        {/* Save & back */}
+        <div className="flex items-center justify-between gap-4 rounded-xl border border-border/50 bg-muted/30 p-4">
+          <div className="flex items-center gap-2 text-sm text-emerald-600">
+            <Check className="h-4 w-4" />
+            <span>Änderungen automatisch gespeichert</span>
+          </div>
+          <Button asChild size="sm" className="shrink-0">
+            <Link href="/rechner">Speichern und zurück zum Steuerrechner</Link>
           </Button>
         </div>
 

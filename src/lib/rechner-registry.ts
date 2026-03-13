@@ -25,7 +25,7 @@ export const RECHNER_REGISTRY: RechnerDef[] = [
   {
     id: 'svs',
     href: '/rechner',
-    label: 'SVS-Rechner',
+    label: 'Steuerrechner',
     icon: Calculator,
     section: 'rechner',
     relevantFor: [], // always visible

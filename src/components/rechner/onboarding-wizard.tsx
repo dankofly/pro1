@@ -14,24 +14,12 @@ import { ArrowRight, ArrowLeft, Sparkles, Building2, Shield, Briefcase } from 'l
 import { FieldInfo } from '@/components/ui/field-info'
 import { FIELD_DEFS } from '@/lib/field-definitions'
 import { BRANCHEN, type Branche } from '@/lib/user-preferences'
+import { MONATE, VERSICHERUNGSARTEN } from '@/lib/rechner-constants'
 import confetti from 'canvas-confetti'
 
 interface OnboardingWizardProps {
   onComplete: (stammdaten: Stammdaten, branche: Branche) => void
 }
-
-const MONATE = [
-  'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni',
-  'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember',
-]
-
-const VERSICHERUNGSARTEN: { value: Versicherungsart; label: string; desc: string }[] = [
-  { value: 'gsvg_gewerbe', label: 'Gewerbetreibender (GSVG)', desc: 'Gewerbe, Handel, Handwerk' },
-  { value: 'gsvg_neu', label: 'Neuer Selbständiger (GSVG)', desc: 'Freiberufler, Werkvertrag, IT' },
-  { value: 'fsvg_arzt', label: 'Arzt (FSVG)', desc: 'Ärztekammer-Mitglied' },
-  { value: 'fsvg_patent', label: 'Apotheker / Patentanwalt / ZT (FSVG)', desc: 'Freier Beruf mit Kammermitgliedschaft' },
-  { value: 'bsvg', label: 'Land- & Forstwirt (BSVG)', desc: 'Bauern-Sozialversicherung' },
-]
 
 /** Suggest a default Versicherungsart based on selected Branche */
 function suggestVersicherungsart(branche: Branche): Versicherungsart {
@@ -64,15 +52,18 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
   }
 
   const handleComplete = () => {
-    confetti({
-      particleCount: 80,
-      spread: 70,
-      origin: { y: 0.6 },
-      colors: ['#22c55e', '#10b981', '#3b82f6', '#f59e0b'],
-      ticks: 150,
-      gravity: 1.2,
-      decay: 0.94,
-    })
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (!prefersReducedMotion) {
+      confetti({
+        particleCount: 80,
+        spread: 70,
+        origin: { y: 0.6 },
+        colors: ['#22c55e', '#10b981', '#3b82f6', '#f59e0b'],
+        ticks: 150,
+        gravity: 1.2,
+        decay: 0.94,
+      })
+    }
     onComplete(data, branche)
   }
 
@@ -148,7 +139,7 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
               <button
                 type="button"
                 onClick={handleSkip}
-                className="text-xs text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
+                className="min-h-[44px] px-2 flex items-center text-xs text-muted-foreground hover:text-foreground transition-colors underline-offset-4 hover:underline"
               >
                 Überspringen
               </button>
@@ -189,7 +180,7 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
                   <span className="text-lg mt-0.5 shrink-0">{b.icon}</span>
                   <div className="min-w-0">
                     <p className="text-sm font-medium leading-tight">{b.label}</p>
-                    <p className="text-[11px] text-muted-foreground mt-0.5 leading-snug">{b.desc}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5 leading-snug">{b.desc}</p>
                   </div>
                 </button>
               ))}

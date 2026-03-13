@@ -213,7 +213,7 @@ function RechnerContent() {
           <div className="flex items-center gap-2">
             <MobileNav />
             <h1 className="section-header hidden sm:inline">
-              Steuerboard Berechnung für {brancheInfo ? `${brancheInfo.icon} ${brancheInfo.label}` : 'Sonstiges'} {input.year}
+              Steuerboard Berechnung für {brancheInfo ? brancheInfo.label : 'Sonstiges'} {input.year}
             </h1>
             <span className="text-border/60 mx-1 hidden sm:inline">/</span>
             <StatusBadge riskPercent={svs.riskPercent} />
