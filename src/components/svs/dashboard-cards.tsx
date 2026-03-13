@@ -15,14 +15,14 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
   const animatedNachzahlung = useAnimatedNumber(Math.abs(result.nachzahlung))
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
       {/* Gefahren-Barometer */}
-      <div className="rounded-xl border border-blue-200/50 dark:border-blue-800/30 bg-gradient-to-br from-blue-50/80 to-white dark:from-blue-950/30 dark:to-[hsl(var(--surface))] p-5 shadow-sm">
+      <div className="card-surface p-5 sm:p-6">
         <div className="flex items-center gap-2 mb-3">
           <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/15">
             <Zap className="h-3.5 w-3.5 text-primary" />
           </div>
-          <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+          <span className="section-header">
             Gefahren-Barometer
           </span>
         </div>
@@ -30,12 +30,12 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
       </div>
 
       {/* Nachzahlungs-Alarm */}
-      <div className="rounded-xl border border-amber-200/50 dark:border-amber-800/30 bg-gradient-to-br from-amber-50/80 to-white dark:from-amber-950/30 dark:to-[hsl(var(--surface))] p-5 shadow-sm">
+      <div className="card-surface p-5 sm:p-6">
         <div className="flex items-center gap-2 mb-3">
           <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-500/15">
             <AlertTriangle className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" />
           </div>
-          <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+          <span className="section-header">
             Nachzahlungs-Alarm
           </span>
         </div>

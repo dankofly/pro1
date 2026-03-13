@@ -151,12 +151,11 @@ interface KpiTileProps {
   label: string
   value: number
   accentColor: string
-  borderColor: string
   pctOfUmsatz?: number
   maxPct: number
 }
 
-function KpiTile({ label, value, accentColor, borderColor, pctOfUmsatz, maxPct }: KpiTileProps) {
+function KpiTile({ label, value, accentColor, pctOfUmsatz, maxPct }: KpiTileProps) {
   const animated = useAnimatedNumber(value)
   const formatted = Math.round(animated).toLocaleString('de-AT')
   const barWidth = maxPct > 0 && pctOfUmsatz !== undefined
@@ -164,26 +163,16 @@ function KpiTile({ label, value, accentColor, borderColor, pctOfUmsatz, maxPct }
     : 0
 
   return (
-    <div
-      className={`group relative rounded-xl border bg-card p-4 sm:p-5 min-w-0 transition-transform duration-200 motion-safe:hover:scale-[1.02] ${borderColor}`}
-    >
-      {/* Accent top border */}
-      <div className={`absolute top-0 left-4 right-4 h-0.5 rounded-b ${accentColor}`} />
-
-      <p className="text-xs font-medium text-muted-foreground truncate mb-2 mt-0.5">
+    <div className="card-surface p-4 sm:p-5 min-w-0">
+      <p className="text-[11px] font-medium text-muted-foreground uppercase tracking-[0.08em] mb-3">
         {label}
       </p>
-      <p className="text-lg sm:text-xl font-bold font-mono tabular-nums text-foreground" style={{ letterSpacing: '-0.02em' }}>
+      <p className="text-xl sm:text-2xl font-semibold font-mono tabular-nums text-foreground" style={{ letterSpacing: '-0.03em' }}>
         &euro; {formatted}
       </p>
-      {pctOfUmsatz !== undefined && pctOfUmsatz > 0 && (
-        <p className="text-[11px] font-mono text-muted-foreground/60 mt-1">
-          {pctOfUmsatz.toFixed(1)}% vom Umsatz
-        </p>
-      )}
 
-      {/* Mini proportion bar */}
-      <div className="mt-2.5 h-1.5 w-full rounded-full bg-muted/40 overflow-hidden">
+      {/* Proportion bar */}
+      <div className="mt-3 h-1 w-full rounded-full bg-muted/30 overflow-hidden">
         <div
           className={`h-full rounded-full transition-all duration-700 ease-out ${accentColor}`}
           style={{ width: `${barWidth}%` }}
@@ -223,7 +212,7 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
   const maxPct = useMemo(() => Math.max(...secondaryPcts, 1), [umsatz, aufwaende, gewinn, svs, est])
 
   return (
-    <div className="space-y-3" aria-live="polite" aria-atomic="true">
+    <div className="space-y-4" aria-live="polite" aria-atomic="true">
       {/* Hero card */}
       <div
         className={`relative rounded-2xl bg-gradient-to-br ${cfg.gradient} text-white p-5 sm:p-6 overflow-hidden shadow-lg motion-safe:animate-glow-pulse ${cfg.glowColor} animate-fade-up`}
@@ -246,7 +235,7 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
           {/* Left: numbers */}
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2 mb-2">
-              <p className="text-xs font-semibold text-white/70 uppercase tracking-wider">
+              <p className="text-[11px] font-medium text-white/60 uppercase tracking-[0.1em]">
                 Dein echtes Netto
               </p>
               <span className={`flex items-center gap-1 text-xs font-mono ${cfg.badgeBg} border rounded-full px-2 py-0.5 shrink-0 text-white/90`}>
@@ -256,8 +245,8 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
             </div>
 
             <p
-              className="text-4xl sm:text-5xl font-bold font-mono tabular-nums"
-              style={{ letterSpacing: '-0.02em' }}
+              className="text-5xl sm:text-6xl font-semibold font-mono tabular-nums"
+              style={{ letterSpacing: '-0.04em' }}
             >
               &euro; {nettoFormatted}
             </p>
@@ -285,44 +274,39 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
       </div>
 
       {/* Secondary KPI tiles */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-3 sm:gap-4">
         <KpiTile
           label="Umsatz"
           value={umsatz}
-          accentColor="bg-blue-500"
-          borderColor="border-blue-200/50 dark:border-blue-800/30"
+          accentColor="bg-primary/70"
           pctOfUmsatz={pct(umsatz)}
           maxPct={maxPct}
         />
         <KpiTile
           label="Aufwände"
           value={aufwaende}
-          accentColor="bg-rose-500"
-          borderColor="border-rose-200/50 dark:border-rose-800/30"
+          accentColor="bg-muted-foreground/40"
           pctOfUmsatz={pct(aufwaende)}
           maxPct={maxPct}
         />
         <KpiTile
           label="Gewinn"
           value={gewinn}
-          accentColor="bg-blue-500"
-          borderColor="border-blue-200/50 dark:border-blue-800/30"
+          accentColor="bg-emerald-500/70"
           pctOfUmsatz={pct(gewinn)}
           maxPct={maxPct}
         />
         <KpiTile
           label="SVS"
           value={svs}
-          accentColor="bg-rose-500"
-          borderColor="border-rose-200/50 dark:border-rose-800/30"
+          accentColor="bg-muted-foreground/40"
           pctOfUmsatz={pct(svs)}
           maxPct={maxPct}
         />
         <KpiTile
           label="ESt"
           value={est}
-          accentColor="bg-rose-500"
-          borderColor="border-rose-200/50 dark:border-rose-800/30"
+          accentColor="bg-muted-foreground/40"
           pctOfUmsatz={pct(est)}
           maxPct={maxPct}
         />

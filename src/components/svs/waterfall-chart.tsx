@@ -42,12 +42,12 @@ function WaterfallBar({ label, amount, total, color, isResult }: {
 
 export function WaterfallChart({ gewinn, result }: WaterfallChartProps) {
   return (
-    <div className="rounded-xl border border-violet-200/50 dark:border-violet-800/30 bg-gradient-to-br from-violet-50/50 to-white dark:from-violet-950/20 dark:to-[hsl(var(--surface))] p-4 sm:p-5 shadow-sm space-y-3" role="img" aria-label="Abzugs-Wasserfall: Vom Brutto-Gewinn zum Netto">
+    <div className="card-surface p-5 sm:p-6 space-y-3" role="img" aria-label="Abzugs-Wasserfall: Vom Brutto-Gewinn zum Netto">
       <div className="flex items-center gap-2 mb-4">
         <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-violet-500/15">
           <BarChart2 className="h-3.5 w-3.5 text-violet-600 dark:text-violet-400" />
         </div>
-        <span className="text-sm font-semibold text-foreground">Abzugs-Wasserfall</span>
+        <span className="section-header">Abzugs-Wasserfall</span>
       </div>
       <WaterfallBar
         label="Brutto-Gewinn"
