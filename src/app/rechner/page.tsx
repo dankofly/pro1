@@ -57,6 +57,9 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { useScrollReveal } from '@/hooks/use-scroll-reveal'
 
 import type { Stammdaten } from '@/lib/rechner-types'
+import { useUserPreferences } from '@/lib/user-preferences'
+import { getDefaultRechnerForBranche } from '@/lib/rechner-registry'
+import type { Branche } from '@/lib/user-preferences'
 
 function ScrollReveal({ children, delay = 0 }: { children: ReactNode; delay?: number }) {
   const { ref, visible } = useScrollReveal(0.08)
@@ -99,6 +102,7 @@ function RechnerContent() {
   const { user, subscription } = useAppShell()
   const rechner = useRechnerState()
   const { input, result, dispatch, isOnboarded, completeOnboarding, resetOnboarding, setField } = rechner
+  const { setPrefs } = useUserPreferences()
 
   const [saving, setSaving] = useState(false)
   const [upgradeOpen, setUpgradeOpen] = useState(false)
@@ -173,14 +177,20 @@ function RechnerContent() {
     }
   }, [user, subscription.isFree, handleUpgradeRequired, result.gewinn, vorschreibung, svs])
 
-  const handleOnboardingComplete = useCallback((stammdaten: Stammdaten) => {
+  const handleOnboardingComplete = useCallback((stammdaten: Stammdaten, branche: Branche) => {
     completeOnboarding(stammdaten)
+    // Save branche + default rechner visibility to user preferences
+    setPrefs({
+      branche,
+      visibleRechner: getDefaultRechnerForBranche(branche),
+      onboardingCompleted: true,
+    })
     // Focus the main content area after onboarding completes
     requestAnimationFrame(() => {
       mainContentRef.current?.focus()
       mainContentRef.current?.scrollIntoView({ behavior: 'smooth' })
     })
-  }, [completeOnboarding])
+  }, [completeOnboarding, setPrefs])
 
   // Show loading state during hydration
   if (!mounted) {

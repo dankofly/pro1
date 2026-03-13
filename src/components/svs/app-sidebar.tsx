@@ -6,16 +6,17 @@ import { Calculator, Crown, Shield, LogOut, User } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { isAdmin } from '@/lib/admin'
-import { NAV_SECTIONS } from '@/lib/nav-config'
+import type { NavSection } from '@/lib/nav-config'
 import type { PlanTier } from '@/lib/stripe'
 
 interface AppSidebarProps {
   user?: { email: string } | null
   plan?: PlanTier
   onLogout?: () => void
+  navSections: NavSection[]
 }
 
-export function AppSidebar({ user, plan, onLogout }: AppSidebarProps) {
+export function AppSidebar({ user, plan, onLogout, navSections }: AppSidebarProps) {
   const pathname = usePathname()
 
   return (
@@ -35,7 +36,7 @@ export function AppSidebar({ user, plan, onLogout }: AppSidebarProps) {
 
       {/* Navigation */}
       <nav className="flex-1 px-3 space-y-4 overflow-y-auto">
-        {NAV_SECTIONS.map((section, si) => (
+        {navSections.map((section, si) => (
           <div key={section.title}>
             {si > 0 && <div className="border-t border-white/5 mb-3" />}
             <p className="px-3 mb-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500">

@@ -1,10 +1,12 @@
 'use client'
 
-import { useState, useEffect, useCallback, createContext, useContext } from 'react'
+import { useState, useEffect, useCallback, useMemo, createContext, useContext } from 'react'
 import { supabase } from '@/lib/supabase'
 import { AppSidebar } from './app-sidebar'
 import { BottomNav } from './bottom-nav'
 import { useSubscription, type SubscriptionInfo } from '@/hooks/use-subscription'
+import { useUserPreferences, type UserPreferences } from '@/lib/user-preferences'
+import { getNavSections, type NavSection } from '@/lib/nav-config'
 import { toast } from 'sonner'
 import { Loader2 } from 'lucide-react'
 import type { User } from '@supabase/supabase-js'
@@ -14,6 +16,9 @@ interface AppShellContextValue {
   authLoading: boolean
   subscription: SubscriptionInfo
   handleLogout: () => Promise<void>
+  preferences: UserPreferences
+  setPreferences: (update: Partial<UserPreferences>) => void
+  navSections: NavSection[]
 }
 
 const AppShellContext = createContext<AppShellContextValue | null>(null)
@@ -27,6 +32,7 @@ export function useAppShell() {
 export function AppShell({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [authLoading, setAuthLoading] = useState(true)
+  const { prefs, setPrefs } = useUserPreferences()
 
   useEffect(() => {
     supabase.auth.getUser().then(({ data }) => {
@@ -48,13 +54,28 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     toast.success('Erfolgreich abgemeldet.')
   }, [])
 
+  // Build dynamic nav sections based on user preferences
+  const navSections = useMemo(
+    () => getNavSections(prefs.branche, prefs.visibleRechner),
+    [prefs.branche, prefs.visibleRechner],
+  )
+
   return (
-    <AppShellContext.Provider value={{ user, authLoading, subscription, handleLogout }}>
+    <AppShellContext.Provider value={{
+      user,
+      authLoading,
+      subscription,
+      handleLogout,
+      preferences: prefs,
+      setPreferences: setPrefs,
+      navSections,
+    }}>
       <div className="flex min-h-screen bg-background">
         <AppSidebar
           user={user ? { email: user.email ?? '' } : null}
           plan={subscription.plan}
           onLogout={handleLogout}
+          navSections={navSections}
         />
         <main className="flex-1 min-w-0 pb-20 md:pb-0">
           {authLoading ? (

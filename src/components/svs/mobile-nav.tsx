@@ -9,12 +9,11 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { useAppShell } from './app-shell'
 import { isAdmin } from '@/lib/admin'
-import { NAV_SECTIONS } from '@/lib/nav-config'
 
 export function MobileNav() {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
-  const { user, subscription, handleLogout } = useAppShell()
+  const { user, subscription, handleLogout, navSections } = useAppShell()
 
   return (
     <div className="md:hidden">
@@ -40,7 +39,7 @@ export function MobileNav() {
           </SheetHeader>
 
           <nav className="flex-1 px-3 py-4 space-y-4 overflow-y-auto">
-            {NAV_SECTIONS.map((section, si) => (
+            {navSections.map((section, si) => (
               <div key={section.title}>
                 {si > 0 && <div className="border-t border-white/5 mb-3" />}
                 <p className="px-3 mb-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500">

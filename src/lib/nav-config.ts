@@ -1,4 +1,6 @@
-import { Calculator, BarChart3, Clock, Crown, HelpCircle, User, MessageSquare, Receipt, Coins, Gift, TrendingUp, FileBarChart, BookOpen } from 'lucide-react'
+import { Clock, Crown, HelpCircle, User, Settings } from 'lucide-react'
+import { getVisibleRechner } from './rechner-registry'
+import type { Branche } from './user-preferences'
 
 export type NavItem = {
   href: string
@@ -9,33 +11,43 @@ export type NavItem = {
 
 export type NavSection = { title: string; items: NavItem[] }
 
-export const NAV_SECTIONS: NavSection[] = [
-  {
-    title: 'Rechner',
-    items: [
-      { href: '/rechner', label: 'SVS-Rechner', icon: Calculator },
-      { href: '/einkommensteuer', label: 'Einkommensteuer', icon: Receipt },
-      { href: '/krypto-steuer', label: 'Krypto-Steuer', icon: Coins, requiresPro: true },
-      { href: '/sachbezug-rechner', label: 'Sachbezug', icon: Gift },
-      { href: '/investitionsfreibetrag', label: 'IFB-Rechner', icon: TrendingUp },
-    ],
-  },
-  {
-    title: 'AI & Analyse',
-    items: [
-      { href: '/steuerwissen', label: 'Steuer-Wissen', icon: BookOpen },
-      { href: '/steuerberater', label: 'AI Steuerberater', icon: MessageSquare, requiresPro: true },
-      { href: '/misch-einkommen', label: 'Optimierung', icon: BarChart3, requiresPro: true },
-      { href: '/bilanz', label: 'Bilanz-Analyse', icon: FileBarChart, requiresPro: true },
-    ],
-  },
-  {
-    title: 'Konto',
-    items: [
-      { href: '/dashboard', label: 'Verlauf', icon: Clock },
-      { href: '/pricing', label: 'Pro-Vorteile', icon: Crown },
-      { href: '/faq', label: 'FAQ', icon: HelpCircle },
-      { href: '/profil', label: 'Profil', icon: User },
-    ],
-  },
-]
+/** Build navigation sections filtered by user's branche + custom overrides */
+export function getNavSections(branche: Branche, visibleRechner: string[]): NavSection[] {
+  const visible = getVisibleRechner(branche, visibleRechner)
+
+  const rechnerItems: NavItem[] = visible
+    .filter((r) => r.section === 'rechner')
+    .map((r) => ({
+      href: r.href,
+      label: r.label,
+      icon: r.icon,
+      requiresPro: r.requiresPro,
+    }))
+
+  const aiItems: NavItem[] = visible
+    .filter((r) => r.section === 'ai')
+    .map((r) => ({
+      href: r.href,
+      label: r.label,
+      icon: r.icon,
+      requiresPro: r.requiresPro,
+    }))
+
+  return [
+    { title: 'Rechner', items: rechnerItems },
+    { title: 'AI & Analyse', items: aiItems },
+    {
+      title: 'Konto',
+      items: [
+        { href: '/dashboard', label: 'Verlauf', icon: Clock },
+        { href: '/einstellungen', label: 'Einstellungen', icon: Settings },
+        { href: '/pricing', label: 'Pro-Vorteile', icon: Crown },
+        { href: '/faq', label: 'FAQ', icon: HelpCircle },
+        { href: '/profil', label: 'Profil', icon: User },
+      ],
+    },
+  ]
+}
+
+/** Static fallback for SSR / before preferences load — shows all rechner */
+export const NAV_SECTIONS: NavSection[] = getNavSections('sonstige', [])
