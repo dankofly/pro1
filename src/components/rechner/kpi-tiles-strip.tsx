@@ -165,23 +165,25 @@ function KpiTile({ label, value, accentColor, borderColor, pctOfUmsatz, maxPct }
 
   return (
     <div
-      className="group relative visual-card accent-bar-left p-3 pl-5 min-w-0 transition-transform duration-200 motion-safe:hover:scale-[1.03]"
-      style={{ '--accent-color': borderColor } as React.CSSProperties}
+      className={`group relative rounded-xl border bg-card p-3 min-w-0 transition-transform duration-200 motion-safe:hover:scale-[1.03] ${borderColor}`}
     >
-      <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider truncate mb-1.5">
+      {/* Accent top border */}
+      <div className={`absolute top-0 left-3 right-3 h-0.5 rounded-b ${accentColor}`} />
+
+      <p className="text-[11px] font-medium text-muted-foreground truncate mb-1.5 mt-0.5">
         {label}
       </p>
-      <p className="text-lg sm:text-xl font-light font-mono tabular-nums text-slate-100 tracking-tight">
+      <p className="text-base sm:text-lg font-bold font-mono tabular-nums text-foreground" style={{ letterSpacing: '-0.01em' }}>
         &euro; {formatted}
       </p>
       {pctOfUmsatz !== undefined && pctOfUmsatz > 0 && (
-        <p className="text-[10px] font-mono text-slate-500 mt-0.5">
+        <p className="text-[10px] font-mono text-muted-foreground/60 mt-0.5">
           {pctOfUmsatz.toFixed(1)}% vom Umsatz
         </p>
       )}
 
       {/* Mini proportion bar */}
-      <div className="mt-2 h-1 w-full rounded-full bg-white/5 overflow-hidden">
+      <div className="mt-2 h-1 w-full rounded-full bg-muted/50 overflow-hidden">
         <div
           className={`h-full rounded-full transition-all duration-700 ease-out ${accentColor}`}
           style={{ width: `${barWidth}%` }}
@@ -254,8 +256,8 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
             </div>
 
             <p
-              className="text-[2.5rem] sm:text-5xl font-light font-mono tabular-nums motion-safe:animate-pulse-subtle tracking-tight"
-              style={{ letterSpacing: '-0.03em', animationDuration: '4s' }}
+              className="text-4xl sm:text-5xl font-bold font-mono tabular-nums motion-safe:animate-pulse-subtle"
+              style={{ letterSpacing: '-0.02em', animationDuration: '4s' }}
             >
               &euro; {nettoFormatted}
             </p>
@@ -288,15 +290,15 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
           label="Umsatz"
           value={umsatz}
           accentColor="bg-blue-500"
-          borderColor="#3B82F6"
+          borderColor="border-blue-200/50 dark:border-blue-800/30"
           pctOfUmsatz={pct(umsatz)}
           maxPct={maxPct}
         />
         <KpiTile
-          label="Aufwände"
+          label="Aufw\u00e4nde"
           value={aufwaende}
-          accentColor="bg-rose-500"
-          borderColor="#F43F5E"
+          accentColor="bg-red-500"
+          borderColor="border-red-200/50 dark:border-red-800/30"
           pctOfUmsatz={pct(aufwaende)}
           maxPct={maxPct}
         />
@@ -304,7 +306,7 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
           label="Gewinn"
           value={gewinn}
           accentColor="bg-emerald-500"
-          borderColor="#10B981"
+          borderColor="border-emerald-200/50 dark:border-emerald-800/30"
           pctOfUmsatz={pct(gewinn)}
           maxPct={maxPct}
         />
@@ -312,7 +314,7 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
           label="SVS"
           value={svs}
           accentColor="bg-orange-500"
-          borderColor="#F97316"
+          borderColor="border-orange-200/50 dark:border-orange-800/30"
           pctOfUmsatz={pct(svs)}
           maxPct={maxPct}
         />
@@ -320,7 +322,7 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
           label="ESt"
           value={est}
           accentColor="bg-amber-500"
-          borderColor="#F59E0B"
+          borderColor="border-amber-200/50 dark:border-amber-800/30"
           pctOfUmsatz={pct(est)}
           maxPct={maxPct}
         />

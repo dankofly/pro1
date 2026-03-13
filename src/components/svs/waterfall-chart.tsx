@@ -23,18 +23,18 @@ function WaterfallBar({ label, amount, total, color, isResult }: {
   return (
     <div className="flex items-center gap-3">
       <div className="w-32 sm:w-40 text-right">
-        <span className={`text-xs font-medium ${isResult ? 'text-slate-100 font-bold' : 'text-slate-400'}`}>
+        <span className={`text-xs font-medium ${isResult ? 'text-foreground font-bold' : 'text-muted-foreground'}`}>
           {label}
         </span>
       </div>
       <div className="flex-1 flex items-center gap-2">
-        <div className="flex-1 h-6 bg-white/5 rounded-md overflow-hidden">
+        <div className="flex-1 h-6 bg-muted/40 rounded-md overflow-hidden">
           <div
             className={`h-full ${color} rounded-md transition-all duration-500 ease-out`}
             style={{ width: `${animated}%` }}
           />
         </div>
-        <span className={`text-xs font-mono font-medium w-24 text-right ${isResult ? 'text-emerald-400 font-bold' : 'text-slate-400'}`}>
+        <span className={`text-xs font-mono font-medium w-24 text-right ${isResult ? 'text-emerald-600 font-bold' : 'text-muted-foreground'}`}>
           {amount < 0 ? '−' : ''}{formatEuro(Math.abs(amount))}
         </span>
       </div>
@@ -44,12 +44,12 @@ function WaterfallBar({ label, amount, total, color, isResult }: {
 
 export function WaterfallChart({ gewinn, result }: WaterfallChartProps) {
   return (
-    <div className="visual-card p-4 sm:p-5 space-y-3" role="img" aria-label="Abzugs-Wasserfall: Vom Brutto-Gewinn zum Netto">
+    <div className="rounded-xl border border-violet-200/50 dark:border-violet-800/30 bg-gradient-to-br from-violet-50/50 to-white dark:from-violet-950/20 dark:to-[hsl(var(--surface))] p-4 sm:p-5 shadow-sm space-y-3" role="img" aria-label="Abzugs-Wasserfall: Vom Brutto-Gewinn zum Netto">
       <div className="flex items-center gap-2 mb-4">
-        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-violet-500/20">
-          <BarChart2 className="h-3.5 w-3.5 text-violet-400" />
+        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-violet-500/15">
+          <BarChart2 className="h-3.5 w-3.5 text-violet-600 dark:text-violet-400" />
         </div>
-        <span className="text-sm font-semibold text-slate-100">Abzugs-Wasserfall</span>
+        <span className="text-sm font-semibold text-foreground">Abzugs-Wasserfall</span>
       </div>
       <WaterfallBar
         label="Brutto-Gewinn"
@@ -86,7 +86,7 @@ export function WaterfallChart({ gewinn, result }: WaterfallChartProps) {
           color="bg-orange-400"
         />
       )}
-      <div className="border-t border-dashed border-white/10 pt-3">
+      <div className="border-t border-dashed border-border pt-3">
         <WaterfallBar
           label="Echtes Netto"
           amount={result.echtesNetto}

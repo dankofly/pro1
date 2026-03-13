@@ -17,12 +17,12 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {/* Gefahren-Barometer */}
-      <div className="visual-card p-5">
+      <div className="rounded-xl border border-blue-200/50 dark:border-blue-800/30 bg-gradient-to-br from-blue-50/80 to-white dark:from-blue-950/30 dark:to-[hsl(var(--surface))] p-5 shadow-sm">
         <div className="flex items-center gap-2 mb-3">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-500/20">
-            <Zap className="h-3.5 w-3.5 text-blue-400" />
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary/15">
+            <Zap className="h-3.5 w-3.5 text-primary" />
           </div>
-          <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
+          <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
             Gefahren-Barometer
           </span>
         </div>
@@ -30,26 +30,26 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
       </div>
 
       {/* Nachzahlungs-Alarm */}
-      <div className="visual-card p-5">
+      <div className="rounded-xl border border-amber-200/50 dark:border-amber-800/30 bg-gradient-to-br from-amber-50/80 to-white dark:from-amber-950/30 dark:to-[hsl(var(--surface))] p-5 shadow-sm">
         <div className="flex items-center gap-2 mb-3">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-500/20">
-            <AlertTriangle className="h-3.5 w-3.5 text-amber-400" />
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-500/15">
+            <AlertTriangle className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" />
           </div>
-          <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">
+          <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
             Nachzahlungs-Alarm
           </span>
         </div>
         <div className="text-center py-1">
           {result.nachzahlung > 0 ? (
             <>
-              <p className="text-2xl font-light text-red-400 num-transition font-mono tracking-tight">
+              <p className="text-2xl font-bold text-red-500 num-transition font-mono">
                 {formatEuroShort(Math.round(animatedNachzahlung))}
               </p>
-              <p className="text-xs text-slate-400 mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 geschätzte Nachzahlung
               </p>
-              <div className="mt-2 p-2 rounded-lg bg-red-500/10 border border-red-500/20">
-                <p className="text-[11px] text-red-400">
+              <div className="mt-2 p-2 rounded-lg bg-red-50/50 dark:bg-red-950/20 border border-red-200/40 dark:border-red-800/20">
+                <p className="text-[11px] text-red-600 dark:text-red-400">
                   Vorschreibung ({formatEuro(vorschreibung)}) ist{' '}
                   <span className="font-bold">
                     {formatEuro(result.endgueltigeMonatlich - vorschreibung)}
@@ -60,19 +60,19 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
             </>
           ) : result.nachzahlung < 0 ? (
             <>
-              <p className="text-2xl font-light text-emerald-400 num-transition font-mono tracking-tight">
+              <p className="text-2xl font-bold text-emerald-500 num-transition font-mono">
                 {formatEuroShort(Math.round(animatedNachzahlung))}
               </p>
-              <p className="text-xs text-slate-400 mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 voraussichtliche Gutschrift
               </p>
             </>
           ) : (
             <>
-              <p className="text-2xl font-light text-slate-500 num-transition font-mono tracking-tight">
+              <p className="text-2xl font-bold text-muted-foreground num-transition font-mono">
                 &euro; 0
               </p>
-              <p className="text-xs text-slate-400 mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 Keine Nachzahlung erwartet
               </p>
             </>

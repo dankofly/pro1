@@ -332,33 +332,33 @@ function RechnerContent() {
             />
           </div>
 
-          {/* Right - Results (Immersive Dashboard Canvas) */}
-          <div className="dashboard-canvas space-y-5 min-w-0 overflow-hidden rounded-2xl p-4 sm:p-6 lg:-mr-2">
+          {/* Right - Results */}
+          <div className="space-y-7 min-w-0 overflow-hidden">
             {svs.belowMinimum && (
-              <div className="flex gap-3 visual-card border-l-[3px] border-l-blue-500 p-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 shrink-0 mt-1.5" />
-                <p className="text-sm text-slate-200">
-                  <span className="font-medium text-slate-100">Unter der Versicherungsgrenze:</span>{' '}
+              <div className="flex gap-3 bg-blue-50/50 dark:bg-blue-950/30 border border-blue-200/50 dark:border-blue-800/30 border-l-[3px] border-l-blue-500 rounded-lg p-4 shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 mt-1.5" />
+                <p className="text-sm text-foreground">
+                  <span className="font-medium">Unter der Versicherungsgrenze:</span>{' '}
                   Bei einem Jahresgewinn unter {formatEuro(versicherungsgrenze)} besteht als Neuer Selbständiger keine Pflichtversicherung bei der SVS.
                 </p>
               </div>
             )}
 
             {svs.usesMinBeitragsgrundlage && (
-              <div className="flex gap-3 visual-card border-l-[3px] border-l-amber-500 p-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0 mt-1.5" />
-                <p className="text-sm text-slate-200">
-                  <span className="font-medium text-slate-100">Mindestbeitragsgrundlage:</span>{' '}
+              <div className="flex gap-3 bg-amber-50/50 dark:bg-amber-950/30 border border-amber-200/50 dark:border-amber-800/30 border-l-[3px] border-l-amber-500 rounded-lg p-4 shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0 mt-1.5" />
+                <p className="text-sm text-foreground">
+                  <span className="font-medium">Mindestbeitragsgrundlage:</span>{' '}
                   SVS wird auf der Mindestbeitragsgrundlage von {formatEuro(minBeitragsgrundlage)} berechnet, da dein Gewinn darunter liegt.
                 </p>
               </div>
             )}
 
             {svs.isJungunternehmer && (
-              <div className="flex gap-3 visual-card border-l-[3px] border-l-emerald-500 p-4">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0 mt-1.5" />
-                <p className="text-sm text-slate-200">
-                  <span className="font-medium text-slate-100">Jungunternehmer-Bonus:</span>{' '}
+              <div className="flex gap-3 bg-emerald-50/50 dark:bg-emerald-950/30 border border-emerald-200/50 dark:border-emerald-800/30 border-l-[3px] border-l-emerald-500 rounded-lg p-4 shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-1.5" />
+                <p className="text-sm text-foreground">
+                  <span className="font-medium">Jungunternehmer-Bonus:</span>{' '}
                   Reduzierter KV-Beitragssatz (3,84% statt 6,80%) im {Number(input.year) - input.stammdaten.gruendungsJahr + 1}. Kalenderjahr.
                 </p>
               </div>
@@ -376,36 +376,30 @@ function RechnerContent() {
               />
             </div>
 
-            {/* ── Analyse Section (Glass Container) ── */}
-            <div className="section-glass space-y-5">
-              {/* Actionable Insights — direkt nach KPIs (5-Sekunden-Regel) */}
-              {!svs.belowMinimum && (
-                <DashboardCards result={svs} vorschreibung={vorschreibung} />
-              )}
+            {/* Actionable Insights — direkt nach KPIs (5-Sekunden-Regel) */}
+            {!svs.belowMinimum && (
+              <DashboardCards result={svs} vorschreibung={vorschreibung} />
+            )}
 
-              <ScrollReveal>
-                <RuecklagenSection
-                  ruecklagen={result.ruecklagen}
-                />
-              </ScrollReveal>
+            <ScrollReveal>
+              <RuecklagenSection
+                ruecklagen={result.ruecklagen}
+              />
+            </ScrollReveal>
 
-              <ScrollReveal delay={50}>
-                <UstVergleichTabelle ustResult={result.ustResult} />
-              </ScrollReveal>
-            </div>
+            <ScrollReveal delay={50}>
+              <UstVergleichTabelle ustResult={result.ustResult} />
+            </ScrollReveal>
 
-            {/* ── Geldfluss Section (Glass Container) ── */}
             <ScrollReveal delay={100}>
-              <div className="section-glass">
-                <GeldflussDiagramm
-                  umsatz={result.umsatz}
-                  aufwaende={result.aufwaendeEffektiv}
-                  gewinn={result.gewinn}
-                  svs={svs.endgueltigeSVS}
-                  est={svs.einkommensteuer}
-                  netto={svs.echtesNetto}
-                />
-              </div>
+              <GeldflussDiagramm
+                umsatz={result.umsatz}
+                aufwaende={result.aufwaendeEffektiv}
+                gewinn={result.gewinn}
+                svs={svs.endgueltigeSVS}
+                est={svs.einkommensteuer}
+                netto={svs.echtesNetto}
+              />
             </ScrollReveal>
 
             {!svs.belowMinimum && (
@@ -426,10 +420,10 @@ function RechnerContent() {
                     <SteuerTipps tipps={steuerTipps} gewinn={result.gewinn} year={input.year} />
                   </>
                 ) : (
-                  <div className="visual-card p-6 relative overflow-hidden">
-                    <div className="absolute inset-0 bg-slate-900/70 backdrop-blur-md z-10 flex flex-col items-center justify-center gap-3">
-                      <Lock className="h-4 w-4 text-slate-400/60" aria-hidden="true" />
-                      <p className="text-sm font-medium text-slate-300 text-center px-4">Detailanalyse ab Sicherheits-Plan</p>
+                  <div className="card-surface p-6 relative overflow-hidden">
+                    <div className="absolute inset-0 bg-background/70 backdrop-blur-md z-10 flex flex-col items-center justify-center gap-3">
+                      <Lock className="h-4 w-4 text-muted-foreground/60" aria-hidden="true" />
+                      <p className="text-sm font-medium text-muted-foreground text-center px-4">Detailanalyse ab Sicherheits-Plan</p>
                       <Button size="sm" onClick={() => handleUpgradeRequired('Detailanalyse', 'basic')}>
                         Jetzt freischalten
                       </Button>
@@ -489,20 +483,20 @@ function RechnerContent() {
                 <button
                   onClick={() => setShowBeitragsDetails(!showBeitragsDetails)}
                   aria-expanded={showBeitragsDetails}
-                  className="visual-card w-full flex items-center justify-between px-4 py-4 sm:py-3.5 min-h-[48px] text-sm font-semibold text-slate-100 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50"
+                  className="card-surface w-full flex items-center justify-between px-4 py-4 sm:py-3.5 min-h-[48px] text-sm font-semibold text-foreground cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   Beitragsdetails
-                  <ChevronDown className={`h-4 w-4 text-slate-400 transition-transform duration-200 ${showBeitragsDetails ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${showBeitragsDetails ? 'rotate-180' : ''}`} />
                 </button>
                 {showBeitragsDetails && <BeitragsDetails result={svs} />}
 
                 <button
                   onClick={() => setShowMonthlyOverview(!showMonthlyOverview)}
                   aria-expanded={showMonthlyOverview}
-                  className="visual-card w-full flex items-center justify-between px-4 py-4 sm:py-3.5 min-h-[48px] text-sm font-semibold text-slate-100 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/50"
+                  className="card-surface w-full flex items-center justify-between px-4 py-4 sm:py-3.5 min-h-[48px] text-sm font-semibold text-foreground cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   Monatsübersicht
-                  <ChevronDown className={`h-4 w-4 text-slate-400 transition-transform duration-200 ${showMonthlyOverview ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${showMonthlyOverview ? 'rotate-180' : ''}`} />
                 </button>
                 {showMonthlyOverview && <MonthlyOverview result={svs} vorschreibung={vorschreibung} />}
               </>
@@ -529,10 +523,10 @@ function RechnerContent() {
             />
 
             {/* ─── FAQ ─── */}
-            <section className="mt-8 visual-card p-5 sm:p-6">
+            <section className="mt-12 card-surface p-5 sm:p-6">
               <div className="flex items-center gap-2 mb-4">
-                <HelpCircle className="h-4 w-4 text-slate-400" />
-                <h2 className="text-[11px] font-semibold uppercase text-slate-400 tracking-[0.08em]">
+                <HelpCircle className="h-4 w-4 text-muted-foreground" />
+                <h2 className="text-[11px] font-semibold uppercase text-muted-foreground tracking-[0.08em]">
                   Häufig gestellte Fragen zum SVS-Rechner
                 </h2>
               </div>
