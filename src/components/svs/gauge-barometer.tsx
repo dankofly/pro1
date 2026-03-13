@@ -5,10 +5,10 @@ interface GaugeBarometerProps {
 }
 
 function getColor(pct: number) {
-  if (pct <= 25) return { stroke: '#22c55e', text: 'Niedrig', label: 'text-green-600', bg: 'bg-green-50' }
-  if (pct <= 50) return { stroke: '#f59e0b', text: 'Mittel', label: 'text-amber-600', bg: 'bg-amber-50' }
-  if (pct <= 75) return { stroke: '#f97316', text: 'Hoch', label: 'text-orange-600', bg: 'bg-orange-50' }
-  return { stroke: '#ef4444', text: 'Kritisch', label: 'text-red-600', bg: 'bg-red-50' }
+  if (pct <= 25) return { stroke: '#22c55e', text: 'Niedrig', label: 'text-green-600 dark:text-green-400', bg: 'bg-green-50 dark:bg-green-950/30' }
+  if (pct <= 50) return { stroke: '#f59e0b', text: 'Mittel', label: 'text-amber-600 dark:text-amber-400', bg: 'bg-amber-50 dark:bg-amber-950/30' }
+  if (pct <= 75) return { stroke: '#f97316', text: 'Hoch', label: 'text-orange-600 dark:text-orange-400', bg: 'bg-orange-50 dark:bg-orange-950/30' }
+  return { stroke: '#ef4444', text: 'Kritisch', label: 'text-red-600 dark:text-red-400', bg: 'bg-red-50 dark:bg-red-950/30' }
 }
 
 export function GaugeBarometer({ riskPercent }: GaugeBarometerProps) {
@@ -22,7 +22,7 @@ export function GaugeBarometer({ riskPercent }: GaugeBarometerProps) {
         <path
           d="M 10 65 A 45 45 0 0 1 110 65"
           fill="none"
-          stroke="#e2e8f0"
+          className="stroke-slate-200 dark:stroke-slate-700"
           strokeWidth="10"
           strokeLinecap="round"
         />
@@ -40,7 +40,7 @@ export function GaugeBarometer({ riskPercent }: GaugeBarometerProps) {
           x="60"
           y="55"
           textAnchor="middle"
-          style={{ fontSize: '18px', fill: color.stroke, fontFamily: 'inherit', fontWeight: 700 }}
+          style={{ fontSize: '18px', fill: color.stroke, fontFamily: 'ui-monospace, monospace', fontWeight: 700 }}
         >
           {Math.round(riskPercent)}%
         </text>

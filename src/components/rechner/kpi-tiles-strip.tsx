@@ -135,7 +135,7 @@ function GaugeRing({ percentage, strokeColor, trackColor }: GaugeRingProps) {
         <span className="text-2xl sm:text-3xl font-bold font-mono tabular-nums text-white drop-shadow-lg">
           {clamped.toFixed(0)}
         </span>
-        <span className="text-[10px] font-medium text-white/70 uppercase tracking-wider -mt-0.5">
+        <span className="text-[11px] font-medium text-white/70 uppercase tracking-wider -mt-0.5">
           Prozent
         </span>
       </div>
@@ -165,25 +165,25 @@ function KpiTile({ label, value, accentColor, borderColor, pctOfUmsatz, maxPct }
 
   return (
     <div
-      className={`group relative rounded-xl border bg-card p-3 min-w-0 transition-transform duration-200 motion-safe:hover:scale-[1.03] ${borderColor}`}
+      className={`group relative rounded-xl border bg-card p-4 sm:p-5 min-w-0 transition-transform duration-200 motion-safe:hover:scale-[1.02] ${borderColor}`}
     >
       {/* Accent top border */}
-      <div className={`absolute top-0 left-3 right-3 h-0.5 rounded-b ${accentColor}`} />
+      <div className={`absolute top-0 left-4 right-4 h-0.5 rounded-b ${accentColor}`} />
 
-      <p className="text-[11px] font-medium text-muted-foreground truncate mb-1.5 mt-0.5">
+      <p className="text-xs font-medium text-muted-foreground truncate mb-2 mt-0.5">
         {label}
       </p>
-      <p className="text-base sm:text-lg font-bold font-mono tabular-nums text-foreground" style={{ letterSpacing: '-0.01em' }}>
+      <p className="text-lg sm:text-xl font-bold font-mono tabular-nums text-foreground" style={{ letterSpacing: '-0.02em' }}>
         &euro; {formatted}
       </p>
       {pctOfUmsatz !== undefined && pctOfUmsatz > 0 && (
-        <p className="text-[10px] font-mono text-muted-foreground/60 mt-0.5">
+        <p className="text-[11px] font-mono text-muted-foreground/60 mt-1">
           {pctOfUmsatz.toFixed(1)}% vom Umsatz
         </p>
       )}
 
       {/* Mini proportion bar */}
-      <div className="mt-2 h-1 w-full rounded-full bg-muted/50 overflow-hidden">
+      <div className="mt-2.5 h-1.5 w-full rounded-full bg-muted/40 overflow-hidden">
         <div
           className={`h-full rounded-full transition-all duration-700 ease-out ${accentColor}`}
           style={{ width: `${barWidth}%` }}
@@ -246,7 +246,7 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
           {/* Left: numbers */}
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2 mb-2">
-              <p className="text-[11px] font-semibold text-white/70 uppercase tracking-wider">
+              <p className="text-xs font-semibold text-white/70 uppercase tracking-wider">
                 Dein echtes Netto
               </p>
               <span className={`flex items-center gap-1 text-xs font-mono ${cfg.badgeBg} border rounded-full px-2 py-0.5 shrink-0 text-white/90`}>
@@ -256,8 +256,8 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
             </div>
 
             <p
-              className="text-4xl sm:text-5xl font-bold font-mono tabular-nums motion-safe:animate-pulse-subtle"
-              style={{ letterSpacing: '-0.02em', animationDuration: '4s' }}
+              className="text-4xl sm:text-5xl font-bold font-mono tabular-nums"
+              style={{ letterSpacing: '-0.02em' }}
             >
               &euro; {nettoFormatted}
             </p>
@@ -285,7 +285,7 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
       </div>
 
       {/* Secondary KPI tiles */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
+      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-3">
         <KpiTile
           label="Umsatz"
           value={umsatz}
@@ -295,34 +295,34 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
           maxPct={maxPct}
         />
         <KpiTile
-          label="Aufw\u00e4nde"
+          label="Aufwände"
           value={aufwaende}
-          accentColor="bg-red-500"
-          borderColor="border-red-200/50 dark:border-red-800/30"
+          accentColor="bg-rose-500"
+          borderColor="border-rose-200/50 dark:border-rose-800/30"
           pctOfUmsatz={pct(aufwaende)}
           maxPct={maxPct}
         />
         <KpiTile
           label="Gewinn"
           value={gewinn}
-          accentColor="bg-emerald-500"
-          borderColor="border-emerald-200/50 dark:border-emerald-800/30"
+          accentColor="bg-blue-500"
+          borderColor="border-blue-200/50 dark:border-blue-800/30"
           pctOfUmsatz={pct(gewinn)}
           maxPct={maxPct}
         />
         <KpiTile
           label="SVS"
           value={svs}
-          accentColor="bg-orange-500"
-          borderColor="border-orange-200/50 dark:border-orange-800/30"
+          accentColor="bg-rose-500"
+          borderColor="border-rose-200/50 dark:border-rose-800/30"
           pctOfUmsatz={pct(svs)}
           maxPct={maxPct}
         />
         <KpiTile
           label="ESt"
           value={est}
-          accentColor="bg-amber-500"
-          borderColor="border-amber-200/50 dark:border-amber-800/30"
+          accentColor="bg-rose-500"
+          borderColor="border-rose-200/50 dark:border-rose-800/30"
           pctOfUmsatz={pct(est)}
           maxPct={maxPct}
         />

@@ -39,7 +39,7 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
             Nachzahlungs-Alarm
           </span>
         </div>
-        <div className="text-center py-1">
+        <div className="py-1">
           {result.nachzahlung > 0 ? (
             <>
               <p className="text-2xl font-bold text-red-500 num-transition font-mono">
@@ -49,7 +49,7 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
                 geschätzte Nachzahlung
               </p>
               <div className="mt-2 p-2 rounded-lg bg-red-50/50 dark:bg-red-950/20 border border-red-200/40 dark:border-red-800/20">
-                <p className="text-[11px] text-red-600 dark:text-red-400">
+                <p className="text-xs text-red-600 dark:text-red-400">
                   Vorschreibung ({formatEuro(vorschreibung)}) ist{' '}
                   <span className="font-bold">
                     {formatEuro(result.endgueltigeMonatlich - vorschreibung)}

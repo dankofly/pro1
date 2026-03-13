@@ -21,22 +21,20 @@ function WaterfallBar({ label, amount, total, color, isResult }: {
   const animated = useAnimatedNumber(widthPercent)
 
   return (
-    <div className="flex items-center gap-3">
-      <div className="w-32 sm:w-40 text-right">
+    <div className="space-y-1">
+      <div className="flex items-baseline justify-between">
         <span className={`text-xs font-medium ${isResult ? 'text-foreground font-bold' : 'text-muted-foreground'}`}>
           {label}
         </span>
-      </div>
-      <div className="flex-1 flex items-center gap-2">
-        <div className="flex-1 h-6 bg-muted/40 rounded-md overflow-hidden">
-          <div
-            className={`h-full ${color} rounded-md transition-all duration-500 ease-out`}
-            style={{ width: `${animated}%` }}
-          />
-        </div>
-        <span className={`text-xs font-mono font-medium w-24 text-right ${isResult ? 'text-emerald-600 font-bold' : 'text-muted-foreground'}`}>
+        <span className={`text-xs font-mono font-medium ${isResult ? 'text-emerald-600 dark:text-emerald-400 font-bold' : 'text-muted-foreground'}`}>
           {amount < 0 ? '−' : ''}{formatEuro(Math.abs(amount))}
         </span>
+      </div>
+      <div className="h-6 bg-muted/40 rounded-md overflow-hidden">
+        <div
+          className={`h-full ${color} rounded-md transition-all duration-500 ease-out`}
+          style={{ width: `${animated}%` }}
+        />
       </div>
     </div>
   )
