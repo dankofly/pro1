@@ -45,6 +45,7 @@ import { RuecklagenSection } from '@/components/rechner/ruecklagen-section'
 import { UstSection } from '@/components/rechner/ust-section'
 import { UstVergleichTabelle } from '@/components/rechner/ust-vergleich-tabelle'
 import { SectionDivider } from '@/components/rechner/section-divider'
+import { PageFooter } from '@/components/svs/page-footer'
 
 import { Button } from '@/components/ui/button'
 // Alert replaced with custom left-border accent divs
@@ -586,16 +587,7 @@ function RechnerContent() {
               </Accordion>
             </section>
 
-            <footer className="text-center py-8 text-xs text-muted-foreground">
-              <p>Alle Angaben ohne Gewähr. Kein Ersatz für professionelle Steuerberatung. Werte {input.year}.</p>
-              <div className="flex items-center justify-center gap-3 pt-2">
-                <Link href="/impressum" className="hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm">Impressum</Link>
-                <span>·</span>
-                <Link href="/datenschutz" className="hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm">Datenschutz</Link>
-                <span>·</span>
-                <Link href="/agb" className="hover:text-foreground transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm">AGB</Link>
-              </div>
-            </footer>
+            <PageFooter extra={`Kein Ersatz für professionelle Steuerberatung. Werte ${input.year}.`} />
           </div>
         </div>
       </div>

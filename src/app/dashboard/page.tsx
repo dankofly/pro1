@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { formatEuro } from '@/lib/format'
 import { AppShell, useAppShell } from '@/components/svs/app-shell'
+import { PageFooter } from '@/components/svs/page-footer'
 import { MobileNav } from '@/components/svs/mobile-nav'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -387,14 +388,7 @@ function DashboardContent() {
           </CardContent>
         </Card>
 
-        <footer className="text-center py-8 text-xs text-muted-foreground space-y-2">
-          <p>SteuerBoard.pro – Alle Angaben ohne Gewähr.</p>
-          <div className="flex items-center justify-center gap-3">
-            <Link href="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
-            <span>·</span>
-            <Link href="/datenschutz" className="hover:text-foreground transition-colors">Datenschutz</Link>
-          </div>
-        </footer>
+        <PageFooter />
       </div>
     </>
   )

@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { AppShell, useAppShell } from '@/components/svs/app-shell'
+import { PageFooter } from '@/components/svs/page-footer'
 import { MobileNav } from '@/components/svs/mobile-nav'
 import { OnboardingWizard } from '@/components/rechner/onboarding-wizard'
 import { getDefaultRechnerForBranche } from '@/lib/rechner-registry'
@@ -47,9 +48,7 @@ function WizardContent() {
         <OnboardingWizard onComplete={handleWizardComplete} />
       </div>
 
-      <footer className="text-center py-8 text-xs text-muted-foreground">
-        <p>SteuerBoard.pro – Alle Angaben ohne Gewähr.</p>
-      </footer>
+      <PageFooter />
     </>
   )
 }

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { AppShell, useAppShell } from '@/components/svs/app-shell'
+import { PageFooter } from '@/components/svs/page-footer'
 import { MobileNav } from '@/components/svs/mobile-nav'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
@@ -313,9 +314,7 @@ function EinstellungenContent() {
           </Button>
         </div>
 
-        <footer className="text-center py-8 text-xs text-muted-foreground">
-          <p>SteuerBoard.pro – Alle Angaben ohne Gewähr.</p>
-        </footer>
+        <PageFooter />
       </div>
     </>
   )

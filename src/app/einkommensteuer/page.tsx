@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useMemo } from 'react'
+import { PageFooter } from '@/components/svs/page-footer'
 import Link from 'next/link'
 import { formatEuro } from '@/lib/format'
 import {
@@ -807,15 +808,7 @@ function EinkommensteuerContent() {
         </Card>
 
         {/* Footer */}
-        <footer className="text-center py-8 text-xs text-muted-foreground space-y-2">
-          <p className="font-medium text-foreground/70">SteuerBoard.pro – Einkommensteuer-Rechner für Österreich</p>
-          <p>Alle Angaben ohne Gewähr. Kein Ersatz für professionelle Steuerberatung. Werte {year}{year === '2026' ? ' (Prognose)' : ''}.</p>
-          <div className="flex items-center justify-center gap-3 pt-1">
-            <Link href="/impressum" className="hover:text-foreground transition-colors">Impressum</Link>
-            <span>·</span>
-            <Link href="/datenschutz" className="hover:text-foreground transition-colors">Datenschutz</Link>
-          </div>
-        </footer>
+        <PageFooter extra={`Kein Ersatz für professionelle Steuerberatung. Werte ${year}${year === '2026' ? ' (Prognose)' : ''}.`} />
       </div>
 
       <UpgradeDialog
