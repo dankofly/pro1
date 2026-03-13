@@ -38,31 +38,31 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
 
   // Deductions branching out
   const deductions = [
-    { value: aufwaende, idx: 1, color: '#e05858', label: 'Aufw.' },
-    { value: svs, idx: 2, color: '#e68f3c', label: 'SVS' },
-    { value: est, idx: 3, color: '#d4a72c', label: 'ESt' },
+    { value: aufwaende, idx: 1, color: '#f87171', label: 'Aufw.' },
+    { value: svs, idx: 2, color: '#fb923c', label: 'SVS' },
+    { value: est, idx: 3, color: '#fbbf24', label: 'ESt' },
   ]
 
   const flowVals = [umsatz, afterAufwaende, afterSvs, afterEst]
 
   return (
-    <div className="rounded-xl border border-teal-200/50 dark:border-teal-800/30 bg-gradient-to-br from-teal-50/60 to-white dark:from-teal-950/20 dark:to-[hsl(var(--surface))] p-4 sm:p-5 shadow-sm">
+    <div className="visual-card p-4 sm:p-5">
       <div className="flex items-center gap-2 mb-3">
-        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-teal-500/15">
-          <ArrowRightLeft className="h-3.5 w-3.5 text-teal-600 dark:text-teal-400" />
+        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-teal-500/20">
+          <ArrowRightLeft className="h-3.5 w-3.5 text-teal-400" />
         </div>
-        <span className="text-sm font-semibold text-foreground">Geldfluss-Diagramm</span>
+        <span className="text-sm font-semibold text-slate-100">Geldfluss-Diagramm</span>
       </div>
 
       {/* Top labels */}
       <div className="flex justify-between items-end mb-1 px-1 gap-2">
         <div className="min-w-0">
-          <p className="section-header">Umsatz</p>
-          <p className="text-sm font-bold font-mono text-primary truncate">{formatEuro(umsatz)}</p>
+          <p className="text-[10px] font-semibold uppercase text-slate-400 tracking-wider">Umsatz</p>
+          <p className="text-sm font-bold font-mono text-blue-400 truncate">{formatEuro(umsatz)}</p>
         </div>
         <div className="text-right min-w-0">
-          <p className="section-header">Netto</p>
-          <p className="text-sm font-bold font-mono text-emerald-600 truncate">{formatEuro(netto)}</p>
+          <p className="text-[10px] font-semibold uppercase text-slate-400 tracking-wider">Netto</p>
+          <p className="text-sm font-bold font-mono text-emerald-400 truncate">{formatEuro(netto)}</p>
         </div>
       </div>
 
@@ -73,6 +73,23 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
         role="img"
         aria-label={`Geldfluss: ${formatEuro(umsatz)} Umsatz minus ${formatEuro(aufwaende)} Aufwände, ${formatEuro(svs)} SVS, ${formatEuro(est)} ESt ergibt ${formatEuro(netto)} Netto`}
       >
+        <defs>
+          <linearGradient id="flowGradMain" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#3B82F6" />
+            <stop offset="100%" stopColor="#06B6D4" />
+          </linearGradient>
+          <linearGradient id="flowGradNetto" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stopColor="#10B981" />
+            <stop offset="100%" stopColor="#34d399" />
+          </linearGradient>
+          <filter id="flowGlow">
+            <feGaussianBlur stdDeviation="2" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
         {/* Main flow bars */}
         {flowVals.map((_, i) => {
           if (i >= flowVals.length - 1) return null
@@ -95,8 +112,10 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
                 C${midX},${y2Top + h2} ${midX},${y1Top + h1} ${x1},${y1Top + h1}
                 Z
               `}
-              className={`transition-[d,opacity] duration-500 ${isLast ? 'fill-emerald-500 dark:fill-emerald-400' : 'fill-blue-600 dark:fill-blue-400'}`}
-              opacity={isLast ? 0.85 : 0.8 + i * 0.05}
+              fill={isLast ? 'url(#flowGradNetto)' : 'url(#flowGradMain)'}
+              filter="url(#flowGlow)"
+              className="transition-[d,opacity] duration-500"
+              opacity={isLast ? 0.85 : 0.75 + i * 0.05}
             />
           )
         })}
