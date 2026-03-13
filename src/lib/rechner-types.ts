@@ -8,7 +8,7 @@ import type { SvsResult, SteuerTipp } from './svs-calculator'
 
 // ── Stammdaten ──────────────────────────────────────────────
 
-export type Versicherungsart = 'gsvg_gewerbe' | 'gsvg_neu' | 'fsvg_arzt' | 'fsvg_patent'
+export type Versicherungsart = 'gsvg_gewerbe' | 'gsvg_neu' | 'fsvg_arzt' | 'fsvg_patent' | 'bsvg'
 
 export interface Stammdaten {
   gruendungsMonat: number   // 1-12

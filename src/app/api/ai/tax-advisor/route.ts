@@ -76,7 +76,7 @@ Zusammenfassung in 3-5 klaren, sofort umsetzbaren Punkten. Potenzielle Risiken o
 // ── Input Validation ─────────────────────────────────────────
 
 const ALLOWED_PAUSCHALIERUNG = ['keine', 'basispauschalierung', 'branchenpauschalierung'] as const
-const ALLOWED_VERSICHERUNGSART = ['gsvg_gewerbe', 'gsvg_freiberuf', 'fsvg'] as const
+const ALLOWED_VERSICHERUNGSART = ['gsvg_gewerbe', 'gsvg_freiberuf', 'fsvg', 'bsvg'] as const
 
 function sanitizeInput(data: Record<string, unknown>): Record<string, unknown> {
   return {

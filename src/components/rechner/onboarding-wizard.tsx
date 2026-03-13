@@ -30,6 +30,7 @@ const VERSICHERUNGSARTEN: { value: Versicherungsart; label: string; desc: string
   { value: 'gsvg_neu', label: 'Neuer Selbständiger (GSVG)', desc: 'Freiberufler, Werkvertrag, IT' },
   { value: 'fsvg_arzt', label: 'Arzt (FSVG)', desc: 'Ärztekammer-Mitglied' },
   { value: 'fsvg_patent', label: 'Apotheker / Patentanwalt / ZT (FSVG)', desc: 'Freier Beruf mit Kammermitgliedschaft' },
+  { value: 'bsvg', label: 'Land- & Forstwirt (BSVG)', desc: 'Bauern-Sozialversicherung' },
 ]
 
 /** Suggest a default Versicherungsart based on selected Branche */
@@ -41,7 +42,7 @@ function suggestVersicherungsart(branche: Branche): Versicherungsart {
     case 'handwerk':
     case 'handel':
     case 'gastro':
-    case 'landwirtschaft': return 'gsvg_gewerbe'
+    case 'landwirtschaft': return 'bsvg'
     default: return 'gsvg_gewerbe'
   }
 }

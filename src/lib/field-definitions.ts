@@ -11,7 +11,7 @@ export const FIELD_DEFS = {
   jungunternehmer:
     'In den ersten 2 Kalenderjahren nach Gründung zahlst du deutlich reduzierte SVS-Mindestbeiträge (§ 25a GSVG). Die fixe Mindestbeitragsgrundlage entfällt.',
   versicherungsart:
-    'Deine Pflichtversicherung hängt von deiner Kammerzugehörigkeit ab. GSVG gilt für Gewerbetreibende und Neue Selbständige, FSVG für Ärzte, Apotheker und Ziviltechniker.',
+    'Deine Pflichtversicherung hängt von deiner Tätigkeit ab. GSVG gilt für Gewerbetreibende und Neue Selbständige, FSVG für Ärzte und Ziviltechniker, BSVG für Land- und Forstwirte (PV: 17% statt 18,5%).',
 
   // ── Umsatz & Aufwände ─────────────────────────────
   jahresumsatz:

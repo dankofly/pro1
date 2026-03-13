@@ -247,8 +247,14 @@ export function calculateSvs(
     selectedYear <= stammdaten.gruendungsJahr + 1
   )
 
-  // ── KV-Rate (reduziert für Jungunternehmer: 3,84% statt 6,80%) ──
-  const kvRate = isJungunternehmer ? svs.kvRateJungunternehmer : svs.kvRate
+  // ── BSVG (Land- & Forstwirtschaft) hat eigene PV-Rate ──
+  const isBsvg = stammdaten?.versicherungsart === 'bsvg'
+
+  // ── KV-Rate (reduziert für Jungunternehmer: 3,84% statt 6,80%, nicht bei BSVG) ──
+  const kvRate = (isJungunternehmer && !isBsvg) ? svs.kvRateJungunternehmer : svs.kvRate
+
+  // ── PV-Rate (BSVG: 17,0% statt 18,5%) ──
+  const pvRate = isBsvg ? svs.bsvgPvRate : svs.pvRate
 
   // ── Beitragsgrundlage je nach Versicherungsart ──
   const isNeueSelbstaendige = stammdaten?.versicherungsart === 'gsvg_neu'
@@ -276,7 +282,7 @@ export function calculateSvs(
   const cappedAtMax = gewinn > svs.hoechstbeitrag
 
   // ── SVS-Beiträge berechnen ──
-  const pvBeitrag = beitragsgrundlage * svs.pvRate
+  const pvBeitrag = beitragsgrundlage * pvRate
   const kvBeitrag = beitragsgrundlage * kvRate
   const mvBeitrag = beitragsgrundlage * svs.mvRate
   const uvBeitrag = belowMinimum ? 0 : svs.uvMonthly * 12

@@ -36,6 +36,7 @@ export interface SvsRatesConfig {
   geringfuegigkeit: number    // Geringfügigkeitsgrenze/Jahr (Gewerbetreibende)
   hoechstbeitrag: number      // Höchstbeitragsgrundlage/Jahr (GSVG)
   minBeitragsgrundlage: number // Mindestbeitragsgrundlage/Jahr (GSVG)
+  bsvgPvRate: number          // Pensionsversicherung BSVG (17,0% statt 18,5%)
 }
 
 export interface AbsetzbetraegeConfig {
@@ -130,6 +131,7 @@ const CONFIG_2024: YearConfig = {
     geringfuegigkeit: 6221.28,
     hoechstbeitrag: 84840,
     minBeitragsgrundlage: 6221.28,
+    bsvgPvRate: 0.170,
   },
   taxBrackets: [
     { from: 0,       to: 12816,   rate: 0    },
@@ -170,6 +172,7 @@ const CONFIG_2025: YearConfig = {
     geringfuegigkeit: 6613.20,
     hoechstbeitrag: 90300,
     minBeitragsgrundlage: 6613.20,
+    bsvgPvRate: 0.170,
   },
   taxBrackets: [
     { from: 0,       to: 13308,   rate: 0    },
@@ -210,6 +213,7 @@ const CONFIG_2026: YearConfig = {
     geringfuegigkeit: 6613.20, // Eingefroren auf 2025-Niveau
     hoechstbeitrag: 97020,
     minBeitragsgrundlage: 6613.20,
+    bsvgPvRate: 0.170,
   },
   taxBrackets: [
     { from: 0,       to: 13539,   rate: 0    },
