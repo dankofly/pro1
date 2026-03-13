@@ -40,7 +40,6 @@ import { GmbhVergleichTabelle } from '@/components/rechner/gmbh-vergleich-tabell
 import { GewinnmaximiererVergleich } from '@/components/rechner/gewinnmaximierer-vergleich'
 import { GewinnfreibetragInfo } from '@/components/rechner/gewinnfreibetrag-info'
 import { AiTaxAdvisor } from '@/components/rechner/ai-tax-advisor'
-import { PresetSelector } from '@/components/rechner/preset-selector'
 import { GeldflussDiagramm } from '@/components/rechner/geldfluss-diagramm'
 import { RuecklagenSection } from '@/components/rechner/ruecklagen-section'
 import { UstSection } from '@/components/rechner/ust-section'
@@ -49,7 +48,6 @@ import { SectionDivider } from '@/components/rechner/section-divider'
 
 import { Button } from '@/components/ui/button'
 // Alert replaced with custom left-border accent divs
-import { Badge } from '@/components/ui/badge'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { Save, Lock, ChevronDown, HelpCircle } from 'lucide-react'
 import { toast } from 'sonner'
@@ -214,18 +212,11 @@ function RechnerContent() {
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <MobileNav />
-            <h1 className="section-header hidden sm:inline">SVS-Beitragsrechner {input.year}</h1>
+            <h1 className="section-header hidden sm:inline">
+              Steuerboard Berechnung für {brancheInfo ? `${brancheInfo.icon} ${brancheInfo.label}` : 'Sonstiges'} {input.year}
+            </h1>
             <span className="text-border/60 mx-1 hidden sm:inline">/</span>
             <StatusBadge riskPercent={svs.riskPercent} />
-            {brancheInfo && (
-              <Badge variant="outline" className="text-xs border-primary/30 text-primary gap-1 hidden sm:inline-flex">
-                <span>{brancheInfo.icon}</span>
-                {brancheInfo.label}
-              </Badge>
-            )}
-            <Badge variant="outline" className="text-xs text-muted-foreground border-border/50 hidden sm:inline-flex">
-              {input.year}
-            </Badge>
           </div>
           <div className="flex items-center gap-2">
             {user ? (
@@ -258,7 +249,7 @@ function RechnerContent() {
               onYearChange={(y: TaxYear) => setField('year', y)}
             />
 
-            <PresetSelector currentInput={input} dispatch={dispatch} />
+
 
             <UmsatzAufwaendeSection
               jahresumsatz={input.jahresumsatz}

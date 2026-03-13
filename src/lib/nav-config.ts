@@ -1,4 +1,4 @@
-import { Clock, Crown, HelpCircle, User, SlidersHorizontal } from 'lucide-react'
+import { Clock, Crown, HelpCircle, User, SlidersHorizontal, Sparkles } from 'lucide-react'
 import { getVisibleRechner } from './rechner-registry'
 import type { Branche } from './user-preferences'
 
@@ -37,6 +37,7 @@ export function getNavSections(branche: Branche, visibleRechner: string[]): NavS
     {
       title: 'Profil',
       items: [
+        { href: '/einstellungen/wizard', label: 'Wizard', icon: Sparkles },
         { href: '/einstellungen', label: 'Onboarding', icon: SlidersHorizontal },
       ],
     },
