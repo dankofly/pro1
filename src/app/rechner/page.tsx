@@ -51,7 +51,7 @@ import { Button } from '@/components/ui/button'
 // Alert replaced with custom left-border accent divs
 import { Badge } from '@/components/ui/badge'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
-import { Save, Lock, Settings2, ChevronDown, HelpCircle } from 'lucide-react'
+import { Save, Lock, ChevronDown, HelpCircle } from 'lucide-react'
 import { toast } from 'sonner'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useScrollReveal } from '@/hooks/use-scroll-reveal'
@@ -101,7 +101,7 @@ function RechnerSkeleton() {
 function RechnerContent() {
   const { user, subscription, preferences } = useAppShell()
   const rechner = useRechnerState()
-  const { input, result, dispatch, isOnboarded, completeOnboarding, resetOnboarding, setField } = rechner
+  const { input, result, dispatch, isOnboarded, completeOnboarding, setField } = rechner
   const { setPrefs } = useUserPreferences()
   const brancheInfo = BRANCHEN.find((b) => b.value === preferences.branche)
 
@@ -228,15 +228,6 @@ function RechnerContent() {
             </Badge>
           </div>
           <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={resetOnboarding}
-              className="h-8 text-xs text-muted-foreground"
-            >
-              <Settings2 className="h-3.5 w-3.5 sm:mr-1" />
-              <span className="hidden sm:inline">Stammdaten</span>
-            </Button>
             {user ? (
               <Button
                 size="sm"
