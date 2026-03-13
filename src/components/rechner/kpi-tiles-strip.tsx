@@ -71,9 +71,16 @@ function GaugeRing({ percentage, strokeColor, trackColor }: GaugeRingProps) {
 
   return (
     <div className="relative w-28 h-28 sm:w-32 sm:h-32 shrink-0" aria-hidden="true">
+      {/* Glow behind the ring */}
+      <div
+        className="absolute inset-2 rounded-full blur-md opacity-40"
+        style={{ backgroundColor: strokeColor }}
+      />
+      {/* Dark backdrop circle */}
+      <div className="absolute inset-1 rounded-full bg-black/25 backdrop-blur-sm" />
       <svg
         viewBox="0 0 120 120"
-        className="w-full h-full -rotate-90 motion-safe:animate-ring-fill"
+        className="relative w-full h-full -rotate-90 motion-safe:animate-ring-fill"
         style={{ '--ring-target': `${offset}` } as React.CSSProperties}
       >
         {/* Track */}
@@ -83,7 +90,22 @@ function GaugeRing({ percentage, strokeColor, trackColor }: GaugeRingProps) {
           r={RING_RADIUS}
           fill="none"
           stroke={trackColor}
-          strokeWidth="8"
+          strokeWidth="10"
+        />
+        {/* Glow layer */}
+        <circle
+          cx="60"
+          cy="60"
+          r={RING_RADIUS}
+          fill="none"
+          stroke={strokeColor}
+          strokeWidth="14"
+          strokeLinecap="round"
+          strokeDasharray={RING_CIRCUMFERENCE}
+          strokeDashoffset={offset}
+          className="transition-[stroke-dashoffset] duration-1000 ease-out"
+          opacity="0.3"
+          filter="url(#ringGlow)"
         />
         {/* Progress */}
         <circle
@@ -92,19 +114,28 @@ function GaugeRing({ percentage, strokeColor, trackColor }: GaugeRingProps) {
           r={RING_RADIUS}
           fill="none"
           stroke={strokeColor}
-          strokeWidth="8"
+          strokeWidth="10"
           strokeLinecap="round"
           strokeDasharray={RING_CIRCUMFERENCE}
           strokeDashoffset={offset}
           className="transition-[stroke-dashoffset] duration-1000 ease-out"
         />
+        <defs>
+          <filter id="ringGlow">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
       </svg>
       {/* Center label */}
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        <span className="text-2xl sm:text-3xl font-bold font-mono tabular-nums text-white/95">
+        <span className="text-2xl sm:text-3xl font-bold font-mono tabular-nums text-white drop-shadow-lg">
           {clamped.toFixed(0)}
         </span>
-        <span className="text-[10px] font-medium text-white/50 uppercase tracking-wider -mt-0.5">
+        <span className="text-[10px] font-medium text-white/70 uppercase tracking-wider -mt-0.5">
           Prozent
         </span>
       </div>
