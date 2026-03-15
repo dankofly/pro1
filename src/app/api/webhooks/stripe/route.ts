@@ -7,6 +7,7 @@ import {
   sendSubscriptionConfirmEmail,
   sendCancellationEmail,
   sendPaymentFailedEmail,
+  sendPaymentSuccessEmail,
 } from '@/lib/email'
 
 // In newer Stripe SDK, current_period_end is on SubscriptionItem, not Subscription
@@ -164,8 +165,10 @@ export async function POST(request: NextRequest) {
           return NextResponse.json({ error: 'DB update failed' }, { status: 500 })
         }
 
-        // Send cancellation email when subscription is cancelled or set to cancel
-        if (event.type === 'customer.subscription.deleted' || subscription.cancel_at_period_end) {
+        // Send cancellation email only on final deletion (not on cancel_at_period_end update)
+        // to avoid duplicate emails: Stripe fires subscription.updated when user cancels,
+        // then subscription.deleted when period actually ends.
+        if (event.type === 'customer.subscription.deleted') {
           const cancelUserId = subscription.metadata.user_id
           if (cancelUserId) {
             const { data: { user: cancelUser } } = await admin.auth.admin.getUserById(cancelUserId)
@@ -179,6 +182,31 @@ export async function POST(request: NextRequest) {
                 endsAt,
                 cancelUser.user_metadata?.full_name,
               ).catch((e) => console.error('Cancellation email failed:', e))
+            }
+          }
+        }
+
+        // Send cancellation email on cancel_at_period_end (user initiated cancel, still active until end)
+        if (event.type === 'customer.subscription.updated' && subscription.cancel_at_period_end) {
+          const cancelUserId = subscription.metadata.user_id
+          if (cancelUserId) {
+            // Check if we already sent a cancellation email by looking at previous_attributes
+            const previousAttrs = (event.data as { previous_attributes?: Record<string, unknown> }).previous_attributes
+            const wasPreviouslyCancelling = previousAttrs && 'cancel_at_period_end' in previousAttrs
+            // Only send if cancel_at_period_end just changed (not on every update)
+            if (wasPreviouslyCancelling) {
+              const { data: { user: cancelUser } } = await admin.auth.admin.getUserById(cancelUserId)
+              if (cancelUser?.email) {
+                const endsAt = subscription.cancel_at
+                  ? new Date(subscription.cancel_at * 1000).toISOString()
+                  : data.periodEnd
+                sendCancellationEmail(
+                  cancelUser.email,
+                  data.plan,
+                  endsAt,
+                  cancelUser.user_metadata?.full_name,
+                ).catch((e) => console.error('Cancellation email failed:', e))
+              }
             }
           }
         }
@@ -215,6 +243,42 @@ export async function POST(request: NextRequest) {
           if (customerEmail) {
             sendPaymentFailedEmail(customerEmail).catch((e) =>
               console.error('Payment failed email error:', e))
+          }
+        }
+        break
+      }
+
+      case 'invoice.paid': {
+        const paidInvoice = event.data.object as Stripe.Invoice
+        const paidSubDetails = paidInvoice.parent?.subscription_details
+        const paidSubscriptionId = paidSubDetails
+          ? (typeof paidSubDetails.subscription === 'string'
+              ? paidSubDetails.subscription
+              : paidSubDetails.subscription?.id)
+          : null
+
+        if (paidSubscriptionId) {
+          // Reactivate subscription: set status back to active
+          const { error } = await admin.from('subscriptions')
+            .update({
+              status: 'active',
+              updated_at: new Date().toISOString(),
+            })
+            .eq('stripe_subscription_id', paidSubscriptionId)
+            .eq('status', 'past_due')
+
+          if (error) {
+            console.error('Webhook invoice.paid update error:', error)
+            return NextResponse.json({ error: 'DB update failed' }, { status: 500 })
+          }
+
+          // Send payment success email
+          const paidEmail = typeof paidInvoice.customer_email === 'string'
+            ? paidInvoice.customer_email
+            : null
+          if (paidEmail) {
+            sendPaymentSuccessEmail(paidEmail).catch((e) =>
+              console.error('Payment success email error:', e))
           }
         }
         break

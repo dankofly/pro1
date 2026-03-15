@@ -12,6 +12,13 @@ export default function AuthCallbackPage() {
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading')
 
   useEffect(() => {
+    // Listen for PASSWORD_RECOVERY event (fires for both implicit and PKCE flows)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+      if (event === 'PASSWORD_RECOVERY') {
+        router.push('/auth/reset-password')
+      }
+    })
+
     const handleCallback = async () => {
       const params = new URLSearchParams(window.location.search)
       const redirectTo = safeRedirect(params.get('redirect'))
@@ -19,8 +26,6 @@ export default function AuthCallbackPage() {
       // Handle hash fragment tokens (implicit flow: #access_token=...)
       const hash = window.location.hash
       if (hash && hash.includes('access_token')) {
-        // Supabase JS client auto-detects hash tokens on initialization,
-        // but we need to explicitly trigger session detection
         const { error } = await supabase.auth.getSession()
         if (error) {
           setStatus('error')
@@ -47,6 +52,8 @@ export default function AuthCallbackPage() {
           setStatus('error')
           return
         }
+        // PASSWORD_RECOVERY event handler above will redirect if this was a recovery flow
+        // For non-recovery flows, redirect normally
         setStatus('success')
         setTimeout(() => router.push(redirectTo), 1500)
         return
@@ -57,6 +64,8 @@ export default function AuthCallbackPage() {
     }
 
     handleCallback()
+
+    return () => subscription.unsubscribe()
   }, [router])
 
   return (

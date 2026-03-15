@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -323,57 +324,47 @@ function Hero() {
             </Reveal>
           </div>
 
-          {/* Right – Dashboard Mockup */}
+          {/* Right – Hero Person Overlay + Dashboard */}
           <Reveal delay={200} className="hidden lg:block">
             <div className="relative">
-              {/* Glow */}
-              <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 rounded-3xl blur-3xl" />
+              {/* Ambient glow behind person — neuromarketing: warmth + trust */}
+              <div className="absolute -inset-8 bg-gradient-to-br from-emerald-500/15 via-transparent to-amber-500/10 rounded-full blur-[80px] hero-person-glow" />
 
-              {/* Mock Dashboard */}
-              <div className="relative glass-dark rounded-2xl p-6 border border-white/10 shadow-2xl">
-                {/* Mock top bar */}
-                <div className="flex items-center gap-2 mb-5">
-                  <div className="w-3 h-3 rounded-full bg-red-400/60" />
-                  <div className="w-3 h-3 rounded-full bg-amber-400/60" />
-                  <div className="w-3 h-3 rounded-full bg-emerald-400/60" />
-                  <span className="ml-3 text-xs text-white/30 font-mono">steuerboard.pro</span>
-                </div>
+              {/* Person image container with float animation */}
+              <div className="hero-person-overlay relative z-10">
+                <div className="hero-person-float relative hero-money-shimmer rounded-2xl overflow-hidden">
+                  {/* Person image — face draws gaze toward CTA area */}
+                  <Image
+                    src="/images/hero-person.png"
+                    alt="Zufriedener Selbständiger mit seinem echten Netto"
+                    width={520}
+                    height={400}
+                    className="relative z-10 drop-shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
+                    priority
+                  />
 
-                {/* Mock Hero Number */}
-                <div className="text-center mb-6">
-                  <p className="text-xs text-emerald-400/70 uppercase tracking-widest mb-1">Echtes Netto</p>
-                  <p className="text-5xl font-extrabold text-white tabular-nums">
-                    <AnimatedCounter target={28742} /> <span className="text-2xl text-white/50">EUR</span>
-                  </p>
-                  <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 mt-2">
-                    71,9 % Netto-Quote
-                  </Badge>
-                </div>
+                  {/* Floating badge — social proof micro-element */}
+                  <div className="absolute top-6 right-4 z-20 bg-slate-900/90 backdrop-blur-xl border border-emerald-500/30 rounded-xl px-4 py-2.5 shadow-xl animate-[hero-person-enter_0.8s_cubic-bezier(0.16,1,0.3,1)_1.2s_both]">
+                    <p className="text-[10px] text-emerald-400/70 uppercase tracking-widest mb-0.5">Echtes Netto</p>
+                    <p className="text-2xl font-extrabold text-white tabular-nums font-mono">
+                      <AnimatedCounter target={28742} /> <span className="text-sm text-white/50">EUR</span>
+                    </p>
+                  </div>
 
-                {/* Mock Stats */}
-                <div className="grid grid-cols-3 gap-3">
-                  {[
-                    { label: 'SVS Gesamt', value: '7.124 EUR', color: 'text-blue-300' },
-                    { label: 'Nachzahlung', value: '1.724 EUR', color: 'text-amber-300' },
-                    { label: 'Steuer', value: '4.134 EUR', color: 'text-red-300' },
-                  ].map((s) => (
-                    <div key={s.label} className="bg-white/5 rounded-xl p-3 text-center">
-                      <p className="text-[10px] text-white/40 uppercase tracking-wider">{s.label}</p>
-                      <p className={`text-sm font-bold ${s.color} tabular-nums mt-0.5`}>{s.value}</p>
+                  {/* Bottom stats bar — anchored proof */}
+                  <div className="absolute bottom-4 left-4 right-4 z-20 bg-slate-900/90 backdrop-blur-xl border border-white/10 rounded-xl p-3 shadow-xl animate-[hero-person-enter_0.8s_cubic-bezier(0.16,1,0.3,1)_1.5s_both]">
+                    <div className="grid grid-cols-3 gap-2">
+                      {[
+                        { label: 'SVS Gesamt', value: '7.124 EUR', color: 'text-blue-300' },
+                        { label: 'Nachzahlung', value: '1.724 EUR', color: 'text-amber-300' },
+                        { label: 'Steuer', value: '4.134 EUR', color: 'text-red-300' },
+                      ].map((s) => (
+                        <div key={s.label} className="text-center">
+                          <p className="text-[9px] text-white/40 uppercase tracking-wider">{s.label}</p>
+                          <p className={`text-xs font-bold ${s.color} tabular-nums mt-0.5`}>{s.value}</p>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-
-                {/* Mock Bar */}
-                <div className="mt-5">
-                  <p className="text-[10px] text-white/30 uppercase tracking-wider mb-2">Steuerstufe</p>
-                  <div className="flex h-2 rounded-full overflow-hidden gap-px">
-                    <div className="bg-emerald-400 w-[15%]" />
-                    <div className="bg-emerald-500 w-[12%]" />
-                    <div className="bg-amber-400 w-[20%]" />
-                    <div className="bg-amber-500 opacity-30 w-[23%]" />
-                    <div className="bg-orange-500 opacity-20 w-[15%]" />
-                    <div className="bg-red-500 opacity-10 w-[15%]" />
                   </div>
                 </div>
               </div>

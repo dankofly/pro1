@@ -260,6 +260,74 @@
     animation: value-flash 0.6s ease-out;
   }
 
+  /* Hero person overlay — neuromarketing optimized */
+  @keyframes hero-person-enter {
+    0% {
+      opacity: 0;
+      transform: translateY(40px) scale(0.92);
+      filter: blur(6px);
+    }
+    60% {
+      opacity: 1;
+      filter: blur(0px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0px);
+    }
+  }
+
+  @keyframes hero-person-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  @keyframes hero-person-glow-pulse {
+    0%, 100% {
+      box-shadow: 0 0 40px rgba(16, 185, 129, 0.15), 0 0 80px rgba(16, 185, 129, 0.05);
+    }
+    50% {
+      box-shadow: 0 0 60px rgba(16, 185, 129, 0.25), 0 0 120px rgba(16, 185, 129, 0.1);
+    }
+  }
+
+  @keyframes money-shimmer {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+
+  .hero-person-overlay {
+    animation: hero-person-enter 1s cubic-bezier(0.16, 1, 0.3, 1) 0.6s both;
+  }
+
+  .hero-person-float {
+    animation: hero-person-float 4s ease-in-out infinite;
+  }
+
+  .hero-person-glow {
+    animation: hero-person-glow-pulse 3s ease-in-out infinite;
+    border-radius: 50%;
+  }
+
+  .hero-money-shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      105deg,
+      transparent 40%,
+      rgba(16, 185, 129, 0.08) 45%,
+      rgba(245, 158, 11, 0.12) 50%,
+      rgba(16, 185, 129, 0.08) 55%,
+      transparent 60%
+    );
+    background-size: 200% 100%;
+    animation: money-shimmer 4s ease-in-out infinite;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
   /* Staggered fade-in for lists — tighter timing */
   .stagger-fade > * {
     opacity: 0;
