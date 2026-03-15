@@ -251,42 +251,54 @@ function Hero() {
         }}
       />
 
-      {/* Hero person — absolutely positioned, bleeds into ticker */}
-      <div className="hidden lg:block absolute right-0 bottom-0 z-[5] hero-person-overlay" style={{ width: '45%' }}>
-        <div className="relative">
-          {/* Person image — oversized, eyes align with H1 */}
+      {/* Hero person — absolutely positioned, bleeds past bottom into ticker */}
+      <div
+        className="hidden lg:block absolute right-0 bottom-0 z-[5] hero-person-overlay pointer-events-none"
+        style={{ width: 'clamp(40%, 44vw, 50%)', height: '100%' }}
+      >
+        <div className="relative w-full h-full">
+          {/* Person image — height-driven so it scales with viewport */}
           <Image
             src="/images/hero-person.png"
             alt="Zufriedener Selbständiger mit seinem echten Netto"
             width={900}
             height={690}
-            className="w-full h-auto drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)]"
-            style={{ marginBottom: '-60px' }}
+            className="absolute drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)]"
+            style={{
+              height: '88vh',
+              width: 'auto',
+              maxWidth: 'none',
+              bottom: '-14vh',
+              right: '0',
+            }}
             priority
           />
 
           {/* Floating badge — social proof */}
-          <div className="absolute top-[10%] right-[5%] z-20 bg-slate-900/90 backdrop-blur-xl border border-emerald-500/30 rounded-xl px-5 py-3 shadow-xl animate-[hero-person-enter_0.8s_cubic-bezier(0.16,1,0.3,1)_1.2s_both]">
+          <div className="pointer-events-auto absolute z-20 bg-slate-900/90 backdrop-blur-xl border border-emerald-500/30 rounded-xl px-5 py-3 shadow-2xl animate-[hero-person-enter_0.8s_cubic-bezier(0.16,1,0.3,1)_1.2s_both]" style={{ top: '16vh', right: '6%' }}>
             <p className="text-[11px] text-emerald-400/70 uppercase tracking-widest mb-0.5">Echtes Netto</p>
             <p className="text-3xl font-extrabold text-white tabular-nums font-mono">
               <AnimatedCounter target={28742} /> <span className="text-base text-white/50">EUR</span>
             </p>
           </div>
 
-          {/* Bottom stats bar — sits where ticker cuts the image */}
-          <div className="absolute bottom-[60px] left-[5%] right-[5%] z-20 bg-slate-900/90 backdrop-blur-xl border border-white/10 rounded-xl p-3.5 shadow-xl animate-[hero-person-enter_0.8s_cubic-bezier(0.16,1,0.3,1)_1.5s_both]">
-            <div className="grid grid-cols-3 gap-3">
-              {[
-                { label: 'SVS Gesamt', value: '7.124 EUR', color: 'text-blue-300' },
-                { label: 'Nachzahlung', value: '1.724 EUR', color: 'text-amber-300' },
-                { label: 'Steuer', value: '4.134 EUR', color: 'text-red-300' },
-              ].map((s) => (
-                <div key={s.label} className="text-center">
-                  <p className="text-[10px] text-white/40 uppercase tracking-wider">{s.label}</p>
-                  <p className={`text-sm font-bold ${s.color} tabular-nums mt-0.5`}>{s.value}</p>
-                </div>
-              ))}
-            </div>
+        </div>
+      </div>
+
+      {/* Stats bar — separate from person container so it's always on top */}
+      <div className="hidden lg:block absolute z-[15] animate-[hero-person-enter_0.8s_cubic-bezier(0.16,1,0.3,1)_1.5s_both]" style={{ bottom: '7vh', right: 'clamp(3%, 5vw, 8%)', width: 'clamp(320px, 30vw, 420px)' }}>
+        <div className="bg-slate-900/95 backdrop-blur-xl border border-white/10 rounded-xl p-3.5 shadow-2xl">
+          <div className="grid grid-cols-3 gap-3">
+            {[
+              { label: 'SVS Gesamt', value: '7.124 EUR', color: 'text-blue-300' },
+              { label: 'Nachzahlung', value: '1.724 EUR', color: 'text-amber-300' },
+              { label: 'Steuer', value: '4.134 EUR', color: 'text-red-300' },
+            ].map((s) => (
+              <div key={s.label} className="text-center">
+                <p className="text-[10px] text-white/40 uppercase tracking-wider">{s.label}</p>
+                <p className={`text-sm font-bold ${s.color} tabular-nums mt-0.5`}>{s.value}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
