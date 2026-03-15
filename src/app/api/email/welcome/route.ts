@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
     const sent = await sendWelcomeEmail(user.email!, name)
 
     if (!sent) {
-      return NextResponse.json({ error: 'E-Mail konnte nicht gesendet werden. SENDGRID_API_KEY prüfen.' }, { status: 502 })
+      return NextResponse.json({ error: 'E-Mail konnte nicht gesendet werden. RESEND_API_KEY prüfen.' }, { status: 502 })
     }
 
     return NextResponse.json({ sent: true })

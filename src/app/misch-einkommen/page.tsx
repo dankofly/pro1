@@ -276,7 +276,7 @@ function MischContent() {
   const [kinderUnter18, setKinderUnter18] = useState(0)
   const [kinderUeber18, setKinderUeber18] = useState(0)
   const [alleinverdiener, setAlleinverdiener] = useState(false)
-  const [year, setYear] = useState<TaxYear>('2025')
+  const [year, setYear] = useState<TaxYear>('2026')
 
   const yc = YEAR_CONFIGS[year]
 

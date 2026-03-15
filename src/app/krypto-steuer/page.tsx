@@ -375,8 +375,8 @@ function KryptoSteuerContent() {
   ])
   const [stakingErtraege, setStakingErtraege] = useState(0)
 
-  // Free: 1 transaction, Pro: unlimited
-  const maxTransaktionen = subscription.isPro ? Infinity : 1
+  // Free: 1 transaction, Basic: 10, Pro: unlimited
+  const maxTransaktionen = subscription.isPro ? Infinity : subscription.plan === 'basic' ? 10 : 1
 
   const handleUpgradeRequired = useCallback((feature: string) => {
     setUpgradeFeature(feature)

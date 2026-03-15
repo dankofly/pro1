@@ -1,11 +1,7 @@
-import sgMail from '@sendgrid/mail'
 import { STRIPE_PLANS } from '@/lib/stripe'
 
-if (process.env.SENDGRID_API_KEY) {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-}
-
-const FROM_EMAIL = 'info@steuerboard.pro'
+const RESEND_API_KEY = process.env.RESEND_API_KEY
+const FROM_EMAIL = 'noreply@steuerboard.pro'
 const FROM_NAME = 'SteuerBoard.pro'
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://steuerboard.pro'
 
@@ -32,7 +28,7 @@ ${preheader ? `<span style="display:none;font-size:1px;color:#f8fafc;max-height:
         <td style="background:#0d9488;width:36px;height:36px;border-radius:8px;text-align:center;vertical-align:middle;font-size:18px;color:#fff">&#9744;</td>
         <td style="padding-left:12px">
           <span style="color:#ffffff;font-size:20px;font-weight:700;letter-spacing:-0.5px">SteuerBoard.pro</span><br>
-          <span style="color:#94a3b8;font-size:12px">Beitragsrechner AT</span>
+          <span style="color:#94a3b8;font-size:12px">Dein AI-Steuer-Dashboard für Österreich</span>
         </td>
       </tr>
     </table>
@@ -52,7 +48,7 @@ ${preheader ? `<span style="display:none;font-size:1px;color:#f8fafc;max-height:
       <a href="${SITE_URL}/datenschutz" style="color:#0d9488;text-decoration:none">Datenschutz</a>
     </p>
     <p style="margin:0;color:#94a3b8;font-size:11px">
-      &copy; ${new Date().getFullYear()} SteuerBoard.pro &middot; Hooka AI Hookgenerator e.U.<br>
+      &copy; ${new Date().getFullYear()} SteuerBoard.pro<br>
       Diese E-Mail wurde automatisch versendet. Bitte nicht direkt antworten.
     </p>
   </td></tr>
@@ -106,7 +102,7 @@ export async function sendWelcomeEmail(email: string, name?: string) {
         <li>Steuer-Wissen Bot</li>
       </ul>` +
       button('Jetzt loslegen', `${SITE_URL}/rechner`) +
-      highlight('💡 Tipp: Upgrade auf den Sicherheits-Plan oder SteuerBoard Pro für Einkommensteuer-Prognose, KI-Steuerberater und mehr.'),
+      highlight('Tipp: Upgrade auf den Sicherheits-Plan oder SteuerBoard Pro für Einkommensteuer-Prognose, KI-Steuerberater und mehr.'),
       'Dein SteuerBoard.pro Account ist bereit!'
     ),
   })
@@ -148,12 +144,12 @@ export async function sendSubscriptionConfirmEmail(
     subject: `Dein ${planName} ist aktiv!`,
     html: brandedTemplate(
       heading(`${displayName}, dein ${planName} ist aktiv!`) +
-      highlight(`✅ <strong>${planName}</strong> — ${priceDisplay}`) +
+      highlight(`<strong>${planName}</strong> — ${priceDisplay}`) +
       paragraph('Ab sofort hast du vollen Zugriff auf:') +
       proFeatures +
       button('Zum Dashboard', `${SITE_URL}/rechner`) +
       paragraph('Du kannst dein Abo jederzeit in deinem <a href="' + SITE_URL + '/profil" style="color:#0d9488">Profil</a> verwalten oder kündigen.') +
-      highlight('💡 Die Kosten für SteuerBoard sind oft steuerlich absetzbar. Wie viel du effektiv sparst, kannst du direkt mit SteuerBoard berechnen.'),
+      highlight('Die Kosten für SteuerBoard sind oft steuerlich absetzbar. Wie viel du effektiv sparst, kannst du direkt mit SteuerBoard berechnen.'),
       `Dein ${planName} ist aktiv — alle Features freigeschaltet!`
     ),
   })
@@ -178,10 +174,27 @@ export async function sendCancellationEmail(
       heading(`${displayName}, schade dass du gehst!`) +
       paragraph(`Dein <strong>${planName}</strong> wurde gekündigt. Du behältst deinen Zugang bis zum <strong>${endDate}</strong>.`) +
       paragraph('Danach wechselst du automatisch zum kostenlosen Free-Plan. Deine gespeicherten Berechnungen bleiben erhalten.') +
-      highlight('🤔 <strong>Hast du gewusst?</strong> Die Kosten für SteuerBoard sind oft steuerlich absetzbar — und mit dem Pro-Plan findest du Optimierungen, die sich schnell mehrfach bezahlt machen.') +
+      highlight('<strong>Hast du gewusst?</strong> Die Kosten für SteuerBoard sind oft steuerlich absetzbar — und mit dem Pro-Plan findest du Optimierungen, die sich schnell mehrfach bezahlt machen.') +
       button('Abo reaktivieren', `${SITE_URL}/pricing`) +
       paragraph('Falls du Feedback hast, warum du gekündigt hast, würden wir uns über eine kurze Nachricht freuen. Wir arbeiten ständig daran, SteuerBoard besser zu machen.'),
       `Dein ${planName} läuft noch bis ${endDate}`
+    ),
+  })
+}
+
+export async function sendPaymentSuccessEmail(email: string, name?: string) {
+  const displayName = name || 'Steuerprofi'
+
+  return sendEmail({
+    to: email,
+    subject: 'Zahlung erfolgreich — dein Abo ist wieder aktiv!',
+    html: brandedTemplate(
+      heading(`${displayName}, alles wieder in Ordnung!`) +
+      paragraph('Deine Zahlung wurde erfolgreich verarbeitet. Dein SteuerBoard-Abo ist wieder vollständig aktiv.') +
+      highlight('Alle Premium-Features sind wieder freigeschaltet.') +
+      button('Zum Dashboard', `${SITE_URL}/rechner`) +
+      paragraph('Danke, dass du SteuerBoard weiterhin nutzt!'),
+      'Dein Abo ist wieder aktiv'
     ),
   })
 }
@@ -195,7 +208,7 @@ export async function sendPaymentFailedEmail(email: string, name?: string) {
     html: brandedTemplate(
       heading(`${displayName}, deine Zahlung ist fehlgeschlagen`) +
       paragraph('Wir konnten deine letzte Zahlung für SteuerBoard leider nicht verarbeiten. Bitte aktualisiere deine Zahlungsmethode, damit dein Zugang nicht unterbrochen wird.') +
-      highlight('⚠️ Ohne erfolgreiche Zahlung wird dein Abo in wenigen Tagen pausiert und du verlierst den Zugang zu den Premium-Features.') +
+      highlight('Ohne erfolgreiche Zahlung wird dein Abo in wenigen Tagen pausiert und du verlierst den Zugang zu den Premium-Features.') +
       button('Zahlungsmethode aktualisieren', `${SITE_URL}/profil`) +
       paragraph('Falls du Fragen hast, schau in unsere <a href="' + SITE_URL + '/faq" style="color:#0d9488">FAQ</a> oder kontaktiere uns.'),
       'Bitte aktualisiere deine Zahlungsmethode'
@@ -203,7 +216,7 @@ export async function sendPaymentFailedEmail(email: string, name?: string) {
   })
 }
 
-// ─── Send Helper ───
+// ─── Send Helper (Resend API) ───
 
 interface EmailParams {
   to: string
@@ -212,26 +225,36 @@ interface EmailParams {
 }
 
 async function sendEmail(params: EmailParams): Promise<boolean> {
-  if (!process.env.SENDGRID_API_KEY) {
-    console.warn('SENDGRID_API_KEY not set — skipping email to', params.to)
+  if (!RESEND_API_KEY) {
+    console.warn('RESEND_API_KEY not set — skipping email to', params.to)
     return false
   }
 
   try {
-    await sgMail.send({
-      to: params.to,
-      from: { email: FROM_EMAIL, name: FROM_NAME },
-      subject: params.subject,
-      html: params.html,
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: `${FROM_NAME} <${FROM_EMAIL}>`,
+        to: [params.to],
+        subject: params.subject,
+        html: params.html,
+      }),
     })
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({}))
+      console.error('Resend error:', response.status, error)
+      return false
+    }
+
     console.log(`Email sent: "${params.subject}" → ${params.to}`)
     return true
   } catch (error: unknown) {
-    const sgError = error as { response?: { body?: unknown }; message?: string }
-    console.error('SendGrid error:', sgError.message)
-    if (sgError.response?.body) {
-      console.error('SendGrid response body:', JSON.stringify(sgError.response.body))
-    }
+    console.error('Email send error:', error instanceof Error ? error.message : error)
     return false
   }
 }

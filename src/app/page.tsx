@@ -36,6 +36,7 @@ import {
   X,
 } from 'lucide-react'
 import { Pricing } from '@/components/ui/pricing'
+import { Testimonials } from '@/components/ui/testimonials'
 
 /* ─── Scroll-reveal hook ─── */
 function useReveal() {
@@ -262,17 +263,17 @@ function Hero() {
 
             <Reveal delay={100}>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight font-heading">
-                Dein Gewinn.<br />
+                Wisse genau,<br />
                 <span className="bg-gradient-to-r from-emerald-400 to-emerald-300 bg-clip-text text-transparent">
-                  Dein echtes Netto.
+                  was dir bleibt.
                 </span>
               </h1>
             </Reveal>
 
             <Reveal delay={200}>
               <p className="mt-6 text-lg sm:text-xl text-blue-200/80 leading-relaxed max-w-lg mx-auto lg:mx-0">
-                SVS-Beiträge, Einkommensteuer, Nachzahlung und echtes Netto – alles in einem Dashboard.
-                Damit du weißt, was wirklich übrig bleibt.
+                SVS, Einkommensteuer, Nachzahlung &ndash; alles auf einen Blick.
+                Damit du planst statt rätst.
               </p>
             </Reveal>
 
@@ -492,6 +493,22 @@ function ProblemSection() {
             ))}
           </div>
         </div>
+
+        {/* Before / After contrast */}
+        <Reveal delay={300}>
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div className="bg-red-500/[0.06] border border-red-500/20 rounded-2xl p-6 text-center">
+              <p className="text-xs font-medium text-red-400 uppercase tracking-wide mb-3">Ohne SteuerBoard</p>
+              <p className="text-3xl sm:text-4xl font-bold text-red-400 tabular-nums">&euro;3.200+</p>
+              <p className="text-sm text-blue-200/50 mt-2">unerwartete SVS-Nachzahlung</p>
+            </div>
+            <div className="bg-emerald-500/[0.06] border border-emerald-500/20 rounded-2xl p-6 text-center">
+              <p className="text-xs font-medium text-emerald-400 uppercase tracking-wide mb-3">Mit SteuerBoard</p>
+              <p className="text-3xl sm:text-4xl font-bold text-emerald-400 tabular-nums">&euro;0</p>
+              <p className="text-sm text-blue-200/50 mt-2">&Uuml;berraschungen &ndash; du wei&szlig;t Bescheid</p>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   )
@@ -809,9 +826,14 @@ function PricingSection() {
   return (
     <>
       <Pricing plans={PRICING_PLANS} />
-      <p className="text-center text-base text-slate-400 max-w-2xl mx-auto mt-10 px-4">
-        SteuerBoard kann sich doppelt lohnen: Die Kosten sind oft steuerlich absetzbar. Wie viel du effektiv sparst, kannst du direkt mit SteuerBoard Pro berechnen.
-      </p>
+      <div className="text-center max-w-2xl mx-auto mt-10 px-4 space-y-3">
+        <p className="text-sm text-amber-400/80">
+          Eine SVS-Nachzahlung kostet dich durchschnittlich &euro;3.200 &ndash; SteuerBoard Pro kostet weniger als ein Kaffee pro Tag.
+        </p>
+        <p className="text-base text-slate-400">
+          SteuerBoard kann sich doppelt lohnen: Die Kosten sind oft steuerlich absetzbar. Wie viel du effektiv sparst, kannst du direkt mit SteuerBoard Pro berechnen.
+        </p>
+      </div>
     </>
   )
 }
@@ -955,10 +977,10 @@ function FinalCTA() {
             </div>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Bereit, dein echtes Netto zu kennen?
+            2026 l&auml;uft &ndash; wei&szlig;t du, was dir bleibt?
           </h2>
           <p className="text-blue-200/60 text-lg mb-8 max-w-md mx-auto">
-            Starte jetzt kostenlos und berechne in 30 Sekunden, was die SVS wirklich von dir will.
+            Je fr&uuml;her du planst, desto mehr sparst du. In 30 Sekunden wei&szlig;t du, was die SVS wirklich von dir will.
           </p>
           <Button asChild size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-xl shadow-emerald-500/25 text-base px-10 h-13">
             <Link href="/rechner">
@@ -1024,6 +1046,11 @@ const FAQ_JSONLD = {
     },
     {
       '@type': 'Question',
+      name: 'Welche Features bietet SteuerBoard.pro?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Free (kostenlos): SVS-Beitragsrechner, Wahrheits-Tabelle, Geldfluss-Diagramm, Sachbezug-Rechner, Steuer-Wissen Bot und aktuelle Werte für 2024–2026. Sicherheits-Plan (12,90 EUR/Monat): zusätzlich Einkommensteuer-Prognose, Familienbonus & Absetzbeträge, Berechnungen speichern, Dashboard mit Verlauf und Export. SteuerBoard Pro (24,90 EUR/Monat): alles plus Steuer-Chatbot mit 7 Rechnern, KI-Steuerberater, Misch-Einkommen Rechner, GmbH-Vergleich, Pauschalierungs-Vergleich, USt-Rechner, Gewinnmaximierer, AfA-Rechner und PDF-Export.' },
+    },
+    {
+      '@type': 'Question',
       name: 'Was ist die SVS-Nachzahlungsfalle und wie schützt SteuerBoard davor?',
       acceptedAnswer: { '@type': 'Answer', text: 'Die SVS berechnet Beiträge zunächst vorläufig auf Basis des Gewinns von vor 3 Jahren (§ 25a GSVG). Steigt das Einkommen, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung. Bei einer Gewinnsteigerung von 30.000 auf 60.000 EUR kann die Nachzahlung über 5.000 EUR betragen. SteuerBoard.pro zeigt die exakte Differenz und berechnet monatliche Rücklagen.' },
     },
@@ -1073,6 +1100,7 @@ export default function LandingPage() {
       <Navbar />
       <Hero />
       <ProblemSection />
+      <Testimonials />
       <FeaturesSection />
       <PricingSection />
       <TrustSection />

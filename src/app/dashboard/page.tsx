@@ -47,18 +47,7 @@ function DashboardContent() {
   const [promoCode, setPromoCode] = useState('')
   const [redeeming, setRedeeming] = useState(false)
 
-  useEffect(() => {
-    if (user === null) return
-    loadCalculations()
-  }, [user])
-
-  useEffect(() => {
-    if (!authLoading && !subscription.loading && user === null) {
-      router.push('/auth/login?redirect=/dashboard')
-    }
-  }, [user, authLoading, subscription.loading, router])
-
-  const loadCalculations = async () => {
+  const loadCalculations = useCallback(async () => {
     setLoading(true)
     const { data, error } = await supabase
       .from('calculations')
@@ -75,7 +64,18 @@ function DashboardContent() {
       setCalculations(rows.slice(0, PAGE_SIZE))
     }
     setLoading(false)
-  }
+  }, [user])
+
+  useEffect(() => {
+    if (user === null) return
+    loadCalculations()
+  }, [user, loadCalculations])
+
+  useEffect(() => {
+    if (!authLoading && !subscription.loading && user === null) {
+      router.push('/auth/login?redirect=/dashboard')
+    }
+  }, [user, authLoading, subscription.loading, router])
 
   const loadMore = async () => {
     if (!calculations.length) return
