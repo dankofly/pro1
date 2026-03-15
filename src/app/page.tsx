@@ -327,41 +327,38 @@ function Hero() {
           {/* Right – Hero Person Overlay + Dashboard */}
           <Reveal delay={200} className="hidden lg:block">
             <div className="relative">
-              {/* Ambient glow behind person — neuromarketing: warmth + trust */}
-              <div className="absolute -inset-8 bg-gradient-to-br from-emerald-500/15 via-transparent to-amber-500/10 rounded-full blur-[80px] hero-person-glow" />
-
-              {/* Person image container with float animation */}
+              {/* Person image container */}
               <div className="hero-person-overlay relative z-10">
-                <div className="hero-person-float relative hero-money-shimmer rounded-2xl overflow-hidden">
-                  {/* Person image — face draws gaze toward CTA area */}
+                <div className="relative">
+                  {/* Person image — large, dominant */}
                   <Image
                     src="/images/hero-person.png"
                     alt="Zufriedener Selbständiger mit seinem echten Netto"
-                    width={520}
-                    height={400}
-                    className="relative z-10 drop-shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
+                    width={680}
+                    height={520}
+                    className="relative z-10 w-full max-w-[680px] h-auto drop-shadow-[0_20px_40px_rgba(0,0,0,0.4)]"
                     priority
                   />
 
-                  {/* Floating badge — social proof micro-element */}
-                  <div className="absolute top-6 right-4 z-20 bg-slate-900/90 backdrop-blur-xl border border-emerald-500/30 rounded-xl px-4 py-2.5 shadow-xl animate-[hero-person-enter_0.8s_cubic-bezier(0.16,1,0.3,1)_1.2s_both]">
-                    <p className="text-[10px] text-emerald-400/70 uppercase tracking-widest mb-0.5">Echtes Netto</p>
-                    <p className="text-2xl font-extrabold text-white tabular-nums font-mono">
-                      <AnimatedCounter target={28742} /> <span className="text-sm text-white/50">EUR</span>
+                  {/* Floating badge — social proof */}
+                  <div className="absolute top-4 right-0 z-20 bg-slate-900/90 backdrop-blur-xl border border-emerald-500/30 rounded-xl px-5 py-3 shadow-xl animate-[hero-person-enter_0.8s_cubic-bezier(0.16,1,0.3,1)_1.2s_both]">
+                    <p className="text-[11px] text-emerald-400/70 uppercase tracking-widest mb-0.5">Echtes Netto</p>
+                    <p className="text-3xl font-extrabold text-white tabular-nums font-mono">
+                      <AnimatedCounter target={28742} /> <span className="text-base text-white/50">EUR</span>
                     </p>
                   </div>
 
-                  {/* Bottom stats bar — anchored proof */}
-                  <div className="absolute bottom-4 left-4 right-4 z-20 bg-slate-900/90 backdrop-blur-xl border border-white/10 rounded-xl p-3 shadow-xl animate-[hero-person-enter_0.8s_cubic-bezier(0.16,1,0.3,1)_1.5s_both]">
-                    <div className="grid grid-cols-3 gap-2">
+                  {/* Bottom stats bar */}
+                  <div className="absolute bottom-2 left-2 right-2 z-20 bg-slate-900/90 backdrop-blur-xl border border-white/10 rounded-xl p-3.5 shadow-xl animate-[hero-person-enter_0.8s_cubic-bezier(0.16,1,0.3,1)_1.5s_both]">
+                    <div className="grid grid-cols-3 gap-3">
                       {[
                         { label: 'SVS Gesamt', value: '7.124 EUR', color: 'text-blue-300' },
                         { label: 'Nachzahlung', value: '1.724 EUR', color: 'text-amber-300' },
                         { label: 'Steuer', value: '4.134 EUR', color: 'text-red-300' },
                       ].map((s) => (
                         <div key={s.label} className="text-center">
-                          <p className="text-[9px] text-white/40 uppercase tracking-wider">{s.label}</p>
-                          <p className={`text-xs font-bold ${s.color} tabular-nums mt-0.5`}>{s.value}</p>
+                          <p className="text-[10px] text-white/40 uppercase tracking-wider">{s.label}</p>
+                          <p className={`text-sm font-bold ${s.color} tabular-nums mt-0.5`}>{s.value}</p>
                         </div>
                       ))}
                     </div>
