@@ -324,13 +324,13 @@
     display: none;
   }
 
-  /* Thin subtle scrollbar */
+  /* Thin subtle scrollbar — improved for usability */
   .scrollbar-thin {
     scrollbar-width: thin;
     scrollbar-color: hsl(var(--border)) transparent;
   }
   .scrollbar-thin::-webkit-scrollbar {
-    width: 4px;
+    width: 6px;
   }
   .scrollbar-thin::-webkit-scrollbar-track {
     background: transparent;
@@ -340,7 +340,7 @@
     border-radius: 9999px;
   }
   .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-    background-color: hsl(var(--muted-foreground));
+    background-color: hsl(var(--border) / 0.8);
   }
 
   /* Custom range slider — clean monochrome */
@@ -360,6 +360,38 @@
   }
   input[type="range"]::-moz-range-thumb {
     @apply w-5 h-5 rounded-full bg-white shadow-md shadow-slate-900/15 cursor-pointer border-2 border-primary/30;
+  }
+
+  /* Skeleton/loading shimmer */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .skeleton {
+    background: linear-gradient(90deg, hsl(var(--muted)) 25%, hsl(var(--muted-foreground) / 0.08) 50%, hsl(var(--muted)) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    border-radius: 0.375rem;
+  }
+
+  /* Page transition fade */
+  @keyframes page-enter {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .page-enter {
+    animation: page-enter 0.3s ease-out;
+  }
+
+  /* Card hover lift utility */
+  .card-hover-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card-hover-lift:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--elevation-3);
   }
 }
 

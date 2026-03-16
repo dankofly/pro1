@@ -16,9 +16,9 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
   if (umsatz <= 0) return null
 
   const svgWidth = 600
-  const svgHeight = 170
-  const padTop = 16
-  const padBottom = 30
+  const svgHeight = 180
+  const padTop = 20
+  const padBottom = 35
   const padX = 12
   const usableH = svgHeight - padTop - padBottom
   const usableW = svgWidth - padX * 2
@@ -58,11 +58,11 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
       <div className="flex justify-between items-end mb-1 px-1 gap-2">
         <div className="min-w-0">
           <p className="section-header">Umsatz</p>
-          <p className="text-sm font-bold font-mono text-primary truncate">{formatEuro(umsatz)}</p>
+          <p className="text-lg font-bold font-mono tabular-nums text-primary truncate">{formatEuro(umsatz)}</p>
         </div>
         <div className="text-right min-w-0">
           <p className="section-header">Netto</p>
-          <p className="text-sm font-bold font-mono text-emerald-600 truncate">{formatEuro(netto)}</p>
+          <p className="text-lg font-bold font-mono tabular-nums text-emerald-600 truncate">{formatEuro(netto)}</p>
         </div>
       </div>
 
@@ -97,6 +97,7 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
               `}
               className={`transition-[d,opacity] duration-500 ${isLast ? 'fill-emerald-500 dark:fill-emerald-400' : 'fill-blue-600 dark:fill-blue-400'}`}
               opacity={isLast ? 0.85 : 0.8 + i * 0.05}
+              rx="4"
             />
           )
         })}
@@ -136,13 +137,18 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
                 fill="currentColor"
               >
                 <tspan
-                  style={{ fontSize: '9.5px', fontWeight: 500, letterSpacing: '0.02em' }}
+                  style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.02em' }}
                   opacity={0.5}
                 >
                   {ded.label}
                 </tspan>
                 <tspan
-                  style={{ fontSize: '10.5px', fontFamily: 'ui-monospace, monospace', fontWeight: 600 }}
+                  style={{
+                    fontSize: '12px',
+                    fontFamily: 'var(--font-mono, ui-monospace, monospace)',
+                    fontWeight: 600,
+                    fontVariantNumeric: 'tabular-nums'
+                  }}
                 >
                   {' '}{formatEuro(ded.value)}
                 </tspan>

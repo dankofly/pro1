@@ -163,8 +163,8 @@ function KpiTile({ label, value, accentColor, pctOfUmsatz, maxPct }: KpiTileProp
     : 0
 
   return (
-    <div className="card-surface p-4 sm:p-5 min-w-0">
-      <p className="text-[11px] font-medium text-muted-foreground uppercase tracking-[0.08em] mb-3">
+    <div className="card-surface p-4 sm:p-5 min-w-0 hover:shadow-elevation-3 transition-shadow duration-200">
+      <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.08em] mb-3">
         {label}
       </p>
       <p className="text-xl sm:text-2xl font-semibold font-mono tabular-nums text-foreground" style={{ letterSpacing: '-0.03em' }}>
@@ -245,7 +245,7 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
             </div>
 
             <p
-              className="text-5xl sm:text-6xl font-semibold font-mono tabular-nums"
+              className="text-6xl sm:text-7xl font-semibold font-mono tabular-nums tracking-tight"
               style={{ letterSpacing: '-0.04em' }}
             >
               &euro; {nettoFormatted}

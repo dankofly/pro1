@@ -333,7 +333,7 @@ function RechnerContent() {
           </div>
 
           {/* Right - Results */}
-          <div className="space-y-7 min-w-0 overflow-hidden">
+          <div className="space-y-8 min-w-0 overflow-hidden">
             {svs.belowMinimum && (
               <div className="flex gap-3 bg-blue-50/50 dark:bg-blue-950/30 border border-blue-200/50 dark:border-blue-800/30 border-l-[3px] border-l-blue-500 rounded-lg p-4 shadow-sm">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 mt-1.5" />
@@ -523,7 +523,7 @@ function RechnerContent() {
             />
 
             {/* ─── FAQ ─── */}
-            <section className="mt-12 card-surface p-5 sm:p-6">
+            <section className="mt-16 card-surface p-5 sm:p-6">
               <div className="flex items-center gap-2 mb-4">
                 <HelpCircle className="h-4 w-4 text-muted-foreground" />
                 <h2 className="text-[11px] font-semibold uppercase text-muted-foreground tracking-[0.08em]">
