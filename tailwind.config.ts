@@ -15,6 +15,21 @@ const config: Config = {
   			heading: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],
   			mono: ['var(--font-mono)', ...defaultTheme.fontFamily.mono],
   		},
+  		boxShadow: {
+  			'elevation-1': 'var(--elevation-1)',
+  			'elevation-2': 'var(--elevation-2)',
+  			'elevation-3': 'var(--elevation-3)',
+  			'elevation-4': 'var(--elevation-4)',
+  		},
+  		spacing: {
+  			'4.5': '1.125rem',
+  			'13': '3.25rem',
+  			'15': '3.75rem',
+  			'18': '4.5rem',
+  		},
+  		fontSize: {
+  			'2xs': ['0.625rem', { lineHeight: '0.875rem' }],
+  		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    --background: 220 20% 96%;
+    --background: 220 20% 97%;
     --foreground: 213 32% 12%;
     --card: 0 0% 100%;
     --card-foreground: 213 32% 12%;
@@ -15,7 +15,7 @@
     --secondary: 210 33% 96%;
     --secondary-foreground: 213 32% 12%;
     --muted: 210 33% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted-foreground: 215 16% 44%;
     --accent: 28 91% 54%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
@@ -24,42 +24,57 @@
     --success-foreground: 0 0% 100%;
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
+    --border: 214 20% 93%;
+    --input: 214 20% 91%;
     --ring: 207 100% 38%;
     --radius: 0.75rem;
     --surface: 0 0% 100%;
     --border-subtle: 220 13% 91%;
-    --border-card: 220 13% 93%;
+    --border-card: 220 10% 94%;
     --shadow-card: 220 40% 88%;
     --chart-1: 207 100% 38%;
     --chart-2: 28 91% 54%;
     --chart-3: 160 84% 39%;
     --chart-4: 0 84% 60%;
     --chart-5: 215 16% 47%;
-    --sidebar-background: 210 40% 14%;
+    --sidebar-background: 215 35% 12%;
     --sidebar-foreground: 210 33% 96%;
     --sidebar-primary: 207 100% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 210 35% 20%;
+    --sidebar-accent: 215 30% 18%;
     --sidebar-accent-foreground: 210 33% 96%;
-    --sidebar-border: 210 35% 20%;
+    --sidebar-border: 215 25% 20%;
     --sidebar-ring: 207 100% 50%;
+
+    /* Porsche-inspired spacing scale */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+
+    /* Elevation system (4 tiers) */
+    --elevation-1: 0 1px 2px 0 rgba(0,0,0,0.03), 0 1px 3px 0 rgba(0,0,0,0.04);
+    --elevation-2: 0 2px 4px 0 rgba(0,0,0,0.03), 0 4px 16px -2px rgba(0,0,0,0.06);
+    --elevation-3: 0 4px 8px 0 rgba(0,0,0,0.04), 0 12px 32px -4px rgba(0,0,0,0.08);
+    --elevation-4: 0 8px 16px 0 rgba(0,0,0,0.06), 0 20px 48px -8px rgba(0,0,0,0.10);
   }
 
   .dark {
-    --background: 215 28% 10%;
+    --background: 215 28% 9%;
     --foreground: 210 40% 98%;
-    --card: 215 25% 15%;
+    --card: 215 25% 13%;
     --card-foreground: 210 40% 98%;
-    --popover: 215 25% 15%;
+    --popover: 215 25% 13%;
     --popover-foreground: 210 40% 98%;
     --primary: 207 100% 50%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 215 25% 18%;
+    --secondary: 215 25% 16%;
     --secondary-foreground: 210 40% 98%;
-    --muted: 215 25% 18%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 215 25% 16%;
+    --muted-foreground: 215 20% 60%;
     --accent: 28 91% 54%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 63% 45%;
@@ -68,26 +83,31 @@
     --success-foreground: 0 0% 100%;
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
-    --border: 215 25% 25%;
-    --input: 215 25% 25%;
+    --border: 215 20% 22%;
+    --input: 215 20% 22%;
     --ring: 207 100% 50%;
-    --surface: 215 25% 15%;
-    --border-subtle: 215 25% 28%;
-    --border-card: 215 25% 25%;
-    --shadow-card: 215 40% 8%;
+    --surface: 215 25% 13%;
+    --border-subtle: 215 20% 26%;
+    --border-card: 215 18% 20%;
+    --shadow-card: 215 40% 6%;
     --chart-1: 207 100% 50%;
     --chart-2: 28 91% 54%;
     --chart-3: 160 84% 39%;
     --chart-4: 0 84% 60%;
     --chart-5: 215 20% 65%;
-    --sidebar-background: 215 28% 10%;
+    --sidebar-background: 215 30% 8%;
     --sidebar-foreground: 210 40% 96%;
     --sidebar-primary: 207 100% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 215 25% 18%;
+    --sidebar-accent: 215 25% 15%;
     --sidebar-accent-foreground: 210 40% 96%;
-    --sidebar-border: 215 25% 20%;
+    --sidebar-border: 215 20% 18%;
     --sidebar-ring: 207 100% 50%;
+
+    --elevation-1: 0 1px 2px 0 rgba(0,0,0,0.15), 0 1px 3px 0 rgba(0,0,0,0.12);
+    --elevation-2: 0 2px 4px 0 rgba(0,0,0,0.15), 0 4px 16px -2px rgba(0,0,0,0.18);
+    --elevation-3: 0 4px 8px 0 rgba(0,0,0,0.18), 0 12px 32px -4px rgba(0,0,0,0.22);
+    --elevation-4: 0 8px 16px 0 rgba(0,0,0,0.20), 0 20px 48px -8px rgba(0,0,0,0.25);
   }
 }
 
@@ -101,39 +121,29 @@
 }
 
 @layer components {
-  /* Card surfaces — layered depth system */
+  /* Card surfaces — Porsche-inspired elevation system */
   .card-surface {
     background-color: hsl(var(--surface));
     border: 1px solid hsl(var(--border-card));
-    box-shadow:
-      0 1px 2px 0 hsl(var(--shadow-card) / 0.06),
-      0 4px 12px -2px hsl(var(--shadow-card) / 0.08);
-    border-radius: 0.75rem;
-    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+    box-shadow: var(--elevation-2);
+    border-radius: var(--radius);
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease;
   }
   .card-surface:hover {
     border-color: hsl(var(--border-subtle));
-    box-shadow:
-      0 2px 4px 0 hsl(var(--shadow-card) / 0.08),
-      0 8px 24px -4px hsl(var(--shadow-card) / 0.12);
+    box-shadow: var(--elevation-3);
   }
 
-  /* Elevated card — higher prominence (KPI hero, key results) */
+  /* Elevated card — hero KPIs, key results */
   .card-elevated {
     background-color: hsl(var(--surface));
     border: 1px solid hsl(var(--border-card));
-    box-shadow:
-      0 2px 4px 0 hsl(var(--shadow-card) / 0.08),
-      0 8px 24px -4px hsl(var(--shadow-card) / 0.12),
-      0 0 0 1px hsl(var(--border-card) / 0.5);
-    border-radius: 0.75rem;
-    transition: box-shadow 0.25s ease, transform 0.25s ease;
+    box-shadow: var(--elevation-3);
+    border-radius: var(--radius);
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
   .card-elevated:hover {
-    box-shadow:
-      0 4px 8px 0 hsl(var(--shadow-card) / 0.10),
-      0 12px 32px -4px hsl(var(--shadow-card) / 0.16),
-      0 0 0 1px hsl(var(--border-subtle));
+    box-shadow: var(--elevation-4);
     transform: translateY(-1px);
   }
 
@@ -141,13 +151,13 @@
   .card-inset {
     background-color: hsl(var(--background));
     border: 1px solid hsl(var(--border-card));
-    box-shadow: inset 0 1px 3px 0 hsl(var(--shadow-card) / 0.06);
-    border-radius: 0.75rem;
+    box-shadow: inset 0 1px 2px 0 hsl(var(--shadow-card) / 0.05);
+    border-radius: var(--radius);
   }
 
   .card-surface-dark {
     @apply bg-[hsl(207,70%,18%)] border border-[hsl(207,50%,25%)];
-    box-shadow: 0 4px 24px -4px rgba(0, 60, 120, 0.25);
+    box-shadow: var(--elevation-3);
   }
 
   /* Card styles — dark-mode aware via CSS variables */
@@ -161,16 +171,24 @@
     @apply bg-muted/80 border border-border/60;
   }
 
-  /* Section typography */
+  /* Section typography — Porsche-inspired micro-labels */
   .section-header {
-    @apply text-xs font-semibold uppercase text-muted-foreground;
-    letter-spacing: 0.06em;
+    @apply text-[11px] font-semibold uppercase text-muted-foreground;
+    letter-spacing: 0.08em;
   }
 
-  /* Mono number formatting */
+  /* Mono number formatting — premium financial display */
   .mono-value {
     @apply font-mono font-semibold tabular-nums;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Large KPI value — Porsche-style prominent numbers */
+  .kpi-value {
+    @apply font-mono font-bold tabular-nums tracking-tight;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
   }
 
   /* Divider */
