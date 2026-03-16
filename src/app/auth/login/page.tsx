@@ -20,6 +20,7 @@ function translateAuthError(msg: string): string {
     'over_email_send_rate_limit': 'E-Mail-Limit erreicht. Bitte versuche es in einer Stunde erneut.',
     'For security purposes, you can only request this once every 60 seconds': 'Aus Sicherheitsgründen kannst du dies nur alle 60 Sekunden anfordern.',
     'User already registered': 'Diese E-Mail ist bereits registriert.',
+    'Error sending recovery email': 'Fehler beim Senden der Wiederherstellungs-E-Mail. Bitte versuche es erneut.',
   }
   return map[msg] ?? msg
 }

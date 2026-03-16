@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -37,6 +38,32 @@ import {
 } from 'lucide-react'
 import { Pricing } from '@/components/ui/pricing'
 import { Testimonials } from '@/components/ui/testimonials'
+import { supabase } from '@/lib/supabase'
+
+/* ─── Recovery redirect interceptor ─── */
+function RecoveryRedirect() {
+  const router = useRouter()
+
+  useEffect(() => {
+    const hash = window.location.hash
+    if (!hash || !hash.includes('access_token')) return
+
+    const hashParams = new URLSearchParams(hash.substring(1))
+
+    if (hashParams.get('type') === 'recovery') {
+      // Recovery token landed on homepage due to 301 redirect dropping the path
+      // Process the session and redirect to reset-password
+      supabase.auth.getSession().then(() => {
+        router.push('/auth/reset-password')
+      })
+    } else {
+      // Non-recovery auth token — redirect to callback handler
+      router.push('/auth/callback' + hash)
+    }
+  }, [router])
+
+  return null
+}
 
 /* ─── Scroll-reveal hook ─── */
 function useReveal() {
@@ -1096,6 +1123,7 @@ const FAQ_JSONLD = {
 export default function LandingPage() {
   return (
     <main className="bg-slate-950">
+      <RecoveryRedirect />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSONLD) }} />
       <Navbar />
       <Hero />
