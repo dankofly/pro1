@@ -269,33 +269,37 @@ function Hero() {
           {/* Left – Copy */}
           <div className="text-center lg:text-left">
             <Reveal>
-              <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 mb-6 text-sm px-4 py-1.5">
-                <Zap className="h-3.5 w-3.5 mr-1.5" />
-                Für Selbständige in Österreich
+              <Badge className="bg-red-500/10 text-red-400 border-red-500/20 mb-6 text-sm px-4 py-1.5">
+                <Shield className="h-3.5 w-3.5 mr-1.5" />
+                80 % zahlen mehr Steuern als nötig
               </Badge>
             </Reveal>
 
             <Reveal delay={100}>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight font-heading">
-                Wisse genau,<br />
-                <span className="bg-gradient-to-r from-emerald-400 to-emerald-300 bg-clip-text text-transparent">
-                  was dir bleibt.
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] tracking-tight font-heading">
+                Die SVS schickt{' '}
+                <span className="hidden sm:inline"><br /></span>
+                keine Warnung.{' '}
+                <span className="hidden sm:inline"><br /></span>
+                <span className="bg-gradient-to-r from-amber-400 to-red-400 bg-clip-text text-transparent">
+                  Nur eine Nachzahlung.
                 </span>
               </h1>
             </Reveal>
 
             <Reveal delay={200}>
               <p className="mt-6 text-lg sm:text-xl text-blue-200/80 leading-relaxed max-w-lg mx-auto lg:mx-0">
-                SVS, Einkommensteuer, Nachzahlung &ndash; alles auf einen Blick.
-                Damit du planst statt rätst.
+                Dein Umsatz ist nicht dein Gewinn. Dein Gewinn ist nicht dein Netto.
+                SteuerBoard zeigt dir in{' '}
+                <span className="text-white font-semibold">30&nbsp;Sekunden</span>, was wirklich bleibt.
               </p>
             </Reveal>
 
             <Reveal delay={250}>
-              <div className="mt-6 inline-flex items-center gap-3 bg-white/[0.06] border border-white/10 rounded-xl px-5 py-3">
-                <span className="text-sm text-blue-200/60">Durchschnittliche SVS-Nachzahlung:</span>
-                <span className="text-2xl font-bold text-amber-400 tabular-nums font-mono">
-                  &euro; <AnimatedCounter target={3200} />
+              <div className="mt-6 inline-flex items-center gap-3 bg-red-500/[0.08] border border-red-500/20 rounded-xl px-5 py-3">
+                <span className="text-sm text-red-300/70">Ø SVS-Nachzahlung:</span>
+                <span className="text-2xl font-bold text-red-400 tabular-nums font-mono">
+                  &euro;&nbsp;<AnimatedCounter target={3200} />
                 </span>
               </div>
             </Reveal>
@@ -304,7 +308,7 @@ function Hero() {
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Button asChild size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-xl shadow-emerald-500/25 text-base px-8 h-12 w-full sm:w-auto">
                   <Link href="/rechner">
-                    Kostenlos starten
+                    Jetzt gratis berechnen
                     <ArrowRight className="h-4 w-4 ml-2" />
                   </Link>
                 </Button>
@@ -314,8 +318,8 @@ function Hero() {
                   size="lg"
                   className="border-white/20 text-white hover:bg-white/10 text-base px-8 h-12 w-full sm:w-auto bg-transparent"
                 >
-                  <a href="#features">
-                    Mehr erfahren
+                  <a href="#pricing">
+                    Preise ansehen
                     <ChevronDown className="h-4 w-4 ml-2" />
                   </a>
                 </Button>
@@ -328,7 +332,7 @@ function Hero() {
                   <Check className="h-4 w-4 text-emerald-500 shrink-0" /> Kostenlos starten
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <Check className="h-4 w-4 text-emerald-500 shrink-0" /> Keine Kreditkarte
+                  <Check className="h-4 w-4 text-emerald-500 shrink-0" /> Steuerlich absetzbar
                 </span>
                 <span className="flex items-center gap-1.5">
                   <Check className="h-4 w-4 text-emerald-500 shrink-0" /> DSGVO-konform
@@ -841,21 +845,31 @@ function PricingSection() {
     <>
       <Pricing
         plans={PRICING_PLANS}
-        title="Investiere in Klarheit – nicht in Nachzahlungen"
-        description={'Keine versteckten Kosten. Jederzeit kündbar.\nSichere Zahlung via Stripe.'}
+        title="SteuerBoard kostet dich nichts – es spart dir Geld"
+        description={'Voll absetzbar als Betriebsausgabe. Senkt deine Steuerlast.\nUnterm Strich ist SteuerBoard immer ein Gewinn.'}
       />
       <div className="text-center max-w-2xl mx-auto mt-10 px-4 space-y-4">
-        <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-5 space-y-2">
-          <p className="text-base font-semibold text-emerald-400">
-            Unterm Strich ist SteuerBoard ein Gewinn
+        <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-6 space-y-3">
+          <p className="text-lg font-bold text-emerald-400">
+            Die Rechnung ist einfach
           </p>
-          <p className="text-sm text-blue-200/60">
-            Die Kosten sind als Betriebsausgabe absetzbar &ndash; je nach Steuersatz zahlst du effektiv nur die Hälfte.
-            Dafür sparst du dir durchschnittlich &euro;3.200 an SVS-Nachzahlungen und gewinnst volle Kontrolle über deine Finanzen.
-          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
+            <div>
+              <p className="text-2xl font-bold text-red-400 font-mono">&euro;3.200</p>
+              <p className="text-xs text-blue-200/50 mt-1">&Oslash; SVS-Nachzahlung<br />ohne Vorwarnung</p>
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-amber-300 font-mono">&euro;13,55</p>
+              <p className="text-xs text-blue-200/50 mt-1">SteuerBoard Pro/Monat<br />nach Absetzung*</p>
+            </div>
+            <div>
+              <p className="text-2xl font-bold text-emerald-400 font-mono">= Gewinn</p>
+              <p className="text-xs text-blue-200/50 mt-1">Volle Kontrolle,<br />keine &Uuml;berraschungen</p>
+            </div>
+          </div>
         </div>
-        <p className="text-xs text-blue-200/30">
-          Pro kostet weniger als ein Kaffee pro Tag &ndash; und bringt dir mehr als ein Steuerberater-Termin.
+        <p className="text-[10px] text-blue-200/25">
+          * Effektivpreis bei 32&nbsp;% Grenzsteuersatz. Die Kosten f&uuml;r SteuerBoard sind als Betriebsausgabe absetzbar und senken deine Steuerlast.
         </p>
       </div>
     </>

@@ -89,8 +89,8 @@ function FeatureList({
 
 export function Pricing({
   plans,
-  title = 'Starte kostenlos, upgrade wenn du bereit bist',
-  description = 'Keine versteckten Kosten. Monatlich kündbar.\nSichere Zahlung via Stripe.',
+  title = 'SteuerBoard kostet dich nichts – es spart dir Geld',
+  description = 'Voll absetzbar als Betriebsausgabe. Senkt deine Steuerlast.\nUnterm Strich ist SteuerBoard immer ein Gewinn.',
   visibleCount = 10,
 }: PricingProps) {
   const [isMonthly, setIsMonthly] = useState(false)
@@ -137,9 +137,14 @@ export function Pricing({
             )}
           </div>
           {!isMonthly && (
-            <p className="text-xs text-amber-300/80 font-medium">
-              Steuerlich absetzbar als Betriebsausgabe &ndash; SteuerBoard kostet dich effektiv noch weniger
-            </p>
+            <div className="text-center space-y-1">
+              <p className="text-xs text-amber-300/80 font-medium">
+                Steuerlich absetzbar als Betriebsausgabe &ndash; senkt deine Steuerlast sofort
+              </p>
+              <p className="text-[11px] text-emerald-400/70 font-medium">
+                Eine SVS-Nachzahlung kostet &oslash; &euro;3.200 &ndash; SteuerBoard warnt dich rechtzeitig
+              </p>
+            </div>
           )}
         </div>
 
@@ -225,10 +230,22 @@ export function Pricing({
                   </p>
 
                   {!isMonthly && !plan.isFree && (
-                    <div className="mt-3 space-y-1.5">
+                    <div className="mt-3 space-y-2">
                       <p className="text-xs text-blue-200/30 line-through">
                         statt {(plan.price * 12).toFixed(0)} EUR/Jahr
                       </p>
+                      <div className="space-y-1">
+                        <span className="inline-flex items-center text-[11px] font-semibold text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-2.5 py-0.5">
+                          Absetzbar &rarr; effektiv nur {(displayPrice * 0.68).toFixed(2)} &euro;/Monat
+                        </span>
+                      </div>
+                      <p className="text-[10px] text-emerald-400/50 leading-tight">
+                        Senkt deine Steuerlast &ndash; unterm Strich ein Gewinn
+                      </p>
+                    </div>
+                  )}
+                  {isMonthly && !plan.isFree && (
+                    <div className="mt-3">
                       <span className="inline-flex items-center text-[11px] font-semibold text-amber-300 bg-amber-400/10 border border-amber-400/20 rounded-full px-2.5 py-0.5">
                         Absetzbar als Betriebsausgabe
                       </span>
@@ -265,7 +282,7 @@ export function Pricing({
         </div>
 
         <p className="text-center text-blue-200/30 text-xs mt-8">
-          Alle Preise inkl. USt. {isMonthly ? 'Monatlich kündbar.' : 'Jährlich im Voraus – als Betriebsausgabe absetzbar.'} Sichere Zahlung via Stripe.
+          Alle Preise inkl. USt. {isMonthly ? 'Monatlich kündbar.' : 'Jährlich im Voraus.'} Voll absetzbar als Betriebsausgabe &ndash; senkt deine Steuerlast. Sichere Zahlung via Stripe.
         </p>
       </div>
     </section>
