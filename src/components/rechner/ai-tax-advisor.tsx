@@ -147,7 +147,7 @@ export function AiTaxAdvisor({ input, result, isPro, onUpgradeRequired }: AiTaxA
           <div className="flex-1">
             <div className="flex items-center gap-2">
               <h3 className="text-sm font-semibold text-foreground">KI-Steuerberater</h3>
-              <Badge variant="outline" className="text-[10px] px-1.5 py-0 h-4 font-medium">
+              <Badge variant="outline" className="text-xs px-1.5 py-0 h-4 font-medium">
                 Pro
               </Badge>
             </div>

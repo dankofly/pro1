@@ -151,7 +151,7 @@ export function TaxChatbot({ isPro, onUpgradeRequired }: TaxChatbotProps) {
           <div>
             <div className="flex items-center gap-2">
               <h2 className="text-sm font-semibold text-foreground">Steuer-Chatbot</h2>
-              <Badge variant="outline" className="text-[10px] px-1.5 py-0 h-4 font-medium">
+              <Badge variant="outline" className="text-xs px-1.5 py-0 h-4 font-medium">
                 Pro
               </Badge>
             </div>
@@ -252,7 +252,7 @@ export function TaxChatbot({ isPro, onUpgradeRequired }: TaxChatbotProps) {
                             <Badge
                               key={tool}
                               variant="secondary"
-                              className="text-[10px] px-1.5 py-0 h-4 font-normal"
+                              className="text-xs px-1.5 py-0 h-4 font-normal"
                             >
                               {TOOL_LABELS[tool] || tool}
                             </Badge>
@@ -300,7 +300,7 @@ export function TaxChatbot({ isPro, onUpgradeRequired }: TaxChatbotProps) {
 
       {/* Disclaimer */}
       <div className="px-4 py-1.5 text-center">
-        <p className="text-[10px] text-muted-foreground">
+        <p className="text-xs text-muted-foreground">
           KI-Assistent — keine Steuerberatung. Alle Angaben ohne Gewähr.
         </p>
       </div>

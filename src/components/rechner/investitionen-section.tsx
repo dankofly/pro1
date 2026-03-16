@@ -60,7 +60,7 @@ function InvestRow({
         </Select>
       </div>
       {value > 0 && (
-        <p className="text-xs text-muted-foreground">
+        <p className="text-sm text-muted-foreground">
           AfA: {formatEuro(afaJahr)} / Jahr
         </p>
       )}

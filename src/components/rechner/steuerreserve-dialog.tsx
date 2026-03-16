@@ -138,14 +138,14 @@ export function SteuerreserveDialog({ open, onOpenChange, result, vorschreibung 
                           style={{ height: `${heightPct}%` }}
                         />
                       </div>
-                      <span className="text-[9px] text-muted-foreground">{m.label}</span>
+                      <span className="text-[11px] text-muted-foreground">{m.label}</span>
                     </div>
                   )
                 })}
               </div>
               <div className="flex justify-between mt-1">
-                <span className="text-[10px] text-muted-foreground font-mono">{formatEuro(gesamtRuecklage)}</span>
-                <span className="text-[10px] text-primary font-mono font-semibold">{formatEuro(maxKumuliert)}</span>
+                <span className="text-xs text-muted-foreground font-mono">{formatEuro(gesamtRuecklage)}</span>
+                <span className="text-xs text-primary font-mono font-semibold">{formatEuro(maxKumuliert)}</span>
               </div>
             </div>
           )}

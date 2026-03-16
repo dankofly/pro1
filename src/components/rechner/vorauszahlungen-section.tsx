@@ -85,7 +85,7 @@ export function VorauszahlungenSection({
             />
 
             {result.svDifferenz !== 0 && vorauszahlungen.svVorauszahlung > 0 && (
-              <div className={`rounded-lg p-2.5 text-xs ${
+              <div className={`rounded-lg p-2.5 text-sm ${
                 result.svDifferenz > 0
                   ? 'bg-amber-50 text-amber-800'
                   : 'bg-emerald-50 text-emerald-800'
@@ -116,7 +116,7 @@ export function VorauszahlungenSection({
             />
 
             {result.estDifferenz !== 0 && vorauszahlungen.estVorauszahlung > 0 && (
-              <div className={`rounded-lg p-2.5 text-xs ${
+              <div className={`rounded-lg p-2.5 text-sm ${
                 result.estDifferenz > 0
                   ? 'bg-amber-50 text-amber-800'
                   : 'bg-emerald-50 text-emerald-800'

@@ -134,7 +134,7 @@ export function ProOptionsSection({ proOptions, year, isPro, dispatch }: ProOpti
                   onValueChange={([v]) => setOpt('pendlerKm', v)}
                   min={0} max={80} step={1}
                 />
-                <div className="flex justify-between text-[11px] font-medium text-muted-foreground">
+                <div className="flex justify-between text-xs font-medium text-muted-foreground">
                   <span>0 km</span><span>20 km</span><span>40 km</span><span>60 km</span><span>80 km</span>
                 </div>
                 <div className="flex items-center justify-between gap-4 pt-1">

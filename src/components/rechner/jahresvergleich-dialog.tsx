@@ -104,7 +104,7 @@ export function JahresvergleichDialog({ open, onOpenChange, gewinn, vorschreibun
                     <th key={r.year} className={`text-right px-3 py-2.5 font-semibold ${r.year === input.year ? 'text-primary' : 'text-foreground'}`}>
                       {r.year}
                       {r.year === input.year && (
-                        <span className="ml-1 text-[9px] font-normal text-primary/60">aktuell</span>
+                        <span className="ml-1 text-[11px] font-normal text-primary/60">aktuell</span>
                       )}
                     </th>
                   ))}
@@ -160,12 +160,12 @@ export function JahresvergleichDialog({ open, onOpenChange, gewinn, vorschreibun
                     </div>
                     <span className="text-xs font-mono font-medium w-20 text-right">{formatEuro(r.result.echtesNetto)}</span>
                     {delta && r.year !== input.year && (
-                      <span className={`flex items-center gap-0.5 text-[10px] font-mono ${delta.color} w-16`}>
+                      <span className={`flex items-center gap-0.5 text-xs font-mono ${delta.color} w-16`}>
                         {delta.icon} {delta.text}
                       </span>
                     )}
                     {r.year === input.year && (
-                      <span className="w-16 text-[10px] text-muted-foreground flex items-center gap-0.5">
+                      <span className="w-16 text-xs text-muted-foreground flex items-center gap-0.5">
                         <Minus className="h-2.5 w-2.5" /> aktuell
                       </span>
                     )}

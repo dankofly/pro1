@@ -117,7 +117,7 @@ export function UstVergleichTabelle({ ustResult }: UstVergleichTabelleProps) {
       {/* USt-Zahllast für Rücklagen */}
       {ustResult.ustZahllast > 0 && (
         <div className="rounded-lg bg-muted/50 p-3">
-          <p className="text-xs text-muted-foreground">
+          <p className="text-sm text-muted-foreground">
             USt-Zahllast: {formatEuro(ustResult.zahllastMonatlich)}/Monat bzw. {formatEuro(ustResult.zahllastQuartal)}/Quartal
           </p>
         </div>

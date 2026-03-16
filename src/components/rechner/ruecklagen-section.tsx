@@ -54,14 +54,14 @@ export function RuecklagenSection({ ruecklagen }: RuecklagenSectionProps) {
         <div className="flex items-center justify-between px-3 py-2.5 bg-emerald-500/10 dark:bg-emerald-500/5 border-t border-border/40 dark:border-border/20">
           <span className="text-xs font-bold text-foreground">Gesamt</span>
           <span className="text-sm font-bold font-mono text-emerald-700 dark:text-emerald-400">
-            {formatEuroShort(gesamtMonatlich)} <span className="text-[10px] font-normal text-muted-foreground">/ Monat</span>
+            {formatEuroShort(gesamtMonatlich)} <span className="text-xs font-normal text-muted-foreground">/ Monat</span>
           </span>
         </div>
       </div>
 
       {/* Freies Netto */}
       <div className="rounded-lg bg-emerald-500/10 dark:bg-emerald-950/30 border border-emerald-200/40 dark:border-emerald-800/20 p-3 text-center">
-        <p className="text-[10px] font-medium text-muted-foreground uppercase tracking-wider mb-1">
+        <p className="text-xs font-medium text-muted-foreground uppercase tracking-wider mb-1">
           Freies Netto nach Rücklagen
         </p>
         <p className="text-lg font-bold font-mono text-emerald-700 dark:text-emerald-400">
@@ -90,7 +90,7 @@ function Row({ label, value }: { label: string; value: number }) {
     <div className="flex items-center justify-between px-3 py-2">
       <span className="text-xs text-muted-foreground">{label}</span>
       <span className="text-xs font-mono font-medium text-foreground">
-        {formatEuroShort(value)} <span className="text-[10px] text-muted-foreground">/ Monat</span>
+        {formatEuroShort(value)} <span className="text-xs text-muted-foreground">/ Monat</span>
       </span>
     </div>
   )

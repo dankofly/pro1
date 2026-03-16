@@ -410,7 +410,7 @@ export function UmsatzAufwaendeSection({
                   step={1}
                   className="py-2"
                 />
-                <div className="flex justify-between text-[11px] text-muted-foreground">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   {getScaleLabels(svMax).map((l, i) => <span key={i}>{l}</span>)}
                 </div>
               </div>
@@ -467,7 +467,7 @@ export function UmsatzAufwaendeSection({
                   step={1}
                   className="py-2"
                 />
-                <div className="flex justify-between text-[11px] text-muted-foreground">
+                <div className="flex justify-between text-xs text-muted-foreground">
                   {getScaleLabels(200000).map((l, i) => <span key={i}>{l}</span>)}
                 </div>
               </div>

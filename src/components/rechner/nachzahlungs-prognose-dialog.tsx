@@ -98,7 +98,7 @@ export function NachzahlungsPrognoseDialog({ open, onOpenChange, result, vorschr
                 {quartale.map(q => (
                   <div key={q.label} className="rounded-lg border p-2 text-center">
                     <p className="text-xs font-semibold text-muted-foreground">{q.label}</p>
-                    <p className="text-[10px] text-muted-foreground/60">Mo. {q.monate}</p>
+                    <p className="text-xs text-muted-foreground/60">Mo. {q.monate}</p>
                     <p className={`text-sm font-bold font-mono mt-1 ${q.kumuliert > 0 ? 'text-red-600' : 'text-emerald-600'}`}>
                       {q.kumuliert > 0 ? '+' : ''}{formatEuro(q.kumuliert)}
                     </p>
@@ -121,8 +121,8 @@ export function NachzahlungsPrognoseDialog({ open, onOpenChange, result, vorschr
               />
             </div>
             <div className="flex justify-between mt-1">
-              <span className="text-[10px] text-muted-foreground">0%</span>
-              <span className="text-[10px] text-muted-foreground">100%</span>
+              <span className="text-xs text-muted-foreground">0%</span>
+              <span className="text-xs text-muted-foreground">100%</span>
             </div>
           </div>
 

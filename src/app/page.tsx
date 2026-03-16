@@ -19,7 +19,6 @@ import {
   ArrowRight,
   Check,
   ChevronDown,
-  Zap,
   Lock,
   Heart,
   Star,
@@ -151,7 +150,7 @@ function Navbar() {
     <nav
       className={`fixed top-0 w-full z-50 transition-[background-color,border-color,box-shadow] duration-300 ${
         scrolled || mobileOpen
-          ? 'bg-slate-900/90 backdrop-blur-xl border-b border-white/10 shadow-lg'
+          ? 'bg-slate-900/90 backdrop-blur-xl border-b border-white/[0.06] shadow-elevation-3'
           : 'bg-transparent'
       }`}
     >
@@ -166,9 +165,9 @@ function Navbar() {
           <div className="hidden md:flex items-center gap-6 text-sm text-blue-200">
             {NAV_LINKS.map((l) =>
               l.isAnchor ? (
-                <a key={l.href} href={l.href} className="hover:text-white transition-colors">{l.label}</a>
+                <a key={l.href} href={l.href} className="hover:text-white transition-colors duration-150">{l.label}</a>
               ) : (
-                <Link key={l.href} href={l.href} className="hover:text-white transition-colors">{l.label}</Link>
+                <Link key={l.href} href={l.href} className="hover:text-white transition-colors duration-150">{l.label}</Link>
               )
             )}
           </div>
@@ -177,12 +176,12 @@ function Navbar() {
           <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex text-blue-200 hover:text-white hover:bg-white/10">
             <Link href="/auth/login">Anmelden</Link>
           </Button>
-          <Button asChild size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/25">
+          <Button asChild size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-elevation-2 shadow-emerald-500/25">
             <Link href="/rechner">Jetzt berechnen</Link>
           </Button>
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden flex h-9 w-9 items-center justify-center rounded-lg text-white hover:bg-white/10 transition-colors cursor-pointer"
+            className="md:hidden flex h-9 w-9 items-center justify-center rounded-lg text-white hover:bg-white/10 transition-colors duration-150 cursor-pointer"
             aria-label={mobileOpen ? 'Menü schließen' : 'Menü öffnen'}
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -196,14 +195,14 @@ function Navbar() {
           mobileOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="bg-slate-900/95 backdrop-blur-xl border-t border-white/5 px-4 pb-6 pt-2 space-y-1">
+        <div className="bg-slate-900/95 backdrop-blur-xl border-t border-white/[0.04] px-4 pb-6 pt-2 space-y-1">
           {NAV_LINKS.map((l) =>
             l.isAnchor ? (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setMobileOpen(false)}
-                className="block py-3 px-4 text-base text-blue-200 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                className="block py-3 px-4 text-base text-blue-200 hover:text-white hover:bg-white/5 rounded-lg transition-colors duration-150"
               >
                 {l.label}
               </a>
@@ -212,17 +211,17 @@ function Navbar() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setMobileOpen(false)}
-                className="block py-3 px-4 text-base text-blue-200 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+                className="block py-3 px-4 text-base text-blue-200 hover:text-white hover:bg-white/5 rounded-lg transition-colors duration-150"
               >
                 {l.label}
               </Link>
             )
           )}
-          <div className="pt-3 border-t border-white/5">
+          <div className="pt-3 border-t border-white/[0.04]">
             <Link
               href="/auth/login"
               onClick={() => setMobileOpen(false)}
-              className="block py-3 px-4 text-base text-blue-200 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+              className="block py-3 px-4 text-base text-blue-200 hover:text-white hover:bg-white/5 rounded-lg transition-colors duration-150"
             >
               Anmelden
             </Link>
@@ -306,7 +305,7 @@ function Hero() {
 
             <Reveal delay={350}>
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button asChild size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-xl shadow-emerald-500/25 text-base px-8 h-12 w-full sm:w-auto">
+                <Button asChild size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-elevation-3 shadow-emerald-500/25 text-base px-8 h-12 w-full sm:w-auto">
                   <Link href="/rechner">
                     Jetzt gratis berechnen
                     <ArrowRight className="h-4 w-4 ml-2" />
@@ -348,7 +347,7 @@ function Hero() {
               <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 rounded-3xl blur-3xl" />
 
               {/* Mock Dashboard */}
-              <div className="relative glass-dark rounded-2xl p-6 border border-white/10 shadow-2xl">
+              <div className="relative glass-dark rounded-2xl p-6 border border-white/[0.06] shadow-elevation-4">
                 {/* Mock top bar */}
                 <div className="flex items-center gap-2 mb-5">
                   <div className="w-3 h-3 rounded-full bg-red-400/60" />
@@ -401,7 +400,7 @@ function Hero() {
       </div>
 
       {/* AI Steuerberater Ticker */}
-      <div className="absolute bottom-0 left-0 right-0 overflow-hidden border-t border-white/5 bg-slate-950/60 backdrop-blur-sm">
+      <div className="absolute bottom-0 left-0 right-0 overflow-hidden border-t border-white/[0.04] bg-slate-950/60 backdrop-blur-sm">
         <div className="relative flex">
           {/* Fade edges */}
           <div className="absolute left-0 top-0 bottom-0 w-20 sm:w-32 bg-gradient-to-r from-slate-950 to-transparent z-10" />
@@ -580,7 +579,7 @@ function FeaturesSection() {
           <Reveal className="lg:col-span-3">
             <div className="group relative h-full">
               <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-emerald-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <Card className="relative bg-white/[0.03] border-white/10 h-full">
+              <Card className="relative bg-white/[0.03] border-white/[0.06] h-full">
                 <CardContent className="p-6 sm:p-10">
                   <div className={`flex h-14 w-14 items-center justify-center rounded-xl ${features[0].bg} ${features[0].color} mb-6`}>
                     {features[0].icon}
@@ -607,7 +606,7 @@ function FeaturesSection() {
           <div className="lg:col-span-2 space-y-6">
             {features.slice(1).map((f, i) => (
               <Reveal key={f.title} delay={(i + 1) * 150}>
-                <Card className="bg-white/[0.03] border-white/10 h-full">
+                <Card className="bg-white/[0.03] border-white/[0.06] h-full">
                   <CardContent className="p-6">
                     <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${f.bg} ${f.color} mb-4`}>
                       {f.icon}
@@ -624,7 +623,7 @@ function FeaturesSection() {
         {/* Additional features – 2-col row */}
         <Reveal delay={200}>
           <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <div className="flex items-start gap-4 bg-white/[0.03] border border-white/10 rounded-xl p-5">
+            <div className="flex items-start gap-4 bg-white/[0.03] border border-white/[0.06] rounded-xl p-5">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-500/10 shrink-0">
                 <TrendingUp className="h-5 w-5 text-purple-400" />
               </div>
@@ -633,7 +632,7 @@ function FeaturesSection() {
                 <p className="text-sm text-blue-200/50 mt-1">Angestellt + Gewerbe? Berechne die Differenz-Vorschreibung, doppelte SV und dein echtes kombiniertes Netto.</p>
               </div>
             </div>
-            <div className="flex items-start gap-4 bg-white/[0.03] border border-white/10 rounded-xl p-5">
+            <div className="flex items-start gap-4 bg-white/[0.03] border border-white/[0.06] rounded-xl p-5">
               <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 shrink-0">
                 <Star className="h-5 w-5 text-emerald-400" />
               </div>
@@ -715,7 +714,7 @@ function FeaturesSection() {
               { icon: <BarChart3 className="h-4 w-4 text-emerald-400" />, bg: 'bg-emerald-500/10', title: 'Gewinnmaximierer', desc: 'Simuliere Zusatzumsätze und sieh die Auswirkung auf Steuern und Netto.' },
               { icon: <Calculator className="h-4 w-4 text-amber-400" />, bg: 'bg-amber-500/10', title: 'Investitionen & AfA', desc: 'Berechne Abschreibungen für Einrichtung, EDV und Maschinen.' },
             ].map((f) => (
-              <div key={f.title} className="bg-white/[0.03] border border-white/10 rounded-xl p-4">
+              <div key={f.title} className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-4">
                 <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${f.bg} mb-3`}>
                   {f.icon}
                 </div>
@@ -899,7 +898,7 @@ function TrustSection() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
           {badges.map((b, i) => (
             <Reveal key={b.label} delay={i * 100}>
-              <div className="text-center p-4 sm:p-6 bg-white/[0.03] border border-white/10 rounded-xl">
+              <div className="text-center p-4 sm:p-6 bg-white/[0.03] border border-white/[0.06] rounded-xl">
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400 mx-auto mb-3">
                   {b.icon}
                 </div>
@@ -983,7 +982,7 @@ function FAQSection() {
               <AccordionItem
                 key={i}
                 value={`faq-${i}`}
-                className="bg-white/[0.03] border border-white/10 rounded-xl px-5 data-[state=open]:bg-white/[0.06] transition-colors"
+                className="bg-white/[0.03] border border-white/[0.06] rounded-xl px-5 data-[state=open]:bg-white/[0.06] transition-colors duration-150"
               >
                 <AccordionTrigger className="text-white text-left hover:no-underline text-sm sm:text-base py-4">
                   {faq.q}
@@ -1020,7 +1019,7 @@ function FinalCTA() {
           <p className="text-blue-200/60 text-lg mb-8 max-w-md mx-auto">
             Je fr&uuml;her du planst, desto mehr sparst du. In 30 Sekunden wei&szlig;t du, was die SVS wirklich von dir will.
           </p>
-          <Button asChild size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-xl shadow-emerald-500/25 text-base px-10 h-13">
+          <Button asChild size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-elevation-3 shadow-emerald-500/25 text-base px-10 h-13">
             <Link href="/rechner">
               Jetzt gratis berechnen
               <ArrowRight className="h-4 w-4 ml-2" />
@@ -1038,7 +1037,7 @@ function FinalCTA() {
 /* ─── Footer ─── */
 function Footer() {
   return (
-    <footer className="bg-slate-950 border-t border-white/5 py-10">
+    <footer className="bg-slate-950 border-t border-white/[0.04] py-10">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
@@ -1048,18 +1047,18 @@ function Footer() {
             <span className="font-semibold text-white text-sm">SteuerBoard.pro</span>
           </div>
           <div className="flex items-center gap-4 text-xs text-blue-200/40">
-            <Link href="/impressum" className="hover:text-blue-200 transition-colors">Impressum</Link>
+            <Link href="/impressum" className="hover:text-blue-200 transition-colors duration-150">Impressum</Link>
             <span>·</span>
-            <Link href="/datenschutz" className="hover:text-blue-200 transition-colors">Datenschutz</Link>
+            <Link href="/datenschutz" className="hover:text-blue-200 transition-colors duration-150">Datenschutz</Link>
             <span>·</span>
-            <Link href="/agb" className="hover:text-blue-200 transition-colors">AGB</Link>
+            <Link href="/agb" className="hover:text-blue-200 transition-colors duration-150">AGB</Link>
             <span>·</span>
-            <Link href="/pricing" className="hover:text-blue-200 transition-colors">Preise</Link>
+            <Link href="/pricing" className="hover:text-blue-200 transition-colors duration-150">Preise</Link>
           </div>
           <p className="text-xs text-blue-200/30" suppressHydrationWarning>
             &copy; {new Date().getFullYear()} SteuerBoard.pro. Alle Rechte vorbehalten.
             <span className="mx-1">·</span>
-            <a href="https://hypeakz.io" target="_blank" rel="noopener noreferrer" className="text-blue-200/40 hover:text-blue-200 transition-colors">App by Hypeakz.io</a>
+            <a href="https://hypeakz.io" target="_blank" rel="noopener noreferrer" className="text-blue-200/40 hover:text-blue-200 transition-colors duration-150">App by Hypeakz.io</a>
           </p>
         </div>
       </div>

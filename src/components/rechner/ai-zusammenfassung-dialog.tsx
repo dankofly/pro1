@@ -154,7 +154,7 @@ export function AiZusammenfassungDialog({ open, onOpenChange, input, result }: A
               AI Zusammenfassung
             </DialogTitle>
             {remaining !== null && state !== 'idle' && (
-              <span className="text-[11px] text-muted-foreground tabular-nums">
+              <span className="text-xs text-muted-foreground tabular-nums">
                 {remaining} / 10 heute
               </span>
             )}
@@ -182,7 +182,7 @@ export function AiZusammenfassungDialog({ open, onOpenChange, input, result }: A
                 <AiMarkdown text={text} />
               </div>
               <div className="flex items-center justify-between pt-2 border-t border-border/40">
-                <span className="text-[11px] text-muted-foreground">
+                <span className="text-xs text-muted-foreground">
                   Basierend auf deinen aktuellen Eingaben
                 </span>
                 <Button
