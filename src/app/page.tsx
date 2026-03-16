@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -251,60 +250,8 @@ function Hero() {
         }}
       />
 
-      {/* Hero person — absolutely positioned, bleeds past bottom into ticker */}
-      <div
-        className="hidden lg:block absolute right-0 bottom-0 z-[5] hero-person-overlay pointer-events-none"
-        style={{ width: 'clamp(40%, 44vw, 50%)', height: '100%' }}
-      >
-        <div className="relative w-full h-full">
-          {/* Person image — height-driven so it scales with viewport */}
-          <Image
-            src="/images/hero-person.png"
-            alt="Zufriedener Selbständiger mit seinem echten Netto"
-            width={900}
-            height={690}
-            className="absolute drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)]"
-            style={{
-              height: '88vh',
-              width: 'auto',
-              maxWidth: 'none',
-              bottom: '-14vh',
-              right: '0',
-            }}
-            priority
-          />
-
-          {/* Floating badge — social proof */}
-          <div className="pointer-events-auto absolute z-20 bg-slate-900/90 backdrop-blur-xl border border-emerald-500/30 rounded-xl px-5 py-3 shadow-2xl animate-[hero-person-enter_0.8s_cubic-bezier(0.16,1,0.3,1)_1.2s_both]" style={{ top: '16vh', right: '6%' }}>
-            <p className="text-[11px] text-emerald-400/70 uppercase tracking-widest mb-0.5">Echtes Netto</p>
-            <p className="text-3xl font-extrabold text-white tabular-nums font-mono">
-              <AnimatedCounter target={28742} /> <span className="text-base text-white/50">EUR</span>
-            </p>
-          </div>
-
-        </div>
-      </div>
-
-      {/* Stats bar — separate from person container so it's always on top */}
-      <div className="hidden lg:block absolute z-[15] animate-[hero-person-enter_0.8s_cubic-bezier(0.16,1,0.3,1)_1.5s_both]" style={{ bottom: '7vh', right: 'clamp(3%, 5vw, 8%)', width: 'clamp(320px, 30vw, 420px)' }}>
-        <div className="bg-slate-900/95 backdrop-blur-xl border border-white/10 rounded-xl p-3.5 shadow-2xl">
-          <div className="grid grid-cols-3 gap-3">
-            {[
-              { label: 'SVS Gesamt', value: '7.124 EUR', color: 'text-blue-300' },
-              { label: 'Nachzahlung', value: '1.724 EUR', color: 'text-amber-300' },
-              { label: 'Steuer', value: '4.134 EUR', color: 'text-red-300' },
-            ].map((s) => (
-              <div key={s.label} className="text-center">
-                <p className="text-[10px] text-white/40 uppercase tracking-wider">{s.label}</p>
-                <p className={`text-sm font-bold ${s.color} tabular-nums mt-0.5`}>{s.value}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-20 sm:py-32">
-        <div className="lg:max-w-[50%]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left – Copy */}
           <div className="text-center lg:text-left">
             <Reveal>
@@ -375,6 +322,63 @@ function Hero() {
               </div>
             </Reveal>
           </div>
+
+          {/* Right – Dashboard Mockup */}
+          <Reveal delay={200} className="hidden lg:block">
+            <div className="relative">
+              {/* Glow */}
+              <div className="absolute -inset-4 bg-gradient-to-r from-emerald-500/20 to-blue-500/20 rounded-3xl blur-3xl" />
+
+              {/* Mock Dashboard */}
+              <div className="relative glass-dark rounded-2xl p-6 border border-white/10 shadow-2xl">
+                {/* Mock top bar */}
+                <div className="flex items-center gap-2 mb-5">
+                  <div className="w-3 h-3 rounded-full bg-red-400/60" />
+                  <div className="w-3 h-3 rounded-full bg-amber-400/60" />
+                  <div className="w-3 h-3 rounded-full bg-emerald-400/60" />
+                  <span className="ml-3 text-xs text-white/30 font-mono">steuerboard.pro</span>
+                </div>
+
+                {/* Mock Hero Number */}
+                <div className="text-center mb-6">
+                  <p className="text-xs text-emerald-400/70 uppercase tracking-widest mb-1">Echtes Netto</p>
+                  <p className="text-5xl font-extrabold text-white tabular-nums">
+                    <AnimatedCounter target={28742} /> <span className="text-2xl text-white/50">EUR</span>
+                  </p>
+                  <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30 mt-2">
+                    71,9 % Netto-Quote
+                  </Badge>
+                </div>
+
+                {/* Mock Stats */}
+                <div className="grid grid-cols-3 gap-3">
+                  {[
+                    { label: 'SVS Gesamt', value: '7.124 EUR', color: 'text-blue-300' },
+                    { label: 'Nachzahlung', value: '1.724 EUR', color: 'text-amber-300' },
+                    { label: 'Steuer', value: '4.134 EUR', color: 'text-red-300' },
+                  ].map((s) => (
+                    <div key={s.label} className="bg-white/5 rounded-xl p-3 text-center">
+                      <p className="text-[10px] text-white/40 uppercase tracking-wider">{s.label}</p>
+                      <p className={`text-sm font-bold ${s.color} tabular-nums mt-0.5`}>{s.value}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Mock Bar */}
+                <div className="mt-5">
+                  <p className="text-[10px] text-white/30 uppercase tracking-wider mb-2">Steuerstufe</p>
+                  <div className="flex h-2 rounded-full overflow-hidden gap-px">
+                    <div className="bg-emerald-400 w-[15%]" />
+                    <div className="bg-emerald-500 w-[12%]" />
+                    <div className="bg-amber-400 w-[20%]" />
+                    <div className="bg-amber-500 opacity-30 w-[23%]" />
+                    <div className="bg-orange-500 opacity-20 w-[15%]" />
+                    <div className="bg-red-500 opacity-10 w-[15%]" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </div>
 
