@@ -8,8 +8,7 @@ import { cn } from '@/lib/utils'
 import { motion } from 'motion/react'
 import { Check, ChevronDown, Crown, Star, X } from 'lucide-react'
 import Link from 'next/link'
-import { useState, useRef } from 'react'
-import confetti from 'canvas-confetti'
+import { useState } from 'react'
 import NumberFlow from '@number-flow/react'
 
 interface PricingFeature {
@@ -94,33 +93,12 @@ export function Pricing({
   description = 'Keine versteckten Kosten. Monatlich kündbar.\nSichere Zahlung via Stripe.',
   visibleCount = 10,
 }: PricingProps) {
-  const [isMonthly, setIsMonthly] = useState(true)
+  const [isMonthly, setIsMonthly] = useState(false)
   const [expanded, setExpanded] = useState<Record<number, boolean>>({})
   const isDesktop = useMediaQuery('(min-width: 768px)')
-  const switchRef = useRef<HTMLButtonElement>(null)
 
   const handleToggle = (checked: boolean) => {
     setIsMonthly(!checked)
-    if (checked && switchRef.current) {
-      const rect = switchRef.current.getBoundingClientRect()
-      const x = rect.left + rect.width / 2
-      const y = rect.top + rect.height / 2
-
-      confetti({
-        particleCount: 50,
-        spread: 60,
-        origin: {
-          x: x / window.innerWidth,
-          y: y / window.innerHeight,
-        },
-        colors: ['#22c55e', '#10b981', '#f59e0b', '#3b82f6'],
-        ticks: 200,
-        gravity: 1.2,
-        decay: 0.94,
-        startVelocity: 30,
-        shapes: ['circle'],
-      })
-    }
   }
 
   return (
@@ -135,27 +113,33 @@ export function Pricing({
           </p>
         </div>
 
-        <div className="flex items-center justify-center gap-3 mb-12">
-          <span className={cn('text-sm font-medium transition-colors', isMonthly ? 'text-white' : 'text-blue-200/40')}>
-            Monatlich
-          </span>
-          <label className="relative inline-flex items-center cursor-pointer">
-            <Label>
-              <Switch
-                ref={switchRef as React.Ref<HTMLButtonElement>}
-                checked={!isMonthly}
-                onCheckedChange={handleToggle}
-                className="data-[state=checked]:bg-emerald-500 data-[state=unchecked]:bg-white/20 border-0"
-              />
-            </Label>
-          </label>
-          <span className={cn('text-sm font-medium transition-colors', !isMonthly ? 'text-white' : 'text-blue-200/40')}>
-            Jährlich
-          </span>
-          {!isMonthly && (
-            <span className="ml-1 text-xs font-semibold text-emerald-400 bg-emerald-500/15 border border-emerald-500/25 rounded-full px-2.5 py-0.5">
-              Spare 20%
+        <div className="flex flex-col items-center gap-3 mb-12">
+          <div className="flex items-center gap-3">
+            <span className={cn('text-sm font-medium transition-colors', isMonthly ? 'text-white' : 'text-blue-200/40')}>
+              Monatlich
             </span>
+            <label className="relative inline-flex items-center cursor-pointer">
+              <Label>
+                <Switch
+                  checked={!isMonthly}
+                  onCheckedChange={handleToggle}
+                  className="data-[state=checked]:bg-emerald-500 data-[state=unchecked]:bg-white/20 border-0"
+                />
+              </Label>
+            </label>
+            <span className={cn('text-sm font-medium transition-colors', !isMonthly ? 'text-white' : 'text-blue-200/40')}>
+              Jährlich
+            </span>
+            {!isMonthly && (
+              <span className="ml-1 text-xs font-semibold text-emerald-400 bg-emerald-500/15 border border-emerald-500/25 rounded-full px-2.5 py-0.5">
+                Spare 20%
+              </span>
+            )}
+          </div>
+          {!isMonthly && (
+            <p className="text-xs text-amber-300/80 font-medium">
+              Steuerlich absetzbar als Betriebsausgabe &ndash; SteuerBoard kostet dich effektiv noch weniger
+            </p>
           )}
         </div>
 
@@ -240,6 +224,17 @@ export function Pricing({
                         : `${plan.yearlyTotal} EUR/Jahr`}
                   </p>
 
+                  {!isMonthly && !plan.isFree && (
+                    <div className="mt-3 space-y-1.5">
+                      <p className="text-xs text-blue-200/30 line-through">
+                        statt {(plan.price * 12).toFixed(0)} EUR/Jahr
+                      </p>
+                      <span className="inline-flex items-center text-[11px] font-semibold text-amber-300 bg-amber-400/10 border border-amber-400/20 rounded-full px-2.5 py-0.5">
+                        Absetzbar als Betriebsausgabe
+                      </span>
+                    </div>
+                  )}
+
                   <FeatureList
                     features={plan.features}
                     isPopular={plan.isPopular}
@@ -270,7 +265,7 @@ export function Pricing({
         </div>
 
         <p className="text-center text-blue-200/30 text-xs mt-8">
-          Alle Preise inkl. USt. {isMonthly ? 'Monatlich kündbar.' : 'Jährlich im Voraus.'} Sichere Zahlung via Stripe.
+          Alle Preise inkl. USt. {isMonthly ? 'Monatlich kündbar.' : 'Jährlich im Voraus – als Betriebsausgabe absetzbar.'} Sichere Zahlung via Stripe.
         </p>
       </div>
     </section>

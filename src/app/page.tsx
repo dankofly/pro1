@@ -839,13 +839,23 @@ const PRICING_PLANS = [
 function PricingSection() {
   return (
     <>
-      <Pricing plans={PRICING_PLANS} />
-      <div className="text-center max-w-2xl mx-auto mt-10 px-4 space-y-3">
-        <p className="text-sm text-amber-400/80">
-          Eine SVS-Nachzahlung kostet dich durchschnittlich &euro;3.200 &ndash; SteuerBoard Pro kostet weniger als ein Kaffee pro Tag.
-        </p>
-        <p className="text-base text-slate-400">
-          SteuerBoard kann sich doppelt lohnen: Die Kosten sind oft steuerlich absetzbar. Wie viel du effektiv sparst, kannst du direkt mit SteuerBoard Pro berechnen.
+      <Pricing
+        plans={PRICING_PLANS}
+        title="Investiere in Klarheit – nicht in Nachzahlungen"
+        description={'Keine versteckten Kosten. Jederzeit kündbar.\nSichere Zahlung via Stripe.'}
+      />
+      <div className="text-center max-w-2xl mx-auto mt-10 px-4 space-y-4">
+        <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-5 space-y-2">
+          <p className="text-base font-semibold text-emerald-400">
+            Unterm Strich ist SteuerBoard ein Gewinn
+          </p>
+          <p className="text-sm text-blue-200/60">
+            Die Kosten sind als Betriebsausgabe absetzbar &ndash; je nach Steuersatz zahlst du effektiv nur die Hälfte.
+            Dafür sparst du dir durchschnittlich &euro;3.200 an SVS-Nachzahlungen und gewinnst volle Kontrolle über deine Finanzen.
+          </p>
+        </div>
+        <p className="text-xs text-blue-200/30">
+          Pro kostet weniger als ein Kaffee pro Tag &ndash; und bringt dir mehr als ein Steuerberater-Termin.
         </p>
       </div>
     </>
