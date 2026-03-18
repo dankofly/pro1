@@ -57,6 +57,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
 
+    // Steuerwissen Hub
+    {
+      url: `${baseUrl}/steuerwissen-hub`,
+      lastModified: lastUpdated,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+
     // Steuerwissen-Artikel (SEO-Content)
     {
       url: `${baseUrl}/steuerwissen`,

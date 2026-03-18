@@ -128,6 +128,7 @@ const NAV_LINKS = [
   { href: '/features', label: 'Features', isAnchor: false },
   { href: '#pricing', label: 'Preise', isAnchor: true },
   { href: '#faq', label: 'FAQ', isAnchor: true },
+  { href: '/steuerwissen-hub', label: 'Steuerwissen', isAnchor: false },
 ]
 
 function Navbar() {
