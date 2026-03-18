@@ -1,53 +1,87 @@
 # SteuerBoard.pro
 
-> Dein Steuer-Dashboard für Selbständige in Österreich. Berechne SVS-Beiträge, Nachzahlung, Einkommensteuer und echtes Netto.
+> AI-gestützte Steuerplattform für Selbständige in Österreich. Berechne SVS-Beiträge, Nachzahlung, Einkommensteuer und echtes Netto.
 
 ## Über SteuerBoard.pro
 
-SteuerBoard.pro ist ein Online-Tool für selbständige Personen in Österreich, die ihre Sozialversicherungsbeiträge (SVS) und Einkommensteuer berechnen möchten. Das Tool berechnet:
+SteuerBoard.pro ist eine Online-Steuerplattform für selbständige Personen in Österreich (EPU, Einzelunternehmer, Freiberufler). Gründer: Daniel Kofler. Standort: Assling, Österreich.
 
-- Endgültige SVS-Beiträge (Pensionsversicherung, Krankenversicherung, Unfallversicherung, Selbständigenvorsorge)
+Das Tool berechnet:
+
+- Endgültige SVS-Beiträge (Pensionsversicherung 18,50%, Krankenversicherung 6,80%, Unfallversicherung, Selbständigenvorsorge 1,53%)
 - SVS-Nachzahlung basierend auf vorläufiger vs. endgültiger Beitragsgrundlage
-- Einkommensteuer-Prognose nach österreichischem Steuertarif
+- Einkommensteuer-Prognose nach österreichischem Steuertarif 2026
 - Echtes Netto nach Abzug aller Abgaben
 - Misch-Einkommen: Kombinierte Berechnung für Angestellte mit Nebengewerbe
-- Familienbonus Plus, AVAB, Verkehrsabsetzbetrag und Kindermehrbetrag
+- Familienbonus Plus (2.100 €), AVAB, Verkehrsabsetzbetrag (481 €) und Kindermehrbetrag (727 €)
+- Krypto-Steuer nach österreichischem Recht
+- Investitionsfreibetrag nach § 11 EStG
+- Sachbezug-Rechner
+- GmbH vs. Einzelunternehmen Vergleich
 
 Aktuelle Werte für 2024, 2025 und 2026.
 
+## Preise
+
+- **Free:** 0 € — SVS-Beitragsrechner, Wahrheits-Tabelle
+- **Sicherheits-Plan:** 9,92 €/Monat (119 €/Jahr) — Einkommensteuer-Prognose, Dashboard, Berechnungen speichern
+- **SteuerBoard Pro:** 19,92 €/Monat (239 €/Jahr) — Alle Rechner, KI-Steuerberater, PDF-Export, Misch-Einkommen
+
 ## Seiten
 
+### Rechner
 - [Startseite](https://steuerboard.pro/): Übersicht, Features, Preise und FAQ
 - [SVS-Beitragsrechner](https://steuerboard.pro/rechner): Kostenloser SVS-Rechner mit Echtzeit-Prognose
-- [Misch-Einkommen Rechner](https://steuerboard.pro/misch-einkommen): Berechnung für Angestellte mit Nebengewerbe (Pro-Feature)
-- [Preise](https://steuerboard.pro/pricing): Free, Sicherheits-Plan (9,90 EUR/Monat), Pro (19,90 EUR/Monat)
-- [Impressum](https://steuerboard.pro/impressum): Betreiber HYPEAKZ.IO, Daniel Kofler, Österreich
+- [Einkommensteuer-Rechner](https://steuerboard.pro/einkommensteuer): Einkommensteuer-Prognose für Selbständige
+- [Misch-Einkommen Rechner](https://steuerboard.pro/misch-einkommen): Berechnung für Angestellte mit Nebengewerbe
+- [Krypto-Steuer Rechner](https://steuerboard.pro/krypto-steuer): Krypto-Steuerberechnung nach österreichischem Recht
+- [Investitionsfreibetrag Rechner](https://steuerboard.pro/investitionsfreibetrag): IFB-Berechnung nach § 11 EStG
+- [Sachbezug-Rechner](https://steuerboard.pro/sachbezug-rechner): Sachbezug-Berechnung für Dienstwagen etc.
+- [Bilanz-Upload](https://steuerboard.pro/bilanz): Bilanz-Analyse und Steueroptimierung
+
+### Steuerwissen
+- [Steuerwissen Hub](https://steuerboard.pro/steuerwissen-hub): Übersicht aller Steuerwissen-Artikel
+- [SVS-Nachzahlung vermeiden](https://steuerboard.pro/steuerwissen/svs-nachzahlung-vermeiden): Strategien gegen die SVS-Nachzahlungsfalle
+- [GmbH vs Einzelunternehmen](https://steuerboard.pro/steuerwissen/gmbh-vs-einzelunternehmen): Steuervergleich und Break-Even-Analyse
+- [SVS-Beiträge senken](https://steuerboard.pro/steuerwissen/svs-beitraege-senken): 7 legale Strategien zur Beitragssenkung
+- [Steueroptimierung Selbständige](https://steuerboard.pro/steuerwissen/steueroptimierung-selbststaendige): Komplette Anleitung zur Steueroptimierung
+- [Gewinnfreibetrag nutzen](https://steuerboard.pro/steuerwissen/gewinnfreibetrag-nutzen): Bis zu 4.950 € Steuern sparen mit § 10 EStG
+
+### Produkt & Info
+- [Preise](https://steuerboard.pro/pricing): Alle Abo-Optionen im Überblick
+- [Features](https://steuerboard.pro/features): Funktionsübersicht
+- [FAQ](https://steuerboard.pro/faq): Häufig gestellte Fragen
+- [Steuerberater](https://steuerboard.pro/steuerberater): Steuerberater-Verzeichnis
+
+### Rechtliches
+- [Impressum](https://steuerboard.pro/impressum): Betreiber HYPEAKZ e.U., Daniel Kofler
 - [Datenschutz](https://steuerboard.pro/datenschutz): DSGVO-konforme Datenschutzerklärung
+- [AGB](https://steuerboard.pro/agb): Allgemeine Geschäftsbedingungen
 
 ## FAQ
 
 ### Was berechnet SteuerBoard.pro?
-Endgültige SVS-Beiträge (PV, KV, UV, Selbständigenvorsorge), voraussichtliche Nachzahlung, Einkommensteuer-Prognose und echtes Netto basierend auf dem tatsächlichen Jahresgewinn.
+Endgültige SVS-Beiträge (PV 18,50%, KV 6,80%, UV, Selbständigenvorsorge 1,53%), voraussichtliche Nachzahlung, Einkommensteuer-Prognose nach dem Tarif 2026 und echtes Netto basierend auf dem tatsächlichen Jahresgewinn.
 
 ### Sind die Berechnungen verbindlich?
-Nein, SteuerBoard.pro ist ein Prognose-Tool und ersetzt keine Steuerberatung. Alle Berechnungen basieren auf den aktuellen gesetzlichen Grundlagen.
+Nein, SteuerBoard.pro ist ein Prognose-Tool und ersetzt keine Steuerberatung. Alle Berechnungen basieren auf den aktuellen gesetzlichen Grundlagen (EStG, GSVG, ASVG).
 
 ### Was kostet SteuerBoard.pro?
-Die Basisversion ist kostenlos. Sicherheits-Plan: 9,90 EUR/Monat. Pro: 19,90 EUR/Monat. Monatlich kündbar.
+Die Basisversion ist kostenlos. Sicherheits-Plan: 9,92 €/Monat (119 €/Jahr). Pro: 19,92 €/Monat (239 €/Jahr). Jederzeit kündbar. Vollständig als Betriebsausgabe absetzbar.
 
 ### Was ist die SVS-Nachzahlungsfalle?
-Die SVS berechnet Beiträge zunächst auf Basis des Gewinns von vor 3 Jahren. Steigt das Einkommen, folgt eine hohe Nachzahlung nach dem Steuerbescheid.
+Die SVS berechnet Beiträge zunächst auf Basis des Gewinns von vor 3 Jahren (§ 25a GSVG). Steigt das Einkommen, folgt eine hohe Nachzahlung nach dem Steuerbescheid. Bei einem Gewinnsprung von 30.000 € auf 60.000 € können über 5.000 € Nachzahlung entstehen.
 
 ### Für wen ist der Misch-Einkommen Rechner?
-Für Personen die angestellt UND selbständig sind. Er berechnet Differenz-Vorschreibung, doppelte SV und kombiniertes Netto.
+Für Personen die angestellt UND selbständig sind. Er berechnet Differenz-Vorschreibung, doppelte SV und kombiniertes Netto unter Berücksichtigung beider Einkommensarten.
 
-### Welche Werte sind verfügbar?
-Aktuelle Werte für 2024, 2025 und 2026 inkl. Familienbonus Plus (2.100 EUR), AVAB, Verkehrsabsetzbetrag (481 EUR) und Kindermehrbetrag (727 EUR).
+### Ab welchem Gewinn lohnt sich eine GmbH?
+Der Break-Even liegt meist zwischen 60.000–80.000 € Jahresgewinn. Ab diesem Punkt wird die GmbH-Besteuerung (23% KöSt + 27,5% KESt auf Ausschüttungen) günstiger als der progressive Einkommensteuertarif.
 
 ## Kontakt
 
-- Betreiber: HYPEAKZ.IO (Daniel Kofler)
+- Betreiber: HYPEAKZ e.U. (Daniel Kofler)
 - E-Mail: mail@danielkofler.com
 - Telefon: +43 676 7293888
-- Standort: Assling, Österreich
+- Standort: Thal-Aue 95, 9911 Assling, Österreich
 - UID: ATU77537202

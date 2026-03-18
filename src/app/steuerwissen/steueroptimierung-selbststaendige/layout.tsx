@@ -26,27 +26,35 @@ export default function Layout({
     '@graph': [
       {
         '@type': 'Article',
-        '@id': 'https://steuerrechner.at/steuerwissen/steueroptimierung-selbststaendige#article',
+        '@id': 'https://steuerboard.pro/steuerwissen/steueroptimierung-selbststaendige#article',
         headline: 'Steueroptimierung für Selbständige in Österreich — Die komplette Anleitung 2026',
         description: 'Steueroptimierung für Selbständige in Österreich: Alle legalen Steuerspartipps für EPU & Einzelunternehmer. Absetzbeträge, Betriebsausgaben & Investitionssteuerung optimal nutzen.',
+        image: 'https://steuerboard.pro/opengraph-image',
         author: {
           '@type': 'Organization',
-          name: 'Steuerrechner.at'
+          name: 'SteuerBoard.pro',
+          url: 'https://steuerboard.pro',
         },
         publisher: {
           '@type': 'Organization',
-          name: 'Steuerrechner.at'
+          name: 'SteuerBoard.pro',
+          url: 'https://steuerboard.pro',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://steuerboard.pro/icon',
+          },
         },
         datePublished: '2026-03-18',
         dateModified: '2026-03-18',
+        inLanguage: 'de-AT',
         mainEntityOfPage: {
           '@type': 'WebPage',
-          '@id': 'https://steuerrechner.at/steuerwissen/steueroptimierung-selbststaendige'
+          '@id': 'https://steuerboard.pro/steuerwissen/steueroptimierung-selbststaendige'
         }
       },
       {
         '@type': 'FAQPage',
-        '@id': 'https://steuerrechner.at/steuerwissen/steueroptimierung-selbststaendige#faq',
+        '@id': 'https://steuerboard.pro/steuerwissen/steueroptimierung-selbststaendige#faq',
         mainEntity: [
           {
             '@type': 'Question',

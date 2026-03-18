@@ -26,15 +26,27 @@ export default function Layout({
     "@type": "Article",
     "headline": "GmbH oder Einzelunternehmen? — Der Steuer-Vergleich für Österreich",
     "description": "GmbH vs Einzelunternehmen in Österreich: Steuervergleich, Break-Even-Analyse und Entscheidungshilfe. Wann lohnt sich die GmbH-Gründung steuerlich?",
+    "image": "https://steuerboard.pro/opengraph-image",
     "author": {
       "@type": "Organization",
-      "name": "Pro1 Steuerberatung"
+      "name": "SteuerBoard.pro",
+      "url": "https://steuerboard.pro"
     },
-    "datePublished": "2024-03-18",
-    "dateModified": "2024-03-18",
+    "publisher": {
+      "@type": "Organization",
+      "name": "SteuerBoard.pro",
+      "url": "https://steuerboard.pro",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://steuerboard.pro/icon"
+      }
+    },
+    "datePublished": "2026-03-18",
+    "dateModified": "2026-03-18",
+    "inLanguage": "de-AT",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://pro1.at/steuerwissen/gmbh-vs-einzelunternehmen"
+      "@id": "https://steuerboard.pro/steuerwissen/gmbh-vs-einzelunternehmen"
     }
   }
 

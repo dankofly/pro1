@@ -18,20 +18,30 @@ const articleJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: 'SVS-Nachzahlung vermeiden — So schützt du dich vor der Nachzahlungsfalle',
+  image: 'https://steuerboard.pro/opengraph-image',
   author: {
     '@type': 'Organization',
-    name: 'SteuerBoard.pro'
+    name: 'SteuerBoard.pro',
+    url: 'https://steuerboard.pro',
   },
   datePublished: '2026-03-18',
+  dateModified: '2026-03-18',
+  inLanguage: 'de-AT',
   publisher: {
     '@type': 'Organization',
-    name: 'SteuerBoard.pro'
+    name: 'SteuerBoard.pro',
+    url: 'https://steuerboard.pro',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://steuerboard.pro/icon',
+    },
   },
   description: 'Strategien und Tipps für österreichische Selbstständige um hohe SVS-Nachzahlungen zu vermeiden',
   mainEntityOfPage: {
     '@type': 'WebPage',
     '@id': 'https://steuerboard.pro/steuerwissen/svs-nachzahlung-vermeiden'
-  }
+  },
+  isAccessibleForFree: true,
 }
 
 const faqJsonLd = {

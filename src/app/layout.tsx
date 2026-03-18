@@ -89,16 +89,20 @@ export default function RootLayout({
           '@type': 'Organization',
           name: 'SteuerBoard.pro',
           url: SITE_URL,
-          description: 'Dein Steuer-Dashboard für Selbständige in Österreich',
+          logo: `${SITE_URL}/icon`,
+          description: 'AI-gestützte Steuerplattform für Selbständige in Österreich. SVS-Beitragsrechner, Einkommensteuer-Prognose, KI-Steuerberater und spezialisierte Steuerrechner.',
+          foundingDate: '2024',
           founder: {
             '@type': 'Person',
             name: 'Daniel Kofler',
+            jobTitle: 'Gründer',
           },
           address: {
             '@type': 'PostalAddress',
             streetAddress: 'Thal-Aue 95',
             addressLocality: 'Assling',
             postalCode: '9911',
+            addressRegion: 'Tirol',
             addressCountry: 'AT',
           },
           contactPoint: {
@@ -108,6 +112,65 @@ export default function RootLayout({
             contactType: 'customer service',
             availableLanguage: 'German',
           },
+          areaServed: {
+            '@type': 'Country',
+            name: 'Austria',
+          },
+          knowsAbout: [
+            'SVS-Beiträge',
+            'Einkommensteuer Österreich',
+            'Sozialversicherung Selbständige',
+            'Steueroptimierung',
+            'Gewinnfreibetrag',
+            'Krypto-Steuer Österreich',
+          ],
+        }} />
+        <JsonLd data={{
+          '@context': 'https://schema.org',
+          '@type': 'SoftwareApplication',
+          name: 'SteuerBoard.pro',
+          url: SITE_URL,
+          applicationCategory: 'FinanceApplication',
+          operatingSystem: 'Web',
+          inLanguage: 'de-AT',
+          description: 'AI-gestützte Steuerplattform für österreichische Selbständige. SVS-Beitragsrechner, Einkommensteuer-Prognose, KI-Steuerberater und 7 spezialisierte Steuerrechner.',
+          featureList: [
+            'SVS-Beitragsrechner',
+            'SVS-Nachzahlungs-Prognose',
+            'Einkommensteuer-Rechner',
+            'KI-Steuerberater',
+            'GmbH-Vergleich',
+            'Krypto-Steuerrechner',
+            'Misch-Einkommen-Rechner',
+            'Investitionsfreibetrag-Rechner',
+            'Sachbezug-Rechner',
+            'PDF-Export',
+          ],
+          offers: [
+            {
+              '@type': 'Offer',
+              name: 'Free',
+              price: '0',
+              priceCurrency: 'EUR',
+              description: 'SVS-Beitragsrechner und Wahrheits-Tabelle',
+            },
+            {
+              '@type': 'Offer',
+              name: 'Sicherheits-Plan',
+              price: '9.92',
+              priceCurrency: 'EUR',
+              description: 'Einkommensteuer-Prognose, Berechnungen speichern, Dashboard',
+              priceValidUntil: '2026-12-31',
+            },
+            {
+              '@type': 'Offer',
+              name: 'SteuerBoard Pro',
+              price: '19.92',
+              priceCurrency: 'EUR',
+              description: 'Alle Rechner, KI-Steuerberater, PDF-Export, Misch-Einkommen',
+              priceValidUntil: '2026-12-31',
+            },
+          ],
         }} />
         {children}
         <Toaster position="top-right" richColors />

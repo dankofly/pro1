@@ -32,26 +32,37 @@ export default function Layout({
           "@graph": [
             {
               "@type": "Article",
-              "@id": "/steuerwissen/svs-beitraege-senken#article",
+              "@id": "https://steuerboard.pro/steuerwissen/svs-beitraege-senken#article",
               "headline": "SVS-Beiträge senken — 7 legale Strategien für Selbständige in Österreich",
               "description": "SVS Beiträge senken: 7 bewährte Strategien für Selbständige in Österreich. SVS Beiträge reduzieren durch Gewinnfreibetrag, Betriebsausgaben und mehr.",
-              "datePublished": "2024-03-18T00:00:00+01:00",
-              "dateModified": "2024-03-18T00:00:00+01:00",
+              "image": "https://steuerboard.pro/opengraph-image",
+              "datePublished": "2026-03-18",
+              "dateModified": "2026-03-18",
+              "inLanguage": "de-AT",
               "author": {
                 "@type": "Organization",
-                "name": "Pro1 Steuerberatung"
+                "name": "SteuerBoard.pro",
+                "url": "https://steuerboard.pro"
               },
               "publisher": {
                 "@type": "Organization",
-                "name": "Pro1 Steuerberatung"
+                "name": "SteuerBoard.pro",
+                "url": "https://steuerboard.pro",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://steuerboard.pro/icon"
+                }
               },
-              "mainEntityOfPage": "/steuerwissen/svs-beitraege-senken",
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://steuerboard.pro/steuerwissen/svs-beitraege-senken"
+              },
               "articleSection": "Steuerwissen",
               "keywords": "SVS Beiträge senken, SVS Beiträge reduzieren, SVS Selbständige Österreich, Sozialversicherung"
             },
             {
               "@type": "FAQPage",
-              "@id": "/steuerwissen/svs-beitraege-senken#faq",
+              "@id": "https://steuerboard.pro/steuerwissen/svs-beitraege-senken#faq",
               "mainEntity": [
                 {
                   "@type": "Question",

@@ -26,19 +26,27 @@ export default function GewinnfreibetragLayout({
     '@type': 'Article',
     headline: 'Gewinnfreibetrag 2026 — So sparst du bis zu 4.950 € Steuern',
     description: 'Gewinnfreibetrag Österreich: Spare bis zu 4.950€ Steuern mit dem Grundfreibetrag nach § 10 EStG. Berechne deinen Gewinnfreibetrag und nutze alle Vorteile optimal.',
+    image: 'https://steuerboard.pro/opengraph-image',
     author: {
       '@type': 'Organization',
-      name: 'Pro1 Steuerberatung'
+      name: 'SteuerBoard.pro',
+      url: 'https://steuerboard.pro',
     },
     datePublished: '2026-03-18',
     dateModified: '2026-03-18',
+    inLanguage: 'de-AT',
     publisher: {
       '@type': 'Organization',
-      name: 'Pro1 Steuerberatung'
+      name: 'SteuerBoard.pro',
+      url: 'https://steuerboard.pro',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://steuerboard.pro/icon',
+      },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': 'https://pro1.at/steuerwissen/gewinnfreibetrag-nutzen'
+      '@id': 'https://steuerboard.pro/steuerwissen/gewinnfreibetrag-nutzen'
     }
   }
 
