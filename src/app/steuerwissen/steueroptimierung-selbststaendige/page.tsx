@@ -167,9 +167,9 @@ export default function SteueroptimierungSelbststaendigePage() {
                   Abschreibung einen Freibetrag geltend machen:
                 </p>
                 <ul className="space-y-2 text-gray-300">
-                  <li>• <strong>20%</strong> bei Investitionen ab 10.000€</li>
-                  <li>• <strong>22%</strong> bei ökologischen Investitionen</li>
-                  <li>• Maximal 100.000€ Freibetrag pro Jahr</li>
+                  <li>• <strong>15%</strong> der Anschaffungskosten (allgemein)</li>
+                  <li>• <strong>20%</strong> bei ökologischen Investitionen (Klimaschutz, Digitalisierung)</li>
+                  <li>• Maximal 46.000€ Freibetrag pro Jahr (bei 20%: 62.000€)</li>
                 </ul>
               </div>
 
@@ -202,7 +202,7 @@ export default function SteueroptimierungSelbststaendigePage() {
                   Ab diesem Punkt wird die GmbH steuerlich interessant:
                 </p>
                 <ul className="space-y-2 text-gray-300">
-                  <li>• GmbH: 25% Körperschaftsteuer + 27,5% KESt auf Ausschüttungen</li>
+                  <li>• GmbH: 23% Körperschaftsteuer + 27,5% KESt auf Ausschüttungen</li>
                   <li>• EU: Einkommensteuertarif (bis 55%)</li>
                   <li>• Zusätzliche GmbH-Kosten: ~2.000-4.000€/Jahr</li>
                 </ul>
@@ -279,8 +279,138 @@ export default function SteueroptimierungSelbststaendigePage() {
                 </h3>
                 <p className="text-gray-300">
                   Der Break-Even liegt meist zwischen 60.000-80.000€ Jahresgewinn.
-                  Ab diesem Punkt wird die GmbH-Besteuerung (25% KöSt + 27,5% KESt auf Ausschüttungen)
-                  günstiger als der Einkommensteuertarif.
+                  Ab diesem Punkt wird die GmbH-Besteuerung (23% KöSt + 27,5% KESt auf Ausschüttungen)
+                  günstiger als der progressive Einkommensteuertarif.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Tier-basierte Empfehlungen */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-semibold mb-6 text-blue-400">Strategien nach Einkommensstufe</h2>
+            <div className="space-y-4">
+              <div className="bg-gray-800 p-6 rounded-lg border-l-4 border-green-500">
+                <h3 className="text-lg font-medium text-white mb-2">Unter 30.000€ Gewinn</h3>
+                <p className="text-gray-300">
+                  Nutzen Sie den Grundfreibetrag (bis 4.950€) voll aus. Prüfen Sie die Kleinunternehmerpauschalierung
+                  (20% oder 45%). SVS-Opting-Out bei Gewinn unter Geringfügigkeitsgrenze (~6.221€) möglich.
+                  Fokus auf vollständige Erfassung aller Betriebsausgaben.
+                </p>
+              </div>
+              <div className="bg-gray-800 p-6 rounded-lg border-l-4 border-yellow-500">
+                <h3 className="text-lg font-medium text-white mb-2">30.000€ – 60.000€ Gewinn</h3>
+                <p className="text-gray-300">
+                  Grundfreibetrag ist ausgeschöpft. Investitionsbedingter GFB über Wertpapierkauf nutzen.
+                  IFB (15%/20%) bei geplanten Investitionen einsetzen. Strategische Jahresend-Planung:
+                  Ausgaben vorziehen, Einnahmen verschieben. ESt-Vorauszahlungen prüfen und ggf. anpassen.
+                </p>
+              </div>
+              <div className="bg-gray-800 p-6 rounded-lg border-l-4 border-orange-500">
+                <h3 className="text-lg font-medium text-white mb-2">60.000€ – 100.000€ Gewinn</h3>
+                <p className="text-gray-300">
+                  GmbH-Gründung prüfen (Break-Even bei ~60-80k). Gewinnthesaurierung in der GmbH spart
+                  erheblich. SVS-Höchstbeitragsgrundlage beachten (~84.840€/Jahr). Kombinierte Nutzung
+                  von GFB + IFB maximiert Steuerersparnis.
+                </p>
+              </div>
+              <div className="bg-gray-800 p-6 rounded-lg border-l-4 border-red-500">
+                <h3 className="text-lg font-medium text-white mb-2">Über 100.000€ Gewinn</h3>
+                <p className="text-gray-300">
+                  GmbH ist fast immer vorteilhaft. Grenzsteuersatz 48-50% vs. 23% KöSt.
+                  Geschäftsführergehalt optimal festlegen (ASVG-Beiträge beachten). Pensionsvorsorge
+                  über die GmbH. Holdingstruktur für langfristige Vermögensplanung prüfen.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* E/A vs Bilanz */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-semibold mb-6 text-blue-400">E/A-Rechnung vs. Bilanzierung</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h3 className="text-lg font-medium text-white mb-3">Einnahmen-Ausgaben-Rechnung</h3>
+                <ul className="text-gray-300 space-y-2">
+                  <li>• Zufluss-Abfluss-Prinzip</li>
+                  <li>• Einfacher und günstiger</li>
+                  <li>• Gewinnsteuerung durch Timing möglich</li>
+                  <li>• Bis 700.000€ Umsatz möglich</li>
+                  <li>• GFB Grundfreibetrag verfügbar</li>
+                </ul>
+              </div>
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h3 className="text-lg font-medium text-white mb-3">Bilanzierung (doppelte Buchführung)</h3>
+                <ul className="text-gray-300 space-y-2">
+                  <li>• Periodengerechte Zuordnung</li>
+                  <li>• Pflicht ab 700.000€ Umsatz (2 Jahre)</li>
+                  <li>• Besserer Unternehmensüberblick</li>
+                  <li>• Rückstellungen möglich</li>
+                  <li>• GmbH: immer bilanzierungspflichtig</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          {/* Vorauszahlungen */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-semibold mb-6 text-blue-400">ESt-Vorauszahlungen optimieren</h2>
+            <p className="text-gray-300 mb-4">
+              Die Einkommensteuer-Vorauszahlungen werden vierteljährlich fällig (15.2., 15.5., 15.8., 15.11.)
+              und basieren auf dem letzten Steuerbescheid. Bei sinkendem Gewinn können Sie eine Herabsetzung
+              beantragen.
+            </p>
+            <div className="bg-blue-900/30 p-6 rounded-lg border border-blue-700">
+              <h4 className="font-medium mb-3 text-blue-300">Antrag auf Herabsetzung:</h4>
+              <p className="text-gray-300">
+                Bei einem erwarteten Gewinnrückgang können Sie beim Finanzamt einen Antrag auf Herabsetzung
+                der Vorauszahlungen stellen. Der Antrag muss vor dem jeweiligen Fälligkeitstermin einlangen.
+                Vorsicht: Zu niedrig angesetzte Vorauszahlungen führen zu Anspruchszinsen (aktuell ~4,88%).
+              </p>
+            </div>
+          </section>
+
+          {/* Erweiterte FAQ */}
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold mb-6 text-blue-400">Weitere häufige Fragen</h2>
+            <div className="space-y-6">
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h3 className="text-lg font-medium mb-3 text-white">
+                  Kann ich Steuerberatungskosten absetzen?
+                </h3>
+                <p className="text-gray-300">
+                  Ja, Steuerberatungskosten sind vollständig als Betriebsausgabe absetzbar. Bei einem
+                  Grenzsteuersatz von 42% spart Ihnen jeder Euro Steuerberatung effektiv 42 Cent Steuern.
+                  Auch SteuerBoard.pro-Abos sind als Betriebsausgabe absetzbar.
+                </p>
+              </div>
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h3 className="text-lg font-medium mb-3 text-white">
+                  Was ist der Unterschied zwischen Freibetrag und Absetzbetrag?
+                </h3>
+                <p className="text-gray-300">
+                  Ein Freibetrag (z.B. GFB) reduziert das zu versteuernde Einkommen — die Ersparnis
+                  hängt vom persönlichen Steuersatz ab. Ein Absetzbetrag (z.B. Familienbonus) wird
+                  direkt von der Steuer abgezogen — 1€ Absetzbetrag = 1€ weniger Steuer.
+                </p>
+              </div>
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h3 className="text-lg font-medium mb-3 text-white">
+                  Lohnt sich die Pauschalierung für mich?
+                </h3>
+                <p className="text-gray-300">
+                  Die Pauschalierung lohnt sich, wenn Ihre tatsächlichen Betriebsausgaben unter dem
+                  Pauschalsatz liegen (12% bei Basispauschalierung, 20%/45% bei Kleinunternehmerpauschalierung).
+                  Berechnen Sie beide Varianten und wählen Sie die günstigere.
+                </p>
+              </div>
+              <div className="bg-gray-800 p-6 rounded-lg">
+                <h3 className="text-lg font-medium mb-3 text-white">
+                  Bis wann muss ich die Steuererklärung abgeben?
+                </h3>
+                <p className="text-gray-300">
+                  Ohne Steuerberater: bis 30. April (Papier) bzw. 30. Juni (FinanzOnline) des Folgejahres.
+                  Mit Steuerberater: verlängerte Frist bis 30. April des übernächsten Jahres (Quotenregelung).
                 </p>
               </div>
             </div>

@@ -102,6 +102,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/steuerwissen/pauschalierung-oesterreich`,
+      lastModified: lastUpdated,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/steuerwissen/kleinunternehmerregelung`,
+      lastModified: lastUpdated,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/steuerwissen/krypto-steuer-oesterreich`,
+      lastModified: lastUpdated,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/steuerwissen/umsatzsteuer-selbstaendige`,
+      lastModified: lastUpdated,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/steuerwissen/glossar`,
+      lastModified: lastUpdated,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
 
     // Produkt-Seiten
     {

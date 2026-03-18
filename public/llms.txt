@@ -46,6 +46,11 @@ Aktuelle Werte für 2024, 2025 und 2026.
 - [SVS-Beiträge senken](https://steuerboard.pro/steuerwissen/svs-beitraege-senken): 7 legale Strategien zur Beitragssenkung
 - [Steueroptimierung Selbständige](https://steuerboard.pro/steuerwissen/steueroptimierung-selbststaendige): Komplette Anleitung zur Steueroptimierung
 - [Gewinnfreibetrag nutzen](https://steuerboard.pro/steuerwissen/gewinnfreibetrag-nutzen): Bis zu 4.950 € Steuern sparen mit § 10 EStG
+- [Pauschalierung Österreich](https://steuerboard.pro/steuerwissen/pauschalierung-oesterreich): Basispauschalierung, Branchenpauschalierung & Kleinunternehmerpauschalierung im Vergleich
+- [Kleinunternehmerregelung](https://steuerboard.pro/steuerwissen/kleinunternehmerregelung): Umsatzgrenze 42.000 €, USt-Befreiung, Toleranzgrenze und EU-Regelung
+- [Krypto-Steuer Österreich](https://steuerboard.pro/steuerwissen/krypto-steuer-oesterreich): Bitcoin, Ethereum & Co. versteuern — KESt 27,5%, Altbestand, Staking, Mining
+- [Umsatzsteuer für Selbständige](https://steuerboard.pro/steuerwissen/umsatzsteuer-selbstaendige): USt-Sätze, Vorsteuerabzug, UVA, Reverse Charge und OSS
+- [Steuer-Glossar](https://steuerboard.pro/steuerwissen/glossar): Über 40 österreichische Steuerbegriffe von A bis Z erklärt
 
 ### Produkt & Info
 - [Preise](https://steuerboard.pro/pricing): Alle Abo-Optionen im Überblick
