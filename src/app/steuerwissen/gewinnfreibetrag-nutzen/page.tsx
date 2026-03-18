@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { ArticleFooter } from '@/components/steuerwissen/article-footer'
 
 export default function GewinnfreibetragPage() {
   return (
@@ -280,6 +281,25 @@ export default function GewinnfreibetragPage() {
               Planung und das Verständnis der gesetzlichen Grundlagen nach § 10 EStG.
             </p>
           </section>
+
+          <ArticleFooter
+            breadcrumbs={[
+              { name: 'Home', href: '/' },
+              { name: 'Steuerwissen', href: '/steuerwissen' },
+              { name: 'Gewinnfreibetrag nutzen', href: '/steuerwissen/gewinnfreibetrag-nutzen' },
+            ]}
+            sources={[
+              { name: 'EStG § 10 — Gewinnfreibetrag', url: 'https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10004570', description: 'Rechtsinformationssystem des Bundes (RIS) — Einkommensteuergesetz' },
+              { name: 'EStG § 14 — Begünstigte Wertpapiere', url: 'https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10004570', description: 'Wertpapiere für den investitionsbedingten Gewinnfreibetrag' },
+              { name: 'BMF — Gewinnfreibetrag Info', url: 'https://www.bmf.gv.at/themen/steuern/selbststaendige-unternehmer.html', description: 'Bundesministerium für Finanzen' },
+              { name: 'WKO — Gewinnfreibetrag für Selbständige', url: 'https://www.wko.at/steuern/gewinnfreibetrag', description: 'Wirtschaftskammer Österreich — Detaillierte Erklärung' },
+            ]}
+            relatedArticles={[
+              { title: 'Steueroptimierung für Selbständige — Komplette Anleitung', href: '/steuerwissen/steueroptimierung-selbststaendige' },
+              { title: 'SVS-Beiträge senken — 7 legale Strategien', href: '/steuerwissen/svs-beitraege-senken' },
+              { title: 'GmbH vs. Einzelunternehmen — Der Steuer-Vergleich', href: '/steuerwissen/gmbh-vs-einzelunternehmen' },
+            ]}
+          />
         </article>
       </div>
     </div>

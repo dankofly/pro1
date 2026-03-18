@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { ArticleFooter } from '@/components/steuerwissen/article-footer'
 
 export default function SteueroptimierungSelbststaendigePage() {
   return (
@@ -285,16 +286,26 @@ export default function SteueroptimierungSelbststaendigePage() {
             </div>
           </section>
 
-          <footer className="text-sm text-gray-500 pt-8 border-t border-gray-700">
-            <p>
-              Diese Informationen stellen eine allgemeine Übersicht dar und ersetzen keine
-              individuelle steuerliche Beratung. Konsultieren Sie für Ihre spezifische Situation
-              einen Steuerberater.
-            </p>
-            <p className="mt-2">
-              Stand: März 2026 | Alle Angaben ohne Gewähr
-            </p>
-          </footer>
+          <ArticleFooter
+            breadcrumbs={[
+              { name: 'Home', href: '/' },
+              { name: 'Steuerwissen', href: '/steuerwissen' },
+              { name: 'Steueroptimierung Selbständige', href: '/steuerwissen/steueroptimierung-selbststaendige' },
+            ]}
+            sources={[
+              { name: 'EStG § 33 — Einkommensteuertarif', url: 'https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10004570', description: 'Rechtsinformationssystem des Bundes (RIS) — Einkommensteuergesetz' },
+              { name: 'EStG § 10 — Gewinnfreibetrag', url: 'https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10004570', description: 'Gewinnfreibetrag nach § 10 EStG' },
+              { name: 'EStG § 11 — Investitionsfreibetrag', url: 'https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10004570', description: 'Investitionsfreibetrag nach § 11 EStG' },
+              { name: 'BMF — Steuern für Selbständige', url: 'https://www.bmf.gv.at/themen/steuern/selbststaendige-unternehmer.html', description: 'Bundesministerium für Finanzen — Informationsportal' },
+              { name: 'WKO — Steueroptimierung für EPU', url: 'https://www.wko.at/steuern/steueroptimierung', description: 'Wirtschaftskammer Österreich — Steuertipps' },
+            ]}
+            relatedArticles={[
+              { title: 'Gewinnfreibetrag 2026 — Bis zu 4.950 € sparen', href: '/steuerwissen/gewinnfreibetrag-nutzen' },
+              { title: 'SVS-Beiträge senken — 7 legale Strategien', href: '/steuerwissen/svs-beitraege-senken' },
+              { title: 'GmbH vs. Einzelunternehmen — Der Steuer-Vergleich', href: '/steuerwissen/gmbh-vs-einzelunternehmen' },
+              { title: 'SVS-Nachzahlung vermeiden', href: '/steuerwissen/svs-nachzahlung-vermeiden' },
+            ]}
+          />
         </article>
       </div>
     </div>

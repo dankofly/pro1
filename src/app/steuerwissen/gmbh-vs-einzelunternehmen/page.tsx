@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { ArticleFooter } from '@/components/steuerwissen/article-footer'
 
 export default function GmbHvsEinzelunternehmenPage() {
   return (
@@ -249,6 +250,26 @@ export default function GmbHvsEinzelunternehmenPage() {
               </p>
             </div>
           </section>
+
+          <ArticleFooter
+            breadcrumbs={[
+              { name: 'Home', href: '/' },
+              { name: 'Steuerwissen', href: '/steuerwissen' },
+              { name: 'GmbH vs. Einzelunternehmen', href: '/steuerwissen/gmbh-vs-einzelunternehmen' },
+            ]}
+            sources={[
+              { name: 'KStG § 22 — Körperschaftsteuersatz', url: 'https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10004531', description: 'Rechtsinformationssystem des Bundes (RIS) — Körperschaftsteuergesetz' },
+              { name: 'EStG § 33 — Einkommensteuertarif', url: 'https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10004570', description: 'Rechtsinformationssystem des Bundes (RIS) — Einkommensteuergesetz' },
+              { name: 'GmbHG — GmbH-Gesetz', url: 'https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10001720', description: 'Rechtsinformationssystem des Bundes (RIS)' },
+              { name: 'WKO — GmbH gründen in Österreich', url: 'https://www.wko.at/gruendung/gmbh-gruenden', description: 'Wirtschaftskammer Österreich — Gründungsleitfaden' },
+              { name: 'BMF — Körperschaftsteuer', url: 'https://www.bmf.gv.at/themen/steuern/koerperschaftsteuer.html', description: 'Bundesministerium für Finanzen' },
+            ]}
+            relatedArticles={[
+              { title: 'Steueroptimierung für Selbständige — Komplette Anleitung', href: '/steuerwissen/steueroptimierung-selbststaendige' },
+              { title: 'Gewinnfreibetrag 2026 — Bis zu 4.950 € sparen', href: '/steuerwissen/gewinnfreibetrag-nutzen' },
+              { title: 'SVS-Beiträge senken — 7 legale Strategien', href: '/steuerwissen/svs-beitraege-senken' },
+            ]}
+          />
         </article>
       </div>
     </div>

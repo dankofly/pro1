@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { AppShell } from '@/components/svs/app-shell'
+import { ArticleFooter } from '@/components/steuerwissen/article-footer'
 
 export default function SvsNachzahlungVermeidenPage() {
   return (
@@ -189,6 +190,25 @@ export default function SvsNachzahlungVermeidenPage() {
                 </Button>
               </div>
             </section>
+
+            <ArticleFooter
+              breadcrumbs={[
+                { name: 'Home', href: '/' },
+                { name: 'Steuerwissen', href: '/steuerwissen' },
+                { name: 'SVS-Nachzahlung vermeiden', href: '/steuerwissen/svs-nachzahlung-vermeiden' },
+              ]}
+              sources={[
+                { name: 'SVS — Sozialversicherung der Selbständigen', url: 'https://www.svs.at/cdscontent/?contentid=10007.816984', description: 'Offizielle SVS-Seite zu Beitragsgrundlagen und Nachzahlungen' },
+                { name: 'GSVG § 25a — Vorläufige Beitragsgrundlage', url: 'https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008442', description: 'Rechtsinformationssystem des Bundes (RIS)' },
+                { name: 'WKO — SVS-Beiträge für Gewerbetreibende', url: 'https://www.wko.at/sozialversicherung/svs-beitraege', description: 'Wirtschaftskammer Österreich — Aktuelle SVS-Beitragssätze' },
+                { name: 'BMF — Einkommensteuergesetz', url: 'https://www.bmf.gv.at/themen/steuern/selbststaendige-unternehmer.html', description: 'Bundesministerium für Finanzen — Informationen für Selbständige' },
+              ]}
+              relatedArticles={[
+                { title: 'SVS-Beiträge senken — 7 legale Strategien', href: '/steuerwissen/svs-beitraege-senken' },
+                { title: 'Steueroptimierung für Selbständige — Komplette Anleitung', href: '/steuerwissen/steueroptimierung-selbststaendige' },
+                { title: 'Gewinnfreibetrag 2026 — Bis zu 4.950 € sparen', href: '/steuerwissen/gewinnfreibetrag-nutzen' },
+              ]}
+            />
           </article>
         </div>
       </div>

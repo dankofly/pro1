@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { ArticleFooter } from '@/components/steuerwissen/article-footer'
 
 export default function SvsBeitraegeSenkenPage() {
   return (
@@ -269,6 +270,25 @@ export default function SvsBeitraegeSenkenPage() {
               </div>
             </div>
           </section>
+
+          <ArticleFooter
+            breadcrumbs={[
+              { name: 'Home', href: '/' },
+              { name: 'Steuerwissen', href: '/steuerwissen' },
+              { name: 'SVS-Beiträge senken', href: '/steuerwissen/svs-beitraege-senken' },
+            ]}
+            sources={[
+              { name: 'SVS — Beitragssätze für Selbständige', url: 'https://www.svs.at/cdscontent/?contentid=10007.816984', description: 'Offizielle SVS-Seite — Aktuelle Beitragssätze und Beitragsgrundlagen' },
+              { name: 'GSVG — Gewerbliches Sozialversicherungsgesetz', url: 'https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008442', description: 'Rechtsinformationssystem des Bundes (RIS)' },
+              { name: 'EStG § 10 — Gewinnfreibetrag', url: 'https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10004570', description: 'Rechtsinformationssystem des Bundes (RIS) — Einkommensteuergesetz' },
+              { name: 'WKO — Sozialversicherung für Selbständige', url: 'https://www.wko.at/sozialversicherung', description: 'Wirtschaftskammer Österreich — SVS-Übersicht' },
+            ]}
+            relatedArticles={[
+              { title: 'SVS-Nachzahlung vermeiden — Strategien gegen die Nachzahlungsfalle', href: '/steuerwissen/svs-nachzahlung-vermeiden' },
+              { title: 'Gewinnfreibetrag 2026 — Bis zu 4.950 € sparen', href: '/steuerwissen/gewinnfreibetrag-nutzen' },
+              { title: 'GmbH vs. Einzelunternehmen — Der Steuer-Vergleich', href: '/steuerwissen/gmbh-vs-einzelunternehmen' },
+            ]}
+          />
         </article>
       </div>
     </div>

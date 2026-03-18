@@ -7,3 +7,20 @@
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+# Redirect www to non-www (canonical domain)
+[[redirects]]
+  from = "https://www.steuerboard.pro/*"
+  to = "https://steuerboard.pro/:splat"
+  status = 301
+  force = true
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy = "frame-ancestors 'none'"
