@@ -65,6 +65,9 @@ export const metadata: Metadata = {
     },
   },
   manifest: '/manifest.json',
+  verification: {
+    google: 'eavZwmyiOqyF82f-KcVIpWQ0OH0b8-1UPYet0ulBTFY',
+  },
   other: {
     'theme-color': '#0f172a',
   },

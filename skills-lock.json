@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "skills": {
+    "backend-dev": {
+      "source": "srbhr/Resume-Matcher",
+      "sourceType": "github",
+      "computedHash": "21535c8e4260f28a2e31836fd62418211fb746b1b1f6c94848afc07ad5ad8263"
+    },
+    "code-review": {
+      "source": "srbhr/Resume-Matcher",
+      "sourceType": "github",
+      "computedHash": "a308a52020b10fa92013e1cf077a9cf317a0377aee655c064d8462b1b6e942c3"
+    },
+    "codebase-navigator": {
+      "source": "srbhr/Resume-Matcher",
+      "sourceType": "github",
+      "computedHash": "8be292b60a7912417358ad29ec626324d8945604f525cbc3a4b08b49f9fb28a6"
+    },
+    "design-principles": {
+      "source": "srbhr/Resume-Matcher",
+      "sourceType": "github",
+      "computedHash": "fafed0051790439ebb4ab301b193fa74a5b28ba97c4499fba9a1f5a8013780bd"
+    },
+    "fastapi": {
+      "source": "srbhr/Resume-Matcher",
+      "sourceType": "github",
+      "computedHash": "7adba845bf57718e981e16e3e2e92ea41b935b520530df42ed72ac33dabf158a"
+    },
+    "frontend-dev": {
+      "source": "srbhr/Resume-Matcher",
+      "sourceType": "github",
+      "computedHash": "02f34029205173e5aa4011f48accb5d5b944e1a8f28e4b2e8f311f995b27b6a1"
+    },
+    "full-stack": {
+      "source": "srbhr/Resume-Matcher",
+      "sourceType": "github",
+      "computedHash": "15d59be4bf02973f2bb4703d29cc62f4ae1e28f4f71272809faeafee77da0553"
+    },
+    "navigator": {
+      "source": "srbhr/Resume-Matcher",
+      "sourceType": "github",
+      "computedHash": "ec480587a845c1597156ffc6feaddd302a0e2da8512c0ac75dfa01a014874c10"
+    },
+    "nextjs-performance": {
+      "source": "srbhr/Resume-Matcher",
+      "sourceType": "github",
+      "computedHash": "4fcd6d7fde3713f063cff76e77f2d075c09c396aa5817cd8411ca72660dfc744"
+    },
+    "nextjs15-performance": {
+      "source": "srbhr/Resume-Matcher",
+      "sourceType": "github",
+      "computedHash": "9a8c9b430867c8020b28b8de560264888a54bfb9c899dc19ac120eb49c0f6a45"
+    },
+    "react-patterns": {
+      "source": "srbhr/Resume-Matcher",
+      "sourceType": "github",
+      "computedHash": "e50bacdb9fcd0db69bbb4bffcf780bc7d1c7a121f71c1c514a818b42470ce95b"
+    },
+    "receiving-code-review": {
+      "source": "srbhr/Resume-Matcher",
+      "sourceType": "github",
+      "computedHash": "49b2ccc2a2b1c340394498f193ccefd18a3144735fecf2951cb38047a1f2e234"
+    },
+    "tailwind-patterns": {
+      "source": "srbhr/Resume-Matcher",
+      "sourceType": "github",
+      "computedHash": "b4accf2d31580daa632383b31b33bad751380ef7f7ffac6440ec1ce7e2edebdb"
+    },
+    "ui-review": {
+      "source": "srbhr/Resume-Matcher",
+      "sourceType": "github",
+      "computedHash": "159a656a8dfbd608d26b2e82b60df63f268b8dfe92d9ac7b7f14d9b866735fd6"
+    }
+  }
+}

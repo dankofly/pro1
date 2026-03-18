@@ -28,6 +28,30 @@ export default function KryptoSteuerLayout({ children }: { children: React.React
         description: 'Berechne deine Krypto-Steuern in Österreich: KESt 27,5% auf realisierte Gewinne, Altvermögen-Regeln und Staking.',
         inLanguage: 'de-AT',
       }} />
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'HowTo',
+        name: 'Krypto-Steuer in Österreich berechnen',
+        description: 'So berechnest du die Besteuerung deiner Kryptowährungen in Österreich — KESt 27,5 %, Altvermögen und Staking.',
+        totalTime: 'PT2M',
+        step: [
+          {
+            '@type': 'HowToStep',
+            name: 'Transaktionen eingeben',
+            text: 'Gib deine Krypto-Käufe und -Verkäufe mit Datum und Betrag ein.',
+          },
+          {
+            '@type': 'HowToStep',
+            name: 'Altvermögen vs. Neuvermögen wählen',
+            text: 'Kryptos, die vor dem 01.03.2021 gekauft wurden, sind Altvermögen (nach 1 Jahr steuerfrei). Neuvermögen unterliegt der KESt.',
+          },
+          {
+            '@type': 'HowToStep',
+            name: 'Steuerlast ablesen',
+            text: 'Der Rechner zeigt die KESt (27,5 %) auf realisierte Gewinne und berücksichtigt Staking- und Mining-Erträge.',
+          },
+        ],
+      }} />
       {children}
     </>
   )

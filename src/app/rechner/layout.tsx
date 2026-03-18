@@ -55,6 +55,35 @@ export default function RechnerLayout({ children }: { children: React.ReactNode 
         inLanguage: 'de-AT',
       }} />
       <JsonLd data={RECHNER_FAQ_JSONLD} />
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'HowTo',
+        name: 'SVS-Beiträge und Nachzahlung berechnen',
+        description: 'So berechnest du deine SVS-Beiträge, die voraussichtliche Nachzahlung und dein echtes Netto als Selbständiger in Österreich.',
+        totalTime: 'PT1M',
+        step: [
+          {
+            '@type': 'HowToStep',
+            name: 'Jahresgewinn eingeben',
+            text: 'Gib deinen Jahresumsatz und deine Betriebsausgaben ein. Der Rechner ermittelt deinen Gewinn automatisch.',
+          },
+          {
+            '@type': 'HowToStep',
+            name: 'Steuerjahr wählen',
+            text: 'Wähle das Steuerjahr (2024, 2025 oder 2026) für die Berechnung mit den aktuellen Werten.',
+          },
+          {
+            '@type': 'HowToStep',
+            name: 'SVS-Beiträge und Nachzahlung ablesen',
+            text: 'Der Rechner zeigt deine SVS-Beiträge (PV, KV, UV, SV), die Einkommensteuer, die voraussichtliche Nachzahlung und dein echtes Netto.',
+          },
+          {
+            '@type': 'HowToStep',
+            name: 'Wahrheits-Tabelle prüfen',
+            text: 'In der Wahrheits-Tabelle siehst du die Differenz zwischen vorläufigen und endgültigen SVS-Beiträgen pro Quartal.',
+          },
+        ],
+      }} />
       {children}
     </>
   )

@@ -2,101 +2,141 @@ import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://steuerboard.pro'
+  const lastUpdated = '2026-03-18'
 
   return [
+    // Homepage
     {
       url: baseUrl,
-      lastModified: new Date(),
+      lastModified: lastUpdated,
       changeFrequency: 'weekly',
       priority: 1.0,
     },
+
+    // Rechner (höchste Priorität — SEO-Hauptseiten)
     {
       url: `${baseUrl}/rechner`,
-      lastModified: new Date(),
+      lastModified: lastUpdated,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/einkommensteuer`,
+      lastModified: lastUpdated,
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
       url: `${baseUrl}/misch-einkommen`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/einkommensteuer`,
-      lastModified: new Date(),
+      lastModified: lastUpdated,
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/krypto-steuer`,
-      lastModified: new Date(),
+      lastModified: lastUpdated,
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
       url: `${baseUrl}/sachbezug-rechner`,
-      lastModified: new Date(),
+      lastModified: lastUpdated,
       changeFrequency: 'weekly',
-      priority: 0.7,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/investitionsfreibetrag`,
-      lastModified: new Date(),
+      lastModified: lastUpdated,
       changeFrequency: 'weekly',
-      priority: 0.7,
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/bilanz`,
-      lastModified: new Date(),
+      lastModified: lastUpdated,
       changeFrequency: 'weekly',
       priority: 0.7,
     },
+
+    // Steuerwissen-Artikel (SEO-Content)
+    {
+      url: `${baseUrl}/steuerwissen`,
+      lastModified: lastUpdated,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/steuerwissen/svs-nachzahlung-vermeiden`,
+      lastModified: lastUpdated,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/steuerwissen/gmbh-vs-einzelunternehmen`,
+      lastModified: lastUpdated,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/steuerwissen/svs-beitraege-senken`,
+      lastModified: lastUpdated,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/steuerwissen/steueroptimierung-selbststaendige`,
+      lastModified: lastUpdated,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/steuerwissen/gewinnfreibetrag-nutzen`,
+      lastModified: lastUpdated,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+
+    // Produkt-Seiten
     {
       url: `${baseUrl}/pricing`,
-      lastModified: new Date(),
+      lastModified: lastUpdated,
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
       url: `${baseUrl}/features`,
-      lastModified: new Date(),
+      lastModified: lastUpdated,
       changeFrequency: 'monthly',
       priority: 0.6,
     },
     {
       url: `${baseUrl}/faq`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/steuerwissen`,
-      lastModified: new Date(),
+      lastModified: lastUpdated,
       changeFrequency: 'monthly',
       priority: 0.6,
     },
     {
       url: `${baseUrl}/steuerberater`,
-      lastModified: new Date(),
+      lastModified: lastUpdated,
       changeFrequency: 'monthly',
       priority: 0.5,
     },
+
+    // Legal
     {
       url: `${baseUrl}/impressum`,
-      lastModified: new Date(),
+      lastModified: '2026-01-01',
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
       url: `${baseUrl}/datenschutz`,
-      lastModified: new Date(),
+      lastModified: '2026-01-01',
       changeFrequency: 'yearly',
       priority: 0.3,
     },
     {
       url: `${baseUrl}/agb`,
-      lastModified: new Date(),
+      lastModified: '2026-01-01',
       changeFrequency: 'yearly',
       priority: 0.3,
     },

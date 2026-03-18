@@ -3,6 +3,9 @@
 # MCP config (contains API keys)
 .mcp.json
 
+# Google Service Account credentials
+gsc-credentials.json
+
 # dependencies
 /node_modules
 /.pnp
