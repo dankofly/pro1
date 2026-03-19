@@ -2,13 +2,13 @@ import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'Misch-Einkommen Rechner – Angestellt + Selbständig',
+  title: 'Misch-Einkommen Rechner — Anstellung + Selbständig berechnen',
   description:
-    'Berechne dein kombiniertes Netto bei Anstellung und Nebengewerbe. SVS-Differenz-Vorschreibung, Einkommensteuer, Familienbonus und alle Absetzbeträge für 2024–2026.',
+    'Misch-Einkommen Rechner: Berechne dein Netto bei Anstellung plus Selbständigkeit. SVS-Differenzvorschreibung, kombinierte Steuerbelastung und echtes Netto.',
   alternates: { canonical: '/misch-einkommen' },
   openGraph: {
-    title: 'Misch-Einkommen Rechner – Angestellt + Selbständig in Österreich',
-    description: 'Was bleibt vom Nebengewerbe wirklich übrig? Berechne SVS, Steuer und echtes Netto.',
+    title: 'Misch-Einkommen Rechner — Anstellung + Selbständig berechnen',
+    description: 'Misch-Einkommen Rechner: Berechne dein Netto bei Anstellung plus Selbständigkeit. SVS-Differenzvorschreibung, kombinierte Steuerbelastung und echtes Netto.',
     url: '/misch-einkommen',
   },
 }

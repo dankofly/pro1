@@ -51,6 +51,11 @@ Aktuelle Werte für 2024, 2025 und 2026.
 - [Krypto-Steuer Österreich](https://steuerboard.pro/steuerwissen/krypto-steuer-oesterreich): Bitcoin, Ethereum & Co. versteuern — KESt 27,5%, Altbestand, Staking, Mining
 - [Umsatzsteuer für Selbständige](https://steuerboard.pro/steuerwissen/umsatzsteuer-selbstaendige): USt-Sätze, Vorsteuerabzug, UVA, Reverse Charge und OSS
 - [Steuer-Glossar](https://steuerboard.pro/steuerwissen/glossar): Über 40 österreichische Steuerbegriffe von A bis Z erklärt
+- [Nebenberuflich selbständig](https://steuerboard.pro/steuerwissen/nebenberuflich-selbstaendig): SVS-Pflicht, Steuerberechnung bei Mischeinkommen, Meldepflichten und typische Fehler
+- [FlexKapG vs. GmbH](https://steuerboard.pro/steuerwissen/flexkapg-vs-gmbh): Die neue Rechtsform seit 2024 — Stammkapital, Kosten, Mitarbeiterbeteiligung im Vergleich
+- [SVS-Nachzahlung im 4. Jahr](https://steuerboard.pro/steuerwissen/svs-nachzahlung-4-jahr): Steuerschock für Neugründer — warum die Nachzahlung kommt und wie man sich schützt
+- [Betriebsausgaben Checkliste](https://steuerboard.pro/steuerwissen/betriebsausgaben-checkliste): Vollständige Liste absetzbarer Betriebsausgaben für Selbständige in Österreich
+- [Steuer-Jahresplanung](https://steuerboard.pro/steuerwissen/steuer-jahresplanung): Quartalweise Fristen, UVA-Termine, EST-Vorauszahlungen und Jahresend-Maßnahmen
 
 ### Produkt & Info
 - [Preise](https://steuerboard.pro/pricing): Alle Abo-Optionen im Überblick

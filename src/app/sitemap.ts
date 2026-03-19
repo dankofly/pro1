@@ -132,6 +132,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/steuerwissen/nebenberuflich-selbstaendig`,
+      lastModified: lastUpdated,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/steuerwissen/flexkapg-vs-gmbh`,
+      lastModified: lastUpdated,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/steuerwissen/svs-nachzahlung-4-jahr`,
+      lastModified: lastUpdated,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/steuerwissen/betriebsausgaben-checkliste`,
+      lastModified: lastUpdated,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/steuerwissen/steuer-jahresplanung`,
+      lastModified: lastUpdated,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
 
     // Produkt-Seiten
     {

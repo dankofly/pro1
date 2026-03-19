@@ -2,13 +2,13 @@ import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'SVS-Beitragsrechner – SVS Beiträge & Nachzahlung berechnen',
+  title: 'SVS Rechner 2026 — Beiträge, Nachzahlung & Netto berechnen | SteuerBoard.pro',
   description:
-    'Berechne deine SVS-Beiträge (PV, KV, UV), die Nachzahlung und dein echtes Netto als Selbständiger in Österreich. Mit aktuellen Werten für 2024, 2025 und 2026. Kostenlos.',
+    'Kostenloser SVS Rechner für Selbständige in Österreich. SVS-Beiträge 2026 berechnen, Nachzahlung prognostizieren und echtes Netto erfahren.',
   alternates: { canonical: '/rechner' },
   openGraph: {
-    title: 'SVS-Beitragsrechner – SVS Nachzahlung berechnen',
-    description: 'SVS-Beiträge, Nachzahlung, Einkommensteuer und echtes Netto in Sekunden berechnen.',
+    title: 'SVS Rechner 2026 — Beiträge, Nachzahlung & Netto berechnen | SteuerBoard.pro',
+    description: 'Kostenloser SVS Rechner für Selbständige in Österreich. SVS-Beiträge 2026 berechnen, Nachzahlung prognostizieren und echtes Netto erfahren.',
     url: '/rechner',
   },
 }

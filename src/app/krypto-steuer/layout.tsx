@@ -2,14 +2,14 @@ import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'Krypto-Steuer-Rechner Österreich 2026 — KESt berechnen',
+  title: 'Krypto Steuer Rechner Österreich 2026 — 27,5% KESt berechnen',
   description:
-    'Berechne deine Krypto-Steuern in Österreich: KESt 27,5% auf Neuvermögen, Altvermögen-Regeln, Staking & Mining. Mit Transaktions-Tabelle und FIFO-Methode.',
+    'Krypto Steuer Rechner für Österreich: KESt 27,5% auf Bitcoin, Ethereum & Co. berechnen. Altbestand, Neubestand, Staking und Mining.',
   alternates: { canonical: '/krypto-steuer' },
   openGraph: {
-    title: 'Krypto-Steuer-Rechner Österreich 2026',
+    title: 'Krypto Steuer Rechner Österreich 2026 — 27,5% KESt berechnen',
     description:
-      'Kryptowährungen-Besteuerung in Österreich: Altvermögen vs. Neuvermögen, KESt 27,5%, Staking-Erträge. Kostenlos berechnen.',
+      'Krypto Steuer Rechner für Österreich: KESt 27,5% auf Bitcoin, Ethereum & Co. berechnen. Altbestand, Neubestand, Staking und Mining.',
     url: '/krypto-steuer',
   },
 }

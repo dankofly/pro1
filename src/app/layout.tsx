@@ -30,7 +30,12 @@ export const metadata: Metadata = {
   keywords: [
     'SVS Rechner', 'SVS Beitragsrechner', 'Sozialversicherung Selbständige',
     'SVS Nachzahlung berechnen', 'SVS Österreich', 'Selbständige Österreich',
-    'Einkommensteuer Selbständige', 'Misch-Einkommen Rechner', 'Netto Rechner Selbständige',
+    'Einkommensteuer Selbständige', 'Einkommensteuer Rechner Österreich',
+    'Steuer Dashboard Selbständige', 'Netto Rechner Selbständige',
+    'Gewinnfreibetrag Rechner', 'Steueroptimierung Selbständige Österreich',
+    'Steuerrechner Österreich', 'Steuern sparen Selbständige',
+    'Misch-Einkommen Rechner', 'Betriebsausgaben Selbständige',
+    'FlexKapG vs GmbH', 'nebenberuflich selbständig Österreich',
   ],
   authors: [{ name: 'HYPEAKZ.IO', url: 'https://hypeakz.io' }],
   creator: 'HYPEAKZ.IO',

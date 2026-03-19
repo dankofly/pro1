@@ -2,14 +2,14 @@ import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'Sachbezug-Rechner 2026 — Mitarbeiter-Benefits berechnen',
+  title: 'Sachbezug Rechner 2026 — PKW Sachbezug & CO2-Grenzwert berechnen',
   description:
-    'Berechne Sachbezugswerte für Firmenwagen (CO2-basiert), Essensgutscheine, Zukunftssicherung und weitere steuerfreie Mitarbeiter-Benefits in Österreich 2026.',
+    'Sachbezug Rechner 2026: PKW-Sachbezug nach CO2-Grenzwert berechnen. 1,5% oder 2% vom Listenpreis, Deckelung und E-Auto-Vorteil.',
   alternates: { canonical: '/sachbezug-rechner' },
   openGraph: {
-    title: 'Sachbezug-Rechner 2026 — Mitarbeiter-Benefits berechnen',
+    title: 'Sachbezug Rechner 2026 — PKW Sachbezug & CO2-Grenzwert berechnen',
     description:
-      'Firmenwagen-Sachbezug, steuerfreie Benefits und Lohnnebenkosten-Ersparnis berechnen. Für Arbeitgeber in Österreich.',
+      'Sachbezug Rechner 2026: PKW-Sachbezug nach CO2-Grenzwert berechnen. 1,5% oder 2% vom Listenpreis, Deckelung und E-Auto-Vorteil.',
     url: '/sachbezug-rechner',
   },
 }

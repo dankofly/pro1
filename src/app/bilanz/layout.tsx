@@ -2,14 +2,14 @@ import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'Bilanz-Analyse & AI Forecast — Kennzahlen und Steueroptimierung',
+  title: 'Bilanz-Rechner — Bilanzierungspflicht & EAR-Grenze prüfen',
   description:
-    'Lade deine Bilanz hoch und erhalte sofort Finanzkennzahlen, Steueranalyse und AI-gestützten Forecast mit Optimierungsvorschlägen. Für österreichische Unternehmen.',
+    'Bilanzierungspflicht prüfen: Ab welchem Umsatz gilt die Pflicht zur doppelten Buchführung? EAR vs Bilanz Vergleich für Österreich.',
   alternates: { canonical: '/bilanz' },
   openGraph: {
-    title: 'Bilanz-Analyse & AI Forecast',
+    title: 'Bilanz-Rechner — Bilanzierungspflicht & EAR-Grenze prüfen',
     description:
-      'Bilanz hochladen, Kennzahlen berechnen, Steueroptimierung erhalten. Mit AI-Forecast in 3 Szenarien.',
+      'Bilanzierungspflicht prüfen: Ab welchem Umsatz gilt die Pflicht zur doppelten Buchführung? EAR vs Bilanz Vergleich für Österreich.',
     url: '/bilanz',
   },
 }

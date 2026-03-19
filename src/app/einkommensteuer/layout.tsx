@@ -2,14 +2,14 @@ import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'Einkommensteuer-Rechner 2026 — Steuer sofort berechnen',
+  title: 'Einkommensteuer Rechner 2026 für Selbständige in Österreich',
   description:
-    'Berechne deine österreichische Einkommensteuer 2026 mit allen 7 Tarifstufen, Familienbonus Plus und Absetzbeträgen. Kostenlos und sofort.',
+    'Einkommensteuer Rechner für Selbständige: EST-Prognose nach österreichischem Steuertarif 2026. Grenzsteuersatz, Absetzbeträge und Netto berechnen.',
   alternates: { canonical: '/einkommensteuer' },
   openGraph: {
-    title: 'Einkommensteuer-Rechner 2026 — Steuer sofort berechnen',
+    title: 'Einkommensteuer Rechner 2026 für Selbständige in Österreich',
     description:
-      'Österreichische Einkommensteuer 2026 berechnen: 7 Tarifstufen, Familienbonus Plus, Alleinverdienerabsetzbetrag und mehr.',
+      'Einkommensteuer Rechner für Selbständige: EST-Prognose nach österreichischem Steuertarif 2026. Grenzsteuersatz, Absetzbeträge und Netto berechnen.',
     url: '/einkommensteuer',
   },
 }
