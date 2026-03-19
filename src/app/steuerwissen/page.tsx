@@ -9,14 +9,14 @@ import { Badge } from '@/components/ui/badge'
 import { supabase } from '@/lib/supabase'
 import {
   BookOpen,
-  Send,
   RefreshCw,
   AlertCircle,
   Bot,
   User,
-  Lightbulb,
+  Sparkles,
   Crown,
   LogIn,
+  ArrowUp,
 } from 'lucide-react'
 import { toast } from 'sonner'
 import { escapeHtml } from '@/lib/sanitize-html'
@@ -28,15 +28,6 @@ interface ChatMessage {
   content: string
   chapters?: string[]
 }
-
-// ── Constants ────────────────────────────────────────────────
-
-const QUICKSTART_QUESTIONS = [
-  'Was ist der Unterschied zwischen ESt und KöSt?',
-  'Wann gilt die Kleinunternehmerregelung?',
-  'Was passiert bei einer Betriebsprüfung?',
-  'Wie funktioniert die Grunderwerbsteuer?',
-]
 
 // ── Main page ────────────────────────────────────────────────
 
@@ -68,6 +59,19 @@ function SteuerwissenContent() {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight
     }
   }, [messages, isLoading])
+
+  // Auto-resize textarea
+  const adjustTextareaHeight = useCallback(() => {
+    const textarea = inputRef.current
+    if (!textarea) return
+    textarea.style.height = 'auto'
+    const maxHeight = 120
+    textarea.style.height = `${Math.min(textarea.scrollHeight, maxHeight)}px`
+  }, [])
+
+  useEffect(() => {
+    adjustTextareaHeight()
+  }, [inputText, adjustTextareaHeight])
 
   const sendMessage = useCallback(async (text: string) => {
     if (!text.trim() || isLoading) return
@@ -144,6 +148,7 @@ function SteuerwissenContent() {
 
   const isAnonymous = !user
   const limitReached = remaining !== null && remaining <= 0
+  const hasMessages = messages.length > 0 || isLoading
 
   return (
     <div className="flex-1 flex flex-col min-h-0">
@@ -155,37 +160,36 @@ function SteuerwissenContent() {
         </div>
       </div>
 
-      <div className="flex-1 p-4 sm:p-6 pb-20 md:pb-6">
-        <div className="max-w-3xl mx-auto">
-          <div className="card-surface rounded-xl overflow-hidden">
+      <div className="flex-1 flex flex-col p-4 sm:p-6 pb-20 md:pb-6">
+        <div className="max-w-3xl mx-auto w-full flex-1 flex flex-col">
+          <div className="card-surface rounded-2xl overflow-hidden flex-1 flex flex-col border border-border/30">
             <div className="flex flex-col h-[calc(100dvh-8rem)] sm:h-[calc(100dvh-6rem)] max-h-[800px]">
 
               {/* ── Header ── */}
-              <div className="flex items-center justify-between px-4 py-3 border-b border-border/40">
+              <div className="flex items-center justify-between px-5 py-3 border-b border-border/30 bg-[hsl(var(--surface))]/50">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/10">
-                    <BookOpen className="h-4.5 w-4.5 text-emerald-600" />
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10">
+                    <BookOpen className="h-4 w-4 text-emerald-500" />
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
                       <h2 className="text-sm font-semibold text-foreground">Steuer-Wissen</h2>
                       <Badge
                         variant="outline"
-                        className="text-[10px] px-1.5 py-0 h-4 font-medium bg-emerald-500/15 text-emerald-400 border-emerald-500/30"
+                        className="text-[10px] px-1.5 py-0 h-4 font-medium bg-emerald-500/10 text-emerald-400 border-emerald-500/25"
                       >
                         Kostenlos
                       </Badge>
                     </div>
                     <p className="text-[11px] text-muted-foreground">
-                      Frag alles zum österreichischen Steuerrecht
+                      Basierend auf Lehrbuch Steuerrecht, 19. Auflage
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  {/* Rate limit display */}
                   {remaining !== null && limit !== null && (
-                    <div className="flex items-center gap-2">
-                      <div className="w-24 h-2 rounded-full bg-muted/30 overflow-hidden">
+                    <div className="hidden sm:flex items-center gap-2">
+                      <div className="w-16 h-1.5 rounded-full bg-muted/30 overflow-hidden">
                         <div
                           className={`h-full rounded-full transition-all duration-500 ${
                             remaining / limit > 0.5
@@ -197,13 +201,13 @@ function SteuerwissenContent() {
                           style={{ width: `${(remaining / limit) * 100}%` }}
                         />
                       </div>
-                      <span className="text-[11px] text-muted-foreground tabular-nums">
+                      <span className="text-[10px] text-muted-foreground tabular-nums">
                         {remaining}/{limit}
                       </span>
                     </div>
                   )}
                   {isAnonymous && remaining === null && (
-                    <span className="text-[10px] text-muted-foreground">
+                    <span className="hidden sm:inline text-[10px] text-muted-foreground">
                       5 Fragen/Tag ohne Anmeldung
                     </span>
                   )}
@@ -212,41 +216,35 @@ function SteuerwissenContent() {
                       variant="ghost"
                       size="sm"
                       onClick={resetChat}
-                      className="h-7 text-xs gap-1 text-muted-foreground"
+                      className="h-7 text-xs gap-1 text-muted-foreground hover:text-foreground"
                     >
                       <RefreshCw className="h-3 w-3" />
-                      Neuer Chat
+                      <span className="hidden sm:inline">Neuer Chat</span>
                     </Button>
                   )}
                 </div>
               </div>
 
               {/* ── Message area ── */}
-              <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4 space-y-4 scrollbar-thin">
-                {messages.length === 0 && !isLoading ? (
+              <div ref={scrollRef} className="flex-1 overflow-y-auto px-5 py-5 space-y-5 scrollbar-thin">
+                {!hasMessages ? (
                   /* Welcome screen */
-                  <div className="flex flex-col items-center justify-center h-full gap-6 py-8">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-500/10">
-                      <BookOpen className="h-8 w-8 text-emerald-500" />
+                  <div className="flex flex-col items-center justify-center h-full gap-4">
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500/15 to-emerald-600/5 ring-1 ring-emerald-500/20">
+                      <Sparkles className="h-7 w-7 text-emerald-400" />
                     </div>
-                    <div className="text-center space-y-1.5 max-w-md">
-                      <h3 className="text-lg font-semibold text-foreground">Steuer-Wissen</h3>
-                      <p className="text-sm text-muted-foreground">
-                        Frag alles zum österreichischen Steuerrecht.
-                        Basierend auf dem Lehrbuch Steuerrecht, 19. Auflage.
+                    <div className="text-center space-y-2 max-w-sm">
+                      <h3 className="text-xl font-semibold text-foreground tracking-tight">
+                        Frag zum Steuerrecht
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        Stelle deine Frage zum österreichischen Steuerrecht.
+                        Antworten basieren auf dem aktuellen Lehrbuch Steuerrecht.
                       </p>
                     </div>
-                    <div className="w-full max-w-md space-y-2">
-                      {QUICKSTART_QUESTIONS.map((q) => (
-                        <button
-                          key={q}
-                          onClick={() => sendMessage(q)}
-                          className="w-full text-left px-4 py-2.5 rounded-xl border border-border/60 text-sm text-foreground/80 hover:bg-accent hover:border-border transition-colors cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                        >
-                          {q}
-                        </button>
-                      ))}
-                    </div>
+                    <p className="text-[11px] text-muted-foreground/60 mt-2">
+                      Keine Rechtsberatung -- nur zur Information
+                    </p>
                   </div>
                 ) : (
                   /* Message list */
@@ -254,28 +252,28 @@ function SteuerwissenContent() {
                     {messages.map((msg, i) => (
                       <div key={i} className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : ''}`}>
                         {msg.role === 'assistant' && (
-                          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10 mt-0.5">
-                            <Bot className="h-3.5 w-3.5 text-emerald-600" />
+                          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 mt-0.5">
+                            <Bot className="h-3.5 w-3.5 text-emerald-500" />
                           </div>
                         )}
                         <div
-                          className={`max-w-[85%] sm:max-w-[75%] rounded-2xl px-4 py-2.5 ${
+                          className={`max-w-[85%] sm:max-w-[75%] ${
                             msg.role === 'user'
-                              ? 'bg-emerald-600 text-white rounded-br-md'
-                              : 'bg-muted/50 text-foreground rounded-bl-md'
+                              ? 'bg-emerald-600 text-white rounded-2xl rounded-br-sm px-4 py-2.5'
+                              : 'text-foreground py-1'
                           }`}
                         >
                           {msg.role === 'assistant' ? (
                             <div className="space-y-2">
                               <MarkdownContent text={msg.content} />
                               {msg.chapters && msg.chapters.length > 0 && (
-                                <div className="flex flex-wrap gap-1 pt-1.5 border-t border-border/30">
-                                  <BookOpen className="h-3 w-3 text-muted-foreground mt-0.5" />
+                                <div className="flex flex-wrap gap-1 pt-2 mt-2 border-t border-border/20">
+                                  <BookOpen className="h-3 w-3 text-muted-foreground mt-0.5 mr-0.5" />
                                   {msg.chapters.map((chapter) => (
                                     <Badge
                                       key={chapter}
                                       variant="secondary"
-                                      className="text-[10px] px-1.5 py-0 h-4 font-normal"
+                                      className="text-[10px] px-1.5 py-0 h-4 font-normal bg-muted/40"
                                     >
                                       {chapter}
                                     </Badge>
@@ -288,8 +286,8 @@ function SteuerwissenContent() {
                           )}
                         </div>
                         {msg.role === 'user' && (
-                          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-foreground/10 mt-0.5">
-                            <User className="h-3.5 w-3.5 text-foreground/60" />
+                          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-foreground/8 mt-0.5">
+                            <User className="h-3.5 w-3.5 text-foreground/50" />
                           </div>
                         )}
                       </div>
@@ -298,13 +296,17 @@ function SteuerwissenContent() {
                     {/* Loading indicator */}
                     {isLoading && (
                       <div className="flex gap-3">
-                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10 mt-0.5">
-                          <Bot className="h-3.5 w-3.5 text-emerald-600" />
+                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 mt-0.5">
+                          <Bot className="h-3.5 w-3.5 text-emerald-500" />
                         </div>
-                        <div className="bg-muted/50 rounded-2xl rounded-bl-md px-4 py-3">
+                        <div className="py-2">
                           <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <RefreshCw className="h-3.5 w-3.5 animate-spin" />
-                            Suche im Lehrbuch...
+                            <div className="flex gap-1">
+                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/60 animate-bounce" style={{ animationDelay: '0ms' }} />
+                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/60 animate-bounce" style={{ animationDelay: '150ms' }} />
+                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/60 animate-bounce" style={{ animationDelay: '300ms' }} />
+                            </div>
+                            <span className="text-xs">Suche im Lehrbuch...</span>
                           </div>
                         </div>
                       </div>
@@ -312,7 +314,7 @@ function SteuerwissenContent() {
 
                     {/* Error display */}
                     {error && !isLoading && (
-                      <div className="flex items-start gap-2 px-4 py-3 rounded-xl bg-destructive/5 text-sm text-destructive">
+                      <div className="flex items-start gap-2 px-4 py-3 rounded-xl bg-destructive/5 border border-destructive/10 text-sm text-destructive">
                         <AlertCircle className="h-4 w-4 mt-0.5 shrink-0" />
                         <p>{error}</p>
                       </div>
@@ -321,80 +323,71 @@ function SteuerwissenContent() {
                 )}
               </div>
 
-              {/* ── CTA Banner (only on welcome + after 3+ messages) ── */}
-              {(messages.length === 0 || messages.filter(m => m.role === 'assistant').length >= 3) && (
-              <div className="px-4 py-2">
-                <div className="bg-gradient-to-r from-amber-500/10 to-emerald-500/10 border border-amber-500/20 rounded-xl p-4 cursor-pointer">
-                  <div className="flex items-start gap-3">
-                    <Lightbulb className="h-5 w-5 text-amber-400 shrink-0 mt-0.5" />
-                    <div>
-                      <p className="text-sm font-medium text-white">
-                        Du willst nicht nur verstehen, sondern optimieren?
-                      </p>
-                      <p className="text-xs text-slate-400 mt-1">
-                        Der KI-Steuerberater berechnet deine persönliche Steuerersparnis mit konkreten EUR-Beträgen.
-                      </p>
-                      <Button asChild size="sm" className="mt-2 bg-amber-500 hover:bg-amber-600 text-white">
-                        <Link href="/steuerberater">
-                          <Crown className="h-3.5 w-3.5 mr-1.5" />
-                          KI-Steuerberater testen
-                        </Link>
-                      </Button>
-                    </div>
+              {/* ── CTA Banner (only after 3+ assistant messages) ── */}
+              {messages.filter(m => m.role === 'assistant').length >= 3 && (
+                <div className="px-5 py-2">
+                  <div className="flex items-center gap-3 px-4 py-2.5 rounded-lg bg-gradient-to-r from-amber-500/5 to-emerald-500/5 border border-border/30">
+                    <Crown className="h-4 w-4 text-amber-400 shrink-0" />
+                    <p className="text-xs text-muted-foreground flex-1">
+                      Konkrete Steuerersparnis berechnen?
+                    </p>
+                    <Button asChild size="sm" variant="ghost" className="h-7 text-xs gap-1.5 text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 shrink-0">
+                      <Link href="/steuerberater">
+                        KI-Steuerberater
+                        <ArrowUp className="h-3 w-3 rotate-45" />
+                      </Link>
+                    </Button>
                   </div>
                 </div>
-              </div>
               )}
 
               {/* ── Rate limit reached message ── */}
               {limitReached && (
-                <div className="px-4 py-2">
-                  <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-amber-500/10 border border-amber-500/20 text-sm">
+                <div className="px-5 py-2">
+                  <div className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-amber-500/8 border border-amber-500/15 text-sm">
                     <AlertCircle className="h-4 w-4 text-amber-400 shrink-0" />
                     {isAnonymous ? (
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-amber-200">Tageslimit erreicht.</span>
-                        <Button asChild size="sm" variant="outline" className="h-6 text-xs gap-1 border-amber-500/30 text-amber-300 hover:bg-amber-500/10">
+                        <span className="text-xs text-amber-200">Tageslimit erreicht.</span>
+                        <Button asChild size="sm" variant="ghost" className="h-6 text-xs gap-1 text-amber-300 hover:text-amber-200 hover:bg-amber-500/10">
                           <Link href="/login">
                             <LogIn className="h-3 w-3" />
-                            Melde dich an für mehr Fragen
+                            Anmelden
                           </Link>
                         </Button>
                       </div>
                     ) : (
-                      <span className="text-amber-200">Tageslimit erreicht. Versuche es morgen wieder.</span>
+                      <span className="text-xs text-amber-200">Tageslimit erreicht. Versuche es morgen wieder.</span>
                     )}
                   </div>
                 </div>
               )}
 
-              {/* ── Disclaimer ── */}
-              <div className="px-4 py-1.5 text-center">
-                <p className="text-xs text-muted-foreground">
-                  KI-Tutor basierend auf Lehrbuch Steuerrecht, 19. Auflage. Keine Rechtsberatung.
-                </p>
-              </div>
-
               {/* ── Input area ── */}
-              <div className="px-4 pb-4 pt-2 border-t border-border/40">
-                <div className="flex items-end gap-2">
+              <div className="px-5 pb-4 pt-3 border-t border-border/20">
+                {hasMessages && (
+                  <p className="text-[10px] text-muted-foreground/50 text-center mb-2">
+                    KI-Tutor -- keine Rechtsberatung
+                  </p>
+                )}
+                <div className="relative flex items-end gap-2 rounded-xl border border-border/40 bg-background/50 focus-within:border-emerald-500/40 focus-within:ring-1 focus-within:ring-emerald-500/20 transition-all">
                   <textarea
                     ref={inputRef}
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    placeholder="Stelle eine Frage zum Steuerrecht..."
-                    rows={3}
+                    placeholder="Frag etwas zum Steuerrecht..."
+                    rows={1}
                     disabled={isLoading || limitReached}
-                    className="flex-1 min-h-[80px] resize-none rounded-xl border border-border bg-background px-4 py-2.5 text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-50"
+                    className="flex-1 min-h-[44px] max-h-[120px] resize-none bg-transparent px-4 py-3 text-sm placeholder:text-muted-foreground/60 focus-visible:outline-none disabled:opacity-50"
                   />
                   <Button
                     size="icon"
                     onClick={() => sendMessage(inputText)}
                     disabled={!inputText.trim() || isLoading || limitReached}
-                    className="h-10 w-10 rounded-xl shrink-0 cursor-pointer"
+                    className="h-8 w-8 rounded-lg shrink-0 mr-1.5 mb-1.5 cursor-pointer bg-emerald-600 hover:bg-emerald-500 disabled:bg-muted disabled:opacity-40 transition-colors"
                   >
-                    <Send className="h-4 w-4" />
+                    <ArrowUp className="h-4 w-4" />
                   </Button>
                 </div>
               </div>
