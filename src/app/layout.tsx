@@ -162,7 +162,7 @@ export default function RootLayout({
             {
               '@type': 'Offer',
               name: 'Sicherheits-Plan',
-              price: '9.92',
+              price: '12.90',
               priceCurrency: 'EUR',
               description: 'Einkommensteuer-Prognose, Berechnungen speichern, Dashboard',
               priceValidUntil: '2026-12-31',
@@ -170,7 +170,7 @@ export default function RootLayout({
             {
               '@type': 'Offer',
               name: 'SteuerBoard Pro',
-              price: '19.92',
+              price: '24.90',
               priceCurrency: 'EUR',
               description: 'Alle Rechner, KI-Steuerberater, PDF-Export, Misch-Einkommen',
               priceValidUntil: '2026-12-31',

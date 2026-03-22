@@ -225,8 +225,9 @@ function RechnerContent() {
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <MobileNav />
-            <h1 className="section-header hidden sm:inline">
-              Steuerboard Berechnung für {brancheInfo ? brancheInfo.label : 'Sonstiges'} {input.year}
+            <h1 className="section-header sm:inline text-sm sm:text-base">
+              <span className="sr-only sm:not-sr-only">Steuerboard Berechnung für {brancheInfo ? brancheInfo.label : 'Sonstiges'} {input.year}</span>
+              <span className="sm:hidden">SVS Rechner {input.year}</span>
             </h1>
             <span className="text-border/60 mx-1 hidden sm:inline">/</span>
             <StatusBadge riskPercent={svs.riskPercent} />

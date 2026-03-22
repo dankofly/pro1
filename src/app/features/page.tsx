@@ -593,33 +593,7 @@ export default function FeaturesPage() {
         </Reveal>
       </div>
 
-      {/* Footer */}
-      <footer className="border-t border-white/5 py-8">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-500/20">
-              <Calculator className="h-3.5 w-3.5 text-emerald-400" />
-            </div>
-            <span className="font-semibold text-white text-sm">SteuerBoard.pro</span>
-          </div>
-          <div className="flex items-center gap-4 text-xs text-blue-200/40">
-            <Link href="/impressum" className="hover:text-blue-200 transition-colors">
-              Impressum
-            </Link>
-            <span>·</span>
-            <Link href="/datenschutz" className="hover:text-blue-200 transition-colors">
-              Datenschutz
-            </Link>
-            <span>·</span>
-            <Link href="/pricing" className="hover:text-blue-200 transition-colors">
-              Preise
-            </Link>
-          </div>
-          <p className="text-xs text-blue-200/30" suppressHydrationWarning>
-            &copy; {new Date().getFullYear()} SteuerBoard.pro
-          </p>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   )
 }

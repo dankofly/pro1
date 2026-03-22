@@ -24,8 +24,8 @@ Aktuelle Werte für 2024, 2025 und 2026.
 ## Preise
 
 - **Free:** 0 € — SVS-Beitragsrechner, Wahrheits-Tabelle
-- **Sicherheits-Plan:** 9,92 €/Monat (119 €/Jahr) — Einkommensteuer-Prognose, Dashboard, Berechnungen speichern
-- **SteuerBoard Pro:** 19,92 €/Monat (239 €/Jahr) — Alle Rechner, KI-Steuerberater, PDF-Export, Misch-Einkommen
+- **Sicherheits-Plan:** 12,90 €/Monat — Einkommensteuer-Prognose, Dashboard, Berechnungen speichern
+- **SteuerBoard Pro:** 24,90 €/Monat — Alle Rechner, KI-Steuerberater, PDF-Export, Misch-Einkommen
 
 ## Seiten
 
@@ -77,7 +77,7 @@ Endgültige SVS-Beiträge (PV 18,50%, KV 6,80%, UV, Selbständigenvorsorge 1,53%
 Nein, SteuerBoard.pro ist ein Prognose-Tool und ersetzt keine Steuerberatung. Alle Berechnungen basieren auf den aktuellen gesetzlichen Grundlagen (EStG, GSVG, ASVG).
 
 ### Was kostet SteuerBoard.pro?
-Die Basisversion ist kostenlos. Sicherheits-Plan: 9,92 €/Monat (119 €/Jahr). Pro: 19,92 €/Monat (239 €/Jahr). Jederzeit kündbar. Vollständig als Betriebsausgabe absetzbar.
+Die Basisversion ist kostenlos. Sicherheits-Plan: 12,90 €/Monat. Pro: 24,90 €/Monat. Jederzeit kündbar. Vollständig als Betriebsausgabe absetzbar.
 
 ### Was ist die SVS-Nachzahlungsfalle?
 Die SVS berechnet Beiträge zunächst auf Basis des Gewinns von vor 3 Jahren (§ 25a GSVG). Steigt das Einkommen, folgt eine hohe Nachzahlung nach dem Steuerbescheid. Bei einem Gewinnsprung von 30.000 € auf 60.000 € können über 5.000 € Nachzahlung entstehen.
