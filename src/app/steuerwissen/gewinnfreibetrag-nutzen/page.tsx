@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArticleFooter } from '@/components/steuerwissen/article-footer'
+import { SiteFooter } from '@/components/site-footer'
 
 export default function GewinnfreibetragPage() {
   return (
@@ -733,6 +734,8 @@ export default function GewinnfreibetragPage() {
           />
         </article>
       </div>
+
+      <SiteFooter />
     </div>
   )
 }

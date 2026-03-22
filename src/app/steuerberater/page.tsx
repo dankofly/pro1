@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { AppShell, useAppShell } from '@/components/svs/app-shell'
+import { SiteFooter } from '@/components/site-footer'
 import { MobileNav } from '@/components/svs/mobile-nav'
 import { TaxChatbot } from '@/components/rechner/tax-chatbot'
 import { UpgradeDialog } from '@/components/svs/upgrade-dialog'
@@ -46,6 +47,7 @@ export default function SteuerberaterPage() {
   return (
     <AppShell>
       <SteuerberaterContent />
+      <SiteFooter />
     </AppShell>
   )
 }

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArticleFooter } from '@/components/steuerwissen/article-footer'
+import { SiteFooter } from '@/components/site-footer'
 import { Calendar, Clock, TrendingUp, AlertTriangle, Calculator } from 'lucide-react'
 
 export default function SteuerJahresplanungPage() {

@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import { PageFooter } from '@/components/svs/page-footer'
+import { SiteFooter } from '@/components/site-footer'
 import Link from 'next/link'
 import { formatEuro } from '@/lib/format'
 import {
@@ -809,6 +810,7 @@ function EinkommensteuerContent() {
 
         {/* Footer */}
         <PageFooter extra={`Kein Ersatz für professionelle Steuerberatung. Werte ${year}${year === '2026' ? ' (Prognose)' : ''}.`} />
+        <SiteFooter />
       </div>
 
       <UpgradeDialog

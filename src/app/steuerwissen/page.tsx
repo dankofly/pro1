@@ -3,6 +3,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { AppShell, useAppShell } from '@/components/svs/app-shell'
+import { SiteFooter } from '@/components/site-footer'
 import { MobileNav } from '@/components/svs/mobile-nav'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -35,6 +36,7 @@ export default function SteuerwissenPage() {
   return (
     <AppShell>
       <SteuerwissenContent />
+      <SiteFooter />
     </AppShell>
   )
 }

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArticleFooter } from '@/components/steuerwissen/article-footer'
+import { SiteFooter } from '@/components/site-footer'
 
 export default function FlexKapGvsGmbHPage() {
   return (

@@ -1,6 +1,7 @@
 'use client'
 
 import { AppShell, useAppShell } from '@/components/svs/app-shell'
+import { SiteFooter } from '@/components/site-footer'
 import { STRIPE_PLANS, getStripePromise } from '@/lib/stripe'
 import { supabase } from '@/lib/supabase'
 import { Button } from '@/components/ui/button'
@@ -601,6 +602,7 @@ export default function PricingPage() {
   return (
     <AppShell>
       <PricingContent />
+      <SiteFooter />
     </AppShell>
   )
 }

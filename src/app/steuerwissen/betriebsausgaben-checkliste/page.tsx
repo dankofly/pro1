@@ -1,6 +1,7 @@
 import { Check, Calculator, FileText, AlertCircle, Info, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { SiteFooter } from '@/components/site-footer'
 import { ArticleFooter } from '@/components/steuerwissen/article-footer'
 
 export default function BetriebsausgabenCheckliste() {
@@ -805,6 +806,8 @@ export default function BetriebsausgabenCheckliste() {
           ]}
         />
       </div>
+
+      <SiteFooter />
     </div>
   )
 }

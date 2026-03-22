@@ -46,6 +46,7 @@ import { UstSection } from '@/components/rechner/ust-section'
 import { UstVergleichTabelle } from '@/components/rechner/ust-vergleich-tabelle'
 import { SectionDivider } from '@/components/rechner/section-divider'
 import { PageFooter } from '@/components/svs/page-footer'
+import { SiteFooter } from '@/components/site-footer'
 
 import { Button } from '@/components/ui/button'
 // Alert replaced with custom left-border accent divs
@@ -599,6 +600,7 @@ function RechnerContent() {
             </section>
 
             <PageFooter extra={`Kein Ersatz für professionelle Steuerberatung. Werte ${input.year}.`} />
+            <SiteFooter />
           </div>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { AppShell } from '@/components/svs/app-shell'
+import { SiteFooter } from '@/components/site-footer'
 import { ArticleFooter } from '@/components/steuerwissen/article-footer'
 
 export default function SvsNachzahlung4JahrPage() {

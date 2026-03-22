@@ -36,6 +36,7 @@ import {
 } from 'lucide-react'
 import { Pricing } from '@/components/ui/pricing'
 import { Testimonials } from '@/components/ui/testimonials'
+import { SiteFooter } from '@/components/site-footer'
 
 /* ─── Recovery redirect interceptor ─── */
 function RecoveryRedirect() {
@@ -1035,37 +1036,6 @@ function FinalCTA() {
   )
 }
 
-/* ─── Footer ─── */
-function Footer() {
-  return (
-    <footer className="bg-slate-950 border-t border-white/[0.04] py-10">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-md bg-emerald-500/20">
-              <Calculator className="h-3.5 w-3.5 text-emerald-400" />
-            </div>
-            <span className="font-semibold text-white text-sm">SteuerBoard.pro</span>
-          </div>
-          <div className="flex items-center gap-4 text-xs text-blue-200/40">
-            <Link href="/impressum" className="hover:text-blue-200 transition-colors duration-150">Impressum</Link>
-            <span>·</span>
-            <Link href="/datenschutz" className="hover:text-blue-200 transition-colors duration-150">Datenschutz</Link>
-            <span>·</span>
-            <Link href="/agb" className="hover:text-blue-200 transition-colors duration-150">AGB</Link>
-            <span>·</span>
-            <Link href="/pricing" className="hover:text-blue-200 transition-colors duration-150">Preise</Link>
-          </div>
-          <p className="text-xs text-blue-200/30" suppressHydrationWarning>
-            &copy; {new Date().getFullYear()} SteuerBoard.pro. Alle Rechte vorbehalten.
-            <span className="mx-1">·</span>
-            <a href="https://hypeakz.io" target="_blank" rel="noopener noreferrer" className="text-blue-200/40 hover:text-blue-200 transition-colors duration-150">App by Hypeakz.io</a>
-          </p>
-        </div>
-      </div>
-    </footer>
-  )
-}
 
 /* ─── FAQ JSON-LD ─── */
 const FAQ_JSONLD = {
@@ -1145,7 +1115,7 @@ export default function LandingPage() {
       <TrustSection />
       <FAQSection />
       <FinalCTA />
-      <Footer />
+      <SiteFooter />
     </main>
   )
 }

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { AppShell } from '@/components/svs/app-shell'
+import { SiteFooter } from '@/components/site-footer'
 import {
   Collapsible,
   CollapsibleTrigger,
@@ -304,6 +305,7 @@ export default function FaqPage() {
   return (
     <AppShell>
       <FaqContent />
+      <SiteFooter />
     </AppShell>
   )
 }

@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { SiteFooter } from '@/components/site-footer'
 import {
   ArrowRight,
   Shield,
@@ -303,6 +304,8 @@ export default function SteuerwissenHubPage() {
           </div>
         </div>
       </div>
+
+      <SiteFooter />
     </div>
   )
 }

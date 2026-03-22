@@ -1,6 +1,7 @@
 'use client'
 
 import { AppShell } from '@/components/svs/app-shell'
+import { SiteFooter } from '@/components/site-footer'
 
 function AGBContent() {
   return (
@@ -206,6 +207,7 @@ export default function AGBPage() {
   return (
     <AppShell>
       <AGBContent />
+      <SiteFooter />
     </AppShell>
   )
 }
