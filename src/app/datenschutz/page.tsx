@@ -19,11 +19,11 @@ function DatenschutzContent() {
             </p>
             <p>
               <strong>HYPEAKZ e.U.</strong><br />
-              Daniel Kofler<br />
+              Inhaber: Daniel Kofler<br />
               Thal-Aue 95<br />
               9911 Assling<br />
               Österreich<br />
-              E-Mail: <a href="mailto:mail@danielkofler.com" className="text-blue-600 hover:underline">mail@danielkofler.com</a><br />
+              E-Mail: <a href="mailto:info@hypeakz.io" className="text-blue-600 hover:underline">info@hypeakz.io</a><br />
               Telefon: +43 676 7293888
             </p>
           </section>
@@ -283,7 +283,7 @@ function DatenschutzContent() {
             </p>
             <p>
               Meldung von Sicherheitsvorfällen an:{' '}
-              <a href="mailto:mail@danielkofler.com" className="text-blue-600 hover:underline">mail@danielkofler.com</a>
+              <a href="mailto:info@hypeakz.io" className="text-blue-600 hover:underline">info@hypeakz.io</a>
             </p>
           </section>
 
@@ -335,7 +335,7 @@ function DatenschutzContent() {
             </ul>
             <p>
               Zur Ausübung Ihrer Rechte wenden Sie sich bitte per E-Mail an:{' '}
-              <a href="mailto:mail@danielkofler.com" className="text-blue-600 hover:underline">mail@danielkofler.com</a>
+              <a href="mailto:info@hypeakz.io" className="text-blue-600 hover:underline">info@hypeakz.io</a>
             </p>
           </section>
 

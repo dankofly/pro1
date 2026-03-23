@@ -18,10 +18,9 @@ function AGBContent() {
           </p>
           <p>
             <strong>HYPEAKZ e.U.</strong><br />
-            Daniel Kofler<br />
             Thal-Aue 95, 9911 Assling<br />
             Österreich<br />
-            E-Mail: <a href="mailto:mail@danielkofler.com" className="text-blue-600 hover:underline">mail@danielkofler.com</a>
+            E-Mail: <a href="mailto:info@hypeakz.io" className="text-blue-600 hover:underline">info@hypeakz.io</a>
           </p>
           <p>
             Mit der Nutzung von steuerboard.pro erklären Sie sich mit diesen AGB einverstanden.
@@ -174,8 +173,8 @@ function AGBContent() {
           </p>
           <p>
             <strong>An:</strong><br />
-            HYPEAKZ e.U., Daniel Kofler, Thal-Aue 95, 9911 Assling, Österreich<br />
-            E-Mail: <a href="mailto:mail@danielkofler.com" className="text-blue-600 hover:underline">mail@danielkofler.com</a>
+            HYPEAKZ e.U., Thal-Aue 95, 9911 Assling, Österreich<br />
+            E-Mail: <a href="mailto:info@hypeakz.io" className="text-blue-600 hover:underline">info@hypeakz.io</a>
           </p>
           <p>
             Zur Wahrung der Widerrufsfrist reicht es aus, dass Sie die Mitteilung über die
@@ -206,7 +205,7 @@ function AGBContent() {
             <p><strong>Muster-Widerrufsformular</strong></p>
             <p className="text-sm mt-2">(Wenn Sie den Vertrag widerrufen wollen, dann füllen Sie bitte dieses Formular aus und senden Sie es zurück.)</p>
             <ul className="list-none pl-0 space-y-2 text-sm mt-3">
-              <li>An: HYPEAKZ e.U., Daniel Kofler, Thal-Aue 95, 9911 Assling, Österreich, E-Mail: mail@danielkofler.com</li>
+              <li>An: HYPEAKZ e.U., Thal-Aue 95, 9911 Assling, Österreich, E-Mail: info@hypeakz.io</li>
               <li>Hiermit widerrufe(n) ich/wir (*) den von mir/uns (*) abgeschlossenen Vertrag über die Erbringung der folgenden Dienstleistung (*) / den Kauf der folgenden Waren (*)</li>
               <li>Bestellt am (*) / erhalten am (*)</li>
               <li>Name des/der Verbraucher(s)</li>
@@ -274,7 +273,7 @@ function AGBContent() {
           <h2 className="text-xl font-semibold mb-3">7d. Kündigung und Vertragsende</h2>
           <ul className="list-disc pl-6 space-y-1">
             <li>Das Abonnement kann jederzeit zum <strong>Ende der laufenden Abrechnungsperiode</strong> gekündigt werden</li>
-            <li>Die Kündigung ist über das Kundenportal (Stripe-Kundenbereich) oder per E-Mail an mail@danielkofler.com möglich</li>
+            <li>Die Kündigung ist über das Kundenportal (Stripe-Kundenbereich) oder per E-Mail an info@hypeakz.io möglich</li>
             <li>Nach Kündigung bleiben die Dienste bis zum Ende der bezahlten Laufzeit aktiv</li>
             <li>Nach Vertragsende werden gespeicherte Berechnungsdaten innerhalb von <strong>30 Tagen</strong> gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen</li>
             <li>Abonnement-Daten werden gemäß &sect; 132 BAO für die gesetzliche Aufbewahrungsfrist von 7 Jahren aufbewahrt</li>

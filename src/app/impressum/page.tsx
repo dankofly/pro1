@@ -13,7 +13,7 @@ function ImpressumContent() {
             <h2 className="text-xl font-semibold mb-3">Angaben gemäß &sect; 5 ECG und &sect; 25 MedienG</h2>
             <p>
               <strong>HYPEAKZ e.U.</strong><br />
-              Daniel Kofler<br />
+              Inhaber: Daniel Kofler<br />
               Thal-Aue 95<br />
               9911 Assling<br />
               Österreich
@@ -24,7 +24,7 @@ function ImpressumContent() {
             <h2 className="text-xl font-semibold mb-3">Kontakt</h2>
             <p>
               Telefon: +43 676 7293888<br />
-              E-Mail: <a href="mailto:mail@danielkofler.com" className="text-blue-600 hover:underline">mail@danielkofler.com</a>
+              E-Mail: <a href="mailto:info@hypeakz.io" className="text-blue-600 hover:underline">info@hypeakz.io</a>
             </p>
           </section>
 

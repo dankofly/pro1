@@ -290,10 +290,10 @@ function FaqContent() {
         <p>
           Noch Fragen? Schreib uns an{' '}
           <a
-            href="mailto:mail@danielkofler.com"
+            href="mailto:info@hypeakz.io"
             className="text-primary hover:underline"
           >
-            mail@danielkofler.com
+            info@hypeakz.io
           </a>
         </p>
       </div>

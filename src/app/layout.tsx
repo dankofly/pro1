@@ -99,7 +99,7 @@ export default function RootLayout({
           foundingDate: '2024',
           founder: {
             '@type': 'Person',
-            name: 'Daniel Kofler',
+            name: 'HYPEAKZ e.U.',
             jobTitle: 'Gründer',
           },
           address: {
@@ -112,7 +112,7 @@ export default function RootLayout({
           },
           contactPoint: {
             '@type': 'ContactPoint',
-            email: 'mail@danielkofler.com',
+            email: 'info@hypeakz.io',
             telephone: '+43-676-7293888',
             contactType: 'customer service',
             availableLanguage: 'German',
