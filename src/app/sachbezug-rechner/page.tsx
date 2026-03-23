@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import { PageFooter } from '@/components/svs/page-footer'
+import { RechnerDisclaimer } from '@/components/rechner/rechner-disclaimer'
 import { SiteFooter } from '@/components/site-footer'
 import Link from 'next/link'
 import { formatEuro } from '@/lib/format'
@@ -699,6 +700,12 @@ function SachbezugContent() {
             </div>
           </CardContent>
         </Card>
+
+        <RechnerDisclaimer vereinfachungen={[
+          'Sachbezugswerte basieren auf der Sachbezugswerteverordnung',
+          'Individuelle Vereinbarungen (z.B. Kostenbeteiligung) nicht berücksichtigt',
+          'Keine Berücksichtigung von Sachbezügen unter der Freigrenze (€760/Jahr)',
+        ]} />
 
         {/* Footer */}
         <PageFooter extra="Kein Ersatz für professionelle Steuerberatung." />

@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useCallback } from 'react'
 import { PageFooter } from '@/components/svs/page-footer'
+import { RechnerDisclaimer } from '@/components/rechner/rechner-disclaimer'
 import { SiteFooter } from '@/components/site-footer'
 import Link from 'next/link'
 import { formatEuro } from '@/lib/format'
@@ -541,6 +542,13 @@ function KryptoSteuerContent() {
           feature={upgradeFeature}
           requiredPlan="pro"
         />
+
+        <RechnerDisclaimer vereinfachungen={[
+          'Pauschale KESt-Berechnung (27,5%) ohne individuelle Verlustverrechnung',
+          'Keine Berücksichtigung von Mining, Staking-Rewards oder Airdrops',
+          'Altvermögen (vor 1.3.2021) vereinfacht dargestellt',
+          'Keine DeFi- oder NFT-spezifischen Regelungen',
+        ]} />
 
         {/* Footer */}
         <PageFooter extra="Kein Ersatz für professionelle Steuerberatung." />

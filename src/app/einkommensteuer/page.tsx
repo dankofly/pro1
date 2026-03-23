@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import { PageFooter } from '@/components/svs/page-footer'
+import { RechnerDisclaimer } from '@/components/rechner/rechner-disclaimer'
 import { SiteFooter } from '@/components/site-footer'
 import Link from 'next/link'
 import { formatEuro } from '@/lib/format'
@@ -807,6 +808,13 @@ function EinkommensteuerContent() {
             </Accordion>
           </CardContent>
         </Card>
+
+        <RechnerDisclaimer vereinfachungen={[
+          'Keine Sonderausgaben (Kirchenbeitrag, Spenden, bestimmte Versicherungen)',
+          'Keine außergewöhnlichen Belastungen',
+          'Kein Verlustausgleich oder Verlustvortrag aus Vorjahren',
+          'Pendlerpauschale nur bei Aktivierung berücksichtigt',
+        ]} />
 
         {/* Footer */}
         <PageFooter extra={`Kein Ersatz für professionelle Steuerberatung. Werte ${year}${year === '2026' ? ' (Prognose)' : ''}.`} />

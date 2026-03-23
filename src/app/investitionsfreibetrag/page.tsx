@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useCallback } from 'react'
 import { PageFooter } from '@/components/svs/page-footer'
+import { RechnerDisclaimer } from '@/components/rechner/rechner-disclaimer'
 import { SiteFooter } from '@/components/site-footer'
 import Link from 'next/link'
 import { formatEuro } from '@/lib/format'
@@ -699,6 +700,13 @@ function IFBContent() {
             </ul>
           </div>
         </div>
+
+        <RechnerDisclaimer vereinfachungen={[
+          'IFB nur für abnutzbares Anlagevermögen (Nutzungsdauer mind. 4 Jahre)',
+          'Nicht begünstigt: Gebäude, PKW (außer 0-Emission), gebrauchte Wirtschaftsgüter',
+          'Behaltefrist von 4 Jahren muss eingehalten werden',
+          'Maximale Bemessungsgrundlage: EUR 1.000.000 pro Wirtschaftsjahr',
+        ]} />
 
         {/* Footer */}
         <PageFooter extra="Kein Ersatz für professionelle Steuerberatung. Werte 2026." />
