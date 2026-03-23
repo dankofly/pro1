@@ -158,6 +158,65 @@ function AGBContent() {
           </p>
         </section>
 
+        {/* 7f. Widerrufsbelehrung nach FAGG */}
+        <section>
+          <h2 className="text-xl font-semibold mb-3">7f. Widerrufsbelehrung</h2>
+          <p><strong>Widerrufsrecht</strong></p>
+          <p>
+            Sie haben das Recht, binnen <strong>14 Tagen</strong> ohne Angabe von Gründen diesen
+            Vertrag zu widerrufen. Die Widerrufsfrist beträgt 14 Tage ab dem Tag des Vertragsabschlusses.
+          </p>
+          <p>
+            Um Ihr Widerrufsrecht auszuüben, müssen Sie uns mittels einer eindeutigen Erklärung
+            (z.B. ein mit der Post versandter Brief oder E-Mail) über Ihren Entschluss, diesen
+            Vertrag zu widerrufen, informieren. Sie können dafür das unten stehende
+            Muster-Widerrufsformular verwenden, das jedoch nicht vorgeschrieben ist.
+          </p>
+          <p>
+            <strong>An:</strong><br />
+            HYPEAKZ e.U., Daniel Kofler, Thal-Aue 95, 9911 Assling, Österreich<br />
+            E-Mail: <a href="mailto:mail@danielkofler.com" className="text-blue-600 hover:underline">mail@danielkofler.com</a>
+          </p>
+          <p>
+            Zur Wahrung der Widerrufsfrist reicht es aus, dass Sie die Mitteilung über die
+            Ausübung des Widerrufsrechts vor Ablauf der Widerrufsfrist absenden.
+          </p>
+          <p><strong>Folgen des Widerrufs</strong></p>
+          <p>
+            Wenn Sie diesen Vertrag widerrufen, haben wir Ihnen alle Zahlungen, die wir von Ihnen
+            erhalten haben, unverzüglich und spätestens binnen 14 Tagen ab dem Tag zurückzuzahlen,
+            an dem die Mitteilung über Ihren Widerruf dieses Vertrags bei uns eingegangen ist.
+            Für diese Rückzahlung verwenden wir dasselbe Zahlungsmittel, das Sie bei der
+            ursprünglichen Transaktion eingesetzt haben, es sei denn, mit Ihnen wurde ausdrücklich
+            etwas anderes vereinbart; in keinem Fall werden Ihnen wegen dieser Rückzahlung Entgelte
+            berechnet.
+          </p>
+          <p><strong>Vorzeitiges Erlöschen des Widerrufsrechts bei digitalen Inhalten</strong></p>
+          <p>
+            Das Widerrufsrecht erlischt bei einem Vertrag über die Bereitstellung von nicht auf
+            einem körperlichen Datenträger befindlichen digitalen Inhalten, wenn der Unternehmer
+            mit der Ausführung des Vertrags begonnen hat, nachdem der Verbraucher
+          </p>
+          <ul className="list-disc pl-6 space-y-1">
+            <li>ausdrücklich zugestimmt hat, dass der Unternehmer mit der Ausführung des Vertrags vor Ablauf der Widerrufsfrist beginnt, und</li>
+            <li>seine Kenntnis davon bestätigt hat, dass er durch seine Zustimmung mit Beginn der Ausführung des Vertrags sein Widerrufsrecht verliert.</li>
+          </ul>
+
+          <div className="mt-4 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg">
+            <p><strong>Muster-Widerrufsformular</strong></p>
+            <p className="text-sm mt-2">(Wenn Sie den Vertrag widerrufen wollen, dann füllen Sie bitte dieses Formular aus und senden Sie es zurück.)</p>
+            <ul className="list-none pl-0 space-y-2 text-sm mt-3">
+              <li>An: HYPEAKZ e.U., Daniel Kofler, Thal-Aue 95, 9911 Assling, Österreich, E-Mail: mail@danielkofler.com</li>
+              <li>Hiermit widerrufe(n) ich/wir (*) den von mir/uns (*) abgeschlossenen Vertrag über die Erbringung der folgenden Dienstleistung (*) / den Kauf der folgenden Waren (*)</li>
+              <li>Bestellt am (*) / erhalten am (*)</li>
+              <li>Name des/der Verbraucher(s)</li>
+              <li>Anschrift des/der Verbraucher(s)</li>
+              <li>Datum</li>
+            </ul>
+            <p className="text-xs mt-3 text-muted-foreground">(*) Unzutreffendes streichen.</p>
+          </div>
+        </section>
+
         {/* 7a. Keine Steuerberatung */}
         <section>
           <h2 className="text-xl font-semibold mb-3">7a. Abgrenzung zur Steuerberatung</h2>

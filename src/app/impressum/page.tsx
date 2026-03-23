@@ -77,6 +77,18 @@ function ImpressumContent() {
           </section>
 
           <section>
+            <h2 className="text-xl font-semibold mb-3">Grundlegende Richtung (MedienG)</h2>
+            <p>
+              steuerboard.pro ist ein Informations- und Berechnungsportal für Selbständige in
+              Österreich. Die grundlegende Richtung des Mediums ist die Bereitstellung von
+              unverbindlichen Steuer- und SVS-Berechnungstools, steuerlichem Fachwissen sowie
+              KI-gestützten Informationsdiensten rund um die österreichische Einkommensteuer
+              und Sozialversicherung der Selbständigen (SVS). Es handelt sich nicht um
+              Steuerberatung im Sinne des WTBG 2017.
+            </p>
+          </section>
+
+          <section>
             <h2 className="text-xl font-semibold mb-3">Streitbeilegung</h2>
             <p>
               Wir sind grundsätzlich nicht verpflichtet und nicht bereit, an Streitbeilegungsverfahren
