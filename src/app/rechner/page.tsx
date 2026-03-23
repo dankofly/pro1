@@ -47,6 +47,7 @@ import { UstVergleichTabelle } from '@/components/rechner/ust-vergleich-tabelle'
 import { SectionDivider } from '@/components/rechner/section-divider'
 import { PageFooter } from '@/components/svs/page-footer'
 import { SiteFooter } from '@/components/site-footer'
+import { RechnerDisclaimer } from '@/components/rechner/rechner-disclaimer'
 
 import { Button } from '@/components/ui/button'
 // Alert replaced with custom left-border accent divs
@@ -468,7 +469,7 @@ function RechnerContent() {
                   />
                 )}
 
-                {/* KI-Steuerberater */}
+                {/* AI SteuerBoard */}
                 <AiTaxAdvisor
                   input={input}
                   result={result}
@@ -546,7 +547,7 @@ function RechnerContent() {
                     Worin unterscheidet sich dieser Rechner vom WKO SVS-Rechner?
                   </AccordionTrigger>
                   <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
-                    Der WKO SVS-Beitragsrechner liefert nur die SVS-Beiträge auf Basis einer Beitragsgrundlage — ohne Einkommensteuer, ohne Nachzahlung und ohne echtes Netto. SteuerBoard.pro berechnet alles in einem Schritt: SVS-Beiträge, Einkommensteuer-Prognose nach Tarifstufen, die voraussichtliche Nachzahlung (Differenz vorläufige vs. endgültige Beiträge), das Geldfluss-Diagramm (wer bekommt wie viel), die Wahrheits-Tabelle mit allen Positionen im Detail und monatliche Rücklagen-Empfehlungen. Außerdem bietet SteuerBoard einen KI-Steuerberater, GmbH-Vergleich, Pauschalierungs-Check und 7 weitere Steuerrechner.
+                    Der WKO SVS-Beitragsrechner liefert nur die SVS-Beiträge auf Basis einer Beitragsgrundlage — ohne Einkommensteuer, ohne Nachzahlung und ohne echtes Netto. SteuerBoard.pro berechnet alles in einem Schritt: SVS-Beiträge, Einkommensteuer-Prognose nach Tarifstufen, die voraussichtliche Nachzahlung (Differenz vorläufige vs. endgültige Beiträge), das Geldfluss-Diagramm (wer bekommt wie viel), die Wahrheits-Tabelle mit allen Positionen im Detail und monatliche Rücklagen-Empfehlungen. Außerdem bietet SteuerBoard einen AI SteuerBoard, GmbH-Vergleich, Pauschalierungs-Check und 7 weitere Steuerrechner.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="r-2" className="border-b-0">
@@ -600,8 +601,9 @@ function RechnerContent() {
               </Accordion>
             </section>
 
-            <PageFooter extra={`Kein Ersatz für professionelle Steuerberatung. Werte ${input.year}.`} />
-            <SiteFooter />
+            {/* ── Vereinfachungen Disclaimer ─────── */}
+            <RechnerDisclaimer />
+
           </div>
         </div>
       </div>
@@ -611,8 +613,12 @@ function RechnerContent() {
 
 export default function Home() {
   return (
-    <AppShell>
-      <RechnerContent />
-    </AppShell>
+    <>
+      <AppShell>
+        <RechnerContent />
+      </AppShell>
+      <PageFooter extra={`Kein Ersatz für professionelle Steuerberatung. Werte 2025.`} />
+      <SiteFooter />
+    </>
   )
 }

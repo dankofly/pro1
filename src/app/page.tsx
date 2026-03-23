@@ -236,7 +236,7 @@ function Navbar() {
 
 /* ─── Ticker items ─── */
 const TICKER_ITEMS = [
-  { icon: Bot, text: 'KI-Steuerberater', color: 'text-emerald-400' },
+  { icon: Bot, text: 'AI SteuerBoard', color: 'text-emerald-400' },
   { icon: Calculator, text: 'Einkommensteuer', color: 'text-blue-400' },
   { icon: Building2, text: 'Körperschaftsteuer', color: 'text-violet-400' },
   { icon: Receipt, text: 'Umsatzsteuer', color: 'text-cyan-400' },
@@ -401,7 +401,7 @@ function Hero() {
         </div>
       </div>
 
-      {/* AI Steuerberater Ticker */}
+      {/* AI SteuerBoard Ticker */}
       <div className="absolute bottom-0 left-0 right-0 overflow-hidden border-t border-white/[0.04] bg-slate-950/60 backdrop-blur-sm">
         <div className="relative flex">
           {/* Fade edges */}
@@ -680,7 +680,7 @@ function FeaturesSection() {
           </div>
         </Reveal>
 
-        {/* KI-Steuerberater (Single-Question) */}
+        {/* AI SteuerBoard (Single-Question) */}
         <Reveal delay={280}>
           <div className="mt-4 relative group">
             <div className="absolute -inset-px rounded-2xl bg-gradient-to-r from-amber-500/20 via-orange-500/20 to-amber-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -691,7 +691,7 @@ function FeaturesSection() {
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <h4 className="font-semibold text-white font-heading">KI-Steuerberater</h4>
+                    <h4 className="font-semibold text-white font-heading">AI SteuerBoard</h4>
                     <Badge className="bg-amber-500/15 text-amber-400 border-amber-500/25 text-[10px] px-1.5 py-0">
                       Pro
                     </Badge>
@@ -751,7 +751,7 @@ const PRICING_PLANS = [
       // Not included
       { text: 'Einkommensteuer-Prognose', included: false },
       { text: 'Steuer-Chatbot (7 Rechner)', included: false },
-      { text: 'KI-Steuerberater', included: false },
+      { text: 'AI SteuerBoard', included: false },
       { text: 'Misch-Einkommen Rechner', included: false },
       // Expandable
       { text: 'GmbH-Vergleich', included: false },
@@ -779,7 +779,7 @@ const PRICING_PLANS = [
     features: [
       // Pro-exclusive – biggest first
       { text: 'Steuer-Chatbot (7 Rechner)', included: true },
-      { text: 'KI-Steuerberater', included: true },
+      { text: 'AI SteuerBoard', included: true },
       { text: 'Misch-Einkommen Rechner', included: true },
       { text: 'GmbH-Vergleich', included: true },
       { text: 'Pauschalierung Vergleich', included: true },
@@ -825,7 +825,7 @@ const PRICING_PLANS = [
       { text: 'Steuer-Wissen Bot', included: true },
       // Expandable – not included
       { text: 'Steuer-Chatbot (7 Rechner)', included: false },
-      { text: 'KI-Steuerberater', included: false },
+      { text: 'AI SteuerBoard', included: false },
       { text: 'Misch-Einkommen Rechner', included: false },
       { text: 'GmbH-Vergleich', included: false },
       { text: 'Pauschalierung Vergleich', included: false },
@@ -924,11 +924,11 @@ function FAQSection() {
     },
     {
       q: 'Warum SteuerBoard.pro und nicht der WKO SVS-Rechner?',
-      a: 'Der WKO SVS-Beitragsrechner berechnet nur die reinen SVS-Beiträge — ohne Einkommensteuer, ohne Nachzahlungsprognose und ohne echtes Netto. SteuerBoard.pro geht deutlich weiter: Du siehst die voraussichtliche SVS-Nachzahlung (die sogenannte „Nachzahlungsfalle"), die Einkommensteuer-Prognose nach Tarifstufen, das Geldfluss-Diagramm (was geht an SVS, Finanzamt und was bleibt netto), die Wahrheits-Tabelle mit vorläufigen vs. endgültigen Beiträgen, einen KI-Steuerberater, GmbH-Vergleich, Pauschalierungs-Check und 7 spezialisierte Steuerrechner. Der WKO-Rechner ist ein einfacher Beitragsrechner — SteuerBoard ist eine komplette Steuerplanungs-Plattform.',
+      a: 'Der WKO SVS-Beitragsrechner berechnet nur die reinen SVS-Beiträge — ohne Einkommensteuer, ohne Nachzahlungsprognose und ohne echtes Netto. SteuerBoard.pro geht deutlich weiter: Du siehst die voraussichtliche SVS-Nachzahlung (die sogenannte „Nachzahlungsfalle"), die Einkommensteuer-Prognose nach Tarifstufen, das Geldfluss-Diagramm (was geht an SVS, Finanzamt und was bleibt netto), die Wahrheits-Tabelle mit vorläufigen vs. endgültigen Beiträgen, einen AI SteuerBoard, GmbH-Vergleich, Pauschalierungs-Check und 7 spezialisierte Steuerrechner. Der WKO-Rechner ist ein einfacher Beitragsrechner — SteuerBoard ist eine komplette Steuerplanungs-Plattform.',
     },
     {
       q: 'Welche Features bietet SteuerBoard.pro?',
-      a: 'Free (kostenlos): SVS-Beitragsrechner, Wahrheits-Tabelle, Geldfluss-Diagramm, Sachbezug-Rechner, Steuer-Wissen Bot und aktuelle Werte für 2024–2026. Sicherheits-Plan (12,90 EUR/Monat): zusätzlich Einkommensteuer-Prognose, Familienbonus & Absetzbeträge, Berechnungen speichern, Dashboard mit Verlauf und Export. SteuerBoard Pro (24,90 EUR/Monat): alles plus Steuer-Chatbot mit 7 Rechnern (ESt, KöSt, USt, Krypto, ImmoESt, Sachbezug, IFB), KI-Steuerberater mit persönlicher Optimierung, Misch-Einkommen Rechner für Angestellte mit Nebeneinkünften, GmbH-Vergleich (EPU vs. GmbH mit Break-Even), Pauschalierungs-Vergleich, USt-Rechner & monatliche Rücklagen, Gewinnmaximierer, Investitionen & AfA und PDF-Export für den Steuerberater.',
+      a: 'Free (kostenlos): SVS-Beitragsrechner, Wahrheits-Tabelle, Geldfluss-Diagramm, Sachbezug-Rechner, Steuer-Wissen Bot und aktuelle Werte für 2024–2026. Sicherheits-Plan (12,90 EUR/Monat): zusätzlich Einkommensteuer-Prognose, Familienbonus & Absetzbeträge, Berechnungen speichern, Dashboard mit Verlauf und Export. SteuerBoard Pro (24,90 EUR/Monat): alles plus Steuer-Chatbot mit 7 Rechnern (ESt, KöSt, USt, Krypto, ImmoESt, Sachbezug, IFB), AI SteuerBoard mit persönlicher Optimierung, Misch-Einkommen Rechner für Angestellte mit Nebeneinkünften, GmbH-Vergleich (EPU vs. GmbH mit Break-Even), Pauschalierungs-Vergleich, USt-Rechner & monatliche Rücklagen, Gewinnmaximierer, Investitionen & AfA und PDF-Export für den Steuerberater.',
     },
     {
       q: 'Was ist die SVS-Nachzahlungsfalle und wie schützt SteuerBoard davor?',
@@ -1050,12 +1050,12 @@ const FAQ_JSONLD = {
     {
       '@type': 'Question',
       name: 'Warum SteuerBoard.pro und nicht der WKO SVS-Rechner?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Der WKO SVS-Beitragsrechner berechnet nur die reinen SVS-Beiträge — ohne Einkommensteuer, ohne Nachzahlungsprognose und ohne echtes Netto. SteuerBoard.pro zeigt zusätzlich die voraussichtliche SVS-Nachzahlung, die Einkommensteuer-Prognose nach Tarifstufen, das Geldfluss-Diagramm, die Wahrheits-Tabelle mit vorläufigen vs. endgültigen Beiträgen, einen KI-Steuerberater, GmbH-Vergleich, Pauschalierungs-Check und 7 spezialisierte Steuerrechner.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Der WKO SVS-Beitragsrechner berechnet nur die reinen SVS-Beiträge — ohne Einkommensteuer, ohne Nachzahlungsprognose und ohne echtes Netto. SteuerBoard.pro zeigt zusätzlich die voraussichtliche SVS-Nachzahlung, die Einkommensteuer-Prognose nach Tarifstufen, das Geldfluss-Diagramm, die Wahrheits-Tabelle mit vorläufigen vs. endgültigen Beiträgen, einen AI SteuerBoard, GmbH-Vergleich, Pauschalierungs-Check und 7 spezialisierte Steuerrechner.' },
     },
     {
       '@type': 'Question',
       name: 'Welche Features bietet SteuerBoard.pro?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Free (kostenlos): SVS-Beitragsrechner, Wahrheits-Tabelle, Geldfluss-Diagramm, Sachbezug-Rechner, Steuer-Wissen Bot und aktuelle Werte für 2024–2026. Sicherheits-Plan (12,90 EUR/Monat): zusätzlich Einkommensteuer-Prognose, Familienbonus & Absetzbeträge, Berechnungen speichern, Dashboard mit Verlauf und Export. SteuerBoard Pro (24,90 EUR/Monat): alles plus Steuer-Chatbot mit 7 Rechnern, KI-Steuerberater, Misch-Einkommen Rechner, GmbH-Vergleich, Pauschalierungs-Vergleich, USt-Rechner, Gewinnmaximierer, AfA-Rechner und PDF-Export.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Free (kostenlos): SVS-Beitragsrechner, Wahrheits-Tabelle, Geldfluss-Diagramm, Sachbezug-Rechner, Steuer-Wissen Bot und aktuelle Werte für 2024–2026. Sicherheits-Plan (12,90 EUR/Monat): zusätzlich Einkommensteuer-Prognose, Familienbonus & Absetzbeträge, Berechnungen speichern, Dashboard mit Verlauf und Export. SteuerBoard Pro (24,90 EUR/Monat): alles plus Steuer-Chatbot mit 7 Rechnern, AI SteuerBoard, Misch-Einkommen Rechner, GmbH-Vergleich, Pauschalierungs-Vergleich, USt-Rechner, Gewinnmaximierer, AfA-Rechner und PDF-Export.' },
     },
     {
       '@type': 'Question',

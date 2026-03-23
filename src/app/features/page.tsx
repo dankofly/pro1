@@ -187,7 +187,7 @@ const PRO_FEATURES: Feature[] = [
   },
   {
     icon: Sparkles,
-    title: 'KI-Steuerberater',
+    title: 'AI SteuerBoard',
     desc: 'Persönliche Steueranalyse deiner Rechner-Ergebnisse. Optimierungsstrategien mit konkreten Euro-Beträgen — zum Beispiel: "Du sparst 1.240 EUR wenn du den IFB nutzt."',
     color: 'text-amber-400',
     bg: 'bg-amber-500/10',
@@ -337,7 +337,7 @@ function ComparisonTable() {
     { feature: 'Dashboard & Verlauf', free: false, basic: true, pro: true },
     { feature: 'Einfacher Export', free: false, basic: true, pro: true },
     { feature: 'Steuer-Chatbot (7 Rechner)', free: false, basic: false, pro: true },
-    { feature: 'KI-Steuerberater', free: false, basic: false, pro: true },
+    { feature: 'AI SteuerBoard', free: false, basic: false, pro: true },
     { feature: 'Misch-Einkommen Rechner', free: false, basic: false, pro: true },
     { feature: 'USt-Rechner & Rücklagen', free: false, basic: false, pro: true },
     { feature: 'GmbH-Vergleich', free: false, basic: false, pro: true },
@@ -451,7 +451,7 @@ export default function FeaturesPage() {
               </span>
             </h1>
             <p className="mt-6 text-lg sm:text-xl text-blue-200/60 max-w-2xl mx-auto leading-relaxed">
-              Von der kostenlosen SVS-Berechnung bis zum KI-Steuerberater mit 7 Rechnern.
+              Von der kostenlosen SVS-Berechnung bis zum AI SteuerBoard mit 7 Rechnern.
               Gebaut von Selbständigen, für Selbständige in Österreich.
             </p>
           </Reveal>

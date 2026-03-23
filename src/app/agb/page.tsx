@@ -36,7 +36,7 @@ function AGBContent() {
           <ul className="list-disc pl-6 space-y-1">
             <li><strong>SVS-Rechner:</strong> Berechnung von Sozialversicherungsbeiträgen für Selbständige in Österreich (SVS-Beiträge, Einkommensteuer, Gesamtbelastung)</li>
             <li><strong>Steuerrechner:</strong> Schätzung von Einkommensteuer, Umsatzsteuer und weiteren steuerlichen Kennzahlen</li>
-            <li><strong>KI-Steuerberater:</strong> KI-gestützter Assistent für allgemeine steuerliche Fragen</li>
+            <li><strong>AI SteuerBoard:</strong> KI-gestützter Assistent für allgemeine steuerliche Fragen</li>
             <li><strong>Steuer-Wissen Bot:</strong> KI-basierte Wissensdatenbank zu österreichischem Steuerrecht</li>
             <li><strong>GmbH-Vergleich:</strong> Gegenüberstellung der Steuerbelastung als Einzelunternehmer vs. GmbH</li>
           </ul>
@@ -81,7 +81,7 @@ function AGBContent() {
         <section>
           <h2 className="text-xl font-semibold mb-3">4. Haftungsausschluss &ndash; KI-generierte Inhalte</h2>
           <p>
-            Der KI-Steuerberater und der Steuer-Wissen Bot nutzen künstliche Intelligenz (Large Language
+            Der AI SteuerBoard und der Steuer-Wissen Bot nutzen künstliche Intelligenz (Large Language
             Models), um Antworten auf steuerliche Fragen zu generieren.
           </p>
           <p><strong>Es wird ausdrücklich darauf hingewiesen:</strong></p>

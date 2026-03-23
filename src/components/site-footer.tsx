@@ -3,7 +3,7 @@ import { Calculator } from 'lucide-react'
 
 export function SiteFooter() {
   return (
-    <footer className="bg-slate-950 border-t border-white/[0.04] pt-12 pb-8">
+    <footer className="border-t border-white/[0.06] pt-12 pb-8" style={{ backgroundColor: 'hsl(var(--sidebar-background))' }}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-10">
           {/* Rechner */}

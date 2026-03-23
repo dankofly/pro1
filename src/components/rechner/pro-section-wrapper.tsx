@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 
 const FEATURE_DESCRIPTIONS: Record<string, string> = {
-  'KI-Steuerberater': 'Persönliche Steueranalyse deiner Zahlen durch KI — Optimierungspotenzial erkennen.',
+  'AI SteuerBoard': 'Persönliche Steueranalyse deiner Zahlen durch KI — Optimierungspotenzial erkennen.',
   'Steuer-Chatbot': 'Fragen zu ESt, KöSt, USt, Krypto und mehr — der Chatbot rechnet mit 2026-Werten.',
   'Investitionen & AfA': 'Berechne Abschreibungen und Investitionsfreibetrag für deine Anschaffungen.',
   'Pauschalierung': 'Vergleiche Pauschalierung mit Einnahmen-Ausgaben-Rechnung.',

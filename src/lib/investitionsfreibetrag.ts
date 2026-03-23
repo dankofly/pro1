@@ -14,6 +14,11 @@ export interface IFBInput {
   forschungsausgaben: number
 }
 
+export interface IFBWarnung {
+  typ: 'behaltefrist' | 'info'
+  text: string
+}
+
 export interface IFBResult {
   /** 20 % der normalen Investitionen */
   ifbNormal: number
@@ -43,6 +48,8 @@ export interface IFBResult {
   steuerOhne: number
   /** Steuer mit Freibeträgen */
   steuerMit: number
+  /** Warnungen (z.B. Behaltefrist) */
+  warnungen: IFBWarnung[]
 }
 
 export interface GFBStufe {
@@ -187,6 +194,16 @@ export function calculateIFB(input: IFBInput): IFBResult {
   const effektiverSteuersatzMit =
     jahresgewinn > 0 ? Math.max(0, steuerMit - forschungspraemie) / jahresgewinn : 0
 
+  // ── Warnungen ──
+  const warnungen: IFBWarnung[] = []
+
+  if (ifbGesamt > 0) {
+    warnungen.push({
+      typ: 'behaltefrist',
+      text: `Behaltefrist beachten: Wirtschaftsgüter, für die ein IFB geltend gemacht wird, müssen mindestens 4 Jahre im Betriebsvermögen verbleiben (§ 11 Abs 3 EStG). Bei vorzeitigem Ausscheiden wird der IFB (${Math.round(ifbGesamt).toLocaleString('de-AT')} €) gewinnerhöhend nachversteuert.`,
+    })
+  }
+
   return {
     ifbNormal,
     ifbOeko,
@@ -202,5 +219,6 @@ export function calculateIFB(input: IFBInput): IFBResult {
     investitionsBasis,
     steuerOhne,
     steuerMit,
+    warnungen,
   }
 }

@@ -19,7 +19,7 @@ const TESTIMONIALS: Testimonial[] = [
     avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face',
   },
   {
-    text: 'Der KI-Steuerberater hat mir in 5 Minuten erklärt, was mein Berater in einer Stunde nicht geschafft hat. Jeden Cent wert.',
+    text: 'Der AI SteuerBoard hat mir in 5 Minuten erklärt, was mein Berater in einer Stunde nicht geschafft hat. Jeden Cent wert.',
     name: 'Thomas W.',
     role: 'IT-Freelancer',
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face',

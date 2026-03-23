@@ -4,7 +4,7 @@ import { JsonLd } from '@/components/json-ld'
 export const metadata: Metadata = {
   title: 'FAQ — Häufige Fragen zu SteuerBoard.pro',
   description:
-    'Antworten auf häufige Fragen zu SteuerBoard.pro: SVS-Beitragsrechner, Einkommensteuer, Nachzahlung, Pro-Features, GmbH-Vergleich und KI-Steuerberater für österreichische Selbständige.',
+    'Antworten auf häufige Fragen zu SteuerBoard.pro: SVS-Beitragsrechner, Einkommensteuer, Nachzahlung, Pro-Features, GmbH-Vergleich und AI SteuerBoard für österreichische Selbständige.',
   alternates: { canonical: '/faq' },
   openGraph: {
     title: 'FAQ — Häufige Fragen zu SteuerBoard.pro',
@@ -31,7 +31,7 @@ const FAQ_JSONLD = {
       name: 'Warum SteuerBoard.pro und nicht der WKO SVS-Rechner?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Der WKO SVS-Beitragsrechner berechnet nur die reinen SVS-Beiträge. SteuerBoard.pro berechnet alles in einem Schritt: SVS-Beiträge, Einkommensteuer-Prognose, die voraussichtliche Nachzahlung, das Geldfluss-Diagramm, die Wahrheits-Tabelle, monatliche Rücklagen-Empfehlungen, einen KI-Steuerberater, GmbH-Vergleich und 7 spezialisierte Steuerrechner.',
+        text: 'Der WKO SVS-Beitragsrechner berechnet nur die reinen SVS-Beiträge. SteuerBoard.pro berechnet alles in einem Schritt: SVS-Beiträge, Einkommensteuer-Prognose, die voraussichtliche Nachzahlung, das Geldfluss-Diagramm, die Wahrheits-Tabelle, monatliche Rücklagen-Empfehlungen, das AI SteuerBoard, GmbH-Vergleich und 7 spezialisierte Steuerrechner.',
       },
     },
     {
@@ -79,7 +79,7 @@ const FAQ_JSONLD = {
       name: 'Was kosten die Pro-Features?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Free (kostenlos): SVS-Beitragsrechner, Wahrheits-Tabelle, Geldfluss-Diagramm. Sicherheits-Plan (12,90 EUR/Monat): zusätzlich Einkommensteuer-Prognose, Familienbonus, Dashboard und Export. SteuerBoard Pro (24,90 EUR/Monat): alles plus KI-Steuerberater, 7 Rechner, GmbH-Vergleich, Pauschalierungs-Check und PDF-Export.',
+        text: 'Free (kostenlos): SVS-Beitragsrechner, Wahrheits-Tabelle, Geldfluss-Diagramm. Sicherheits-Plan (12,90 EUR/Monat): zusätzlich Einkommensteuer-Prognose, Familienbonus, Dashboard und Export. SteuerBoard Pro (24,90 EUR/Monat): alles plus AI SteuerBoard, 7 Rechner, GmbH-Vergleich, Pauschalierungs-Check und PDF-Export.',
       },
     },
   ],

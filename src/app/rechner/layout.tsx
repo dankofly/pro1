@@ -25,7 +25,7 @@ const RECHNER_FAQ_JSONLD = {
     {
       '@type': 'Question',
       name: 'Worin unterscheidet sich dieser Rechner vom WKO SVS-Rechner?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Der WKO SVS-Beitragsrechner liefert nur die SVS-Beiträge. SteuerBoard.pro berechnet zusätzlich die Einkommensteuer-Prognose, die voraussichtliche Nachzahlung, das Geldfluss-Diagramm, die Wahrheits-Tabelle mit vorläufigen vs. endgültigen Beiträgen und monatliche Rücklagen-Empfehlungen. Außerdem bietet SteuerBoard einen KI-Steuerberater, GmbH-Vergleich und 7 weitere Steuerrechner.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Der WKO SVS-Beitragsrechner liefert nur die SVS-Beiträge. SteuerBoard.pro berechnet zusätzlich die Einkommensteuer-Prognose, die voraussichtliche Nachzahlung, das Geldfluss-Diagramm, die Wahrheits-Tabelle mit vorläufigen vs. endgültigen Beiträgen und monatliche Rücklagen-Empfehlungen. Außerdem bietet SteuerBoard einen AI SteuerBoard, GmbH-Vergleich und 7 weitere Steuerrechner.' },
     },
     {
       '@type': 'Question',

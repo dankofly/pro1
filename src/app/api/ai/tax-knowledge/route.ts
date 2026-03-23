@@ -37,7 +37,7 @@ STIL:
 ABGRENZUNG:
 - Du gibst KEINE individuelle Steuerberatung
 - Du erklärst das RECHT, nicht die optimale STRATEGIE
-- Bei Optimierungsfragen: "Für eine persönliche Steueroptimierung mit konkreten EUR-Beträgen empfehle ich dir den KI-Steuerberater auf steuerboard.pro/steuerberater (Pro-Feature)."
+- Bei Optimierungsfragen: "Für eine persönliche Steueroptimierung mit konkreten EUR-Beträgen empfehle ich dir den AI SteuerBoard auf steuerboard.pro/steuerberater (Pro-Feature)."
 
 DISCLAIMER: Füge am Ende jeder Antwort hinzu:
 "📖 Quelle: Lehrbuch Steuerrecht, 19. Auflage. Keine Rechtsberatung."`
@@ -189,7 +189,7 @@ export async function POST(request: NextRequest) {
     if (userMessageCount > 0 && userMessageCount % 3 === 0) {
       finalText +=
         '\n\n---\n\n' +
-        '**Tipp:** Für eine persönliche Steueroptimierung mit konkreten EUR-Beträgen nutze den [KI-Steuerberater](/steuerberater) (Pro-Feature).'
+        '**Tipp:** Für eine persönliche Steueroptimierung mit konkreten EUR-Beträgen nutze den [AI SteuerBoard](/steuerberater) (Pro-Feature).'
     }
 
     return Response.json(

@@ -76,7 +76,7 @@ export const RECHNER_REGISTRY: RechnerDef[] = [
   {
     id: 'steuerberater',
     href: '/steuerberater',
-    label: 'AI Steuerberater',
+    label: 'AI SteuerBoard',
     icon: MessageSquare,
     section: 'ai',
     requiresPro: true,

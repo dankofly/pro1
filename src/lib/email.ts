@@ -102,7 +102,7 @@ export async function sendWelcomeEmail(email: string, name?: string) {
         <li>Steuer-Wissen Bot</li>
       </ul>` +
       button('Jetzt loslegen', `${SITE_URL}/rechner`) +
-      highlight('Tipp: Upgrade auf den Sicherheits-Plan oder SteuerBoard Pro für Einkommensteuer-Prognose, KI-Steuerberater und mehr.'),
+      highlight('Tipp: Upgrade auf den Sicherheits-Plan oder SteuerBoard Pro für Einkommensteuer-Prognose, AI SteuerBoard und mehr.'),
       'Dein SteuerBoard.pro Account ist bereit!'
     ),
   })
@@ -123,7 +123,7 @@ export async function sendSubscriptionConfirmEmail(
 
   const proFeatures = plan === 'pro'
     ? `<ul style="margin:0 0 16px;padding-left:20px;color:#334155;font-size:15px;line-height:2">
-        <li>KI-Steuerberater mit persönlicher Optimierung</li>
+        <li>AI SteuerBoard mit persönlicher Optimierung</li>
         <li>Steuer-Chatbot mit 7 Rechnern</li>
         <li>Misch-Einkommen Rechner</li>
         <li>GmbH-Vergleich & Pauschalierungsvergleich</li>

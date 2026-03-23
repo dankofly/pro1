@@ -29,7 +29,7 @@ import {
 
 import {
   Calculator, Plus, Trash2, TrendingDown, Leaf, Factory,
-  PiggyBank, FlaskConical, BarChart3, Info,
+  PiggyBank, FlaskConical, BarChart3, Info, AlertTriangle,
 } from 'lucide-react'
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
@@ -610,6 +610,21 @@ function IFBContent() {
             accent="text-emerald-400"
           />
         </div>
+
+        {/* ── Behaltefrist-Warnung ──────────────────── */}
+        {result.warnungen.length > 0 && (
+          <div className="space-y-2">
+            {result.warnungen.map((w, i) => (
+              <div
+                key={i}
+                className="flex gap-3 bg-amber-50/50 dark:bg-amber-950/30 border border-amber-200/50 dark:border-amber-800/30 border-l-[3px] border-l-amber-500 rounded-lg p-4 shadow-sm"
+              >
+                <AlertTriangle className="h-4 w-4 text-amber-500 shrink-0 mt-0.5" />
+                <p className="text-sm text-foreground">{w.text}</p>
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* ── Comparison Chart ───────────────────────── */}
         <ComparisonChart result={result} />

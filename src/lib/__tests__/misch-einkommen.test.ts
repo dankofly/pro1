@@ -33,7 +33,7 @@ describe('calcAnstellung', () => {
   const year = '2025' as const
   const cfg = YEAR_CONFIGS[year]
 
-  it('€42.000 Brutto → SV + Werbungskosten abgezogen', () => {
+  it('€42.000 Brutto → Sechstelregelung: nur laufende Bezüge progressiv', () => {
     const r = calcAnstellung(42000, year)
 
     expect(r.brutto).toBe(42000)
@@ -41,7 +41,15 @@ describe('calcAnstellung', () => {
     const expectedSv = Math.min(42000, cfg.svHoechstbeitragsgrundlageAngestellt) * cfg.employeeSvRate
     expect(round2(r.sv)).toBe(round2(expectedSv))
     expect(r.werbungskosten).toBe(cfg.werbungskostenpauschale)
-    expect(r.steuerpflichtig).toBe(Math.max(0, 42000 - expectedSv - cfg.werbungskostenpauschale))
+
+    // Sechstelregelung: steuerpflichtig nur auf laufende Bezüge (12/14)
+    const laufend = 42000 * 12 / 14
+    const svLaufend = expectedSv * 12 / 14
+    expect(r.steuerpflichtig).toBeCloseTo(Math.max(0, laufend - svLaufend - cfg.werbungskostenpauschale), 1)
+
+    // Sonderzahlung: 2/14 des Brutto
+    expect(r.sonderzahlungBrutto).toBeCloseTo(42000 * 2 / 14, 1)
+    expect(r.sechstelSteuer).toBeGreaterThan(0) // 6% auf Sonderzahlung
   })
 
   it('€0 Brutto → alles 0 (außer Werbungskosten)', () => {
@@ -280,5 +288,26 @@ describe('Misch-Einkommen Edge Cases', () => {
 
     expect(mit.steuerGesamt.steuerNetto).toBeLessThan(ohne.steuerGesamt.steuerNetto)
     expect(mit.nettoMitGewerbe).toBeGreaterThan(ohne.nettoMitGewerbe)
+  })
+
+  it('Differenzvorschreibung: hohes Gehalt + Gewerbe → GSVG-BGL gedeckelt', () => {
+    // Gehalt so hoch, dass ASVG-BGL nahe HBGL → wenig Platz für GSVG
+    const r = calculateMischEinkommen(makeInput({
+      bruttoGehalt: 85000,   // Über ASVG-HBGL (77.400 in 2025)
+      jahresgewinn: 30000,
+    }))
+
+    // ASVG-BGL = 77.400 (gedeckelt), GSVG-HBGL = 90.300
+    // Differenzvorschreibung: GSVG-BGL ≤ 90.300 - 77.400 = 12.900
+    // Also SVS auf max 12.900 statt auf volle 30.000
+    const cfg = YEAR_CONFIGS['2025']
+    const maxGsvgBgl = cfg.svs.hoechstbeitrag - cfg.svHoechstbeitragsgrundlageAngestellt
+
+    // GSVG-Beiträge müssen deutlich niedriger sein als ohne Cap
+    const ohneAnstellung = calculateMischEinkommen(makeInput({
+      bruttoGehalt: 0,
+      jahresgewinn: 30000,
+    }))
+    expect(r.gewerbe.svsGesamt).toBeLessThan(ohneAnstellung.gewerbe.svsGesamt)
   })
 })

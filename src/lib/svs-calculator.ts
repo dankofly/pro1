@@ -226,7 +226,73 @@ export function calculateSteuerTipps(
   return { ifbInvestition, ifbErsparnis, svsVorauszahlung, svsVorauszahlungErsparnis, grenzsteuersatz }
 }
 
+// ── SVS-Beiträge auf eine Beitragsgrundlage berechnen (pure Funktion) ──
+
+interface SvsBeitraegeResult {
+  beitragsgrundlage: number
+  pvBeitrag: number
+  kvBeitrag: number
+  mvBeitrag: number
+  uvBeitrag: number
+  endgueltigeSVS: number
+  belowMinimum: boolean
+  cappedAtMax: boolean
+  usesMinBeitragsgrundlage: boolean
+}
+
+function calculateSvsBeitraege(
+  einkuenfte: number,
+  pvRate: number,
+  kvRate: number,
+  mvRate: number,
+  uvMonthly: number,
+  hoechstbeitrag: number,
+  minBeitragsgrundlage: number,
+  isNeueSelbstaendige: boolean,
+  versicherungsgrenze: number,
+): SvsBeitraegeResult {
+  let beitragsgrundlage: number
+  let belowMinimum: boolean
+  let usesMinBeitragsgrundlage = false
+
+  if (isNeueSelbstaendige) {
+    belowMinimum = einkuenfte < versicherungsgrenze
+    beitragsgrundlage = belowMinimum ? 0 : Math.min(einkuenfte, hoechstbeitrag)
+  } else {
+    belowMinimum = false
+    const clampedEinkuenfte = Math.max(0, einkuenfte)
+    if (clampedEinkuenfte < minBeitragsgrundlage) {
+      beitragsgrundlage = minBeitragsgrundlage
+      usesMinBeitragsgrundlage = true
+    } else {
+      beitragsgrundlage = Math.min(clampedEinkuenfte, hoechstbeitrag)
+    }
+  }
+
+  const cappedAtMax = einkuenfte > hoechstbeitrag
+  const pvBeitrag = beitragsgrundlage * pvRate
+  const kvBeitrag = beitragsgrundlage * kvRate
+  const mvBeitrag = beitragsgrundlage * mvRate
+  const uvBeitrag = belowMinimum ? 0 : uvMonthly * 12
+
+  return {
+    beitragsgrundlage,
+    pvBeitrag,
+    kvBeitrag,
+    mvBeitrag,
+    uvBeitrag,
+    endgueltigeSVS: pvBeitrag + kvBeitrag + mvBeitrag + uvBeitrag,
+    belowMinimum,
+    cappedAtMax,
+    usesMinBeitragsgrundlage,
+  }
+}
+
 // ── Haupt-SVS-Berechnung ─────────────────────────────────────
+// Iterative Berechnung: SVS ist Betriebsausgabe und mindert die eigene
+// Beitragsgrundlage (§ 25 GSVG — Einkünfte lt. Einkommensteuerbescheid).
+// GFB (§ 10 EStG) wirkt nur auf ESt, NICHT auf SVS-Beitragsgrundlage
+// (GFB wird auf Einkommensebene abgezogen, nicht auf Einkünfteebene).
 
 export function calculateSvs(
   gewinn: number,
@@ -241,7 +307,6 @@ export function calculateSvs(
   const selectedYear = Number(year)
 
   // ── Jungunternehmer-Status prüfen ──
-  // Gilt in den ersten 2 Kalenderjahren nach Gründung
   const isJungunternehmer = !!(
     stammdaten?.jungunternehmer &&
     selectedYear <= stammdaten.gruendungsJahr + 1
@@ -256,44 +321,41 @@ export function calculateSvs(
   // ── PV-Rate (BSVG: 17,0% statt 18,5%) ──
   const pvRate = isBsvg ? svs.bsvgPvRate : svs.pvRate
 
-  // ── Beitragsgrundlage je nach Versicherungsart ──
   const isNeueSelbstaendige = stammdaten?.versicherungsart === 'gsvg_neu'
 
-  // SVS-Beitragsgrundlage = Gewinn (§ 25 GSVG)
-  // GFB wirkt nur auf EST, nicht auf SVS-Beitragsgrundlage
-  // (GFB wird im Steuerbescheid erst nach den Einkünften abgezogen)
-  let beitragsgrundlage: number
-  let belowMinimum: boolean
-  let usesMinBeitragsgrundlage = false
+  // ── Iterative SVS-Berechnung ──
+  // SVS ist Betriebsausgabe → mindert Einkünfte → mindert SVS-Basis
+  // Konvergiert typisch in 3–5 Iterationen (Δ < 0,01 €)
+  let svsResult = calculateSvsBeitraege(
+    gewinn, pvRate, kvRate, svs.mvRate, svs.uvMonthly,
+    svs.hoechstbeitrag, svs.minBeitragsgrundlage,
+    isNeueSelbstaendige, cfg.versicherungsgrenze,
+  )
 
-  if (isNeueSelbstaendige) {
-    belowMinimum = gewinn < cfg.versicherungsgrenze
-    beitragsgrundlage = belowMinimum ? 0 : Math.min(gewinn, svs.hoechstbeitrag)
-  } else {
-    belowMinimum = false
-    const clampedGewinn = Math.max(0, gewinn)
-    if (clampedGewinn < svs.minBeitragsgrundlage) {
-      beitragsgrundlage = svs.minBeitragsgrundlage
-      usesMinBeitragsgrundlage = true
-    } else {
-      beitragsgrundlage = Math.min(clampedGewinn, svs.hoechstbeitrag)
+  for (let i = 0; i < 10; i++) {
+    const einkuenfte = Math.max(0, gewinn - svsResult.endgueltigeSVS)
+    const nextResult = calculateSvsBeitraege(
+      einkuenfte, pvRate, kvRate, svs.mvRate, svs.uvMonthly,
+      svs.hoechstbeitrag, svs.minBeitragsgrundlage,
+      isNeueSelbstaendige, cfg.versicherungsgrenze,
+    )
+    if (Math.abs(nextResult.endgueltigeSVS - svsResult.endgueltigeSVS) < 0.01) {
+      svsResult = nextResult
+      break
     }
+    svsResult = nextResult
   }
 
-  const cappedAtMax = gewinn > svs.hoechstbeitrag
+  const {
+    beitragsgrundlage, pvBeitrag, kvBeitrag, mvBeitrag, uvBeitrag,
+    endgueltigeSVS, belowMinimum, cappedAtMax, usesMinBeitragsgrundlage,
+  } = svsResult
 
-  // ── SVS-Beiträge berechnen ──
-  const pvBeitrag = beitragsgrundlage * pvRate
-  const kvBeitrag = beitragsgrundlage * kvRate
-  const mvBeitrag = beitragsgrundlage * svs.mvRate
-  const uvBeitrag = belowMinimum ? 0 : svs.uvMonthly * 12
-
-  const endgueltigeSVS = pvBeitrag + kvBeitrag + mvBeitrag + uvBeitrag
   const vorlaeufigeSVS = monatlicheVorschreibung * 12
   const nachzahlung = endgueltigeSVS - vorlaeufigeSVS
   const sparEmpfehlung = nachzahlung > 0 ? nachzahlung / 12 : 0
 
-  // ── Einkommensteuer ──
+  // ── Einkommensteuer (mit finaler SVS als Betriebsausgabe) ──
   const est = calculateEinkommensteuer(gewinn, endgueltigeSVS, year, proOptions, weitereEinkuenfte)
   const einkommensteuer = est.steuerNetto
 

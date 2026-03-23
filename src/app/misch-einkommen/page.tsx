@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react'
 import { PageFooter } from '@/components/svs/page-footer'
 import { SiteFooter } from '@/components/site-footer'
+import { RechnerDisclaimer } from '@/components/rechner/rechner-disclaimer'
 import Link from 'next/link'
 import { formatEuro } from '@/lib/format'
 import {
@@ -678,7 +679,14 @@ function MischContent() {
           </>
         )}
 
-        {/* Footer */}
+        {/* Disclaimer + Footer */}
+        <RechnerDisclaimer vereinfachungen={[
+          'Sechstelregelung für 13./14. Gehalt wird berücksichtigt (6% Pauschalsteuer)',
+          'Differenzvorschreibung (§ 35a GSVG) bei Mehrfachversicherung aktiv',
+          'Keine Sonderausgaben (Kirchenbeitrag, Spenden)',
+          'Kein Verlustausgleich oder Verlustvortrag',
+          'Keine außergewöhnlichen Belastungen',
+        ]} />
         <PageFooter extra={`Kein Ersatz für professionelle Steuerberatung. Werte ${year}${year === '2026' ? ' (Prognose)' : ''}.`} />
         <SiteFooter />
       </div>

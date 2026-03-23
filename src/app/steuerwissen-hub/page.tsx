@@ -296,7 +296,7 @@ export default function SteuerwissenHubPage() {
                 </Button>
                 <Button asChild variant="outline" className="border-gray-600 text-gray-300 hover:text-white hover:bg-gray-800">
                   <Link href="/steuerberater">
-                    KI-Steuerberater testen
+                    AI SteuerBoard testen
                   </Link>
                 </Button>
               </div>

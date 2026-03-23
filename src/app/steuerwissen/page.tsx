@@ -335,7 +335,7 @@ function SteuerwissenContent() {
                     </p>
                     <Button asChild size="sm" variant="ghost" className="h-7 text-xs gap-1.5 text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 shrink-0">
                       <Link href="/steuerberater">
-                        KI-Steuerberater
+                        AI SteuerBoard
                         <ArrowUp className="h-3 w-3 rotate-45" />
                       </Link>
                     </Button>

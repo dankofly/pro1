@@ -34,7 +34,9 @@ export interface AnstellungDetail {
   brutto: number
   sv: number
   werbungskosten: number
-  steuerpflichtig: number
+  steuerpflichtig: number        // nur laufende Bezüge (12×), für progressive Steuer
+  sonderzahlungBrutto: number    // 13./14. Gehalt (2× monatlich)
+  sechstelSteuer: number         // 6% Pauschalsteuer auf Sonderzahlungen (§ 67 EStG)
 }
 
 export interface GewerbeDetail {
@@ -106,29 +108,62 @@ export function calcAnstellung(brutto: number, year: TaxYear): AnstellungDetail 
   const cfg = YEAR_CONFIGS[year]
   const svBasis = Math.min(brutto, cfg.svHoechstbeitragsgrundlageAngestellt)
   const sv = svBasis * cfg.employeeSvRate
-  const steuerpflichtig = Math.max(0, brutto - sv - cfg.werbungskostenpauschale)
-  return { brutto, sv, werbungskosten: cfg.werbungskostenpauschale, steuerpflichtig }
+
+  // ── Sechstelregelung (§ 67 EStG) ──
+  // Brutto = 14 Monatsbezüge. 12× laufend (progressiv), 2× Sonderzahlung (6% pauschal)
+  const laufendBrutto = brutto * 12 / 14
+  const sonderzahlungBrutto = brutto * 2 / 14
+  const svLaufend = sv * 12 / 14
+  const svSonder = sv * 2 / 14
+
+  // Laufende Bezüge: progressiv besteuert (zusammen mit Gewerbe-Einkünften)
+  const steuerpflichtig = Math.max(0, laufendBrutto - svLaufend - cfg.werbungskostenpauschale)
+
+  // Sonderzahlungen: §620 Freibetrag, dann 6% pauschal
+  const sonderNetto = Math.max(0, sonderzahlungBrutto - svSonder)
+  const sechstelSteuer = Math.max(0, (sonderNetto - 620) * 0.06)
+
+  return {
+    brutto, sv, werbungskosten: cfg.werbungskostenpauschale,
+    steuerpflichtig, sonderzahlungBrutto, sechstelSteuer,
+  }
 }
 
-export function calcGewerbe(gewinn: number, year: TaxYear): GewerbeDetail {
+/**
+ * @param asvgBeitragsgrundlage — ASVG-BGL aus Anstellung (für Differenzvorschreibung § 35a GSVG).
+ *   Wenn gesetzt, wird die GSVG-BGL um den ASVG-Anteil reduziert, sodass die
+ *   kombinierte BGL die Höchstbeitragsgrundlage nicht übersteigt.
+ */
+export function calcGewerbe(gewinn: number, year: TaxYear, asvgBeitragsgrundlage = 0): GewerbeDetail {
   const cfg = YEAR_CONFIGS[year]
   const ueberVersicherungsgrenze = gewinn > cfg.versicherungsgrenze
   const differenzZurGrenze = gewinn - cfg.versicherungsgrenze
   const svsUv = cfg.svs.uvMonthly * 12
 
-  let svsPv = 0, svsKv = 0, svsMv = 0
+  let svsPv = 0, svsKv = 0, svsMv = 0, svsGesamt = svsUv
   if (ueberVersicherungsgrenze) {
-    const basis = Math.min(
-      Math.max(gewinn, cfg.svs.minBeitragsgrundlage),
-      cfg.svs.hoechstbeitrag
-    )
-    svsPv = basis * cfg.svs.pvRate
-    svsKv = basis * cfg.svs.kvRate
-    svsMv = basis * cfg.svs.mvRate
-  }
+    // Differenzvorschreibung (§ 35a GSVG): ASVG-BGL + GSVG-BGL ≤ HBGL
+    const maxGsvgBgl = Math.max(0, cfg.svs.hoechstbeitrag - asvgBeitragsgrundlage)
 
-  const svsGesamt = svsPv + svsKv + svsMv + svsUv
-  const svsMehrkosten = ueberVersicherungsgrenze ? svsPv + svsKv + svsMv : 0
+    // Iterative Berechnung: SVS ist Betriebsausgabe → mindert eigene BGL
+    let bgl = Math.min(Math.max(gewinn, cfg.svs.minBeitragsgrundlage), maxGsvgBgl)
+    let prevSvs = 0
+    for (let i = 0; i < 10; i++) {
+      const pv = bgl * cfg.svs.pvRate
+      const kv = bgl * cfg.svs.kvRate
+      const mv = bgl * cfg.svs.mvRate
+      const total = pv + kv + mv + svsUv
+      if (Math.abs(total - prevSvs) < 0.01) break
+      prevSvs = total
+      const einkuenfte = Math.max(0, gewinn - total)
+      bgl = Math.min(Math.max(einkuenfte, cfg.svs.minBeitragsgrundlage), maxGsvgBgl)
+    }
+    svsPv = bgl * cfg.svs.pvRate
+    svsKv = bgl * cfg.svs.kvRate
+    svsMv = bgl * cfg.svs.mvRate
+    svsGesamt = svsPv + svsKv + svsMv + svsUv
+  }
+  const svsMehrkosten = ueberVersicherungsgrenze ? svsGesamt - svsUv : 0
 
   // Steuerlicher Gewinn (nach SVS als Betriebsausgabe) als Basis für GFB (§10 EStG)
   const steuerGewinn = Math.max(0, gewinn - svsGesamt)
@@ -214,7 +249,9 @@ function calcSteuer(
 
 export function calculateMischEinkommen(input: MischInput): MischResult {
   const anstellung = calcAnstellung(input.bruttoGehalt, input.year)
-  const gewerbe = calcGewerbe(input.jahresgewinn, input.year)
+  // Differenzvorschreibung: ASVG-BGL an calcGewerbe übergeben
+  const asvgBgl = Math.min(input.bruttoGehalt, YEAR_CONFIGS[input.year].svHoechstbeitragsgrundlageAngestellt)
+  const gewerbe = calcGewerbe(input.jahresgewinn, input.year, asvgBgl)
   const absetzbetraege = calcAbsetzbetraege(input)
   const kinderCount = input.kinderUnter18 + input.kinderUeber18
 
@@ -235,8 +272,8 @@ export function calculateMischEinkommen(input: MischInput): MischResult {
     : 0
   const nebengewerbeNettoCent = 1 - nebengewerbeAbgabenquote
 
-  // Netto-Vergleich
-  const nettoNurGehalt = input.bruttoGehalt - anstellung.sv - steuerNurGehalt.steuerNetto
+  // Netto-Vergleich (inkl. Sechstelsteuer auf Sonderzahlungen)
+  const nettoNurGehalt = input.bruttoGehalt - anstellung.sv - steuerNurGehalt.steuerNetto - anstellung.sechstelSteuer
   const nettoMitGewerbe = nettoNurGehalt + input.jahresgewinn - gewerbe.svsGesamt - steuerDifferenz
   const nettoGewerbeAnteil = nettoMitGewerbe - nettoNurGehalt
 
@@ -256,19 +293,25 @@ export function calculateMischEinkommen(input: MischInput): MischResult {
   }
   if (steuerGesamt.steuerNetto > 0) {
     laufend -= steuerGesamt.steuerNetto
-    wasserfall.push({ label: 'Einkommensteuer', betrag: -steuerGesamt.steuerNetto, laufend, typ: 'abzug' })
+    wasserfall.push({ label: 'Einkommensteuer (laufend)', betrag: -steuerGesamt.steuerNetto, laufend, typ: 'abzug' })
   } else if (steuerGesamt.steuerNetto < 0) {
-    laufend -= steuerGesamt.steuerNetto // negative Steuer = Gutschrift addieren
+    laufend -= steuerGesamt.steuerNetto
     wasserfall.push({ label: 'Steuergutschrift (KMB)', betrag: -steuerGesamt.steuerNetto, laufend, typ: 'start' })
+  }
+  if (anstellung.sechstelSteuer > 0) {
+    laufend -= anstellung.sechstelSteuer
+    wasserfall.push({ label: 'Steuer 13./14. Gehalt (6%)', betrag: -anstellung.sechstelSteuer, laufend, typ: 'abzug' })
   }
   wasserfall.push({ label: 'Echtes Netto', betrag: laufend, laufend, typ: 'ergebnis' })
 
   // Vergleich
-  const steuerNurGehaltAmount = steuerNurGehalt.steuerNetto
+  // Steuer inkl. Sechstelsteuer für Vergleichstabelle
+  const steuerNurGehaltTotal = steuerNurGehalt.steuerNetto + anstellung.sechstelSteuer
+  const steuerGesamtTotal = steuerGesamt.steuerNetto + anstellung.sechstelSteuer
   const vergleich: VergleichRow[] = [
     { label: 'Brutto', nurGehalt: input.bruttoGehalt, mitGewerbe: bruttoGesamt, differenz: input.jahresgewinn },
     { label: 'Sozialversicherung', nurGehalt: -anstellung.sv, mitGewerbe: -(anstellung.sv + gewerbe.svsGesamt), differenz: -gewerbe.svsGesamt },
-    { label: 'Einkommensteuer', nurGehalt: -steuerNurGehaltAmount, mitGewerbe: -steuerGesamt.steuerNetto, differenz: -steuerDifferenz },
+    { label: 'Einkommensteuer', nurGehalt: -steuerNurGehaltTotal, mitGewerbe: -steuerGesamtTotal, differenz: -steuerDifferenz },
     { label: 'Netto', nurGehalt: nettoNurGehalt, mitGewerbe: nettoMitGewerbe, differenz: nettoGewerbeAnteil },
   ]
 

@@ -3,7 +3,7 @@
 import { formatEuro } from '@/lib/format'
 import type { GmbhResult } from '@/lib/rechner-types'
 import { Badge } from '@/components/ui/badge'
-import { Building, ThumbsUp, ThumbsDown } from 'lucide-react'
+import { Building, ThumbsUp, ThumbsDown, AlertTriangle } from 'lucide-react'
 
 interface GmbhVergleichTabelleProps {
   gmbh: GmbhResult
@@ -69,7 +69,12 @@ export function GmbhVergleichTabelle({
               <td className="py-2.5 text-right font-mono text-red-600">{formatEuro(gmbh.gfLohnsteuer)}</td>
             </tr>
             <tr className="border-b border-border/50">
-              <td className="py-2.5 text-red-600">KöSt (23%)</td>
+              <td className="py-2.5 text-red-600">Lohnnebenkosten (DB/DZ/KommSt)</td>
+              <td className="py-2.5 text-right font-mono">–</td>
+              <td className="py-2.5 text-right font-mono text-red-600">{formatEuro(gmbh.lohnnebenkosten)}</td>
+            </tr>
+            <tr className="border-b border-border/50">
+              <td className="py-2.5 text-red-600">KöSt (23%){gmbh.koest <= gmbh.minKoest ? ' *' : ''}</td>
               <td className="py-2.5 text-right font-mono">–</td>
               <td className="py-2.5 text-right font-mono text-red-600">{formatEuro(gmbh.koest)}</td>
             </tr>
@@ -98,8 +103,16 @@ export function GmbhVergleichTabelle({
         </table>
       </div>
 
+      {gmbh.warnungen.map((w, i) => (
+        <div key={i} className="flex gap-2 text-xs text-amber-600 dark:text-amber-400">
+          <AlertTriangle className="h-3.5 w-3.5 shrink-0 mt-0.5" />
+          <span>{w.text}</span>
+        </div>
+      ))}
+
       <p className="text-xs text-muted-foreground">
-        Vereinfachte Berechnung. GF-Gehalt 14×, AG-SV ~21%. Keine GmbH-Gründungskosten, Buchhaltungskosten oder Mindest-KöSt berücksichtigt.
+        GGF &gt;25%: GSVG (keine AG-SV), GF-Bezug 14×, DB/DZ/KommSt ~7%.
+        {gmbh.koest <= gmbh.minKoest && ' * Mindest-KöSt €500/Jahr greift.'}
       </p>
     </div>
   )

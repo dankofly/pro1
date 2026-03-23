@@ -44,7 +44,7 @@ const faqSections: FaqSection[] = [
       },
       {
         q: 'Warum SteuerBoard.pro und nicht der WKO SVS-Rechner?',
-        a: 'Der WKO SVS-Beitragsrechner berechnet nur die reinen SVS-Beiträge auf Basis einer Beitragsgrundlage — ohne Einkommensteuer, ohne Nachzahlungsprognose und ohne echtes Netto. SteuerBoard.pro berechnet alles in einem Schritt: SVS-Beiträge, Einkommensteuer-Prognose nach Tarifstufen, die voraussichtliche Nachzahlung (Differenz vorläufige vs. endgültige Beiträge), das Geldfluss-Diagramm, die Wahrheits-Tabelle, monatliche Rücklagen-Empfehlungen, einen KI-Steuerberater, GmbH-Vergleich, Pauschalierungs-Check und 7 spezialisierte Steuerrechner.',
+        a: 'Der WKO SVS-Beitragsrechner berechnet nur die reinen SVS-Beiträge auf Basis einer Beitragsgrundlage — ohne Einkommensteuer, ohne Nachzahlungsprognose und ohne echtes Netto. SteuerBoard.pro berechnet alles in einem Schritt: SVS-Beiträge, Einkommensteuer-Prognose nach Tarifstufen, die voraussichtliche Nachzahlung (Differenz vorläufige vs. endgültige Beiträge), das Geldfluss-Diagramm, die Wahrheits-Tabelle, monatliche Rücklagen-Empfehlungen, einen AI SteuerBoard, GmbH-Vergleich, Pauschalierungs-Check und 7 spezialisierte Steuerrechner.',
       },
       {
         q: 'Welche Steuerjahre werden unterstützt?',
@@ -100,7 +100,7 @@ const faqSections: FaqSection[] = [
     items: [
       {
         q: 'Was sind die drei Preispläne?',
-        a: 'Free (kostenlos): SVS-Beitragsrechner, Wahrheits-Tabelle, Geldfluss-Diagramm, Sachbezug-Rechner, Steuer-Wissen Bot. Sicherheits-Plan (12,90 EUR/Monat oder 119 EUR/Jahr): zusätzlich Einkommensteuer-Prognose, Familienbonus & Absetzbeträge, Berechnungen speichern, Dashboard mit Verlauf und Export. SteuerBoard Pro (24,90 EUR/Monat oder 239 EUR/Jahr): alles plus Steuer-Chatbot mit 7 Rechnern, KI-Steuerberater, Misch-Einkommen Rechner, GmbH-Vergleich, Pauschalierungs-Vergleich, USt-Rechner & Rücklagen, Gewinnmaximierer, Investitionen & AfA, Krypto-Steuer und PDF-Export.',
+        a: 'Free (kostenlos): SVS-Beitragsrechner, Wahrheits-Tabelle, Geldfluss-Diagramm, Sachbezug-Rechner, Steuer-Wissen Bot. Sicherheits-Plan (12,90 EUR/Monat oder 119 EUR/Jahr): zusätzlich Einkommensteuer-Prognose, Familienbonus & Absetzbeträge, Berechnungen speichern, Dashboard mit Verlauf und Export. SteuerBoard Pro (24,90 EUR/Monat oder 239 EUR/Jahr): alles plus Steuer-Chatbot mit 7 Rechnern, AI SteuerBoard, Misch-Einkommen Rechner, GmbH-Vergleich, Pauschalierungs-Vergleich, USt-Rechner & Rücklagen, Gewinnmaximierer, Investitionen & AfA, Krypto-Steuer und PDF-Export.',
       },
       {
         q: 'Was kann der KI-Steuer-Chatbot?',
@@ -149,7 +149,7 @@ const faqSections: FaqSection[] = [
         a: 'Vergleicht deine Abgaben über 3 Steuerjahre (2024/2025/2026). So siehst du, wie sich gesetzliche Tarifänderungen auf deine SVS-Beiträge und Einkommensteuer auswirken — bei gleichem Gewinn.',
       },
       {
-        q: 'KI-Steuerberater (AI Zusammenfassung)',
+        q: 'AI SteuerBoard (AI Zusammenfassung)',
         a: 'Generiert eine KI-gestützte Analyse deiner Steuersituation mit konkreten Optimierungsvorschlägen in EUR-Beträgen. Basiert auf deinen aktuellen Eingaben und nutzt aktuelle österreichische Steuergesetze als Grundlage.',
       },
       {

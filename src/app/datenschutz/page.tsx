@@ -143,11 +143,11 @@ function DatenschutzContent() {
             </p>
           </section>
 
-          {/* 6a. KI-Steuerberater (Google Gemini) */}
+          {/* 6a. AI SteuerBoard (Google Gemini) */}
           <section>
-            <h2 className="text-xl font-semibold mb-3">6a. KI-Steuerberater (Google Gemini)</h2>
+            <h2 className="text-xl font-semibold mb-3">6a. AI SteuerBoard (Google Gemini)</h2>
             <p>
-              Der KI-Steuerberater und der Steuer-Wissen Bot nutzen die Google Gemini API
+              Der AI SteuerBoard und der Steuer-Wissen Bot nutzen die Google Gemini API
               (<strong>Google Ireland Limited</strong>, Gordon House, Barrow Street, Dublin 4, Irland)
               zur Verarbeitung von Nutzeranfragen.
             </p>

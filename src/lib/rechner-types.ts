@@ -181,6 +181,11 @@ export interface PauschalierungResult {
   vorteilhaft: boolean
 }
 
+export interface GmbhWarnung {
+  typ: 'kosten' | 'info'
+  text: string
+}
+
 export interface GmbhResult {
   gewinnVorKoest: number
   koest: number
@@ -189,11 +194,15 @@ export interface GmbhResult {
   gfSv: number
   gfLohnsteuer: number
   gfNetto: number
+  lohnnebenkosten: number       // DB + DZ + KommSt auf GF-Bezug
+  personalAufwandGesamt: number  // GF-Bezug + Lohnnebenkosten
+  minKoest: number               // Mindest-KöSt (500€ GmbH / 250€ FlexKapG)
   ausschuettung: number
   kapest: number
   gesamtNetto: number
   differenzZuEpu: number
   vorteilhaft: boolean
+  warnungen: GmbhWarnung[]
 }
 
 export interface GewinnmaximiererResult {

@@ -146,7 +146,7 @@ export function AiTaxAdvisor({ input, result, isPro, onUpgradeRequired }: AiTaxA
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-2">
-              <h3 className="text-sm font-semibold text-foreground">KI-Steuerberater</h3>
+              <h3 className="text-sm font-semibold text-foreground">AI SteuerBoard</h3>
               <Badge variant="outline" className="text-xs px-1.5 py-0 h-4 font-medium">
                 Pro
               </Badge>
@@ -236,7 +236,7 @@ export function AiTaxAdvisor({ input, result, isPro, onUpgradeRequired }: AiTaxA
   return (
     <ProSectionWrapper
       isPro={isPro}
-      featureName="KI-Steuerberater"
+      featureName="AI SteuerBoard"
       onUpgradeRequired={onUpgradeRequired}
     >
       {content}
