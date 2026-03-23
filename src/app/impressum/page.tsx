@@ -12,7 +12,7 @@ function ImpressumContent() {
           <section>
             <h2 className="text-xl font-semibold mb-3">Angaben gemäß &sect; 5 ECG und &sect; 25 MedienG</h2>
             <p>
-              <strong>HYPEAKZ.IO</strong><br />
+              <strong>HYPEAKZ e.U.</strong><br />
               Daniel Kofler<br />
               Thal-Aue 95<br />
               9911 Assling<br />

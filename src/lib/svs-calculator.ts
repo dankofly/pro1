@@ -259,16 +259,17 @@ export function calculateSvs(
   // ── Beitragsgrundlage je nach Versicherungsart ──
   const isNeueSelbstaendige = stammdaten?.versicherungsart === 'gsvg_neu'
 
+  // SVS-Beitragsgrundlage = Gewinn (§ 25 GSVG)
+  // GFB wirkt nur auf EST, nicht auf SVS-Beitragsgrundlage
+  // (GFB wird im Steuerbescheid erst nach den Einkünften abgezogen)
   let beitragsgrundlage: number
   let belowMinimum: boolean
   let usesMinBeitragsgrundlage = false
 
   if (isNeueSelbstaendige) {
-    // Neue Selbständige (GSVG): Keine Pflichtversicherung unter Versicherungsgrenze
     belowMinimum = gewinn < cfg.versicherungsgrenze
     beitragsgrundlage = belowMinimum ? 0 : Math.min(gewinn, svs.hoechstbeitrag)
   } else {
-    // Gewerbetreibende (GSVG) / FSVG: Immer pflichtversichert, Mindestbeitragsgrundlage
     belowMinimum = false
     const clampedGewinn = Math.max(0, gewinn)
     if (clampedGewinn < svs.minBeitragsgrundlage) {
