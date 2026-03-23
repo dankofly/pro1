@@ -31,9 +31,13 @@ function ImpressumContent() {
           <section>
             <h2 className="text-xl font-semibold mb-3">Unternehmensangaben</h2>
             <p>
-              Unternehmensgegenstand: AI Automation und Marketingdienstleistungen<br />
+              Rechtsform: Einzelunternehmen (e.U.)<br />
+              Unternehmensgegenstand: Dienstleistungen in der automatischen Datenverarbeitung und Informationstechnik (freies Gewerbe)<br />
               Umsatzsteuer-Identifikationsnummer: ATU77537202<br />
-              Mitgliedschaft: Wirtschaftskammer Österreich (WKO)
+              Mitgliedschaft: Wirtschaftskammer Tirol, Fachgruppe UBIT (Unternehmensberatung, Buchhaltung und Informationstechnologie)
+            </p>
+            <p className="mt-2">
+              <strong>Hinweis:</strong> Der Betreiber ist nicht befugt, Steuerberatung im Sinne des Wirtschaftstreuhandberufsgesetzes (WTBG 2017) zu erbringen. Sämtliche auf steuerboard.pro bereitgestellten Berechnungen und Inhalte dienen ausschließlich der unverbindlichen Information und ersetzen keine professionelle Steuerberatung.
             </p>
           </section>
 
@@ -154,7 +158,7 @@ function ImpressumContent() {
         </div>
 
         <div className="mt-12 pt-6 border-t text-sm text-muted-foreground">
-          <p>Stand: Februar 2026</p>
+          <p>Stand: März 2026</p>
         </div>
       </div>
   )

@@ -17,7 +17,7 @@ function AGBContent() {
             <strong>steuerboard.pro</strong> sowie aller darauf angebotenen Dienste, betrieben von:
           </p>
           <p>
-            <strong>HYPEAKZ.IO</strong><br />
+            <strong>HYPEAKZ e.U.</strong><br />
             Daniel Kofler<br />
             Thal-Aue 95, 9911 Assling<br />
             Österreich<br />
@@ -158,6 +158,81 @@ function AGBContent() {
           </p>
         </section>
 
+        {/* 7a. Keine Steuerberatung */}
+        <section>
+          <h2 className="text-xl font-semibold mb-3">7a. Abgrenzung zur Steuerberatung</h2>
+          <p>
+            Der Betreiber ist <strong>nicht befugt</strong>, Steuerberatung im Sinne des
+            Wirtschaftstreuhandberufsgesetzes 2017 (WTBG 2017) oder der Gewerbeordnung
+            für Steuerberater (GOStB) zu erbringen. steuerboard.pro ist ein
+            Informations- und Berechnungstool, kein Steuerberatungsunternehmen.
+          </p>
+          <p>
+            Sämtliche Berechnungen, KI-generierten Inhalte und Informationen auf steuerboard.pro
+            dienen ausschließlich der unverbindlichen Erstinformation. Sie ersetzen in keinem Fall
+            die individuelle Beratung durch einen befugten Steuerberater, Wirtschaftsprüfer oder
+            Bilanzbuchhalter. KI-generierte Aussagen können bei Finanzamtsprüfungen nicht als
+            Nachweis oder Rechtsgrundlage herangezogen werden.
+          </p>
+          <p>
+            Nutzer erkennen an, dass sie die Inhalte nur für Informationszwecke verwenden und
+            für rechtlich oder steuerlich relevante Entscheidungen einen qualifizierten Steuerberater
+            konsultieren.
+          </p>
+        </section>
+
+        {/* 7b. Gewährleistung */}
+        <section>
+          <h2 className="text-xl font-semibold mb-3">7b. Gewährleistung</h2>
+          <p>
+            Der Betreiber gewährleistet die grundsätzliche Funktionsfähigkeit der angebotenen Dienste
+            gemäß der Leistungsbeschreibung in Abschnitt 2. Ein Anspruch auf ununterbrochene
+            Verfügbarkeit besteht nicht.
+          </p>
+          <p>
+            Abweichungen zwischen den Berechnungsergebnissen und tatsächlichen Steuerbescheiden
+            stellen keinen Mangel dar, da die Berechnungen ausdrücklich als unverbindliche Richtwerte
+            gekennzeichnet sind.
+          </p>
+        </section>
+
+        {/* 7c. Haftungsbegrenzung */}
+        <section>
+          <h2 className="text-xl font-semibold mb-3">7c. Haftungsbegrenzung</h2>
+          <p>
+            Die Haftung des Betreibers ist &ndash; soweit gesetzlich zulässig &ndash; wie folgt begrenzt:
+          </p>
+          <ul className="list-disc pl-6 space-y-1">
+            <li>Die Gesamthaftung des Betreibers ist auf die Höhe der vom Nutzer in den letzten <strong>12 Monaten</strong> tatsächlich gezahlten Gebühren begrenzt</li>
+            <li>Für kostenlose Nutzung ist die Haftung auf <strong>vorsätzliches und grob fahrlässiges</strong> Verhalten beschränkt</li>
+            <li>Der Betreiber haftet nicht für indirekte Schäden, entgangenen Gewinn, Folgeschäden oder Schäden aus entgangener Nutzung</li>
+            <li>Bei grober Fahrlässigkeit oder Vorsatz bleibt die Haftung nach den allgemeinen gesetzlichen Bestimmungen (ABGB) unberührt</li>
+          </ul>
+        </section>
+
+        {/* 7d. Kündigung */}
+        <section>
+          <h2 className="text-xl font-semibold mb-3">7d. Kündigung und Vertragsende</h2>
+          <ul className="list-disc pl-6 space-y-1">
+            <li>Das Abonnement kann jederzeit zum <strong>Ende der laufenden Abrechnungsperiode</strong> gekündigt werden</li>
+            <li>Die Kündigung ist über das Kundenportal (Stripe-Kundenbereich) oder per E-Mail an mail@danielkofler.com möglich</li>
+            <li>Nach Kündigung bleiben die Dienste bis zum Ende der bezahlten Laufzeit aktiv</li>
+            <li>Nach Vertragsende werden gespeicherte Berechnungsdaten innerhalb von <strong>30 Tagen</strong> gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen</li>
+            <li>Abonnement-Daten werden gemäß &sect; 132 BAO für die gesetzliche Aufbewahrungsfrist von 7 Jahren aufbewahrt</li>
+          </ul>
+        </section>
+
+        {/* 7e. AGB-Änderungen */}
+        <section>
+          <h2 className="text-xl font-semibold mb-3">7e. Änderungen der AGB</h2>
+          <p>
+            Änderungen dieser AGB werden registrierten Nutzern mindestens <strong>30 Tage</strong> vor
+            Inkrafttreten per E-Mail mitgeteilt. Widerspricht der Nutzer den geänderten AGB innerhalb
+            dieser Frist, ist er berechtigt, das Abonnement zum Änderungszeitpunkt zu kündigen.
+            Die weitere Nutzung nach Inkrafttreten gilt als Zustimmung zu den geänderten AGB.
+          </p>
+        </section>
+
         {/* 8. Geistiges Eigentum */}
         <section>
           <h2 className="text-xl font-semibold mb-3">8. Geistiges Eigentum</h2>
@@ -191,7 +266,7 @@ function AGBContent() {
             <li>Es gilt ausschließlich <strong>österreichisches Recht</strong> unter Ausschluss des UN-Kaufrechts und der Verweisungsnormen des internationalen Privatrechts</li>
             <li>Gerichtsstand für alle Streitigkeiten aus oder im Zusammenhang mit diesen AGB ist &ndash; soweit gesetzlich zulässig &ndash; Innsbruck, Österreich</li>
             <li>Sollten einzelne Bestimmungen dieser AGB unwirksam sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt (salvatorische Klausel)</li>
-            <li>Der Betreiber behält sich das Recht vor, diese AGB jederzeit zu ändern. Änderungen werden auf der Website veröffentlicht und treten mit Veröffentlichung in Kraft</li>
+            <li>Änderungen der AGB werden gemäß Abschnitt 7e mindestens 30 Tage vor Inkrafttreten per E-Mail mitgeteilt</li>
           </ul>
         </section>
       </div>

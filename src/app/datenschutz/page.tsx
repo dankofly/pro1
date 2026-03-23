@@ -18,7 +18,7 @@ function DatenschutzContent() {
               Verantwortlich für die Datenverarbeitung auf dieser Website ist:
             </p>
             <p>
-              <strong>HYPEAKZ.IO</strong><br />
+              <strong>HYPEAKZ e.U.</strong><br />
               Daniel Kofler<br />
               Thal-Aue 95<br />
               9911 Assling<br />
@@ -143,6 +143,44 @@ function DatenschutzContent() {
             </p>
           </section>
 
+          {/* 6a. KI-Steuerberater (Google Gemini) */}
+          <section>
+            <h2 className="text-xl font-semibold mb-3">6a. KI-Steuerberater (Google Gemini)</h2>
+            <p>
+              Der KI-Steuerberater und der Steuer-Wissen Bot nutzen die Google Gemini API
+              (<strong>Google Ireland Limited</strong>, Gordon House, Barrow Street, Dublin 4, Irland)
+              zur Verarbeitung von Nutzeranfragen.
+            </p>
+            <p><strong>Verarbeitete Daten:</strong></p>
+            <ul className="list-disc pl-6 space-y-1">
+              <li>Die vom Nutzer eingegebene Frage/Nachricht</li>
+              <li>Kontextdaten zur Berechnung (z.B. Gewinn, SVS-Werte), sofern der Nutzer diese im Chat teilt</li>
+            </ul>
+            <p><strong>Nicht übermittelt werden:</strong></p>
+            <ul className="list-disc pl-6 space-y-1">
+              <li>Name, E-Mail-Adresse oder andere Kontodaten</li>
+              <li>Zahlungsinformationen</li>
+              <li>IP-Adresse des Nutzers</li>
+            </ul>
+            <p>
+              Die Verarbeitung erfolgt zur Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO) und
+              ausschließlich im Rahmen der Google Gemini API (kein Training auf Nutzerdaten).
+              Google verarbeitet die Daten gemäß den{' '}
+              <a href="https://cloud.google.com/terms/data-processing-addendum" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                Google Cloud Data Processing Terms
+              </a>{' '}
+              und dem EU-U.S. Data Privacy Framework. Die Daten werden nicht länger als für die
+              Verarbeitung der Anfrage erforderlich gespeichert.
+            </p>
+            <p>
+              KI-generierte Antworten können fehlerhaft oder unvollständig sein und stellen keine
+              Steuerberatung dar. Weitere Informationen:{' '}
+              <a href="https://cloud.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                https://cloud.google.com/privacy
+              </a>
+            </p>
+          </section>
+
           {/* 7. Zahlungsabwicklung */}
           <section>
             <h2 className="text-xl font-semibold mb-3">7. Zahlungsabwicklung</h2>
@@ -193,6 +231,16 @@ function DatenschutzContent() {
             </p>
           </section>
 
+          {/* 8a. Automatisierte Entscheidungsfindung */}
+          <section>
+            <h2 className="text-xl font-semibold mb-3">8a. Automatisierte Entscheidungsfindung</h2>
+            <p>
+              Es findet keine automatisierte Entscheidungsfindung im Sinne von Art. 22 DSGVO statt,
+              die rechtliche Wirkung entfaltet oder Sie in ähnlicher Weise erheblich beeinträchtigt.
+              Sämtliche Berechnungen dienen ausschließlich der unverbindlichen Information.
+            </p>
+          </section>
+
           {/* 9. Datenweitergabe */}
           <section>
             <h2 className="text-xl font-semibold mb-3">9. Weitergabe von Daten an Dritte</h2>
@@ -211,7 +259,32 @@ function DatenschutzContent() {
               <li><strong>Supabase</strong> – Datenbank und Authentifizierung (EU-Region)</li>
               <li><strong>Netlify</strong> – Website-Hosting und Content Delivery</li>
               <li><strong>Stripe</strong> – Zahlungsabwicklung (als eigenständiger Verantwortlicher)</li>
+              <li><strong>Google (Gemini API)</strong> – KI-gestützte Antwortgenerierung (EU-Standardvertragsklauseln)</li>
             </ul>
+            <p>
+              Mit allen Auftragsverarbeitern bestehen Auftragsverarbeitungsverträge (AVV)
+              gemäß Art. 28 DSGVO bzw. gleichwertige vertragliche Garantien.
+            </p>
+          </section>
+
+          {/* 9a. Datenschutzverletzungen */}
+          <section>
+            <h2 className="text-xl font-semibold mb-3">9a. Meldung von Datenschutzverletzungen</h2>
+            <p>
+              Im Falle einer Verletzung des Schutzes personenbezogener Daten werden wir die
+              zuständige Aufsichtsbehörde (Österreichische Datenschutzbehörde) unverzüglich und
+              möglichst innerhalb von 72 Stunden nach Bekanntwerden gemäß Art. 33 DSGVO
+              benachrichtigen.
+            </p>
+            <p>
+              Sofern die Verletzung voraussichtlich ein hohes Risiko für Ihre persönlichen Rechte
+              und Freiheiten darstellt, werden wir Sie gemäß Art. 34 DSGVO unverzüglich per E-Mail
+              informieren.
+            </p>
+            <p>
+              Meldung von Sicherheitsvorfällen an:{' '}
+              <a href="mailto:mail@danielkofler.com" className="text-blue-600 hover:underline">mail@danielkofler.com</a>
+            </p>
           </section>
 
           {/* 10. Datensicherheit */}
@@ -317,7 +390,7 @@ function DatenschutzContent() {
         </div>
 
         <div className="mt-12 pt-6 border-t text-sm text-muted-foreground">
-          <p>Stand: Februar 2026</p>
+          <p>Stand: März 2026</p>
         </div>
       </div>
   )
