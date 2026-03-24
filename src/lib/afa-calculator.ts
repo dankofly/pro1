@@ -52,7 +52,7 @@ export function calculateAfA(input: InvestitionenInput): AfaResult {
   }
 }
 
-/** Gesamt-Investitionssumme (für IFB-Berechnung) */
+/** Gesamt-Investitionssumme (für IFB-Berechnung, inkl. Bundesschatz/Wertpapiere) */
 export function getTotalInvestments(input: InvestitionenInput): number {
-  return input.einrichtung + input.edv + input.maschinen
+  return input.einrichtung + input.edv + input.maschinen + (input.bundesschatz ?? 0)
 }

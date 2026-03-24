@@ -2,26 +2,31 @@
 
 import { formatEuro } from '@/lib/format'
 import type { PauschalierungResult } from '@/lib/rechner-types'
+import { getBasispauschalierungLabel } from '@/lib/rechner-engine'
 import { Badge } from '@/components/ui/badge'
 import { Calculator, ThumbsUp, ThumbsDown } from 'lucide-react'
 
 interface PauschalierungVergleichProps {
   pauschalierung: PauschalierungResult
+  year: string
   standardNetto: number
   standardAufwaende: number
   standardGewinn: number
 }
 
-const ART_LABELS: Record<string, string> = {
-  basis_12: 'Basispauschalierung 12%',
-  basis_6: 'Basispauschalierung 6%',
-  ku_produzent: 'KU-Pauschalierung 45%',
-  ku_dienstleister: 'KU-Pauschalierung 20%',
+function getArtLabels(year: string): Record<string, string> {
+  return {
+    basis_12: getBasispauschalierungLabel(year),
+    basis_6: 'Basispauschalierung 6%',
+    ku_produzent: 'KU-Pauschalierung 45%',
+    ku_dienstleister: 'KU-Pauschalierung 20%',
+  }
 }
 
 export function PauschalierungVergleich({
-  pauschalierung, standardNetto, standardAufwaende, standardGewinn,
+  pauschalierung, year, standardNetto, standardAufwaende, standardGewinn,
 }: PauschalierungVergleichProps) {
+  const ART_LABELS = getArtLabels(year)
   return (
     <div className="glass rounded-2xl p-5 sm:p-6 space-y-4">
       <div className="flex items-center justify-between">

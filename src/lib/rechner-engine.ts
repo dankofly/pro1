@@ -30,13 +30,24 @@ const ARBEITSPLATZPAUSCHALE: Record<ArbeitsplatzpauschaleType, number> = {
   gross: 1200,
 }
 
-// ── Pauschalierung Sätze ────────────────────────────────────
+// ── Pauschalierung Sätze (jahresabhängig) ───────────────────
+// Basispauschalierung: 2024 = 12%, 2025 = 13,5%, 2026+ = 15%
+// Quelle: WKO Neuerungen Basispauschalierung
 
-const PAUSCHALIERUNG_RATES: Record<Exclude<PauschalierungArt, 'keine'>, number> = {
-  basis_12: 0.12,
-  basis_6: 0.06,
-  ku_produzent: 0.45,
-  ku_dienstleister: 0.20,
+const PAUSCHALIERUNG_RATES_BY_YEAR: Record<string, Record<Exclude<PauschalierungArt, 'keine'>, number>> = {
+  '2024': { basis_12: 0.12, basis_6: 0.06, ku_produzent: 0.45, ku_dienstleister: 0.20 },
+  '2025': { basis_12: 0.135, basis_6: 0.06, ku_produzent: 0.45, ku_dienstleister: 0.20 },
+  '2026': { basis_12: 0.15, basis_6: 0.06, ku_produzent: 0.45, ku_dienstleister: 0.20 },
+}
+
+function getPauschalierungRate(art: Exclude<PauschalierungArt, 'keine'>, year: string): number {
+  return PAUSCHALIERUNG_RATES_BY_YEAR[year]?.[art] ?? PAUSCHALIERUNG_RATES_BY_YEAR['2026'][art]
+}
+
+/** Label für Basispauschalierung mit korrektem Prozentsatz */
+export function getBasispauschalierungLabel(year: string): string {
+  const rate = getPauschalierungRate('basis_12', year)
+  return `Basispauschalierung ${Math.round(rate * 100)}%`
 }
 
 const PAUSCHALIERUNG_UMSATZGRENZE: Record<Exclude<PauschalierungArt, 'keine'>, number> = {
@@ -122,7 +133,7 @@ function calcPauschalierung(
   if (art === 'keine') return null
   if (!isPauschalierungVerfuegbar(art, input.jahresumsatz)) return null
 
-  const rate = PAUSCHALIERUNG_RATES[art]
+  const rate = getPauschalierungRate(art, input.year)
   const pauschalAufwaende = input.jahresumsatz * rate
   const gewinnPauschal = Math.max(0, input.jahresumsatz - pauschalAufwaende)
 

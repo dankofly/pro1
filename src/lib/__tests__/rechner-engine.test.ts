@@ -119,15 +119,15 @@ describe('calculateAll — Pauschalierung', () => {
     expect(r.pauschalierung).toBeNull()
   })
 
-  it('basis_12: 12% pauschale Aufwände', () => {
+  it('basis_12: year-dependent pauschale Aufwände (13.5% for 2025)', () => {
     const r = calculateAll(makeInput({
       jahresumsatz: 100000,
       pauschalierungArt: 'basis_12',
     }))
 
     expect(r.pauschalierung).not.toBeNull()
-    expect(r.pauschalierung!.pauschalAufwaende).toBe(12000) // 12%
-    expect(r.pauschalierung!.gewinnPauschal).toBe(88000)     // 100.000 - 12.000
+    expect(r.pauschalierung!.pauschalAufwaende).toBe(13500) // 13.5% for 2025
+    expect(r.pauschalierung!.gewinnPauschal).toBe(86500)     // 100.000 - 13.500
   })
 
   it('basis_6: 6% pauschale Aufwände', () => {

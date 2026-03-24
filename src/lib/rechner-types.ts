@@ -41,6 +41,7 @@ export interface InvestitionenInput {
   edvMethode: AfaMethode
   maschinen: number
   maschinenMethode: AfaMethode
+  bundesschatz: number  // Bundesschatz/Wertpapiere für invest. GFB (keine AfA, 4 Jahre Behaltefrist)
 }
 
 // ── Pauschalierung ──────────────────────────────────────────
@@ -317,6 +318,7 @@ export const DEFAULT_INVESTITIONEN: InvestitionenInput = {
   edvMethode: 'linear',
   maschinen: 0,
   maschinenMethode: 'linear',
+  bundesschatz: 0,
 }
 
 export const DEFAULT_RECHNER_INPUT: RechnerInput = {

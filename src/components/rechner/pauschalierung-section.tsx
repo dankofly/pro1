@@ -6,7 +6,7 @@ import {
   Collapsible, CollapsibleTrigger, CollapsibleContent,
 } from '@/components/ui/collapsible'
 import type { RechnerAction, PauschalierungArt } from '@/lib/rechner-types'
-import { isPauschalierungVerfuegbar } from '@/lib/rechner-engine'
+import { isPauschalierungVerfuegbar, getBasispauschalierungLabel } from '@/lib/rechner-engine'
 import { ChevronDown, Calculator, Crown } from 'lucide-react'
 import { FieldInfo } from '@/components/ui/field-info'
 import { FIELD_DEFS } from '@/lib/field-definitions'
@@ -15,22 +15,27 @@ import { ProSectionWrapper } from './pro-section-wrapper'
 interface PauschalierungSectionProps {
   pauschalierungArt: PauschalierungArt
   jahresumsatz: number
+  year: string
   isPro: boolean
   dispatch: React.Dispatch<RechnerAction>
 }
 
-const OPTIONEN: { value: PauschalierungArt; label: string; desc: string }[] = [
-  { value: 'keine', label: 'Keine Pauschalierung', desc: 'Tatsächliche Aufwände verwenden' },
-  { value: 'basis_12', label: 'Basispauschalierung 12%', desc: 'Betriebsausgaben = 12% des Umsatzes (max. 220k)' },
-  { value: 'basis_6', label: 'Basispauschalierung 6%', desc: 'Für bestimmte Berufe (Berater, IT, etc.)' },
-  { value: 'ku_produzent', label: 'KU-Pauschalierung 45%', desc: 'Kleinunternehmer, produzierend (max. 35k)' },
-  { value: 'ku_dienstleister', label: 'KU-Pauschalierung 20%', desc: 'Kleinunternehmer, Dienstleistung (max. 35k)' },
-]
+function getOptionen(year: string): { value: PauschalierungArt; label: string; desc: string }[] {
+  const basisLabel = getBasispauschalierungLabel(year)
+  return [
+    { value: 'keine', label: 'Keine Pauschalierung', desc: 'Tatsächliche Aufwände verwenden' },
+    { value: 'basis_12', label: basisLabel, desc: `Betriebsausgaben pauschal vom Umsatz (max. 220k)` },
+    { value: 'basis_6', label: 'Basispauschalierung 6%', desc: 'Für bestimmte Berufe (Berater, IT, etc.)' },
+    { value: 'ku_produzent', label: 'KU-Pauschalierung 45%', desc: 'Kleinunternehmer, produzierend (max. 35k)' },
+    { value: 'ku_dienstleister', label: 'KU-Pauschalierung 20%', desc: 'Kleinunternehmer, Dienstleistung (max. 35k)' },
+  ]
+}
 
 export function PauschalierungSection({
-  pauschalierungArt, jahresumsatz, isPro, dispatch,
+  pauschalierungArt, jahresumsatz, year, isPro, dispatch,
 }: PauschalierungSectionProps) {
   const [open, setOpen] = useState(false)
+  const optionen = getOptionen(year)
 
   const setArt = (v: PauschalierungArt) =>
     dispatch({ type: 'SET_FIELD', field: 'pauschalierungArt', value: v })
@@ -46,7 +51,7 @@ export function PauschalierungSection({
             <div className="flex-1 min-w-0">
               <h2 className="text-sm font-semibold tracking-tight flex items-center gap-1.5">Pauschalierung <Crown className="h-3 w-3 text-amber-400" /> <FieldInfo text={FIELD_DEFS.pauschalierungArt} /></h2>
               <p className="text-xs text-muted-foreground truncate">
-                {pauschalierungArt === 'keine' ? 'Nicht aktiv' : OPTIONEN.find(o => o.value === pauschalierungArt)?.label}
+                {pauschalierungArt === 'keine' ? 'Nicht aktiv' : optionen.find(o => o.value === pauschalierungArt)?.label}
               </p>
             </div>
             <ChevronDown className={`h-4 w-4 shrink-0 text-muted-foreground transition-transform ${open ? 'rotate-180' : ''}`} />
@@ -61,7 +66,7 @@ export function PauschalierungSection({
                 onValueChange={(v) => setArt(v as PauschalierungArt)}
                 className="space-y-2"
               >
-                {OPTIONEN.map((opt) => {
+                {optionen.map((opt) => {
                   const verfuegbar = isPauschalierungVerfuegbar(opt.value, jahresumsatz)
                   return (
                     <label

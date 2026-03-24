@@ -52,7 +52,7 @@ import { RechnerDisclaimer } from '@/components/rechner/rechner-disclaimer'
 import { Button } from '@/components/ui/button'
 // Alert replaced with custom left-border accent divs
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
-import { Save, Lock, ChevronDown, HelpCircle } from 'lucide-react'
+import { Save, Lock, ChevronDown, HelpCircle, AlertTriangle } from 'lucide-react'
 import { toast } from 'sonner'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useScrollReveal } from '@/hooks/use-scroll-reveal'
@@ -292,6 +292,8 @@ function RechnerContent() {
             <InvestitionenSection
               investitionen={input.investitionen}
               afa={result.afa}
+              gewinn={result.gewinn}
+              year={input.year}
               isPro={subscription.isPro}
               dispatch={dispatch}
             />
@@ -299,6 +301,7 @@ function RechnerContent() {
             <PauschalierungSection
               pauschalierungArt={input.pauschalierungArt}
               jahresumsatz={input.jahresumsatz}
+              year={input.year}
               isPro={subscription.isPro}
               dispatch={dispatch}
             />
@@ -384,6 +387,56 @@ function RechnerContent() {
               <DashboardCards result={svs} vorschreibung={vorschreibung} />
             )}
 
+            {/* Neugründer-Nachzahlung Warnung (3. Jahr) */}
+            {(() => {
+              const gruendungsJahr = input.stammdaten.gruendungsJahr
+              const selectedYear = Number(input.year)
+              const jahreAlsSelbstaendig = selectedYear - gruendungsJahr
+              // In den ersten 2 Jahren zahlt man SVS auf MinBGL, danach kommt die Nachrechnung
+              if (jahreAlsSelbstaendig >= 0 && jahreAlsSelbstaendig <= 2 && !svs.belowMinimum && result.gewinn > minBeitragsgrundlage) {
+                const svsRate = yearConfig.svs.pvRate + yearConfig.svs.kvRate + yearConfig.svs.mvRate
+                const vorlaeufigMinBgl = minBeitragsgrundlage * svsRate + yearConfig.svs.uvMonthly * 12
+                const nachzahlungJahr3 = Math.max(0, svs.endgueltigeSVS - vorlaeufigMinBgl)
+                const nachzahlungJahr = gruendungsJahr + 3
+                if (nachzahlungJahr3 > 500) {
+                  return (
+                    <div className="glass rounded-2xl p-5 space-y-3 border-l-[3px] border-l-amber-500">
+                      <div className="flex items-center gap-2">
+                        <AlertTriangle className="h-5 w-5 text-amber-500" />
+                        <h3 className="text-base font-semibold">SVS-Nachzahlung im {nachzahlungJahr > selectedYear ? nachzahlungJahr : 3}. Jahr</h3>
+                      </div>
+                      <p className="text-sm text-muted-foreground">
+                        Als Neugründer ({gruendungsJahr}) zahlst du aktuell SVS auf der Mindestbeitragsgrundlage ({formatEuro(minBeitragsgrundlage)}/Jahr = {formatEuro(vorlaeufigMinBgl)}/Jahr SVS).
+                        Wenn die SVS deinen tatsächlichen Gewinn erfährt, wird nachberechnet.
+                      </p>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div className="bg-muted/40 rounded-lg p-3 text-center">
+                          <p className="text-xs text-muted-foreground">Vorläufig (MinBGL)</p>
+                          <p className="text-lg font-bold font-mono">{formatEuro(vorlaeufigMinBgl)}</p>
+                          <p className="text-xs text-muted-foreground">pro Jahr</p>
+                        </div>
+                        <div className="bg-muted/40 rounded-lg p-3 text-center">
+                          <p className="text-xs text-muted-foreground">Endgültig (tatsächlich)</p>
+                          <p className="text-lg font-bold font-mono">{formatEuro(svs.endgueltigeSVS)}</p>
+                          <p className="text-xs text-muted-foreground">pro Jahr</p>
+                        </div>
+                      </div>
+                      <div className="bg-amber-50/50 dark:bg-amber-950/20 rounded-lg p-3 border border-amber-200/30 dark:border-amber-800/30">
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm font-medium">Erwartete Nachzahlung</span>
+                          <span className="text-lg font-bold font-mono text-amber-600 dark:text-amber-400">{formatEuro(nachzahlungJahr3)}</span>
+                        </div>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          Tipp: Lege {formatEuro(nachzahlungJahr3 / 12)}/Monat zusätzlich auf ein separates Konto zurück, damit dich die Nachzahlung nicht kalt erwischt.
+                        </p>
+                      </div>
+                    </div>
+                  )
+                }
+              }
+              return null
+            })()}
+
             <ScrollReveal>
               <RuecklagenSection
                 ruecklagen={result.ruecklagen}
@@ -445,6 +498,7 @@ function RechnerContent() {
                 {result.pauschalierung && subscription.isPro && (
                   <PauschalierungVergleich
                     pauschalierung={result.pauschalierung}
+                    year={input.year}
                     standardNetto={svs.echtesNetto}
                     standardAufwaende={result.aufwaendeEffektiv}
                     standardGewinn={result.gewinn}
