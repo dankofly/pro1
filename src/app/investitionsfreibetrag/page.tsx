@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useMemo, useCallback } from 'react'
-import { PageFooter } from '@/components/svs/page-footer'
 import { RechnerDisclaimer } from '@/components/rechner/rechner-disclaimer'
 import { SiteFooter } from '@/components/site-footer'
 import Link from 'next/link'
@@ -709,7 +708,6 @@ function IFBContent() {
         ]} />
 
         {/* Footer */}
-        <PageFooter extra="Kein Ersatz für professionelle Steuerberatung. Werte 2026." />
         <SiteFooter />
       </div>
     </>

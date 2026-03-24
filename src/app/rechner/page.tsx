@@ -45,7 +45,6 @@ import { RuecklagenSection } from '@/components/rechner/ruecklagen-section'
 import { UstSection } from '@/components/rechner/ust-section'
 import { UstVergleichTabelle } from '@/components/rechner/ust-vergleich-tabelle'
 import { SectionDivider } from '@/components/rechner/section-divider'
-import { PageFooter } from '@/components/svs/page-footer'
 import { SiteFooter } from '@/components/site-footer'
 import { RechnerDisclaimer } from '@/components/rechner/rechner-disclaimer'
 
@@ -671,7 +670,6 @@ export default function Home() {
       <AppShell>
         <RechnerContent />
       </AppShell>
-      <PageFooter extra={`Kein Ersatz für professionelle Steuerberatung. Werte 2025.`} />
       <SiteFooter />
     </>
   )

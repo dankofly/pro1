@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { PageFooter } from '@/components/svs/page-footer'
 import { RechnerDisclaimer } from '@/components/rechner/rechner-disclaimer'
 import { SiteFooter } from '@/components/site-footer'
 import Link from 'next/link'
@@ -817,7 +816,6 @@ function EinkommensteuerContent() {
         ]} />
 
         {/* Footer */}
-        <PageFooter extra={`Kein Ersatz für professionelle Steuerberatung. Werte ${year}${year === '2026' ? ' (Prognose)' : ''}.`} />
         <SiteFooter />
       </div>
 

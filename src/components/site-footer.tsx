@@ -63,6 +63,11 @@ export function SiteFooter() {
           </div>
         </div>
 
+        {/* Legal line */}
+        <p className="text-xs text-slate-500 text-center mb-8">
+          Alle Angaben ohne Gewähr. Kein Ersatz für professionelle Steuerberatung. Der Betreiber erbringt keine Steuerberatung im Sinne des WTBG.
+        </p>
+
         {/* Bottom bar */}
         <div className="border-t border-slate-800/50 pt-8">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
