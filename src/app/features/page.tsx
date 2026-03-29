@@ -1,10 +1,8 @@
-'use client'
-
-import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { SiteFooter } from '@/components/site-footer'
 import { Badge } from '@/components/ui/badge'
+import { Reveal } from '@/components/ui/reveal'
 import {
   Calculator,
   Shield,
@@ -29,51 +27,6 @@ import {
   BookOpen,
   Zap,
 } from 'lucide-react'
-
-/* ─── Scroll-reveal ─── */
-function useReveal() {
-  const ref = useRef<HTMLDivElement>(null)
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const obs = new IntersectionObserver(
-      ([e]) => {
-        if (e.isIntersecting) {
-          setVisible(true)
-          obs.unobserve(el)
-        }
-      },
-      { threshold: 0.1 },
-    )
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
-
-  return { ref, visible }
-}
-
-function Reveal({
-  children,
-  className = '',
-  delay = 0,
-}: {
-  children: React.ReactNode
-  className?: string
-  delay?: number
-}) {
-  const { ref, visible } = useReveal()
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-700 ease-out motion-reduce:transition-none motion-reduce:opacity-100 motion-reduce:translate-y-0 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {children}
-    </div>
-  )
-}
 
 /* ─── Feature data ─── */
 

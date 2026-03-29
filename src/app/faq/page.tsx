@@ -1,16 +1,8 @@
-'use client'
-
-import { useState } from 'react'
 import { AppShell } from '@/components/svs/app-shell'
 import { SiteFooter } from '@/components/site-footer'
-import {
-  Collapsible,
-  CollapsibleTrigger,
-  CollapsibleContent,
-} from '@/components/ui/collapsible'
+import { FaqSectionsClient } from '@/components/faq/faq-sections'
 import {
   HelpCircle,
-  ChevronDown,
   Info,
   Calculator,
   Crown,
@@ -18,18 +10,7 @@ import {
   CreditCard,
 } from 'lucide-react'
 
-interface FaqItem {
-  q: string
-  a: string
-}
-
-interface FaqSection {
-  title: string
-  icon: React.ReactNode
-  items: FaqItem[]
-}
-
-const faqSections: FaqSection[] = [
+const faqSections = [
   {
     title: 'Allgemein',
     icon: <Info className="h-4 w-4" />,
@@ -186,125 +167,42 @@ const faqSections: FaqSection[] = [
   },
 ]
 
-function FaqAccordionItem({
-  item,
-  isOpen,
-  onToggle,
-}: {
-  item: FaqItem
-  isOpen: boolean
-  onToggle: () => void
-}) {
-  return (
-    <Collapsible open={isOpen} onOpenChange={onToggle}>
-      <CollapsibleTrigger asChild>
-        <button
-          type="button"
-          className="flex w-full items-center justify-between gap-3 rounded-lg px-4 py-3 text-left transition-colors hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-          aria-expanded={isOpen}
-        >
-          <span className="text-sm font-medium">{item.q}</span>
-          <ChevronDown
-            className={`h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200 ${
-              isOpen ? 'rotate-180' : ''
-            }`}
-          />
-        </button>
-      </CollapsibleTrigger>
-      <CollapsibleContent>
-        <div className="px-4 pb-4 pt-1">
-          <p className="text-sm text-muted-foreground leading-relaxed">
-            {item.a}
-          </p>
-        </div>
-      </CollapsibleContent>
-    </Collapsible>
-  )
-}
-
-function FaqContent() {
-  const [openItems, setOpenItems] = useState<Set<string>>(new Set())
-
-  const toggleItem = (key: string) => {
-    setOpenItems((prev) => {
-      const next = new Set(prev)
-      if (next.has(key)) {
-        next.delete(key)
-      } else {
-        next.add(key)
-      }
-      return next
-    })
-  }
-
-  return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
-      {/* Page header */}
-      <div className="mb-10">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
-            <HelpCircle className="h-5 w-5 text-primary" />
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-bold">
-            Häufig gestellte Fragen
-          </h1>
-        </div>
-        <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-          Alles rund um SteuerBoard.pro, den SVS-Rechner, Pro-Features und dein
-          Konto. Finde hier Antworten auf die wichtigsten Fragen.
-        </p>
-      </div>
-
-      {/* FAQ sections */}
-      <div className="space-y-6">
-        {faqSections.map((section, sectionIndex) => (
-          <div key={section.title} className="card-surface p-5 sm:p-6">
-            {/* Section header */}
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-muted-foreground">{section.icon}</span>
-              <h2 className="text-[11px] font-semibold uppercase text-muted-foreground tracking-[0.08em]">
-                {section.title}
-              </h2>
-            </div>
-
-            {/* FAQ items */}
-            <div className="divide-y divide-border/50">
-              {section.items.map((item, itemIndex) => {
-                const key = `${sectionIndex}-${itemIndex}`
-                return (
-                  <FaqAccordionItem
-                    key={key}
-                    item={item}
-                    isOpen={openItems.has(key)}
-                    onToggle={() => toggleItem(key)}
-                  />
-                )
-              })}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Footer note */}
-      <div className="mt-10 pt-6 border-t text-sm text-muted-foreground">
-        <p>
-          Noch Fragen? Schreib uns an{' '}
-          <a
-            href="mailto:info@hypeakz.io"
-            className="text-primary hover:underline"
-          >
-            info@hypeakz.io
-          </a>
-        </p>
-      </div>
-    </div>
-  )
-}
-
 export default function FaqPage() {
   return (
     <AppShell>
-      <FaqContent />
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+        {/* Page header */}
+        <div className="mb-10">
+          <div className="flex items-center gap-3 mb-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
+              <HelpCircle className="h-5 w-5 text-primary" />
+            </div>
+            <h1 className="text-2xl sm:text-3xl font-bold">
+              Häufig gestellte Fragen
+            </h1>
+          </div>
+          <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
+            Alles rund um SteuerBoard.pro, den SVS-Rechner, Pro-Features und dein
+            Konto. Finde hier Antworten auf die wichtigsten Fragen.
+          </p>
+        </div>
+
+        {/* FAQ sections (interactive client component) */}
+        <FaqSectionsClient sections={faqSections} />
+
+        {/* Footer note */}
+        <div className="mt-10 pt-6 border-t text-sm text-muted-foreground">
+          <p>
+            Noch Fragen? Schreib uns an{' '}
+            <a
+              href="mailto:info@hypeakz.io"
+              className="text-primary hover:underline"
+            >
+              info@hypeakz.io
+            </a>
+          </p>
+        </div>
+      </div>
       <SiteFooter />
     </AppShell>
   )
