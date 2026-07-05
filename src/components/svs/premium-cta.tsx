@@ -1,7 +1,9 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 import { FileText, TrendingUp, BarChart3, Sparkles, Download, ShieldCheck, Lock } from 'lucide-react'
 import { PdfExportButton } from './pdf-export-button'
 import { NachzahlungsPrognoseDialog } from '@/components/rechner/nachzahlungs-prognose-dialog'
@@ -110,12 +112,14 @@ export function PremiumCTA({
             SteuerBoard Pro
           </Badge>
 
-          <h3 className="text-xl sm:text-2xl font-bold mb-2 font-heading">Deine Pro-Werkzeuge</h3>
+          <h3 className="text-xl sm:text-2xl font-bold mb-2 font-heading">
+            {locked ? 'Vorbereitet in jedes Steuerberatergespräch' : 'Deine Pro-Werkzeuge'}
+          </h3>
           <p className="text-white/60 text-sm mb-6 max-w-md">
             Strukturierte Reports, Prognosen und Datenexports, für volle Kontrolle über deine Steuerlage.
           </p>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-0">
             {tools.map((tool) => (
               <button
                 key={tool.title}
@@ -148,6 +152,21 @@ export function PremiumCTA({
               </button>
             ))}
           </div>
+
+          {locked && (
+            <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-3 rounded-xl border border-white/15 bg-white/[0.06] p-4">
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold">Alle 6 Werkzeuge freischalten</p>
+                <p className="text-xs text-white/55 mt-0.5">
+                  SteuerBoard Pro: 239 €/Jahr (entspricht 19,92 €/Monat), als Betriebsausgabe
+                  in der Regel steuerlich absetzbar. Monatlich kündbar.
+                </p>
+              </div>
+              <Button asChild size="sm" className="shrink-0 bg-white text-slate-900 hover:bg-white/90">
+                <Link href="/pricing">Pro freischalten</Link>
+              </Button>
+            </div>
+          )}
         </div>
       </div>
 

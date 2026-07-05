@@ -45,6 +45,7 @@ import { RuecklagenSection } from '@/components/rechner/ruecklagen-section'
 import { UstSection } from '@/components/rechner/ust-section'
 import { UstVergleichTabelle } from '@/components/rechner/ust-vergleich-tabelle'
 import { SectionDivider } from '@/components/rechner/section-divider'
+import { NachzahlungsUpsell } from '@/components/rechner/nachzahlungs-upsell'
 import { SiteFooter } from '@/components/site-footer'
 import { RechnerDisclaimer } from '@/components/rechner/rechner-disclaimer'
 
@@ -384,6 +385,16 @@ function RechnerContent() {
             {/* Actionable Insights — direkt nach KPIs (5-Sekunden-Regel) */}
             {!svs.belowMinimum && (
               <DashboardCards result={svs} vorschreibung={vorschreibung} />
+            )}
+
+            {/* Abo-Upsell direkt am Kaufmoment: Nutzer sieht gerade seine eigene Zahl */}
+            {!svs.belowMinimum && (
+              <NachzahlungsUpsell
+                svs={svs}
+                vorschreibung={vorschreibung}
+                monatlicheRuecklage={result.ruecklagen.gesamtMonatlich}
+                subscription={subscription}
+              />
             )}
 
             {/* Neugründer-Nachzahlung Warnung (3. Jahr) */}
