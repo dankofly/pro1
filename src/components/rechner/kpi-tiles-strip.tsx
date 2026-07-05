@@ -146,9 +146,10 @@ interface KpiTileProps {
   accentColor: string
   pctOfUmsatz?: number
   maxPct: number
+  className?: string
 }
 
-function KpiTile({ label, value, accentColor, pctOfUmsatz, maxPct }: KpiTileProps) {
+function KpiTile({ label, value, accentColor, pctOfUmsatz, maxPct, className = '' }: KpiTileProps) {
   const animated = useAnimatedNumber(value)
   const formatted = formatEuroShort(Math.round(animated))
   const barWidth = maxPct > 0 && pctOfUmsatz !== undefined
@@ -156,7 +157,7 @@ function KpiTile({ label, value, accentColor, pctOfUmsatz, maxPct }: KpiTileProp
     : 0
 
   return (
-    <div className="card-surface p-4 sm:p-5 min-w-0 hover:shadow-elevation-3 transition-shadow duration-200">
+    <div className={`card-surface p-4 sm:p-5 min-w-0 hover:shadow-elevation-3 transition-shadow duration-200 ${className}`}>
       <p className="text-[11px] font-semibold text-muted-foreground uppercase tracking-[0.08em] mb-3">
         {label}
       </p>
@@ -287,16 +288,17 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
         <KpiTile
           label="SVS"
           value={svs}
-          accentColor="bg-muted-foreground/40"
+          accentColor="bg-amber-500/50"
           pctOfUmsatz={pct(svs)}
           maxPct={maxPct}
         />
         <KpiTile
           label="ESt"
           value={est}
-          accentColor="bg-muted-foreground/40"
+          accentColor="bg-amber-500/50"
           pctOfUmsatz={pct(est)}
           maxPct={maxPct}
+          className="col-span-2 sm:col-span-1"
         />
       </div>
     </div>
