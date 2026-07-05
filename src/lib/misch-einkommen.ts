@@ -136,39 +136,52 @@ export function calcAnstellung(brutto: number, year: TaxYear): AnstellungDetail 
  */
 export function calcGewerbe(gewinn: number, year: TaxYear, asvgBeitragsgrundlage = 0): GewerbeDetail {
   const cfg = YEAR_CONFIGS[year]
-  const ueberVersicherungsgrenze = gewinn > cfg.versicherungsgrenze
-  const differenzZurGrenze = gewinn - cfg.versicherungsgrenze
-  const svsUv = cfg.svs.uvMonthly * 12
+  const gfbCfg = cfg.gewinnfreibetrag
 
-  let svsPv = 0, svsKv = 0, svsMv = 0, svsGesamt = svsUv
+  // Versicherungsgrenze wird gegen die EINKÜNFTE geprüft (§ 25 GSVG-Basis),
+  // also nach Grundfreibetrag: Der GFB mindert die Einkünfte lt. Bescheid.
+  const gfbOhneSvs = Math.min(gewinn, gfbCfg.grundfreibetragMaxGewinn) * gfbCfg.grundfreibetragRate
+  const einkuenfteOhneSvs = Math.max(0, gewinn - gfbOhneSvs)
+  const ueberVersicherungsgrenze = einkuenfteOhneSvs > cfg.versicherungsgrenze
+  const differenzZurGrenze = einkuenfteOhneSvs - cfg.versicherungsgrenze
+
+  // Ohne Pflichtversicherung fallen auch keine UV-Beiträge an
+  let svsPv = 0, svsKv = 0, svsMv = 0, svsUv = 0, svsGesamt = 0
   if (ueberVersicherungsgrenze) {
     // Differenzvorschreibung (§ 35a GSVG): ASVG-BGL + GSVG-BGL ≤ HBGL
     const maxGsvgBgl = Math.max(0, cfg.svs.hoechstbeitrag - asvgBeitragsgrundlage)
+    svsUv = cfg.svs.uvMonthly * 12
 
-    // Iterative Berechnung: SVS ist Betriebsausgabe → mindert eigene BGL
-    let bgl = Math.min(Math.max(gewinn, cfg.svs.minBeitragsgrundlage), maxGsvgBgl)
-    let prevSvs = 0
-    for (let i = 0; i < 10; i++) {
-      const pv = bgl * cfg.svs.pvRate
-      const kv = bgl * cfg.svs.kvRate
-      const mv = bgl * cfg.svs.mvRate
-      const total = pv + kv + mv + svsUv
-      if (Math.abs(total - prevSvs) < 0.01) break
-      prevSvs = total
-      const einkuenfte = Math.max(0, gewinn - total)
-      bgl = Math.min(Math.max(einkuenfte, cfg.svs.minBeitragsgrundlage), maxGsvgBgl)
+    // Iterative Berechnung (§ 25 GSVG): SVS und GFB mindern die Einkünfte,
+    // vorgeschriebene PV/KV-Beiträge werden der BGL wieder hinzugerechnet
+    let pv = 0, kv = 0, mv = 0, total = 0
+    for (let i = 0; i < 20; i++) {
+      const steuerGewinnIter = Math.max(0, gewinn - total)
+      const gfbIter = Math.min(steuerGewinnIter, gfbCfg.grundfreibetragMaxGewinn) * gfbCfg.grundfreibetragRate
+      const einkuenfte = Math.max(0, steuerGewinnIter - gfbIter)
+      const bglBasis = einkuenfte + pv + kv
+      const bgl = Math.min(Math.max(bglBasis, cfg.svs.minBeitragsgrundlage), maxGsvgBgl)
+      pv = bgl * cfg.svs.pvRate
+      kv = bgl * cfg.svs.kvRate
+      mv = bgl * cfg.svs.mvRate
+      const newTotal = pv + kv + mv + svsUv
+      if (Math.abs(newTotal - total) < 0.01) {
+        total = newTotal
+        break
+      }
+      total = newTotal
     }
-    svsPv = bgl * cfg.svs.pvRate
-    svsKv = bgl * cfg.svs.kvRate
-    svsMv = bgl * cfg.svs.mvRate
-    svsGesamt = svsPv + svsKv + svsMv + svsUv
+    svsPv = pv
+    svsKv = kv
+    svsMv = mv
+    svsGesamt = total
   }
-  const svsMehrkosten = ueberVersicherungsgrenze ? svsGesamt - svsUv : 0
+  const svsMehrkosten = svsGesamt
 
   // Steuerlicher Gewinn (nach SVS als Betriebsausgabe) als Basis für GFB (§10 EStG)
   const steuerGewinn = Math.max(0, gewinn - svsGesamt)
-  const grundfreibetragBasis = Math.min(steuerGewinn, cfg.gewinnfreibetrag.grundfreibetragMaxGewinn)
-  const grundfreibetrag = grundfreibetragBasis * cfg.gewinnfreibetrag.grundfreibetragRate
+  const grundfreibetragBasis = Math.min(steuerGewinn, gfbCfg.grundfreibetragMaxGewinn)
+  const grundfreibetrag = grundfreibetragBasis * gfbCfg.grundfreibetragRate
 
   const steuerpflichtig = Math.max(0, steuerGewinn - grundfreibetrag)
 

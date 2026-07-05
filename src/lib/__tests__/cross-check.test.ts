@@ -30,8 +30,12 @@ describe('Cross-Check: €80.000 Gewerbetreibender 2025', () => {
     expect(r.beitragsgrundlage).toBeGreaterThan(55000) // Sanity
   })
 
-  it('Konsistenz: BGL ≈ Gewinn - SVS', () => {
-    expect(Math.abs(r.beitragsgrundlage - (80000 - r.endgueltigeSVS))).toBeLessThan(1)
+  it('Konsistenz (§ 25 GSVG): BGL ≈ Gewinn - GFB - MV - UV', () => {
+    // Einkünfte lt. Bescheid (nach SVS + GFB) plus Hinzurechnung PV/KV.
+    // Netto-Effekt: BGL = Gewinn - Grundfreibetrag - MV - UV
+    expect(
+      Math.abs(r.beitragsgrundlage - (80000 - r.grundfreibetrag - r.mvBeitrag - r.uvBeitrag))
+    ).toBeLessThan(2)
   })
 
   it('Einzelbeiträge korrekt auf iterierte BGL', () => {
@@ -73,10 +77,11 @@ describe('Cross-Check: €80.000 Gewerbetreibender 2025', () => {
     expect(round2(r.echtesNetto)).toBe(round2(80000 - r.endgueltigeSVS - r.einkommensteuer))
   })
 
-  it('Netto plausibel (€47.000-€52.000)', () => {
-    // Iterative SVS → niedrigere SVS → höheres Netto als bei nicht-iterativ
-    expect(r.echtesNetto).toBeGreaterThan(47000)
-    expect(r.echtesNetto).toBeLessThan(52000)
+  it('Netto plausibel (€45.000-€48.000)', () => {
+    // § 25 GSVG-BGL (mit PV/KV-Hinzurechnung, GFB mindert): SVS ~19.900,
+    // ESt ~13.600 → Netto ~46.400
+    expect(r.echtesNetto).toBeGreaterThan(45000)
+    expect(r.echtesNetto).toBeLessThan(48000)
   })
 })
 

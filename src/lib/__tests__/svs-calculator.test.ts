@@ -21,13 +21,15 @@ describe('SVS Beiträge 2025 — Gewerbetreibende (GSVG)', () => {
   it('€80.000 Gewinn → iterative SVS-Berechnung konvergiert', () => {
     const r = calculateSvs(80000, 0, '2025', undefined, stammdaten)
 
-    // SVS ist Betriebsausgabe: Beitragsgrundlage = Gewinn - SVS (iteriert)
-    // Daher: beitragsgrundlage < gewinn
+    // § 25 GSVG: BGL = Einkünfte (nach SVS + GFB) + Hinzurechnung PV/KV
+    // Netto-Effekt: BGL = Gewinn - GFB - MV - UV → hier ~73.776
     expect(r.beitragsgrundlage).toBeLessThan(80000)
-    expect(r.beitragsgrundlage).toBeGreaterThan(50000) // Sanity check
+    expect(r.beitragsgrundlage).toBeGreaterThan(70000)
 
-    // Konsistenz: beitragsgrundlage ≈ gewinn - endgueltigeSVS
-    expect(Math.abs(r.beitragsgrundlage - (80000 - r.endgueltigeSVS))).toBeLessThan(1)
+    // Konsistenz: BGL ≈ Gewinn - Grundfreibetrag - MV - UV
+    expect(
+      Math.abs(r.beitragsgrundlage - (80000 - r.grundfreibetrag - r.mvBeitrag - r.uvBeitrag))
+    ).toBeLessThan(2)
 
     // Einzelbeiträge korrekte Prozentsätze auf die Beitragsgrundlage
     const bgl = r.beitragsgrundlage
@@ -319,13 +321,15 @@ describe('Edge Cases', () => {
     expect(r.cappedAtMax).toBe(true)
   })
 
-  it('Iterative Konvergenz: BGL + SVS ≈ Gewinn', () => {
-    // Kerntest: nach Iteration muss gelten: BGL ≈ Gewinn - SVS
+  it('Iterative Konvergenz: BGL ≈ Gewinn - GFB - MV - UV (§ 25 GSVG)', () => {
+    // Kerntest: Einkünfte (nach SVS + GFB) plus PV/KV-Hinzurechnung.
+    // Netto-Effekt ohne Caps: BGL = Gewinn - Grundfreibetrag - MV - UV
     for (const gewinn of [30000, 50000, 80000, 120000]) {
       const r = calculateSvs(gewinn, 0, '2025', undefined, stammdaten)
       if (!r.usesMinBeitragsgrundlage && !r.cappedAtMax) {
-        // Ohne Caps: BGL + SVS ≈ Gewinn
-        expect(Math.abs(r.beitragsgrundlage + r.endgueltigeSVS - gewinn)).toBeLessThan(1)
+        expect(
+          Math.abs(r.beitragsgrundlage - (gewinn - r.grundfreibetrag - r.mvBeitrag - r.uvBeitrag))
+        ).toBeLessThan(2)
       }
     }
   })

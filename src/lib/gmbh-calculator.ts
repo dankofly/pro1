@@ -11,7 +11,7 @@
 // ============================================================
 
 import type { TaxYear } from './tax-constants'
-import { YEAR_CONFIGS, calcProgressiveTax } from './tax-constants'
+import { YEAR_CONFIGS, calcProgressiveTax, calcGrundfreibetrag } from './tax-constants'
 import type { GmbhResult, GmbhWarnung } from './rechner-types'
 
 // KöSt und KapESt Sätze (konstant über alle Jahre)
@@ -25,7 +25,7 @@ const MIN_KOEST_GMBH = 500       // GmbH: €500/Jahr (= €125/Quartal)
 const GGF_PV_RATE = 0.185   // Pensionsversicherung
 const GGF_KV_RATE = 0.068   // Krankenversicherung
 const GGF_MV_RATE = 0.0153  // Selbständigenvorsorge
-const GGF_UV_MONTHLY = 12.07 // Unfallversicherung pauschal/Monat
+// UV kommt jahresabhängig aus YEAR_CONFIGS (cfg.svs.uvMonthly)
 
 // Lohnnebenkosten auf GF-Bezug (GmbH als Dienstgeber)
 const DB_RATE = 0.037     // Dienstgeberbeitrag: 3,7%
@@ -47,16 +47,27 @@ export function calculateGmbh(input: GmbhCalcInput): GmbhResult {
   // GF-Bezug: 14 Bezüge (inkl. 13./14.)
   const gfGehaltBrutto = gfGehaltMonatlich * 14
 
-  // ── GGF GSVG-Beiträge (iterativ, da Betriebsausgabe) ──
+  // ── GGF GSVG-Beiträge (iterativ, § 25 GSVG) ──
+  // BGL = Einkünfte lt. Bescheid (Bezug − GSVG − Grundfreibetrag)
+  //       + Hinzurechnung der vorgeschriebenen PV/KV-Beiträge (nicht MV/UV).
+  // GF-Bezüge (§ 22 Z 2 EStG) sind betriebliche Einkünfte: Der Grundfreibetrag
+  // (§ 10 EStG) steht dem GGF zu und mindert ESt UND Beitragsgrundlage.
   const svsCfg = cfg.svs
-  const totalRate = GGF_PV_RATE + GGF_KV_RATE + GGF_MV_RATE
-  const uvJaehrlich = GGF_UV_MONTHLY * 12
+  const uvJaehrlich = svsCfg.uvMonthly * 12
 
   let gsvgBeitraege = 0
-  for (let i = 0; i < 10; i++) {
-    const einkuenfte = Math.max(0, gfGehaltBrutto - gsvgBeitraege)
-    const bgl = Math.min(Math.max(einkuenfte, svsCfg.minBeitragsgrundlage), svsCfg.hoechstbeitrag)
-    const neueBeitraege = bgl * totalRate + uvJaehrlich
+  let gsvgPv = 0
+  let gsvgKv = 0
+  let gfEinkuenfte = Math.max(0, gfGehaltBrutto)
+  for (let i = 0; i < 20; i++) {
+    const steuerGewinn = Math.max(0, gfGehaltBrutto - gsvgBeitraege)
+    const grundfreibetrag = calcGrundfreibetrag(steuerGewinn, year)
+    gfEinkuenfte = Math.max(0, steuerGewinn - grundfreibetrag)
+    const bglBasis = gfEinkuenfte + gsvgPv + gsvgKv
+    const bgl = Math.min(Math.max(bglBasis, svsCfg.minBeitragsgrundlage), svsCfg.hoechstbeitrag)
+    gsvgPv = bgl * GGF_PV_RATE
+    gsvgKv = bgl * GGF_KV_RATE
+    const neueBeitraege = gsvgPv + gsvgKv + bgl * GGF_MV_RATE + uvJaehrlich
     if (Math.abs(neueBeitraege - gsvgBeitraege) < 0.01) {
       gsvgBeitraege = neueBeitraege
       break
@@ -66,8 +77,8 @@ export function calculateGmbh(input: GmbhCalcInput): GmbhResult {
 
   const gfSv = gsvgBeitraege
 
-  // GF-ESt: Bezug - GSVG → progressiver Tarif
-  const gfSteuerpflichtig = Math.max(0, gfGehaltBrutto - gfSv)
+  // GF-ESt: Bezug − GSVG − Grundfreibetrag → progressiver Tarif
+  const gfSteuerpflichtig = gfEinkuenfte
   const gfLohnsteuer = calcProgressiveTax(gfSteuerpflichtig, year)
 
   // GF Netto

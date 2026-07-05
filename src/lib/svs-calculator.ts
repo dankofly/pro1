@@ -289,10 +289,15 @@ function calculateSvsBeitraege(
 }
 
 // ── Haupt-SVS-Berechnung ─────────────────────────────────────
-// Iterative Berechnung: SVS ist Betriebsausgabe und mindert die eigene
-// Beitragsgrundlage (§ 25 GSVG — Einkünfte lt. Einkommensteuerbescheid).
-// GFB (§ 10 EStG) wirkt nur auf ESt, NICHT auf SVS-Beitragsgrundlage
-// (GFB wird auf Einkommensebene abgezogen, nicht auf Einkünfteebene).
+// Beitragsgrundlage nach § 25 GSVG:
+//   BGL = Einkünfte lt. ESt-Bescheid (§§ 22, 23 EStG)
+//         + Hinzurechnung der im Beitragsjahr vorgeschriebenen PV- und
+//           KV-Beiträge (§ 25 Abs 2 GSVG; MV und UV werden NICHT hinzugerechnet)
+// Die Einkünfte lt. Bescheid sind bereits gemindert um SVS (Betriebsausgabe),
+// Pendlerpauschale und den Gewinnfreibetrag (§ 10 EStG ist Teil der
+// Gewinnermittlung und senkt daher auch die SVS-Beitragsgrundlage).
+// Netto-Effekt: BGL ≈ Gewinn − Pendler − GFB − MV − UV.
+// Fixpunkt-Iteration, da GFB und Hinzurechnung von der SVS abhängen.
 
 export function calculateSvs(
   gewinn: number,
@@ -323,19 +328,27 @@ export function calculateSvs(
 
   const isNeueSelbstaendige = stammdaten?.versicherungsart === 'gsvg_neu'
 
-  // ── Iterative SVS-Berechnung ──
-  // SVS ist Betriebsausgabe → mindert Einkünfte → mindert SVS-Basis
-  // Konvergiert typisch in 3–5 Iterationen (Δ < 0,01 €)
-  let svsResult = calculateSvsBeitraege(
-    gewinn, pvRate, kvRate, svs.mvRate, svs.uvMonthly,
-    svs.hoechstbeitrag, svs.minBeitragsgrundlage,
-    isNeueSelbstaendige, cfg.versicherungsgrenze,
-  )
+  // ── Iterative SVS-Berechnung (§ 25 GSVG) ──
+  // Start bei SVS = 0, dann Fixpunkt: SVS und GFB mindern die Einkünfte,
+  // vorgeschriebene PV/KV-Beiträge werden der BGL wieder hinzugerechnet.
+  const pendlerBA = proOptions
+    ? calcPendlerpauschale(proOptions.pendlerKm, proOptions.pendlerOeffentlich, year)
+    : 0
 
-  for (let i = 0; i < 10; i++) {
-    const einkuenfte = Math.max(0, gewinn - svsResult.endgueltigeSVS)
+  let svsResult: SvsBeitraegeResult = {
+    beitragsgrundlage: 0, pvBeitrag: 0, kvBeitrag: 0, mvBeitrag: 0, uvBeitrag: 0,
+    endgueltigeSVS: 0, belowMinimum: false, cappedAtMax: false, usesMinBeitragsgrundlage: false,
+  }
+
+  for (let i = 0; i < 20; i++) {
+    const steuerGewinn = Math.max(0, gewinn - svsResult.endgueltigeSVS - pendlerBA)
+    const gfb = calcGrundfreibetrag(steuerGewinn, year)
+      + (proOptions ? calcActualIFB(steuerGewinn, proOptions.investitionen, year) : 0)
+    const einkuenfte = Math.max(0, steuerGewinn - gfb)
+    // § 25 Abs 2 GSVG: Hinzurechnung der vorgeschriebenen PV- und KV-Beiträge
+    const bglBasis = einkuenfte + svsResult.pvBeitrag + svsResult.kvBeitrag
     const nextResult = calculateSvsBeitraege(
-      einkuenfte, pvRate, kvRate, svs.mvRate, svs.uvMonthly,
+      bglBasis, pvRate, kvRate, svs.mvRate, svs.uvMonthly,
       svs.hoechstbeitrag, svs.minBeitragsgrundlage,
       isNeueSelbstaendige, cfg.versicherungsgrenze,
     )

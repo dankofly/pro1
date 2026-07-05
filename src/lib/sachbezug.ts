@@ -4,6 +4,8 @@ export interface DienstwagenInput {
   co2: number          // g/km (WLTP)
   listenpreis: number  // EUR inkl. USt
   privatnutzung: boolean
+  /** Privatnutzung nachweislich max. 500 km/Monat (6.000 km/Jahr) → halber Sachbezug */
+  unter500KmProMonat?: boolean
 }
 
 export interface BenefitsInput {
@@ -69,26 +71,33 @@ function calculateDienstwagen(input: DienstwagenInput): SachbezugResult['dienstw
     }
   }
 
-  // CO2 <= 126 g/km (WLTP, Erstzulassung ab 2025) => 1.5%, max EUR 720/month
+  // Halber Sachbezug: Privatnutzung nachweislich max. 500 km/Monat
+  // (Fahrtenbuch!) → Prozentsatz und Deckelung halbieren sich.
+  const halb = input.unter500KmProMonat === true
+  const faktor = halb ? 0.5 : 1
+
+  // CO2 <= 126 g/km (WLTP, Erstzulassung ab 2025) => 1,5% (halb: 0,75%), max EUR 720/Monat (halb: 360)
   if (input.co2 <= 126) {
-    const raw = input.listenpreis * 0.015
-    const monat = Math.min(raw, 720)
+    const deckel = 720 * faktor
+    const raw = input.listenpreis * 0.015 * faktor
+    const monat = Math.min(raw, deckel)
     return {
-      sachbezugProzent: 1.5,
+      sachbezugProzent: 1.5 * faktor,
       sachbezugMonat: monat,
       sachbezugJahr: monat * 12,
-      deckelung: 720,
+      deckelung: deckel,
     }
   }
 
-  // CO2 > 126 g/km => 2%, max EUR 960/month
-  const raw = input.listenpreis * 0.02
-  const monat = Math.min(raw, 960)
+  // CO2 > 126 g/km => 2% (halb: 1%), max EUR 960/Monat (halb: 480)
+  const deckel = 960 * faktor
+  const raw = input.listenpreis * 0.02 * faktor
+  const monat = Math.min(raw, deckel)
   return {
-    sachbezugProzent: 2,
+    sachbezugProzent: 2 * faktor,
     sachbezugMonat: monat,
     sachbezugJahr: monat * 12,
-    deckelung: 960,
+    deckelung: deckel,
   }
 }
 

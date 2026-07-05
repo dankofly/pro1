@@ -83,15 +83,25 @@ describe('calcGewerbe', () => {
     expect(r.svsKv).toBeGreaterThan(0)
   })
 
-  it('€3.000 unter Versicherungsgrenze → nur UV', () => {
+  it('€3.000 unter Versicherungsgrenze → keine SVS (auch keine UV)', () => {
     const r = calcGewerbe(3000, year)
 
     expect(r.ueberVersicherungsgrenze).toBe(false)
     expect(r.svsPv).toBe(0)
     expect(r.svsKv).toBe(0)
     expect(r.svsMv).toBe(0)
-    expect(r.svsUv).toBe(cfg.svs.uvMonthly * 12)
-    expect(r.svsGesamt).toBe(r.svsUv)
+    expect(r.svsUv).toBe(0)
+    expect(r.svsGesamt).toBe(0)
+  })
+
+  it('Versicherungsgrenze wird auf Einkünfte nach GFB geprüft', () => {
+    // Gewinn 7.000, GFB 1.050 → Einkünfte 5.950 < 6.613,20 → nicht pflichtversichert
+    const knappDrunter = calcGewerbe(7000, year)
+    expect(knappDrunter.ueberVersicherungsgrenze).toBe(false)
+
+    // Gewinn 8.000, GFB 1.200 → Einkünfte 6.800 > 6.613,20 → pflichtversichert
+    const knappDrueber = calcGewerbe(8000, year)
+    expect(knappDrueber.ueberVersicherungsgrenze).toBe(true)
   })
 
   it('Grundfreibetrag korrekt berechnet', () => {
@@ -197,8 +207,9 @@ describe('calculateMischEinkommen — Hauptberechnung', () => {
   it('€0 Gewinn → kein Gewerbe-Beitrag', () => {
     const r = calculateMischEinkommen(makeInput({ jahresgewinn: 0 }))
 
-    expect(r.gewerbe.svsGesamt).toBe(YEAR_CONFIGS['2025'].svs.uvMonthly * 12)
-    expect(r.nettoGewerbeAnteil).toBeLessThan(0) // UV + evtl. Steuerdifferenz
+    // Unter der Versicherungsgrenze: keine Pflichtversicherung, keine UV
+    expect(r.gewerbe.svsGesamt).toBe(0)
+    expect(r.nettoGewerbeAnteil).toBeCloseTo(0, 2)
   })
 
   it('Hohes Gehalt + Gewerbe → hohe Grenzbelastung', () => {

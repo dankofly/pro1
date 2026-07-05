@@ -267,6 +267,7 @@ function SachbezugContent() {
   const [co2, setCo2] = useState(0)
   const [listenpreis, setListenpreis] = useState(40000)
   const [privatnutzung, setPrivatnutzung] = useState(true)
+  const [unter500Km, setUnter500Km] = useState(false)
 
   // ── Benefits state ──
   const [benefits, setBenefits] = useState<BenefitsInput>({
@@ -286,12 +287,12 @@ function SachbezugContent() {
   }
 
   const dienstwagenInput: DienstwagenInput | null = hasFirmenwagen
-    ? { co2, listenpreis, privatnutzung }
+    ? { co2, listenpreis, privatnutzung, unter500KmProMonat: unter500Km }
     : null
 
   const result = useMemo(
     () => calculateSachbezug(dienstwagenInput, benefits),
-    [hasFirmenwagen, co2, listenpreis, privatnutzung, benefits]
+    [hasFirmenwagen, co2, listenpreis, privatnutzung, unter500Km, benefits]
   )
 
   const activeBenefitsCount = BENEFIT_DEFS.filter(b => benefits[b.key]).length
@@ -384,6 +385,31 @@ function SachbezugContent() {
                     Ohne Privatnutzung entfällt der Sachbezug. Es muss ein Fahrtenbuch geführt werden.
                   </p>
                 </div>
+              )}
+
+              {/* Halber Sachbezug (max. 500 km privat/Monat) */}
+              {privatnutzung && co2 > 0 && (
+                <>
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor="unter500km" className="text-sm font-medium">
+                      Privatnutzung max. 500 km/Monat
+                    </Label>
+                    <Switch
+                      id="unter500km"
+                      checked={unter500Km}
+                      onCheckedChange={setUnter500Km}
+                    />
+                  </div>
+                  {unter500Km && (
+                    <div className="flex gap-3 bg-blue-50/50 dark:bg-blue-950/30 border border-blue-200/50 dark:border-blue-800/30 border-l-[3px] border-l-blue-500 rounded-lg p-3">
+                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 mt-1.5" />
+                      <p className="text-sm text-foreground">
+                        Halber Sachbezug (0,75 % bzw. 1 %): Die Privatnutzung von max. 500 km/Monat
+                        (6.000 km/Jahr) muss per Fahrtenbuch nachgewiesen werden.
+                      </p>
+                    </div>
+                  )}
+                </>
               )}
 
               {/* Firmenwagen Result Summary */}
