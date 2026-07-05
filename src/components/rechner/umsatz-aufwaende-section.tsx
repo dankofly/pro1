@@ -288,7 +288,7 @@ export function UmsatzAufwaendeSection({
                   value={aufwaende.arbeitsplatzpauschale}
                   onValueChange={(v) => setAufwand('arbeitsplatzpauschale', v as ArbeitsplatzpauschaleType)}
                 >
-                  <SelectTrigger className="w-full sm:w-36 h-12 sm:h-9 text-base sm:text-sm">
+                  <SelectTrigger aria-label="Arbeitsplatzpauschale" className="w-full sm:w-36 h-12 sm:h-9 text-base sm:text-sm">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -356,13 +356,15 @@ export function UmsatzAufwaendeSection({
               {/* SV-Vorauszahlung with monthly/yearly toggle */}
               <div className="space-y-2">
                 <div className="flex items-center justify-between gap-2">
-                  <Label className="text-sm text-muted-foreground">
-                    SV-Vorauszahlung <FieldInfo text={FIELD_DEFS.svVorauszahlung} />
-                  </Label>
+                  <span className="text-sm text-muted-foreground">
+                    <Label htmlFor="sv-vz" className="text-sm text-muted-foreground">SV-Vorauszahlung</Label>
+                    <FieldInfo text={FIELD_DEFS.svVorauszahlung} />
+                  </span>
                   <div className="flex rounded-lg border border-border overflow-hidden text-xs">
                     <button
                       type="button"
                       onClick={() => setSvMode('monatlich')}
+                      aria-pressed={svMode === 'monatlich'}
                       className={`px-3.5 py-2 min-h-[44px] sm:min-h-0 sm:py-1.5 transition-colors ${
                         svMode === 'monatlich'
                           ? 'bg-primary text-primary-foreground'
@@ -374,6 +376,7 @@ export function UmsatzAufwaendeSection({
                     <button
                       type="button"
                       onClick={() => setSvMode('jaehrlich')}
+                      aria-pressed={svMode === 'jaehrlich'}
                       className={`px-3.5 py-2 min-h-[44px] sm:min-h-0 sm:py-1.5 transition-colors ${
                         svMode === 'jaehrlich'
                           ? 'bg-primary text-primary-foreground'
@@ -404,6 +407,7 @@ export function UmsatzAufwaendeSection({
                   </span>
                 </div>
                 <Slider
+                  aria-label="SV-Vorauszahlung pro Jahr"
                   value={[valueToSlider(svDisplayValue, svMax)]}
                   onValueChange={([v]) => handleSvChange(sliderToValue(v, svMax))}
                   max={1000}
@@ -461,6 +465,7 @@ export function UmsatzAufwaendeSection({
                   <span className="text-xs text-muted-foreground shrink-0">/ Jahr</span>
                 </div>
                 <Slider
+                  aria-label="ESt-Vorauszahlung pro Jahr"
                   value={[valueToSlider(vorauszahlungen.estVorauszahlung, 200000)]}
                   onValueChange={([v]) => setVz('estVorauszahlung', sliderToValue(v, 200000))}
                   max={1000}

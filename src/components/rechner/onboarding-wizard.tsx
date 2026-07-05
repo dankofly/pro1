@@ -75,7 +75,14 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
     <div className="min-h-[60vh] flex items-center justify-center px-4">
       <div className="w-full max-w-lg">
         {/* Progress */}
-        <div className="flex items-center justify-center gap-2 mb-8">
+        <div
+          className="flex items-center justify-center gap-2 mb-8"
+          role="progressbar"
+          aria-valuenow={step}
+          aria-valuemin={1}
+          aria-valuemax={TOTAL_STEPS}
+          aria-label={`Schritt ${step} von ${TOTAL_STEPS}`}
+        >
           {Array.from({ length: TOTAL_STEPS }, (_, i) => (
             <div
               key={i}
@@ -101,12 +108,15 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
 
             <div className="grid grid-cols-2 gap-3 sm:gap-4">
               <div className="space-y-2">
-                <Label className="text-sm font-medium">Gründungsmonat <FieldInfo text={FIELD_DEFS.gruendungsMonat} /></Label>
+                <span className="text-sm font-medium">
+                  <Label htmlFor="gruendungsmonat" className="text-sm font-medium">Gründungsmonat</Label>
+                  <FieldInfo text={FIELD_DEFS.gruendungsMonat} />
+                </span>
                 <Select
                   value={String(data.gruendungsMonat)}
                   onValueChange={(v) => setData({ ...data, gruendungsMonat: Number(v) })}
                 >
-                  <SelectTrigger className="h-12 sm:h-10 text-base sm:text-sm">
+                  <SelectTrigger id="gruendungsmonat" className="h-12 sm:h-10 text-base sm:text-sm">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -118,12 +128,15 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-sm font-medium">Gründungsjahr <FieldInfo text={FIELD_DEFS.gruendungsJahr} /></Label>
+                <span className="text-sm font-medium">
+                  <Label htmlFor="gruendungsjahr" className="text-sm font-medium">Gründungsjahr</Label>
+                  <FieldInfo text={FIELD_DEFS.gruendungsJahr} />
+                </span>
                 <Select
                   value={String(data.gruendungsJahr)}
                   onValueChange={(v) => setData({ ...data, gruendungsJahr: Number(v) })}
                 >
-                  <SelectTrigger className="h-12 sm:h-10 text-base sm:text-sm">
+                  <SelectTrigger id="gruendungsjahr" className="h-12 sm:h-10 text-base sm:text-sm">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -171,7 +184,8 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
                   key={b.value}
                   type="button"
                   onClick={() => handleBrancheSelect(b.value)}
-                  className={`flex items-start gap-2.5 rounded-xl border p-3 text-left cursor-pointer transition-all duration-200
+                  aria-pressed={branche === b.value}
+                  className={`flex items-start gap-2.5 rounded-xl border p-3 text-left cursor-pointer transition-colors duration-200
                     ${branche === b.value
                       ? 'border-primary bg-primary/5 ring-1 ring-primary/20'
                       : 'border-border hover:bg-muted/50 hover:border-border/80'
@@ -214,12 +228,16 @@ export function OnboardingWizard({ onComplete }: OnboardingWizardProps) {
 
             <div className="flex items-center justify-between gap-4 min-h-[44px]">
               <div>
-                <Label className="text-sm font-medium">Jungunternehmer <FieldInfo text={FIELD_DEFS.jungunternehmer} /></Label>
+                <span className="text-sm font-medium">
+                  <Label htmlFor="jungunternehmer" className="text-sm font-medium">Jungunternehmer</Label>
+                  <FieldInfo text={FIELD_DEFS.jungunternehmer} />
+                </span>
                 <p className="text-xs text-muted-foreground mt-0.5">
                   Vergünstigte SV-Beiträge in den ersten 2 Kalenderjahren
                 </p>
               </div>
               <Switch
+                id="jungunternehmer"
                 checked={data.jungunternehmer}
                 onCheckedChange={(v) => setData({ ...data, jungunternehmer: v })}
               />

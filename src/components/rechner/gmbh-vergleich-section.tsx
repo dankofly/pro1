@@ -39,7 +39,7 @@ export function GmbhVergleichSection({ gmbh, isPro, dispatch }: GmbhVergleichSec
               <Building className="h-3.5 w-3.5 text-indigo-600" />
             </div>
             <div className="flex-1 min-w-0">
-              <h2 className="text-sm font-semibold tracking-tight flex items-center gap-1.5">GmbH-Vergleich <Crown className="h-3 w-3 text-amber-400" /></h2>
+              <h2 className="text-sm font-semibold tracking-tight flex items-center gap-1.5">GmbH-Vergleich <Crown className="h-3 w-3 text-amber-400" aria-hidden="true" /><span className="sr-only">(Pro-Feature)</span></h2>
               <p className="text-xs text-muted-foreground truncate">
                 {gmbh.aktiv ? 'Aktiv' : 'EPU vs. GmbH Vergleich'}
               </p>
@@ -54,12 +54,16 @@ export function GmbhVergleichSection({ gmbh, isPro, dispatch }: GmbhVergleichSec
 
               <div className="flex items-center justify-between gap-4">
                 <div>
-                  <Label className="text-sm font-medium">GmbH-Vergleich aktivieren <FieldInfo text={FIELD_DEFS.gmbhAktiv} /></Label>
+                  <span className="text-sm font-medium">
+                    <Label htmlFor="gmbh-aktiv" className="text-sm font-medium">GmbH-Vergleich aktivieren</Label>
+                    <FieldInfo text={FIELD_DEFS.gmbhAktiv} />
+                  </span>
                   <p className="text-xs text-muted-foreground mt-0.5">
                     Berechnet die Gesamtbelastung bei GmbH-Struktur
                   </p>
                 </div>
                 <Switch
+                  id="gmbh-aktiv"
                   checked={gmbh.aktiv}
                   onCheckedChange={(v) => setGmbh('aktiv', v)}
                 />

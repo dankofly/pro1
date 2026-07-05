@@ -26,7 +26,19 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
             Gefahren-Barometer
           </span>
         </div>
-        <GaugeBarometer riskPercent={result.riskPercent} />
+        {vorschreibung > 0 ? (
+          <GaugeBarometer riskPercent={result.riskPercent} />
+        ) : (
+          <div className="py-3 text-center">
+            <p className="text-sm text-muted-foreground">
+              Noch keine SVS-Vorschreibung hinterlegt.
+            </p>
+            <p className="text-xs text-muted-foreground/70 mt-1.5">
+              Trag deine monatliche Vorschreibung unter &bdquo;Vorauszahlungen&ldquo; ein,
+              dann bewerten wir dein Nachzahlungsrisiko.
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Nachzahlungs-Alarm */}
@@ -40,7 +52,16 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
           </span>
         </div>
         <div className="py-1">
-          {result.nachzahlung > 0 ? (
+          {vorschreibung <= 0 ? (
+            <>
+              <p className="text-2xl font-bold text-muted-foreground num-transition font-mono">
+                &euro; -
+              </p>
+              <p className="text-xs text-muted-foreground mt-1">
+                Trag deine monatliche Vorschreibung ein, dann schätzen wir deine Nachzahlung.
+              </p>
+            </>
+          ) : result.nachzahlung > 0 ? (
             <>
               <p className="text-2xl font-bold text-red-500 num-transition font-mono">
                 {formatEuroShort(Math.round(animatedNachzahlung))}

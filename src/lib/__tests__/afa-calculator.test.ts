@@ -60,7 +60,7 @@ describe('Degressive AfA (30%)', () => {
 describe('calculateAfA — Gesamtberechnung', () => {
   it('Alles linear: korrekte Summe', () => {
     const result = calculateAfA({
-      einrichtung: 8000, einrichtungMethode: 'linear',
+      einrichtung: 8000, einrichtungMethode: 'linear', bundesschatz: 0,
       edv: 4000, edvMethode: 'linear',
       maschinen: 16000, maschinenMethode: 'linear',
     })
@@ -73,7 +73,7 @@ describe('calculateAfA — Gesamtberechnung', () => {
 
   it('Alles degressiv: 30% im ersten Jahr', () => {
     const result = calculateAfA({
-      einrichtung: 10000, einrichtungMethode: 'degressiv',
+      einrichtung: 10000, einrichtungMethode: 'degressiv', bundesschatz: 0,
       edv: 4000, edvMethode: 'degressiv',
       maschinen: 10000, maschinenMethode: 'degressiv',
     })
@@ -86,7 +86,7 @@ describe('calculateAfA — Gesamtberechnung', () => {
 
   it('Gemischt: linear + degressiv', () => {
     const result = calculateAfA({
-      einrichtung: 8000, einrichtungMethode: 'linear',
+      einrichtung: 8000, einrichtungMethode: 'linear', bundesschatz: 0,
       edv: 4000, edvMethode: 'degressiv',
       maschinen: 0, maschinenMethode: 'linear',
     })
@@ -99,7 +99,7 @@ describe('calculateAfA — Gesamtberechnung', () => {
 
   it('Keine Investitionen → alles 0', () => {
     const result = calculateAfA({
-      einrichtung: 0, einrichtungMethode: 'linear',
+      einrichtung: 0, einrichtungMethode: 'linear', bundesschatz: 0,
       edv: 0, edvMethode: 'linear',
       maschinen: 0, maschinenMethode: 'linear',
     })
@@ -113,7 +113,7 @@ describe('calculateAfA — Gesamtberechnung', () => {
 describe('getTotalInvestments', () => {
   it('Summe aller Investitionen', () => {
     expect(getTotalInvestments({
-      einrichtung: 5000, einrichtungMethode: 'linear',
+      einrichtung: 5000, einrichtungMethode: 'linear', bundesschatz: 0,
       edv: 3000, edvMethode: 'linear',
       maschinen: 7000, maschinenMethode: 'linear',
     })).toBe(15000)
@@ -121,7 +121,7 @@ describe('getTotalInvestments', () => {
 
   it('Keine Investitionen → 0', () => {
     expect(getTotalInvestments({
-      einrichtung: 0, einrichtungMethode: 'linear',
+      einrichtung: 0, einrichtungMethode: 'linear', bundesschatz: 0,
       edv: 0, edvMethode: 'linear',
       maschinen: 0, maschinenMethode: 'linear',
     })).toBe(0)

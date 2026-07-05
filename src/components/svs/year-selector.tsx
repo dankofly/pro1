@@ -23,11 +23,11 @@ export function YearSelector({ year, onYearChange }: YearSelectorProps) {
       <div className="flex flex-wrap items-center gap-3">
         <div className="flex items-center gap-2">
           <CalendarDays className="h-3.5 w-3.5 text-muted-foreground" />
-          <Label className="text-sm font-medium">Steuerjahr</Label>
+          <Label htmlFor="steuerjahr" className="text-sm font-medium">Steuerjahr</Label>
         </div>
 
         <Select value={year} onValueChange={(v) => onYearChange(v as TaxYear)}>
-          <SelectTrigger className="w-[140px] h-12 sm:h-10 text-base sm:text-sm rounded-lg">
+          <SelectTrigger id="steuerjahr" className="w-[140px] h-12 sm:h-10 text-base sm:text-sm rounded-lg">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>

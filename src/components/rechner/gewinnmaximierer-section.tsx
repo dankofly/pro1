@@ -64,7 +64,7 @@ export function GewinnmaximiererSection({
               <Zap className="h-3.5 w-3.5 text-amber-600" />
             </div>
             <div className="flex-1 min-w-0">
-              <h2 className="text-sm font-semibold tracking-tight flex items-center gap-1.5">Gewinnmaximierer <Crown className="h-3 w-3 text-amber-400" /></h2>
+              <h2 className="text-sm font-semibold tracking-tight flex items-center gap-1.5">Gewinnmaximierer <Crown className="h-3 w-3 text-amber-400" aria-hidden="true" /><span className="sr-only">(Pro-Feature)</span></h2>
               <p className="text-xs text-muted-foreground truncate">
                 Was bringt ein Zusatzauftrag?
               </p>

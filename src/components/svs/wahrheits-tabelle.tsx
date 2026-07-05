@@ -16,11 +16,12 @@ export function WahrheitsTabelle({ gewinn, result, year }: WahrheitsTabelleProps
   const nettoPercent = gewinn > 0 ? (result.echtesNetto / gewinn) * 100 : 0
 
   return (
-    <div className="card-surface-dark rounded-2xl p-5 sm:p-6 text-white blue-glow" aria-label="Finanz-Übersicht: Gewinn, Abzüge und Netto">
+    <section className="card-surface-dark rounded-2xl p-5 sm:p-6 text-white blue-glow">
+      <h3 className="sr-only">Finanz-Übersicht: Gewinn, Abzüge und Netto</h3>
       <div className="flex items-center justify-between pb-3">
         <div className="flex items-center gap-2 text-sm font-semibold text-white/80 uppercase tracking-wide">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/[0.06]">
-            <Eye className="h-4 w-4 text-white/90" />
+            <Eye className="h-4 w-4 text-white/90" aria-hidden="true" />
           </div>
           Finanz-Übersicht
         </div>
@@ -80,6 +81,6 @@ export function WahrheitsTabelle({ gewinn, result, year }: WahrheitsTabelleProps
       <p className="text-xs text-white/30 mt-3 text-center">
         Tarifstufen {year} – inkl. Grundfreibetrag (15%){!result.hasProOptions && ' – ohne Sonderfälle'}
       </p>
-    </div>
+    </section>
   )
 }

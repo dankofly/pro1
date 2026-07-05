@@ -230,7 +230,7 @@ function RechnerContent() {
               <span className="sm:hidden">SVS Rechner {input.year}</span>
             </h1>
             <span className="text-border/60 mx-1 hidden sm:inline">/</span>
-            <StatusBadge riskPercent={svs.riskPercent} />
+            <StatusBadge riskPercent={svs.riskPercent} hatVorschreibung={vorschreibung > 0} />
           </div>
           <div className="flex items-center gap-2">
             {user ? (
@@ -592,7 +592,7 @@ function RechnerContent() {
                     Was berechnet der SVS-Beitragsrechner von SteuerBoard.pro?
                   </AccordionTrigger>
                   <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
-                    Der Rechner ermittelt auf Basis deines Jahresgewinns (Umsatz minus Betriebsausgaben) deine SVS-Beiträge aufgeschlüsselt nach Pensionsversicherung (18,50 %), Krankenversicherung (6,80 %), Selbständigenvorsorge (1,53 %) und Unfallversicherung (pauschal 11,35 EUR/Monat). Zusätzlich berechnet er die Einkommensteuer nach dem progressiven Tarif (§ 33 EStG), die voraussichtliche SVS-Nachzahlung und dein echtes Netto — also was nach Abzug aller Abgaben tatsächlich auf deinem Konto bleibt.
+                    Der Rechner ermittelt auf Basis deines Jahresgewinns (Umsatz minus Betriebsausgaben) deine SVS-Beiträge aufgeschlüsselt nach Pensionsversicherung (18,50 %), Krankenversicherung (6,80 %), Selbständigenvorsorge (1,53 %) und Unfallversicherung (pauschal, 2026: 12,95 EUR/Monat). Zusätzlich berechnet er die Einkommensteuer nach dem progressiven Tarif (§ 33 EStG), die voraussichtliche SVS-Nachzahlung und dein echtes Netto, also was nach Abzug aller Abgaben tatsächlich auf deinem Konto bleibt.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="r-1" className="border-b-0">
@@ -608,7 +608,7 @@ function RechnerContent() {
                     Was ist die Beitragsgrundlage und wie wird sie ermittelt?
                   </AccordionTrigger>
                   <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
-                    Die Beitragsgrundlage ist der Betrag, auf den deine SVS-Beiträge berechnet werden. Sie ergibt sich aus deinem Gewinn laut Einkommensteuerbescheid (§ 25 GSVG). Es gibt eine Mindestbeitragsgrundlage (ca. 500 EUR/Monat) und eine Höchstbeitragsgrundlage (ca. 7.070 EUR/Monat in 2025). Liegt dein Gewinn darunter, zahlst du die Mindestbeiträge; liegt er darüber, werden die Beiträge gedeckelt. Der Rechner zeigt dir genau, wo du innerhalb dieser Grenzen liegst.
+                    Die Beitragsgrundlage ist der Betrag, auf den deine SVS-Beiträge berechnet werden. Sie ergibt sich aus deinen Einkünften laut Einkommensteuerbescheid plus der Hinzurechnung der vorgeschriebenen PV- und KV-Beiträge (§ 25 GSVG). Auch der Gewinnfreibetrag mindert die Beitragsgrundlage. Es gibt eine Mindestbeitragsgrundlage (ca. 550 EUR/Monat) und eine Höchstbeitragsgrundlage (ca. 7.525 EUR/Monat in 2025). Liegt dein Gewinn darunter, zahlst du die Mindestbeiträge; liegt er darüber, werden die Beiträge gedeckelt. Der Rechner zeigt dir genau, wo du innerhalb dieser Grenzen liegst.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="r-3" className="border-b-0">
@@ -640,7 +640,7 @@ function RechnerContent() {
                     Für welche Steuerjahre funktioniert der Rechner?
                   </AccordionTrigger>
                   <AccordionContent className="text-sm text-muted-foreground leading-relaxed">
-                    Der Rechner unterstützt die Steuerjahre 2024, 2025 und 2026 mit den jeweils gültigen Werten: SVS-Beitragssätze, Mindest- und Höchstbeitragsgrundlagen, Einkommensteuertarif, Gewinnfreibetrag, Familienbonus Plus (2.100 EUR ab 2026), AVAB (572 EUR), Verkehrsabsetzbetrag (481 EUR), Kindermehrbetrag (727 EUR) und Kleinunternehmergrenze (55.000 EUR). Du kannst per Klick zwischen den Jahren wechseln und die Auswirkung auf deine Abgaben vergleichen.
+                    Der Rechner unterstützt die Steuerjahre 2024, 2025 und 2026 mit den jeweils gültigen Werten: SVS-Beitragssätze, Mindest- und Höchstbeitragsgrundlagen, Einkommensteuertarif, Gewinnfreibetrag, Familienbonus Plus (2.000 EUR pro Kind unter 18), AVAB (612 EUR für 2026), Verkehrsabsetzbetrag (496 EUR für 2026), Kindermehrbetrag (700 EUR) und Kleinunternehmergrenze (55.000 EUR). Du kannst per Klick zwischen den Jahren wechseln und die Auswirkung auf deine Abgaben vergleichen.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="r-7" className="border-b-0">

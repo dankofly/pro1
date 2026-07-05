@@ -83,9 +83,11 @@ export function UstSection({ ust, jahresumsatz, dispatch }: UstSectionProps) {
             {/* Radio-like toggle: KUR vs Regelbesteuerung */}
             <div className="space-y-1.5">
               <Label className="text-sm font-medium">Besteuerungsart</Label>
-              <div className="grid grid-cols-1 gap-1.5">
+              <div className="grid grid-cols-1 gap-1.5" role="radiogroup" aria-label="Umsatzsteuer-Modus">
                 <button
                   type="button"
+                  role="radio"
+                  aria-checked={!ust.ustPflichtig}
                   disabled={kurNichtMoeglich}
                   onClick={() => setUst('ustPflichtig', false)}
                   className={`flex items-center gap-2.5 rounded-lg border px-3 py-3 sm:py-2 text-left text-sm transition-colors ${
@@ -103,6 +105,8 @@ export function UstSection({ ust, jahresumsatz, dispatch }: UstSectionProps) {
                 </button>
                 <button
                   type="button"
+                  role="radio"
+                  aria-checked={ust.ustPflichtig}
                   onClick={() => setUst('ustPflichtig', true)}
                   className={`flex items-center gap-2.5 rounded-lg border px-3 py-3 sm:py-2 text-left text-sm transition-colors cursor-pointer ${
                     ust.ustPflichtig
@@ -133,6 +137,7 @@ export function UstSection({ ust, jahresumsatz, dispatch }: UstSectionProps) {
                     <button
                       key={rate}
                       type="button"
+                      aria-pressed={ust.ustSatz === rate}
                       onClick={() => setUst('ustSatz', rate)}
                       className={`rounded-lg border px-3 py-2.5 sm:py-1.5 text-sm font-medium transition-colors cursor-pointer ${
                         ust.ustSatz === rate
@@ -184,7 +189,8 @@ export function UstSection({ ust, jahresumsatz, dispatch }: UstSectionProps) {
                 step={5}
                 value={ust.b2bAnteil}
                 onChange={(e) => setUst('b2bAnteil', Number(e.target.value))}
-                className="w-full accent-blue-500 h-2 cursor-pointer touch-action-manipulation"
+                aria-label="B2B-Anteil in Prozent"
+                className="w-full accent-blue-500 h-2 py-3 cursor-pointer touch-manipulation"
               />
               <div className="flex justify-between text-xs text-muted-foreground">
                 <span>Nur B2C</span>

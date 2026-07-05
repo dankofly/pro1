@@ -36,11 +36,17 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
   const colSpacing = usableW / colCount
   const colX = (i: number) => padX + i * colSpacing
 
+  // Abzugs-Farben: Mitteltoene, die auf hellem und dunklem Hintergrund lesbar bleiben.
+  // Nur fuer Hairlines und Punkte (mit Opacity), keine Flaechen. Bei Token-Umbau: hsl(var(--destructive)) etc.
+  const DEDUCTION_RED = '#e05858'    // Aufwaende
+  const DEDUCTION_ORANGE = '#e68f3c' // SVS
+  const DEDUCTION_GOLD = '#d4a72c'   // ESt
+
   // Deductions branching out
   const deductions = [
-    { value: aufwaende, idx: 1, color: '#e05858', label: 'Aufw.' },
-    { value: svs, idx: 2, color: '#e68f3c', label: 'SVS' },
-    { value: est, idx: 3, color: '#d4a72c', label: 'ESt' },
+    { value: aufwaende, idx: 1, color: DEDUCTION_RED, label: 'Aufw.' },
+    { value: svs, idx: 2, color: DEDUCTION_ORANGE, label: 'SVS' },
+    { value: est, idx: 3, color: DEDUCTION_GOLD, label: 'ESt' },
   ]
 
   const flowVals = [umsatz, afterAufwaende, afterSvs, afterEst]
@@ -49,7 +55,7 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
     <div className="card-surface p-5 sm:p-6">
       <div className="flex items-center gap-2 mb-3">
         <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-teal-500/15">
-          <ArrowRightLeft className="h-3.5 w-3.5 text-teal-600 dark:text-teal-400" />
+          <ArrowRightLeft className="h-3.5 w-3.5 text-teal-600 dark:text-teal-400" aria-hidden="true" />
         </div>
         <span className="section-header">Geldfluss-Diagramm</span>
       </div>
@@ -95,9 +101,8 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
                 C${midX},${y2Top + h2} ${midX},${y1Top + h1} ${x1},${y1Top + h1}
                 Z
               `}
-              className={`transition-[d,opacity] duration-500 ${isLast ? 'fill-emerald-500 dark:fill-emerald-400' : 'fill-blue-600 dark:fill-blue-400'}`}
+              className={`transition-opacity duration-500 ${isLast ? 'fill-emerald-500 dark:fill-emerald-400' : 'fill-blue-600 dark:fill-blue-400'}`}
               opacity={isLast ? 0.85 : 0.8 + i * 0.05}
-              rx="4"
             />
           )
         })}
@@ -129,12 +134,13 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
                 opacity={0.7}
                 className="transition-all duration-500"
               />
-              {/* Label + amount on one line */}
+              {/* Label + amount on one line (auf Mobile ausgeblendet, dort HTML-Legende unter dem Diagramm) */}
               <text
                 x={x}
                 y={labelY}
                 textAnchor="middle"
                 fill="currentColor"
+                className="hidden sm:inline"
               >
                 <tspan
                   style={{ fontSize: '11px', fontWeight: 500, letterSpacing: '0.02em' }}
@@ -157,6 +163,21 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
           )
         })}
       </svg>
+
+      {/* Mobile-Legende: SVG-Innenlabels sind auf kleinen Screens zu klein */}
+      <div className="mt-2 flex flex-wrap items-center justify-between gap-x-3 gap-y-1 sm:hidden">
+        {deductions.map((ded) => (
+          <div key={ded.label} className="flex items-center gap-1.5 text-xs">
+            <span
+              className="h-2 w-2 shrink-0 rounded-full"
+              style={{ backgroundColor: ded.color }}
+              aria-hidden="true"
+            />
+            <span className="text-muted-foreground">{ded.label}</span>
+            <span className="font-mono font-semibold tabular-nums">{formatEuro(ded.value)}</span>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

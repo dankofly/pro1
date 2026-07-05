@@ -62,6 +62,7 @@ describe('calculateAll — Basis', () => {
         einrichtung: 8000, einrichtungMethode: 'linear',  // 1.000/Jahr
         edv: 4000, edvMethode: 'linear',                   // 1.000/Jahr
         maschinen: 0, maschinenMethode: 'linear',
+        bundesschatz: 0,
       },
     }))
 

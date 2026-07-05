@@ -14,7 +14,7 @@ function MiniProgressBar({ value, max, color }: { value: number; max: number; co
   return (
     <div className="w-full h-1 bg-muted rounded-full overflow-hidden mt-1">
       <div
-        className={`h-full rounded-full transition-all duration-500 ${color}`}
+        className={`h-full rounded-full transition-[width] duration-500 motion-reduce:transition-none ${color}`}
         style={{ width: `${percent}%` }}
       />
     </div>
@@ -38,7 +38,7 @@ export function BeitragsDetails({ result }: BeitragsDetailsProps) {
     <div className="card-surface p-5 sm:p-6">
       <div className="flex items-center gap-2 text-base font-semibold mb-4">
         <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/60">
-          <FileText className="h-3.5 w-3.5 text-muted-foreground" />
+          <FileText className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
         </div>
         Beitrags-Aufschlüsselung
       </div>
@@ -54,7 +54,7 @@ export function BeitragsDetails({ result }: BeitragsDetailsProps) {
           </thead>
           <tbody>
             {beitraege.map((b, i) => (
-              <tr key={i} className="border-b border-slate-100/60">
+              <tr key={i} className="border-b border-border/60">
                 <td className="py-3">
                   <div>
                     {b.tooltip ? (
@@ -82,11 +82,11 @@ export function BeitragsDetails({ result }: BeitragsDetailsProps) {
         </table>
       </div>
 
-      <div className="mt-4 p-3 bg-slate-100/50 backdrop-blur-sm rounded-lg text-xs text-muted-foreground">
+      <div className="mt-4 p-3 bg-muted/50 backdrop-blur-sm rounded-lg text-xs text-muted-foreground">
         <SvsTooltip term="Endgültige Beitragsgrundlage" />:{' '}
         <span className="font-mono font-medium text-foreground">{formatEuro(result.beitragsgrundlage)}</span>
         {result.cappedAtMax && (
-          <span className="ml-2 text-amber-600 font-medium">
+          <span className="ml-2 text-amber-600 dark:text-amber-400 font-medium">
             (gedeckelt bei <SvsTooltip term="Höchstbeitragsgrundlage" />)
           </span>
         )}
@@ -96,13 +96,13 @@ export function BeitragsDetails({ result }: BeitragsDetailsProps) {
           </span>
         )}
         {result.usesMinBeitragsgrundlage && (
-          <span className="ml-2 text-amber-600 font-medium">
+          <span className="ml-2 text-amber-600 dark:text-amber-400 font-medium">
             (Mindestbeitragsgrundlage)
           </span>
         )}
       </div>
       {result.isJungunternehmer && (
-        <p className="mt-2 text-xs text-green-700">
+        <p className="mt-2 text-xs text-emerald-700 dark:text-emerald-400">
           * Reduzierter KV-Satz (3,84%) durch Jungunternehmer-Regelung (NeuFöG)
         </p>
       )}

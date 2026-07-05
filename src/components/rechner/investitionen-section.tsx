@@ -53,7 +53,7 @@ function InvestRow({
           />
         </div>
         <Select value={methode} onValueChange={(v) => onMethodeChange(v as AfaMethode)}>
-          <SelectTrigger className="w-28 h-12 sm:h-9 text-sm sm:text-xs">
+          <SelectTrigger aria-label="AfA-Methode" className="w-28 h-12 sm:h-9 text-sm sm:text-xs">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -86,7 +86,7 @@ export function InvestitionenSection({ investitionen, afa, gewinn, year, isPro, 
               <Landmark className="h-3.5 w-3.5 text-violet-600" />
             </div>
             <div className="flex-1 min-w-0">
-              <h2 className="text-sm font-semibold tracking-tight flex items-center gap-1.5">Investitionen & AfA <Crown className="h-3 w-3 text-amber-400" /></h2>
+              <h2 className="text-sm font-semibold tracking-tight flex items-center gap-1.5">Investitionen & AfA <Crown className="h-3 w-3 text-amber-400" aria-hidden="true" /><span className="sr-only">(Pro-Feature)</span></h2>
               <p className="text-xs text-muted-foreground truncate">
                 {afa.gesamt > 0 ? `AfA: ${formatEuro(afa.gesamt)}/Jahr` : 'Abschreibungen für Anlagegüter'}
               </p>
@@ -137,7 +137,7 @@ export function InvestitionenSection({ investitionen, afa, gewinn, year, isPro, 
                   </Label>
                 </div>
                 <p className="text-xs text-muted-foreground">
-                  Investitionsbedingter Gewinnfreibetrag: Kapital 4 Jahre in Bundesschatz oder begünstigte Wertpapiere anlegen — reduziert dein steuerpflichtiges Einkommen. Keine AfA, kein Wertverlust.
+                  Investitionsbedingter Gewinnfreibetrag: Kapital 4 Jahre in Bundesschatz oder begünstigte Wertpapiere anlegen. Das reduziert dein steuerpflichtiges Einkommen. Keine AfA, kein Wertverlust.
                 </p>
                 <div className="relative">
                   <span className="absolute left-2.5 top-1/2 -translate-y-1/2 text-muted-foreground text-xs">EUR</span>
@@ -176,7 +176,7 @@ export function InvestitionenSection({ investitionen, afa, gewinn, year, isPro, 
                     <span className="font-mono text-foreground">{formatEuro(afa.gesamt)}</span>
                   </div>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Wird als Betriebsausgabe abgezogen (ohne Bundesschatz — dieser hat keine AfA)
+                    Wird als Betriebsausgabe abgezogen (ohne Bundesschatz, dieser hat keine AfA)
                   </p>
                 </div>
               )}

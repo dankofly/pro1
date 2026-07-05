@@ -174,7 +174,7 @@ export function AiTaxAdvisor({ input, result, isPro, onUpgradeRequired }: AiTaxA
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <RefreshCw className="h-3.5 w-3.5 animate-spin" />
-              Analysiere deine Steuerdaten...
+              Analysiere deine Steuerdaten…
             </div>
             {text && (
               <div
@@ -260,7 +260,7 @@ function renderMarkdown(md: string): string {
   return escapeHtml(md)
     // Headings
     .replace(/^### (.+)$/gm, '<h3 class="text-sm font-semibold text-foreground mt-4 mb-1.5">$1</h3>')
-    .replace(/^## (.+)$/gm, '<h2 class="text-base font-semibold text-foreground mt-4 mb-1.5">$2</h2>')
+    .replace(/^## (.+)$/gm, '<h2 class="text-base font-semibold text-foreground mt-4 mb-1.5">$1</h2>')
     // Bold
     .replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-foreground">$1</strong>')
     // Italic

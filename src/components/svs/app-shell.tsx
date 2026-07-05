@@ -79,10 +79,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         />
         <main className="flex-1 min-w-0 pb-20 md:pb-0">
           {authLoading ? (
-            <div className="flex items-center justify-center min-h-[60vh]">
+            <div className="flex items-center justify-center min-h-[60vh]" role="status">
               <div className="flex flex-col items-center gap-3">
                 <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
-                <p className="text-sm text-muted-foreground">Laden...</p>
+                <p className="text-sm text-muted-foreground">Laden…</p>
               </div>
             </div>
           ) : (

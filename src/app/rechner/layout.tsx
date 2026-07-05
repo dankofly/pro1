@@ -2,12 +2,12 @@ import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'SVS Rechner 2026 — Beiträge, Nachzahlung & Netto berechnen | SteuerBoard.pro',
+  title: 'SVS Rechner 2026 — Beiträge, Nachzahlung & Netto berechnen',
   description:
     'Kostenloser SVS Rechner für Selbständige in Österreich. SVS-Beiträge 2026 berechnen, Nachzahlung prognostizieren und echtes Netto erfahren.',
   alternates: { canonical: '/rechner' },
   openGraph: {
-    title: 'SVS Rechner 2026 — Beiträge, Nachzahlung & Netto berechnen | SteuerBoard.pro',
+    title: 'SVS Rechner 2026 — Beiträge, Nachzahlung & Netto berechnen',
     description: 'Kostenloser SVS Rechner für Selbständige in Österreich. SVS-Beiträge 2026 berechnen, Nachzahlung prognostizieren und echtes Netto erfahren.',
     url: '/rechner',
   },
@@ -35,7 +35,7 @@ const RECHNER_FAQ_JSONLD = {
     {
       '@type': 'Question',
       name: 'Für welche Steuerjahre funktioniert der SVS-Rechner?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Der Rechner unterstützt 2024, 2025 und 2026 mit aktuellen Werten: SVS-Beitragssätze, Einkommensteuertarif, Gewinnfreibetrag, Familienbonus Plus (2.100 EUR ab 2026), AVAB (572 EUR), Verkehrsabsetzbetrag (481 EUR) und Kleinunternehmergrenze (55.000 EUR).' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Der Rechner unterstützt 2024, 2025 und 2026 mit aktuellen Werten: SVS-Beitragssätze, Einkommensteuertarif, Gewinnfreibetrag, Familienbonus Plus (2.000 EUR pro Kind unter 18), AVAB (612 EUR für 2026), Verkehrsabsetzbetrag (496 EUR für 2026) und Kleinunternehmergrenze (55.000 EUR).' },
     },
   ],
 }

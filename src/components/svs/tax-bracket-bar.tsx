@@ -47,7 +47,7 @@ export function TaxBracketBar({ steuerpflichtig, year }: TaxBracketBarProps) {
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
           <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-500/15">
-            <Percent className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" />
+            <Percent className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" aria-hidden="true" />
           </div>
           <span className="text-sm font-semibold text-foreground">Deine Steuerstufe</span>
         </div>
@@ -58,7 +58,8 @@ export function TaxBracketBar({ steuerpflichtig, year }: TaxBracketBarProps) {
 
       <div className="relative">
         {/* Bar */}
-        <div className="flex h-2 rounded-full overflow-hidden gap-px">
+        {/* overflow-hidden entfernt, damit der vergroesserte unsichtbare Klickbereich der Segmente nicht geclippt wird */}
+        <div className="flex h-2 gap-px">
           {brackets.map((b) => {
             const width = ((b.to - b.from) / MAX) * 100
             return (
@@ -66,7 +67,8 @@ export function TaxBracketBar({ steuerpflichtig, year }: TaxBracketBarProps) {
                 <PopoverTrigger asChild>
                   <button
                     type="button"
-                    className={`${b.color} ${steuerpflichtig < b.from ? 'opacity-25' : 'opacity-100'} transition-opacity duration-300 cursor-pointer hover:brightness-110 active:brightness-90 h-full`}
+                    aria-label={`${b.rate} Prozent Stufe von ${formatEuro(b.from)} bis ${formatEuro(b.to)}`}
+                    className={`${b.color} ${steuerpflichtig < b.from ? 'opacity-25' : 'opacity-100'} transition-opacity duration-300 cursor-pointer hover:brightness-110 active:brightness-90 h-full first:rounded-l-full last:rounded-r-full relative before:absolute before:-inset-y-3 before:inset-x-0 before:content-['']`}
                     style={{ width: `${width}%` }}
                   />
                 </PopoverTrigger>
@@ -84,7 +86,7 @@ export function TaxBracketBar({ steuerpflichtig, year }: TaxBracketBarProps) {
         {/* Position marker */}
         {steuerpflichtig > 0 && (
           <div
-            className="absolute -top-1 transition-all duration-500 ease-out"
+            className="absolute -top-1 transition-[left] duration-500 ease-out motion-reduce:transition-none"
             style={{ left: `${positionPercent}%` }}
           >
             <div className="relative -translate-x-1/2">

@@ -64,7 +64,7 @@ export function ProOptionsSection({ proOptions, year, isPro, dispatch }: ProOpti
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Button variant="outline" size="icon" className="h-10 w-10 sm:h-8 sm:w-8 rounded-lg"
+                    <Button variant="outline" size="icon" aria-label="Kind unter 18 entfernen" className="h-11 w-11 sm:h-8 sm:w-8 rounded-lg"
                       disabled={proOptions.kinderUnter18 <= 0}
                       onClick={() => setOpt('kinderUnter18', Math.max(0, proOptions.kinderUnter18 - 1))}
                     >
@@ -73,7 +73,7 @@ export function ProOptionsSection({ proOptions, year, isPro, dispatch }: ProOpti
                     <span className="w-8 text-center font-mono text-sm font-semibold tabular-nums">
                       {proOptions.kinderUnter18}
                     </span>
-                    <Button variant="outline" size="icon" className="h-10 w-10 sm:h-8 sm:w-8 rounded-lg"
+                    <Button variant="outline" size="icon" aria-label="Kind unter 18 hinzufügen" className="h-11 w-11 sm:h-8 sm:w-8 rounded-lg"
                       onClick={() => setOpt('kinderUnter18', Math.min(10, proOptions.kinderUnter18 + 1))}
                     >
                       <Plus className="h-3.5 w-3.5" />
@@ -89,7 +89,7 @@ export function ProOptionsSection({ proOptions, year, isPro, dispatch }: ProOpti
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Button variant="outline" size="icon" className="h-10 w-10 sm:h-8 sm:w-8 rounded-lg"
+                    <Button variant="outline" size="icon" aria-label="Kind über 18 entfernen" className="h-11 w-11 sm:h-8 sm:w-8 rounded-lg"
                       disabled={proOptions.kinderUeber18 <= 0}
                       onClick={() => setOpt('kinderUeber18', Math.max(0, proOptions.kinderUeber18 - 1))}
                     >
@@ -98,7 +98,7 @@ export function ProOptionsSection({ proOptions, year, isPro, dispatch }: ProOpti
                     <span className="w-8 text-center font-mono text-sm font-semibold tabular-nums">
                       {proOptions.kinderUeber18}
                     </span>
-                    <Button variant="outline" size="icon" className="h-10 w-10 sm:h-8 sm:w-8 rounded-lg"
+                    <Button variant="outline" size="icon" aria-label="Kind über 18 hinzufügen" className="h-11 w-11 sm:h-8 sm:w-8 rounded-lg"
                       onClick={() => setOpt('kinderUeber18', Math.min(10, proOptions.kinderUeber18 + 1))}
                     >
                       <Plus className="h-3.5 w-3.5" />
@@ -112,10 +112,14 @@ export function ProOptionsSection({ proOptions, year, isPro, dispatch }: ProOpti
               {/* Alleinverdiener */}
               <div className="flex items-center justify-between gap-4">
                 <div className="min-w-0">
-                  <Label className="text-sm font-medium">Alleinverdiener / Alleinerzieher <FieldInfo text={FIELD_DEFS.alleinverdiener} /></Label>
+                  <span className="text-sm font-medium">
+                    <Label htmlFor="alleinverdiener" className="text-sm font-medium">Alleinverdiener / Alleinerzieher</Label>
+                    <FieldInfo text={FIELD_DEFS.alleinverdiener} />
+                  </span>
                   <p className="text-xs text-muted-foreground mt-0.5">AVAB/AEAB bei mind. 1 Kind</p>
                 </div>
                 <Switch
+                  id="alleinverdiener"
                   checked={proOptions.alleinverdiener}
                   onCheckedChange={(v) => setOpt('alleinverdiener', v)}
                 />
@@ -130,6 +134,7 @@ export function ProOptionsSection({ proOptions, year, isPro, dispatch }: ProOpti
                   <span className="text-sm font-mono font-semibold tabular-nums">{proOptions.pendlerKm} km</span>
                 </div>
                 <Slider
+                  aria-label="Pendlerkilometer"
                   value={[proOptions.pendlerKm]}
                   onValueChange={([v]) => setOpt('pendlerKm', v)}
                   min={0} max={80} step={1}
@@ -143,6 +148,7 @@ export function ProOptionsSection({ proOptions, year, isPro, dispatch }: ProOpti
                     <span className="text-sm text-muted-foreground">Öffentliche zumutbar</span>
                   </div>
                   <Switch
+                    aria-label="Öffentliche Verkehrsmittel zumutbar"
                     checked={proOptions.pendlerOeffentlich}
                     onCheckedChange={(v) => setOpt('pendlerOeffentlich', v)}
                   />

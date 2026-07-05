@@ -16,12 +16,12 @@ export function MonthlyOverview({ result, vorschreibung }: MonthlyOverviewProps)
     <div className="card-surface p-5 sm:p-6">
       <div className="flex items-center gap-2 mb-4">
         <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-muted/60">
-          <Calendar className="h-3.5 w-3.5 text-muted-foreground" />
+          <Calendar className="h-3.5 w-3.5 text-muted-foreground" aria-hidden="true" />
         </div>
         <span className="text-sm font-semibold text-foreground">Monatliche Übersicht</span>
       </div>
 
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <div>
           <p className="text-[11px] text-muted-foreground mb-0.5">Vorläufig (aktuell)</p>
           <p className="text-base font-bold font-mono text-foreground">

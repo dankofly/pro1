@@ -53,7 +53,7 @@ export function MobileNav() {
                     return (
                       <Link key={item.href} href={item.href} onClick={() => setOpen(false)}>
                         <div
-                          className={`flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer
+                          className={`flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium transition-colors duration-200 cursor-pointer
                             ${isActive
                               ? 'bg-emerald-500/15 text-emerald-400'
                               : 'text-slate-400 hover:text-white hover:bg-white/5'
@@ -77,7 +77,7 @@ export function MobileNav() {
                 <div className="border-t border-white/5 mb-3" />
                 <Link href="/admin" onClick={() => setOpen(false)}>
                   <div
-                    className={`flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium transition-all duration-200 cursor-pointer
+                    className={`flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium transition-colors duration-200 cursor-pointer
                       ${pathname === '/admin'
                         ? 'bg-emerald-500/15 text-emerald-400'
                         : 'text-slate-400 hover:text-white hover:bg-white/5'

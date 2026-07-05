@@ -53,7 +53,7 @@ export function PauschalierungSection({
               <Calculator className="h-3.5 w-3.5 text-sky-600" />
             </div>
             <div className="flex-1 min-w-0">
-              <h2 className="text-sm font-semibold tracking-tight flex items-center gap-1.5">Pauschalierung <Crown className="h-3 w-3 text-amber-400" /> <FieldInfo text={FIELD_DEFS.pauschalierungArt} /></h2>
+              <h2 className="text-sm font-semibold tracking-tight flex items-center gap-1.5">Pauschalierung <Crown className="h-3 w-3 text-amber-400" aria-hidden="true" /><span className="sr-only">(Pro-Feature)</span></h2>
               <p className="text-xs text-muted-foreground truncate">
                 {pauschalierungArt === 'keine' ? 'Nicht aktiv' : optionen.find(o => o.value === pauschalierungArt)?.label}
               </p>
@@ -65,6 +65,10 @@ export function PauschalierungSection({
           <ProSectionWrapper isPro={isPro} featureName="Pauschalierung">
             <div className="space-y-4 px-4 pb-4">
               <div className="divider" />
+              <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                Betriebsausgaben pauschal statt einzeln absetzen
+                <FieldInfo text={FIELD_DEFS.pauschalierungArt} />
+              </div>
               <RadioGroup
                 value={pauschalierungArt}
                 onValueChange={(v) => setArt(v as PauschalierungArt)}

@@ -27,48 +27,48 @@ export function SteuerTipps({ tipps, gewinn, year }: SteuerTippsProps) {
 
   return (
     <Collapsible open={open} onOpenChange={setOpen}>
-      <Card className="border-2 border-emerald-200 bg-emerald-50/30">
+      <Card className="border-2 border-emerald-200 dark:border-emerald-800/40 bg-emerald-50/30 dark:bg-emerald-950/25">
         <CollapsibleTrigger asChild>
-          <button className="w-full text-left">
-            <CardContent className="flex items-center justify-between p-4 sm:p-6 cursor-pointer hover:bg-emerald-50/60 transition-colors rounded-lg">
+          <button type="button" className="w-full text-left">
+            <CardContent className="flex items-center justify-between p-4 sm:p-6 cursor-pointer hover:bg-emerald-50/60 dark:hover:bg-emerald-950/40 transition-colors rounded-lg">
               <div className="flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-600 shadow-sm">
-                  <Lightbulb className="h-5 w-5 text-white" />
+                  <Lightbulb className="h-5 w-5 text-white" aria-hidden="true" />
                 </div>
                 <div>
-                  <p className="font-semibold text-emerald-900">Wie kann ich meine Steuer senken?</p>
-                  <p className="text-sm text-emerald-700/70">
+                  <p className="font-semibold text-emerald-900 dark:text-emerald-200">Wie kann ich meine Steuer senken?</p>
+                  <p className="text-sm text-emerald-700/70 dark:text-emerald-300/70">
                     Bis zu <span className="font-bold">{formatEuro(totalErsparnis)}</span> Ersparnis möglich
                   </p>
                 </div>
               </div>
-              <ChevronDown className={`h-5 w-5 text-emerald-600 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
+              <ChevronDown className={`h-5 w-5 text-emerald-600 dark:text-emerald-400 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} aria-hidden="true" />
             </CardContent>
           </button>
         </CollapsibleTrigger>
 
         <CollapsibleContent>
           <div className="px-4 sm:px-6 pb-5 space-y-4">
-            <div className="flex items-center gap-2 text-xs text-emerald-700">
-              <TrendingDown className="h-3.5 w-3.5" />
-              Dein Grenzsteuersatz: <Badge variant="outline" className="bg-white font-mono">{(tipps.grenzsteuersatz * 100).toFixed(0)}%</Badge>
+            <div className="flex items-center gap-2 text-xs text-emerald-700 dark:text-emerald-300">
+              <TrendingDown className="h-3.5 w-3.5" aria-hidden="true" />
+              Dein Grenzsteuersatz: <Badge variant="outline" className="bg-white dark:bg-card font-mono">{(tipps.grenzsteuersatz * 100).toFixed(0)}%</Badge>
             </div>
 
             {hasIfb && (
-              <Card className="bg-white border-emerald-100">
+              <Card className="bg-white dark:bg-card border-emerald-100 dark:border-emerald-800/40">
                 <CardContent className="p-4">
                   <div className="flex items-start gap-3">
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-50">
-                      <Monitor className="h-5 w-5 text-blue-600" />
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-950/30">
+                      <Monitor className="h-5 w-5 text-blue-600 dark:text-blue-400" aria-hidden="true" />
                     </div>
                     <div className="space-y-1.5">
                       <p className="font-semibold text-sm">Investitionsbedingter Gewinnfreibetrag</p>
                       <p className="text-sm text-muted-foreground">
                         Kaufe noch heuer Hardware, Software oder Büroausstattung für{' '}
-                        <span className="font-bold text-blue-700">{formatEuro(tipps.ifbInvestition)}</span>,
-                        um <span className="font-bold text-emerald-700">{formatEuro(tipps.ifbErsparnis)}</span> Steuern zu sparen.
+                        <span className="font-bold text-blue-700 dark:text-blue-300">{formatEuro(tipps.ifbInvestition)}</span>,
+                        um <span className="font-bold text-emerald-700 dark:text-emerald-400">{formatEuro(tipps.ifbErsparnis)}</span> Steuern zu sparen.
                       </p>
-                      <div className="bg-blue-50 rounded-md p-2.5 text-xs text-blue-800">
+                      <div className="bg-blue-50 dark:bg-blue-950/25 rounded-md p-2.5 text-xs text-blue-800 dark:text-blue-300">
                         Der IFB gilt für Gewinne über € 33.000 (13% bis € 175.000). Du musst tatsächlich investieren –
                         Laptop, Monitor, Drucker, Büromöbel oder bestimmte Wertpapiere zählen.
                       </div>
@@ -79,20 +79,20 @@ export function SteuerTipps({ tipps, gewinn, year }: SteuerTippsProps) {
             )}
 
             {hasSvsExtra && (
-              <Card className="bg-white border-emerald-100">
+              <Card className="bg-white dark:bg-card border-emerald-100 dark:border-emerald-800/40">
                 <CardContent className="p-4">
                   <div className="flex items-start gap-3">
-                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-violet-50">
-                      <CreditCard className="h-5 w-5 text-violet-600" />
+                    <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-violet-50 dark:bg-violet-950/30">
+                      <CreditCard className="h-5 w-5 text-violet-600 dark:text-violet-400" aria-hidden="true" />
                     </div>
                     <div className="space-y-1.5">
                       <p className="font-semibold text-sm">SVS-Vorauszahlung erhöhen</p>
                       <p className="text-sm text-muted-foreground">
                         Zahle dieses Jahr noch{' '}
-                        <span className="font-bold text-violet-700">{formatEuro(tipps.svsVorauszahlung)}</span> mehr
-                        an die SVS, um <span className="font-bold text-emerald-700">{formatEuro(tipps.svsVorauszahlungErsparnis)}</span> Einkommensteuer zu sparen.
+                        <span className="font-bold text-violet-700 dark:text-violet-300">{formatEuro(tipps.svsVorauszahlung)}</span> mehr
+                        an die SVS, um <span className="font-bold text-emerald-700 dark:text-emerald-400">{formatEuro(tipps.svsVorauszahlungErsparnis)}</span> Einkommensteuer zu sparen.
                       </p>
-                      <div className="bg-violet-50 rounded-md p-2.5 text-xs text-violet-800">
+                      <div className="bg-violet-50 dark:bg-violet-950/25 rounded-md p-2.5 text-xs text-violet-800 dark:text-violet-300">
                         Höhere SVS-Beiträge = niedrigeres zu versteuerndes Einkommen.
                         Du kannst bei der SVS freiwillig eine höhere Vorauszahlung beantragen.
                         Das Geld ist nicht verloren – es fließt in deine Pension und Krankenversicherung.

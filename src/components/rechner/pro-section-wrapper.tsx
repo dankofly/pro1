@@ -51,7 +51,7 @@ export function ProSectionWrapper({
           </Button>
         )}
       </div>
-      <div className="opacity-20 pointer-events-none select-none" aria-hidden="true">
+      <div className="opacity-20 pointer-events-none select-none" aria-hidden="true" inert={true}>
         {children}
       </div>
     </div>

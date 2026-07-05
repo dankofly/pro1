@@ -33,9 +33,9 @@ export function RuecklagenSection({ ruecklagen }: RuecklagenSectionProps) {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-emerald-500/15">
-            <Landmark className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
+            <Landmark className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
           </div>
-          <span className="text-sm font-semibold text-foreground">Rücklagen-Planer</span>
+          <h3 className="text-sm font-semibold text-foreground">Rücklagen-Planer</h3>
         </div>
         <QuoteBadge quote={ruecklagenQuote} />
       </div>
@@ -73,7 +73,7 @@ export function RuecklagenSection({ ruecklagen }: RuecklagenSectionProps) {
       {/* Dauerauftrag-Tipp */}
       {gesamtMonatlich > 0 && (
         <div className="flex gap-2 rounded-lg bg-amber-50/60 dark:bg-amber-950/20 border border-amber-200/40 dark:border-amber-800/20 p-2.5">
-          <Lightbulb className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0" />
+          <Lightbulb className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0" aria-hidden="true" />
           <p className="text-[11px] text-amber-800 dark:text-amber-300">
             <span className="font-semibold">Tipp:</span> Richte einen Dauerauftrag über{' '}
             <span className="font-mono font-semibold">{formatEuroShort(gesamtMonatlich)}</span>/Monat

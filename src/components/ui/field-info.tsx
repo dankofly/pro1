@@ -15,7 +15,7 @@ export function FieldInfo({ text }: FieldInfoProps) {
         <PopoverTrigger asChild>
           <button
             type="button"
-            className="inline-flex items-center justify-center align-middle text-muted-foreground/50 hover:text-muted-foreground transition-colors"
+            className="relative inline-flex items-center justify-center align-middle text-muted-foreground/50 hover:text-muted-foreground transition-colors before:absolute before:-inset-2.5 before:content-['']"
             aria-label="Feld-Info"
           >
             <Info className="h-3.5 w-3.5" />

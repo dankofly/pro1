@@ -2,6 +2,12 @@
 
 import { useState, useEffect, useRef } from 'react'
 
+/** true, wenn der User reduzierte Bewegung wünscht (prefers-reduced-motion) */
+function prefersReducedMotion(): boolean {
+  if (typeof window === 'undefined' || !window.matchMedia) return false
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches
+}
+
 export function useAnimatedNumber(target: number, duration = 400): number {
   const [current, setCurrent] = useState(target)
   const prevRef = useRef(target)
@@ -13,6 +19,12 @@ export function useAnimatedNumber(target: number, duration = 400): number {
     prevRef.current = target
 
     if (from === to) return
+
+    // Reduced Motion: Wert sofort setzen, keine rAF-Animation
+    if (prefersReducedMotion()) {
+      setCurrent(to)
+      return
+    }
 
     const start = performance.now()
     const animate = (now: number) => {
