@@ -32,13 +32,19 @@ function CheckoutReturn() {
       return
     }
 
-    fetch(`/api/stripe/session?session_id=${sessionId}`)
-      .then(res => res.json())
-      .then(data => {
+    ;(async () => {
+      try {
+        const token = (await supabase.auth.getSession()).data.session?.access_token
+        const res = await fetch(`/api/stripe/session?session_id=${sessionId}`, {
+          headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+        })
+        const data = await res.json()
         setStatus(data.status === 'complete' ? 'complete' : 'error')
         if (data.status === 'complete') subscription.refresh()
-      })
-      .catch(() => setStatus('error'))
+      } catch {
+        setStatus('error')
+      }
+    })()
   }, [subscription])
 
   if (status === 'loading') {
@@ -342,7 +348,7 @@ function PricingContent() {
             Starte kostenlos, upgrade wenn du bereit bist
           </h1>
           <p className="text-blue-200/60 text-lg whitespace-pre-line max-w-2xl mx-auto">
-            Keine versteckten Kosten. Monatlich kündbar.{'\n'}Sichere Zahlung via Stripe.
+            Keine versteckten Kosten. Monatsabo jederzeit kündbar, Jahresabo bis Jahresende.{'\n'}Sichere Zahlung via Stripe.
           </p>
         </div>
 
@@ -560,7 +566,7 @@ function PricingContent() {
           </div>
           <div className="flex items-center gap-2 text-blue-200/40 text-xs">
             <CalendarX className="h-4 w-4" />
-            <span>Monatlich kündbar</span>
+            <span>Jederzeit kündbar zum Ende der Laufzeit</span>
           </div>
         </div>
 

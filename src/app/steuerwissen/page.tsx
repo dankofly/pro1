@@ -352,7 +352,7 @@ function SteuerwissenContent() {
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className="text-xs text-amber-200">Tageslimit erreicht.</span>
                         <Button asChild size="sm" variant="ghost" className="h-6 text-xs gap-1 text-amber-300 hover:text-amber-200 hover:bg-amber-500/10">
-                          <Link href="/login">
+                          <Link href="/auth/login?redirect=/steuerwissen">
                             <LogIn className="h-3 w-3" />
                             Anmelden
                           </Link>

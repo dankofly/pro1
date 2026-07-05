@@ -127,12 +127,12 @@ export function NachzahlungsUpsell({ svs, vorschreibung, monatlicheRuecklage, su
             </Button>
             <div className="text-xs text-muted-foreground leading-snug">
               <span className="font-semibold text-foreground">{jahresPreis} € im Jahr</span>
-              {' '}(entspricht {proMonat} €/Monat)
+              {' '}(entspricht {proMonat} €/Monat, inkl. USt)
               {zeigeAnteil && (
                 <> · weniger als {Math.max(1, Math.ceil(anteilProzent))} % {hatNachzahlung ? 'deiner erwarteten Nachzahlung' : 'deiner Jahres-Rücklage'}</>
               )}
               <br />
-              Als Betriebsausgabe in der Regel steuerlich absetzbar. Monatlich kündbar.
+              Als Betriebsausgabe in der Regel steuerlich absetzbar. Auch monatlich buchbar.
             </div>
           </div>
         </div>

@@ -57,24 +57,6 @@ function ImpressumContent() {
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold mb-3">Online-Streitbeilegung</h2>
-            <p>
-              Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:{' '}
-              <a
-                href="https://ec.europa.eu/consumers/odr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:underline"
-              >
-                https://ec.europa.eu/consumers/odr
-              </a>
-            </p>
-            <p>
-              Unsere E-Mail-Adresse finden Sie oben im Impressum.
-            </p>
-          </section>
-
-          <section>
             <h2 className="text-xl font-semibold mb-3">Grundlegende Richtung (MedienG)</h2>
             <p>
               steuerboard.pro ist ein Informations- und Berechnungsportal für Selbständige in

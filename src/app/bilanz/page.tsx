@@ -850,7 +850,7 @@ function BilanzContent() {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ sessionId: parsed.sessionId }),
+        body: JSON.stringify({ sessionId: parsed.sessionId, parsed }),
       })
 
       if (!res.ok) {
@@ -882,7 +882,7 @@ function BilanzContent() {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ sessionId: parsed.sessionId }),
+        body: JSON.stringify({ sessionId: parsed.sessionId, parsed }),
       })
 
       if (!res.ok) {

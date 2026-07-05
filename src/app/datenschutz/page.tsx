@@ -152,7 +152,11 @@ function DatenschutzContent() {
             <p><strong>Verarbeitete Daten:</strong></p>
             <ul className="list-disc pl-6 space-y-1">
               <li>Die vom Nutzer eingegebene Frage/Nachricht</li>
-              <li>Kontextdaten zur Berechnung (z.B. Gewinn, SVS-Werte), sofern der Nutzer diese im Chat teilt</li>
+              <li>
+                Die Eingaben und Berechnungsergebnisse der Rechner (z.B. Gewinn, SVS-Werte, Steuerbeträge)
+                werden zur Erstellung der Analyse automatisch an Google Gemini übermittelt, nicht nur die
+                manuell im Chat geteilten Angaben
+              </li>
             </ul>
             <p><strong>Nicht übermittelt werden:</strong></p>
             <ul className="list-disc pl-6 space-y-1">
@@ -176,6 +180,26 @@ function DatenschutzContent() {
               <a href="https://cloud.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
                 https://cloud.google.com/privacy
               </a>
+            </p>
+          </section>
+
+          {/* 6b. Bilanz-Analyse */}
+          <section>
+            <h2 className="text-xl font-semibold mb-3">6b. Bilanz-Analyse</h2>
+            <p>
+              Beim Bilanz-Upload werden die hochgeladenen Dateien (CSV, XLSX oder PDF mit
+              Firmen-Finanzdaten) ausschließlich transient im Arbeitsspeicher verarbeitet und{' '}
+              <strong>nicht dauerhaft gespeichert</strong>.
+            </p>
+            <p>
+              Für die Prognose-Funktion werden die ausgelesenen Bilanz- und GuV-Kennzahlen an
+              Google Gemini (<strong>Google Ireland Limited</strong>, Gordon House, Barrow Street,
+              Dublin 4, Irland; Verarbeitung ggf. in den USA, abgesichert über die
+              EU-Standardvertragsklauseln bzw. das EU-U.S. Data Privacy Framework) übermittelt.
+            </p>
+            <p>
+              Rechtsgrundlage ist die Vertragserfüllung im Rahmen des Pro-Features
+              (Art. 6 Abs. 1 lit. b DSGVO).
             </p>
           </section>
 

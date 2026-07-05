@@ -80,7 +80,8 @@ export function UpgradeDialog({ open, onOpenChange, feature, requiredPlan }: Upg
             </Link>
           </Button>
           <p className="text-[11px] text-center text-muted-foreground">
-            Monatlich kündbar. Deine bisherigen Berechnungen bleiben erhalten.
+            Alle Preise inkl. USt. Monatsabo jederzeit zum Monatsende kündbar,
+            Jahresabo läuft bis zum Ende des Bezugsjahres. Deine Berechnungen bleiben erhalten.
           </p>
           <Button variant="ghost" size="sm" onClick={() => onOpenChange(false)}>
             Vielleicht später

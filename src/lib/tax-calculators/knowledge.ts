@@ -2,7 +2,7 @@
  * Austrian Tax Knowledge Base 2026
  * Source: TPA "Das 1x1 der Steuern 2026"
  *
- * Embedded as string constants for the Claude system prompt.
+ * Embedded as string constants for the Google Gemini system prompt.
  */
 
 const STEUERTARIF = `

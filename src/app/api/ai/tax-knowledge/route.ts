@@ -63,10 +63,18 @@ function ipToUuid(ip: string): string {
 }
 
 function getClientIp(request: NextRequest): string {
+  // Netlify setzt die echte Client-IP in x-nf-client-connection-ip. Dieser
+  // Header ist nicht client-spoofbar, anders als x-forwarded-for (dessen
+  // erster Eintrag frei gesetzt werden kann und so das Rate-Limit umginge).
+  const netlifyIp = request.headers.get('x-nf-client-connection-ip')
+  if (netlifyIp) return netlifyIp.trim()
+
+  // Fallback für andere Umgebungen: LETZTER Eintrag von x-forwarded-for
+  // (den hängt der vertrauenswürdige Proxy an, davor steht Client-Spoofbares).
   const forwarded = request.headers.get('x-forwarded-for')
   if (forwarded) {
-    // x-forwarded-for can be comma-separated; take the first (original client)
-    return forwarded.split(',')[0].trim()
+    const parts = forwarded.split(',').map(p => p.trim()).filter(Boolean)
+    if (parts.length > 0) return parts[parts.length - 1]
   }
   return '127.0.0.1'
 }

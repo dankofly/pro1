@@ -229,6 +229,11 @@ export function AiTaxAdvisor({ input, result, isPro, onUpgradeRequired }: AiTaxA
             </Button>
           </div>
         )}
+
+        {/* Fester Disclaimer */}
+        <p className="mt-4 pt-3 border-t border-border/40 text-xs text-muted-foreground">
+          KI-Assistent auf Basis von Google Gemini. Keine Steuerberatung, alle Angaben ohne Gewähr.
+        </p>
       </div>
     </div>
   )

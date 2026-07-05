@@ -133,7 +133,7 @@ const PRO_FEATURES: Feature[] = [
   {
     icon: MessageSquare,
     title: 'Steuer-Chatbot (7 Rechner)',
-    desc: 'KI-Steuerexperte powered by Claude AI mit Zugriff auf 7 spezialisierte Rechner: Einkommensteuer, Körperschaftsteuer, Umsatzsteuer, Krypto-Steuer, Immobilienertragsteuer, Sachbezug und Investitionsfreibetrag.',
+    desc: 'KI-Steuerexperte powered by Google Gemini mit Zugriff auf 7 spezialisierte Rechner: Einkommensteuer, Körperschaftsteuer, Umsatzsteuer, Krypto-Steuer, Immobilienertragsteuer, Sachbezug und Investitionsfreibetrag.',
     color: 'text-emerald-400',
     bg: 'bg-emerald-500/10',
     href: '/steuerberater',
@@ -506,6 +506,9 @@ export default function FeaturesPage() {
           <div className="bg-white/[0.02] border border-white/10 rounded-2xl overflow-hidden">
             <ComparisonTable />
           </div>
+          <p className="text-center text-blue-200/30 text-xs mt-6">
+            Alle Preise inkl. USt.
+          </p>
         </section>
 
         {/* Bottom CTA */}

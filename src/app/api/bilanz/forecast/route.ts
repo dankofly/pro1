@@ -98,7 +98,9 @@ const ForecastSchema = z.object({
 
 // ── System Prompt ────────────────────────────────────────────
 
-const SYSTEM_PROMPT = `Du bist ein österreichischer Steuer-Assistent und Finanzanalyst mit 15+ Jahren Erfahrung in KMU-Beratung, Bilanzanalyse und Steueroptimierung nach österreichischem Recht.
+const SYSTEM_PROMPT = `Du bist ein österreichischer Steuer-Assistent und Finanzanalyst mit fundiertem Wissen zu Bilanzanalyse und österreichischem Steuerrecht.
+
+WICHTIG: Du bist kein Steuerberater und erbringst keine Steuerberatung im Sinne des WTBG. Deine Prognose ist eine Orientierungshilfe auf Basis der übergebenen Zahlen, ohne Gewähr. Formuliere Vorschläge als mögliche Ansatzpunkte, nicht als verbindliche Handlungsanweisungen, und weise am Ende der Empfehlungen darauf hin, dass eine individuelle Prüfung durch einen Steuerberater ratsam ist.
 
 Du erstellst eine 12-Monats-Prognose in 3 Szenarien basierend auf den übergebenen Bilanzdaten und Kennzahlen.
 
@@ -185,19 +187,21 @@ export async function POST(request: NextRequest) {
 
     // 4. Parse & validate request body
     const body = await request.json().catch(() => null)
-    if (!body || !body.parsed || !body.kennzahlen) {
-      return Response.json({ error: 'Bilanz-Daten und Kennzahlen fehlen.' }, { status: 400 })
+    if (!body || !body.parsed) {
+      return Response.json({ error: 'Bilanz-Daten fehlen.' }, { status: 400 })
     }
 
-    const { sessionId, parsed, kennzahlen } = body as {
+    const { sessionId, parsed } = body as {
       sessionId: string
       parsed: ParsedBilanz
-      kennzahlen: Kennzahlen
     }
 
     if (!sessionId) {
       return Response.json({ error: 'Session-ID fehlt.' }, { status: 400 })
     }
+
+    // Kennzahlen serverseitig aus den Bilanzdaten berechnen (nicht vom Client erwarten)
+    const kennzahlen = calculateKennzahlen(parsed)
 
     // 5. Build user message from data
     const userMessage = buildUserMessage(parsed, kennzahlen)
@@ -224,6 +228,45 @@ export async function POST(request: NextRequest) {
     console.error('Bilanz Forecast error:', err)
     console.error('Bilanz Forecast detail:', err instanceof Error ? err.message : err)
     return Response.json({ error: 'Prognose-Fehler. Bitte versuche es erneut.' }, { status: 500 })
+  }
+}
+
+// ── Kennzahlen-Berechnung (serverseitig, aus den Bilanzdaten) ──
+
+function safeDiv(numerator: number, denominator: number): number {
+  return denominator === 0 ? 0 : numerator / denominator
+}
+function round2(value: number): number {
+  return Math.round(value * 100) / 100
+}
+function roundPct(value: number): number {
+  return Math.round(value * 10000) / 100
+}
+
+function calculateKennzahlen(parsed: ParsedBilanz): Kennzahlen {
+  const { aktiva, passiva } = parsed.bilanz
+  const { guv } = parsed
+
+  const bilanzsumme = aktiva.anlagevermoegen + aktiva.umlaufvermoegen + aktiva.rechnungsabgrenzung
+  const gewinn = guv.umsatzerloese
+    - guv.materialaufwand
+    - guv.personalaufwand
+    - guv.abschreibungen
+    - guv.sonstigerAufwand
+    + guv.finanzergebnis
+  const zinsen = guv.finanzergebnis < 0 ? Math.abs(guv.finanzergebnis) : 0
+
+  return {
+    bilanzsumme: round2(bilanzsumme),
+    eigenkapitalquote: roundPct(safeDiv(passiva.eigenkapital, bilanzsumme)),
+    verschuldungsgrad: roundPct(safeDiv(passiva.fremdkapital, passiva.eigenkapital)),
+    liquiditaet1Grad: roundPct(safeDiv(aktiva.fluessigeMittel, passiva.kurzfristigeVerbindlichkeiten)),
+    liquiditaet3Grad: roundPct(safeDiv(aktiva.umlaufvermoegen, passiva.kurzfristigeVerbindlichkeiten)),
+    umsatzrentabilitaet: roundPct(safeDiv(gewinn, guv.umsatzerloese)),
+    ekRentabilitaet: roundPct(safeDiv(gewinn, passiva.eigenkapital)),
+    gkRentabilitaet: roundPct(safeDiv(gewinn + zinsen, bilanzsumme)),
+    workingCapital: round2(aktiva.umlaufvermoegen - passiva.kurzfristigeVerbindlichkeiten),
+    gewinn: round2(gewinn),
   }
 }
 

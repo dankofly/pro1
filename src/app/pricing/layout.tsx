@@ -4,7 +4,7 @@ import { JsonLd } from '@/components/json-ld'
 export const metadata: Metadata = {
   title: 'Preise – SteuerBoard.pro Pläne',
   description:
-    'SteuerBoard.pro Preise: Kostenloser SVS-Beitragsrechner, Sicherheits-Plan ab 12,90 EUR/Monat, Pro ab 24,90 EUR/Monat. Monatlich kündbar.',
+    'SteuerBoard.pro Preise: Kostenloser SVS-Beitragsrechner, Sicherheits-Plan ab 12,90 EUR/Monat, Pro ab 24,90 EUR/Monat. Jederzeit kündbar zum Ende der Laufzeit.',
   alternates: { canonical: '/pricing' },
   openGraph: {
     title: 'SteuerBoard.pro Preise – Starte kostenlos',

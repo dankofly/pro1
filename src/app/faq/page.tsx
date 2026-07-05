@@ -85,7 +85,7 @@ const faqSections = [
       },
       {
         q: 'Was kann der KI-Steuer-Chatbot?',
-        a: 'Der Steuer-Chatbot (Pro-Feature) ist ein KI-Assistent powered by Claude AI mit Zugriff auf 7 spezialisierte Rechner: Einkommensteuer, Körperschaftsteuer (23 % KöSt), Umsatzsteuer (inkl. Kleinunternehmerregelung § 6 Abs. 1 Z 27 UStG), Krypto-Steuer (27,5 % KESt), Immobilienertragsteuer (30 % ImmoESt), Sachbezug und Investitionsfreibetrag (§ 11 EStG). Er rechnet mit aktuellen österreichischen Werten für 2026.',
+        a: 'Der Steuer-Chatbot (Pro-Feature) ist ein KI-Assistent powered by Google Gemini mit Zugriff auf 7 spezialisierte Rechner: Einkommensteuer, Körperschaftsteuer (23 % KöSt), Umsatzsteuer (inkl. Kleinunternehmerregelung § 6 Abs. 1 Z 27 UStG), Krypto-Steuer (27,5 % KESt), Immobilienertragsteuer (30 % ImmoESt), Sachbezug und Investitionsfreibetrag (§ 11 EStG). Er rechnet mit aktuellen österreichischen Werten für 2026.',
       },
       {
         q: 'Pauschalierung — Was ist das und wann lohnt sie sich?',

@@ -723,7 +723,7 @@ export default function NebenberuflichSelbstaendigPage() {
                   von Einkommensteuer und SVS-Beiträgen.
                 </p>
                 <Button asChild>
-                  <Link href="/rechner/misch-einkommen" className="inline-flex items-center">
+                  <Link href="/misch-einkommen" className="inline-flex items-center">
                     Zum Misch-Einkommen-Rechner
                     <span className="ml-2">→</span>
                   </Link>

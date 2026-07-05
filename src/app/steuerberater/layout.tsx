@@ -4,7 +4,7 @@ import { JsonLd } from '@/components/json-ld'
 export const metadata: Metadata = {
   title: 'AI SteuerBoard — KI-gestützter Steuer-Assistent für Selbständige',
   description:
-    'Frag den AI SteuerBoard von SteuerBoard.pro: SVS-Beiträge, Einkommensteuer, GmbH-Vergleich, Absetzbeträge und Steueroptimierung für österreichische Selbständige. Orientierung auf Basis deiner Eingaben, keine Steuerberatung. Powered by Claude AI.',
+    'Frag den AI SteuerBoard von SteuerBoard.pro: SVS-Beiträge, Einkommensteuer, GmbH-Vergleich, Absetzbeträge und Steueroptimierung für österreichische Selbständige. Orientierung auf Basis deiner Eingaben, keine Steuerberatung. Powered by Google Gemini.',
   alternates: { canonical: '/steuerberater' },
   openGraph: {
     title: 'AI SteuerBoard — KI-gestützter Steuer-Assistent',

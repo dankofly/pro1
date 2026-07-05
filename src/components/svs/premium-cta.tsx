@@ -158,8 +158,8 @@ export function PremiumCTA({
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold">Alle 6 Werkzeuge freischalten</p>
                 <p className="text-xs text-white/55 mt-0.5">
-                  SteuerBoard Pro: 239 €/Jahr (entspricht 19,92 €/Monat), als Betriebsausgabe
-                  in der Regel steuerlich absetzbar. Monatlich kündbar.
+                  SteuerBoard Pro: 239 €/Jahr (entspricht 19,92 €/Monat, inkl. USt) oder
+                  24,90 €/Monat, als Betriebsausgabe in der Regel steuerlich absetzbar.
                 </p>
               </div>
               <Button asChild size="sm" className="shrink-0 bg-white text-slate-900 hover:bg-white/90">

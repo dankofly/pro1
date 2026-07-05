@@ -460,7 +460,7 @@ function FeaturesSection() {
                   <div className="flex flex-wrap items-center gap-2 mb-2">
                     <h4 className="text-xl font-bold text-white font-heading">Steuer-Chatbot</h4>
                     <Badge className="bg-emerald-500/15 text-emerald-400 border-emerald-500/25 text-xs">
-                      Pro · Powered by Claude AI
+                      Pro · Powered by Google Gemini
                     </Badge>
                   </div>
                   <p className="text-blue-200/60 leading-relaxed">
@@ -741,7 +741,7 @@ function FAQSection() {
     },
     {
       q: 'Was kann der KI-Steuer-Chatbot?',
-      a: 'Der Steuer-Chatbot (Pro-Feature) ist ein KI-Assistent powered by Claude AI, der deine Steuerfragen in Echtzeit beantwortet und mit aktuellen österreichischen Werten für 2026 rechnet. Er hat Zugriff auf 7 spezialisierte Rechner: Einkommensteuer, Körperschaftsteuer (23 % KöSt), Umsatzsteuer (inkl. Kleinunternehmerregelung § 6 Abs. 1 Z 27 UStG), Krypto-Steuer (27,5 % KESt), Immobilienertragsteuer (30 % ImmoESt), Sachbezug und Investitionsfreibetrag (§ 11 EStG, 10–15 %). Stelle Fragen wie „Wie viel ESt zahle ich bei 80.000 EUR Gewinn?" oder „Lohnt sich eine GmbH ab welchem Gewinn?".',
+      a: 'Der Steuer-Chatbot (Pro-Feature) ist ein KI-Assistent powered by Google Gemini, der deine Steuerfragen in Echtzeit beantwortet und mit aktuellen österreichischen Werten für 2026 rechnet. Er hat Zugriff auf 7 spezialisierte Rechner: Einkommensteuer, Körperschaftsteuer (23 % KöSt), Umsatzsteuer (inkl. Kleinunternehmerregelung § 6 Abs. 1 Z 27 UStG), Krypto-Steuer (27,5 % KESt), Immobilienertragsteuer (30 % ImmoESt), Sachbezug und Investitionsfreibetrag (§ 11 EStG, 10–15 %). Stelle Fragen wie „Wie viel ESt zahle ich bei 80.000 EUR Gewinn?" oder „Lohnt sich eine GmbH ab welchem Gewinn?".',
     },
     {
       q: 'Funktioniert SteuerBoard auch bei Misch-Einkommen (angestellt und selbständig)?',
@@ -871,7 +871,7 @@ const FAQ_JSONLD = {
     {
       '@type': 'Question',
       name: 'Was kann der KI-Steuer-Chatbot?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Der Steuer-Chatbot ist ein KI-Assistent powered by Claude AI mit Zugriff auf 7 spezialisierte Rechner: Einkommensteuer, Körperschaftsteuer (23 % KöSt), Umsatzsteuer (inkl. Kleinunternehmerregelung), Krypto-Steuer (27,5 % KESt), Immobilienertragsteuer (30 % ImmoESt), Sachbezug und Investitionsfreibetrag. Er rechnet mit aktuellen österreichischen Werten für 2026.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Der Steuer-Chatbot ist ein KI-Assistent powered by Google Gemini mit Zugriff auf 7 spezialisierte Rechner: Einkommensteuer, Körperschaftsteuer (23 % KöSt), Umsatzsteuer (inkl. Kleinunternehmerregelung), Krypto-Steuer (27,5 % KESt), Immobilienertragsteuer (30 % ImmoESt), Sachbezug und Investitionsfreibetrag. Er rechnet mit aktuellen österreichischen Werten für 2026.' },
     },
     {
       '@type': 'Question',
