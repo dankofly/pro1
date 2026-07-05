@@ -39,7 +39,7 @@ const FAQ_JSONLD = {
       name: 'Was ist die SVS-Nachzahlungsfalle?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Die SVS berechnet Beiträge zunächst vorläufig auf Basis des Gewinns von vor 3 Jahren (§ 25a GSVG). Bei steigendem Einkommen entsteht nach dem Steuerbescheid eine Nachzahlung. Bei einer Gewinnsteigerung von 30.000 auf 60.000 EUR kann diese über 5.000 EUR betragen. SteuerBoard zeigt die exakte Differenz zwischen vorläufigen und endgültigen Beiträgen.',
+        text: 'Die SVS berechnet Beiträge zunächst vorläufig auf Basis des Gewinns von vor 3 Jahren (§ 25a GSVG). Bei steigendem Einkommen entsteht nach dem Steuerbescheid eine Nachzahlung. Bei einer Gewinnsteigerung von 30.000 auf 60.000 EUR kann diese über 5.000 EUR betragen. SteuerBoard zeigt die voraussichtliche Differenz zwischen vorläufigen und endgültigen Beiträgen.',
       },
     },
     {

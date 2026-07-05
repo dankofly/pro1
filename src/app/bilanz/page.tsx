@@ -908,7 +908,7 @@ function BilanzContent() {
             <MobileNav />
             <div className="flex items-center gap-2">
               <BarChart3 className="h-4 w-4 text-emerald-500" />
-              <h1 className="text-sm font-semibold">Bilanz-Analyse</h1>
+              <span className="text-sm font-semibold">Bilanz-Analyse</span>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -932,9 +932,9 @@ function BilanzContent() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 space-y-6">
         {/* Hero */}
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
+          <p className="text-2xl sm:text-3xl font-bold tracking-tight">
             Bilanz-Analyse &amp; Forecast
-          </h1>
+          </p>
           <p className="text-muted-foreground mt-1.5 text-sm sm:text-base">
             Lade deine Bilanz hoch und erhalte eine detaillierte Kennzahlenanalyse,
             Steuerauswertung und KI-gestützte Prognosen — alles nach österreichischem Recht (UGB).

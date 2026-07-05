@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
+import { ToolIntro } from '@/components/tool-intro'
 
 export const metadata: Metadata = {
   title: 'Krypto Steuer Rechner Österreich 2026 — 27,5% KESt berechnen',
@@ -52,6 +53,11 @@ export default function KryptoSteuerLayout({ children }: { children: React.React
           },
         ],
       }} />
+      <ToolIntro h1="Krypto-Steuer-Rechner Österreich 2026">
+        Der Rechner berechnet die KESt (27,5 %) auf realisierte Krypto-Gewinne nach § 27b EStG,
+        unterscheidet Alt- und Neuvermögen und behandelt den Krypto-zu-Krypto-Tausch steuerneutral.
+        Orientierungshilfe, keine Steuerberatung.
+      </ToolIntro>
       {children}
     </>
   )

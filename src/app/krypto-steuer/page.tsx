@@ -435,7 +435,7 @@ function KryptoSteuerContent() {
             <MobileNav />
             <div className="flex items-center gap-2">
               <Bitcoin className="h-4 w-4 text-amber-500" />
-              <h1 className="text-sm font-semibold">Krypto-Steuer-Rechner</h1>
+              <span className="text-sm font-semibold">Krypto-Steuer-Rechner</span>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -449,9 +449,9 @@ function KryptoSteuerContent() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 space-y-6">
         {/* Hero */}
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">
+          <p className="text-2xl sm:text-3xl font-bold tracking-tight">
             Krypto-Steuer-Rechner Österreich 2026
-          </h1>
+          </p>
           <p className="text-muted-foreground mt-1.5 text-sm sm:text-base">
             Berechne deine KESt auf Kryptowährungen nach dem öKESt-Regime (ab 1.3.2022).
             Altvermögen, Neuvermögen, Mining und Tausch — alles auf einen Blick.

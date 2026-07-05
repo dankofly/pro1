@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
+import { ToolIntro } from '@/components/tool-intro'
 
 export const metadata: Metadata = {
   title: 'Misch-Einkommen Rechner — Anstellung + Selbständig berechnen',
@@ -57,6 +58,11 @@ export default function MischLayout({ children }: { children: React.ReactNode })
         inLanguage: 'de-AT',
       }} />
       <JsonLd data={MISCH_HOWTO_JSONLD} />
+      <ToolIntro h1="Misch-Einkommen-Rechner: Anstellung plus Selbständigkeit">
+        Für nebenberuflich Selbständige: Der Rechner kombiniert deine ASVG-Anstellung und dein
+        GSVG-Gewerbe inklusive Differenzvorschreibung (§ 35a GSVG) und zeigt dir, was vom
+        Nebengewerbe netto übrig bleibt. Orientierungshilfe, keine Steuerberatung.
+      </ToolIntro>
       {children}
     </>
   )

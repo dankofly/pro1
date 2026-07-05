@@ -294,7 +294,7 @@ function MischContent() {
             <MobileNav />
             <div className="flex items-center gap-2">
               <Calculator className="h-4 w-4 text-muted-foreground" />
-              <h1 className="text-sm font-semibold">Misch-Einkommen Rechner</h1>
+              <span className="text-sm font-semibold">Misch-Einkommen Rechner</span>
             </div>
           </div>
           <div className="flex items-center gap-2">

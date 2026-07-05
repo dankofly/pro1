@@ -73,7 +73,7 @@ function Hero() {
             <Reveal>
               <Badge className="bg-red-500/10 text-red-400 border-red-500/20 mb-6 text-sm px-4 py-1.5">
                 <Shield className="h-3.5 w-3.5 mr-1.5" />
-                80 % zahlen mehr Steuern als nötig
+                SVS-Nachzahlung trifft viele unvorbereitet
               </Badge>
             </Reveal>
 
@@ -354,7 +354,7 @@ function FeaturesSection() {
     {
       icon: <CalendarDays className="h-6 w-6" />,
       title: '2026 Ready',
-      desc: 'Neue Familienbonus-Werte (2.100 EUR), angepasster AVAB, aktueller Verkehrsabsetzbetrag – bereits eingebaut, bevor dein Steuerberater davon weiss.',
+      desc: 'Aktuelle Werte 2026: Familienbonus Plus (2.000 EUR pro Kind unter 18), angepasster AVAB (612 EUR), Verkehrsabsetzbetrag (496 EUR) – bereits eingebaut.',
       color: 'text-amber-400',
       bg: 'bg-amber-500/10',
     },
@@ -733,7 +733,7 @@ function FAQSection() {
     },
     {
       q: 'Was ist die SVS-Nachzahlungsfalle und wie schützt SteuerBoard davor?',
-      a: 'Die SVS berechnet deine Beiträge zunächst vorläufig — auf Basis deines Gewinns von vor 3 Jahren (§ 25a GSVG). Steigt dein Einkommen, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung, die viele Selbständige unvorbereitet trifft. Bei einer Gewinnsteigerung von 30.000 auf 60.000 EUR kann die Nachzahlung über 5.000 EUR betragen. SteuerBoard.pro zeigt dir die exakte Differenz zwischen vorläufigen und endgültigen Beiträgen, berechnet monatliche Rücklagen und warnt dich rechtzeitig.',
+      a: 'Die SVS berechnet deine Beiträge zunächst vorläufig — auf Basis deines Gewinns von vor 3 Jahren (§ 25a GSVG). Steigt dein Einkommen, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung, die viele Selbständige unvorbereitet trifft. Bei einer Gewinnsteigerung von 30.000 auf 60.000 EUR kann die Nachzahlung über 5.000 EUR betragen. SteuerBoard.pro zeigt dir die voraussichtliche Differenz zwischen vorläufigen und endgültigen Beiträgen, berechnet monatliche Rücklagen und warnt dich rechtzeitig.',
     },
     {
       q: 'Wie wird die Einkommensteuer für Selbständige in Österreich berechnet?',
@@ -861,7 +861,7 @@ const FAQ_JSONLD = {
     {
       '@type': 'Question',
       name: 'Was ist die SVS-Nachzahlungsfalle und wie schützt SteuerBoard davor?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Die SVS berechnet Beiträge zunächst vorläufig auf Basis des Gewinns von vor 3 Jahren (§ 25a GSVG). Steigt das Einkommen, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung. Bei einer Gewinnsteigerung von 30.000 auf 60.000 EUR kann die Nachzahlung über 5.000 EUR betragen. SteuerBoard.pro zeigt die exakte Differenz und berechnet monatliche Rücklagen.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Die SVS berechnet Beiträge zunächst vorläufig auf Basis des Gewinns von vor 3 Jahren (§ 25a GSVG). Steigt das Einkommen, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung. Bei einer Gewinnsteigerung von 30.000 auf 60.000 EUR kann die Nachzahlung über 5.000 EUR betragen. SteuerBoard.pro zeigt die voraussichtliche Differenz und berechnet monatliche Rücklagen.' },
     },
     {
       '@type': 'Question',

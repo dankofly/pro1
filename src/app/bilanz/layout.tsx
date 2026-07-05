@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
+import { ToolIntro } from '@/components/tool-intro'
 
 export const metadata: Metadata = {
   title: 'Bilanz-Rechner — Bilanzierungspflicht & EAR-Grenze prüfen',
@@ -33,6 +34,10 @@ export default function BilanzLayout({ children }: { children: React.ReactNode }
         description: 'Bilanz hochladen, Finanzkennzahlen berechnen und AI-gestützten Forecast mit Steueroptimierung erhalten.',
         inLanguage: 'de-AT',
       }} />
+      <ToolIntro h1="Bilanz-Analyse für Selbständige und GmbHs">
+        Das Tool liest deine Kennzahlen aus und gibt eine erste Orientierung zu Ergebnis und
+        Steuerlast. Orientierungshilfe, keine Wirtschaftsprüfung und keine Steuerberatung.
+      </ToolIntro>
       {children}
     </>
   )

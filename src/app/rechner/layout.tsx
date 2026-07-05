@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
+import { ToolIntro } from '@/components/tool-intro'
 
 export const metadata: Metadata = {
   title: 'SVS Rechner 2026 — Beiträge, Nachzahlung & Netto berechnen',
@@ -30,7 +31,7 @@ const RECHNER_FAQ_JSONLD = {
     {
       '@type': 'Question',
       name: 'Was ist die SVS-Nachzahlungsfalle?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Die SVS berechnet Beiträge zunächst vorläufig auf Basis des Gewinns von vor 3 Jahren (§ 25a GSVG). Bei steigendem Einkommen entsteht nach dem Steuerbescheid eine Nachzahlung. Bei einer Gewinnsteigerung von 30.000 auf 60.000 EUR kann diese über 5.000 EUR betragen. SteuerBoard zeigt die exakte Differenz zwischen vorläufigen und endgültigen Beiträgen.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Die SVS berechnet Beiträge zunächst vorläufig auf Basis des Gewinns von vor 3 Jahren (§ 25a GSVG). Bei steigendem Einkommen entsteht nach dem Steuerbescheid eine Nachzahlung. Bei einer Gewinnsteigerung von 30.000 auf 60.000 EUR kann diese über 5.000 EUR betragen. SteuerBoard zeigt die voraussichtliche Differenz zwischen vorläufigen und endgültigen Beiträgen.' },
     },
     {
       '@type': 'Question',
@@ -84,6 +85,12 @@ export default function RechnerLayout({ children }: { children: React.ReactNode 
           },
         ],
       }} />
+      <ToolIntro h1="SVS-Rechner 2026: Beiträge, Nachzahlung und echtes Netto">
+        Der Rechner ermittelt auf Basis deines Jahresgewinns die SVS-Beiträge (Pensionsversicherung,
+        Krankenversicherung, Selbständigenvorsorge und Unfallversicherung), die Einkommensteuer und
+        die voraussichtliche SVS-Nachzahlung, dazu eine monatliche Rücklagenempfehlung. Als
+        Orientierungshilfe gedacht, keine Steuerberatung.
+      </ToolIntro>
       {children}
     </>
   )

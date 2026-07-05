@@ -306,7 +306,7 @@ function SachbezugContent() {
             <MobileNav />
             <div className="flex items-center gap-2">
               <Calculator className="h-4 w-4 text-muted-foreground" />
-              <h1 className="text-sm font-semibold">Sachbezug-Rechner</h1>
+              <span className="text-sm font-semibold">Sachbezug-Rechner</span>
             </div>
           </div>
           <Badge variant="outline" className="bg-emerald-500/10 text-emerald-500 border-emerald-500/30 text-xs">
