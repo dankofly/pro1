@@ -1,6 +1,7 @@
 /**
  * Austrian Real Estate Capital Gains Tax Calculator 2026
- * ImmoESt (30%), Alt-/Neuvermoegen, exemptions, inflation adjustment.
+ * ImmoESt (30%), Alt-/Neuvermoegen, exemptions.
+ * Kein Inflationsabschlag: mit dem StRefG 2015/16 per 1.1.2016 abgeschafft.
  */
 
 function r2(n: number): number {
@@ -10,9 +11,9 @@ function r2(n: number): number {
 const IMMOEST_RATE = 0.30
 const ALTVERM_PAUSCHAL_RATE = 0.042
 const ALTVERM_UMWIDMUNG_RATE = 0.18
-const INFLATION_REDUCTION_PCT = 0.02
-const INFLATION_MAX_REDUCTION = 0.50
-const STICHTAG_ALTVERMOEGEN = new Date('2012-03-31')
+// Altvermoegen = am 31.3.2012 nicht mehr steuerverfangen. Bei der 10-jaehrigen
+// Spekulationsfrist heisst das: Anschaffung vor dem 31.3.2002.
+const STICHTAG_ALTVERMOEGEN = new Date('2002-03-31')
 
 export interface ImmobilienertragssteuerInput {
   kaufdatum?: string
@@ -59,14 +60,6 @@ export interface ImmobilienertragssteuerResult {
     verauesserungsgewinn: number
     guenstigste_variante: string
     guenstigster_betrag: number
-  }
-  inflationsbereinigung?: {
-    haltedauer_jahre: number
-    bereinigung_jahre?: number
-    bereinigung_prozent: number
-    bereinigter_gewinn: number
-    ersparnis: number
-    anwendbar: boolean
   }
   steuerpflichtiger_gewinn?: number
   immoest: number
@@ -186,19 +179,8 @@ export function calculateImmobilienertragssteuer(input: ImmobilienertragssteuerI
     }
   }
 
-  // Neuvermoegen
-  let inflationReduction = 0
-  let inflationPct = 0
-  let reductionYears = 0
-  const inflationApplicable = holdingYears >= 11
-
-  if (inflationApplicable) {
-    reductionYears = holdingYears - 10
-    inflationPct = Math.min(reductionYears * INFLATION_REDUCTION_PCT, INFLATION_MAX_REDUCTION)
-    inflationReduction = r2(gain * inflationPct)
-  }
-
-  const taxableGain = Math.max(r2(gain - inflationReduction), 0)
+  // Neuvermoegen: 30 % vom Veraeusserungsgewinn, ohne Inflationsabschlag
+  const taxableGain = Math.max(r2(gain), 0)
   const immoest = r2(taxableGain * IMMOEST_RATE)
   const effectiveRate = salePrice > 0 ? r2((immoest / salePrice) * 100) : 0
 
@@ -217,14 +199,6 @@ export function calculateImmobilienertragssteuer(input: ImmobilienertragssteuerI
       nebenkosten_kauf: purchaseAncillary,
       nebenkosten_verkauf: saleAncillary,
       verauesserungsgewinn: r2(gain),
-    },
-    inflationsbereinigung: {
-      haltedauer_jahre: holdingYears,
-      bereinigung_jahre: inflationApplicable ? reductionYears : undefined,
-      bereinigung_prozent: r2(inflationPct * 100),
-      bereinigter_gewinn: taxableGain,
-      ersparnis: inflationReduction,
-      anwendbar: inflationApplicable,
     },
     steuerpflichtiger_gewinn: taxableGain,
     immoest,

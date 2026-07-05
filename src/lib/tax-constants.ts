@@ -52,12 +52,12 @@ export interface AbsetzbetraegeConfig {
 export interface GewinnfreibetragConfig {
   grundfreibetragRate: number       // 15%
   grundfreibetragMaxGewinn: number  // €33.000
-  ifbTier1Rate: number              // 13% (€33k–€175k)
-  ifbTier1Max: number               // €175.000
-  ifbTier2Rate: number              // 7% (€175k–€350k)
-  ifbTier2Max: number               // €350.000
-  ifbTier3Rate: number              // 4,5% (€350k–€580k)
-  ifbTier3Max: number               // €580.000
+  ifbTier1Rate: number              // 13% (€33k–€178k, die nächsten €145.000)
+  ifbTier1Max: number               // €178.000
+  ifbTier2Rate: number              // 7% (€178k–€353k, die nächsten €175.000)
+  ifbTier2Max: number               // €353.000
+  ifbTier3Rate: number              // 4,5% (€353k–€583k, die nächsten €230.000)
+  ifbTier3Max: number               // €583.000
 }
 
 export interface PendlerpauschaleConfig {
@@ -87,15 +87,18 @@ export interface YearConfig {
 
 // ── Konstante Werte (alle Jahre gleich) ───────────────────────
 
+// § 10 EStG seit 2024: 15% bis 33.000, 13% für die nächsten 145.000,
+// 7% für die nächsten 175.000, 4,5% für die nächsten 230.000.
+// Bemessungsgrundlage max. 583.000, GFB gesamt max. 46.400.
 const GEWINNFREIBETRAG: GewinnfreibetragConfig = {
   grundfreibetragRate: 0.15,
   grundfreibetragMaxGewinn: 33000,
   ifbTier1Rate: 0.13,
-  ifbTier1Max: 175000,
+  ifbTier1Max: 178000,
   ifbTier2Rate: 0.07,
-  ifbTier2Max: 350000,
+  ifbTier2Max: 353000,
   ifbTier3Rate: 0.045,
-  ifbTier3Max: 580000,
+  ifbTier3Max: 583000,
 }
 
 const PENDLERPAUSCHALE: PendlerpauschaleConfig = {
@@ -110,7 +113,7 @@ const PENDLERPAUSCHALE: PendlerpauschaleConfig = {
 
 // USt/Kleinunternehmerregelung — §6 Abs 1 Z 27 UStG (ab 2025)
 export const KUR_CONFIG = {
-  grenze: 55000,           // Umsatzgrenze netto/Jahr
+  grenze: 55000,           // Umsatzgrenze brutto/Jahr (§ 6 Abs 1 Z 27 UStG)
   toleranz: 60500,         // +10% einmaliges Überschreiten
   grenzeEU: 100000,        // EU-weite KUR ab 2025
   normalSatz: 0.20,

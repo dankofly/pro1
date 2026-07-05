@@ -118,8 +118,9 @@ const ARBEITGEBER = `
 
 ## PKW-Sachbezug
 - E-Auto: 0% (steuerfrei)
-- Niedrig (bis 129 g/km CO2): 1,5%, max EUR 720/Monat
-- Standard (ueber 129 g/km): 2%, max EUR 960/Monat
+- Niedrig (bis 126 g/km CO2, WLTP, Erstzulassung ab 2025): 1,5%, max EUR 720/Monat
+- Standard (ueber 126 g/km): 2%, max EUR 960/Monat
+- Grenzwert des Erstzulassungsjahres gilt in Folgejahren weiter (2024: 129, 2023: 132)
 - Halber Sachbezug bei max 500 km privat/Monat
 
 ## E-Auto Sonderregeln

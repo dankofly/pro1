@@ -121,7 +121,7 @@ function ResultCards({ result }: { result: KryptoResult }) {
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/10">
               <Coins className="h-4 w-4 text-violet-500" />
             </div>
-            Staking / Mining
+            Mining / Lending
           </CardTitle>
           <CardDescription>Erträge bei Zufluss</CardDescription>
         </CardHeader>
@@ -196,13 +196,15 @@ function InfoCards() {
         </CardHeader>
         <CardContent className="space-y-2 text-sm text-muted-foreground">
           <p>
-            <strong className="text-foreground">Neuvermögen:</strong> Jeder Tausch (z. B. BTC zu ETH)
-            ist ein steuerpflichtiger Vorgang. Der Gewinn wird zum Zeitpunkt des Tauschs realisiert
-            und mit 27,5 % KESt besteuert.
+            <strong className="text-foreground">Neuvermögen:</strong> Der Tausch Krypto zu Krypto
+            (z. B. BTC zu ETH) ist steuerneutral (§ 27b Abs 2 EStG). Die Anschaffungskosten des
+            hingegebenen Coins werden auf den erhaltenen Coin übertragen. Besteuert wird erst der
+            Verkauf gegen Euro, Fremdwährung, Waren oder Dienstleistungen.
           </p>
           <p>
-            <strong className="text-foreground">Altvermögen:</strong> Tausch ist steuerneutral.
-            Die Anschaffungskosten des ursprünglichen Coins werden auf den neuen Coin übertragen.
+            <strong className="text-foreground">Altvermögen:</strong> Hier gilt noch das alte
+            Spekulationsregime. Der Tausch zählt als Veräußerung: innerhalb der 1-Jahres-Frist
+            steuerpflichtig zum Tarif, danach steuerfrei.
           </p>
         </CardContent>
       </Card>
@@ -452,7 +454,7 @@ function KryptoSteuerContent() {
           </h1>
           <p className="text-muted-foreground mt-1.5 text-sm sm:text-base">
             Berechne deine KESt auf Kryptowährungen nach dem öKESt-Regime (ab 1.3.2022).
-            Altvermögen, Neuvermögen, Staking und Tausch — alles auf einen Blick.
+            Altvermögen, Neuvermögen, Mining und Tausch — alles auf einen Blick.
           </p>
         </div>
 
@@ -500,16 +502,18 @@ function KryptoSteuerContent() {
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/10">
                 <Coins className="h-4 w-4 text-violet-500" />
               </div>
-              Staking / Mining Erträge
+              Mining / Lending Erträge
             </CardTitle>
             <CardDescription>
-              Einkünfte aus Staking, Lending oder Mining werden bei Zufluss mit 27,5 % KESt besteuert.
+              Einkünfte aus Mining oder Lending werden bei Zufluss mit 27,5 % KESt besteuert.
+              Echte Staking-Rewards hier NICHT eintragen: Sie sind bei Zufluss steuerfrei,
+              werden mit Anschaffungskosten 0 angesetzt und erst beim Verkauf besteuert (§ 27b Abs 2 Z 2 EStG).
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="max-w-sm space-y-2">
               <Label htmlFor="staking" className="text-sm font-medium">
-                Gesamte Staking-/Mining-Erträge (EUR)
+                Gesamte Mining-/Lending-Erträge (EUR)
               </Label>
               <div className="relative">
                 <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">EUR</span>
@@ -522,7 +526,7 @@ function KryptoSteuerContent() {
                 />
               </div>
               <p className="text-xs text-muted-foreground">
-                Gesamtbetrag der im Jahr 2026 zugeflossenen Staking-/Mining-Erträge in EUR.
+                Gesamtbetrag der im Jahr 2026 zugeflossenen Mining-/Lending-Erträge in EUR.
               </p>
             </div>
           </CardContent>

@@ -7,7 +7,9 @@ function r2(n: number): number {
   return Math.round(n * 100) / 100
 }
 
-const CO2_GRENZWERT_2026 = 129
+// Sachbezugswerteverordnung: 126 g/km (WLTP) fuer Erstzulassungen ab 2025;
+// der Grenzwert des Erstzulassungsjahres gilt in den Folgejahren weiter.
+const CO2_GRENZWERT_2026 = 126
 const SACHBEZUG_STANDARD_PCT = 0.02
 const SACHBEZUG_NIEDRIG_PCT = 0.015
 const SACHBEZUG_STANDARD_CAP = 960

@@ -1,10 +1,13 @@
 // ── Krypto-Steuer Rechner Österreich 2026 ──────────────────────
-// Regelwerk:
+// Regelwerk (§ 27b EStG, seit ÖkoStRefG 2022):
 //   Altvermögen (Anschaffung vor 1.3.2021): Spekulationsfrist 1 Jahr,
-//     bei Verkauf nach >1 Jahr steuerfrei.
+//     bei Verkauf nach >1 Jahr steuerfrei. Tausch gilt hier als Veräußerung.
 //   Neuvermögen (Anschaffung ab 1.3.2021): KESt 27,5 % auf realisierte Gewinne.
-//   Tausch Krypto→Krypto: steuerpflichtig (Neuvermögen), steuerneutral (Altvermögen).
-//   Staking/Mining: Einkünfte aus Kapitalvermögen, KESt 27,5 % bei Zufluss.
+//   Tausch Krypto→Krypto (Neuvermögen): STEUERNEUTRAL (§ 27b Abs 2 EStG),
+//     die Anschaffungskosten der hingegebenen Coins wandern auf die erhaltenen.
+//   Mining/Lending: laufende Einkünfte, KESt 27,5 % bei Zufluss.
+//   Staking-Rewards: KEIN Zufluss-Tatbestand; Ansatz mit AK 0, Besteuerung
+//     erst bei späterer Veräußerung (§ 27b Abs 2 Z 2 EStG).
 //   Kostenbasis: FIFO (First In, First Out).
 
 export interface KryptoTransaktion {
@@ -61,6 +64,7 @@ export function calculateKryptoSteuer(
   let altSteuerfrei = true // all Altvermögen disposals held > 1y?
   let altInfo = ''
   let neuGewinn = 0
+  let tauschUebertrageneAk = 0 // steuerneutral übertragene AK aus Krypto-Tausch
 
   for (const tx of sorted) {
     const coin = tx.coin.toUpperCase()
@@ -91,7 +95,7 @@ export function calculateKryptoSteuer(
         const gain = proceeds - costBasis
 
         if (lot.isAltvermoegen) {
-          // Check Spekulationsfrist (1 year)
+          // Altvermögen: auch Tausch gilt als Veräußerung (Spekulationsregime)
           const heldMs = txDate.getTime() - lot.datum.getTime()
           if (heldMs > ONE_YEAR_MS) {
             // Steuerfrei — no tax
@@ -103,10 +107,12 @@ export function calculateKryptoSteuer(
             altSteuerfrei = false
             altInfo = 'Teile des Altvermögens wurden innerhalb der 1-Jahres-Spekulationsfrist verkauft.'
           }
-          // Tausch Krypto→Krypto is steuerneutral for Altvermögen
-          // (original cost basis carries over)
+        } else if (tx.typ === 'tausch') {
+          // Neuvermögen-Tausch Krypto→Krypto: steuerneutral (§ 27b Abs 2 EStG).
+          // Die AK der hingegebenen Coins gehen auf die erhaltenen Coins über.
+          tauschUebertrageneAk += costBasis
         } else {
-          // Neuvermögen — always taxable (KESt 27,5 %)
+          // Neuvermögen-Verkauf gegen Euro/FIAT — steuerpflichtig (KESt 27,5 %)
           neuGewinn += gain
         }
 
@@ -117,11 +123,9 @@ export function calculateKryptoSteuer(
         }
       }
 
-      // If tausch (Neuvermögen): the received coin gets a new lot
-      // at the current market value (= tx.preisEur * tx.menge = tx.gesamtEur)
-      // We treat tausch as: sell coin A, buy coin B
-      // The "buy" side is handled implicitly: user should add a kauf for the received coin.
-      // For Altvermögen tausch: cost basis of original lot carries over.
+      // Tausch (Neuvermögen) ist steuerneutral: Die erhaltene Kryptowährung
+      // muss als "Kauf" mit den ÜBERNOMMENEN Anschaffungskosten erfasst werden
+      // (nicht mit dem Marktwert), damit spätere Verkäufe korrekt rechnen.
     }
   }
 
@@ -146,7 +150,10 @@ export function calculateKryptoSteuer(
     parts.push(`Neuvermögen: Verlust von ${formatEurInline(Math.abs(neuGewinn))} (Verlustausgleich möglich).`)
   }
   if (stakingErtraege > 0) {
-    parts.push(`Staking/Mining: KESt ${formatEurInline(stakingKest)} auf ${formatEurInline(stakingErtraege)} Erträge.`)
+    parts.push(`Mining/Lending: KESt ${formatEurInline(stakingKest)} auf ${formatEurInline(stakingErtraege)} Erträge (bei Zufluss steuerpflichtig). Hinweis: Echte Staking-Rewards sind bei Zufluss NICHT steuerpflichtig, sie werden mit Anschaffungskosten 0 angesetzt und erst beim Verkauf besteuert.`)
+  }
+  if (tauschUebertrageneAk > 0) {
+    parts.push(`Krypto-Tausch steuerneutral (§ 27b Abs 2 EStG): ${formatEurInline(tauschUebertrageneAk)} Anschaffungskosten auf die erhaltenen Coins übertragen. Erfasse die erhaltenen Coins als Kauf mit diesen übernommenen Anschaffungskosten.`)
   }
   if (altGewinn !== 0) {
     parts.push(

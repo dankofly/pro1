@@ -76,31 +76,53 @@ function getMarginalRate(taxableIncome: number): number {
   return 0.55
 }
 
+// Gewinnfreibetrag § 10 EStG (Staffel seit 2024):
+// 15% bis 33.000, 13% für die nächsten 145.000, 7% für die nächsten 175.000,
+// 4,5% für die nächsten 230.000. Max. EUR 46.400 (BMGL 583.000).
 function calculateGewinnfreibetrag(profit: number): number {
   if (profit <= 0) return 0
-  if (profit <= 33_000) return r2(profit * 0.15)
-  if (profit >= 583_000) return 46_400
-  const base = 33_000 * 0.15
-  const remaining = Math.min(profit, 583_000) - 33_000
-  const maxRemaining = 583_000 - 33_000
-  return r2(base + (46_400 - base) * (remaining / maxRemaining))
-}
-
-function calculateVerkehrsabsetzbetrag(income: number): number {
-  if (income <= 16_832) return 798
-  if (income <= 28_967) {
-    const reduction = ((income - 16_832) / (28_967 - 16_832)) * (798 - 463)
-    return r2(798 - reduction)
+  const stufen: [number, number, number][] = [
+    [0, 33_000, 0.15],
+    [33_000, 178_000, 0.13],
+    [178_000, 353_000, 0.07],
+    [353_000, 583_000, 0.045],
+  ]
+  let gfb = 0
+  for (const [von, bis, rate] of stufen) {
+    if (profit <= von) break
+    gfb += (Math.min(profit, bis) - von) * rate
   }
-  return 463
+  return r2(Math.min(gfb, 46_400))
 }
 
+// Verkehrsabsetzbetrag 2026: Basis 496.
+// Erhöhter VAB 853 (nur mit Pendlerpauschalen-Anspruch): bis 15.069, Einschleifung bis 16.056.
+// VAB-Zuschlag 804: bis 19.761, Einschleifung bis 30.259.
+function calculateVerkehrsabsetzbetrag(income: number, hatPendlerpauschale: boolean): number {
+  let vab = 496
+  if (hatPendlerpauschale) {
+    if (income <= 15_069) {
+      vab = 853
+    } else if (income < 16_056) {
+      vab = 853 - ((income - 15_069) / (16_056 - 15_069)) * (853 - 496)
+    }
+  }
+  let zuschlag = 0
+  if (income <= 19_761) {
+    zuschlag = 804
+  } else if (income < 30_259) {
+    zuschlag = 804 * (1 - (income - 19_761) / (30_259 - 19_761))
+  }
+  return r2(vab + zuschlag)
+}
+
+// AVAB/AEAB 2026: 612 (1 Kind), 828 (2 Kinder), +273 je weiteres Kind
 function calculateAvabAeab(soleEarner: boolean, singleParent: boolean, totalChildren: number): number {
   if (!soleEarner && !singleParent) return 0
   if (totalChildren === 0) return 0
-  if (totalChildren === 1) return 572
-  if (totalChildren === 2) return 774
-  return 774 + (totalChildren - 2) * 255
+  if (totalChildren === 1) return 612
+  if (totalChildren === 2) return 828
+  return 828 + (totalChildren - 2) * 273
 }
 
 export function calculateEinkommensteuer(input: EinkommensteuerInput): EinkommensteuerResult {
@@ -129,7 +151,7 @@ export function calculateEinkommensteuer(input: EinkommensteuerInput): Einkommen
   const credits: Array<{ name: string; betrag: number }> = []
 
   if (!isSelfEmployed) {
-    const vab = calculateVerkehrsabsetzbetrag(taxableIncome)
+    const vab = calculateVerkehrsabsetzbetrag(taxableIncome, commuterAllowance > 0)
     credits.push({ name: 'Verkehrsabsetzbetrag', betrag: vab })
   }
 
@@ -157,9 +179,11 @@ export function calculateEinkommensteuer(input: EinkommensteuerInput): Einkommen
   const totalCredits = credits.reduce((sum, c) => sum + c.betrag, 0)
   const netTax = Math.max(grossTax - totalCredits, 0)
 
+  // Kindermehrbetrag: bis zu 700 pro Kind, wenn die Tarifsteuer durch
+  // Absetzbeträge unter 0 fällt (vereinfachte Anspruchsprüfung)
   let kindermehrbetrag = 0
   if ((soleEarner || singleParent) && grossTax < totalCredits) {
-    kindermehrbetrag = Math.min(700, totalCredits - grossTax)
+    kindermehrbetrag = Math.min(700 * totalChildren, totalCredits - grossTax)
   }
 
   const effectiveRate = baseIncome > 0 ? r2((netTax / baseIncome) * 100) : 0

@@ -69,8 +69,8 @@ function calculateDienstwagen(input: DienstwagenInput): SachbezugResult['dienstw
     }
   }
 
-  // CO2 <= 141 g/km => 1.5%, max EUR 720/month
-  if (input.co2 <= 141) {
+  // CO2 <= 126 g/km (WLTP, Erstzulassung ab 2025) => 1.5%, max EUR 720/month
+  if (input.co2 <= 126) {
     const raw = input.listenpreis * 0.015
     const monat = Math.min(raw, 720)
     return {
@@ -81,7 +81,7 @@ function calculateDienstwagen(input: DienstwagenInput): SachbezugResult['dienstw
     }
   }
 
-  // CO2 > 141 g/km => 2%, max EUR 960/month
+  // CO2 > 126 g/km => 2%, max EUR 960/month
   const raw = input.listenpreis * 0.02
   const monat = Math.min(raw, 960)
   return {

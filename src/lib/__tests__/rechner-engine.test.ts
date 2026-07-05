@@ -96,20 +96,29 @@ describe('isPauschalierungVerfuegbar', () => {
     expect(isPauschalierungVerfuegbar('keine', 500000)).toBe(true)
   })
 
-  it('basis_12 bis €220.000 → verfügbar', () => {
-    expect(isPauschalierungVerfuegbar('basis_12', 220000)).toBe(true)
+  it('basis_12 2024: bis €220.000 verfügbar, darüber nicht', () => {
+    expect(isPauschalierungVerfuegbar('basis_12', 220000, '2024')).toBe(true)
+    expect(isPauschalierungVerfuegbar('basis_12', 220001, '2024')).toBe(false)
   })
 
-  it('basis_12 über €220.000 → nicht verfügbar', () => {
-    expect(isPauschalierungVerfuegbar('basis_12', 220001)).toBe(false)
+  it('basis_12 2025: Grenze €320.000', () => {
+    expect(isPauschalierungVerfuegbar('basis_12', 320000, '2025')).toBe(true)
+    expect(isPauschalierungVerfuegbar('basis_12', 320001, '2025')).toBe(false)
   })
 
-  it('ku_produzent bis €35.000 → verfügbar', () => {
-    expect(isPauschalierungVerfuegbar('ku_produzent', 35000)).toBe(true)
+  it('basis_12 2026: Grenze €420.000', () => {
+    expect(isPauschalierungVerfuegbar('basis_12', 420000, '2026')).toBe(true)
+    expect(isPauschalierungVerfuegbar('basis_12', 420001, '2026')).toBe(false)
   })
 
-  it('ku_produzent über €35.000 → nicht verfügbar', () => {
-    expect(isPauschalierungVerfuegbar('ku_produzent', 35001)).toBe(false)
+  it('ku_produzent 2024: Grenze €40.000', () => {
+    expect(isPauschalierungVerfuegbar('ku_produzent', 40000, '2024')).toBe(true)
+    expect(isPauschalierungVerfuegbar('ku_produzent', 40001, '2024')).toBe(false)
+  })
+
+  it('ku_produzent ab 2025: Grenze €55.000', () => {
+    expect(isPauschalierungVerfuegbar('ku_produzent', 55000, '2025')).toBe(true)
+    expect(isPauschalierungVerfuegbar('ku_produzent', 55001, '2026')).toBe(false)
   })
 })
 
@@ -154,8 +163,8 @@ describe('calculateAll — Pauschalierung', () => {
 
   it('Über Umsatzgrenze → null (nicht verfügbar)', () => {
     const r = calculateAll(makeInput({
-      jahresumsatz: 250000,
-      pauschalierungArt: 'basis_12',  // Grenze €220.000
+      jahresumsatz: 450000,
+      pauschalierungArt: 'basis_12',  // Grenze 2026: €420.000
     }))
 
     expect(r.pauschalierung).toBeNull()

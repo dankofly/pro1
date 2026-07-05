@@ -175,18 +175,26 @@ describe('Max IFB Berechnung', () => {
   })
 
   it('€200.000 → Tier1 + Tier2', () => {
-    // Tier1: (175.000 - 33.000) × 13% = 18.460
-    // Tier2: (200.000 - 175.000) × 7% = 1.750
-    // Gesamt: 20.210
-    expect(calcMaxIFB(200000, year)).toBe(18460 + 1750)
+    // Tier1: (178.000 - 33.000) × 13% = 18.850
+    // Tier2: (200.000 - 178.000) × 7% = 1.540
+    // Gesamt: 20.390
+    expect(calcMaxIFB(200000, year)).toBeCloseTo(18850 + 1540, 2)
   })
 
   it('€400.000 → Tier1 + Tier2 + Tier3', () => {
-    // Tier1: 142.000 × 13% = 18.460
+    // Tier1: 145.000 × 13% = 18.850
     // Tier2: 175.000 × 7% = 12.250
-    // Tier3: (400.000 - 350.000) × 4,5% = 2.250
-    // Gesamt: 32.960
-    expect(calcMaxIFB(400000, year)).toBe(18460 + 12250 + 2250)
+    // Tier3: (400.000 - 353.000) × 4,5% = 2.115
+    // Gesamt: 33.215
+    expect(calcMaxIFB(400000, year)).toBeCloseTo(18850 + 12250 + 2115, 2)
+  })
+
+  it('€583.000+ → Maximum: iGFB 41.450, gesamt mit Grundfreibetrag 46.400', () => {
+    // iGFB max: 18.850 + 12.250 + 10.350 = 41.450
+    expect(calcMaxIFB(583000, year)).toBeCloseTo(41450, 2)
+    expect(calcMaxIFB(1000000, year)).toBeCloseTo(41450, 2)
+    // Gesamt-GFB = Grundfreibetrag 4.950 + iGFB 41.450 = 46.400 (§ 10 EStG)
+    expect(calcGrundfreibetrag(583000, year) + calcMaxIFB(583000, year)).toBeCloseTo(46400, 2)
   })
 
   it('Actual IFB begrenzt durch Investitionen', () => {

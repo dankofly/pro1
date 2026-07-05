@@ -50,11 +50,18 @@ export function getBasispauschalierungLabel(year: string): string {
   return `Basispauschalierung ${Math.round(rate * 100)}%`
 }
 
-const PAUSCHALIERUNG_UMSATZGRENZE: Record<Exclude<PauschalierungArt, 'keine'>, number> = {
-  basis_12: 220000,
-  basis_6: 220000,
-  ku_produzent: 35000,
-  ku_dienstleister: 35000,
+// Umsatzgrenzen jahresabhängig:
+// Basispauschalierung § 17 Abs 1 EStG: 2024 = 220.000, 2025 = 320.000, ab 2026 = 420.000
+// Kleinunternehmerpauschalierung § 17 Abs 3a EStG: 2024 = 40.000, ab 2025 = 55.000 (brutto)
+const PAUSCHALIERUNG_UMSATZGRENZE_BY_YEAR: Record<string, Record<Exclude<PauschalierungArt, 'keine'>, number>> = {
+  '2024': { basis_12: 220000, basis_6: 220000, ku_produzent: 40000, ku_dienstleister: 40000 },
+  '2025': { basis_12: 320000, basis_6: 320000, ku_produzent: 55000, ku_dienstleister: 55000 },
+  '2026': { basis_12: 420000, basis_6: 420000, ku_produzent: 55000, ku_dienstleister: 55000 },
+}
+
+/** Umsatzgrenze für eine Pauschalierungsart im gewählten Jahr */
+export function getPauschalierungGrenze(art: Exclude<PauschalierungArt, 'keine'>, year: string): number {
+  return PAUSCHALIERUNG_UMSATZGRENZE_BY_YEAR[year]?.[art] ?? PAUSCHALIERUNG_UMSATZGRENZE_BY_YEAR['2026'][art]
 }
 
 // ── Hilfsfunktionen ─────────────────────────────────────────
@@ -115,10 +122,10 @@ function getWeitereEinkuenfte(input: RechnerInput): WeitereEinkuenfteInput | und
   return undefined
 }
 
-/** Prüft ob Pauschalierung verfügbar ist */
-export function isPauschalierungVerfuegbar(art: PauschalierungArt, umsatz: number): boolean {
+/** Prüft ob Pauschalierung verfügbar ist (Grenzen jahresabhängig) */
+export function isPauschalierungVerfuegbar(art: PauschalierungArt, umsatz: number, year: string = '2026'): boolean {
   if (art === 'keine') return true
-  return umsatz <= PAUSCHALIERUNG_UMSATZGRENZE[art]
+  return umsatz <= getPauschalierungGrenze(art, year)
 }
 
 /** Pauschalierung berechnen */
@@ -131,7 +138,7 @@ function calcPauschalierung(
 ): PauschalierungResult | null {
   const art = input.pauschalierungArt
   if (art === 'keine') return null
-  if (!isPauschalierungVerfuegbar(art, input.jahresumsatz)) return null
+  if (!isPauschalierungVerfuegbar(art, input.jahresumsatz, input.year)) return null
 
   const rate = getPauschalierungRate(art, input.year)
   const pauschalAufwaende = input.jahresumsatz * rate

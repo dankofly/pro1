@@ -6,7 +6,7 @@ import {
   Collapsible, CollapsibleTrigger, CollapsibleContent,
 } from '@/components/ui/collapsible'
 import type { RechnerAction, PauschalierungArt } from '@/lib/rechner-types'
-import { isPauschalierungVerfuegbar, getBasispauschalierungLabel } from '@/lib/rechner-engine'
+import { isPauschalierungVerfuegbar, getBasispauschalierungLabel, getPauschalierungGrenze } from '@/lib/rechner-engine'
 import { ChevronDown, Calculator, Crown } from 'lucide-react'
 import { FieldInfo } from '@/components/ui/field-info'
 import { FIELD_DEFS } from '@/lib/field-definitions'
@@ -20,14 +20,18 @@ interface PauschalierungSectionProps {
   dispatch: React.Dispatch<RechnerAction>
 }
 
+function formatGrenze(art: Exclude<PauschalierungArt, 'keine'>, year: string): string {
+  return `${Math.round(getPauschalierungGrenze(art, year) / 1000)}k`
+}
+
 function getOptionen(year: string): { value: PauschalierungArt; label: string; desc: string }[] {
   const basisLabel = getBasispauschalierungLabel(year)
   return [
     { value: 'keine', label: 'Keine Pauschalierung', desc: 'Tatsächliche Aufwände verwenden' },
-    { value: 'basis_12', label: basisLabel, desc: `Betriebsausgaben pauschal vom Umsatz (max. 220k)` },
+    { value: 'basis_12', label: basisLabel, desc: `Betriebsausgaben pauschal vom Umsatz (max. ${formatGrenze('basis_12', year)})` },
     { value: 'basis_6', label: 'Basispauschalierung 6%', desc: 'Für bestimmte Berufe (Berater, IT, etc.)' },
-    { value: 'ku_produzent', label: 'KU-Pauschalierung 45%', desc: 'Kleinunternehmer, produzierend (max. 35k)' },
-    { value: 'ku_dienstleister', label: 'KU-Pauschalierung 20%', desc: 'Kleinunternehmer, Dienstleistung (max. 35k)' },
+    { value: 'ku_produzent', label: 'KU-Pauschalierung 45%', desc: `Kleinunternehmer, produzierend (max. ${formatGrenze('ku_produzent', year)})` },
+    { value: 'ku_dienstleister', label: 'KU-Pauschalierung 20%', desc: `Kleinunternehmer, Dienstleistung (max. ${formatGrenze('ku_dienstleister', year)})` },
   ]
 }
 
@@ -67,7 +71,7 @@ export function PauschalierungSection({
                 className="space-y-2"
               >
                 {optionen.map((opt) => {
-                  const verfuegbar = isPauschalierungVerfuegbar(opt.value, jahresumsatz)
+                  const verfuegbar = isPauschalierungVerfuegbar(opt.value, jahresumsatz, year)
                   return (
                     <label
                       key={opt.value}

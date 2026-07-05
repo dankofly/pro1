@@ -1,6 +1,8 @@
 // ── Investitionsfreibetrag (IFB) Rechner 2026 ──────────────────────────
 // Grundlage: § 11 EStG (IFB), § 10 EStG (GFB), § 108c EStG (Forschungsprämie)
 
+import { YEAR_CONFIGS, calcProgressiveTax } from './tax-constants'
+
 export interface Investition {
   id: string
   bezeichnung: string
@@ -71,36 +73,43 @@ const IFB_RATE_OEKO = 0.22
 // ── Forschungsprämie ───────────────────────────────────────────────
 const FORSCHUNGSPRAEMIE_RATE = 0.14
 
-// ── GFB-Stufen 2026 ───────────────────────────────────────────────
+// ── GFB-Stufen (§ 10 EStG, aus tax-constants.ts abgeleitet) ────────
 // Grundfreibetrag: 15 % bis EUR 33.000 (automatisch, ohne Investitionsnachweis)
-// Investitionsbedingter GFB: gestaffelt darüber
+// Investitionsbedingter GFB: 13 % bis 178.000, 7 % bis 353.000, 4,5 % bis 583.000
+// Über EUR 583.000 Bemessungsgrundlage steht kein GFB mehr zu (max. EUR 46.400).
+const GFB_CFG = YEAR_CONFIGS['2026'].gewinnfreibetrag
+
 const GFB_STUFEN: { von: number; bis: number; rate: number; label: string }[] = [
-  { von: 0, bis: 33_000, rate: 0.15, label: 'Grundfreibetrag (15 %)' },
-  { von: 33_000, bis: 220_000, rate: 0.13, label: '€ 33.001 – € 220.000 (13 %)' },
-  { von: 220_000, bis: 580_000, rate: 0.07, label: '€ 220.001 – € 580.000 (7 %)' },
-  { von: 580_000, bis: Infinity, rate: 0.045, label: 'Ab € 580.001 (4,5 %)' },
+  {
+    von: 0,
+    bis: GFB_CFG.grundfreibetragMaxGewinn,
+    rate: GFB_CFG.grundfreibetragRate,
+    label: 'Grundfreibetrag (15 %)',
+  },
+  {
+    von: GFB_CFG.grundfreibetragMaxGewinn,
+    bis: GFB_CFG.ifbTier1Max,
+    rate: GFB_CFG.ifbTier1Rate,
+    label: '€ 33.001 – € 178.000 (13 %)',
+  },
+  {
+    von: GFB_CFG.ifbTier1Max,
+    bis: GFB_CFG.ifbTier2Max,
+    rate: GFB_CFG.ifbTier2Rate,
+    label: '€ 178.001 – € 353.000 (7 %)',
+  },
+  {
+    von: GFB_CFG.ifbTier2Max,
+    bis: GFB_CFG.ifbTier3Max,
+    rate: GFB_CFG.ifbTier3Rate,
+    label: '€ 353.001 – € 583.000 (4,5 %)',
+  },
 ]
 
-// ── Vereinfachte ESt-Berechnung (AT 2026 Tarif) ────────────────────
-const TAX_BRACKETS: { von: number; bis: number; rate: number }[] = [
-  { von: 0, bis: 12_816, rate: 0.00 },
-  { von: 12_816, bis: 20_818, rate: 0.20 },
-  { von: 20_818, bis: 34_513, rate: 0.30 },
-  { von: 34_513, bis: 66_612, rate: 0.40 },
-  { von: 66_612, bis: 99_266, rate: 0.48 },
-  { von: 99_266, bis: 1_000_000, rate: 0.50 },
-  { von: 1_000_000, bis: Infinity, rate: 0.55 },
-]
-
+// ESt nach dem echten 2026er-Tarif (Single Source of Truth: tax-constants.ts)
 function calculateESt(einkommen: number): number {
   if (einkommen <= 0) return 0
-  let steuer = 0
-  for (const bracket of TAX_BRACKETS) {
-    if (einkommen <= bracket.von) break
-    const taxableInBracket = Math.min(einkommen, bracket.bis) - bracket.von
-    steuer += taxableInBracket * bracket.rate
-  }
-  return steuer
+  return calcProgressiveTax(einkommen, '2026')
 }
 
 // ── Gewinnfreibetrag berechnen ──────────────────────────────────────
@@ -201,6 +210,13 @@ export function calculateIFB(input: IFBInput): IFBResult {
     warnungen.push({
       typ: 'behaltefrist',
       text: `Behaltefrist beachten: Wirtschaftsgüter, für die ein IFB geltend gemacht wird, müssen mindestens 4 Jahre im Betriebsvermögen verbleiben (§ 11 Abs 3 EStG). Bei vorzeitigem Ausscheiden wird der IFB (${Math.round(ifbGesamt).toLocaleString('de-AT')} €) gewinnerhöhend nachversteuert.`,
+    })
+  }
+
+  if (ifbGesamt > 0 && jahresgewinn > GFB_CFG.grundfreibetragMaxGewinn) {
+    warnungen.push({
+      typ: 'info',
+      text: 'Doppelförderungsverbot: Für dasselbe Wirtschaftsgut können IFB (§ 11 EStG) und investitionsbedingter Gewinnfreibetrag (§ 10 EStG) nicht gleichzeitig geltend gemacht werden. Der hier ausgewiesene GFB über dem Grundfreibetrag setzt zusätzliche begünstigte Investitionen oder Wertpapiere voraus.',
     })
   }
 

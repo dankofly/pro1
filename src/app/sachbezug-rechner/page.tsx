@@ -119,7 +119,7 @@ function CO2Badge({ co2 }: { co2: number }) {
       </Badge>
     )
   }
-  if (co2 <= 141) {
+  if (co2 <= 126) {
     return (
       <Badge className="bg-blue-500/15 text-blue-400 border-blue-500/30">
         1,5% -- max. EUR 720/Monat
