@@ -121,25 +121,25 @@ export default function GewinnfreibetragPage() {
                     <td className="p-4 text-white font-semibold">4.950 €</td>
                   </tr>
                   <tr className="border-t border-slate-700 bg-slate-900/50">
-                    <td className="p-4 border-r border-slate-700">33.000 – 175.000 €</td>
+                    <td className="p-4 border-r border-slate-700">33.000 – 178.000 €</td>
                     <td className="p-4 border-r border-slate-700 text-white font-semibold">13%</td>
                     <td className="p-4 border-r border-slate-700 text-blue-400">Investitionsbedingt</td>
-                    <td className="p-4 text-white font-semibold">18.460 €</td>
+                    <td className="p-4 text-white font-semibold">18.850 €</td>
                   </tr>
                   <tr className="border-t border-slate-700">
-                    <td className="p-4 border-r border-slate-700">175.000 – 350.000 €</td>
+                    <td className="p-4 border-r border-slate-700">178.000 – 353.000 €</td>
                     <td className="p-4 border-r border-slate-700 text-white font-semibold">7%</td>
                     <td className="p-4 border-r border-slate-700 text-blue-400">Investitionsbedingt</td>
                     <td className="p-4 text-white font-semibold">12.250 €</td>
                   </tr>
                   <tr className="border-t border-slate-700 bg-slate-900/50">
-                    <td className="p-4 border-r border-slate-700">350.000 – 580.000 €</td>
+                    <td className="p-4 border-r border-slate-700">353.000 – 583.000 €</td>
                     <td className="p-4 border-r border-slate-700 text-white font-semibold">4,5%</td>
                     <td className="p-4 border-r border-slate-700 text-blue-400">Investitionsbedingt</td>
                     <td className="p-4 text-white font-semibold">10.350 €</td>
                   </tr>
                   <tr className="border-t border-slate-700 bg-slate-800">
-                    <td className="p-4 border-r border-slate-700 font-semibold text-white">Über 580.000 €</td>
+                    <td className="p-4 border-r border-slate-700 font-semibold text-white">Über 583.000 €</td>
                     <td className="p-4 border-r border-slate-700 text-white font-semibold">0%</td>
                     <td className="p-4 border-r border-slate-700">—</td>
                     <td className="p-4 text-slate-400">Kein weiterer GFB</td>
@@ -147,7 +147,7 @@ export default function GewinnfreibetragPage() {
                   <tr className="border-t-2 border-blue-600 bg-blue-900/20">
                     <td className="p-4 border-r border-slate-700 font-bold text-white" colSpan={2}>Maximaler Gesamt-GFB</td>
                     <td className="p-4 border-r border-slate-700"></td>
-                    <td className="p-4 text-white font-bold">46.010 €</td>
+                    <td className="p-4 text-white font-bold">46.400 €</td>
                   </tr>
                 </tbody>
               </table>
@@ -372,7 +372,7 @@ export default function GewinnfreibetragPage() {
                   </tr>
                   <tr className="border-t border-slate-700">
                     <td className="p-4 border-r border-slate-700 font-medium text-white">Maximum</td>
-                    <td className="p-4 border-r border-slate-700">46.010 €/Jahr</td>
+                    <td className="p-4 border-r border-slate-700">46.400 €/Jahr</td>
                     <td className="p-4">150.000 €/Jahr (bei 1 Mio. Investition)</td>
                   </tr>
                   <tr className="border-t border-slate-700 bg-slate-900/50">
@@ -690,8 +690,8 @@ export default function GewinnfreibetragPage() {
               <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
                 <h3 className="text-lg font-semibold text-white mb-2">Wie hoch ist der maximale GFB?</h3>
                 <p className="mb-0">
-                  Der maximale Gewinnfreibetrag beträgt <strong className="text-white">46.010 €/Jahr</strong>
-                  (bei einem Gewinn von 580.000 € und vollen begünstigten Investitionen). Für die meisten
+                  Der maximale Gewinnfreibetrag beträgt <strong className="text-white">46.400 €/Jahr</strong>
+                  (bei einem Gewinn von 583.000 € und vollen begünstigten Investitionen). Für die meisten
                   Selbständigen ist aber der Grundfreibetrag von 4.950 € der relevante Betrag.
                 </p>
               </div>

@@ -53,7 +53,7 @@ const faqJsonLd = {
       name: 'Was ist die Basispauschalierung in Österreich?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Bei der Basispauschalierung können Selbstständige pauschal 12% (bzw. 6% bei bestimmten Tätigkeiten) ihrer Betriebseinnahmen als Betriebsausgaben absetzen, ohne jeden Beleg einzeln nachweisen zu müssen. Die Umsatzgrenze liegt bei 220.000€ pro Jahr.'
+        text: 'Bei der Basispauschalierung können Selbstständige pauschal 15% (ab 2026; 2025: 13,5%, 2024: 12%) bzw. 6% bei bestimmten Tätigkeiten ihrer Betriebseinnahmen als Betriebsausgaben absetzen, ohne jeden Beleg einzeln nachweisen zu müssen. Die Umsatzgrenze liegt ab 2026 bei 420.000€ pro Jahr (2025: 320.000€).'
       }
     },
     {
@@ -69,7 +69,7 @@ const faqJsonLd = {
       name: 'Was ist die Kleinunternehmerpauschalierung?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Die Kleinunternehmerpauschalierung nach § 17 Abs 3a EStG erlaubt Kleinunternehmern (Umsatz bis 42.000€) pauschal 45% (Dienstleistungen) oder 20% (andere Tätigkeiten) als Betriebsausgaben anzusetzen.'
+        text: 'Die Kleinunternehmerpauschalierung nach § 17 Abs 3a EStG erlaubt Kleinunternehmern (Umsatz bis 55.000€ brutto seit 2025) pauschal 45% (Handel/Produktion, Deckel 24.750€) oder 20% (Dienstleistungen, Deckel 11.000€) als Betriebsausgaben anzusetzen.'
       }
     },
     {

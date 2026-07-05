@@ -53,7 +53,7 @@ const faqJsonLd = {
       name: 'Wie werden Kryptowährungen in Österreich besteuert?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Seit März 2022 unterliegen Krypto-Gewinne der KESt von 27,5%. Das gilt für realisierte Kursgewinne, Tausch von Krypto in Fiat oder andere Krypto, und laufende Einkünfte wie Staking oder Mining.'
+        text: 'Seit März 2022 unterliegen Krypto-Gewinne der KESt von 27,5%. Das gilt für den Verkauf gegen Euro/Fiat, die Bezahlung mit Krypto und laufende Einkünfte wie Mining oder Lending. Der Tausch Krypto gegen Krypto ist dagegen steuerneutral, die Anschaffungskosten wandern auf die erhaltene Kryptowährung weiter.'
       }
     },
     {
@@ -69,7 +69,7 @@ const faqJsonLd = {
       name: 'Ist Krypto-Staking in Österreich steuerpflichtig?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Ja, Staking-Rewards sind als laufende Einkünfte mit 27,5% KESt steuerpflichtig. Die Besteuerung erfolgt zum Zeitpunkt des Zuflusses basierend auf dem aktuellen Marktwert.'
+        text: 'Staking-Rewards aus der Blockerstellung sind beim Zufluss nicht steuerpflichtig (§ 27b Abs 2 Z 2 EStG). Sie werden mit Anschaffungskosten von 0 angesetzt. Erst bei der späteren Veräußerung fällt 27,5% KESt auf den gesamten Verkaufserlös an.'
       }
     },
     {

@@ -128,11 +128,9 @@ export default function KryptoSteuerOesterreichPage() {
                   <h3 className="text-lg font-semibold text-red-400 mb-3">Steuerpflichtige Vorgänge:</h3>
                   <ul className="text-slate-300 space-y-2">
                     <li>• <strong className="text-white">Verkauf gegen Euro/Fiat:</strong> Differenz zwischen Verkaufspreis und Anschaffungskosten</li>
-                    <li>• <strong className="text-white">Tausch Krypto gegen Krypto:</strong> Gilt als Veräußerung und Neuanschaffung (Swap)</li>
                     <li>• <strong className="text-white">Bezahlung mit Krypto:</strong> Kauf von Waren/DL mit Krypto = Veräußerung</li>
-                    <li>• <strong className="text-white">Staking-Rewards:</strong> Laufende Einkünfte, KESt bei Zufluss</li>
-                    <li>• <strong className="text-white">Mining-Erträge:</strong> Je nach Art (privat vs gewerblich) unterschiedlich</li>
-                    <li>• <strong className="text-white">Airdrops:</strong> Steuerpflichtig bei Zufluss (Anschaffungskosten = 0)</li>
+                    <li>• <strong className="text-white">Tausch gegen andere Wirtschaftsgüter:</strong> z.B. Krypto gegen Gold oder NFTs = Veräußerung</li>
+                    <li>• <strong className="text-white">Mining-Erträge:</strong> Laufende Einkünfte, KESt bei Zufluss (privat vs gewerblich unterschiedlich)</li>
                     <li>• <strong className="text-white">Lending-Zinsen:</strong> Laufende Einkünfte, 27,5% KESt</li>
                   </ul>
                 </div>
@@ -141,6 +139,9 @@ export default function KryptoSteuerOesterreichPage() {
                   <h3 className="text-lg font-semibold text-green-400 mb-3">NICHT steuerpflichtig:</h3>
                   <ul className="text-slate-300 space-y-2">
                     <li>• <strong className="text-white">Halten (HODL):</strong> Unrealisierte Gewinne sind nicht steuerpflichtig</li>
+                    <li>• <strong className="text-white">Tausch Krypto gegen Krypto:</strong> Steuerneutral (Neuvermögen) - die Anschaffungskosten wandern auf die erhaltene Kryptowährung</li>
+                    <li>• <strong className="text-white">Staking-Rewards:</strong> Kein steuerpflichtiger Zufluss - Ansatz mit Anschaffungskosten 0, Besteuerung erst bei Veräußerung</li>
+                    <li>• <strong className="text-white">Airdrops und Bounties:</strong> Nicht steuerpflichtig bei Zufluss - Anschaffungskosten 0, Besteuerung erst bei Veräußerung</li>
                     <li>• <strong className="text-white">Transfer zwischen eigenen Wallets:</strong> Kein Veräußerungsvorgang</li>
                     <li>• <strong className="text-white">Schenkung/Erbschaft:</strong> Keine Einkommensteuer (aber ev. Erbschaftssteuer-Äquivalent)</li>
                     <li>• <strong className="text-white">Kauf von Krypto:</strong> Die Anschaffung selbst ist nicht steuerpflichtig</li>
@@ -159,13 +160,13 @@ export default function KryptoSteuerOesterreichPage() {
                 <div className="bg-slate-900 p-5 rounded-lg border border-slate-700">
                   <h3 className="text-lg font-semibold text-white mb-2">Staking</h3>
                   <p className="text-slate-300 mb-2">
-                    Staking-Rewards gelten als laufende Einkünfte aus Kryptowährungen (§ 27b Abs 2 EStG)
-                    und sind mit 27,5% KESt zu versteuern. Die Besteuerung erfolgt zum Zeitpunkt des
-                    Zuflusses basierend auf dem aktuellen Marktwert.
+                    Staking-Rewards aus der Blockerstellung (Konsensmechanismus) sind beim Zufluss
+                    NICHT steuerpflichtig (§ 27b Abs 2 Z 2 EStG). Es liegt kein steuerpflichtiger
+                    Zufluss vor.
                   </p>
                   <p className="text-slate-400 text-sm">
-                    Die Anschaffungskosten der erhaltenen Tokens entsprechen dem Marktwert bei Zufluss.
-                    Bei späterer Veräußerung wird die Differenz zum neuen Verkaufspreis besteuert.
+                    Die erhaltenen Tokens werden mit Anschaffungskosten von 0€ angesetzt.
+                    Erst bei der späteren Veräußerung wird der gesamte Verkaufserlös mit 27,5% KESt besteuert.
                   </p>
                 </div>
 
@@ -187,10 +188,10 @@ export default function KryptoSteuerOesterreichPage() {
                 <div className="bg-slate-900 p-5 rounded-lg border border-slate-700">
                   <h3 className="text-lg font-semibold text-white mb-2">Airdrops</h3>
                   <p className="text-slate-300">
-                    Airdrops sind steuerlich als Zufluss mit Anschaffungskosten von 0€ zu behandeln.
-                    Die 27,5% KESt fällt beim späteren Verkauf auf den gesamten Veräußerungserlös an.
-                    Zum Zeitpunkt des Airdrops selbst entsteht keine Steuerpflicht, es sei denn,
-                    der Airdrop wird als Gegenleistung für eine erbrachte Leistung gewährt.
+                    Airdrops und Bounties sind beim Zufluss nicht steuerpflichtig und werden mit
+                    Anschaffungskosten von 0€ eingebucht. Die 27,5% KESt fällt erst beim späteren
+                    Verkauf auf den gesamten Veräußerungserlös an. Eine Ausnahme gilt, wenn der
+                    Airdrop als Gegenleistung für eine konkrete Leistung gewährt wird.
                   </p>
                 </div>
 
@@ -289,7 +290,7 @@ export default function KryptoSteuerOesterreichPage() {
                   <li>Alle Krypto-Transaktionen des Jahres zusammentragen</li>
                   <li>Anschaffungskosten pro Token ermitteln (FIFO oder Durchschnittsmethode)</li>
                   <li>Gewinne und Verluste pro Transaktion berechnen</li>
-                  <li>Staking/Mining/Lending-Einkünfte separat erfassen</li>
+                  <li>Mining- und Lending-Einkünfte separat erfassen (Staking-Rewards nur mit AK 0 dokumentieren)</li>
                   <li>Verlustausgleich mit anderen Kapitalerträgen durchführen</li>
                   <li>Ergebnisse in E1kv eintragen</li>
                   <li>E1kv zusammen mit E1 beim Finanzamt einreichen</li>
@@ -355,17 +356,21 @@ export default function KryptoSteuerOesterreichPage() {
               </h2>
               <div className="space-y-4">
                 <div className="bg-slate-900 p-5 rounded-lg border border-slate-700">
-                  <h3 className="font-semibold text-red-400 mb-2">1. Krypto-zu-Krypto-Tausch nicht gemeldet</h3>
+                  <h3 className="font-semibold text-red-400 mb-2">1. Krypto-zu-Krypto-Tausch fälschlich versteuert</h3>
                   <p className="text-slate-300">
-                    Viele vergessen, dass der Tausch von Bitcoin in Ethereum ein steuerpflichtiger Vorgang ist.
-                    Es handelt sich um eine Veräußerung von BTC und eine Neuanschaffung von ETH.
+                    Viele glauben, der Tausch von Bitcoin in Ethereum sei steuerpflichtig. Das ist falsch:
+                    Seit dem 1. März 2022 ist der Tausch Krypto gegen Krypto steuerneutral, die Anschaffungskosten
+                    der hingegebenen Coins wandern auf die erhaltenen weiter. Achtung bei Altvermögen
+                    (Anschaffung vor 1. März 2021): Dort gilt der Tausch weiterhin als Veräußerung nach dem
+                    alten Spekulationsregime.
                   </p>
                 </div>
                 <div className="bg-slate-900 p-5 rounded-lg border border-slate-700">
                   <h3 className="font-semibold text-red-400 mb-2">2. DeFi-Erträge vergessen</h3>
                   <p className="text-slate-300">
-                    Staking-Rewards, Liquidity-Pool-Erträge und Lending-Zinsen sind steuerpflichtig —
-                    auch wenn sie nicht in Fiat ausgezahlt werden.
+                    Liquidity-Pool-Erträge und Lending-Zinsen sind steuerpflichtig, auch wenn sie nicht
+                    in Fiat ausgezahlt werden. Staking-Rewards aus der Blockerstellung sind dagegen erst
+                    bei der späteren Veräußerung steuerpflichtig (Anschaffungskosten 0).
                   </p>
                 </div>
                 <div className="bg-slate-900 p-5 rounded-lg border border-slate-700">

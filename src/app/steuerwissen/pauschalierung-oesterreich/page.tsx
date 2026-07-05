@@ -73,10 +73,11 @@ export default function PauschalierungOesterreichPage() {
                   mit Einkünften aus Gewerbebetrieb oder selbstständiger Arbeit offen.
                 </p>
                 <div className="space-y-2 text-slate-300 mb-4">
-                  <p><strong className="text-white">Pauschalsatz:</strong> 12% der Betriebseinnahmen (inkl. USt)</p>
+                  <p><strong className="text-white">Pauschalsatz:</strong> 15% der Betriebseinnahmen ab 2026 (2025: 13,5%, 2024: 12%)</p>
                   <p><strong className="text-white">Für bestimmte Tätigkeiten:</strong> 6% (z.B. kaufmännische Beratung, Schriftsteller, Vortragende, Wissenschaftler)</p>
-                  <p><strong className="text-white">Umsatzgrenze:</strong> 220.000€ Jahresumsatz</p>
-                  <p><strong className="text-white">Maximaler Pauschalbetrag:</strong> 26.400€ (bei 12%) bzw. 13.200€ (bei 6%)</p>
+                  <p><strong className="text-white">Umsatzgrenze:</strong> 420.000€ Jahresumsatz ab 2026 (2025: 320.000€, 2024: 220.000€)</p>
+                  <p><strong className="text-white">Maximaler Pauschalbetrag:</strong> 63.000€ (bei 15%) bzw. 25.200€ (bei 6%) ab 2026 (2025: 43.200€ bzw. 19.200€)</p>
+                  <p><strong className="text-white">Vorsteuerpauschale:</strong> 1,8% des Umsatzes (max. 7.560€ ab 2026; 2025: 5.760€)</p>
                 </div>
                 <p className="text-slate-300 leading-relaxed">
                   Zusätzlich zum Pauschalbetrag können Sozialversicherungsbeiträge (SVS), der Grundfreibetrag
@@ -91,7 +92,7 @@ export default function PauschalierungOesterreichPage() {
                 </h3>
                 <p className="text-slate-300 mb-3 leading-relaxed">
                   Für bestimmte Branchen gibt es eigene Pauschalierungsverordnungen des Bundesministeriums
-                  für Finanzen mit branchenspezifischen Pauschalsätzen, die oft deutlich höher als 12% sind.
+                  für Finanzen mit branchenspezifischen Pauschalsätzen, die oft deutlich höher als der Basissatz sind.
                 </p>
                 <div className="space-y-2 text-slate-300 mb-4">
                   <p><strong className="text-white">Gastronomie:</strong> Eigene Verordnung mit gestaffelten Sätzen (Wareneinsatz + Personalkosten)</p>
@@ -115,9 +116,9 @@ export default function PauschalierungOesterreichPage() {
                   umsatzsteuerbefreite Kleinunternehmer.
                 </p>
                 <div className="space-y-2 text-slate-300 mb-4">
-                  <p><strong className="text-white">Pauschalsatz Dienstleistungen:</strong> 20% der Betriebseinnahmen</p>
-                  <p><strong className="text-white">Pauschalsatz Warenhandel/Produktion:</strong> 45% der Betriebseinnahmen</p>
-                  <p><strong className="text-white">Umsatzgrenze:</strong> 42.000€ (= Kleinunternehmergrenze)</p>
+                  <p><strong className="text-white">Pauschalsatz Dienstleistungen:</strong> 20% der Betriebseinnahmen (Deckel 11.000€)</p>
+                  <p><strong className="text-white">Pauschalsatz Warenhandel/Produktion:</strong> 45% der Betriebseinnahmen (Deckel 24.750€)</p>
+                  <p><strong className="text-white">Umsatzgrenze:</strong> 55.000€ brutto (= Kleinunternehmergrenze seit 2025, davor 40.000€)</p>
                 </div>
                 <p className="text-slate-300 leading-relaxed">
                   Zusätzlich absetzbar: SVS-Beiträge, Reisekosten und der Grundfreibetrag. Die
@@ -137,7 +138,7 @@ export default function PauschalierungOesterreichPage() {
                   <thead className="bg-slate-800">
                     <tr>
                       <th className="text-left p-3 text-white">Kriterium</th>
-                      <th className="text-left p-3 text-white">Basis (12%/6%)</th>
+                      <th className="text-left p-3 text-white">Basis (15%/6%)</th>
                       <th className="text-left p-3 text-white">Branche</th>
                       <th className="text-left p-3 text-white">Kleinunternehmer</th>
                     </tr>
@@ -145,21 +146,21 @@ export default function PauschalierungOesterreichPage() {
                   <tbody className="divide-y divide-slate-700">
                     <tr className="bg-slate-900">
                       <td className="p-3 font-medium">Umsatzgrenze</td>
-                      <td className="p-3">220.000€</td>
+                      <td className="p-3">420.000€ (ab 2026)</td>
                       <td className="p-3">Branchenabhängig</td>
-                      <td className="p-3">42.000€</td>
+                      <td className="p-3">55.000€ brutto</td>
                     </tr>
                     <tr className="bg-slate-900/50">
                       <td className="p-3 font-medium">Pauschalsatz</td>
-                      <td className="p-3">12% / 6%</td>
+                      <td className="p-3">15% / 6%</td>
                       <td className="p-3">Branchenspezifisch</td>
                       <td className="p-3">45% / 20%</td>
                     </tr>
                     <tr className="bg-slate-900">
                       <td className="p-3 font-medium">Max. Pauschale</td>
-                      <td className="p-3">26.400€</td>
+                      <td className="p-3">63.000€</td>
                       <td className="p-3">Variabel</td>
-                      <td className="p-3">18.900€</td>
+                      <td className="p-3">24.750€ / 11.000€</td>
                     </tr>
                     <tr className="bg-slate-900/50">
                       <td className="p-3 font-medium">SVS zusätzlich</td>
@@ -201,7 +202,7 @@ export default function PauschalierungOesterreichPage() {
                   <h3 className="text-lg font-semibold text-white mb-2">Basispauschalierung</h3>
                   <ul className="text-slate-300 space-y-2">
                     <li>• Einkünfte aus Gewerbebetrieb oder selbstständiger Arbeit</li>
-                    <li>• Jahresumsatz nicht über 220.000€</li>
+                    <li>• Jahresumsatz nicht über 420.000€ (ab 2026; 2025: 320.000€, 2024: 220.000€)</li>
                     <li>• Keine Buchführungspflicht (oder freiwilliger Verzicht darauf)</li>
                     <li>• Keine Gesellschafter einer OG oder KG mit Buchführungspflicht</li>
                   </ul>
@@ -220,7 +221,7 @@ export default function PauschalierungOesterreichPage() {
                   <h3 className="text-lg font-semibold text-white mb-2">Kleinunternehmerpauschalierung</h3>
                   <ul className="text-slate-300 space-y-2">
                     <li>• USt-Befreiung als Kleinunternehmer muss gelten</li>
-                    <li>• Jahresumsatz maximal 42.000€ (seit 2025)</li>
+                    <li>• Jahresumsatz maximal 55.000€ brutto (seit 2025, mit einmaliger Toleranz von +10%)</li>
                     <li>• Keine Buchführungspflicht</li>
                     <li>• Kein Verzicht auf die Kleinunternehmerregelung (Option zur Regelbesteuerung)</li>
                   </ul>
@@ -296,12 +297,12 @@ export default function PauschalierungOesterreichPage() {
                   </h3>
                   <div className="grid grid-cols-2 gap-4 text-slate-300 mb-4">
                     <div>
-                      <p className="font-medium text-white mb-2">Basispauschalierung (12%):</p>
+                      <p className="font-medium text-white mb-2">Basispauschalierung (15%):</p>
                       <p>Einnahmen: 150.000€</p>
-                      <p>Pauschale (12%): -18.000€</p>
+                      <p>Pauschale (15%): -22.500€</p>
                       <p>SVS-Beiträge: -22.600€</p>
                       <p>GFB: -4.950€</p>
-                      <p className="font-semibold text-white mt-2">Gewinn: 104.450€</p>
+                      <p className="font-semibold text-white mt-2">Gewinn: 99.950€</p>
                     </div>
                     <div>
                       <p className="font-medium text-white mb-2">Tatsächliche Ausgaben:</p>
@@ -346,7 +347,7 @@ export default function PauschalierungOesterreichPage() {
                     <li>• Vielen absetzbaren Investitionen</li>
                     <li>• Arbeitszimmer, Fahrzeug, etc.</li>
                     <li>• Hohen Reisekosten und Fortbildungen</li>
-                    <li>• Wenn tatsächliche Ausgaben über 12% liegen</li>
+                    <li>• Wenn tatsächliche Ausgaben über 15% liegen</li>
                     <li>• Bei geplanten größeren Investitionen</li>
                   </ul>
                 </div>
@@ -369,11 +370,11 @@ export default function PauschalierungOesterreichPage() {
                 <h3 className="text-lg font-semibold text-white mb-2">Rechenbeispiel: SVS-Auswirkung</h3>
                 <div className="text-slate-300 space-y-1">
                   <p>Umsatz: 50.000€, tatsächliche Ausgaben: 8.000€</p>
-                  <p className="mt-2"><strong className="text-white">Mit Pauschalierung (12%):</strong></p>
-                  <p>Gewinn = 50.000 - 6.000 = 44.000€ → SVS ca. 11.792€</p>
+                  <p className="mt-2"><strong className="text-white">Mit Pauschalierung (15%):</strong></p>
+                  <p>Gewinn = 50.000 - 7.500 = 42.500€ → SVS ca. 11.390€</p>
                   <p className="mt-2"><strong className="text-white">Mit tatsächlichen Ausgaben:</strong></p>
                   <p>Gewinn = 50.000 - 8.000 = 42.000€ → SVS ca. 11.256€</p>
-                  <p className="mt-2 text-slate-400">Differenz: ca. 536€ mehr SVS bei Pauschalierung</p>
+                  <p className="mt-2 text-slate-400">Differenz: ca. 134€ mehr SVS bei Pauschalierung</p>
                 </div>
               </div>
 
@@ -394,14 +395,14 @@ export default function PauschalierungOesterreichPage() {
                 <div className="bg-slate-900 p-5 rounded-lg border border-slate-700">
                   <h3 className="font-semibold text-red-400 mb-2">1. Falscher Pauschalsatz gewählt</h3>
                   <p className="text-slate-300">
-                    Viele Selbstständige setzen automatisch 12% an, obwohl für ihre Tätigkeit nur 6% gelten.
+                    Viele Selbstständige setzen automatisch den vollen Satz von 15% an, obwohl für ihre Tätigkeit nur 6% gelten.
                     Prüfen Sie genau, ob Ihre Tätigkeit unter die 6%-Regelung fällt (z.B. Beratung, Vorträge, wissenschaftliche Tätigkeit).
                   </p>
                 </div>
                 <div className="bg-slate-900 p-5 rounded-lg border border-slate-700">
                   <h3 className="font-semibold text-red-400 mb-2">2. Umsatzgrenze übersehen</h3>
                   <p className="text-slate-300">
-                    Bei Überschreitung der 220.000€-Grenze verlieren Sie rückwirkend das Recht auf
+                    Bei Überschreitung der 420.000€-Grenze (ab 2026) verlieren Sie rückwirkend das Recht auf
                     Basispauschalierung. Behalten Sie Ihre Umsatzentwicklung im Blick.
                   </p>
                 </div>
@@ -459,7 +460,7 @@ export default function PauschalierungOesterreichPage() {
                 <div className="bg-slate-900 p-5 rounded-lg border border-slate-700">
                   <h3 className="font-semibold text-white mb-2">Was passiert, wenn ich die Umsatzgrenze im Laufe des Jahres überschreite?</h3>
                   <p className="text-slate-300">
-                    Bei Überschreitung der 220.000€-Grenze verlieren Sie das Recht auf Basispauschalierung
+                    Bei Überschreitung der 420.000€-Grenze (ab 2026) verlieren Sie das Recht auf Basispauschalierung
                     für das betreffende Jahr. Sie müssen dann rückwirkend auf tatsächliche Ausgaben umstellen.
                   </p>
                 </div>
