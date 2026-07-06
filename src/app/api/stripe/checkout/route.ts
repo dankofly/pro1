@@ -40,6 +40,8 @@ export async function POST(request: NextRequest) {
       .eq('user_id', user.id)
       .single()
 
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://steuerboard.pro'
+
     const stripe = getStripeServer()
     const params: Stripe.Checkout.SessionCreateParams = {
       mode: 'subscription',
@@ -48,7 +50,18 @@ export async function POST(request: NextRequest) {
       subscription_data: {
         metadata: { user_id: user.id },
       },
-      return_url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://steuerboard.pro'}/pricing?session_id={CHECKOUT_SESSION_ID}`,
+      // FAGG-Hinweis direkt am Bezahl-Button: Zustimmung zur sofortigen
+      // Bereitstellung und Kenntnis des dadurch erloeschenden Widerrufsrechts.
+      // custom_text ist dashboard-unabhaengig (kein Bruchrisiko).
+      custom_text: {
+        submit: {
+          message:
+            'Mit dem Abschluss stimmst du der sofortigen Bereitstellung zu und nimmst zur Kenntnis, ' +
+            'dass dein Widerrufsrecht damit erlischt (FAGG). Es gelten AGB, Widerrufsbelehrung und ' +
+            'Datenschutzerklaerung auf steuerboard.pro.',
+        },
+      },
+      return_url: `${siteUrl}/pricing?session_id={CHECKOUT_SESSION_ID}`,
     }
 
     // Reuse existing Stripe customer if available
