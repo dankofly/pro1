@@ -392,8 +392,10 @@ function RechnerContent() {
             {!svs.belowMinimum && (
               <NachzahlungsUpsell
                 svs={svs}
+                gewinn={result.gewinn}
                 vorschreibung={vorschreibung}
-                monatlicheRuecklage={result.ruecklagen.gesamtMonatlich}
+                ruecklagen={result.ruecklagen}
+                year={Number(input.year)}
                 subscription={subscription}
               />
             )}
