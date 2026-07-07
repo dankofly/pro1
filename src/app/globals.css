@@ -239,13 +239,13 @@
 
   /* Smooth number transitions */
   .num-transition {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     font-variant-numeric: tabular-nums;
   }
 
   /* Micro-interactions */
   .card-hover {
-    @apply transition-all duration-200;
+    @apply transition-[border-color,box-shadow,transform] duration-200;
   }
   .card-hover:hover {
     border-color: hsl(var(--border-subtle));
