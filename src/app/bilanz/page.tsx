@@ -24,7 +24,7 @@ import {
 import type { PieLabelRenderProps } from 'recharts'
 
 import {
-  Upload, FileSpreadsheet, FileText, FileUp,
+  Upload, FileText, FileUp,
   BarChart3, TrendingUp, Calculator, Crown, Lock,
   Loader2, CheckCircle2, AlertTriangle, Sparkles,
   ArrowRight, MessageSquare, ChevronLeft, Info,
@@ -98,11 +98,11 @@ const BAR_COLORS = { konservativ: '#94a3b8', realistisch: '#10b981', optimistisc
 
 const ACCEPTED_TYPES = [
   'text/csv',
-  'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-  'application/vnd.ms-excel',
-  'application/pdf',
+  'application/csv',
+  'text/plain',
 ]
-const ACCEPTED_EXTENSIONS = '.csv,.xlsx,.xls,.pdf'
+// Nur CSV wird tatsaechlich geparst; XLSX/PDF sind noch nicht implementiert
+const ACCEPTED_EXTENSIONS = '.csv'
 const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10 MB
 
 function formatPercent(val: number): string {
@@ -203,22 +203,14 @@ function UploadZone({
                 <span className="text-emerald-600 underline underline-offset-2">durchsuchen</span>
               </p>
               <p className="text-xs text-muted-foreground mt-1">
-                CSV, XLSX oder PDF — max. 10 MB
+                CSV-Export deiner Buchhaltung — max. 10 MB
               </p>
             </div>
 
             <div className="flex items-center gap-2 flex-wrap justify-center">
               <div className="flex items-center gap-1.5 text-muted-foreground">
-                <FileSpreadsheet className="h-3.5 w-3.5" />
-                <span className="text-xs">.xlsx</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-muted-foreground">
                 <FileText className="h-3.5 w-3.5" />
                 <span className="text-xs">.csv</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-muted-foreground">
-                <FileText className="h-3.5 w-3.5" />
-                <span className="text-xs">.pdf</span>
               </div>
             </div>
 
@@ -769,8 +761,8 @@ function BilanzContent() {
     setError(null)
 
     // Validate file type
-    if (!ACCEPTED_TYPES.includes(selectedFile.type) && !selectedFile.name.match(/\.(csv|xlsx|xls|pdf)$/i)) {
-      setError('Ungültiges Dateiformat. Bitte lade eine CSV, XLSX oder PDF-Datei hoch.')
+    if (!ACCEPTED_TYPES.includes(selectedFile.type) && !selectedFile.name.match(/\.csv$/i)) {
+      setError('Ungültiges Dateiformat. Bitte lade eine CSV-Datei hoch.')
       return
     }
 

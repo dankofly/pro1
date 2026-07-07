@@ -170,8 +170,9 @@ export async function POST(request: NextRequest) {
     const message = err instanceof Error ? err.message : String(err)
     console.error('Tax Chatbot error:', message, err)
 
+    // Interne Fehlerdetails nicht an den Client leaken
     return Response.json(
-      { error: `Chatbot-Fehler: ${message}` },
+      { error: 'Der Chatbot ist momentan nicht erreichbar. Bitte versuche es in Kürze erneut.' },
       { status: 500 }
     )
   }

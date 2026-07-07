@@ -217,8 +217,9 @@ export async function POST(request: NextRequest) {
     const message = err instanceof Error ? err.message : String(err)
     console.error('Tax Knowledge error:', message, err)
 
+    // Interne Fehlerdetails nicht an den Client leaken
     return Response.json(
-      { error: `Steuer-Wissen Fehler: ${message}` },
+      { error: 'Der Steuer-Wissen-Assistent ist momentan nicht erreichbar. Bitte versuche es in Kürze erneut.' },
       { status: 500 }
     )
   }
