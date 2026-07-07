@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'Kleinunternehmerregelung Österreich 2026 — Umsatzgrenze, Vorteile & Fallstricke',
+  title: 'Kleinunternehmerregelung Österreich 2026: Umsatzgrenze, Vorteile & Fallstricke',
   description: 'Alles zur Kleinunternehmerregelung in Österreich: Umsatzgrenze 42.000€, USt-Befreiung, Toleranzgrenze, EU-Regelung und wann sich der Verzicht lohnt.',
   openGraph: {
-    title: 'Kleinunternehmerregelung Österreich 2026 — Kompletter Guide',
+    title: 'Kleinunternehmerregelung Österreich 2026: Kompletter Guide',
     description: 'Umsatzgrenze, USt-Befreiung, Vorsteuerabzug und wann sich die Regelbesteuerung lohnt.',
     url: '/steuerwissen/kleinunternehmerregelung'
   },

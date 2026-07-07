@@ -2,14 +2,14 @@ import { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'Steuerwissen für Selbständige in Österreich — Alle Guides & Tipps',
+  title: 'Steuerwissen für Selbständige in Österreich: Alle Guides & Tipps',
   description: 'Steuerwissen für Selbständige in Österreich: SVS-Beiträge senken, Gewinnfreibetrag nutzen, GmbH vs Einzelunternehmen und mehr. Praxisnahe Steuer-Guides mit konkreten Beispielen.',
   keywords: ['Steuerwissen Österreich', 'Steuer Tipps Selbständige', 'SVS Beiträge', 'Gewinnfreibetrag', 'GmbH gründen', 'Steueroptimierung'],
   alternates: {
     canonical: '/steuerwissen-hub',
   },
   openGraph: {
-    title: 'Steuerwissen für Selbständige in Österreich — Alle Guides & Tipps',
+    title: 'Steuerwissen für Selbständige in Österreich: Alle Guides & Tipps',
     description: 'Praxisnahe Steuer-Guides für Selbständige: SVS optimieren, Steuern sparen, richtige Rechtsform wählen.',
     type: 'website',
     url: '/steuerwissen-hub',

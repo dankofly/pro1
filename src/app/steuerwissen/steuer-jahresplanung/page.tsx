@@ -472,10 +472,10 @@ export default function SteuerJahresplanungPage() {
               { name: 'SVS — Beitragsvorschreibung', url: 'https://www.svs.at/cdscontent/?contentid=10007.707035', description: 'Sozialversicherung der Selbständigen — Termine und Fristen' },
             ]}
             relatedArticles={[
-              { title: 'Steueroptimierung für Selbständige — Alle Strategien', href: '/steuerwissen/steueroptimierung-selbststaendige' },
-              { title: 'Betriebsausgaben-Checkliste — Nichts vergessen', href: '/steuerwissen/betriebsausgaben-checkliste' },
-              { title: 'Gewinnfreibetrag 2026 — Bis zu 4.950 € sparen', href: '/steuerwissen/gewinnfreibetrag-nutzen' },
-              { title: 'SVS-Nachzahlung vermeiden — 5 Strategien', href: '/steuerwissen/svs-nachzahlung-vermeiden' },
+              { title: 'Steueroptimierung für Selbständige: Alle Strategien', href: '/steuerwissen/steueroptimierung-selbststaendige' },
+              { title: 'Betriebsausgaben-Checkliste: Nichts vergessen', href: '/steuerwissen/betriebsausgaben-checkliste' },
+              { title: 'Gewinnfreibetrag 2026: Bis zu 4.950 € sparen', href: '/steuerwissen/gewinnfreibetrag-nutzen' },
+              { title: 'SVS-Nachzahlung vermeiden: 5 Strategien', href: '/steuerwissen/svs-nachzahlung-vermeiden' },
             ]}
             lastUpdated="2026-03-19"
           />

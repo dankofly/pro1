@@ -365,8 +365,8 @@ export default function KleinunternehmerregelungPage() {
                 { name: 'EU-Kleinunternehmerregelung ab 2025', url: 'https://www.bmf.gv.at/themen/steuern/selbststaendige-unternehmer/umsatzsteuer/eu-kleinunternehmerregelung.html', description: 'BMF — Grenzüberschreitende Kleinunternehmerregelung' },
               ]}
               relatedArticles={[
-                { title: 'Pauschalierung in Österreich — Alle Arten im Vergleich', href: '/steuerwissen/pauschalierung-oesterreich' },
-                { title: 'Umsatzsteuer für Selbstständige — USt-Guide 2026', href: '/steuerwissen/umsatzsteuer-selbstaendige' },
+                { title: 'Pauschalierung in Österreich: Alle Arten im Vergleich', href: '/steuerwissen/pauschalierung-oesterreich' },
+                { title: 'Umsatzsteuer für Selbstständige: USt-Guide 2026', href: '/steuerwissen/umsatzsteuer-selbstaendige' },
                 { title: 'Steueroptimierung für Selbstständige', href: '/steuerwissen/steueroptimierung-selbststaendige' },
               ]}
             />

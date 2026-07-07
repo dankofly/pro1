@@ -827,15 +827,15 @@ export default function NebenberuflichSelbstaendigPage() {
               ]}
               relatedArticles={[
                 {
-                  title: "SVS-Beiträge senken — 7 legale Strategien für Selbständige",
+                  title: "SVS-Beiträge senken: 7 legale Strategien für Selbständige",
                   href: "/steuerwissen/svs-beitraege-senken"
                 },
                 {
-                  title: "Kleinunternehmerregelung in Österreich — Vor- und Nachteile",
+                  title: "Kleinunternehmerregelung in Österreich: Vor- und Nachteile",
                   href: "/steuerwissen/kleinunternehmerregelung"
                 },
                 {
-                  title: "Steueroptimierung für Selbständige — Die komplette Anleitung",
+                  title: "Steueroptimierung für Selbständige: Die komplette Anleitung",
                   href: "/steuerwissen/steueroptimierung-selbststaendige"
                 }
               ]}

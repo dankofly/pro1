@@ -657,9 +657,9 @@ export default function GmbHvsEinzelunternehmenPage() {
               { name: 'BMF — Körperschaftsteuer', url: 'https://www.bmf.gv.at/themen/steuern/koerperschaftsteuer.html', description: 'Bundesministerium für Finanzen' },
             ]}
             relatedArticles={[
-              { title: 'Steueroptimierung für Selbständige — Komplette Anleitung', href: '/steuerwissen/steueroptimierung-selbststaendige' },
-              { title: 'Gewinnfreibetrag 2026 — Bis zu 4.950 € sparen', href: '/steuerwissen/gewinnfreibetrag-nutzen' },
-              { title: 'SVS-Beiträge senken — 7 legale Strategien', href: '/steuerwissen/svs-beitraege-senken' },
+              { title: 'Steueroptimierung für Selbständige: Komplette Anleitung', href: '/steuerwissen/steueroptimierung-selbststaendige' },
+              { title: 'Gewinnfreibetrag 2026: Bis zu 4.950 € sparen', href: '/steuerwissen/gewinnfreibetrag-nutzen' },
+              { title: 'SVS-Beiträge senken: 7 legale Strategien', href: '/steuerwissen/svs-beitraege-senken' },
             ]}
           />
         </article>

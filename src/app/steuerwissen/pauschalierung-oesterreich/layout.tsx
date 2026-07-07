@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'Pauschalierung in Österreich 2026 — Basispauschalierung, Branchenpauschalierung & Kleinunternehmerpauschalierung',
+  title: 'Pauschalierung in Österreich 2026: Basispauschalierung, Branchenpauschalierung & Kleinunternehmerpauschalierung',
   description: 'Alle Pauschalierungsarten für Selbstständige in Österreich erklärt. Vergleich, Voraussetzungen, Berechnung und wann sich welche Pauschalierung lohnt.',
   openGraph: {
-    title: 'Pauschalierung in Österreich — Kompletter Guide für Selbstständige',
+    title: 'Pauschalierung in Österreich: Kompletter Guide für Selbstständige',
     description: 'Basispauschalierung, Branchenpauschalierung & Kleinunternehmerpauschalierung im Vergleich.',
     url: '/steuerwissen/pauschalierung-oesterreich'
   },

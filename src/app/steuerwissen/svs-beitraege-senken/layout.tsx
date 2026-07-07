@@ -2,19 +2,19 @@ import { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'SVS-Beiträge senken — 7 legale Strategien für Selbständige',
+  title: 'SVS-Beiträge senken 2026: 7 legale Strategien (Selbständige AT)',
   description: 'SVS Beiträge senken: 7 bewährte Strategien für Selbständige in Österreich. SVS Beiträge reduzieren durch Gewinnfreibetrag, Betriebsausgaben und mehr. Jetzt Steuern sparen.',
   keywords: ['SVS Beiträge senken', 'SVS Beiträge reduzieren', 'SVS Selbständige Österreich', 'SVS Mindestbeiträge', 'Sozialversicherung Selbständige'],
   alternates: { canonical: '/steuerwissen/svs-beitraege-senken' },
   openGraph: {
-    title: 'SVS-Beiträge senken — 7 legale Strategien für Selbständige',
+    title: 'SVS-Beiträge senken 2026: 7 legale Strategien (Selbständige AT)',
     description: 'SVS Beiträge senken: 7 bewährte Strategien für Selbständige in Österreich. Jetzt Sozialversicherungsbeiträge legal reduzieren.',
     type: 'article',
     url: '/steuerwissen/svs-beitraege-senken',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SVS-Beiträge senken — 7 legale Strategien für Selbständige',
+    title: 'SVS-Beiträge senken 2026: 7 legale Strategien (Selbständige AT)',
     description: 'SVS Beiträge senken: 7 bewährte Strategien für Selbständige in Österreich. Jetzt Sozialversicherungsbeiträge legal reduzieren.',
   },
 }

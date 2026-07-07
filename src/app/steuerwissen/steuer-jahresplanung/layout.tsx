@@ -2,14 +2,14 @@ import { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'Steuer-Jahresplanung 2026 für Selbständige — Fristen, UVA & Vorsorge',
+  title: 'Steuer-Jahresplanung 2026 für Selbständige: Fristen, UVA & Vorsorge',
   description: 'Komplette Steuer-Jahresplanung für österreichische Selbständige: UVA-Termine, EST-Vorauszahlungen, Rücklagen-Empfehlungen und Jahresend-Optimierung.',
   keywords: ['Jahresplanung Steuern Selbständige', 'Steuer Vorschau Selbständige', 'Steuerfristen Österreich 2026', 'UVA Termine', 'EST Vorauszahlungen', 'Steuern Rücklage', 'Jahresplanung Steuer'],
   alternates: {
     canonical: '/steuerwissen/steuer-jahresplanung'
   },
   openGraph: {
-    title: 'Steuer-Jahresplanung 2026 für Selbständige — Fristen, UVA & Vorsorge',
+    title: 'Steuer-Jahresplanung 2026 für Selbständige: Fristen, UVA & Vorsorge',
     description: 'Komplette Steuer-Jahresplanung für österreichische Selbständige: UVA-Termine, EST-Vorauszahlungen, Rücklagen-Empfehlungen und Jahresend-Optimierung.',
     type: 'article',
     url: '/steuerwissen/steuer-jahresplanung'

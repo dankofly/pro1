@@ -183,8 +183,8 @@ export default function GlossarPage() {
               ]}
               relatedArticles={[
                 { title: 'Steueroptimierung für Selbstständige', href: '/steuerwissen/steueroptimierung-selbststaendige' },
-                { title: 'SVS-Beiträge senken — 7 legale Strategien', href: '/steuerwissen/svs-beitraege-senken' },
-                { title: 'Gewinnfreibetrag 2026 — Bis zu 4.950€ sparen', href: '/steuerwissen/gewinnfreibetrag-nutzen' },
+                { title: 'SVS-Beiträge senken: 7 legale Strategien', href: '/steuerwissen/svs-beitraege-senken' },
+                { title: 'Gewinnfreibetrag 2026: Bis zu 4.950€ sparen', href: '/steuerwissen/gewinnfreibetrag-nutzen' },
               ]}
             />
           </article>

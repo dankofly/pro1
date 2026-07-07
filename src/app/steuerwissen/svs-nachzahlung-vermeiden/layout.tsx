@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'SVS-Nachzahlung vermeiden — So schützt du dich vor der Nachzahlungsfalle',
+  title: 'SVS-Nachzahlung vermeiden: So schützt du dich vor der Nachzahlungsfalle',
   description: 'Erfahre wie du hohe SVS-Nachzahlungen vermeidest. Strategien für Selbstständige in Österreich mit konkreten Beispielen und Berechnungen.',
   openGraph: {
-    title: 'SVS-Nachzahlung vermeiden — So schützt du dich vor der Nachzahlungsfalle',
+    title: 'SVS-Nachzahlung vermeiden: So schützt du dich vor der Nachzahlungsfalle',
     description: 'Erfahre wie du hohe SVS-Nachzahlungen vermeidest. Strategien für Selbstständige in Österreich mit konkreten Beispielen und Berechnungen.',
     url: '/steuerwissen/svs-nachzahlung-vermeiden'
   },

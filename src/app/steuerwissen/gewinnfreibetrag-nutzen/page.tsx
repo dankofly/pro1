@@ -727,9 +727,9 @@ export default function GewinnfreibetragPage() {
               { name: 'WKO — Gewinnfreibetrag für Selbständige', url: 'https://www.wko.at/steuern/gewinnfreibetrag', description: 'Wirtschaftskammer Österreich — Detaillierte Erklärung' },
             ]}
             relatedArticles={[
-              { title: 'Steueroptimierung für Selbständige — Komplette Anleitung', href: '/steuerwissen/steueroptimierung-selbststaendige' },
-              { title: 'SVS-Beiträge senken — 7 legale Strategien', href: '/steuerwissen/svs-beitraege-senken' },
-              { title: 'GmbH vs. Einzelunternehmen — Der Steuer-Vergleich', href: '/steuerwissen/gmbh-vs-einzelunternehmen' },
+              { title: 'Steueroptimierung für Selbständige: Komplette Anleitung', href: '/steuerwissen/steueroptimierung-selbststaendige' },
+              { title: 'SVS-Beiträge senken: 7 legale Strategien', href: '/steuerwissen/svs-beitraege-senken' },
+              { title: 'GmbH vs. Einzelunternehmen: Der Steuer-Vergleich', href: '/steuerwissen/gmbh-vs-einzelunternehmen' },
             ]}
           />
         </article>

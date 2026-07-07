@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'Krypto-Steuer Österreich 2026 — Bitcoin, Ethereum & Co. richtig versteuern',
+  title: 'Krypto-Steuer Österreich 2026: Bitcoin, Ethereum & Co. richtig versteuern',
   description: 'Kryptowährungen in Österreich versteuern: KESt 27,5%, Altbestand vs Neubestand, Staking, Mining, NFTs, Verlustausgleich und E1kv-Formular erklärt.',
   openGraph: {
-    title: 'Krypto-Steuer Österreich 2026 — Bitcoin & Co. versteuern',
+    title: 'Krypto-Steuer Österreich 2026: Bitcoin & Co. versteuern',
     description: 'KESt 27,5% auf Krypto-Gewinne, Altbestand-Regelung, Staking, Mining und Verlustausgleich.',
     url: '/steuerwissen/krypto-steuer-oesterreich'
   },

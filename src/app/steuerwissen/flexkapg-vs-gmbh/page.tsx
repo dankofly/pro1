@@ -583,9 +583,9 @@ export default function FlexKapGvsGmbHPage() {
               { name: 'BMF — Gesellschaftsteuer', url: 'https://www.bmf.gv.at/themen/steuern/gesellschaftsteuer.html', description: 'Bundesministerium für Finanzen' },
             ]}
             relatedArticles={[
-              { title: 'GmbH vs. Einzelunternehmen — Der Steuer-Vergleich', href: '/steuerwissen/gmbh-vs-einzelunternehmen' },
-              { title: 'Steueroptimierung für Selbständige — Komplette Anleitung', href: '/steuerwissen/steueroptimierung-selbststaendige' },
-              { title: 'SVS-Nachzahlung vermeiden — 7 Profi-Strategien', href: '/steuerwissen/svs-nachzahlung-vermeiden' },
+              { title: 'GmbH vs. Einzelunternehmen: Der Steuer-Vergleich', href: '/steuerwissen/gmbh-vs-einzelunternehmen' },
+              { title: 'Steueroptimierung für Selbständige: Komplette Anleitung', href: '/steuerwissen/steueroptimierung-selbststaendige' },
+              { title: 'SVS-Nachzahlung vermeiden: 7 Profi-Strategien', href: '/steuerwissen/svs-nachzahlung-vermeiden' },
             ]}
           />
         </article>

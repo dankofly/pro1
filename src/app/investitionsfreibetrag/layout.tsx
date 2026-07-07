@@ -3,12 +3,12 @@ import { JsonLd } from '@/components/json-ld'
 import { ToolIntro } from '@/components/tool-intro'
 
 export const metadata: Metadata = {
-  title: 'Investitionsfreibetrag Rechner 2026 — IFB 15%/20% berechnen',
+  title: 'Investitionsfreibetrag Rechner 2026: IFB 15%/20% berechnen',
   description:
     'Investitionsfreibetrag Rechner: IFB 15% (Standard) und 20% (ökologisch) nach § 11 EStG berechnen. Steuerersparnis für Selbständige in Österreich.',
   alternates: { canonical: '/investitionsfreibetrag' },
   openGraph: {
-    title: 'Investitionsfreibetrag Rechner 2026 — IFB 15%/20% berechnen',
+    title: 'Investitionsfreibetrag Rechner 2026: IFB 15%/20% berechnen',
     description:
       'Investitionsfreibetrag Rechner: IFB 15% (Standard) und 20% (ökologisch) nach § 11 EStG berechnen. Steuerersparnis für Selbständige in Österreich.',
     url: '/investitionsfreibetrag',

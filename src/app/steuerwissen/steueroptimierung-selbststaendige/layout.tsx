@@ -2,14 +2,14 @@ import { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'Steueroptimierung für Selbständige in Österreich — Die komplette Anleitung 2026',
+  title: 'Steueroptimierung für Selbständige in Österreich: Die komplette Anleitung 2026',
   description: 'Steueroptimierung für Selbständige in Österreich: Alle legalen Steuerspartipps für EPU & Einzelunternehmer. Absetzbeträge, Betriebsausgaben & Investitionssteuerung optimal nutzen.',
   keywords: ['Steueroptimierung Selbständige', 'Steuern sparen Selbständig Österreich', 'Steuer Tipps EPU', 'Gewinnfreibetrag', 'Investitionsfreibetrag', 'Betriebsausgaben'],
   alternates: {
     canonical: '/steuerwissen/steueroptimierung-selbststaendige'
   },
   openGraph: {
-    title: 'Steueroptimierung für Selbständige in Österreich — Die komplette Anleitung 2026',
+    title: 'Steueroptimierung für Selbständige in Österreich: Die komplette Anleitung 2026',
     description: 'Steueroptimierung für Selbständige in Österreich: Alle legalen Steuerspartipps für EPU & Einzelunternehmer. Absetzbeträge, Betriebsausgaben & Investitionssteuerung optimal nutzen.',
     type: 'article',
     url: '/steuerwissen/steueroptimierung-selbststaendige'

@@ -22,7 +22,7 @@ const SITE_URL = 'https://steuerboard.pro'
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: 'SteuerBoard.pro – Dein Steuer-Dashboard für Österreich',
+    default: 'Steuerrechner Österreich 2026: SVS, Einkommensteuer & echtes Netto',
     template: '%s | SteuerBoard.pro',
   },
   description:

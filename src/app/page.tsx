@@ -512,7 +512,7 @@ function FeaturesSection() {
             {[
               { icon: <Receipt className="h-4 w-4 text-cyan-400" />, bg: 'bg-cyan-500/10', title: 'USt-Rechner', desc: 'Umsatzsteuer berechnen, Kleinunternehmer-Grenze prüfen und Vorsteuer verrechnen.' },
               { icon: <PiggyBank className="h-4 w-4 text-pink-400" />, bg: 'bg-pink-500/10', title: 'Rücklagen-Rechner', desc: 'Berechne, wie viel du monatlich für SVS, ESt und USt zurücklegen solltest.' },
-              { icon: <Building2 className="h-4 w-4 text-blue-400" />, bg: 'bg-blue-500/10', title: 'GmbH-Vergleich', desc: 'Vergleiche die Steuerbelastung als EPU vs. GmbH — mit konkreten Netto-Zahlen.' },
+              { icon: <Building2 className="h-4 w-4 text-blue-400" />, bg: 'bg-blue-500/10', title: 'GmbH-Vergleich', desc: 'Vergleiche die Steuerbelastung als EPU vs. GmbH: mit konkreten Netto-Zahlen.' },
               { icon: <Layers className="h-4 w-4 text-purple-400" />, bg: 'bg-purple-500/10', title: 'Pauschalierung', desc: 'Prüfe automatisch ob eine Pauschalierung für dich günstiger wäre.' },
               { icon: <BarChart3 className="h-4 w-4 text-emerald-400" />, bg: 'bg-emerald-500/10', title: 'Gewinnmaximierer', desc: 'Simuliere Zusatzumsätze und sieh die Auswirkung auf Steuern und Netto.' },
               { icon: <Calculator className="h-4 w-4 text-amber-400" />, bg: 'bg-amber-500/10', title: 'Investitionen & AfA', desc: 'Berechne Abschreibungen für Einrichtung, EDV und Maschinen.' },

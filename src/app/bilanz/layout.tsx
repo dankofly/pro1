@@ -3,12 +3,12 @@ import { JsonLd } from '@/components/json-ld'
 import { ToolIntro } from '@/components/tool-intro'
 
 export const metadata: Metadata = {
-  title: 'Bilanz-Rechner — Bilanzierungspflicht & EAR-Grenze prüfen',
+  title: 'Bilanz-Rechner: Bilanzierungspflicht & EAR-Grenze prüfen',
   description:
     'Bilanzierungspflicht prüfen: Ab welchem Umsatz gilt die Pflicht zur doppelten Buchführung? EAR vs Bilanz Vergleich für Österreich.',
   alternates: { canonical: '/bilanz' },
   openGraph: {
-    title: 'Bilanz-Rechner — Bilanzierungspflicht & EAR-Grenze prüfen',
+    title: 'Bilanz-Rechner: Bilanzierungspflicht & EAR-Grenze prüfen',
     description:
       'Bilanzierungspflicht prüfen: Ab welchem Umsatz gilt die Pflicht zur doppelten Buchführung? EAR vs Bilanz Vergleich für Österreich.',
     url: '/bilanz',

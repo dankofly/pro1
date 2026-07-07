@@ -479,8 +479,8 @@ export default function KryptoSteuerOesterreichPage() {
               ]}
               relatedArticles={[
                 { title: 'Steueroptimierung für Selbstständige', href: '/steuerwissen/steueroptimierung-selbststaendige' },
-                { title: 'GmbH vs. Einzelunternehmen — Der Steuer-Vergleich', href: '/steuerwissen/gmbh-vs-einzelunternehmen' },
-                { title: 'Gewinnfreibetrag 2026 — Bis zu 4.950€ sparen', href: '/steuerwissen/gewinnfreibetrag-nutzen' },
+                { title: 'GmbH vs. Einzelunternehmen: Der Steuer-Vergleich', href: '/steuerwissen/gmbh-vs-einzelunternehmen' },
+                { title: 'Gewinnfreibetrag 2026: Bis zu 4.950€ sparen', href: '/steuerwissen/gewinnfreibetrag-nutzen' },
               ]}
             />
           </article>

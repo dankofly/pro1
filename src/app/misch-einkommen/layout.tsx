@@ -3,12 +3,12 @@ import { JsonLd } from '@/components/json-ld'
 import { ToolIntro } from '@/components/tool-intro'
 
 export const metadata: Metadata = {
-  title: 'Misch-Einkommen Rechner — Anstellung + Selbständig berechnen',
+  title: 'Misch-Einkommen Rechner: Anstellung + Selbständig berechnen',
   description:
     'Misch-Einkommen Rechner: Berechne dein Netto bei Anstellung plus Selbständigkeit. SVS-Differenzvorschreibung, kombinierte Steuerbelastung und echtes Netto.',
   alternates: { canonical: '/misch-einkommen' },
   openGraph: {
-    title: 'Misch-Einkommen Rechner — Anstellung + Selbständig berechnen',
+    title: 'Misch-Einkommen Rechner: Anstellung + Selbständig berechnen',
     description: 'Misch-Einkommen Rechner: Berechne dein Netto bei Anstellung plus Selbständigkeit. SVS-Differenzvorschreibung, kombinierte Steuerbelastung und echtes Netto.',
     url: '/misch-einkommen',
   },

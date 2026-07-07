@@ -2,14 +2,14 @@ import { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'Gewinnfreibetrag 2026 — So sparst du bis zu 4.950 € Steuern',
+  title: 'Gewinnfreibetrag 2026: So sparst du bis zu 4.950 € Steuern',
   description: 'Gewinnfreibetrag Österreich: Spare bis zu 4.950€ Steuern mit dem Grundfreibetrag nach § 10 EStG. Berechne deinen Gewinnfreibetrag und nutze alle Vorteile optimal.',
   keywords: 'Gewinnfreibetrag, Gewinnfreibetrag Österreich, Gewinnfreibetrag berechnen, § 10 EStG, Grundfreibetrag, Steuerersparnis',
   alternates: {
     canonical: '/steuerwissen/gewinnfreibetrag-nutzen'
   },
   openGraph: {
-    title: 'Gewinnfreibetrag 2026 — So sparst du bis zu 4.950 € Steuern',
+    title: 'Gewinnfreibetrag 2026: So sparst du bis zu 4.950 € Steuern',
     description: 'Gewinnfreibetrag Österreich: Spare bis zu 4.950€ Steuern mit dem Grundfreibetrag nach § 10 EStG. Berechne deinen Gewinnfreibetrag und nutze alle Vorteile optimal.',
     type: 'article',
     locale: 'de_AT'

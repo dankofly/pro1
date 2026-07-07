@@ -520,10 +520,10 @@ export default function SvsNachzahlungVermeidenPage() {
                 { name: 'BMF — Einkommensteuergesetz', url: 'https://www.bmf.gv.at/themen/steuern/selbststaendige-unternehmer.html', description: 'Bundesministerium für Finanzen — Informationen für Selbständige' },
               ]}
               relatedArticles={[
-                { title: 'SVS-Beiträge senken — 7 legale Strategien', href: '/steuerwissen/svs-beitraege-senken' },
-                { title: 'Steueroptimierung für Selbständige — Komplette Anleitung', href: '/steuerwissen/steueroptimierung-selbststaendige' },
-                { title: 'Gewinnfreibetrag 2026 — Bis zu 4.950 € sparen', href: '/steuerwissen/gewinnfreibetrag-nutzen' },
-                { title: 'Pauschalierung in Österreich — Alle Arten im Vergleich', href: '/steuerwissen/pauschalierung-oesterreich' },
+                { title: 'SVS-Beiträge senken: 7 legale Strategien', href: '/steuerwissen/svs-beitraege-senken' },
+                { title: 'Steueroptimierung für Selbständige: Komplette Anleitung', href: '/steuerwissen/steueroptimierung-selbststaendige' },
+                { title: 'Gewinnfreibetrag 2026: Bis zu 4.950 € sparen', href: '/steuerwissen/gewinnfreibetrag-nutzen' },
+                { title: 'Pauschalierung in Österreich: Alle Arten im Vergleich', href: '/steuerwissen/pauschalierung-oesterreich' },
               ]}
             />
           </article>

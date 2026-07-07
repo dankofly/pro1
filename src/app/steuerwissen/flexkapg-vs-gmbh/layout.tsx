@@ -2,14 +2,14 @@ import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'FlexKapG vs. GmbH Österreich 2026 — Vergleich, Kosten & Vorteile',
+  title: 'FlexKapG vs. GmbH Österreich 2026: Vergleich, Kosten & Vorteile',
   description: 'FlexKapG vs. GmbH in Österreich: Die neue Rechtsform im Detail verglichen. Kosten, Vorteile, Gründung und steuerliche Behandlung — alles was du wissen musst.',
   keywords: ['FlexKapG Gründung', 'FlexCo vs GmbH', 'FlexKapG Kosten', 'FlexKapG Vorteile', 'neue Rechtsform Österreich', 'FlexKapG Stammkapital', 'Flexible Kapitalgesellschaft'],
   alternates: {
     canonical: '/steuerwissen/flexkapg-vs-gmbh'
   },
   openGraph: {
-    title: 'FlexKapG vs. GmbH Österreich 2026 — Vergleich, Kosten & Vorteile',
+    title: 'FlexKapG vs. GmbH Österreich 2026: Vergleich, Kosten & Vorteile',
     description: 'FlexKapG vs. GmbH in Österreich: Die neue Rechtsform im Detail verglichen. Kosten, Vorteile, Gründung und steuerliche Behandlung — alles was du wissen musst.',
     type: 'article',
     url: '/steuerwissen/flexkapg-vs-gmbh'

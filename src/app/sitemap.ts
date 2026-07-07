@@ -2,7 +2,9 @@ import type { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://steuerboard.pro'
-  const lastUpdated = '2026-03-18'
+  // Aktualisieren, wenn Seiten inhaltlich geaendert werden: signalisiert Google
+  // Neu-Crawlen. Zuletzt: Rechner-Rechtslage, SSR-H1, Legal-Fixes (Juli 2026).
+  const lastUpdated = '2026-07-07'
 
   return [
     // Homepage

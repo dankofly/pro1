@@ -435,8 +435,8 @@ export default function UmsatzsteuerSelbstaendigePage() {
                 { name: 'FinanzOnline', url: 'https://finanzonline.bmf.gv.at/', description: 'Elektronische Steuererklärung und UVA-Abgabe' },
               ]}
               relatedArticles={[
-                { title: 'Kleinunternehmerregelung 2026 — Umsatzgrenze & Vorteile', href: '/steuerwissen/kleinunternehmerregelung' },
-                { title: 'Pauschalierung in Österreich — Alle Arten im Vergleich', href: '/steuerwissen/pauschalierung-oesterreich' },
+                { title: 'Kleinunternehmerregelung 2026: Umsatzgrenze & Vorteile', href: '/steuerwissen/kleinunternehmerregelung' },
+                { title: 'Pauschalierung in Österreich: Alle Arten im Vergleich', href: '/steuerwissen/pauschalierung-oesterreich' },
                 { title: 'Steueroptimierung für Selbstständige', href: '/steuerwissen/steueroptimierung-selbststaendige' },
               ]}
             />

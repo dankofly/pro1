@@ -2,14 +2,14 @@ import { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'Betriebsausgaben Checkliste 2026 — Was Selbständige absetzen können | SteuerBoard',
+  title: 'Betriebsausgaben Checkliste 2026: Was Selbständige absetzen können | SteuerBoard',
   description: 'Vollständige Checkliste aller absetzbaren Betriebsausgaben für Selbständige in Österreich 2026. Arbeitsplatzpauschale, GWG-Grenze, Beispielrechnungen.',
   keywords: 'Betriebsausgaben Selbständige Liste, Was kann ich absetzen Selbständige, Betriebsausgaben Österreich, absetzbare Kosten EPU, Arbeitsplatzpauschale 2026',
   alternates: {
     canonical: '/steuerwissen/betriebsausgaben-checkliste'
   },
   openGraph: {
-    title: 'Betriebsausgaben Checkliste 2026 — Was Selbständige absetzen können',
+    title: 'Betriebsausgaben Checkliste 2026: Was Selbständige absetzen können',
     description: 'Vollständige Checkliste aller absetzbaren Betriebsausgaben für Selbständige in Österreich 2026. Arbeitsplatzpauschale, GWG-Grenze, Beispielrechnungen.',
     type: 'article',
     publishedTime: '2026-03-19',

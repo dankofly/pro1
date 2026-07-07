@@ -591,9 +591,9 @@ export default function SvsBeitraegeSenkenPage() {
               { name: 'WKO — Sozialversicherung für Selbständige', url: 'https://www.wko.at/sozialversicherung', description: 'Wirtschaftskammer Österreich — SVS-Übersicht' },
             ]}
             relatedArticles={[
-              { title: 'SVS-Nachzahlung vermeiden — Strategien gegen die Nachzahlungsfalle', href: '/steuerwissen/svs-nachzahlung-vermeiden' },
-              { title: 'Gewinnfreibetrag 2026 — Bis zu 4.950 € sparen', href: '/steuerwissen/gewinnfreibetrag-nutzen' },
-              { title: 'GmbH vs. Einzelunternehmen — Der Steuer-Vergleich', href: '/steuerwissen/gmbh-vs-einzelunternehmen' },
+              { title: 'SVS-Nachzahlung vermeiden: Strategien gegen die Nachzahlungsfalle', href: '/steuerwissen/svs-nachzahlung-vermeiden' },
+              { title: 'Gewinnfreibetrag 2026: Bis zu 4.950 € sparen', href: '/steuerwissen/gewinnfreibetrag-nutzen' },
+              { title: 'GmbH vs. Einzelunternehmen: Der Steuer-Vergleich', href: '/steuerwissen/gmbh-vs-einzelunternehmen' },
             ]}
           />
         </article>

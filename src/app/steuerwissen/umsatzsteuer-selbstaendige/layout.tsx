@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'Umsatzsteuer für Selbstständige in Österreich — USt-Guide 2026',
+  title: 'Umsatzsteuer für Selbstständige in Österreich: USt-Guide 2026',
   description: 'Umsatzsteuer für Selbstständige in Österreich: USt-Sätze, Vorsteuerabzug, UVA, Reverse Charge, Kleinunternehmerregelung und häufige Fehler erklärt.',
   openGraph: {
-    title: 'Umsatzsteuer für Selbstständige — USt-Guide Österreich 2026',
+    title: 'Umsatzsteuer für Selbstständige: USt-Guide Österreich 2026',
     description: 'USt-Sätze, Vorsteuerabzug, UVA-Meldung und Reverse Charge einfach erklärt.',
     url: '/steuerwissen/umsatzsteuer-selbstaendige'
   },

@@ -3,12 +3,12 @@ import { JsonLd } from '@/components/json-ld'
 import { ToolIntro } from '@/components/tool-intro'
 
 export const metadata: Metadata = {
-  title: 'SVS Rechner 2026 — Beiträge, Nachzahlung & Netto berechnen',
+  title: 'SVS Rechner 2026: Beiträge, Nachzahlung & Netto berechnen',
   description:
     'Kostenloser SVS Rechner für Selbständige in Österreich. SVS-Beiträge 2026 berechnen, Nachzahlung prognostizieren und echtes Netto erfahren.',
   alternates: { canonical: '/rechner' },
   openGraph: {
-    title: 'SVS Rechner 2026 — Beiträge, Nachzahlung & Netto berechnen',
+    title: 'SVS Rechner 2026: Beiträge, Nachzahlung & Netto berechnen',
     description: 'Kostenloser SVS Rechner für Selbständige in Österreich. SVS-Beiträge 2026 berechnen, Nachzahlung prognostizieren und echtes Netto erfahren.',
     url: '/rechner',
   },

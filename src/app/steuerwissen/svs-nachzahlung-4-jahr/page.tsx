@@ -599,10 +599,10 @@ export default function SvsNachzahlung4JahrPage() {
                 },
               ]}
               relatedArticles={[
-                { title: 'SVS-Nachzahlung vermeiden — 7 Strategien', href: '/steuerwissen/svs-nachzahlung-vermeiden' },
-                { title: 'SVS-Beiträge senken — Legale Methoden', href: '/steuerwissen/svs-beitraege-senken' },
-                { title: 'Gewinnfreibetrag optimal nutzen — Bis zu 4.950€ sparen', href: '/steuerwissen/gewinnfreibetrag-nutzen' },
-                { title: 'Steueroptimierung für Selbständige — Kompletter Guide', href: '/steuerwissen/steueroptimierung-selbststaendige' },
+                { title: 'SVS-Nachzahlung vermeiden: 7 Strategien', href: '/steuerwissen/svs-nachzahlung-vermeiden' },
+                { title: 'SVS-Beiträge senken: Legale Methoden', href: '/steuerwissen/svs-beitraege-senken' },
+                { title: 'Gewinnfreibetrag optimal nutzen: Bis zu 4.950€ sparen', href: '/steuerwissen/gewinnfreibetrag-nutzen' },
+                { title: 'Steueroptimierung für Selbständige: Kompletter Guide', href: '/steuerwissen/steueroptimierung-selbststaendige' },
               ]}
             />
           </article>

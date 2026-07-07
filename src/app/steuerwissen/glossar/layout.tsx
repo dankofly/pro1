@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'Steuer-Glossar Österreich — Alle Steuerbegriffe einfach erklärt',
+  title: 'Steuer-Glossar Österreich: Alle Steuerbegriffe einfach erklärt',
   description: 'Österreichisches Steuer-Glossar: Über 40 Steuerbegriffe von A bis Z einfach erklärt. Von Absetzbeträge bis Werbungskosten.',
   openGraph: {
-    title: 'Steuer-Glossar Österreich — Steuerbegriffe A-Z',
+    title: 'Steuer-Glossar Österreich: Steuerbegriffe A-Z',
     description: 'Über 40 österreichische Steuerbegriffe einfach und verständlich erklärt.',
     url: '/steuerwissen/glossar'
   },

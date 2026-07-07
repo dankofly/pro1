@@ -2,12 +2,12 @@ import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'FAQ — Häufige Fragen zu SteuerBoard.pro',
+  title: 'FAQ: Häufige Fragen zu SteuerBoard.pro',
   description:
     'Antworten auf häufige Fragen zu SteuerBoard.pro: SVS-Beitragsrechner, Einkommensteuer, Nachzahlung, Pro-Features, GmbH-Vergleich und AI SteuerBoard für österreichische Selbständige.',
   alternates: { canonical: '/faq' },
   openGraph: {
-    title: 'FAQ — Häufige Fragen zu SteuerBoard.pro',
+    title: 'FAQ: Häufige Fragen zu SteuerBoard.pro',
     description:
       'Alles über SVS-Beiträge, Nachzahlung, Einkommensteuer und Pro-Features für Selbständige in Österreich.',
     url: '/faq',
@@ -47,7 +47,7 @@ const FAQ_JSONLD = {
       name: 'Welche Steuerjahre werden unterstützt?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'SteuerBoard.pro enthält die aktuellen Werte für 2024, 2025 und 2026 — inklusive Familienbonus Plus (2.100 EUR/Kind), angepasster AVAB (572 EUR), Verkehrsabsetzbetrag (481 EUR), Kindermehrbetrag (727 EUR) und Kleinunternehmergrenze (55.000 EUR netto).',
+        text: 'SteuerBoard.pro enthält die aktuellen Werte für 2024, 2025 und 2026, inklusive Familienbonus Plus (2.000 EUR pro Kind unter 18), AVAB (612 EUR für 2026), Verkehrsabsetzbetrag (496 EUR für 2026), Kindermehrbetrag (700 EUR) und Kleinunternehmergrenze (55.000 EUR brutto).',
       },
     },
     {

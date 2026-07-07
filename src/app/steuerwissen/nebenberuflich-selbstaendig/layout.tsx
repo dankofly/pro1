@@ -2,19 +2,19 @@ import { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'Nebenberuflich selbständig in Österreich 2026 — Steuern, SVS & Tipps',
+  title: 'Nebenberuflich selbständig in Österreich 2026: Steuern, SVS & Tipps',
   description: 'Nebenberuflich selbständig in Österreich: SVS-Pflicht, Steuerberechnung bei Mischeinkommen, Meldepflichten und typische Fehler. Alles was du 2026 wissen musst.',
   keywords: ['nebenberuflich selbständig Österreich', 'selbständig neben Anstellung Steuer', 'SVS nebenberuflich', 'Nebeneinkünfte Selbständige', 'Mischeinkommen Steuer'],
   alternates: { canonical: '/steuerwissen/nebenberuflich-selbstaendig' },
   openGraph: {
-    title: 'Nebenberuflich selbständig in Österreich 2026 — Steuern, SVS & Tipps',
+    title: 'Nebenberuflich selbständig in Österreich 2026: Steuern, SVS & Tipps',
     description: 'Nebenberuflich selbständig: SVS-Pflicht, Steuerberechnung, Meldepflichten und Fehler vermeiden.',
     type: 'article',
     url: '/steuerwissen/nebenberuflich-selbstaendig',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Nebenberuflich selbständig in Österreich 2026 — Steuern, SVS & Tipps',
+    title: 'Nebenberuflich selbständig in Österreich 2026: Steuern, SVS & Tipps',
     description: 'SVS-Pflicht, Steuerberechnung, Meldepflichten bei nebenberuflicher Selbständigkeit.',
   },
 }

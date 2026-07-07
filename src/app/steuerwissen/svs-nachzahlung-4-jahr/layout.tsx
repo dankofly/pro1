@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'SVS-Nachzahlung im 4. Jahr — Steuerschock für Neugründer vermeiden 2026',
+  title: 'SVS-Nachzahlung im 4. Jahr: Steuerschock für Neugründer vermeiden 2026',
   description: 'Warum trifft die SVS-Nachzahlung Neugründer besonders hart im 3./4. Jahr? Konkrete Berechnungen, Timeline und 5 Strategien zur Vermeidung des Steuerschocks.',
   keywords: 'SVS Nachzahlung 4. Jahr, SVS Beiträge Neugründer, Steuerschock Selbständige, SVS Nachforderung, Neugründer Österreich, SVS Mindestbeiträge',
   openGraph: {
-    title: 'SVS-Nachzahlung im 4. Jahr — Steuerschock für Neugründer vermeiden 2026',
+    title: 'SVS-Nachzahlung im 4. Jahr: Steuerschock für Neugründer vermeiden 2026',
     description: 'Warum trifft die SVS-Nachzahlung Neugründer besonders hart im 3./4. Jahr? Konkrete Berechnungen, Timeline und 5 Strategien zur Vermeidung des Steuerschocks.',
     url: '/steuerwissen/svs-nachzahlung-4-jahr'
   },

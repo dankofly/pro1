@@ -2,14 +2,14 @@ import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'GmbH oder Einzelunternehmen? — Der Steuer-Vergleich für Österreich',
+  title: 'GmbH oder Einzelunternehmen?: Der Steuer-Vergleich für Österreich',
   description: 'GmbH vs Einzelunternehmen in Österreich: Steuervergleich, Break-Even-Analyse und Entscheidungshilfe. Wann lohnt sich die GmbH-Gründung steuerlich?',
   keywords: ['GmbH vs Einzelunternehmen Österreich', 'GmbH gründen Österreich', 'Einzelunternehmen oder GmbH', 'KöSt vs ESt', 'Steueroptimierung Österreich'],
   alternates: {
     canonical: '/steuerwissen/gmbh-vs-einzelunternehmen'
   },
   openGraph: {
-    title: 'GmbH oder Einzelunternehmen? — Der Steuer-Vergleich für Österreich',
+    title: 'GmbH oder Einzelunternehmen?: Der Steuer-Vergleich für Österreich',
     description: 'GmbH vs Einzelunternehmen in Österreich: Steuervergleich, Break-Even-Analyse und Entscheidungshilfe. Wann lohnt sich die GmbH-Gründung steuerlich?',
     type: 'article',
     url: '/steuerwissen/gmbh-vs-einzelunternehmen'

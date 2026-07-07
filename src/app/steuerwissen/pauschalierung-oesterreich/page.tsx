@@ -505,9 +505,9 @@ export default function PauschalierungOesterreichPage() {
                 { name: 'WKO — Pauschalierung für Selbstständige', url: 'https://www.wko.at/steuern/pauschalierung', description: 'Wirtschaftskammer Österreich — Pauschalierungsarten' },
               ]}
               relatedArticles={[
-                { title: 'Steueroptimierung für Selbstständige — Komplette Anleitung', href: '/steuerwissen/steueroptimierung-selbststaendige' },
-                { title: 'Kleinunternehmerregelung 2026 — Umsatzgrenze & Vorteile', href: '/steuerwissen/kleinunternehmerregelung' },
-                { title: 'SVS-Beiträge senken — 7 legale Strategien', href: '/steuerwissen/svs-beitraege-senken' },
+                { title: 'Steueroptimierung für Selbstständige: Komplette Anleitung', href: '/steuerwissen/steueroptimierung-selbststaendige' },
+                { title: 'Kleinunternehmerregelung 2026: Umsatzgrenze & Vorteile', href: '/steuerwissen/kleinunternehmerregelung' },
+                { title: 'SVS-Beiträge senken: 7 legale Strategien', href: '/steuerwissen/svs-beitraege-senken' },
               ]}
             />
           </article>
