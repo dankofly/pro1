@@ -69,8 +69,6 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ url: session.url })
   } catch (err: unknown) {
     console.error('Checkout-PDF session error:', err instanceof Error ? err.message : err)
-    // TEMP DEBUG: Fehlerdetail in Response, wird nach Diagnose entfernt
-    const detail = err instanceof Error ? `${err.name}: ${err.message}` : String(err)
-    return NextResponse.json({ error: 'Checkout-Fehler. Bitte versuche es erneut.', detail }, { status: 500 })
+    return NextResponse.json({ error: 'Checkout-Fehler. Bitte versuche es erneut.' }, { status: 500 })
   }
 }
