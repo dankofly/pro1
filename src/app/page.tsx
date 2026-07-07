@@ -239,7 +239,7 @@ function ProblemSection() {
     {
       icon: <TrendingUp className="h-6 w-6" />,
       title: 'Kein Gesamtbild',
-      desc: 'SVS-Beiträge, Einkommensteuer, Vorauszahlungen, Nachzahlungen – als Selbständiger in Österreich hast du es mit vier verschiedenen Abrechnungslogiken zu tun. Ohne zentrale Übersicht fehlt dir die wichtigste Zahl: was am Jahresende wirklich übrig bleibt.',
+      desc: 'Als Selbständiger in Österreich jonglierst du vier Abrechnungslogiken: SVS-Beiträge, Einkommensteuer, Vorauszahlungen und Nachzahlungen. Ohne zentrale Übersicht fehlt dir die eine Zahl, die zählt: was am Jahresende übrig bleibt.',
       color: 'text-red-400',
       bg: 'bg-red-500/10',
       border: 'border-red-500/20',
@@ -247,7 +247,7 @@ function ProblemSection() {
     {
       icon: <Shield className="h-6 w-6" />,
       title: 'Nachzahlungen ohne Vorwarnung',
-      desc: 'Die SVS rechnet mit deinem Gewinn von vor 3 Jahren. Steigt dein Einkommen, folgen Nachforderungen bei SVS und Finanzamt – oft im selben Quartal, ohne Vorankündigung.',
+      desc: 'Die SVS rechnet mit deinem Gewinn von vor 3 Jahren. Steigt dein Einkommen, fordern SVS und Finanzamt nach, oft im selben Quartal und ohne Vorankündigung.',
       color: 'text-amber-400',
       bg: 'bg-amber-500/10',
       border: 'border-amber-500/20',
@@ -255,7 +255,7 @@ function ProblemSection() {
     {
       icon: <Users className="h-6 w-6" />,
       title: 'Steuerlast ist nicht planbar',
-      desc: 'Progression, Absetzbeträge, Gewinnfreibetrag, Pauschalierung – die Stellschrauben sind da, aber ohne Rechenmodell bleiben Optimierungen auf der Strecke.',
+      desc: 'Progression, Absetzbeträge, Gewinnfreibetrag, Pauschalierung: die Stellschrauben sind da. Ohne Rechenmodell nutzt du sie nicht.',
       color: 'text-blue-400',
       bg: 'bg-blue-500/10',
       border: 'border-blue-500/20',
@@ -271,7 +271,7 @@ function ProblemSection() {
               Das Problem
             </Badge>
             <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              Nicht die Steuer ist das Problem –{' '}<br className="hidden sm:block" />der fehlende Überblick ist es
+              Der fehlende Überblick ist das eigentliche Problem
             </h2>
             <p className="mt-4 text-blue-200/60 max-w-2xl mx-auto text-lg">
               Selbständige in Österreich zahlen SVS, Einkommensteuer und Vorauszahlungen an unterschiedliche Stellen. Ohne zentrale Jahresprognose fehlt die Grundlage für jede finanzielle Entscheidung.
@@ -291,7 +291,7 @@ function ProblemSection() {
                 <p className="text-blue-200/60 leading-relaxed text-lg">{problems[0].desc}</p>
                 <div className="mt-6 flex items-center gap-3 text-sm text-red-400/80">
                   <span className="flex h-2 w-2 rounded-full bg-red-400" />
-                  Betrifft jeden Selbständigen in Österreich – vom EPU bis zur GmbH
+                  Betrifft jeden Selbständigen in Österreich, vom EPU bis zur GmbH
                 </div>
               </CardContent>
             </Card>
@@ -340,21 +340,21 @@ function FeaturesSection() {
     {
       icon: <Calculator className="h-6 w-6" />,
       title: 'Echtzeit-Prognose',
-      desc: 'Zieh am Slider – und sieh sofort dein echtes Netto, die SVS-Nachzahlung und die Einkommensteuer. Kein Raten, kein Warten auf den Bescheid.',
+      desc: 'Zieh am Slider und sieh sofort dein echtes Netto, die SVS-Nachzahlung und die Einkommensteuer. Du wartest nicht auf den Bescheid.',
       color: 'text-emerald-400',
       bg: 'bg-emerald-500/10',
     },
     {
       icon: <Heart className="h-6 w-6" />,
       title: 'Familienbonus & Absetzbeträge',
-      desc: 'AVAB, Familienbonus Plus, Verkehrsabsetzbetrag, Kindermehrbetrag – alles automatisch berechnet mit den korrekten Werten für jedes Jahr.',
+      desc: 'AVAB, Familienbonus Plus, Verkehrsabsetzbetrag und Kindermehrbetrag rechnet SteuerBoard automatisch, mit den korrekten Werten für jedes Jahr.',
       color: 'text-blue-400',
       bg: 'bg-blue-500/10',
     },
     {
       icon: <CalendarDays className="h-6 w-6" />,
       title: '2026 Ready',
-      desc: 'Aktuelle Werte 2026: Familienbonus Plus (2.000 EUR pro Kind unter 18), angepasster AVAB (612 EUR), Verkehrsabsetzbetrag (496 EUR) – bereits eingebaut.',
+      desc: 'Aktuelle Werte 2026: Familienbonus Plus (2.000 EUR pro Kind unter 18), AVAB (612 EUR), Verkehrsabsetzbetrag (496 EUR). Alles schon eingebaut.',
       color: 'text-amber-400',
       bg: 'bg-amber-500/10',
     },
@@ -369,7 +369,7 @@ function FeaturesSection() {
               Features
             </Badge>
             <h2 className="text-3xl sm:text-4xl font-bold text-white font-heading">
-              Alles, was du brauchst – in einer App
+              Alles, was du brauchst, in einer App
             </h2>
             <p className="mt-4 text-blue-200/60 max-w-2xl mx-auto text-lg">
               Gebaut von Selbständigen, für Selbständige. Mit der Präzision, die dein Steuerberater nicht hat.
@@ -464,9 +464,9 @@ function FeaturesSection() {
                     </Badge>
                   </div>
                   <p className="text-blue-200/60 leading-relaxed">
-                    Stelle Fragen zu ESt, KöSt, USt, Krypto, Immobilien, Sachbezug und Investitionsfreibetrag —
-                    dein KI-Steuerexperte rechnet in Echtzeit mit 7 spezialisierten Rechnern und
-                    gibt dir präzise Antworten basierend auf österreichischem Steuerrecht 2026.
+                    Stelle Fragen zu ESt, KöSt, USt, Krypto, Immobilien, Sachbezug und Investitionsfreibetrag.
+                    Der KI-Assistent rechnet in Echtzeit mit 7 spezialisierten Rechnern und
+                    antwortet auf Basis des österreichischen Steuerrechts 2026.
                   </p>
                   <div className="mt-4 flex flex-wrap gap-2">
                     {['ESt', 'KöSt', 'USt', 'Krypto', 'ImmoESt', 'Sachbezug', 'IFB'].map((t) => (
@@ -498,7 +498,7 @@ function FeaturesSection() {
                     </Badge>
                   </div>
                   <p className="text-sm text-blue-200/50">
-                    Persönliche Steueranalyse deiner Rechner-Ergebnisse — Optimierungsstrategien mit konkreten Euro-Beträgen.
+                    Persönliche Steueranalyse deiner Rechner-Ergebnisse, mit konkreten Euro-Beträgen zur Optimierung.
                   </p>
                 </div>
               </div>
@@ -647,7 +647,7 @@ function PricingSection() {
     <>
       <Pricing
         plans={PRICING_PLANS}
-        title="SteuerBoard kostet dich nichts – es spart dir Geld"
+        title="Was SteuerBoard kostet, holst du bei der Steuer zurück"
         description={'Voll absetzbar als Betriebsausgabe. Senkt deine Steuerlast.\nUnterm Strich ist SteuerBoard immer ein Gewinn.'}
       />
       <div className="text-center max-w-2xl mx-auto mt-10 px-4 space-y-4">
@@ -721,27 +721,27 @@ function FAQSection() {
   const faqs = [
     {
       q: 'Was ist SteuerBoard.pro und für wen ist es gedacht?',
-      a: 'SteuerBoard.pro ist ein interaktiver Steuer- und SVS-Rechner für österreichische Selbständige — Einzelunternehmer (EPU), Freiberufler und Gewerbetreibende, die bei der SVS (Sozialversicherung der Selbständigen) nach GSVG oder FSVG versichert sind. Du gibst Umsatz und Betriebsausgaben ein und erhältst sofort eine Berechnung deiner SVS-Beiträge (Pensionsversicherung, Krankenversicherung, Unfallversicherung, Selbständigenvorsorge), der Einkommensteuer nach dem progressiven Tarif (§ 33 EStG) und deines echten Nettos — also was wirklich auf deinem Konto bleibt.',
+      a: 'SteuerBoard.pro ist ein interaktiver Steuer- und SVS-Rechner für österreichische Selbständige: Einzelunternehmer (EPU), Freiberufler und Gewerbetreibende, die bei der SVS (Sozialversicherung der Selbständigen) nach GSVG oder FSVG versichert sind. Du gibst Umsatz und Betriebsausgaben ein und erhältst sofort eine Berechnung deiner SVS-Beiträge (Pensionsversicherung, Krankenversicherung, Unfallversicherung, Selbständigenvorsorge), der Einkommensteuer nach dem progressiven Tarif (§ 33 EStG) und deines echten Nettos, also was auf deinem Konto bleibt.',
     },
     {
       q: 'Warum SteuerBoard.pro und nicht der WKO SVS-Rechner?',
-      a: 'Der WKO SVS-Beitragsrechner berechnet nur die reinen SVS-Beiträge — ohne Einkommensteuer, ohne Nachzahlungsprognose und ohne echtes Netto. SteuerBoard.pro geht deutlich weiter: Du siehst die voraussichtliche SVS-Nachzahlung (die sogenannte „Nachzahlungsfalle"), die Einkommensteuer-Prognose nach Tarifstufen, das Geldfluss-Diagramm (was geht an SVS, Finanzamt und was bleibt netto), die Wahrheits-Tabelle mit vorläufigen vs. endgültigen Beiträgen, einen AI SteuerBoard, GmbH-Vergleich, Pauschalierungs-Check und 7 spezialisierte Steuerrechner. Der WKO-Rechner ist ein einfacher Beitragsrechner — SteuerBoard ist eine komplette Steuerplanungs-Plattform.',
+      a: 'Der WKO SVS-Beitragsrechner berechnet nur die reinen SVS-Beiträge, ohne Einkommensteuer, ohne Nachzahlungsprognose und ohne echtes Netto. SteuerBoard.pro geht deutlich weiter: Du siehst die voraussichtliche SVS-Nachzahlung (die sogenannte „Nachzahlungsfalle"), die Einkommensteuer-Prognose nach Tarifstufen, das Geldfluss-Diagramm (was geht an SVS, Finanzamt und was bleibt netto), die Wahrheits-Tabelle mit vorläufigen vs. endgültigen Beiträgen, einen AI SteuerBoard, GmbH-Vergleich, Pauschalierungs-Check und 7 spezialisierte Steuerrechner. Der WKO-Rechner ist ein einfacher Beitragsrechner. SteuerBoard ist eine komplette Steuerplanungs-Plattform.',
     },
     {
       q: 'Welche Features bietet SteuerBoard.pro?',
-      a: 'Free (kostenlos): SVS-Beitragsrechner, Wahrheits-Tabelle, Geldfluss-Diagramm, Sachbezug-Rechner, Steuer-Wissen Bot und aktuelle Werte für 2024–2026. Sicherheits-Plan (12,90 EUR/Monat): zusätzlich Einkommensteuer-Prognose, Familienbonus & Absetzbeträge, Berechnungen speichern, Dashboard mit Verlauf und Export. SteuerBoard Pro (24,90 EUR/Monat): alles plus Steuer-Chatbot mit 7 Rechnern (ESt, KöSt, USt, Krypto, ImmoESt, Sachbezug, IFB), AI SteuerBoard mit persönlicher Optimierung, Misch-Einkommen Rechner für Angestellte mit Nebeneinkünften, GmbH-Vergleich (EPU vs. GmbH mit Break-Even), Pauschalierungs-Vergleich, USt-Rechner & monatliche Rücklagen, Gewinnmaximierer, Investitionen & AfA und PDF-Export für den Steuerberater.',
+      a: 'Free (kostenlos): SVS-Beitragsrechner, Wahrheits-Tabelle, Geldfluss-Diagramm, Sachbezug-Rechner, Steuer-Wissen Bot und aktuelle Werte für 2024-2026. Sicherheits-Plan (12,90 EUR/Monat): zusätzlich Einkommensteuer-Prognose, Familienbonus & Absetzbeträge, Berechnungen speichern, Dashboard mit Verlauf und Export. SteuerBoard Pro (24,90 EUR/Monat): alles plus Steuer-Chatbot mit 7 Rechnern (ESt, KöSt, USt, Krypto, ImmoESt, Sachbezug, IFB), AI SteuerBoard mit persönlicher Optimierung, Misch-Einkommen Rechner für Angestellte mit Nebeneinkünften, GmbH-Vergleich (EPU vs. GmbH mit Break-Even), Pauschalierungs-Vergleich, USt-Rechner & monatliche Rücklagen, Gewinnmaximierer, Investitionen & AfA und PDF-Export für den Steuerberater.',
     },
     {
       q: 'Was ist die SVS-Nachzahlungsfalle und wie schützt SteuerBoard davor?',
-      a: 'Die SVS berechnet deine Beiträge zunächst vorläufig — auf Basis deines Gewinns von vor 3 Jahren (§ 25a GSVG). Steigt dein Einkommen, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung, die viele Selbständige unvorbereitet trifft. Bei einer Gewinnsteigerung von 30.000 auf 60.000 EUR kann die Nachzahlung über 5.000 EUR betragen. SteuerBoard.pro zeigt dir die voraussichtliche Differenz zwischen vorläufigen und endgültigen Beiträgen, berechnet monatliche Rücklagen und warnt dich rechtzeitig.',
+      a: 'Die SVS berechnet deine Beiträge zunächst vorläufig, auf Basis deines Gewinns von vor 3 Jahren (§ 25a GSVG). Steigt dein Einkommen, kommt es nach dem Steuerbescheid zu einer oft hohen Nachzahlung, die viele Selbständige unvorbereitet trifft. Bei einer Gewinnsteigerung von 30.000 auf 60.000 EUR kann die Nachzahlung über 5.000 EUR betragen. SteuerBoard.pro zeigt dir die voraussichtliche Differenz zwischen vorläufigen und endgültigen Beiträgen, berechnet monatliche Rücklagen und warnt dich rechtzeitig.',
     },
     {
       q: 'Wie wird die Einkommensteuer für Selbständige in Österreich berechnet?',
-      a: 'Die Einkommensteuer wird auf dein steuerpflichtiges Einkommen nach dem progressiven Tarif gemäß § 33 EStG berechnet: 0 % bis 12.816 EUR, 20 % bis 20.818 EUR, 30 % bis 34.513 EUR, 40 % bis 66.612 EUR, 48 % bis 99.266 EUR, 50 % bis 1 Mio. EUR. SteuerBoard zieht automatisch SVS-Beiträge, den Gewinnfreibetrag (§ 10 EStG, bis zu 15 % vom Gewinn) und Absetzbeträge wie Familienbonus Plus (2.100 EUR/Kind), AVAB (572 EUR), Verkehrsabsetzbetrag (481 EUR) und Pendlerpauschale ab. Du siehst Grenzsteuersatz und Durchschnittssteuersatz auf einen Blick.',
+      a: 'Die Einkommensteuer wird auf dein steuerpflichtiges Einkommen nach dem progressiven Tarif gemäß § 33 EStG berechnet: 0 % bis 13.539 EUR, 20 % bis 21.992 EUR, 30 % bis 36.458 EUR, 40 % bis 70.365 EUR, 48 % bis 104.859 EUR, 50 % bis 1 Mio. EUR. SteuerBoard zieht automatisch SVS-Beiträge, den Gewinnfreibetrag (§ 10 EStG, bis zu 15 % vom Gewinn) und Absetzbeträge wie Familienbonus Plus (2.000 EUR pro Kind unter 18), AVAB (612 EUR), Verkehrsabsetzbetrag (496 EUR) und Pendlerpauschale ab. Du siehst Grenzsteuersatz und Durchschnittssteuersatz auf einen Blick.',
     },
     {
       q: 'Was kann der KI-Steuer-Chatbot?',
-      a: 'Der Steuer-Chatbot (Pro-Feature) ist ein KI-Assistent powered by Google Gemini, der deine Steuerfragen in Echtzeit beantwortet und mit aktuellen österreichischen Werten für 2026 rechnet. Er hat Zugriff auf 7 spezialisierte Rechner: Einkommensteuer, Körperschaftsteuer (23 % KöSt), Umsatzsteuer (inkl. Kleinunternehmerregelung § 6 Abs. 1 Z 27 UStG), Krypto-Steuer (27,5 % KESt), Immobilienertragsteuer (30 % ImmoESt), Sachbezug und Investitionsfreibetrag (§ 11 EStG, 10–15 %). Stelle Fragen wie „Wie viel ESt zahle ich bei 80.000 EUR Gewinn?" oder „Lohnt sich eine GmbH ab welchem Gewinn?".',
+      a: 'Der Steuer-Chatbot (Pro-Feature) ist ein KI-Assistent powered by Google Gemini, der deine Steuerfragen in Echtzeit beantwortet und mit aktuellen österreichischen Werten für 2026 rechnet. Er hat Zugriff auf 7 spezialisierte Rechner: Einkommensteuer, Körperschaftsteuer (23 % KöSt), Umsatzsteuer (inkl. Kleinunternehmerregelung § 6 Abs. 1 Z 27 UStG), Krypto-Steuer (27,5 % KESt), Immobilienertragsteuer (30 % ImmoESt), Sachbezug und Investitionsfreibetrag (§ 11 EStG, 20/22 %). Stelle Fragen wie „Wie viel ESt zahle ich bei 80.000 EUR Gewinn?" oder „Lohnt sich eine GmbH ab welchem Gewinn?".',
     },
     {
       q: 'Funktioniert SteuerBoard auch bei Misch-Einkommen (angestellt und selbständig)?',
@@ -749,19 +749,19 @@ function FAQSection() {
     },
     {
       q: 'Wann lohnt sich eine GmbH statt Einzelunternehmen?',
-      a: 'Der GmbH-Vergleich (Pro-Feature) berechnet den Break-Even-Punkt zwischen EPU und GmbH. Bei einer GmbH fallen 23 % Körperschaftsteuer (KöSt) plus 27,5 % Kapitalertragsteuer (KESt) auf Ausschüttungen an, dafür entfällt die SVS des Geschäftsführers zugunsten von ASVG-Beiträgen. Typischerweise lohnt sich eine GmbH ab ca. 60.000–80.000 EUR Gewinn — SteuerBoard zeigt dir den exakten Punkt für deine Situation mit konkreten EUR-Beträgen.',
+      a: 'Der GmbH-Vergleich (Pro-Feature) berechnet den Break-Even-Punkt zwischen EPU und GmbH. Bei einer GmbH fallen 23 % Körperschaftsteuer (KöSt) plus 27,5 % Kapitalertragsteuer (KESt) auf Ausschüttungen an, dafür entfällt die SVS des Geschäftsführers zugunsten von ASVG-Beiträgen. Typischerweise lohnt sich eine GmbH ab ca. 60.000-80.000 EUR Gewinn. SteuerBoard zeigt dir den exakten Punkt für deine Situation mit konkreten EUR-Beträgen.',
     },
     {
       q: 'Welche Steuerjahre unterstützt SteuerBoard?',
-      a: 'SteuerBoard.pro enthält die aktuellen Werte für 2024, 2025 und 2026 — inklusive der neuen Werte ab 2026: Familienbonus Plus (2.100 EUR), angepasster AVAB (572 EUR), Verkehrsabsetzbetrag (481 EUR), Kindermehrbetrag (727 EUR), Kleinunternehmergrenze (55.000 EUR netto) und aktualisierte SVS-Mindest- und Höchstbeitragsgrundlagen.',
+      a: 'SteuerBoard.pro enthält die aktuellen Werte für 2024, 2025 und 2026, inklusive der neuen Werte ab 2026: Familienbonus Plus (2.000 EUR pro Kind unter 18), AVAB (612 EUR), Verkehrsabsetzbetrag (496 EUR), Kindermehrbetrag (700 EUR), Kleinunternehmergrenze (55.000 EUR brutto) und aktualisierte SVS-Mindest- und Höchstbeitragsgrundlagen.',
     },
     {
       q: 'Ersetzt SteuerBoard.pro einen Steuerberater?',
-      a: 'Nein. SteuerBoard.pro ist ein Planungs- und Orientierungstool. Alle Berechnungen basieren auf den aktuellen gesetzlichen Grundlagen (EStG, GSVG, FSVG, UStG, KStG), sind aber Richtwerte ohne Gewähr. Die endgültigen Bescheide der SVS und des Finanzamts können abweichen. Für verbindliche Auskünfte, komplexe Gestaltungen oder individuelle Steueroptimierung empfehlen wir eine professionelle Steuerberatung. SteuerBoard hilft dir, vorbereitet ins Gespräch zu gehen — mit konkreten Zahlen und einem PDF-Export.',
+      a: 'Nein. SteuerBoard.pro ist ein Planungs- und Orientierungstool. Alle Berechnungen basieren auf den aktuellen gesetzlichen Grundlagen (EStG, GSVG, FSVG, UStG, KStG), sind aber Richtwerte ohne Gewähr. Die endgültigen Bescheide der SVS und des Finanzamts können abweichen. Für verbindliche Auskünfte, komplexe Gestaltungen oder individuelle Steueroptimierung empfehlen wir eine professionelle Steuerberatung. SteuerBoard hilft dir, vorbereitet ins Gespräch zu gehen, mit konkreten Zahlen und einem PDF-Export.',
     },
     {
       q: 'Wie kann ich mein Abo kündigen?',
-      a: 'Jederzeit mit einem Klick unter Profil → Abo verwalten. Du wirst zum Stripe-Kundenportal weitergeleitet, wo du sofort kündigen kannst. Du behältst Zugriff auf Pro-Features bis zum Ende des bezahlten Zeitraums. Keine versteckten Fristen, keine Kündigungsgebühren, keine Tricks. Die Zahlung läuft sicher über Stripe — wir speichern keine Kreditkartendaten.',
+      a: 'Jederzeit mit einem Klick unter Profil → Abo verwalten. Du wirst zum Stripe-Kundenportal weitergeleitet, wo du sofort kündigen kannst. Du behältst Zugriff auf Pro-Features bis zum Ende des bezahlten Zeitraums. Keine versteckten Fristen, keine Kündigungsgebühren, keine Tricks. Die Zahlung läuft sicher über Stripe. Wir speichern keine Kreditkartendaten.',
     },
   ]
 
@@ -846,17 +846,17 @@ const FAQ_JSONLD = {
     {
       '@type': 'Question',
       name: 'Was ist SteuerBoard.pro und für wen ist es gedacht?',
-      acceptedAnswer: { '@type': 'Answer', text: 'SteuerBoard.pro ist ein interaktiver Steuer- und SVS-Rechner für österreichische Selbständige — Einzelunternehmer (EPU), Freiberufler und Gewerbetreibende, die bei der SVS nach GSVG oder FSVG versichert sind. Du gibst Umsatz und Betriebsausgaben ein und erhältst sofort eine Berechnung deiner SVS-Beiträge, der Einkommensteuer nach dem progressiven Tarif (§ 33 EStG) und deines echten Nettos.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'SteuerBoard.pro ist ein interaktiver Steuer- und SVS-Rechner für österreichische Selbständige: Einzelunternehmer (EPU), Freiberufler und Gewerbetreibende, die bei der SVS nach GSVG oder FSVG versichert sind. Du gibst Umsatz und Betriebsausgaben ein und erhältst sofort eine Berechnung deiner SVS-Beiträge, der Einkommensteuer nach dem progressiven Tarif (§ 33 EStG) und deines echten Nettos.' },
     },
     {
       '@type': 'Question',
       name: 'Warum SteuerBoard.pro und nicht der WKO SVS-Rechner?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Der WKO SVS-Beitragsrechner berechnet nur die reinen SVS-Beiträge — ohne Einkommensteuer, ohne Nachzahlungsprognose und ohne echtes Netto. SteuerBoard.pro zeigt zusätzlich die voraussichtliche SVS-Nachzahlung, die Einkommensteuer-Prognose nach Tarifstufen, das Geldfluss-Diagramm, die Wahrheits-Tabelle mit vorläufigen vs. endgültigen Beiträgen, einen AI SteuerBoard, GmbH-Vergleich, Pauschalierungs-Check und 7 spezialisierte Steuerrechner.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Der WKO SVS-Beitragsrechner berechnet nur die reinen SVS-Beiträge, ohne Einkommensteuer, ohne Nachzahlungsprognose und ohne echtes Netto. SteuerBoard.pro zeigt zusätzlich die voraussichtliche SVS-Nachzahlung, die Einkommensteuer-Prognose nach Tarifstufen, das Geldfluss-Diagramm, die Wahrheits-Tabelle mit vorläufigen vs. endgültigen Beiträgen, einen AI SteuerBoard, GmbH-Vergleich, Pauschalierungs-Check und 7 spezialisierte Steuerrechner.' },
     },
     {
       '@type': 'Question',
       name: 'Welche Features bietet SteuerBoard.pro?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Free (kostenlos): SVS-Beitragsrechner, Wahrheits-Tabelle, Geldfluss-Diagramm, Sachbezug-Rechner, Steuer-Wissen Bot und aktuelle Werte für 2024–2026. Sicherheits-Plan (12,90 EUR/Monat): zusätzlich Einkommensteuer-Prognose, Familienbonus & Absetzbeträge, Berechnungen speichern, Dashboard mit Verlauf und Export. SteuerBoard Pro (24,90 EUR/Monat): alles plus Steuer-Chatbot mit 7 Rechnern, AI SteuerBoard, Misch-Einkommen Rechner, GmbH-Vergleich, Pauschalierungs-Vergleich, USt-Rechner, Gewinnmaximierer, AfA-Rechner und PDF-Export.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Free (kostenlos): SVS-Beitragsrechner, Wahrheits-Tabelle, Geldfluss-Diagramm, Sachbezug-Rechner, Steuer-Wissen Bot und aktuelle Werte für 2024-2026. Sicherheits-Plan (12,90 EUR/Monat): zusätzlich Einkommensteuer-Prognose, Familienbonus & Absetzbeträge, Berechnungen speichern, Dashboard mit Verlauf und Export. SteuerBoard Pro (24,90 EUR/Monat): alles plus Steuer-Chatbot mit 7 Rechnern, AI SteuerBoard, Misch-Einkommen Rechner, GmbH-Vergleich, Pauschalierungs-Vergleich, USt-Rechner, Gewinnmaximierer, AfA-Rechner und PDF-Export.' },
     },
     {
       '@type': 'Question',
@@ -866,7 +866,7 @@ const FAQ_JSONLD = {
     {
       '@type': 'Question',
       name: 'Wie wird die Einkommensteuer für Selbständige in Österreich berechnet?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Die Einkommensteuer wird nach dem progressiven Tarif gemäß § 33 EStG berechnet: 0 % bis 12.816 EUR, 20 % bis 20.818 EUR, 30 % bis 34.513 EUR, 40 % bis 66.612 EUR, 48 % bis 99.266 EUR, 50 % bis 1 Mio. EUR. SteuerBoard zieht automatisch SVS-Beiträge, den Gewinnfreibetrag (§ 10 EStG) und Absetzbeträge wie Familienbonus Plus (2.100 EUR/Kind), AVAB (572 EUR) und Verkehrsabsetzbetrag (481 EUR) ab.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Die Einkommensteuer wird nach dem progressiven Tarif gemäß § 33 EStG berechnet: 0 % bis 13.539 EUR, 20 % bis 21.992 EUR, 30 % bis 36.458 EUR, 40 % bis 70.365 EUR, 48 % bis 104.859 EUR, 50 % bis 1 Mio. EUR. SteuerBoard zieht automatisch SVS-Beiträge, den Gewinnfreibetrag (§ 10 EStG) und Absetzbeträge wie Familienbonus Plus (2.000 EUR pro Kind unter 18), AVAB (612 EUR) und Verkehrsabsetzbetrag (496 EUR) ab.' },
     },
     {
       '@type': 'Question',
@@ -881,12 +881,12 @@ const FAQ_JSONLD = {
     {
       '@type': 'Question',
       name: 'Wann lohnt sich eine GmbH statt Einzelunternehmen?',
-      acceptedAnswer: { '@type': 'Answer', text: 'Bei einer GmbH fallen 23 % Körperschaftsteuer plus 27,5 % KESt auf Ausschüttungen an. Typischerweise lohnt sich eine GmbH ab ca. 60.000–80.000 EUR Gewinn. SteuerBoard berechnet den exakten Break-Even-Punkt für die individuelle Situation.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'Bei einer GmbH fallen 23 % Körperschaftsteuer plus 27,5 % KESt auf Ausschüttungen an. Typischerweise lohnt sich eine GmbH ab ca. 60.000-80.000 EUR Gewinn. SteuerBoard berechnet den exakten Break-Even-Punkt für die individuelle Situation.' },
     },
     {
       '@type': 'Question',
       name: 'Welche Steuerjahre unterstützt SteuerBoard?',
-      acceptedAnswer: { '@type': 'Answer', text: 'SteuerBoard.pro enthält aktuelle Werte für 2024, 2025 und 2026 — inklusive Familienbonus Plus (2.100 EUR), AVAB (572 EUR), Verkehrsabsetzbetrag (481 EUR), Kindermehrbetrag (727 EUR), Kleinunternehmergrenze (55.000 EUR) und aktualisierte SVS-Beitragsgrundlagen.' },
+      acceptedAnswer: { '@type': 'Answer', text: 'SteuerBoard.pro enthält aktuelle Werte für 2024, 2025 und 2026, inklusive Familienbonus Plus (2.000 EUR pro Kind unter 18), AVAB (612 EUR), Verkehrsabsetzbetrag (496 EUR), Kindermehrbetrag (700 EUR), Kleinunternehmergrenze (55.000 EUR brutto) und aktualisierte SVS-Beitragsgrundlagen.' },
     },
     {
       '@type': 'Question',

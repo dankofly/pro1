@@ -67,7 +67,7 @@ const FREE_FEATURES: Feature[] = [
   {
     icon: CalendarDays,
     title: '2026 Ready',
-    desc: 'Neue Familienbonus-Werte (2.100 EUR), angepasster AVAB (572 EUR), aktueller Verkehrsabsetzbetrag (481 EUR) und Kindermehrbetrag (727 EUR) — bereits eingebaut.',
+    desc: 'Neue Familienbonus-Werte (2.000 EUR pro Kind unter 18), angepasster AVAB (612 EUR), aktueller Verkehrsabsetzbetrag (496 EUR) und Kindermehrbetrag (700 EUR). Bereits eingebaut.',
     color: 'text-amber-400',
     bg: 'bg-amber-500/10',
   },

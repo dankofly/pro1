@@ -29,7 +29,7 @@ const faqSections = [
       },
       {
         q: 'Welche Steuerjahre werden unterstützt?',
-        a: 'SteuerBoard.pro enthält die aktuellen Werte für 2024, 2025 und 2026 — inklusive der neuen Werte ab 2026: Familienbonus Plus (2.100 EUR/Kind), angepasster AVAB (572 EUR), Verkehrsabsetzbetrag (481 EUR), Kindermehrbetrag (727 EUR), Kleinunternehmergrenze (55.000 EUR netto) und aktualisierte SVS-Mindest- und Höchstbeitragsgrundlagen.',
+        a: 'SteuerBoard.pro enthält die aktuellen Werte für 2024, 2025 und 2026, inklusive der neuen Werte ab 2026: Familienbonus Plus (2.000 EUR pro Kind unter 18), angepasster AVAB (612 EUR), Verkehrsabsetzbetrag (496 EUR), Kindermehrbetrag (700 EUR), Kleinunternehmergrenze (55.000 EUR brutto) und aktualisierte SVS-Mindest- und Höchstbeitragsgrundlagen.',
       },
       {
         q: 'Ersetzt SteuerBoard eine Steuerberatung?',
@@ -59,7 +59,7 @@ const faqSections = [
       },
       {
         q: 'Wie wird die Einkommensteuer berechnet?',
-        a: 'Die Einkommensteuer wird auf dein steuerpflichtiges Einkommen (Gewinn minus SVS-Beiträge minus Gewinnfreibetrag minus Absetzbeträge) nach dem progressiven Tarif gemäß § 33 EStG berechnet: 0 % bis 12.816 EUR, 20 % bis 20.818 EUR, 30 % bis 34.513 EUR, 40 % bis 66.612 EUR, 48 % bis 99.266 EUR, 50 % bis 1 Mio. EUR, 55 % darüber. SteuerBoard zieht automatisch den Gewinnfreibetrag (§ 10 EStG, bis 15 %) und Absetzbeträge ab.',
+        a: 'Die Einkommensteuer wird auf dein steuerpflichtiges Einkommen (Gewinn minus SVS-Beiträge minus Gewinnfreibetrag minus Absetzbeträge) nach dem progressiven Tarif gemäß § 33 EStG berechnet: 0 % bis 13.539 EUR, 20 % bis 21.992 EUR, 30 % bis 36.458 EUR, 40 % bis 70.365 EUR, 48 % bis 104.859 EUR, 50 % bis 1 Mio. EUR, 55 % darüber. SteuerBoard zieht automatisch den Gewinnfreibetrag (§ 10 EStG, bis 15 %) und Absetzbeträge ab.',
       },
       {
         q: 'Was zeigt die Wahrheits-Tabelle?',
@@ -109,7 +109,7 @@ const faqSections = [
       },
       {
         q: 'Steuer-Optimierung — Welche Absetzbeträge gibt es?',
-        a: 'Familienbonus Plus (2.100 EUR/Kind unter 18, 700 EUR/Kind über 18 ab 2026), Alleinverdiener-/Alleinerzieherabsetzbetrag (AVAB/AEAB, 572 EUR), Verkehrsabsetzbetrag (481 EUR), Kindermehrbetrag (727 EUR) und Pendlerpauschale (abhängig von Entfernung und Öffi-Zumutbarkeit). SteuerBoard berechnet alle automatisch und zieht sie direkt von deiner Steuerschuld ab.',
+        a: 'Familienbonus Plus (2.000 EUR/Kind unter 18, 700 EUR/Kind über 18), Alleinverdiener-/Alleinerzieherabsetzbetrag (AVAB/AEAB, 612 EUR), Verkehrsabsetzbetrag (496 EUR), Kindermehrbetrag (700 EUR) und Pendlerpauschale (abhängig von Entfernung und Öffi-Zumutbarkeit). SteuerBoard berechnet alle automatisch und zieht sie direkt von deiner Steuerschuld ab.',
       },
     ],
   },
