@@ -1,5 +1,6 @@
 'use client'
 
+import { ToolIntro } from '@/components/tool-intro'
 import { useState, useMemo } from 'react'
 import { SiteFooter } from '@/components/site-footer'
 import { RechnerDisclaimer } from '@/components/rechner/rechner-disclaimer'
@@ -694,7 +695,7 @@ function MischContent() {
 
 export default function MischEinkommenPage() {
   return (
-    <AppShell>
+    <AppShell intro={<ToolIntro h1="Misch-Einkommen-Rechner: Anstellung plus Selbständigkeit">Für nebenberuflich Selbständige: Der Rechner kombiniert deine ASVG-Anstellung und dein GSVG-Gewerbe inklusive Differenzvorschreibung (§ 35a GSVG) und zeigt dir, was vom Nebengewerbe netto übrig bleibt. Orientierungshilfe, keine Steuerberatung.</ToolIntro>}>
       <MischContent />
     </AppShell>
   )

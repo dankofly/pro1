@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
-import { ToolIntro } from '@/components/tool-intro'
 
 export const metadata: Metadata = {
   title: 'Einkommensteuer Rechner 2026 für Selbständige in Österreich',
@@ -53,12 +52,6 @@ export default function EinkommensteuerLayout({ children }: { children: React.Re
           },
         ],
       }} />
-      <ToolIntro h1="Einkommensteuer-Rechner Österreich 2026">
-        Der Rechner berechnet deine Einkommensteuer nach dem progressiven Tarif (§ 33 EStG) mit den
-        7 Tarifstufen, berücksichtigt Familienbonus Plus, Alleinverdienerabsetzbetrag (AVAB) und
-        Verkehrsabsetzbetrag und zeigt dir Grenz- und Durchschnittssteuersatz. Orientierungshilfe,
-        keine Steuerberatung.
-      </ToolIntro>
       {children}
     </>
   )

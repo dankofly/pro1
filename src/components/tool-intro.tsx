@@ -10,21 +10,21 @@ interface ToolIntroProps {
  * Liefert einen sichtbaren H1 plus Intro-Absatz bereits im statischen HTML,
  * damit Suchmaschinen und AI-Crawler den Seitenkontext ohne JS erfassen.
  *
- * Design: Teil des dunklen App-Rahmens. Gleiche Fläche wie die Sidebar,
- * dadurch bilden Header + Sidebar ein durchgehendes L-förmiges Chrome
- * statt eines weißen Fremdkörpers über der App.
+ * Wird über die intro-Prop der AppShell in der Hauptspalte gerendert
+ * (unbedingt, vor dem Auth-Gate, sonst fehlt der H1 im statischen HTML).
+ * Design: Seitentitel direkt auf dem Canvas, wie in modernen Dashboards.
+ * Kein eigener Kasten, keine Fläche: Typografie ordnet den Block der App
+ * unter, der Rechner bleibt der Held der Seite.
  */
 export function ToolIntro({ h1, children }: ToolIntroProps) {
   return (
-    <section className="bg-sidebar border-b border-sidebar-border">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 py-4 sm:py-5">
-        <h1 className="text-base sm:text-lg font-semibold tracking-tight text-white [text-wrap:balance]">
-          {h1}
-        </h1>
-        <p className="mt-1.5 text-[13px] sm:text-sm text-slate-400 leading-relaxed max-w-3xl [text-wrap:pretty]">
-          {children}
-        </p>
-      </div>
+    <section className="max-w-[1400px] mx-auto px-4 sm:px-6 pt-5 sm:pt-6">
+      <h1 className="text-lg sm:text-xl font-semibold tracking-tight text-foreground [text-wrap:balance]">
+        {h1}
+      </h1>
+      <p className="mt-1 text-[13px] sm:text-sm text-muted-foreground leading-relaxed max-w-3xl [text-wrap:pretty]">
+        {children}
+      </p>
     </section>
   )
 }

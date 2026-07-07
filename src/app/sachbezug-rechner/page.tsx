@@ -1,5 +1,6 @@
 'use client'
 
+import { ToolIntro } from '@/components/tool-intro'
 import { useState, useMemo } from 'react'
 import { RechnerDisclaimer } from '@/components/rechner/rechner-disclaimer'
 import { SiteFooter } from '@/components/site-footer'
@@ -741,7 +742,7 @@ function SachbezugContent() {
 
 export default function SachbezugRechnerPage() {
   return (
-    <AppShell>
+    <AppShell intro={<ToolIntro h1="Sachbezug-Rechner 2026: Dienstwagen und Benefits">Der Rechner ermittelt den PKW-Sachbezug nach CO2-Wert (0, 1,5 oder 2 Prozent, E-Autos steuerfrei) und zeigt dir steuerfreie Mitarbeiter-Benefits. Orientierungshilfe, keine Steuerberatung.</ToolIntro>}>
       <SachbezugContent />
     </AppShell>
   )

@@ -29,7 +29,7 @@ export function useAppShell() {
   return ctx
 }
 
-export function AppShell({ children }: { children: React.ReactNode }) {
+export function AppShell({ children, intro }: { children: React.ReactNode; intro?: React.ReactNode }) {
   const [user, setUser] = useState<User | null>(null)
   const [authLoading, setAuthLoading] = useState(true)
   const { prefs, setPrefs } = useUserPreferences()
@@ -78,6 +78,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           navSections={navSections}
         />
         <main className="flex-1 min-w-0 pb-20 md:pb-0">
+          {/* SEO-Header: bewusst VOR dem Auth-Gate, damit der H1 im statischen HTML steht */}
+          {intro}
           {authLoading ? (
             <div className="flex items-center justify-center min-h-[60vh]" role="status">
               <div className="flex flex-col items-center gap-3">

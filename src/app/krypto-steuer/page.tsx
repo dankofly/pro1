@@ -1,5 +1,6 @@
 'use client'
 
+import { ToolIntro } from '@/components/tool-intro'
 import { useState, useMemo, useCallback } from 'react'
 import { RechnerDisclaimer } from '@/components/rechner/rechner-disclaimer'
 import { SiteFooter } from '@/components/site-footer'
@@ -562,7 +563,7 @@ function KryptoSteuerContent() {
 
 export default function KryptoSteuerPage() {
   return (
-    <AppShell>
+    <AppShell intro={<ToolIntro h1="Krypto-Steuer-Rechner Österreich 2026">Der Rechner berechnet die KESt (27,5 %) auf realisierte Krypto-Gewinne nach § 27b EStG, unterscheidet Alt- und Neuvermögen und behandelt den Krypto-zu-Krypto-Tausch steuerneutral. Orientierungshilfe, keine Steuerberatung.</ToolIntro>}>
       <KryptoSteuerContent />
     </AppShell>
   )

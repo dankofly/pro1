@@ -1,5 +1,6 @@
 'use client'
 
+import { ToolIntro } from '@/components/tool-intro'
 import { useState, useCallback, useRef } from 'react'
 import { PageFooter } from '@/components/svs/page-footer'
 import { SiteFooter } from '@/components/site-footer'
@@ -1017,7 +1018,7 @@ function BilanzContent() {
 
 export default function BilanzPage() {
   return (
-    <AppShell>
+    <AppShell intro={<ToolIntro h1="Bilanz-Analyse für Selbständige und GmbHs">Das Tool liest deine Kennzahlen aus und gibt eine erste Orientierung zu Ergebnis und Steuerlast. Orientierungshilfe, keine Wirtschaftsprüfung und keine Steuerberatung.</ToolIntro>}>
       <BilanzContent />
     </AppShell>
   )

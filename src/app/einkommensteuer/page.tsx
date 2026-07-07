@@ -1,5 +1,6 @@
 'use client'
 
+import { ToolIntro } from '@/components/tool-intro'
 import { useState, useMemo } from 'react'
 import { RechnerDisclaimer } from '@/components/rechner/rechner-disclaimer'
 import { SiteFooter } from '@/components/site-footer'
@@ -831,7 +832,7 @@ function EinkommensteuerContent() {
 
 export default function EinkommensteuerPage() {
   return (
-    <AppShell>
+    <AppShell intro={<ToolIntro h1="Einkommensteuer-Rechner Österreich 2026">Der Rechner berechnet deine Einkommensteuer nach dem progressiven Tarif (§ 33 EStG) mit den 7 Tarifstufen, berücksichtigt Familienbonus Plus, Alleinverdienerabsetzbetrag (AVAB) und Verkehrsabsetzbetrag und zeigt dir Grenz- und Durchschnittssteuersatz. Orientierungshilfe, keine Steuerberatung.</ToolIntro>}>
       <EinkommensteuerContent />
     </AppShell>
   )

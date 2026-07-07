@@ -1,5 +1,6 @@
 'use client'
 
+import { ToolIntro } from '@/components/tool-intro'
 import { useState, useMemo, useCallback, useEffect, useRef, type ReactNode } from 'react'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
@@ -678,7 +679,7 @@ function RechnerContent() {
 export default function Home() {
   return (
     <>
-      <AppShell>
+      <AppShell intro={<ToolIntro h1="SVS-Rechner 2026: Beiträge, Nachzahlung und echtes Netto">Der Rechner ermittelt auf Basis deines Jahresgewinns die SVS-Beiträge (Pensionsversicherung, Krankenversicherung, Selbständigenvorsorge und Unfallversicherung), die Einkommensteuer und die voraussichtliche SVS-Nachzahlung, dazu eine monatliche Rücklagenempfehlung. Als Orientierungshilfe gedacht, keine Steuerberatung.</ToolIntro>}>
         <RechnerContent />
       </AppShell>
       <SiteFooter />

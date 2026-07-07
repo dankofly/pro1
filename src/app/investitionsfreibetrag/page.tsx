@@ -1,5 +1,6 @@
 'use client'
 
+import { ToolIntro } from '@/components/tool-intro'
 import { useState, useMemo, useCallback } from 'react'
 import { RechnerDisclaimer } from '@/components/rechner/rechner-disclaimer'
 import { SiteFooter } from '@/components/site-footer'
@@ -718,7 +719,7 @@ function IFBContent() {
 
 export default function InvestitionsfreibetragPage() {
   return (
-    <AppShell>
+    <AppShell intro={<ToolIntro h1="Investitionsfreibetrag-Rechner (IFB) 2026">Der Rechner berechnet den Investitionsfreibetrag nach § 11 EStG (20 Prozent für normale Investitionen, 22 Prozent für Öko-Investitionen), den Gewinnfreibetrag (§ 10 EStG) und die Forschungsprämie (14 Prozent), samt geschätzter Steuerersparnis. Orientierungshilfe, keine Steuerberatung.</ToolIntro>}>
       <IFBContent />
     </AppShell>
   )
