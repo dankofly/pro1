@@ -99,7 +99,7 @@ export default function RootLayout({
           foundingDate: '2024',
           founder: {
             '@type': 'Person',
-            name: 'HYPEAKZ e.U.',
+            name: 'Daniel Kofler',
             jobTitle: 'Gründer',
           },
           address: {

@@ -16,7 +16,7 @@ function DatenschutzContent() {
               Verantwortlich für die Datenverarbeitung auf dieser Website ist:
             </p>
             <p>
-              <strong>HYPEAKZ e.U.</strong><br />
+              <strong>HYPEAKZ.IO</strong><br />
               Inhaber: Daniel Kofler<br />
               Thal-Aue 95<br />
               9911 Assling<br />

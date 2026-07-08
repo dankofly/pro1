@@ -15,7 +15,7 @@ function AGBContent() {
             <strong>steuerboard.pro</strong> sowie aller darauf angebotenen Dienste, betrieben von:
           </p>
           <p>
-            <strong>HYPEAKZ e.U.</strong><br />
+            <strong>HYPEAKZ.IO</strong><br />
             Thal-Aue 95, 9911 Assling<br />
             Österreich<br />
             E-Mail: <a href="mailto:info@hypeakz.io" className="text-blue-600 hover:underline">info@hypeakz.io</a>
@@ -171,7 +171,7 @@ function AGBContent() {
           </p>
           <p>
             <strong>An:</strong><br />
-            HYPEAKZ e.U., Thal-Aue 95, 9911 Assling, Österreich<br />
+            HYPEAKZ.IO, Thal-Aue 95, 9911 Assling, Österreich<br />
             E-Mail: <a href="mailto:info@hypeakz.io" className="text-blue-600 hover:underline">info@hypeakz.io</a>
           </p>
           <p>
@@ -203,7 +203,7 @@ function AGBContent() {
             <p><strong>Muster-Widerrufsformular</strong></p>
             <p className="text-sm mt-2">(Wenn Sie den Vertrag widerrufen wollen, dann füllen Sie bitte dieses Formular aus und senden Sie es zurück.)</p>
             <ul className="list-none pl-0 space-y-2 text-sm mt-3">
-              <li>An: HYPEAKZ e.U., Thal-Aue 95, 9911 Assling, Österreich, E-Mail: info@hypeakz.io</li>
+              <li>An: HYPEAKZ.IO, Thal-Aue 95, 9911 Assling, Österreich, E-Mail: info@hypeakz.io</li>
               <li>Hiermit widerrufe(n) ich/wir (*) den von mir/uns (*) abgeschlossenen Vertrag über die Erbringung der folgenden Dienstleistung (*) / den Kauf der folgenden Waren (*)</li>
               <li>Bestellt am (*) / erhalten am (*)</li>
               <li>Name des/der Verbraucher(s)</li>

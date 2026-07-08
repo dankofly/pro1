@@ -10,7 +10,7 @@ function ImpressumContent() {
           <section>
             <h2 className="text-xl font-semibold mb-3">Angaben gemäß &sect; 5 ECG und &sect; 25 MedienG</h2>
             <p>
-              <strong>HYPEAKZ e.U.</strong><br />
+              <strong>HYPEAKZ.IO</strong><br />
               Inhaber: Daniel Kofler<br />
               Thal-Aue 95<br />
               9911 Assling<br />
@@ -29,8 +29,9 @@ function ImpressumContent() {
           <section>
             <h2 className="text-xl font-semibold mb-3">Unternehmensangaben</h2>
             <p>
-              Rechtsform: Einzelunternehmen (e.U.)<br />
+              Rechtsform: Einzelunternehmen<br />
               Unternehmensgegenstand: Dienstleistungen in der automatischen Datenverarbeitung und Informationstechnik (freies Gewerbe)<br />
+              GISA-Zahl: 22347282<br />
               Umsatzsteuer-Identifikationsnummer: ATU77537202<br />
               Mitgliedschaft: Wirtschaftskammer Tirol, Fachgruppe UBIT (Unternehmensberatung, Buchhaltung und Informationstechnologie)
             </p>
