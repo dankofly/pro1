@@ -16,6 +16,16 @@ export const metadata: Metadata = {
   }
 }
 
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://steuerboard.pro/' },
+    { '@type': 'ListItem', position: 2, name: 'Steuerwissen', item: 'https://steuerboard.pro/steuerwissen' },
+    { '@type': 'ListItem', position: 3, name: 'FlexKapG vs. GmbH', item: 'https://steuerboard.pro/steuerwissen/flexkapg-vs-gmbh' },
+  ],
+}
+
 export default function Layout({
   children,
 }: {
@@ -28,9 +38,10 @@ export default function Layout({
     "description": "FlexKapG vs. GmbH in Österreich: Die neue Rechtsform im Detail verglichen. Kosten, Vorteile, Gründung und steuerliche Behandlung — alles was du wissen musst.",
     "image": "https://steuerboard.pro/opengraph-image",
     "author": {
-      "@type": "Organization",
-      "name": "SteuerBoard.pro",
-      "url": "https://steuerboard.pro"
+      "@type": "Person",
+      "name": "Daniel Kofler",
+      "jobTitle": "Gründer SteuerBoard.pro",
+      "url": "https://steuerboard.pro/impressum"
     },
     "publisher": {
       "@type": "Organization",
@@ -92,6 +103,7 @@ export default function Layout({
   return (
     <>
       <JsonLd data={articleData} />
+      <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={faqData} />
       {children}
     </>

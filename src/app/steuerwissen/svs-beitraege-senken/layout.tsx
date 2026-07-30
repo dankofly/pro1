@@ -40,9 +40,10 @@ export default function Layout({
               "dateModified": "2026-03-18",
               "inLanguage": "de-AT",
               "author": {
-                "@type": "Organization",
-                "name": "SteuerBoard.pro",
-                "url": "https://steuerboard.pro"
+                "@type": "Person",
+                "name": "Daniel Kofler",
+                "jobTitle": "Gründer SteuerBoard.pro",
+                "url": "https://steuerboard.pro/impressum"
               },
               "publisher": {
                 "@type": "Organization",
@@ -59,6 +60,15 @@ export default function Layout({
               },
               "articleSection": "Steuerwissen",
               "keywords": "SVS Beiträge senken, SVS Beiträge reduzieren, SVS Selbständige Österreich, Sozialversicherung"
+            },
+            {
+              "@type": "BreadcrumbList",
+              "@id": "https://steuerboard.pro/steuerwissen/svs-beitraege-senken#breadcrumb",
+              "itemListElement": [
+                { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://steuerboard.pro/" },
+                { "@type": "ListItem", "position": 2, "name": "Steuerwissen", "item": "https://steuerboard.pro/steuerwissen" },
+                { "@type": "ListItem", "position": 3, "name": "SVS-Beiträge senken", "item": "https://steuerboard.pro/steuerwissen/svs-beitraege-senken" }
+              ]
             },
             {
               "@type": "FAQPage",

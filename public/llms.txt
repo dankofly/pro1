@@ -13,7 +13,7 @@ Das Tool berechnet:
 - Einkommensteuer-Prognose nach österreichischem Steuertarif 2026
 - Echtes Netto nach Abzug aller Abgaben
 - Misch-Einkommen: Kombinierte Berechnung für Angestellte mit Nebengewerbe
-- Familienbonus Plus (2.100 €), AVAB, Verkehrsabsetzbetrag (481 €) und Kindermehrbetrag (727 €)
+- Familienbonus Plus (2.000 € pro Kind unter 18, Wert 2026), AVAB (612 €), Verkehrsabsetzbetrag (496 €) und Kindermehrbetrag (700 €)
 - Krypto-Steuer nach österreichischem Recht
 - Investitionsfreibetrag nach § 11 EStG
 - Sachbezug-Rechner
@@ -41,6 +41,7 @@ Aktuelle Werte für 2024, 2025 und 2026.
 
 ### Steuerwissen
 - [Steuerwissen Hub](https://steuerboard.pro/steuerwissen-hub): Übersicht aller Steuerwissen-Artikel
+- [Steuerrechner Österreich im Vergleich](https://steuerboard.pro/steuerwissen/steuerrechner-oesterreich-vergleich): Die 5 besten Steuerrechner 2026 (BMF, SVS, WKO, finanz.at, SteuerBoard) mit Einsatzzweck und Grenzen
 - [SVS-Nachzahlung vermeiden](https://steuerboard.pro/steuerwissen/svs-nachzahlung-vermeiden): Strategien gegen die SVS-Nachzahlungsfalle
 - [GmbH vs Einzelunternehmen](https://steuerboard.pro/steuerwissen/gmbh-vs-einzelunternehmen): Steuervergleich und Break-Even-Analyse
 - [SVS-Beiträge senken](https://steuerboard.pro/steuerwissen/svs-beitraege-senken): 7 legale Strategien zur Beitragssenkung
@@ -64,7 +65,7 @@ Aktuelle Werte für 2024, 2025 und 2026.
 - [Steuerberater](https://steuerboard.pro/steuerberater): Steuerberater-Verzeichnis
 
 ### Rechtliches
-- [Impressum](https://steuerboard.pro/impressum): Betreiber HYPEAKZ e.U., Daniel Kofler
+- [Impressum](https://steuerboard.pro/impressum): Betreiber HYPEAKZ.IO, Daniel Kofler (Einzelunternehmen, GISA 22347282)
 - [Datenschutz](https://steuerboard.pro/datenschutz): DSGVO-konforme Datenschutzerklärung
 - [AGB](https://steuerboard.pro/agb): Allgemeine Geschäftsbedingungen
 
@@ -88,10 +89,14 @@ Für Personen die angestellt UND selbständig sind. Er berechnet Differenz-Vorsc
 ### Ab welchem Gewinn lohnt sich eine GmbH?
 Der Break-Even liegt meist zwischen 60.000–80.000 € Jahresgewinn. Ab diesem Punkt wird die GmbH-Besteuerung (23% KöSt + 27,5% KESt auf Ausschüttungen) günstiger als der progressive Einkommensteuertarif.
 
+## Volltexte
+
+Die vollständigen Artikeltexte der wichtigsten Guides stehen in [llms-full.txt](https://steuerboard.pro/llms-full.txt).
+
 ## Kontakt
 
-- Betreiber: HYPEAKZ e.U. (Daniel Kofler)
-- E-Mail: mail@danielkofler.com
+- Betreiber: HYPEAKZ.IO (Daniel Kofler, Einzelunternehmen)
+- E-Mail: info@hypeakz.io
 - Telefon: +43 676 7293888
 - Standort: Thal-Aue 95, 9911 Assling, Österreich
 - UID: ATU77537202

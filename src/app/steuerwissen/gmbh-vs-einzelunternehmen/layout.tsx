@@ -16,6 +16,16 @@ export const metadata: Metadata = {
   }
 }
 
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://steuerboard.pro/' },
+    { '@type': 'ListItem', position: 2, name: 'Steuerwissen', item: 'https://steuerboard.pro/steuerwissen' },
+    { '@type': 'ListItem', position: 3, name: 'GmbH vs. Einzelunternehmen', item: 'https://steuerboard.pro/steuerwissen/gmbh-vs-einzelunternehmen' },
+  ],
+}
+
 export default function Layout({
   children,
 }: {
@@ -28,9 +38,10 @@ export default function Layout({
     "description": "GmbH vs Einzelunternehmen in Österreich: Steuervergleich, Break-Even-Analyse und Entscheidungshilfe. Wann lohnt sich die GmbH-Gründung steuerlich?",
     "image": "https://steuerboard.pro/opengraph-image",
     "author": {
-      "@type": "Organization",
-      "name": "SteuerBoard.pro",
-      "url": "https://steuerboard.pro"
+      "@type": "Person",
+      "name": "Daniel Kofler",
+      "jobTitle": "Gründer SteuerBoard.pro",
+      "url": "https://steuerboard.pro/impressum"
     },
     "publisher": {
       "@type": "Organization",
@@ -84,6 +95,7 @@ export default function Layout({
   return (
     <>
       <JsonLd data={articleData} />
+      <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={faqData} />
       {children}
     </>

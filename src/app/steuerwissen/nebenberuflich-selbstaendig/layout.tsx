@@ -30,9 +30,10 @@ const articleJsonLd = {
   "dateModified": "2026-03-19",
   "inLanguage": "de-AT",
   "author": {
-    "@type": "Organization",
-    "name": "SteuerBoard.pro",
-    "url": "https://steuerboard.pro"
+    "@type": "Person",
+    "name": "Daniel Kofler",
+    "jobTitle": "Gründer SteuerBoard.pro",
+    "url": "https://steuerboard.pro/impressum"
   },
   "publisher": {
     "@type": "Organization",
@@ -92,10 +93,21 @@ const faqJsonLd = {
   ]
 }
 
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://steuerboard.pro/' },
+    { '@type': 'ListItem', position: 2, name: 'Steuerwissen', item: 'https://steuerboard.pro/steuerwissen' },
+    { '@type': 'ListItem', position: 3, name: 'Nebenberuflich selbständig', item: 'https://steuerboard.pro/steuerwissen/nebenberuflich-selbstaendig' },
+  ],
+}
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <JsonLd data={articleJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={faqJsonLd} />
       {children}
     </>

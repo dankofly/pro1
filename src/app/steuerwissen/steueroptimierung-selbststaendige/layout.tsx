@@ -16,6 +16,16 @@ export const metadata: Metadata = {
   }
 }
 
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://steuerboard.pro/' },
+    { '@type': 'ListItem', position: 2, name: 'Steuerwissen', item: 'https://steuerboard.pro/steuerwissen' },
+    { '@type': 'ListItem', position: 3, name: 'Steueroptimierung für Selbständige', item: 'https://steuerboard.pro/steuerwissen/steueroptimierung-selbststaendige' },
+  ],
+}
+
 export default function Layout({
   children,
 }: {
@@ -31,9 +41,10 @@ export default function Layout({
         description: 'Steueroptimierung für Selbständige in Österreich: Alle legalen Steuerspartipps für EPU & Einzelunternehmer. Absetzbeträge, Betriebsausgaben & Investitionssteuerung optimal nutzen.',
         image: 'https://steuerboard.pro/opengraph-image',
         author: {
-          '@type': 'Organization',
-          name: 'SteuerBoard.pro',
-          url: 'https://steuerboard.pro',
+          '@type': 'Person',
+          name: 'Daniel Kofler',
+          jobTitle: 'Gründer SteuerBoard.pro',
+          url: 'https://steuerboard.pro/impressum',
         },
         publisher: {
           '@type': 'Organization',
@@ -96,6 +107,7 @@ export default function Layout({
   return (
     <>
       <JsonLd data={jsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       {children}
     </>
   )

@@ -19,6 +19,16 @@ export const metadata: Metadata = {
   }
 }
 
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://steuerboard.pro/' },
+    { '@type': 'ListItem', position: 2, name: 'Steuerwissen', item: 'https://steuerboard.pro/steuerwissen' },
+    { '@type': 'ListItem', position: 3, name: 'Betriebsausgaben-Checkliste', item: 'https://steuerboard.pro/steuerwissen/betriebsausgaben-checkliste' },
+  ],
+}
+
 export default function BetriebsausgabenChecklisteLayout({
   children,
 }: {
@@ -30,9 +40,10 @@ export default function BetriebsausgabenChecklisteLayout({
     "headline": "Betriebsausgaben Checkliste 2026 — Was Selbständige absetzen können",
     "description": "Vollständige Checkliste aller absetzbaren Betriebsausgaben für Selbständige in Österreich 2026. Arbeitsplatzpauschale, GWG-Grenze, Beispielrechnungen.",
     "author": {
-      "@type": "Organization",
-      "name": "SteuerBoard",
-      "url": "https://steuerboard.pro"
+      "@type": "Person",
+      "name": "Daniel Kofler",
+      "jobTitle": "Gründer SteuerBoard.pro",
+      "url": "https://steuerboard.pro/impressum"
     },
     "publisher": {
       "@type": "Organization",
@@ -99,6 +110,7 @@ export default function BetriebsausgabenChecklisteLayout({
   return (
     <>
       <JsonLd data={articleJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={faqJsonLd} />
       {children}
     </>

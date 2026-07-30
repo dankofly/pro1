@@ -20,9 +20,10 @@ const articleJsonLd = {
   headline: 'SVS-Nachzahlung vermeiden — So schützt du dich vor der Nachzahlungsfalle',
   image: 'https://steuerboard.pro/opengraph-image',
   author: {
-    '@type': 'Organization',
-    name: 'SteuerBoard.pro',
-    url: 'https://steuerboard.pro',
+    '@type': 'Person',
+    name: 'Daniel Kofler',
+    jobTitle: 'Gründer SteuerBoard.pro',
+    url: 'https://steuerboard.pro/impressum',
   },
   datePublished: '2026-03-18',
   dateModified: '2026-03-18',
@@ -83,10 +84,21 @@ const faqJsonLd = {
   ]
 }
 
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://steuerboard.pro/' },
+    { '@type': 'ListItem', position: 2, name: 'Steuerwissen', item: 'https://steuerboard.pro/steuerwissen' },
+    { '@type': 'ListItem', position: 3, name: 'SVS-Nachzahlung vermeiden', item: 'https://steuerboard.pro/steuerwissen/svs-nachzahlung-vermeiden' },
+  ],
+}
+
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <JsonLd data={articleJsonLd} />
+      <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={faqJsonLd} />
       {children}
     </>

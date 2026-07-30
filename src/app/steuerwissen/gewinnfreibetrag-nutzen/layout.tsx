@@ -16,6 +16,16 @@ export const metadata: Metadata = {
   }
 }
 
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://steuerboard.pro/' },
+    { '@type': 'ListItem', position: 2, name: 'Steuerwissen', item: 'https://steuerboard.pro/steuerwissen' },
+    { '@type': 'ListItem', position: 3, name: 'Gewinnfreibetrag nutzen', item: 'https://steuerboard.pro/steuerwissen/gewinnfreibetrag-nutzen' },
+  ],
+}
+
 export default function GewinnfreibetragLayout({
   children,
 }: {
@@ -28,9 +38,10 @@ export default function GewinnfreibetragLayout({
     description: 'Gewinnfreibetrag Österreich: Spare bis zu 4.950€ Steuern mit dem Grundfreibetrag nach § 10 EStG. Berechne deinen Gewinnfreibetrag und nutze alle Vorteile optimal.',
     image: 'https://steuerboard.pro/opengraph-image',
     author: {
-      '@type': 'Organization',
-      name: 'SteuerBoard.pro',
-      url: 'https://steuerboard.pro',
+      '@type': 'Person',
+      name: 'Daniel Kofler',
+      jobTitle: 'Gründer SteuerBoard.pro',
+      url: 'https://steuerboard.pro/impressum',
     },
     datePublished: '2026-03-18',
     dateModified: '2026-03-18',
@@ -84,6 +95,7 @@ export default function GewinnfreibetragLayout({
   return (
     <>
       <JsonLd data={articleStructuredData} />
+      <JsonLd data={breadcrumbJsonLd} />
       <JsonLd data={faqStructuredData} />
       {children}
     </>
