@@ -116,6 +116,7 @@ export function Pricing({
               <Switch
                 checked={!isMonthly}
                 onCheckedChange={handleToggle}
+                aria-label="Jährliche Abrechnung"
                 className="border-0 data-[state=checked]:bg-sb-accent data-[state=unchecked]:bg-white/20"
               />
             </Label>

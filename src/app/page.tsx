@@ -77,7 +77,7 @@ function Hero() {
                   <div
                     key={item}
                     className={`mb-0.5 rounded-lg px-3 py-2 text-[12.5px] ${
-                      i === 0 ? 'bg-white/[0.06] text-sb-text' : 'text-sb-dim'
+                      i === 0 ? 'bg-white/[0.06] text-sb-text' : 'text-sb-mut'
                     }`}
                   >
                     {item}
@@ -655,7 +655,7 @@ const FAQ_JSONLD = {
 /* ─── Page ─── */
 export default function LandingPage() {
   return (
-    <main className="bg-sb-bg pb-0 text-sb-text">
+    <main id="main-content" className="bg-sb-bg pb-0 text-sb-text">
       <RecoveryRedirect />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSONLD) }} />
       <Navbar />
