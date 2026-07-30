@@ -40,7 +40,7 @@ const config: Config = {
   				'line-strong': 'oklch(95% 0.005 75 / 0.16)',
   				text: 'oklch(95% 0.005 75)',
   				mut: 'oklch(68% 0.012 70)',
-  				dim: 'oklch(52% 0.012 70)',
+  				dim: 'oklch(62% 0.012 70)',
   				accent: 'oklch(72% 0.165 55)',
   				'accent-deep': 'oklch(63% 0.155 50)',
   				'accent-soft': 'oklch(72% 0.165 55 / 0.13)',
