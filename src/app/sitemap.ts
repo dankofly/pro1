@@ -81,6 +81,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/steuerwissen/steuerrechner-oesterreich-vergleich`,
+      lastModified: '2026-07-30',
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/steuerwissen/gmbh-vs-einzelunternehmen`,
       lastModified: lastUpdated,
       changeFrequency: 'monthly',

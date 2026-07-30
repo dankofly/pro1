@@ -18,9 +18,10 @@ export function RecoveryRedirect() {
 /* ─── Navbar ─── */
 const NAV_LINKS = [
   { href: '/rechner', label: 'Rechner', isAnchor: false },
-  { href: '#features', label: 'Features', isAnchor: true },
-  { href: '#pricing', label: 'Preise', isAnchor: true },
-  { href: '#faq', label: 'FAQ', isAnchor: true },
+  // /#anker statt #anker: funktioniert auch von Unterseiten aus
+  { href: '/#features', label: 'Features', isAnchor: true },
+  { href: '/#pricing', label: 'Preise', isAnchor: true },
+  { href: '/#faq', label: 'FAQ', isAnchor: true },
   { href: '/steuerwissen-hub', label: 'Steuerwissen', isAnchor: false },
 ]
 
@@ -60,9 +61,10 @@ export function Navbar() {
           <Link href="/auth/login" className="hidden text-[14.5px] text-sb-mut transition-colors duration-150 hover:text-sb-text sm:block">
             Anmelden
           </Link>
+          {/* Unter 420px kollidiert der CTA mit dem Wortmarken-Logo; das Burger-Menü deckt den Einstieg ab */}
           <Link
             href="/rechner"
-            className="inline-flex h-9 items-center rounded-[10px] bg-sb-accent px-4 font-heading text-sm font-semibold text-sb-accent-ink transition-colors duration-150 hover:bg-sb-accent-deep"
+            className="hidden min-[420px]:inline-flex h-9 items-center rounded-[10px] bg-sb-accent px-4 font-heading text-sm font-semibold text-sb-accent-ink transition-colors duration-150 hover:bg-sb-accent-deep"
           >
             Rechner öffnen
           </Link>
