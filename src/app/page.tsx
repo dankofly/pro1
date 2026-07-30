@@ -93,7 +93,7 @@ function Hero() {
                   { label: 'Nachbelastung', value: '1.724', tag: 'Rücklage: 144 €/Monat', tagClass: 'bg-sb-accent-soft text-sb-accent' },
                 ].map((kpi) => (
                   <div key={kpi.label} className="rounded-xl border border-sb-line bg-sb-card px-4 py-3.5">
-                    <p className="font-mono text-[10.5px] uppercase tracking-[0.1em] text-sb-dim">{kpi.label}</p>
+                    <p className="font-mono text-[10.5px] uppercase tracking-[0.1em] text-sb-mut">{kpi.label}</p>
                     <p className="mt-2 font-mono text-2xl font-semibold text-sb-text">
                       {kpi.value} <span className="text-[13px] font-normal text-sb-mut">EUR</span>
                     </p>
@@ -106,7 +106,7 @@ function Hero() {
               <div className="mt-3 rounded-xl border border-sb-line bg-sb-card p-4">
                 <div className="flex items-center justify-between">
                   <span className="text-[12.5px] font-medium text-sb-mut">Cashflow nach Steuern</span>
-                  <span className="flex gap-3.5 font-mono text-[10.5px] text-sb-dim">
+                  <span className="flex gap-3.5 font-mono text-[10.5px] text-sb-mut">
                     <span className="flex items-center gap-1.5">
                       <i className="inline-block h-0.5 w-2 bg-sb-green" /> Netto
                     </span>
@@ -146,7 +146,7 @@ function Hero() {
                   <circle cx="440" cy="58" r="3.5" fill="oklch(0.76 0.13 160)" />
                 </svg>
                 <div className="mt-2 flex items-center justify-between">
-                  <span className="font-mono text-[11px] uppercase text-sb-dim">Prognose auf Basis deiner Eingaben</span>
+                  <span className="font-mono text-[11px] uppercase text-sb-mut">Prognose auf Basis deiner Eingaben</span>
                   <Link href="/rechner" className={`${btnAccent} h-8 rounded-lg px-3.5 text-[12.5px]`}>
                     Rücklage planen
                   </Link>
@@ -264,7 +264,7 @@ function FeaturesSection() {
             <div className="flex h-full flex-col gap-4 rounded-2xl border border-sb-line bg-sb-raise p-4.5 sm:p-5">
               <div className="flex min-h-[190px] flex-col items-center justify-center gap-3 rounded-xl border border-sb-line bg-sb-deep p-4 text-center">
                 <div className="w-[82%] rounded-xl border border-sb-line bg-sb-card px-4 py-3.5">
-                  <p className="font-mono text-[10.5px] uppercase tracking-[0.1em] text-sb-dim">Dein Umsatz</p>
+                  <p className="font-mono text-[10.5px] uppercase tracking-[0.1em] text-sb-mut">Dein Umsatz</p>
                   <p className="mt-2 font-mono text-2xl font-semibold text-sb-text">
                     60.000 <span className="text-[13px] font-normal text-sb-mut">EUR</span>
                   </p>
@@ -293,17 +293,17 @@ function FeaturesSection() {
               <div className="flex min-h-[190px] flex-col justify-center gap-2.5 rounded-xl border border-sb-line bg-sb-deep p-4">
                 <div className="grid grid-cols-2 gap-2.5">
                   <div className="rounded-[9px] border border-sb-line bg-sb-card px-3.5 py-3">
-                    <p className="font-mono text-[10.5px] uppercase tracking-[0.1em] text-sb-dim">Anstellung (ASVG)</p>
+                    <p className="font-mono text-[10.5px] uppercase tracking-[0.1em] text-sb-mut">Anstellung (ASVG)</p>
                     <p className="mt-1.5 font-mono text-lg font-semibold text-sb-text">32.000 €</p>
                   </div>
                   <div className="rounded-[9px] border border-sb-line bg-sb-card px-3.5 py-3">
-                    <p className="font-mono text-[10.5px] uppercase tracking-[0.1em] text-sb-dim">Gewerbe (GSVG)</p>
+                    <p className="font-mono text-[10.5px] uppercase tracking-[0.1em] text-sb-mut">Gewerbe (GSVG)</p>
                     <p className="mt-1.5 font-mono text-lg font-semibold text-sb-text">24.000 €</p>
                   </div>
                 </div>
                 <div className="rounded-[9px] border border-sb-line bg-sb-card px-3.5 py-3">
                   <div className="flex items-center justify-between">
-                    <p className="font-mono text-[10.5px] uppercase tracking-[0.1em] text-sb-dim">Kombiniertes Netto</p>
+                    <p className="font-mono text-[10.5px] uppercase tracking-[0.1em] text-sb-mut">Kombiniertes Netto</p>
                     <span className="rounded-md bg-sb-green-soft px-2 py-0.5 font-mono text-[10.5px] text-sb-green">Differenzvorschreibung berücksichtigt</span>
                   </div>
                   <p className="mt-1.5 font-mono text-lg font-semibold text-sb-text">41.380 €</p>
@@ -330,7 +330,7 @@ function FeaturesSection() {
                   Bei 80.000 € Gewinn: <span className="font-mono text-sb-text">21.913 €</span> Einkommensteuer nach § 33 EStG,
                   Grenzsteuersatz <span className="font-mono text-sb-text">48 %</span>. Mit Gewinnfreibetrag reduzierbar.
                 </div>
-                <p className="mt-1 text-center font-mono text-[10.5px] uppercase tracking-[0.1em] text-sb-dim">
+                <p className="mt-1 text-center font-mono text-[10.5px] uppercase tracking-[0.1em] text-sb-mut">
                   ESt · KöSt · USt · Krypto · ImmoESt · Sachbezug · IFB
                 </p>
               </div>
