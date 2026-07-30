@@ -1,17 +1,22 @@
 import type { Metadata } from 'next'
-import { DM_Sans, DM_Mono } from 'next/font/google'
+import { Schibsted_Grotesk, Wix_Madefor_Text, Spline_Sans_Mono } from 'next/font/google'
 import { Toaster } from '@/components/ui/sonner'
 import { JsonLd } from '@/components/json-ld'
 import './globals.css'
 
-const dmSans = DM_Sans({
+const headingFont = Schibsted_Grotesk({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-heading',
+  display: 'swap',
+})
+
+const bodyFont = Wix_Madefor_Text({
   subsets: ['latin', 'latin-ext'],
   variable: '--font-sans',
   display: 'swap',
 })
 
-const dmMono = DM_Mono({
-  weight: ['400', '500'],
+const monoFont = Spline_Sans_Mono({
   subsets: ['latin', 'latin-ext'],
   variable: '--font-mono',
   display: 'swap',
@@ -74,7 +79,7 @@ export const metadata: Metadata = {
     google: 'eavZwmyiOqyF82f-KcVIpWQ0OH0b8-1UPYet0ulBTFY',
   },
   other: {
-    'theme-color': '#0f172a',
+    'theme-color': '#151210',
   },
 }
 
@@ -85,7 +90,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de-AT" style={{ colorScheme: 'dark' }}>
-      <body className={`${dmSans.variable} ${dmMono.variable} font-sans antialiased min-h-screen`}>
+      <body className={`${bodyFont.variable} ${headingFont.variable} ${monoFont.variable} font-sans antialiased min-h-screen`}>
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-primary focus:text-primary-foreground focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-medium">
           Zum Hauptinhalt springen
         </a>

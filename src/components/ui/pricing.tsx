@@ -1,12 +1,10 @@
 'use client'
 
-import { buttonVariants } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
-import { useMediaQuery } from '@/hooks/use-media-query'
 import { cn } from '@/lib/utils'
 import { motion } from 'motion/react'
-import { Check, ChevronDown, Crown, Star, X } from 'lucide-react'
+import { Check, ChevronDown, X } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
 import NumberFlow from '@number-flow/react'
@@ -39,13 +37,11 @@ interface PricingProps {
 
 function FeatureList({
   features,
-  isPopular,
   visibleCount,
   isExpanded,
   onToggle,
 }: {
   features: PricingFeature[]
-  isPopular: boolean
   visibleCount: number
   isExpanded: boolean
   onToggle: () => void
@@ -55,15 +51,15 @@ function FeatureList({
   const hiddenCount = features.length - visibleCount
 
   return (
-    <div className="space-y-3 mt-6 mb-8 flex-1">
+    <div className="mb-8 mt-6 flex-1 space-y-3">
       {visible.map((f, idx) => (
         <div key={idx} className="flex items-center gap-2.5 text-sm">
           {f.included ? (
-            <Check className={cn('h-4 w-4 shrink-0', isPopular ? 'text-amber-400' : 'text-emerald-400')} />
+            <Check className="h-4 w-4 shrink-0 text-sb-accent" />
           ) : (
             <X className="h-4 w-4 shrink-0 text-white/20" />
           )}
-          <span className={cn('text-left', f.included ? 'text-blue-100' : 'text-white/30')}>
+          <span className={cn('text-left', f.included ? 'text-sb-text' : 'text-white/30')}>
             {f.text}
           </span>
         </div>
@@ -71,7 +67,7 @@ function FeatureList({
       {hasMore && (
         <button
           onClick={onToggle}
-          className="flex items-center gap-1.5 text-xs font-medium text-blue-300/60 hover:text-blue-200 transition-colors pt-1 cursor-pointer"
+          className="flex cursor-pointer items-center gap-1.5 pt-1 text-xs font-medium text-sb-dim transition-colors hover:text-sb-mut"
         >
           <ChevronDown className={cn('h-3.5 w-3.5 transition-transform duration-200', isExpanded && 'rotate-180')} />
           {isExpanded ? 'Weniger anzeigen' : `+${hiddenCount} weitere Features`}
@@ -79,7 +75,7 @@ function FeatureList({
       )}
       <Link
         href="/features"
-        className="block text-xs font-medium text-emerald-400/70 hover:text-emerald-400 transition-colors pt-1"
+        className="block pt-1 text-xs font-medium text-sb-dim transition-colors hover:text-sb-mut"
       >
         Alle Features im Detail →
       </Link>
@@ -89,120 +85,78 @@ function FeatureList({
 
 export function Pricing({
   plans,
-  title = 'SteuerBoard kostet dich nichts – es spart dir Geld',
-  description = 'Voll absetzbar als Betriebsausgabe. Senkt deine Steuerlast.\nUnterm Strich ist SteuerBoard immer ein Gewinn.',
+  title = 'Preise',
+  description = '',
   visibleCount = 10,
 }: PricingProps) {
   const [isMonthly, setIsMonthly] = useState(false)
   const [expanded, setExpanded] = useState<Record<number, boolean>>({})
-  const isDesktop = useMediaQuery('(min-width: 768px)')
 
   const handleToggle = (checked: boolean) => {
     setIsMonthly(!checked)
   }
 
   return (
-    <section id="pricing" className="relative py-20 sm:py-28 bg-gradient-to-b from-slate-900 to-slate-950">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="text-center space-y-4 mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white font-heading">
-            {title}
-          </h2>
-          <p className="text-blue-200/60 text-lg whitespace-pre-line max-w-2xl mx-auto">
-            {description}
-          </p>
-        </div>
+    <section id="pricing" className="relative pt-24 sm:pt-28">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <p className="font-mono text-[12.5px] uppercase tracking-[0.14em] text-sb-dim">Preise</p>
+        <h2 className="mt-4 max-w-[26ch] font-heading text-[clamp(1.8rem,3.4vw,2.5rem)] font-bold leading-[1.12] tracking-[-0.022em] text-sb-text">
+          {title}
+        </h2>
+        {description && (
+          <p className="mt-4 max-w-[58ch] whitespace-pre-line text-sb-mut">{description}</p>
+        )}
 
-        <div className="flex flex-col items-center gap-3 mb-12">
-          <div className="flex items-center gap-3">
-            <span className={cn('text-sm font-medium transition-colors', isMonthly ? 'text-white' : 'text-blue-200/40')}>
-              Monatlich
-            </span>
-            <label className="relative inline-flex items-center cursor-pointer">
-              <Label>
-                <Switch
-                  checked={!isMonthly}
-                  onCheckedChange={handleToggle}
-                  className="data-[state=checked]:bg-emerald-500 data-[state=unchecked]:bg-white/20 border-0"
-                />
-              </Label>
-            </label>
-            <span className={cn('text-sm font-medium transition-colors', !isMonthly ? 'text-white' : 'text-blue-200/40')}>
-              Jährlich
-            </span>
-            {!isMonthly && (
-              <span className="ml-1 text-xs font-semibold text-emerald-400 bg-emerald-500/15 border border-emerald-500/25 rounded-full px-2.5 py-0.5">
-                Spare 20%
-              </span>
-            )}
-          </div>
+        <div className="mt-10 mb-10 flex items-center gap-3">
+          <span className={cn('text-sm font-medium transition-colors', isMonthly ? 'text-sb-text' : 'text-sb-dim')}>
+            Monatlich
+          </span>
+          <label className="relative inline-flex cursor-pointer items-center">
+            <Label>
+              <Switch
+                checked={!isMonthly}
+                onCheckedChange={handleToggle}
+                className="border-0 data-[state=checked]:bg-sb-accent data-[state=unchecked]:bg-white/20"
+              />
+            </Label>
+          </label>
+          <span className={cn('text-sm font-medium transition-colors', !isMonthly ? 'text-sb-text' : 'text-sb-dim')}>
+            Jährlich
+          </span>
           {!isMonthly && (
-            <div className="text-center space-y-1">
-              <p className="text-xs text-amber-300/80 font-medium">
-                Steuerlich absetzbar als Betriebsausgabe &ndash; senkt deine Steuerlast sofort
-              </p>
-              <p className="text-[11px] text-emerald-400/70 font-medium">
-                Eine SVS-Nachzahlung kostet &oslash; &euro;3.200 &ndash; SteuerBoard warnt dich rechtzeitig
-              </p>
-            </div>
+            <span className="ml-1 font-mono text-xs text-sb-mut">20 % günstiger</span>
           )}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {plans.map((plan, index) => {
             const displayPrice = isMonthly ? plan.price : plan.yearlyPrice
 
             return (
               <motion.div
                 key={index}
-                initial={{ y: 50, opacity: 0 }}
-                whileInView={
-                  isDesktop
-                    ? {
-                        y: plan.isPopular ? -20 : 0,
-                        opacity: 1,
-                        x: index === 2 ? -30 : index === 0 ? 30 : 0,
-                        scale: index === 0 || index === 2 ? 0.94 : 1.0,
-                      }
-                    : { y: 0, opacity: 1 }
-                }
+                initial={{ y: 24, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{
-                  duration: 1.6,
-                  type: 'spring',
-                  stiffness: 100,
-                  damping: 30,
-                  delay: 0.4,
-                  opacity: { duration: 0.5 },
-                }}
+                transition={{ duration: 0.5, ease: 'easeOut', delay: index * 0.08 }}
                 className={cn(
-                  'rounded-2xl border p-6 sm:p-8 text-center lg:flex lg:flex-col lg:justify-center relative backdrop-blur-sm',
+                  'relative flex flex-col rounded-2xl border p-6 sm:p-7',
                   plan.isPopular
-                    ? 'bg-white/10 border-amber-400/30 ring-2 ring-amber-400/20 z-10'
-                    : 'bg-white/[0.03] border-white/10 z-0',
-                  'flex flex-col',
-                  !plan.isPopular && 'mt-5 md:mt-0',
-                  index === 0 && 'origin-right',
-                  index === 2 && 'origin-left',
+                    ? 'border-sb-accent-deep bg-sb-raise'
+                    : 'border-sb-line bg-sb-raise'
                 )}
               >
                 {plan.isPopular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="inline-flex items-center bg-amber-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-lg">
-                      <Star className="h-3.5 w-3.5 fill-current mr-1" />
-                      Beliebtester Plan
-                    </span>
-                  </div>
+                  <span className="absolute -top-3 left-6 rounded-[7px] bg-sb-accent px-3 py-1 font-mono text-[10.5px] font-semibold uppercase tracking-[0.08em] text-sb-accent-ink">
+                    Voller Funktionsumfang
+                  </span>
                 )}
-                <div className="flex-1 flex flex-col">
-                  <p className="text-blue-200/60 text-sm">{plan.description}</p>
-                  <h3 className="text-xl font-bold text-white mt-1 flex items-center justify-center gap-2">
-                    {plan.isPopular && <Crown className="h-5 w-5 text-amber-400" />}
-                    {plan.name}
-                  </h3>
+                <div className="flex flex-1 flex-col">
+                  <h3 className="font-heading text-lg font-bold text-sb-text">{plan.name}</h3>
+                  <p className="mt-0.5 text-[13px] text-sb-dim">{plan.description}</p>
 
-                  <div className="mt-6 flex items-baseline justify-center gap-x-1">
-                    <span className="text-5xl font-extrabold text-white font-mono tracking-tight">
+                  <div className="mt-6 flex items-baseline gap-2">
+                    <span className="whitespace-nowrap font-mono text-[42px] font-semibold tracking-[-0.02em] text-sb-text">
                       <NumberFlow
                         value={displayPrice}
                         format={{
@@ -219,42 +173,27 @@ export function Pricing({
                         className="tabular-nums"
                       />
                     </span>
+                    <span className="text-[13px] text-sb-dim">
+                      {plan.isFree ? 'für immer' : isMonthly ? '/ Monat' : '/ Monat, jährlich verrechnet'}
+                    </span>
                   </div>
 
-                  <p className="text-xs text-blue-200/40 mt-1">
-                    {plan.isFree
-                      ? 'für immer'
-                      : isMonthly
-                        ? 'pro Monat'
-                        : `${plan.yearlyTotal} EUR/Jahr`}
-                  </p>
-
-                  {!isMonthly && !plan.isFree && (
-                    <div className="mt-3 space-y-2">
-                      <p className="text-xs text-blue-200/30 line-through">
-                        statt {(plan.price * 12).toFixed(0)} EUR/Jahr
-                      </p>
-                      <div className="space-y-1">
-                        <span className="inline-flex items-center text-[11px] font-semibold text-emerald-300 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-2.5 py-0.5">
-                          Absetzbar &rarr; effektiv nur {(displayPrice * 0.68).toFixed(2)} &euro;/Monat
-                        </span>
-                      </div>
-                      <p className="text-[10px] text-emerald-400/50 leading-tight">
-                        Senkt deine Steuerlast &ndash; unterm Strich ein Gewinn
-                      </p>
-                    </div>
-                  )}
-                  {isMonthly && !plan.isFree && (
-                    <div className="mt-3">
-                      <span className="inline-flex items-center text-[11px] font-semibold text-amber-300 bg-amber-400/10 border border-amber-400/20 rounded-full px-2.5 py-0.5">
-                        Absetzbar als Betriebsausgabe
-                      </span>
-                    </div>
+                  {!plan.isFree && (
+                    <p className="mt-2 text-[13px] text-sb-mut">
+                      {isMonthly ? (
+                        <>Monatlich kündbar. Absetzbar als Betriebsausgabe.</>
+                      ) : (
+                        <>
+                          {plan.yearlyTotal} € im Jahr, absetzbar. Effektiv{' '}
+                          <b className="font-semibold text-sb-text">{(displayPrice * 0.68).toFixed(2).replace('.', ',')} €/Monat</b>
+                          {' '}bei 32 % Grenzsteuersatz.
+                        </>
+                      )}
+                    </p>
                   )}
 
                   <FeatureList
                     features={plan.features}
-                    isPopular={plan.isPopular}
                     visibleCount={visibleCount}
                     isExpanded={!!expanded[index]}
                     onToggle={() => setExpanded((p) => ({ ...p, [index]: !p[index] }))}
@@ -263,16 +202,12 @@ export function Pricing({
                   <Link
                     href={plan.href}
                     className={cn(
-                      buttonVariants({ variant: 'outline' }),
-                      'group relative w-full gap-2 overflow-hidden text-base font-semibold tracking-tight cursor-pointer',
-                      'transform-gpu ring-offset-current transition-all duration-300 ease-out',
-                      'hover:ring-2 hover:ring-offset-1',
+                      'inline-flex h-11 w-full items-center justify-center rounded-[10px] font-heading text-[15px] font-semibold transition-colors duration-150',
                       plan.isPopular
-                        ? 'bg-amber-500 text-white border-amber-500 hover:bg-amber-600 hover:ring-amber-400 shadow-lg shadow-amber-500/25'
-                        : 'bg-white/10 text-white border-white/10 hover:bg-white/20 hover:ring-white/30',
+                        ? 'bg-sb-accent text-sb-accent-ink hover:bg-sb-accent-deep'
+                        : 'border border-sb-line-strong text-sb-text hover:border-white/30'
                     )}
                   >
-                    {plan.isPopular && <Crown className="h-4 w-4 mr-1.5" />}
                     {plan.buttonText}
                   </Link>
                 </div>
@@ -281,8 +216,9 @@ export function Pricing({
           })}
         </div>
 
-        <p className="text-center text-blue-200/30 text-xs mt-8">
-          Alle Preise inkl. USt. {isMonthly ? 'Monatlich kündbar.' : 'Jährlich im Voraus.'} Voll absetzbar als Betriebsausgabe &ndash; senkt deine Steuerlast. Sichere Zahlung via Stripe.
+        <p className="mt-6 text-xs text-sb-dim">
+          Alle Preise inkl. USt. {isMonthly ? 'Monatlich kündbar.' : 'Jahresbetrag im Voraus.'} Zahlung über Stripe.
+          Kündigung jederzeit im Stripe-Kundenportal.
         </p>
       </div>
     </section>

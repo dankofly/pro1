@@ -1,99 +1,114 @@
 import Link from 'next/link'
-import { Calculator } from 'lucide-react'
+
+const FOOTER_COLS: { title: string; links: { href: string; label: string }[] }[] = [
+  {
+    title: 'Rechner',
+    links: [
+      { href: '/rechner', label: 'Steuerrechner' },
+      { href: '/einkommensteuer', label: 'Einkommensteuer' },
+      { href: '/misch-einkommen', label: 'Mischeinkommen' },
+      { href: '/krypto-steuer', label: 'Krypto-Steuer' },
+      { href: '/sachbezug-rechner', label: 'Sachbezug' },
+      { href: '/investitionsfreibetrag', label: 'Investitionsfreibetrag' },
+      { href: '/bilanz', label: 'Bilanz' },
+    ],
+  },
+  {
+    title: 'Steuerwissen',
+    links: [
+      { href: '/steuerwissen-hub', label: 'Alle Artikel' },
+      { href: '/steuerwissen/svs-beitraege-senken', label: 'SVS-Beiträge senken' },
+      { href: '/steuerwissen/svs-nachzahlung-vermeiden', label: 'SVS-Nachzahlung vermeiden' },
+      { href: '/steuerwissen/steueroptimierung-selbststaendige', label: 'Steueroptimierung' },
+      { href: '/steuerwissen/gewinnfreibetrag-nutzen', label: 'Gewinnfreibetrag' },
+      { href: '/steuerwissen/kleinunternehmerregelung', label: 'Kleinunternehmerregelung' },
+      { href: '/steuerwissen/gmbh-vs-einzelunternehmen', label: 'GmbH vs. Einzelunternehmen' },
+    ],
+  },
+  {
+    title: 'Mehr Wissen',
+    links: [
+      { href: '/steuerwissen/nebenberuflich-selbstaendig', label: 'Nebenberuflich selbständig' },
+      { href: '/steuerwissen/krypto-steuer-oesterreich', label: 'Krypto-Steuer Österreich' },
+      { href: '/steuerwissen/pauschalierung-oesterreich', label: 'Pauschalierung' },
+      { href: '/steuerwissen/umsatzsteuer-selbstaendige', label: 'Umsatzsteuer' },
+      { href: '/steuerwissen/flexkapg-vs-gmbh', label: 'FlexKapG vs. GmbH' },
+      { href: '/steuerwissen/betriebsausgaben-checkliste', label: 'Betriebsausgaben' },
+      { href: '/steuerwissen/steuer-jahresplanung', label: 'Steuer-Jahresplanung' },
+      { href: '/steuerwissen/svs-nachzahlung-4-jahr', label: 'SVS im 4. Jahr' },
+      { href: '/steuerwissen/glossar', label: 'Steuer-Glossar' },
+    ],
+  },
+  {
+    title: 'Produkt',
+    links: [
+      { href: '/features', label: 'Features' },
+      { href: '/pricing', label: 'Preise' },
+      { href: '/faq', label: 'FAQ' },
+      { href: '/steuerberater', label: 'Steuerberater' },
+      { href: '/auth/login', label: 'Anmelden' },
+    ],
+  },
+]
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-slate-800/50 pt-16 pb-8" style={{ backgroundColor: 'hsl(var(--sidebar-background))' }}>
-      <div className="max-w-7xl mx-auto px-6 sm:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 mb-12">
-          {/* Rechner */}
-          <div>
-            <h3 className="text-sm font-semibold text-slate-200 mb-4">Rechner</h3>
-            <ul className="space-y-3">
-              <li><Link href="/rechner" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">Steuerrechner</Link></li>
-              <li><Link href="/einkommensteuer" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">Einkommensteuer</Link></li>
-              <li><Link href="/misch-einkommen" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">Mischeinkommen</Link></li>
-              <li><Link href="/krypto-steuer" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">Krypto-Steuer</Link></li>
-              <li><Link href="/sachbezug-rechner" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">Sachbezug</Link></li>
-              <li><Link href="/investitionsfreibetrag" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">Investitionsfreibetrag</Link></li>
-              <li><Link href="/bilanz" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">Bilanz</Link></li>
-            </ul>
-          </div>
-
-          {/* Steuerwissen */}
-          <div>
-            <h3 className="text-sm font-semibold text-slate-200 mb-4">Steuerwissen</h3>
-            <ul className="space-y-3">
-              <li><Link href="/steuerwissen-hub" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">Alle Artikel</Link></li>
-              <li><Link href="/steuerwissen/svs-beitraege-senken" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">SVS-Beiträge senken</Link></li>
-              <li><Link href="/steuerwissen/svs-nachzahlung-vermeiden" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">SVS-Nachzahlung vermeiden</Link></li>
-              <li><Link href="/steuerwissen/steueroptimierung-selbststaendige" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">Steueroptimierung</Link></li>
-              <li><Link href="/steuerwissen/gewinnfreibetrag-nutzen" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">Gewinnfreibetrag</Link></li>
-              <li><Link href="/steuerwissen/kleinunternehmerregelung" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">Kleinunternehmerregelung</Link></li>
-              <li><Link href="/steuerwissen/gmbh-vs-einzelunternehmen" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">GmbH vs. Einzelunternehmen</Link></li>
-            </ul>
-          </div>
-
-          {/* Mehr Wissen */}
-          <div>
-            <h3 className="text-sm font-semibold text-slate-200 mb-4">Mehr Wissen</h3>
-            <ul className="space-y-3">
-              <li><Link href="/steuerwissen/nebenberuflich-selbstaendig" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">Nebenberuflich selbständig</Link></li>
-              <li><Link href="/steuerwissen/krypto-steuer-oesterreich" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">Krypto-Steuer Österreich</Link></li>
-              <li><Link href="/steuerwissen/pauschalierung-oesterreich" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">Pauschalierung</Link></li>
-              <li><Link href="/steuerwissen/umsatzsteuer-selbstaendige" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">Umsatzsteuer</Link></li>
-              <li><Link href="/steuerwissen/flexkapg-vs-gmbh" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">FlexKapG vs. GmbH</Link></li>
-              <li><Link href="/steuerwissen/betriebsausgaben-checkliste" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">Betriebsausgaben</Link></li>
-              <li><Link href="/steuerwissen/steuer-jahresplanung" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">Steuer-Jahresplanung</Link></li>
-              <li><Link href="/steuerwissen/svs-nachzahlung-4-jahr" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">SVS im 4. Jahr</Link></li>
-              <li><Link href="/steuerwissen/glossar" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">Steuer-Glossar</Link></li>
-            </ul>
-          </div>
-
-          {/* Produkt */}
-          <div>
-            <h3 className="text-sm font-semibold text-slate-200 mb-4">Produkt</h3>
-            <ul className="space-y-3">
-              <li><Link href="/features" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">Features</Link></li>
-              <li><Link href="/pricing" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">Preise</Link></li>
-              <li><Link href="/faq" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">FAQ</Link></li>
-              <li><Link href="/steuerberater" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">Steuerberater</Link></li>
-              <li><Link href="/auth/login" className="text-slate-400 hover:text-white transition-colors duration-200 text-sm leading-relaxed">Anmelden</Link></li>
-            </ul>
-          </div>
+    <footer className="border-t border-sb-line bg-sb-deep pb-8 pt-16">
+      <div className="mx-auto max-w-6xl px-6 sm:px-8">
+        <div className="mb-12 grid grid-cols-2 gap-8 md:grid-cols-4 lg:gap-12">
+          {FOOTER_COLS.map((col) => (
+            <div key={col.title}>
+              <h3 className="mb-4 font-mono text-xs font-medium uppercase tracking-[0.1em] text-sb-dim">
+                {col.title}
+              </h3>
+              <ul className="space-y-3">
+                {col.links.map((l) => (
+                  <li key={l.href}>
+                    <Link
+                      href={l.href}
+                      className="text-sm leading-relaxed text-sb-mut transition-colors duration-200 hover:text-sb-text"
+                    >
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
         {/* Legal line */}
-        <p className="text-xs text-slate-500 text-center mb-8">
-          Alle Angaben ohne Gewähr. Kein Ersatz für professionelle Steuerberatung. Der Betreiber erbringt keine Steuerberatung im Sinne des WTBG.
+        <p className="mb-8 text-center text-xs text-sb-dim">
+          Alle Angaben ohne Gewähr. Kein Ersatz für professionelle Steuerberatung. Der Betreiber erbringt keine
+          Steuerberatung im Sinne des WTBG.
         </p>
 
         {/* Bottom bar */}
-        <div className="border-t border-slate-800/50 pt-8">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-3">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/20 border border-emerald-500/20">
-                <Calculator className="h-4 w-4 text-emerald-400" />
-              </div>
-              <span className="font-semibold text-white text-base">SteuerBoard.pro</span>
+        <div className="border-t border-sb-line pt-8">
+          <div className="flex flex-col items-center justify-between gap-6 lg:flex-row">
+            <div className="flex items-center gap-2.5">
+              <span className="grid h-7 w-7 place-items-center rounded-lg bg-sb-accent font-mono text-[13px] font-semibold text-sb-accent-ink">
+                SB
+              </span>
+              <span className="font-heading text-base font-semibold text-sb-text">SteuerBoard.pro</span>
             </div>
 
-            <div className="flex items-center gap-6 text-sm text-slate-400">
-              <Link href="/impressum" className="hover:text-white transition-colors duration-200">Impressum</Link>
-              <Link href="/datenschutz" className="hover:text-white transition-colors duration-200">Datenschutz</Link>
-              <Link href="/agb" className="hover:text-white transition-colors duration-200">AGB</Link>
+            <div className="flex items-center gap-6 text-sm text-sb-mut">
+              <Link href="/impressum" className="transition-colors duration-200 hover:text-sb-text">Impressum</Link>
+              <Link href="/datenschutz" className="transition-colors duration-200 hover:text-sb-text">Datenschutz</Link>
+              <Link href="/agb" className="transition-colors duration-200 hover:text-sb-text">AGB</Link>
             </div>
 
-            <div className="flex items-center gap-4 text-sm text-slate-500">
+            <div className="flex items-center gap-4 text-sm text-sb-dim">
               <span suppressHydrationWarning>
                 &copy; {new Date().getFullYear()} SteuerBoard.pro
               </span>
-              <span className="text-slate-600">·</span>
+              <span aria-hidden>·</span>
               <a
                 href="https://hypeakz.io"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-slate-500 hover:text-slate-300 transition-colors duration-200"
+                className="transition-colors duration-200 hover:text-sb-mut"
               >
                 App by Hypeakz.io
               </a>

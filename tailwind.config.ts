@@ -12,7 +12,7 @@ const config: Config = {
   	extend: {
   		fontFamily: {
   			sans: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],
-  			heading: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],
+  			heading: ['var(--font-heading)', ...defaultTheme.fontFamily.sans],
   			mono: ['var(--font-mono)', ...defaultTheme.fontFamily.mono],
   		},
   		boxShadow: {
@@ -31,6 +31,24 @@ const config: Config = {
   			'2xs': ['0.625rem', { lineHeight: '0.875rem' }],
   		},
   		colors: {
+  			sb: {
+  				bg: 'oklch(15.5% 0.006 60)',
+  				raise: 'oklch(18.5% 0.007 60)',
+  				deep: 'oklch(17.5% 0.007 60)',
+  				card: 'oklch(20.5% 0.008 60)',
+  				line: 'oklch(95% 0.005 75 / 0.09)',
+  				'line-strong': 'oklch(95% 0.005 75 / 0.16)',
+  				text: 'oklch(95% 0.005 75)',
+  				mut: 'oklch(68% 0.012 70)',
+  				dim: 'oklch(52% 0.012 70)',
+  				accent: 'oklch(72% 0.165 55)',
+  				'accent-deep': 'oklch(63% 0.155 50)',
+  				'accent-soft': 'oklch(72% 0.165 55 / 0.13)',
+  				'accent-ink': 'oklch(17% 0.04 55)',
+  				green: 'oklch(76% 0.13 160)',
+  				'green-soft': 'oklch(76% 0.13 160 / 0.12)',
+  				red: 'oklch(68% 0.14 25)',
+  			},
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			surface: 'hsl(var(--surface))',

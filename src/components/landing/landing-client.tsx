@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
-import { Calculator, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 
 /* ─── Recovery redirect interceptor ─── */
 export function RecoveryRedirect() {
@@ -18,22 +17,15 @@ export function RecoveryRedirect() {
 
 /* ─── Navbar ─── */
 const NAV_LINKS = [
-  { href: '#problem', label: 'Problem', isAnchor: true },
-  { href: '/features', label: 'Features', isAnchor: false },
+  { href: '/rechner', label: 'Rechner', isAnchor: false },
+  { href: '#features', label: 'Features', isAnchor: true },
   { href: '#pricing', label: 'Preise', isAnchor: true },
   { href: '#faq', label: 'FAQ', isAnchor: true },
   { href: '/steuerwissen-hub', label: 'Steuerwissen', isAnchor: false },
 ]
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-
-  useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', handler, { passive: true })
-    return () => window.removeEventListener('scroll', handler)
-  }, [])
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
@@ -41,41 +33,42 @@ export function Navbar() {
   }, [mobileOpen])
 
   return (
-    <nav
-      className={`fixed top-0 w-full z-50 transition-[background-color,border-color,box-shadow] duration-300 ${
-        scrolled || mobileOpen
-          ? 'bg-slate-900/90 backdrop-blur-xl border-b border-white/[0.06] shadow-elevation-3'
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-        <div className="flex items-center gap-8">
-          <div className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/20">
-              <Calculator className="h-4 w-4 text-emerald-400" />
-            </div>
-            <span className="font-bold text-white text-lg font-heading">SteuerBoard.pro</span>
-          </div>
-          <div className="hidden md:flex items-center gap-6 text-sm text-blue-200">
-            {NAV_LINKS.map((l) =>
-              l.isAnchor ? (
-                <a key={l.href} href={l.href} className="hover:text-white transition-colors duration-150">{l.label}</a>
-              ) : (
-                <Link key={l.href} href={l.href} className="hover:text-white transition-colors duration-150">{l.label}</Link>
-              )
-            )}
-          </div>
+    <nav className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6 sm:pt-5">
+      <div className="mx-auto flex max-w-6xl items-center justify-between rounded-[14px] border border-sb-line bg-[oklch(0.21_0.008_60/0.85)] py-2.5 pl-4 pr-3 backdrop-blur-md">
+        <Link href="/" className="flex items-center gap-2.5 font-heading text-[17px] font-bold text-sb-text">
+          <span className="grid h-7 w-7 place-items-center rounded-lg bg-sb-accent font-mono text-[13px] font-semibold text-sb-accent-ink">
+            SB
+          </span>
+          SteuerBoard
+        </Link>
+
+        <div className="hidden items-center gap-7 text-[14.5px] text-sb-mut md:flex">
+          {NAV_LINKS.map((l) =>
+            l.isAnchor ? (
+              <a key={l.href} href={l.href} className="transition-colors duration-150 hover:text-sb-text">
+                {l.label}
+              </a>
+            ) : (
+              <Link key={l.href} href={l.href} className="transition-colors duration-150 hover:text-sb-text">
+                {l.label}
+              </Link>
+            )
+          )}
         </div>
-        <div className="flex items-center gap-2 sm:gap-3">
-          <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex text-blue-200 hover:text-white hover:bg-white/10">
-            <Link href="/auth/login">Anmelden</Link>
-          </Button>
-          <Button asChild size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-elevation-2 shadow-emerald-500/25">
-            <Link href="/rechner">Jetzt berechnen</Link>
-          </Button>
+
+        <div className="flex items-center gap-4">
+          <Link href="/auth/login" className="hidden text-[14.5px] text-sb-mut transition-colors duration-150 hover:text-sb-text sm:block">
+            Anmelden
+          </Link>
+          <Link
+            href="/rechner"
+            className="inline-flex h-9 items-center rounded-[10px] bg-sb-accent px-4 font-heading text-sm font-semibold text-sb-accent-ink transition-colors duration-150 hover:bg-sb-accent-deep"
+          >
+            Rechner öffnen
+          </Link>
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden flex h-9 w-9 items-center justify-center rounded-lg text-white hover:bg-white/10 transition-colors duration-150 cursor-pointer"
+            className="grid h-9 w-9 cursor-pointer place-items-center rounded-lg text-sb-text transition-colors duration-150 hover:bg-white/10 md:hidden"
             aria-label={mobileOpen ? 'Menü schließen' : 'Menü öffnen'}
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -85,18 +78,18 @@ export function Navbar() {
 
       {/* Mobile menu */}
       <div
-        className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-300 ease-out ${
-          mobileOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+        className={`mx-auto max-w-6xl overflow-hidden transition-[max-height,opacity] duration-300 ease-out md:hidden ${
+          mobileOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <div className="bg-slate-900/95 backdrop-blur-xl border-t border-white/[0.04] px-4 pb-6 pt-2 space-y-1">
+        <div className="mt-2 space-y-1 rounded-[14px] border border-sb-line bg-[oklch(0.21_0.008_60/0.95)] px-3 py-3 backdrop-blur-md">
           {NAV_LINKS.map((l) =>
             l.isAnchor ? (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={() => setMobileOpen(false)}
-                className="block py-3 px-4 text-base text-blue-200 hover:text-white hover:bg-white/5 rounded-lg transition-colors duration-150"
+                className="block rounded-lg px-4 py-3 text-base text-sb-mut transition-colors duration-150 hover:bg-white/5 hover:text-sb-text"
               >
                 {l.label}
               </a>
@@ -105,17 +98,17 @@ export function Navbar() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setMobileOpen(false)}
-                className="block py-3 px-4 text-base text-blue-200 hover:text-white hover:bg-white/5 rounded-lg transition-colors duration-150"
+                className="block rounded-lg px-4 py-3 text-base text-sb-mut transition-colors duration-150 hover:bg-white/5 hover:text-sb-text"
               >
                 {l.label}
               </Link>
             )
           )}
-          <div className="pt-3 border-t border-white/[0.04]">
+          <div className="border-t border-sb-line pt-2">
             <Link
               href="/auth/login"
               onClick={() => setMobileOpen(false)}
-              className="block py-3 px-4 text-base text-blue-200 hover:text-white hover:bg-white/5 rounded-lg transition-colors duration-150"
+              className="block rounded-lg px-4 py-3 text-base text-sb-mut transition-colors duration-150 hover:bg-white/5 hover:text-sb-text"
             >
               Anmelden
             </Link>
