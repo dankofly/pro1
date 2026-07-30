@@ -722,7 +722,8 @@ export default function BetriebsausgabenCheckliste() {
                 <div>
                   <strong>4. Deadlines beachten</strong>
                   <p className="text-sm text-sb-mut">
-                    Einreichung bis 30. April des Folgejahres (bei Steuerberater bis 31. Juli).
+                    Einreichung bis 30. April des Folgejahres, via FinanzOnline bis 30. Juni
+                    (mit Steuerberater über die Quotenregelung deutlich länger).
                     Belege 7 Jahre aufbewahren!
                   </p>
                 </div>
