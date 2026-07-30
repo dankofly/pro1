@@ -59,7 +59,7 @@ export default function BetriebsausgabenCheckliste() {
             </h2>
             <p className="text-sb-text mb-0">
               <strong>Selbständige können in Österreich 2026 alle betrieblich veranlassten Ausgaben absetzen:</strong>
-              Arbeitsplatzpauschale (1.200 € oder 300 €), Büroausstattung, EDV-Kosten, Fahrzeugkosten (0,42 €/km),
+              Arbeitsplatzpauschale (1.200 € oder 300 €), Büroausstattung, EDV-Kosten, Fahrzeugkosten (0,50 €/km),
               Versicherungen, Weiterbildung, Steuerberatung und Marketing. Wichtig: klare Abgrenzung zu Privatausgaben
               und ordnungsgemäße Belegführung. GWG bis 1.000 € sind sofort absetzbar.
             </p>
@@ -207,7 +207,7 @@ export default function BetriebsausgabenCheckliste() {
                 <div className="flex items-start">
                   <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
-                    <strong>Amtliches Kilometergeld: 0,42 €/km</strong>
+                    <strong>Amtliches Kilometergeld: 0,50 €/km</strong>
                     <p className="text-sb-mut text-sm">Einfachste Variante für betriebliche Fahrten mit Privatfahrzeug</p>
                   </div>
                 </div>
@@ -624,7 +624,7 @@ export default function BetriebsausgabenCheckliste() {
                       <span>480 €</span>
                     </div>
                     <div className="flex justify-between">
-                      <span>Fahrzeugkosten (0,42€/km):</span>
+                      <span>Fahrzeugkosten (0,50€/km):</span>
                       <span>1.800 €</span>
                     </div>
                     <div className="flex justify-between">
@@ -714,7 +714,7 @@ export default function BetriebsausgabenCheckliste() {
                 <div>
                   <strong>3. Fahrtenbuch vs. Kilometergeld</strong>
                   <p className="text-sm text-sb-mut">
-                    Bei wenigen Fahrten: Kilometergeld (0,42 €/km). Bei viel Nutzung: Fahrtenbuch und
+                    Bei wenigen Fahrten: Kilometergeld (0,50 €/km). Bei viel Nutzung: Fahrtenbuch und
                     tatsächliche Kosten oft günstiger.
                   </p>
                 </div>
@@ -749,7 +749,7 @@ export default function BetriebsausgabenCheckliste() {
                 </h3>
                 <p>
                   Die wichtigsten Betriebsausgaben für Selbständige umfassen: Arbeitsplatzpauschale (1.200 € oder 300 €),
-                  Büroausstattung, EDV-Kosten, Fahrzeugkosten (0,42 €/km), Versicherungen, Weiterbildung, Steuerberatung
+                  Büroausstattung, EDV-Kosten, Fahrzeugkosten (0,50 €/km), Versicherungen, Weiterbildung, Steuerberatung
                   und Marketing. Diese können direkt von der Steuer abgesetzt werden.
                 </p>
               </div>

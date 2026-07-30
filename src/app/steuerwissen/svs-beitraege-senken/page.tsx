@@ -168,7 +168,7 @@ export default function SvsBeitraegeSenkenPage() {
                       <li>• Fortbildungskosten und Fachliteratur</li>
                       <li>• Geschäftsessen (50% absetzbar)</li>
                       <li>• Internet + Telefon (anteilig, z.B. 50%)</li>
-                      <li>• Reisekosten (Kilometergeld 0,42 €/km)</li>
+                      <li>• Reisekosten (Kilometergeld 0,50 €/km)</li>
                     </ul>
                   </div>
                   <div>

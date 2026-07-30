@@ -23,7 +23,7 @@ export const FIELD_DEFS = {
   wareneinkauf:
     'Kosten für Rohstoffe, Waren oder Material. Direkte Aufwände deiner Leistungserbringung.',
   reisekosten:
-    'Geschäftsreisen, Fahrtkosten und Diäten. Es gilt das amtliche Kilometergeld (0,42 EUR/km) oder Einzelbelege.',
+    'Geschäftsreisen, Fahrtkosten und Diäten. Es gilt das amtliche Kilometergeld (0,50 EUR/km) oder Einzelbelege.',
   arbeitsplatzpauschale:
     'Pauschalbeträge für dein Heimbüro: Klein (300 EUR/Jahr) wenn du auch einen anderen Arbeitsplatz hast, Groß (1.200 EUR/Jahr) bei ausschließlichem Heimbüro.',
   oepnvPauschale:

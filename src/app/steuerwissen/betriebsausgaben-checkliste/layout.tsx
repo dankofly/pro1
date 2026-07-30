@@ -77,7 +77,7 @@ export default function BetriebsausgabenChecklisteLayout({
         "name": "Was sind die wichtigsten Betriebsausgaben für Selbständige?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die wichtigsten Betriebsausgaben für Selbständige umfassen: Arbeitsplatzpauschale (1.200 € oder 300 €), Büroausstattung, EDV-Kosten, Fahrzeugkosten (0,42 €/km), Versicherungen, Weiterbildung, Steuerberatung und Marketing. Diese können direkt von der Steuer abgesetzt werden."
+          "text": "Die wichtigsten Betriebsausgaben für Selbständige umfassen: Arbeitsplatzpauschale (1.200 € oder 300 €), Büroausstattung, EDV-Kosten, Fahrzeugkosten (0,50 €/km), Versicherungen, Weiterbildung, Steuerberatung und Marketing. Diese können direkt von der Steuer abgesetzt werden."
         }
       },
       {
