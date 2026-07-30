@@ -28,10 +28,10 @@ export function InputSection({ gewinn, setGewinn, vorschreibung, setVorschreibun
     <div className="glass rounded-2xl p-5 sm:p-6">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
-        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900">
+        <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-sb-card">
           <Pencil className="h-4 w-4 text-white" />
         </div>
-        <h2 className="text-lg font-semibold tracking-tight text-slate-900 font-heading">
+        <h2 className="text-lg font-semibold tracking-tight text-sb-text font-heading">
           Deine Angaben
         </h2>
       </div>
@@ -40,7 +40,7 @@ export function InputSection({ gewinn, setGewinn, vorschreibung, setVorschreibun
         {/* Jahresgewinn */}
         <div className="space-y-4">
           <div className="flex flex-wrap items-baseline justify-between gap-2">
-            <Label htmlFor="gewinn" className="text-sm font-medium text-slate-700">
+            <Label htmlFor="gewinn" className="text-sm font-medium text-sb-mut">
               Voraussichtlicher Jahresgewinn
             </Label>
             <SvsTooltip term="Beitragsgrundlage" />
@@ -48,17 +48,17 @@ export function InputSection({ gewinn, setGewinn, vorschreibung, setVorschreibun
 
           <div className="flex items-baseline gap-3">
             <div className="relative max-w-[220px]">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-medium">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sb-mut text-sm font-medium">
                 EUR
               </span>
               <Input
                 id="gewinn"
                 value={gewinn.toLocaleString('de-AT')}
                 onChange={handleGewinnInput}
-                className="pl-14 text-right font-mono text-xl font-semibold tracking-tight h-12 rounded-xl border-slate-200 focus:border-slate-400 focus:ring-slate-400"
+                className="pl-14 text-right font-mono text-xl font-semibold tracking-tight h-12 rounded-xl border-sb-line focus:border-sb-line-strong focus:ring-sb-line-strong"
               />
             </div>
-            <span className="text-sm font-medium text-slate-400">/ Jahr</span>
+            <span className="text-sm font-medium text-sb-mut">/ Jahr</span>
           </div>
 
           <div className="pt-1">
@@ -71,7 +71,7 @@ export function InputSection({ gewinn, setGewinn, vorschreibung, setVorschreibun
               onChange={(e) => setGewinn(Number(e.target.value))}
               className="w-full"
             />
-            <div className="flex justify-between text-[11px] font-medium text-slate-400 mt-1.5">
+            <div className="flex justify-between text-[11px] font-medium text-sb-mut mt-1.5">
               <span>0</span>
               <span>50k</span>
               <span>100k</span>
@@ -81,12 +81,12 @@ export function InputSection({ gewinn, setGewinn, vorschreibung, setVorschreibun
         </div>
 
         {/* Divider */}
-        <div className="border-t border-slate-200/60" />
+        <div className="border-t border-sb-line" />
 
         {/* Monatliche Vorschreibung */}
         <div className="space-y-4">
           <div className="flex flex-wrap items-baseline justify-between gap-2">
-            <Label htmlFor="vorschreibung" className="text-sm font-medium text-slate-700">
+            <Label htmlFor="vorschreibung" className="text-sm font-medium text-sb-mut">
               Aktuelle monatliche SVS-Vorschreibung
             </Label>
             <SvsTooltip term="Vorläufige Beitragsgrundlage" />
@@ -94,7 +94,7 @@ export function InputSection({ gewinn, setGewinn, vorschreibung, setVorschreibun
 
           <div className="flex items-baseline gap-3">
             <div className="relative max-w-[220px]">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-medium">
+              <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sb-mut text-sm font-medium">
                 EUR
               </span>
               <Input
@@ -102,13 +102,13 @@ export function InputSection({ gewinn, setGewinn, vorschreibung, setVorschreibun
                 value={vorschreibung > 0 ? vorschreibung.toLocaleString('de-AT') : ''}
                 onChange={handleVorschreibungInput}
                 placeholder="0"
-                className="pl-14 text-right font-mono text-xl font-semibold tracking-tight h-12 rounded-xl border-slate-200 focus:border-slate-400 focus:ring-slate-400"
+                className="pl-14 text-right font-mono text-xl font-semibold tracking-tight h-12 rounded-xl border-sb-line focus:border-sb-line-strong focus:ring-sb-line-strong"
               />
             </div>
-            <span className="text-sm font-medium text-slate-400">/ Monat</span>
+            <span className="text-sm font-medium text-sb-mut">/ Monat</span>
           </div>
 
-          <p className="text-xs text-slate-400 leading-relaxed">
+          <p className="text-xs text-sb-mut leading-relaxed">
             Den Betrag findest du auf deiner SVS-Vorschreibung (Quartalsabrechnung / 3).
           </p>
         </div>

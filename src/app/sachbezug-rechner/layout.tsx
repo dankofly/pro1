@@ -28,7 +28,7 @@ export default function SachbezugLayout({ children }: { children: React.ReactNod
         description: 'Berechne Sachbezugswerte für Firmenwagen, Essensgutscheine und steuerfreie Mitarbeiter-Benefits in Österreich.',
         inLanguage: 'de-AT',
       }} />
-      {children}
+      <div className="sb-scope">{children}</div>
     </>
   )
 }

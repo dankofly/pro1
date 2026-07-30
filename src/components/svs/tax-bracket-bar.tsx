@@ -7,13 +7,13 @@ import { type TaxYear, YEAR_CONFIGS } from '@/lib/tax-constants'
 import { Percent } from 'lucide-react'
 
 const COLORS = [
-  'bg-emerald-400',
-  'bg-emerald-500',
-  'bg-amber-400',
-  'bg-amber-500',
-  'bg-orange-500',
-  'bg-red-400',
-  'bg-red-500',
+  'bg-sb-green',
+  'bg-sb-green-soft0',
+  'bg-sb-accent',
+  'bg-sb-accent-soft0',
+  'bg-sb-accent',
+  'bg-sb-red/80',
+  'bg-sb-red/100',
 ]
 
 const MAX = 150000
@@ -43,11 +43,11 @@ export function TaxBracketBar({ steuerpflichtig, year }: TaxBracketBarProps) {
   const currentRate = currentBracket?.rate ?? 0
 
   return (
-    <div className="rounded-xl border border-amber-200/50 dark:border-amber-800/30 bg-gradient-to-br from-amber-50/50 to-white dark:from-amber-950/20 dark:to-[hsl(var(--surface))] p-4 sm:p-5 shadow-sm">
+    <div className="rounded-xl border border-sb-accent/30 bg-gradient-to-br from-sb-accent/50 to-white(var(--surface))] p-4 sm:p-5 shadow-sm">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-2">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-500/15">
-            <Percent className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" aria-hidden="true" />
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-sb-accent-soft0/15">
+            <Percent className="h-3.5 w-3.5 text-sb-accent" aria-hidden="true" />
           </div>
           <span className="text-sm font-semibold text-foreground">Deine Steuerstufe</span>
         </div>

@@ -17,31 +17,31 @@ function getHealthStatus(nettoPct: number): HealthStatus {
 
 const healthConfig = {
   great: {
-    gradient: 'from-emerald-600 via-emerald-500 to-teal-500',
+    gradient: 'from-sb-green/10 via-sb-green/10 to-sb-green/10',
     glowColor: 'shadow-emerald-500/30',
     ringStroke: '#34d399',        // emerald-400
     ringTrack: 'rgba(52,211,153,0.15)',
     statusText: 'Optimale Steuerquote',
-    dotClass: 'bg-emerald-400',
-    orbColors: ['bg-teal-400/10', 'bg-emerald-300/10', 'bg-green-400/8'],
+    dotClass: 'bg-sb-green',
+    orbColors: ['bg-sb-green-soft', 'bg-sb-green-soft', 'bg-sb-green-soft'],
   },
   okay: {
-    gradient: 'from-blue-600 via-blue-500 to-indigo-500',
+    gradient: 'from-sb-accent/10 via-sb-accent/10 to-sb-accent/10',
     glowColor: 'shadow-blue-500/30',
     ringStroke: '#60a5fa',        // blue-400
     ringTrack: 'rgba(96,165,250,0.15)',
     statusText: 'Optimierungspotenzial vorhanden',
-    dotClass: 'bg-amber-400',
-    orbColors: ['bg-blue-400/10', 'bg-indigo-300/10', 'bg-sky-400/8'],
+    dotClass: 'bg-sb-accent',
+    orbColors: ['bg-sb-accent-soft', 'bg-sb-accent-soft', 'bg-sb-accent-soft'],
   },
   poor: {
-    gradient: 'from-red-600 via-orange-500 to-amber-500',
+    gradient: 'from-sb-red/10 via-sb-accent/10 to-sb-accent/10',
     glowColor: 'shadow-red-500/30',
     ringStroke: '#f87171',        // red-400
     ringTrack: 'rgba(248,113,113,0.15)',
     statusText: 'Dringend optimieren!',
-    dotClass: 'bg-red-500 animate-pulse',
-    orbColors: ['bg-red-400/10', 'bg-orange-300/10', 'bg-amber-400/8'],
+    dotClass: 'bg-sb-red/100 animate-pulse',
+    orbColors: ['bg-sb-red/80/10', 'bg-sb-accent-soft', 'bg-sb-accent-soft'],
   },
 } as const
 
@@ -281,21 +281,21 @@ export function KpiTilesStrip({ umsatz, aufwaende, gewinn, svs, est, netto }: Kp
         <KpiTile
           label="Gewinn"
           value={gewinn}
-          accentColor="bg-emerald-500/70"
+          accentColor="bg-sb-green-soft0/70"
           pctOfUmsatz={pct(gewinn)}
           maxPct={maxPct}
         />
         <KpiTile
           label="SVS"
           value={svs}
-          accentColor="bg-amber-500/50"
+          accentColor="bg-sb-accent-soft0/50"
           pctOfUmsatz={pct(svs)}
           maxPct={maxPct}
         />
         <KpiTile
           label="ESt"
           value={est}
-          accentColor="bg-amber-500/50"
+          accentColor="bg-sb-accent-soft0/50"
           pctOfUmsatz={pct(est)}
           maxPct={maxPct}
           className="col-span-2 sm:col-span-1"

@@ -1,32 +1,34 @@
 import Link from 'next/link'
+import { PublicShell } from '@/components/public-shell'
 import { Button } from '@/components/ui/button'
 import { ArticleFooter } from '@/components/steuerwissen/article-footer'
 import { SiteFooter } from '@/components/site-footer'
 
 export default function GmbHvsEinzelunternehmenPage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-300">
+    <PublicShell>
+    <div className="min-h-screen bg-sb-bg text-sb-mut">
       <div className="max-w-3xl mx-auto px-6 py-12">
         {/* Breadcrumb */}
         <nav className="mb-8 text-sm">
           <ol className="flex items-center space-x-2">
             <li>
-              <Link href="/steuerwissen" className="text-slate-400 hover:text-white transition-colors">
+              <Link href="/steuerwissen" className="text-sb-mut hover:text-sb-text transition-colors">
                 Steuerwissen
               </Link>
             </li>
-            <li className="text-slate-500">/</li>
-            <li className="text-white">GmbH vs. Einzelunternehmen</li>
+            <li className="text-sb-dim">/</li>
+            <li className="text-sb-text">GmbH vs. Einzelunternehmen</li>
           </ol>
         </nav>
 
         <article className="prose prose-invert prose-slate max-w-none">
           {/* Header */}
           <header className="mb-12">
-            <h1 className="text-4xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-4xl font-bold text-sb-text mb-6 leading-tight">
               GmbH oder Einzelunternehmen? — Der komplette Steuer-Vergleich für Österreich 2026
             </h1>
-            <p className="text-xl text-slate-300 leading-relaxed">
+            <p className="text-xl text-sb-mut leading-relaxed">
               Die Entscheidung zwischen GmbH und Einzelunternehmen ist eine der wichtigsten unternehmerischen Weichenstellungen.
               Ab welchem Gewinn macht der Wechsel von der Einzelunternehmung zur GmbH steuerlich Sinn?
               Hier der komplette Vergleich — mit konkreten Berechnungen, FlexKap-Option und Sozialversicherungs-Analyse.
@@ -34,74 +36,74 @@ export default function GmbHvsEinzelunternehmenPage() {
           </header>
 
           {/* AI Overview Box */}
-          <div className="bg-blue-900/30 border border-blue-700 rounded-lg p-6 mb-12">
-            <h2 className="text-lg font-semibold text-blue-300 mb-3">Kurzantwort</h2>
-            <p className="text-slate-300 mb-0">
-              Die GmbH wird ab ca. <strong className="text-white">60.000–80.000 € Jahresgewinn</strong> steuerlich interessant.
+          <div className="bg-sb-accent-soft border border-sb-accent/30 rounded-lg p-6 mb-12">
+            <h2 className="text-lg font-semibold text-sb-accent mb-3">Kurzantwort</h2>
+            <p className="text-sb-mut mb-0">
+              Die GmbH wird ab ca. <strong className="text-sb-text">60.000–80.000 € Jahresgewinn</strong> steuerlich interessant.
               Bei Vollausschüttung beträgt die GmbH-Gesamtbelastung ca. 44,2% (23% KöSt + 27,5% KESt auf den Rest),
               während das Einzelunternehmen ab 100.000 € Gewinn bereits über 48% ESt zahlt — plus ca. 27% SVS-Beiträge.
-              Seit 2024 bietet die <strong className="text-white">FlexKap</strong> eine schlankere Alternative zur klassischen GmbH.
+              Seit 2024 bietet die <strong className="text-sb-text">FlexKap</strong> eine schlankere Alternative zur klassischen GmbH.
             </p>
           </div>
 
           {/* Steuerliche Unterschiede */}
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">Steuerliche Unterschiede im Detail</h2>
+            <h2 className="text-3xl font-semibold text-sb-text mb-6">Steuerliche Unterschiede im Detail</h2>
 
             <div className="grid md:grid-cols-2 gap-8 mb-8">
-              <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
-                <h3 className="text-xl font-semibold text-white mb-4">Einzelunternehmen (EPU)</h3>
+              <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
+                <h3 className="text-xl font-semibold text-sb-text mb-4">Einzelunternehmen (EPU)</h3>
                 <ul className="space-y-3">
-                  <li><strong className="text-white">Einkommensteuer (ESt):</strong> Progressiv 0% bis 55% (§ 33 EStG)</li>
-                  <li><strong className="text-white">SVS-Beiträge:</strong> Ca. 26,83% auf Beitragsgrundlage (PV 18,50% + KV 6,80% + SV 1,53%)</li>
-                  <li><strong className="text-white">Mindest-SVS:</strong> Ca. 1.951 €/Jahr (2026)</li>
-                  <li><strong className="text-white">Höchst-SVS:</strong> Ca. 22.788 €/Jahr (2026)</li>
-                  <li><strong className="text-white">Buchführung:</strong> E/A-Rechnung bis 700.000 € Umsatz</li>
-                  <li><strong className="text-white">Gewinnentnahme:</strong> Jederzeit, steuerfrei</li>
+                  <li><strong className="text-sb-text">Einkommensteuer (ESt):</strong> Progressiv 0% bis 55% (§ 33 EStG)</li>
+                  <li><strong className="text-sb-text">SVS-Beiträge:</strong> Ca. 26,83% auf Beitragsgrundlage (PV 18,50% + KV 6,80% + SV 1,53%)</li>
+                  <li><strong className="text-sb-text">Mindest-SVS:</strong> Ca. 1.951 €/Jahr (2026)</li>
+                  <li><strong className="text-sb-text">Höchst-SVS:</strong> Ca. 22.788 €/Jahr (2026)</li>
+                  <li><strong className="text-sb-text">Buchführung:</strong> E/A-Rechnung bis 700.000 € Umsatz</li>
+                  <li><strong className="text-sb-text">Gewinnentnahme:</strong> Jederzeit, steuerfrei</li>
                 </ul>
               </div>
 
-              <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
-                <h3 className="text-xl font-semibold text-white mb-4">GmbH</h3>
+              <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
+                <h3 className="text-xl font-semibold text-sb-text mb-4">GmbH</h3>
                 <ul className="space-y-3">
-                  <li><strong className="text-white">Körperschaftsteuer (KöSt):</strong> 23% auf Gewinn (§ 22 KStG)</li>
-                  <li><strong className="text-white">KESt auf Ausschüttungen:</strong> 27,5% auf Brutto-Dividende</li>
-                  <li><strong className="text-white">ASVG-Beiträge (GF):</strong> Ca. 22,8% der Beitragsgrundlage (AG + AN)</li>
-                  <li><strong className="text-white">Mindest-KöSt:</strong> 500 €/Quartal = 2.000 €/Jahr</li>
-                  <li><strong className="text-white">Buchführung:</strong> Doppelte Buchführung verpflichtend</li>
-                  <li><strong className="text-white">Gewinnentnahme:</strong> Nur als Gehalt oder Gewinnausschüttung</li>
+                  <li><strong className="text-sb-text">Körperschaftsteuer (KöSt):</strong> 23% auf Gewinn (§ 22 KStG)</li>
+                  <li><strong className="text-sb-text">KESt auf Ausschüttungen:</strong> 27,5% auf Brutto-Dividende</li>
+                  <li><strong className="text-sb-text">ASVG-Beiträge (GF):</strong> Ca. 22,8% der Beitragsgrundlage (AG + AN)</li>
+                  <li><strong className="text-sb-text">Mindest-KöSt:</strong> 500 €/Quartal = 2.000 €/Jahr</li>
+                  <li><strong className="text-sb-text">Buchführung:</strong> Doppelte Buchführung verpflichtend</li>
+                  <li><strong className="text-sb-text">Gewinnentnahme:</strong> Nur als Gehalt oder Gewinnausschüttung</li>
                 </ul>
               </div>
             </div>
 
-            <div className="bg-slate-800 p-6 rounded-lg border-l-4 border-blue-500 mb-6">
-              <h4 className="text-lg font-semibold text-white mb-2">Effektive Gesamtbelastung bei Vollausschüttung</h4>
+            <div className="bg-white/[0.05] p-6 rounded-lg border-l-4 border-sb-accent/40 mb-6">
+              <h4 className="text-lg font-semibold text-sb-text mb-2">Effektive Gesamtbelastung bei Vollausschüttung</h4>
               <p className="mb-4">
-                <strong className="text-white">Einzelunternehmen:</strong> ESt (bis 55%) + SVS (~27%) = <span className="text-red-400 font-semibold">bis zu 75%+</span> bei hohen Gewinnen
+                <strong className="text-sb-text">Einzelunternehmen:</strong> ESt (bis 55%) + SVS (~27%) = <span className="text-sb-red font-semibold">bis zu 75%+</span> bei hohen Gewinnen
               </p>
               <p className="mb-0">
-                <strong className="text-white">GmbH:</strong> 23% KöSt + 27,5% KESt auf verbleibende 77% = <span className="text-green-400 font-semibold">ca. 44,2% Gesamtbelastung</span>
+                <strong className="text-sb-text">GmbH:</strong> 23% KöSt + 27,5% KESt auf verbleibende 77% = <span className="text-sb-green font-semibold">ca. 44,2% Gesamtbelastung</span>
               </p>
             </div>
 
-            <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
-              <h4 className="text-lg font-semibold text-white mb-3">Einkommensteuer-Tarif 2026 (§ 33 EStG)</h4>
+            <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
+              <h4 className="text-lg font-semibold text-sb-text mb-3">Einkommensteuer-Tarif 2026 (§ 33 EStG)</h4>
               <div className="overflow-x-auto">
-                <table className="w-full border border-slate-700 rounded-lg text-sm">
-                  <thead className="bg-slate-800">
+                <table className="w-full border border-sb-line rounded-lg text-sm">
+                  <thead className="bg-white/[0.05]">
                     <tr>
-                      <th className="p-3 text-left text-white border-r border-slate-700">Einkommensstufe</th>
-                      <th className="p-3 text-left text-white">Steuersatz</th>
+                      <th className="p-3 text-left text-sb-text border-r border-sb-line">Einkommensstufe</th>
+                      <th className="p-3 text-left text-sb-text">Steuersatz</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-t border-slate-700"><td className="p-3 border-r border-slate-700">0 – 12.816 €</td><td className="p-3">0%</td></tr>
-                    <tr className="border-t border-slate-700 bg-slate-900/50"><td className="p-3 border-r border-slate-700">12.816 – 20.818 €</td><td className="p-3">20%</td></tr>
-                    <tr className="border-t border-slate-700"><td className="p-3 border-r border-slate-700">20.818 – 34.513 €</td><td className="p-3">30%</td></tr>
-                    <tr className="border-t border-slate-700 bg-slate-900/50"><td className="p-3 border-r border-slate-700">34.513 – 66.612 €</td><td className="p-3">40%</td></tr>
-                    <tr className="border-t border-slate-700"><td className="p-3 border-r border-slate-700">66.612 – 99.266 €</td><td className="p-3">48%</td></tr>
-                    <tr className="border-t border-slate-700 bg-slate-900/50"><td className="p-3 border-r border-slate-700">99.266 – 1.000.000 €</td><td className="p-3">50%</td></tr>
-                    <tr className="border-t border-slate-700"><td className="p-3 border-r border-slate-700">Über 1.000.000 €</td><td className="p-3">55%</td></tr>
+                    <tr className="border-t border-sb-line"><td className="p-3 border-r border-sb-line">0 – 12.816 €</td><td className="p-3">0%</td></tr>
+                    <tr className="border-t border-sb-line bg-sb-deep"><td className="p-3 border-r border-sb-line">12.816 – 20.818 €</td><td className="p-3">20%</td></tr>
+                    <tr className="border-t border-sb-line"><td className="p-3 border-r border-sb-line">20.818 – 34.513 €</td><td className="p-3">30%</td></tr>
+                    <tr className="border-t border-sb-line bg-sb-deep"><td className="p-3 border-r border-sb-line">34.513 – 66.612 €</td><td className="p-3">40%</td></tr>
+                    <tr className="border-t border-sb-line"><td className="p-3 border-r border-sb-line">66.612 – 99.266 €</td><td className="p-3">48%</td></tr>
+                    <tr className="border-t border-sb-line bg-sb-deep"><td className="p-3 border-r border-sb-line">99.266 – 1.000.000 €</td><td className="p-3">50%</td></tr>
+                    <tr className="border-t border-sb-line"><td className="p-3 border-r border-sb-line">Über 1.000.000 €</td><td className="p-3">55%</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -110,64 +112,64 @@ export default function GmbHvsEinzelunternehmenPage() {
 
           {/* SVS vs ASVG */}
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">Sozialversicherung: SVS vs. ASVG</h2>
+            <h2 className="text-3xl font-semibold text-sb-text mb-6">Sozialversicherung: SVS vs. ASVG</h2>
 
             <p className="mb-6">
-              Ein oft unterschätzter Faktor bei der Rechtsformwahl ist die <strong className="text-white">Sozialversicherung</strong>.
+              Ein oft unterschätzter Faktor bei der Rechtsformwahl ist die <strong className="text-sb-text">Sozialversicherung</strong>.
               Als Einzelunternehmer zahlst du SVS-Beiträge (GSVG), als GmbH-Geschäftsführer ASVG-Beiträge auf dein Gehalt.
             </p>
 
             <div className="overflow-x-auto mb-6">
-              <table className="w-full border border-slate-700 rounded-lg">
-                <thead className="bg-slate-800">
+              <table className="w-full border border-sb-line rounded-lg">
+                <thead className="bg-white/[0.05]">
                   <tr>
-                    <th className="p-4 text-left text-white border-r border-slate-700">Kriterium</th>
-                    <th className="p-4 text-left text-white border-r border-slate-700">SVS (Einzelunternehmen)</th>
-                    <th className="p-4 text-left text-white">ASVG (GmbH-Geschäftsführer)</th>
+                    <th className="p-4 text-left text-sb-text border-r border-sb-line">Kriterium</th>
+                    <th className="p-4 text-left text-sb-text border-r border-sb-line">SVS (Einzelunternehmen)</th>
+                    <th className="p-4 text-left text-sb-text">ASVG (GmbH-Geschäftsführer)</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-t border-slate-700">
-                    <td className="p-4 border-r border-slate-700 font-medium text-white">Beitragssatz gesamt</td>
-                    <td className="p-4 border-r border-slate-700">~26,83% + UV pauschal</td>
+                  <tr className="border-t border-sb-line">
+                    <td className="p-4 border-r border-sb-line font-medium text-sb-text">Beitragssatz gesamt</td>
+                    <td className="p-4 border-r border-sb-line">~26,83% + UV pauschal</td>
                     <td className="p-4">~22,8% (AG + AN-Anteil auf Gehalt)</td>
                   </tr>
-                  <tr className="border-t border-slate-700 bg-slate-900/50">
-                    <td className="p-4 border-r border-slate-700 font-medium text-white">Beitragsgrundlage</td>
-                    <td className="p-4 border-r border-slate-700">Gewinn (rückwirkend, 3-Jahres-Verzögerung)</td>
+                  <tr className="border-t border-sb-line bg-sb-deep">
+                    <td className="p-4 border-r border-sb-line font-medium text-sb-text">Beitragsgrundlage</td>
+                    <td className="p-4 border-r border-sb-line">Gewinn (rückwirkend, 3-Jahres-Verzögerung)</td>
                     <td className="p-4">Laufendes Bruttogehalt</td>
                   </tr>
-                  <tr className="border-t border-slate-700">
-                    <td className="p-4 border-r border-slate-700 font-medium text-white">Nachzahlungsrisiko</td>
-                    <td className="p-4 border-r border-slate-700 text-red-400">Hoch — vorläufig vs. endgültig</td>
-                    <td className="p-4 text-green-400">Kein Nachzahlungsrisiko</td>
+                  <tr className="border-t border-sb-line">
+                    <td className="p-4 border-r border-sb-line font-medium text-sb-text">Nachzahlungsrisiko</td>
+                    <td className="p-4 border-r border-sb-line text-sb-red">Hoch — vorläufig vs. endgültig</td>
+                    <td className="p-4 text-sb-green">Kein Nachzahlungsrisiko</td>
                   </tr>
-                  <tr className="border-t border-slate-700 bg-slate-900/50">
-                    <td className="p-4 border-r border-slate-700 font-medium text-white">Höchstbeitragsgrundlage</td>
-                    <td className="p-4 border-r border-slate-700">84.840 €/Jahr (2026)</td>
+                  <tr className="border-t border-sb-line bg-sb-deep">
+                    <td className="p-4 border-r border-sb-line font-medium text-sb-text">Höchstbeitragsgrundlage</td>
+                    <td className="p-4 border-r border-sb-line">84.840 €/Jahr (2026)</td>
                     <td className="p-4">Laufend an Gehalt gekoppelt</td>
                   </tr>
-                  <tr className="border-t border-slate-700">
-                    <td className="p-4 border-r border-slate-700 font-medium text-white">Arbeitslosenversicherung</td>
-                    <td className="p-4 border-r border-slate-700 text-red-400">Nicht enthalten</td>
-                    <td className="p-4 text-green-400">Enthalten (3% AN + 3% AG)</td>
+                  <tr className="border-t border-sb-line">
+                    <td className="p-4 border-r border-sb-line font-medium text-sb-text">Arbeitslosenversicherung</td>
+                    <td className="p-4 border-r border-sb-line text-sb-red">Nicht enthalten</td>
+                    <td className="p-4 text-sb-green">Enthalten (3% AN + 3% AG)</td>
                   </tr>
-                  <tr className="border-t border-slate-700 bg-slate-900/50">
-                    <td className="p-4 border-r border-slate-700 font-medium text-white">Abfertigung</td>
-                    <td className="p-4 border-r border-slate-700">Selbständigenvorsorge (1,53%)</td>
+                  <tr className="border-t border-sb-line bg-sb-deep">
+                    <td className="p-4 border-r border-sb-line font-medium text-sb-text">Abfertigung</td>
+                    <td className="p-4 border-r border-sb-line">Selbständigenvorsorge (1,53%)</td>
                     <td className="p-4">Betriebliche Mitarbeitervorsorge (1,53%)</td>
                   </tr>
-                  <tr className="border-t border-slate-700">
-                    <td className="p-4 border-r border-slate-700 font-medium text-white">Krankengeld</td>
-                    <td className="p-4 border-r border-slate-700 text-red-400">Ab dem 43. Tag</td>
-                    <td className="p-4 text-green-400">Ab dem 4. Tag (Entgeltfortzahlung)</td>
+                  <tr className="border-t border-sb-line">
+                    <td className="p-4 border-r border-sb-line font-medium text-sb-text">Krankengeld</td>
+                    <td className="p-4 border-r border-sb-line text-sb-red">Ab dem 43. Tag</td>
+                    <td className="p-4 text-sb-green">Ab dem 4. Tag (Entgeltfortzahlung)</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <div className="bg-amber-900/20 p-6 rounded-lg border border-amber-700">
-              <p className="text-amber-200 mb-0">
+            <div className="bg-sb-accent-soft p-6 rounded-lg border border-sb-accent/30">
+              <p className="text-sb-mut mb-0">
                 <strong>SVS-Vorteil der GmbH:</strong> Als GmbH-Geschäftsführer mit &gt;25% Beteiligung bist du ASVG-pflichtversichert.
                 Du hast bessere Leistungen (Krankengeld, Arbeitslosenversicherung) und kein Nachzahlungsrisiko.
                 Die Beiträge werden direkt vom laufenden Gehalt berechnet — keine bösen Überraschungen 3 Jahre später.
@@ -177,78 +179,78 @@ export default function GmbHvsEinzelunternehmenPage() {
 
           {/* Break-Even Analyse */}
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">Break-Even-Analyse: Ab welchem Gewinn lohnt sich die GmbH?</h2>
+            <h2 className="text-3xl font-semibold text-sb-text mb-6">Break-Even-Analyse: Ab welchem Gewinn lohnt sich die GmbH?</h2>
 
             <p className="mb-6">
-              Der Break-Even-Punkt liegt typischerweise zwischen <strong className="text-white">60.000 und 80.000 Euro Jahresgewinn</strong>,
+              Der Break-Even-Punkt liegt typischerweise zwischen <strong className="text-sb-text">60.000 und 80.000 Euro Jahresgewinn</strong>,
               abhängig von der geplanten Ausschüttungspolitik und individuellen Faktoren.
             </p>
 
             <div className="overflow-x-auto mb-6">
-              <table className="w-full border border-slate-700 rounded-lg">
-                <thead className="bg-slate-800">
+              <table className="w-full border border-sb-line rounded-lg">
+                <thead className="bg-white/[0.05]">
                   <tr>
-                    <th className="p-4 text-left text-white border-r border-slate-700">Jahresgewinn</th>
-                    <th className="p-4 text-left text-white border-r border-slate-700">EPU (ESt + SVS)</th>
-                    <th className="p-4 text-left text-white border-r border-slate-700">GmbH (50% Ausschüttung)</th>
-                    <th className="p-4 text-left text-white border-r border-slate-700">GmbH (Thesaurierung)</th>
-                    <th className="p-4 text-left text-white">Vorteil GmbH</th>
+                    <th className="p-4 text-left text-sb-text border-r border-sb-line">Jahresgewinn</th>
+                    <th className="p-4 text-left text-sb-text border-r border-sb-line">EPU (ESt + SVS)</th>
+                    <th className="p-4 text-left text-sb-text border-r border-sb-line">GmbH (50% Ausschüttung)</th>
+                    <th className="p-4 text-left text-sb-text border-r border-sb-line">GmbH (Thesaurierung)</th>
+                    <th className="p-4 text-left text-sb-text">Vorteil GmbH</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="border-t border-slate-700">
-                    <td className="p-4 border-r border-slate-700 font-medium text-white">30.000 €</td>
-                    <td className="p-4 border-r border-slate-700">~12.100 €</td>
-                    <td className="p-4 border-r border-slate-700">~13.500 €</td>
-                    <td className="p-4 border-r border-slate-700">~8.900 €</td>
-                    <td className="p-4 text-red-400">−1.400 € (50% Aussch.)</td>
+                  <tr className="border-t border-sb-line">
+                    <td className="p-4 border-r border-sb-line font-medium text-sb-text">30.000 €</td>
+                    <td className="p-4 border-r border-sb-line">~12.100 €</td>
+                    <td className="p-4 border-r border-sb-line">~13.500 €</td>
+                    <td className="p-4 border-r border-sb-line">~8.900 €</td>
+                    <td className="p-4 text-sb-red">−1.400 € (50% Aussch.)</td>
                   </tr>
-                  <tr className="border-t border-slate-700 bg-slate-900/50">
-                    <td className="p-4 border-r border-slate-700 font-medium text-white">50.000 €</td>
-                    <td className="p-4 border-r border-slate-700">~22.300 €</td>
-                    <td className="p-4 border-r border-slate-700">~21.100 €</td>
-                    <td className="p-4 border-r border-slate-700">~13.500 €</td>
-                    <td className="p-4 text-green-400">+1.200 €</td>
+                  <tr className="border-t border-sb-line bg-sb-deep">
+                    <td className="p-4 border-r border-sb-line font-medium text-sb-text">50.000 €</td>
+                    <td className="p-4 border-r border-sb-line">~22.300 €</td>
+                    <td className="p-4 border-r border-sb-line">~21.100 €</td>
+                    <td className="p-4 border-r border-sb-line">~13.500 €</td>
+                    <td className="p-4 text-sb-green">+1.200 €</td>
                   </tr>
-                  <tr className="border-t border-slate-700">
-                    <td className="p-4 border-r border-slate-700 font-medium text-white">80.000 €</td>
-                    <td className="p-4 border-r border-slate-700">~38.400 €</td>
-                    <td className="p-4 border-r border-slate-700">~31.200 €</td>
-                    <td className="p-4 border-r border-slate-700">~20.400 €</td>
-                    <td className="p-4 text-green-400">+7.200 €</td>
+                  <tr className="border-t border-sb-line">
+                    <td className="p-4 border-r border-sb-line font-medium text-sb-text">80.000 €</td>
+                    <td className="p-4 border-r border-sb-line">~38.400 €</td>
+                    <td className="p-4 border-r border-sb-line">~31.200 €</td>
+                    <td className="p-4 border-r border-sb-line">~20.400 €</td>
+                    <td className="p-4 text-sb-green">+7.200 €</td>
                   </tr>
-                  <tr className="border-t border-slate-700 bg-slate-900/50">
-                    <td className="p-4 border-r border-slate-700 font-medium text-white">100.000 €</td>
-                    <td className="p-4 border-r border-slate-700">~49.500 €</td>
-                    <td className="p-4 border-r border-slate-700">~37.800 €</td>
-                    <td className="p-4 border-r border-slate-700">~25.000 €</td>
-                    <td className="p-4 text-green-400">+11.700 €</td>
+                  <tr className="border-t border-sb-line bg-sb-deep">
+                    <td className="p-4 border-r border-sb-line font-medium text-sb-text">100.000 €</td>
+                    <td className="p-4 border-r border-sb-line">~49.500 €</td>
+                    <td className="p-4 border-r border-sb-line">~37.800 €</td>
+                    <td className="p-4 border-r border-sb-line">~25.000 €</td>
+                    <td className="p-4 text-sb-green">+11.700 €</td>
                   </tr>
-                  <tr className="border-t border-slate-700">
-                    <td className="p-4 border-r border-slate-700 font-medium text-white">150.000 €</td>
-                    <td className="p-4 border-r border-slate-700">~76.000 €</td>
-                    <td className="p-4 border-r border-slate-700">~55.800 €</td>
-                    <td className="p-4 border-r border-slate-700">~37.500 €</td>
-                    <td className="p-4 text-green-400">+20.200 €</td>
+                  <tr className="border-t border-sb-line">
+                    <td className="p-4 border-r border-sb-line font-medium text-sb-text">150.000 €</td>
+                    <td className="p-4 border-r border-sb-line">~76.000 €</td>
+                    <td className="p-4 border-r border-sb-line">~55.800 €</td>
+                    <td className="p-4 border-r border-sb-line">~37.500 €</td>
+                    <td className="p-4 text-sb-green">+20.200 €</td>
                   </tr>
-                  <tr className="border-t border-slate-700 bg-slate-900/50">
-                    <td className="p-4 border-r border-slate-700 font-medium text-white">200.000 €</td>
-                    <td className="p-4 border-r border-slate-700">~101.000 €</td>
-                    <td className="p-4 border-r border-slate-700">~74.400 €</td>
-                    <td className="p-4 border-r border-slate-700">~50.000 €</td>
-                    <td className="p-4 text-green-400">+26.600 €</td>
+                  <tr className="border-t border-sb-line bg-sb-deep">
+                    <td className="p-4 border-r border-sb-line font-medium text-sb-text">200.000 €</td>
+                    <td className="p-4 border-r border-sb-line">~101.000 €</td>
+                    <td className="p-4 border-r border-sb-line">~74.400 €</td>
+                    <td className="p-4 border-r border-sb-line">~50.000 €</td>
+                    <td className="p-4 text-sb-green">+26.600 €</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <p className="text-sm text-slate-400 mb-6">
+            <p className="text-sm text-sb-mut mb-6">
               Annahmen: EPU = E/A-Rechnung, ledig, keine Kinder, SVS-Beiträge als Betriebsausgabe.
               GmbH = GF-Gehalt 3.000 €/Monat brutto, Rest als Ausschüttung. Laufende Mehrkosten GmbH ca. 8.000 €/Jahr.
             </p>
 
-            <div className="bg-amber-900/20 p-6 rounded-lg border border-amber-700">
-              <p className="text-amber-200 mb-0">
+            <div className="bg-sb-accent-soft p-6 rounded-lg border border-sb-accent/30">
+              <p className="text-sb-mut mb-0">
                 <strong>Wichtig — Thesaurierung:</strong> Wenn du Gewinne in der GmbH belässt (thesaurierst),
                 zahlst du nur 23% KöSt. Die KESt fällt erst bei Ausschüttung an. Bei Wachstumsunternehmen,
                 die Gewinne reinvestieren, ist die GmbH daher schon ab ca. 40.000 € Gewinn interessant.
@@ -258,60 +260,60 @@ export default function GmbHvsEinzelunternehmenPage() {
 
           {/* Rechenbeispiel detailliert */}
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">Konkretes Rechenbeispiel: 80.000 € Gewinn</h2>
+            <h2 className="text-3xl font-semibold text-sb-text mb-6">Konkretes Rechenbeispiel: 80.000 € Gewinn</h2>
 
             <div className="grid md:grid-cols-2 gap-8 mb-6">
-              <div className="bg-slate-900 p-6 rounded-lg border border-red-700/50">
-                <h3 className="text-xl font-semibold text-white mb-4">Einzelunternehmen</h3>
+              <div className="bg-sb-card p-6 rounded-lg border border-sb-red/30">
+                <h3 className="text-xl font-semibold text-sb-text mb-4">Einzelunternehmen</h3>
                 <div className="space-y-2 text-sm">
-                  <div className="flex justify-between"><span>Jahresgewinn</span><span className="text-white">80.000 €</span></div>
-                  <div className="flex justify-between"><span>– SVS-Beiträge (~26,83%)</span><span className="text-red-400">−21.464 €</span></div>
-                  <div className="flex justify-between"><span>= Steuerpflichtiger Gewinn</span><span className="text-white">58.536 €</span></div>
-                  <div className="flex justify-between"><span>– Gewinnfreibetrag (§ 10)</span><span className="text-green-400">−4.950 €</span></div>
-                  <div className="flex justify-between"><span>= Zu versteuerndes Einkommen</span><span className="text-white">53.586 €</span></div>
-                  <div className="flex justify-between border-t border-slate-700 pt-2"><span>Einkommensteuer</span><span className="text-red-400">−13.448 €</span></div>
-                  <div className="flex justify-between border-t border-slate-700 pt-2 font-semibold">
-                    <span className="text-white">Gesamtbelastung (ESt + SVS)</span>
-                    <span className="text-red-400">34.912 €</span>
+                  <div className="flex justify-between"><span>Jahresgewinn</span><span className="text-sb-text">80.000 €</span></div>
+                  <div className="flex justify-between"><span>– SVS-Beiträge (~26,83%)</span><span className="text-sb-red">−21.464 €</span></div>
+                  <div className="flex justify-between"><span>= Steuerpflichtiger Gewinn</span><span className="text-sb-text">58.536 €</span></div>
+                  <div className="flex justify-between"><span>– Gewinnfreibetrag (§ 10)</span><span className="text-sb-green">−4.950 €</span></div>
+                  <div className="flex justify-between"><span>= Zu versteuerndes Einkommen</span><span className="text-sb-text">53.586 €</span></div>
+                  <div className="flex justify-between border-t border-sb-line pt-2"><span>Einkommensteuer</span><span className="text-sb-red">−13.448 €</span></div>
+                  <div className="flex justify-between border-t border-sb-line pt-2 font-semibold">
+                    <span className="text-sb-text">Gesamtbelastung (ESt + SVS)</span>
+                    <span className="text-sb-red">34.912 €</span>
                   </div>
                   <div className="flex justify-between font-semibold">
-                    <span className="text-white">Netto</span>
-                    <span className="text-green-400">45.088 €</span>
+                    <span className="text-sb-text">Netto</span>
+                    <span className="text-sb-green">45.088 €</span>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-slate-900 p-6 rounded-lg border border-green-700/50">
-                <h3 className="text-xl font-semibold text-white mb-4">GmbH (50% Ausschüttung)</h3>
+              <div className="bg-sb-card p-6 rounded-lg border border-sb-green/30">
+                <h3 className="text-xl font-semibold text-sb-text mb-4">GmbH (50% Ausschüttung)</h3>
                 <div className="space-y-2 text-sm">
-                  <div className="flex justify-between"><span>Jahresgewinn</span><span className="text-white">80.000 €</span></div>
+                  <div className="flex justify-between"><span>Jahresgewinn</span><span className="text-sb-text">80.000 €</span></div>
                   <div className="flex justify-between"><span>– GF-Gehalt (brutto, 14×)</span><span>−42.000 €</span></div>
                   <div className="flex justify-between"><span>– AG-SV-Beiträge (~21%)</span><span>−8.820 €</span></div>
                   <div className="flex justify-between"><span>– Laufende Mehrkosten</span><span>−8.000 €</span></div>
-                  <div className="flex justify-between"><span>= GmbH-Gewinn vor KöSt</span><span className="text-white">21.180 €</span></div>
-                  <div className="flex justify-between"><span>– KöSt (23%)</span><span className="text-red-400">−4.871 €</span></div>
-                  <div className="flex justify-between"><span>= Gewinn nach KöSt</span><span className="text-white">16.309 €</span></div>
-                  <div className="flex justify-between"><span>Ausschüttung (50%)</span><span className="text-white">8.155 €</span></div>
-                  <div className="flex justify-between"><span>– KESt (27,5%)</span><span className="text-red-400">−2.243 €</span></div>
-                  <div className="flex justify-between border-t border-slate-700 pt-2 font-semibold">
-                    <span className="text-white">GF-Gehalt netto (ca.)</span>
-                    <span className="text-green-400">~28.800 €</span>
+                  <div className="flex justify-between"><span>= GmbH-Gewinn vor KöSt</span><span className="text-sb-text">21.180 €</span></div>
+                  <div className="flex justify-between"><span>– KöSt (23%)</span><span className="text-sb-red">−4.871 €</span></div>
+                  <div className="flex justify-between"><span>= Gewinn nach KöSt</span><span className="text-sb-text">16.309 €</span></div>
+                  <div className="flex justify-between"><span>Ausschüttung (50%)</span><span className="text-sb-text">8.155 €</span></div>
+                  <div className="flex justify-between"><span>– KESt (27,5%)</span><span className="text-sb-red">−2.243 €</span></div>
+                  <div className="flex justify-between border-t border-sb-line pt-2 font-semibold">
+                    <span className="text-sb-text">GF-Gehalt netto (ca.)</span>
+                    <span className="text-sb-green">~28.800 €</span>
                   </div>
                   <div className="flex justify-between font-semibold">
-                    <span className="text-white">+ Ausschüttung netto</span>
-                    <span className="text-green-400">+5.912 €</span>
+                    <span className="text-sb-text">+ Ausschüttung netto</span>
+                    <span className="text-sb-green">+5.912 €</span>
                   </div>
                   <div className="flex justify-between font-semibold">
-                    <span className="text-white">= Gesamt netto</span>
-                    <span className="text-green-400">~34.712 €</span>
+                    <span className="text-sb-text">= Gesamt netto</span>
+                    <span className="text-sb-green">~34.712 €</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-slate-800 p-6 rounded-lg border-l-4 border-blue-500">
+            <div className="bg-white/[0.05] p-6 rounded-lg border-l-4 border-sb-accent/40">
               <p className="mb-0">
-                <strong className="text-white">Fazit des Rechenbeispiels:</strong> Bei 80.000 € Gewinn und 50% Ausschüttung
+                <strong className="text-sb-text">Fazit des Rechenbeispiels:</strong> Bei 80.000 € Gewinn und 50% Ausschüttung
                 ist das EPU-Netto (~45.088 €) noch höher als das GmbH-Netto (~34.712 €) — aber: in der GmbH bleiben
                 zusätzlich ~8.155 € thesauriert. Die GmbH lohnt sich hier vor allem, wenn du Gewinne reinvestierst
                 und von der niedrigeren KöSt (23% statt bis zu 48% ESt) profitierst.
@@ -321,39 +323,39 @@ export default function GmbHvsEinzelunternehmenPage() {
 
           {/* FlexKap */}
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">FlexKap — Die neue Alternative seit 2024</h2>
+            <h2 className="text-3xl font-semibold text-sb-text mb-6">FlexKap — Die neue Alternative seit 2024</h2>
 
             <p className="mb-6">
-              Seit 1. Jänner 2024 gibt es die <strong className="text-white">Flexible Kapitalgesellschaft (FlexKap)</strong> —
+              Seit 1. Jänner 2024 gibt es die <strong className="text-sb-text">Flexible Kapitalgesellschaft (FlexKap)</strong> —
               eine neue Rechtsform, die Vorteile der GmbH mit mehr Flexibilität verbindet.
             </p>
 
-            <div className="bg-slate-900 p-6 rounded-lg border border-slate-700 mb-6">
-              <h3 className="text-xl font-semibold text-white mb-4">FlexKap im Überblick</h3>
+            <div className="bg-sb-card p-6 rounded-lg border border-sb-line mb-6">
+              <h3 className="text-xl font-semibold text-sb-text mb-4">FlexKap im Überblick</h3>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="text-lg font-medium text-green-400 mb-3">Vorteile gegenüber GmbH</h4>
+                  <h4 className="text-lg font-medium text-sb-green mb-3">Vorteile gegenüber GmbH</h4>
                   <ul className="space-y-2">
-                    <li><strong className="text-white">Mindestkapital:</strong> 10.000 € (statt 35.000 €)</li>
-                    <li><strong className="text-white">Unternehmenswert-Anteile:</strong> Mitarbeiterbeteiligung ohne Notar</li>
-                    <li><strong className="text-white">Flexiblere Satzung:</strong> Mehr Gestaltungsspielraum</li>
-                    <li><strong className="text-white">Einfachere Anteilsübertragung:</strong> Kein Notariatsakt nötig</li>
+                    <li><strong className="text-sb-text">Mindestkapital:</strong> 10.000 € (statt 35.000 €)</li>
+                    <li><strong className="text-sb-text">Unternehmenswert-Anteile:</strong> Mitarbeiterbeteiligung ohne Notar</li>
+                    <li><strong className="text-sb-text">Flexiblere Satzung:</strong> Mehr Gestaltungsspielraum</li>
+                    <li><strong className="text-sb-text">Einfachere Anteilsübertragung:</strong> Kein Notariatsakt nötig</li>
                   </ul>
                 </div>
                 <div>
-                  <h4 className="text-lg font-medium text-slate-300 mb-3">Steuerlich identisch</h4>
+                  <h4 className="text-lg font-medium text-sb-mut mb-3">Steuerlich identisch</h4>
                   <ul className="space-y-2">
-                    <li><strong className="text-white">KöSt:</strong> 23% (wie GmbH)</li>
-                    <li><strong className="text-white">KESt:</strong> 27,5% auf Ausschüttungen</li>
-                    <li><strong className="text-white">ASVG:</strong> Gleiche SV-Pflicht für GF</li>
-                    <li><strong className="text-white">Bilanzierung:</strong> Doppelte Buchführung</li>
+                    <li><strong className="text-sb-text">KöSt:</strong> 23% (wie GmbH)</li>
+                    <li><strong className="text-sb-text">KESt:</strong> 27,5% auf Ausschüttungen</li>
+                    <li><strong className="text-sb-text">ASVG:</strong> Gleiche SV-Pflicht für GF</li>
+                    <li><strong className="text-sb-text">Bilanzierung:</strong> Doppelte Buchführung</li>
                   </ul>
                 </div>
               </div>
             </div>
 
-            <div className="bg-blue-900/30 p-6 rounded-lg border border-blue-700">
-              <p className="text-blue-200 mb-0">
+            <div className="bg-sb-accent-soft p-6 rounded-lg border border-sb-accent/30">
+              <p className="text-sb-mut mb-0">
                 <strong>Empfehlung:</strong> Für Neugründungen ist die FlexKap oft die bessere Wahl als die klassische GmbH.
                 Geringeres Stammkapital (10.000 € statt 35.000 €), gleiche steuerliche Behandlung,
                 und mehr Flexibilität bei der Gesellschafterstruktur. Besonders für Startups und
@@ -364,15 +366,15 @@ export default function GmbHvsEinzelunternehmenPage() {
 
           {/* Vor- und Nachteile */}
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">Vor- und Nachteile im Überblick</h2>
+            <h2 className="text-3xl font-semibold text-sb-text mb-6">Vor- und Nachteile im Überblick</h2>
 
             <div className="grid md:grid-cols-2 gap-8">
               {/* GmbH */}
               <div>
-                <h3 className="text-xl font-semibold text-white mb-4">GmbH / FlexKap</h3>
+                <h3 className="text-xl font-semibold text-sb-text mb-4">GmbH / FlexKap</h3>
 
                 <div className="mb-6">
-                  <h4 className="text-lg font-medium text-green-400 mb-3">Vorteile</h4>
+                  <h4 className="text-lg font-medium text-sb-green mb-3">Vorteile</h4>
                   <ul className="space-y-2">
                     <li>Haftungsbeschränkung auf Stammkapital</li>
                     <li>Steueroptimierung ab ca. 60.000 € Gewinn</li>
@@ -386,7 +388,7 @@ export default function GmbHvsEinzelunternehmenPage() {
                 </div>
 
                 <div>
-                  <h4 className="text-lg font-medium text-red-400 mb-3">Nachteile</h4>
+                  <h4 className="text-lg font-medium text-sb-red mb-3">Nachteile</h4>
                   <ul className="space-y-2">
                     <li>Mindestkapital: 35.000 € (GmbH) / 10.000 € (FlexKap)</li>
                     <li>Gründungskosten: Notar, Firmenbuch (2.000–5.000 €)</li>
@@ -401,10 +403,10 @@ export default function GmbHvsEinzelunternehmenPage() {
 
               {/* Einzelunternehmen */}
               <div>
-                <h3 className="text-xl font-semibold text-white mb-4">Einzelunternehmen</h3>
+                <h3 className="text-xl font-semibold text-sb-text mb-4">Einzelunternehmen</h3>
 
                 <div className="mb-6">
-                  <h4 className="text-lg font-medium text-green-400 mb-3">Vorteile</h4>
+                  <h4 className="text-lg font-medium text-sb-green mb-3">Vorteile</h4>
                   <ul className="space-y-2">
                     <li>Einfache und schnelle Gründung (ab 1 Tag)</li>
                     <li>Geringe Gründungskosten (Gewerbeanmeldung ~30 €)</li>
@@ -418,7 +420,7 @@ export default function GmbHvsEinzelunternehmenPage() {
                 </div>
 
                 <div>
-                  <h4 className="text-lg font-medium text-red-400 mb-3">Nachteile</h4>
+                  <h4 className="text-lg font-medium text-sb-red mb-3">Nachteile</h4>
                   <ul className="space-y-2">
                     <li>Unbeschränkte persönliche Haftung</li>
                     <li>Progressiver Steuersatz bis 55% ESt</li>
@@ -435,41 +437,41 @@ export default function GmbHvsEinzelunternehmenPage() {
 
           {/* Gründungskosten */}
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">Gründungskosten und laufende Kosten</h2>
+            <h2 className="text-3xl font-semibold text-sb-text mb-6">Gründungskosten und laufende Kosten</h2>
 
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
-                <h3 className="text-lg font-semibold text-white mb-4">Einzelunternehmen</h3>
+              <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
+                <h3 className="text-lg font-semibold text-sb-text mb-4">Einzelunternehmen</h3>
                 <ul className="space-y-2 text-sm">
-                  <li><strong className="text-white">Gewerbeanmeldung:</strong> ~30 €</li>
-                  <li><strong className="text-white">WKO-Beitrag:</strong> ~100 €/Jahr</li>
-                  <li><strong className="text-white">Steuerberatung (E/A):</strong> ~1.000–3.000 €/Jahr</li>
-                  <li className="pt-2 border-t border-slate-700"><strong className="text-white">Gründung:</strong> ~30–100 €</li>
-                  <li><strong className="text-white">Laufend:</strong> ~1.100–3.100 €/Jahr</li>
+                  <li><strong className="text-sb-text">Gewerbeanmeldung:</strong> ~30 €</li>
+                  <li><strong className="text-sb-text">WKO-Beitrag:</strong> ~100 €/Jahr</li>
+                  <li><strong className="text-sb-text">Steuerberatung (E/A):</strong> ~1.000–3.000 €/Jahr</li>
+                  <li className="pt-2 border-t border-sb-line"><strong className="text-sb-text">Gründung:</strong> ~30–100 €</li>
+                  <li><strong className="text-sb-text">Laufend:</strong> ~1.100–3.100 €/Jahr</li>
                 </ul>
               </div>
 
-              <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
-                <h3 className="text-lg font-semibold text-white mb-4">GmbH (klassisch)</h3>
+              <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
+                <h3 className="text-lg font-semibold text-sb-text mb-4">GmbH (klassisch)</h3>
                 <ul className="space-y-2 text-sm">
-                  <li><strong className="text-white">Stammkapital:</strong> 35.000 €</li>
-                  <li><strong className="text-white">Notar + Firmenbuch:</strong> ~2.000–3.500 €</li>
-                  <li><strong className="text-white">Bilanzierung:</strong> ~3.000–8.000 €/Jahr</li>
-                  <li><strong className="text-white">Mindest-KöSt:</strong> 2.000 €/Jahr</li>
-                  <li className="pt-2 border-t border-slate-700"><strong className="text-white">Gründung:</strong> ~37.000–40.000 €</li>
-                  <li><strong className="text-white">Laufend:</strong> ~6.000–16.000 €/Jahr</li>
+                  <li><strong className="text-sb-text">Stammkapital:</strong> 35.000 €</li>
+                  <li><strong className="text-sb-text">Notar + Firmenbuch:</strong> ~2.000–3.500 €</li>
+                  <li><strong className="text-sb-text">Bilanzierung:</strong> ~3.000–8.000 €/Jahr</li>
+                  <li><strong className="text-sb-text">Mindest-KöSt:</strong> 2.000 €/Jahr</li>
+                  <li className="pt-2 border-t border-sb-line"><strong className="text-sb-text">Gründung:</strong> ~37.000–40.000 €</li>
+                  <li><strong className="text-sb-text">Laufend:</strong> ~6.000–16.000 €/Jahr</li>
                 </ul>
               </div>
 
-              <div className="bg-slate-900 p-6 rounded-lg border border-blue-700/50">
-                <h3 className="text-lg font-semibold text-blue-300 mb-4">FlexKap (neu)</h3>
+              <div className="bg-sb-card p-6 rounded-lg border border-sb-accent/30">
+                <h3 className="text-lg font-semibold text-sb-accent mb-4">FlexKap (neu)</h3>
                 <ul className="space-y-2 text-sm">
-                  <li><strong className="text-white">Stammkapital:</strong> 10.000 €</li>
-                  <li><strong className="text-white">Notar + Firmenbuch:</strong> ~1.500–3.000 €</li>
-                  <li><strong className="text-white">Bilanzierung:</strong> ~3.000–8.000 €/Jahr</li>
-                  <li><strong className="text-white">Mindest-KöSt:</strong> 2.000 €/Jahr</li>
-                  <li className="pt-2 border-t border-slate-700"><strong className="text-white">Gründung:</strong> ~12.000–14.000 €</li>
-                  <li><strong className="text-white">Laufend:</strong> ~6.000–16.000 €/Jahr</li>
+                  <li><strong className="text-sb-text">Stammkapital:</strong> 10.000 €</li>
+                  <li><strong className="text-sb-text">Notar + Firmenbuch:</strong> ~1.500–3.000 €</li>
+                  <li><strong className="text-sb-text">Bilanzierung:</strong> ~3.000–8.000 €/Jahr</li>
+                  <li><strong className="text-sb-text">Mindest-KöSt:</strong> 2.000 €/Jahr</li>
+                  <li className="pt-2 border-t border-sb-line"><strong className="text-sb-text">Gründung:</strong> ~12.000–14.000 €</li>
+                  <li><strong className="text-sb-text">Laufend:</strong> ~6.000–16.000 €/Jahr</li>
                 </ul>
               </div>
             </div>
@@ -477,29 +479,29 @@ export default function GmbHvsEinzelunternehmenPage() {
 
           {/* Wann wechseln */}
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">Wann vom EPU zur GmbH/FlexKap wechseln?</h2>
+            <h2 className="text-3xl font-semibold text-sb-text mb-6">Wann vom EPU zur GmbH/FlexKap wechseln?</h2>
 
             <div className="space-y-6">
-              <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
-                <h3 className="text-lg font-semibold text-green-400 mb-3">GmbH lohnt sich, wenn:</h3>
+              <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
+                <h3 className="text-lg font-semibold text-sb-green mb-3">GmbH lohnt sich, wenn:</h3>
                 <ul className="space-y-2">
-                  <li><strong className="text-white">Dauerhaft über 60.000–80.000 € Gewinn</strong> — nicht nur einmalig</li>
-                  <li><strong className="text-white">Haftungsrisiken bestehen</strong> — z.B. bei Beratung, IT-Projekten, Bau</li>
-                  <li><strong className="text-white">Gewinne reinvestiert werden</strong> — Thesaurierung spart 23% statt bis zu 55%</li>
-                  <li><strong className="text-white">Mitarbeiterbeteiligung geplant</strong> — FlexKap: Unternehmenswert-Anteile</li>
-                  <li><strong className="text-white">Unternehmensverkauf angestrebt</strong> — GmbH-Anteile leichter verkaufbar</li>
-                  <li><strong className="text-white">Bessere SV-Leistungen gewünscht</strong> — ASVG statt SVS</li>
+                  <li><strong className="text-sb-text">Dauerhaft über 60.000–80.000 € Gewinn</strong> — nicht nur einmalig</li>
+                  <li><strong className="text-sb-text">Haftungsrisiken bestehen</strong> — z.B. bei Beratung, IT-Projekten, Bau</li>
+                  <li><strong className="text-sb-text">Gewinne reinvestiert werden</strong> — Thesaurierung spart 23% statt bis zu 55%</li>
+                  <li><strong className="text-sb-text">Mitarbeiterbeteiligung geplant</strong> — FlexKap: Unternehmenswert-Anteile</li>
+                  <li><strong className="text-sb-text">Unternehmensverkauf angestrebt</strong> — GmbH-Anteile leichter verkaufbar</li>
+                  <li><strong className="text-sb-text">Bessere SV-Leistungen gewünscht</strong> — ASVG statt SVS</li>
                 </ul>
               </div>
 
-              <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
-                <h3 className="text-lg font-semibold text-red-400 mb-3">EPU bleibt besser, wenn:</h3>
+              <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
+                <h3 className="text-lg font-semibold text-sb-red mb-3">EPU bleibt besser, wenn:</h3>
                 <ul className="space-y-2">
-                  <li><strong className="text-white">Gewinn unter 50.000 €</strong> — GmbH-Kosten übersteigen den Steuervorteil</li>
-                  <li><strong className="text-white">Schwankende Umsätze</strong> — Mindest-KöSt auch bei Verlust</li>
-                  <li><strong className="text-white">Pauschalierung genutzt wird</strong> — oft effektiver als GmbH bei kleinen Gewinnen</li>
-                  <li><strong className="text-white">Einfachheit wichtig ist</strong> — weniger Bürokratie, E/A-Rechnung</li>
-                  <li><strong className="text-white">Gewinne vollständig entnommen werden</strong> — EPU-Entnahme steuerfrei</li>
+                  <li><strong className="text-sb-text">Gewinn unter 50.000 €</strong> — GmbH-Kosten übersteigen den Steuervorteil</li>
+                  <li><strong className="text-sb-text">Schwankende Umsätze</strong> — Mindest-KöSt auch bei Verlust</li>
+                  <li><strong className="text-sb-text">Pauschalierung genutzt wird</strong> — oft effektiver als GmbH bei kleinen Gewinnen</li>
+                  <li><strong className="text-sb-text">Einfachheit wichtig ist</strong> — weniger Bürokratie, E/A-Rechnung</li>
+                  <li><strong className="text-sb-text">Gewinne vollständig entnommen werden</strong> — EPU-Entnahme steuerfrei</li>
                 </ul>
               </div>
             </div>
@@ -507,37 +509,37 @@ export default function GmbHvsEinzelunternehmenPage() {
 
           {/* Checkliste Umwandlung */}
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">Checkliste: Umwandlung EPU → GmbH</h2>
+            <h2 className="text-3xl font-semibold text-sb-text mb-6">Checkliste: Umwandlung EPU → GmbH</h2>
 
-            <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
+            <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
               <ol className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <span className="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold shrink-0">1</span>
-                  <div><strong className="text-white">Steuerberater konsultieren</strong> — individuelle Berechnung mit konkreten Zahlen</div>
+                  <span className="bg-sb-accent text-sb-accent-ink rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold shrink-0">1</span>
+                  <div><strong className="text-sb-text">Steuerberater konsultieren</strong> — individuelle Berechnung mit konkreten Zahlen</div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold shrink-0">2</span>
-                  <div><strong className="text-white">Gesellschaftsvertrag erstellen</strong> — Notar oder Rechtsanwalt (bei FlexKap einfacher)</div>
+                  <span className="bg-sb-accent text-sb-accent-ink rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold shrink-0">2</span>
+                  <div><strong className="text-sb-text">Gesellschaftsvertrag erstellen</strong> — Notar oder Rechtsanwalt (bei FlexKap einfacher)</div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold shrink-0">3</span>
-                  <div><strong className="text-white">Stammkapital einzahlen</strong> — 35.000 € (GmbH) oder 10.000 € (FlexKap) auf Geschäftskonto</div>
+                  <span className="bg-sb-accent text-sb-accent-ink rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold shrink-0">3</span>
+                  <div><strong className="text-sb-text">Stammkapital einzahlen</strong> — 35.000 € (GmbH) oder 10.000 € (FlexKap) auf Geschäftskonto</div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold shrink-0">4</span>
-                  <div><strong className="text-white">Firmenbucheintragung</strong> — Antrag beim zuständigen Firmenbuchgericht</div>
+                  <span className="bg-sb-accent text-sb-accent-ink rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold shrink-0">4</span>
+                  <div><strong className="text-sb-text">Firmenbucheintragung</strong> — Antrag beim zuständigen Firmenbuchgericht</div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold shrink-0">5</span>
-                  <div><strong className="text-white">Einbringung prüfen</strong> — Art. III UmgrStG: steuerneutrale Einbringung des EPU möglich</div>
+                  <span className="bg-sb-accent text-sb-accent-ink rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold shrink-0">5</span>
+                  <div><strong className="text-sb-text">Einbringung prüfen</strong> — Art. III UmgrStG: steuerneutrale Einbringung des EPU möglich</div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold shrink-0">6</span>
-                  <div><strong className="text-white">SVS → ASVG Wechsel</strong> — Abmeldung SVS, Anmeldung ASVG als GF mit &gt;25% Beteiligung</div>
+                  <span className="bg-sb-accent text-sb-accent-ink rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold shrink-0">6</span>
+                  <div><strong className="text-sb-text">SVS → ASVG Wechsel</strong> — Abmeldung SVS, Anmeldung ASVG als GF mit &gt;25% Beteiligung</div>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold shrink-0">7</span>
-                  <div><strong className="text-white">Verträge und Lizenzen</strong> — Verträge auf die neue Gesellschaft übertragen</div>
+                  <span className="bg-sb-accent text-sb-accent-ink rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold shrink-0">7</span>
+                  <div><strong className="text-sb-text">Verträge und Lizenzen</strong> — Verträge auf die neue Gesellschaft übertragen</div>
                 </li>
               </ol>
             </div>
@@ -545,15 +547,15 @@ export default function GmbHvsEinzelunternehmenPage() {
 
           {/* CTA */}
           <section className="mb-12 text-center">
-            <div className="bg-gradient-to-r from-blue-900/50 to-purple-900/50 p-8 rounded-lg border border-blue-700">
-              <h3 className="text-2xl font-semibold text-white mb-4">
+            <div className="bg-sb-accent-soft p-8 rounded-lg border border-sb-accent/30">
+              <h3 className="text-2xl font-semibold text-sb-text mb-4">
                 Berechne deinen persönlichen Break-Even-Punkt
               </h3>
-              <p className="text-slate-300 mb-6">
+              <p className="text-sb-mut mb-6">
                 Nutze unseren kostenlosen Rechner für eine individuelle Analyse deiner Situation.
               </p>
               <Button asChild>
-                <Link href="/rechner" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+                <Link href="/rechner" className="bg-sb-accent hover:bg-sb-accent-deep text-sb-accent-ink px-8 py-3 rounded-lg font-semibold transition-colors">
                   Zum Steuer-Rechner
                 </Link>
               </Button>
@@ -562,11 +564,11 @@ export default function GmbHvsEinzelunternehmenPage() {
 
           {/* FAQ */}
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold text-white mb-6">Häufige Fragen (FAQ)</h2>
+            <h2 className="text-3xl font-semibold text-sb-text mb-6">Häufige Fragen (FAQ)</h2>
 
             <div className="space-y-6">
-              <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
-                <h3 className="text-lg font-semibold text-white mb-2">Kann ich mein EPU steuerfrei in eine GmbH einbringen?</h3>
+              <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
+                <h3 className="text-lg font-semibold text-sb-text mb-2">Kann ich mein EPU steuerfrei in eine GmbH einbringen?</h3>
                 <p className="mb-0">
                   Ja, nach Art. III UmgrStG (Umgründungssteuergesetz) ist eine steuerneutrale Einbringung möglich.
                   Dabei werden alle Wirtschaftsgüter des EPU zu Buchwerten in die GmbH übertragen — ohne Aufdeckung stiller Reserven.
@@ -574,8 +576,8 @@ export default function GmbHvsEinzelunternehmenPage() {
                 </p>
               </div>
 
-              <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
-                <h3 className="text-lg font-semibold text-white mb-2">Was ist die Mindest-KöSt und muss ich sie auch bei Verlust zahlen?</h3>
+              <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
+                <h3 className="text-lg font-semibold text-sb-text mb-2">Was ist die Mindest-KöSt und muss ich sie auch bei Verlust zahlen?</h3>
                 <p className="mb-0">
                   Ja, die Mindest-KöSt beträgt 500 €/Quartal (= 2.000 €/Jahr) und ist auch bei Verlust zu zahlen.
                   Sie wird aber auf die tatsächliche KöSt-Schuld der Folgejahre angerechnet. Bei der FlexKap gelten
@@ -583,8 +585,8 @@ export default function GmbHvsEinzelunternehmenPage() {
                 </p>
               </div>
 
-              <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
-                <h3 className="text-lg font-semibold text-white mb-2">Was ist der Unterschied zwischen GmbH und FlexKap?</h3>
+              <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
+                <h3 className="text-lg font-semibold text-sb-text mb-2">Was ist der Unterschied zwischen GmbH und FlexKap?</h3>
                 <p className="mb-0">
                   Die FlexKap (seit 2024) ist steuerlich identisch zur GmbH (23% KöSt, 27,5% KESt).
                   Vorteile: Niedrigeres Mindestkapital (10.000 € statt 35.000 €), Unternehmenswert-Anteile
@@ -593,16 +595,16 @@ export default function GmbHvsEinzelunternehmenPage() {
                 </p>
               </div>
 
-              <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
-                <h3 className="text-lg font-semibold text-white mb-2">Wie hoch ist der KöSt-Satz in Österreich 2026?</h3>
+              <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
+                <h3 className="text-lg font-semibold text-sb-text mb-2">Wie hoch ist der KöSt-Satz in Österreich 2026?</h3>
                 <p className="mb-0">
-                  Der Körperschaftsteuersatz beträgt seit 2024 <strong className="text-white">23%</strong> (§ 22 Abs. 1 KStG).
+                  Der Körperschaftsteuersatz beträgt seit 2024 <strong className="text-sb-text">23%</strong> (§ 22 Abs. 1 KStG).
                   Er wurde schrittweise von 25% (bis 2022) über 24% (2023) auf 23% (ab 2024) gesenkt.
                 </p>
               </div>
 
-              <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
-                <h3 className="text-lg font-semibold text-white mb-2">Kann ich als GmbH-Geschäftsführer den Gewinnfreibetrag nutzen?</h3>
+              <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
+                <h3 className="text-lg font-semibold text-sb-text mb-2">Kann ich als GmbH-Geschäftsführer den Gewinnfreibetrag nutzen?</h3>
                 <p className="mb-0">
                   Nein. Der Gewinnfreibetrag (§ 10 EStG) gilt nur für natürliche Personen mit Einkünften
                   aus selbständiger Arbeit oder Gewerbebetrieb. Als GmbH-Geschäftsführer beziehst du ein Gehalt
@@ -611,8 +613,8 @@ export default function GmbHvsEinzelunternehmenPage() {
                 </p>
               </div>
 
-              <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
-                <h3 className="text-lg font-semibold text-white mb-2">Gibt es eine Ein-Personen-GmbH?</h3>
+              <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
+                <h3 className="text-lg font-semibold text-sb-text mb-2">Gibt es eine Ein-Personen-GmbH?</h3>
                 <p className="mb-0">
                   Ja, eine GmbH kann von einer einzelnen Person gegründet werden (Ein-Personen-GmbH).
                   Du bist dann gleichzeitig alleiniger Gesellschafter und Geschäftsführer. Das gleiche gilt
@@ -624,17 +626,17 @@ export default function GmbHvsEinzelunternehmenPage() {
 
           {/* Fazit */}
           <section className="mb-8">
-            <h2 className="text-3xl font-semibold text-white mb-6">Fazit: Wann lohnt sich die GmbH?</h2>
-            <div className="bg-slate-800 p-6 rounded-lg border-l-4 border-green-500">
+            <h2 className="text-3xl font-semibold text-sb-text mb-6">Fazit: Wann lohnt sich die GmbH?</h2>
+            <div className="bg-white/[0.05] p-6 rounded-lg border-l-4 border-sb-green/40">
               <ul className="space-y-3">
-                <li><strong className="text-white">Ab 60.000–80.000 € Jahresgewinn:</strong> GmbH wird steuerlich interessant (bei Vollausschüttung)</li>
-                <li><strong className="text-white">Ab 40.000 € bei Thesaurierung:</strong> Nur 23% KöSt statt bis zu 48% ESt</li>
-                <li><strong className="text-white">FlexKap als günstigere Alternative:</strong> Nur 10.000 € Stammkapital, gleiche Steuervorteile</li>
-                <li><strong className="text-white">Bessere Sozialversicherung:</strong> ASVG statt SVS, kein Nachzahlungsrisiko</li>
-                <li><strong className="text-white">Bei Haftungsrisiken:</strong> GmbH bietet wichtigen Schutz</li>
-                <li><strong className="text-white">Bei niedrigeren Gewinnen:</strong> Einzelunternehmen oft günstiger und einfacher</li>
+                <li><strong className="text-sb-text">Ab 60.000–80.000 € Jahresgewinn:</strong> GmbH wird steuerlich interessant (bei Vollausschüttung)</li>
+                <li><strong className="text-sb-text">Ab 40.000 € bei Thesaurierung:</strong> Nur 23% KöSt statt bis zu 48% ESt</li>
+                <li><strong className="text-sb-text">FlexKap als günstigere Alternative:</strong> Nur 10.000 € Stammkapital, gleiche Steuervorteile</li>
+                <li><strong className="text-sb-text">Bessere Sozialversicherung:</strong> ASVG statt SVS, kein Nachzahlungsrisiko</li>
+                <li><strong className="text-sb-text">Bei Haftungsrisiken:</strong> GmbH bietet wichtigen Schutz</li>
+                <li><strong className="text-sb-text">Bei niedrigeren Gewinnen:</strong> Einzelunternehmen oft günstiger und einfacher</li>
               </ul>
-              <p className="mt-4 text-slate-300">
+              <p className="mt-4 text-sb-mut">
                 Die Entscheidung sollte immer individuell und mit professioneller Beratung getroffen werden,
                 da neben steuerlichen auch rechtliche, strategische und persönliche Faktoren eine Rolle spielen.
                 Lass deinen Break-Even-Punkt konkret mit deinem Steuerberater berechnen.
@@ -667,5 +669,6 @@ export default function GmbHvsEinzelunternehmenPage() {
 
       <SiteFooter />
     </div>
+    </PublicShell>
   )
 }

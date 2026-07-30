@@ -21,9 +21,9 @@ const ARTICLES = [
   {
     href: '/steuerwissen/svs-beitraege-senken',
     icon: TrendingDown,
-    color: 'text-emerald-400',
-    bgColor: 'bg-emerald-500/10',
-    borderColor: 'border-emerald-500/20',
+    color: 'text-sb-accent',
+    bgColor: 'bg-sb-accent-soft',
+    borderColor: 'border-sb-accent/20',
     title: 'SVS-Beiträge senken',
     subtitle: '7 legale Strategien für Selbständige',
     description: 'Erfahre wie du deine SVS-Beiträge durch Gewinnfreibetrag, Betriebsausgabenoptimierung und strategische Planung legal reduzierst.',
@@ -32,9 +32,9 @@ const ARTICLES = [
   {
     href: '/steuerwissen/svs-nachzahlung-vermeiden',
     icon: AlertTriangle,
-    color: 'text-amber-400',
-    bgColor: 'bg-amber-500/10',
-    borderColor: 'border-amber-500/20',
+    color: 'text-sb-accent',
+    bgColor: 'bg-sb-accent-soft',
+    borderColor: 'border-sb-accent/20',
     title: 'SVS-Nachzahlung vermeiden',
     subtitle: 'So schützt du dich vor der Nachzahlungsfalle',
     description: 'Verstehe warum SVS-Nachzahlungen entstehen und wie du mit vorausschauender Planung böse Überraschungen vermeidest.',
@@ -43,9 +43,9 @@ const ARTICLES = [
   {
     href: '/steuerwissen/gewinnfreibetrag-nutzen',
     icon: PiggyBank,
-    color: 'text-blue-400',
-    bgColor: 'bg-blue-500/10',
-    borderColor: 'border-blue-500/20',
+    color: 'text-sb-accent',
+    bgColor: 'bg-sb-accent-soft',
+    borderColor: 'border-sb-accent/20',
     title: 'Gewinnfreibetrag 2026',
     subtitle: 'So sparst du bis zu 4.950 € Steuern',
     description: 'Alles zum Grundfreibetrag nach § 10 EStG: Berechnung, Voraussetzungen und wie du den investitionsbedingten Freibetrag zusätzlich nutzt.',
@@ -54,9 +54,9 @@ const ARTICLES = [
   {
     href: '/steuerwissen/gmbh-vs-einzelunternehmen',
     icon: Building2,
-    color: 'text-violet-400',
-    bgColor: 'bg-violet-500/10',
-    borderColor: 'border-violet-500/20',
+    color: 'text-sb-accent',
+    bgColor: 'bg-sb-accent-soft',
+    borderColor: 'border-sb-accent/20',
     title: 'GmbH oder Einzelunternehmen?',
     subtitle: 'Der Steuer-Vergleich für Österreich',
     description: 'Break-Even-Analyse, Steuervergleich und Entscheidungshilfe: Ab welchem Gewinn lohnt sich die GmbH-Gründung wirklich?',
@@ -65,9 +65,9 @@ const ARTICLES = [
   {
     href: '/steuerwissen/steueroptimierung-selbststaendige',
     icon: Calculator,
-    color: 'text-rose-400',
-    bgColor: 'bg-rose-500/10',
-    borderColor: 'border-rose-500/20',
+    color: 'text-sb-accent',
+    bgColor: 'bg-sb-accent-soft',
+    borderColor: 'border-sb-accent/20',
     title: 'Steueroptimierung für Selbständige',
     subtitle: 'Die komplette Anleitung 2026',
     description: 'Alle legalen Steuerspartipps für EPU & Einzelunternehmer: Absetzbeträge, Betriebsausgaben, Investitionssteuerung und mehr.',
@@ -76,9 +76,9 @@ const ARTICLES = [
   {
     href: '/steuerwissen/nebenberuflich-selbstaendig',
     icon: Briefcase,
-    color: 'text-cyan-400',
-    bgColor: 'bg-cyan-500/10',
-    borderColor: 'border-cyan-500/20',
+    color: 'text-sb-accent',
+    bgColor: 'bg-sb-accent-soft',
+    borderColor: 'border-sb-accent/20',
     title: 'Nebenberuflich selbständig',
     subtitle: 'Steuern, SVS & Tipps 2026',
     description: 'SVS-Pflicht, Steuerberechnung bei Mischeinkommen, Meldepflichten und typische Fehler bei nebenberuflicher Selbständigkeit.',
@@ -87,9 +87,9 @@ const ARTICLES = [
   {
     href: '/steuerwissen/flexkapg-vs-gmbh',
     icon: Layers,
-    color: 'text-indigo-400',
-    bgColor: 'bg-indigo-500/10',
-    borderColor: 'border-indigo-500/20',
+    color: 'text-sb-accent',
+    bgColor: 'bg-sb-accent-soft',
+    borderColor: 'border-sb-accent/20',
     title: 'FlexKapG vs. GmbH',
     subtitle: 'Die neue Rechtsform im Vergleich',
     description: 'Stammkapital, Gründungskosten, Mitarbeiterbeteiligung — alles zur FlexKapG seit 2024 und wann sie besser ist als die GmbH.',
@@ -98,9 +98,9 @@ const ARTICLES = [
   {
     href: '/steuerwissen/svs-nachzahlung-4-jahr',
     icon: Clock,
-    color: 'text-red-400',
-    bgColor: 'bg-red-500/10',
-    borderColor: 'border-red-500/20',
+    color: 'text-sb-accent',
+    bgColor: 'bg-sb-accent-soft',
+    borderColor: 'border-sb-accent/20',
     title: 'Steuerschock im 4. Jahr',
     subtitle: 'Was Neugründer wissen müssen',
     description: 'Warum die SVS-Nachzahlung im 3./4. Jahr kommt, wie hoch sie ausfällt und mit welchen Strategien du dich schützen kannst.',
@@ -109,9 +109,9 @@ const ARTICLES = [
   {
     href: '/steuerwissen/betriebsausgaben-checkliste',
     icon: ClipboardList,
-    color: 'text-teal-400',
-    bgColor: 'bg-teal-500/10',
-    borderColor: 'border-teal-500/20',
+    color: 'text-sb-accent',
+    bgColor: 'bg-sb-accent-soft',
+    borderColor: 'border-sb-accent/20',
     title: 'Betriebsausgaben Checkliste',
     subtitle: 'Was Selbständige absetzen können',
     description: 'Vollständige Liste aller absetzbaren Betriebsausgaben: Arbeitsplatzpauschale, GWG, Bewirtung, KFZ und mehr.',
@@ -120,9 +120,9 @@ const ARTICLES = [
   {
     href: '/steuerwissen/steuer-jahresplanung',
     icon: CalendarDays,
-    color: 'text-orange-400',
-    bgColor: 'bg-orange-500/10',
-    borderColor: 'border-orange-500/20',
+    color: 'text-sb-accent',
+    bgColor: 'bg-sb-accent-soft',
+    borderColor: 'border-sb-accent/20',
     title: 'Steuer-Jahresplanung',
     subtitle: 'Fristen, UVA & Vorsorge 2026',
     description: 'Quartalweise Übersicht aller Steuerfristen, UVA-Termine, EST-Vorauszahlungen und Jahresend-Maßnahmen für Selbständige.',
@@ -159,28 +159,28 @@ const FAQ_ITEMS = [
 
 export default function SteuerwissenHubPage() {
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100">
+    <div className="min-h-screen bg-sb-bg text-sb-text">
       {/* Hero */}
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/5 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-sb-accent/5 via-transparent to-transparent" />
         <div className="container mx-auto px-4 pt-24 pb-16 relative">
-          <nav className="mb-8 text-sm text-gray-400">
-            <Link href="/" className="hover:text-white transition-colors">
+          <nav className="mb-8 text-sm text-sb-mut">
+            <Link href="/" className="hover:text-sb-text transition-colors">
               Home
             </Link>
             <span className="mx-2">›</span>
-            <span className="text-gray-300">Steuerwissen</span>
+            <span className="text-sb-mut">Steuerwissen</span>
           </nav>
 
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sb-green-soft border border-sb-green/20 text-sb-green text-xs font-medium mb-6">
               <Shield className="h-3.5 w-3.5" />
               Praxisnahe Steuer-Guides
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white leading-tight">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 text-sb-text leading-tight">
               Steuerwissen für Selbständige in Österreich
             </h1>
-            <p className="text-lg text-gray-300 leading-relaxed max-w-2xl">
+            <p className="text-lg text-sb-mut leading-relaxed max-w-2xl">
               Verständliche Guides zu SVS-Beiträgen, Steueroptimierung und Rechtsformwahl.
               Keine Theorie — konkrete Strategien mit Berechnungsbeispielen.
             </p>
@@ -197,31 +197,31 @@ export default function SteuerwissenHubPage() {
               <Link
                 key={article.href}
                 href={article.href}
-                className={`group block rounded-xl border ${article.borderColor} bg-gray-800/50 p-6 hover:bg-gray-800 transition-all duration-200 hover:shadow-lg hover:shadow-black/20 hover:-translate-y-0.5`}
+                className={`group block rounded-xl border ${article.borderColor} bg-sb-card p-6 hover:bg-sb-card transition-all duration-200 hover:shadow-lg hover:shadow-black/20 hover:-translate-y-0.5`}
               >
                 <div className={`inline-flex h-10 w-10 items-center justify-center rounded-xl ${article.bgColor} mb-4`}>
                   <Icon className={`h-5 w-5 ${article.color}`} />
                 </div>
-                <h2 className="text-lg font-bold text-white mb-1 group-hover:text-emerald-400 transition-colors">
+                <h2 className="text-lg font-bold text-sb-text mb-1 group-hover:text-sb-accent transition-colors">
                   {article.title}
                 </h2>
                 <p className={`text-sm font-medium ${article.color} mb-3`}>
                   {article.subtitle}
                 </p>
-                <p className="text-sm text-gray-400 leading-relaxed mb-4">
+                <p className="text-sm text-sb-mut leading-relaxed mb-4">
                   {article.description}
                 </p>
                 <div className="flex flex-wrap gap-1.5 mb-4">
                   {article.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-0.5 text-[11px] rounded-md bg-gray-700/50 text-gray-400 border border-gray-700"
+                      className="px-2 py-0.5 text-[11px] rounded-md bg-white/[0.05] text-sb-mut border border-sb-line"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
-                <span className="inline-flex items-center gap-1 text-sm font-medium text-emerald-400 group-hover:gap-2 transition-all">
+                <span className="inline-flex items-center gap-1 text-sm font-medium text-sb-green group-hover:gap-2 transition-all">
                   Artikel lesen <ArrowRight className="h-3.5 w-3.5" />
                 </span>
               </Link>
@@ -229,19 +229,19 @@ export default function SteuerwissenHubPage() {
           })}
 
           {/* CTA Card */}
-          <div className="rounded-xl border border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 to-blue-500/10 p-6 flex flex-col justify-between">
+          <div className="rounded-xl border border-sb-green/30 bg-sb-green-soft p-6 flex flex-col justify-between">
             <div>
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/20 mb-4">
-                <Calculator className="h-5 w-5 text-emerald-400" />
+              <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-sb-green-soft mb-4">
+                <Calculator className="h-5 w-5 text-sb-green" />
               </div>
-              <h2 className="text-lg font-bold text-white mb-2">
+              <h2 className="text-lg font-bold text-sb-text mb-2">
                 Direkt berechnen
               </h2>
-              <p className="text-sm text-gray-300 leading-relaxed mb-6">
+              <p className="text-sm text-sb-mut leading-relaxed mb-6">
                 Nutze unsere kostenlosen Rechner und berechne deine SVS-Beiträge, Einkommensteuer und dein echtes Netto in Sekunden.
               </p>
             </div>
-            <Button asChild className="w-full bg-emerald-500 hover:bg-emerald-600 text-white">
+            <Button asChild className="w-full bg-sb-accent hover:bg-sb-accent-deep text-sb-accent-ink">
               <Link href="/rechner">
                 Jetzt berechnen <ArrowRight className="h-4 w-4 ml-2" />
               </Link>
@@ -251,13 +251,13 @@ export default function SteuerwissenHubPage() {
       </div>
 
       {/* FAQ Section */}
-      <div className="border-t border-gray-800">
+      <div className="border-t border-sb-line">
         <div className="container mx-auto px-4 py-16">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-white mb-2 text-center">
+            <h2 className="text-3xl font-bold text-sb-text mb-2 text-center">
               Häufige Fragen
             </h2>
-            <p className="text-gray-400 text-center mb-10">
+            <p className="text-sb-mut text-center mb-10">
               Die wichtigsten Fragen zur Steueroptimierung für Selbständige in Österreich
             </p>
 
@@ -265,16 +265,16 @@ export default function SteuerwissenHubPage() {
               {FAQ_ITEMS.map((item, index) => (
                 <details
                   key={index}
-                  className="group rounded-xl border border-gray-700/50 bg-gray-800/30 overflow-hidden"
+                  className="group rounded-xl border border-sb-line bg-sb-card overflow-hidden"
                 >
-                  <summary className="flex items-center justify-between px-6 py-4 cursor-pointer list-none hover:bg-gray-800/50 transition-colors">
-                    <h3 className="text-sm font-medium text-white pr-4">
+                  <summary className="flex items-center justify-between px-6 py-4 cursor-pointer list-none hover:bg-sb-card transition-colors">
+                    <h3 className="text-sm font-medium text-sb-text pr-4">
                       {item.question}
                     </h3>
-                    <ChevronDown className="h-4 w-4 text-gray-400 shrink-0 transition-transform group-open:rotate-180" />
+                    <ChevronDown className="h-4 w-4 text-sb-mut shrink-0 transition-transform group-open:rotate-180" />
                   </summary>
                   <div className="px-6 pb-5">
-                    <p className="text-sm text-gray-300 leading-relaxed">
+                    <p className="text-sm text-sb-mut leading-relaxed">
                       {item.answer}
                     </p>
                   </div>
@@ -284,17 +284,17 @@ export default function SteuerwissenHubPage() {
 
             {/* Bottom CTA */}
             <div className="mt-12 text-center">
-              <p className="text-gray-400 mb-4">
+              <p className="text-sb-mut mb-4">
                 Du willst deine persönliche Steuerersparnis berechnen?
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                <Button asChild className="bg-emerald-500 hover:bg-emerald-600 text-white">
+                <Button asChild className="bg-sb-accent hover:bg-sb-accent-deep text-sb-accent-ink">
                   <Link href="/rechner">
                     <Calculator className="h-4 w-4 mr-2" />
                     SVS-Rechner starten
                   </Link>
                 </Button>
-                <Button asChild variant="outline" className="border-gray-600 text-gray-300 hover:text-white hover:bg-gray-800">
+                <Button asChild variant="outline" className="border-sb-line-strong text-sb-mut hover:text-sb-text hover:bg-sb-card">
                   <Link href="/steuerberater">
                     AI SteuerBoard testen
                   </Link>

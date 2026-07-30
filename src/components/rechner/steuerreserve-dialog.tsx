@@ -20,8 +20,8 @@ export function SteuerreserveDialog({ open, onOpenChange, result, vorschreibung 
   const sparEmpfehlung = result.sparEmpfehlung
 
   const isGutAufgestellt = result.nachzahlung <= 0
-  const statusColor = isGutAufgestellt ? 'text-emerald-600' : 'text-red-600'
-  const statusBg = isGutAufgestellt ? 'bg-emerald-50 border-emerald-200' : 'bg-red-50 border-red-200'
+  const statusColor = isGutAufgestellt ? 'text-sb-green' : 'text-sb-red'
+  const statusBg = isGutAufgestellt ? 'bg-sb-green-soft border-sb-green/30' : 'bg-sb-red/10 border-sb-red/30'
   const statusLabel = isGutAufgestellt ? 'Auf Kurs' : 'Rücklage empfohlen'
 
   // 12-Monats-Timeline
@@ -50,9 +50,9 @@ export function SteuerreserveDialog({ open, onOpenChange, result, vorschreibung 
           <div className={`rounded-xl p-4 text-center border ${statusBg}`}>
             <div className="flex items-center justify-center gap-2 mb-2">
               {isGutAufgestellt ? (
-                <CheckCircle className="h-5 w-5 text-emerald-600" />
+                <CheckCircle className="h-5 w-5 text-sb-green" />
               ) : (
-                <AlertTriangle className="h-5 w-5 text-red-600" />
+                <AlertTriangle className="h-5 w-5 text-sb-red" />
               )}
               <span className={`text-sm font-semibold ${statusColor}`}>{statusLabel}</span>
             </div>
@@ -71,23 +71,23 @@ export function SteuerreserveDialog({ open, onOpenChange, result, vorschreibung 
               {/* Stacked bar */}
               <div className="h-4 rounded-full overflow-hidden flex">
                 {svsDifferenz > 0 && (
-                  <div className="bg-orange-500 h-full transition-all duration-500" style={{ width: `${svsAnteil}%` }} />
+                  <div className="bg-sb-accent h-full transition-all duration-500" style={{ width: `${svsAnteil}%` }} />
                 )}
                 {estMonatlich > 0 && (
-                  <div className="bg-amber-500 h-full transition-all duration-500" style={{ width: `${estAnteil}%` }} />
+                  <div className="bg-sb-accent-soft0 h-full transition-all duration-500" style={{ width: `${estAnteil}%` }} />
                 )}
               </div>
 
               <div className="flex gap-4 mt-2">
                 {svsDifferenz > 0 && (
                   <div className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-orange-500 shrink-0" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-sb-accent shrink-0" />
                     <span className="text-xs text-muted-foreground">SVS-Differenz: <span className="font-mono font-medium text-foreground">{formatEuro(svsDifferenz)}</span></span>
                   </div>
                 )}
                 {estMonatlich > 0 && (
                   <div className="flex items-center gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-sb-accent-soft0 shrink-0" />
                     <span className="text-xs text-muted-foreground">ESt-Anteil: <span className="font-mono font-medium text-foreground">{formatEuro(estMonatlich)}</span></span>
                   </div>
                 )}
@@ -107,7 +107,7 @@ export function SteuerreserveDialog({ open, onOpenChange, result, vorschreibung 
                     </tr>
                     <tr className="border-b bg-muted/20">
                       <td className="px-3 py-2 font-medium">SVS-Differenz</td>
-                      <td className="text-right px-3 py-2 font-mono font-medium text-orange-600">{formatEuro(svsDifferenz)}</td>
+                      <td className="text-right px-3 py-2 font-mono font-medium text-sb-accent">{formatEuro(svsDifferenz)}</td>
                     </tr>
                     <tr className="border-b">
                       <td className="px-3 py-2 text-muted-foreground">ESt (monatl. Äquivalent)</td>

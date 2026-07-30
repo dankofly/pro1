@@ -21,7 +21,7 @@ export function StatusBadge({ riskPercent, hatVorschreibung = true }: StatusBadg
 
   if (riskPercent <= 25) {
     return (
-      <Badge role="status" className="bg-emerald-100 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/40 gap-1.5 py-1 px-3">
+      <Badge role="status" className="bg-sb-green-soft text-sb-green border-sb-green/30 gap-1.5 py-1 px-3">
         <ShieldCheck className="h-3.5 w-3.5" aria-hidden="true" />
         Sicher
       </Badge>
@@ -30,7 +30,7 @@ export function StatusBadge({ riskPercent, hatVorschreibung = true }: StatusBadg
 
   if (riskPercent <= 60) {
     return (
-      <Badge role="status" className="bg-amber-100 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800/40 gap-1.5 py-1 px-3">
+      <Badge role="status" className="bg-sb-accent-soft text-sb-accent border-sb-accent/30 gap-1.5 py-1 px-3">
         <ShieldAlert className="h-3.5 w-3.5" aria-hidden="true" />
         Nachzahlung möglich
       </Badge>
@@ -38,7 +38,7 @@ export function StatusBadge({ riskPercent, hatVorschreibung = true }: StatusBadg
   }
 
   return (
-    <Badge role="status" className="bg-red-100 dark:bg-red-950/40 text-red-700 dark:text-red-300 border-red-200 dark:border-red-800/40 gap-1.5 py-1 px-3 animate-pulse">
+    <Badge role="status" className="bg-sb-red/10 text-sb-red border-sb-red/30 gap-1.5 py-1 px-3 animate-pulse">
       <ShieldX className="h-3.5 w-3.5" aria-hidden="true" />
       Kritisch
     </Badge>

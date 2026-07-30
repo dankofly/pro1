@@ -87,24 +87,24 @@ export default function GlossarPage() {
 
   return (
     <AppShell>
-      <div className="min-h-screen bg-slate-950">
+      <div className="min-h-screen bg-sb-bg">
         <div className="max-w-3xl mx-auto px-6 py-8">
           <nav className="mb-8">
-            <div className="flex items-center space-x-2 text-sm text-slate-400">
-              <Link href="/" className="hover:text-slate-300 transition-colors">Home</Link>
+            <div className="flex items-center space-x-2 text-sm text-sb-mut">
+              <Link href="/" className="hover:text-sb-mut transition-colors">Home</Link>
               <span>›</span>
-              <Link href="/steuerwissen" className="hover:text-slate-300 transition-colors">Steuerwissen</Link>
+              <Link href="/steuerwissen" className="hover:text-sb-mut transition-colors">Steuerwissen</Link>
               <span>›</span>
-              <span className="text-slate-300">Glossar</span>
+              <span className="text-sb-mut">Glossar</span>
             </div>
           </nav>
 
           <article>
-            <h1 className="text-4xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-4xl font-bold text-sb-text mb-6 leading-tight">
               Steuer-Glossar Österreich — Alle Steuerbegriffe einfach erklärt
             </h1>
 
-            <p className="text-lg text-slate-300 mb-8 leading-relaxed">
+            <p className="text-lg text-sb-mut mb-8 leading-relaxed">
               Steuerbegriffe können verwirrend sein. Dieses Glossar erklärt über 40 wichtige
               österreichische Steuerbegriffe in einfacher Sprache — von Absetzbeträge bis
               Zufluss-Abfluss-Prinzip. Ideal als Nachschlagewerk für Selbstständige,
@@ -112,12 +112,12 @@ export default function GlossarPage() {
             </p>
 
             {/* Alphabet Navigation */}
-            <div className="flex flex-wrap gap-2 mb-10 bg-slate-900 p-4 rounded-lg border border-slate-700">
+            <div className="flex flex-wrap gap-2 mb-10 bg-sb-card p-4 rounded-lg border border-sb-line">
               {allLetters.map((letter) => (
                 <a
                   key={letter}
                   href={`#letter-${letter}`}
-                  className="w-9 h-9 flex items-center justify-center bg-slate-800 hover:bg-blue-600 text-slate-300 hover:text-white rounded transition-colors font-semibold text-sm"
+                  className="w-9 h-9 flex items-center justify-center bg-white/[0.05] hover:bg-sb-accent text-sb-mut hover:text-sb-accent-ink rounded transition-colors font-semibold text-sm"
                 >
                   {letter}
                 </a>
@@ -128,18 +128,18 @@ export default function GlossarPage() {
             <div className="space-y-10">
               {glossarTerms.map((group) => (
                 <section key={group.letter} id={`letter-${group.letter}`}>
-                  <h2 className="text-3xl font-bold text-blue-400 mb-4 border-b border-slate-700 pb-2">
+                  <h2 className="text-3xl font-bold text-sb-accent mb-4 border-b border-sb-line pb-2">
                     {group.letter}
                   </h2>
                   <div className="space-y-4">
                     {group.terms.map((item) => (
-                      <div key={item.term} className="bg-slate-900 border border-slate-700 rounded-lg p-4">
-                        <h3 className="text-lg font-semibold text-white mb-2">{item.term}</h3>
-                        <p className="text-slate-300 leading-relaxed">{item.definition}</p>
+                      <div key={item.term} className="bg-sb-card border border-sb-line rounded-lg p-4">
+                        <h3 className="text-lg font-semibold text-sb-text mb-2">{item.term}</h3>
+                        <p className="text-sb-mut leading-relaxed">{item.definition}</p>
                         {item.link && (
                           <Link
                             href={item.link}
-                            className="text-blue-400 hover:text-blue-300 text-sm mt-2 inline-block transition-colors"
+                            className="text-sb-accent hover:text-sb-accent-deep text-sm mt-2 inline-block transition-colors"
                           >
                             → Mehr erfahren
                           </Link>
@@ -153,15 +153,15 @@ export default function GlossarPage() {
 
             {/* CTA */}
             <section className="mt-12 mb-8">
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-8 rounded-lg text-center">
-                <h2 className="text-2xl font-bold text-white mb-4">
+              <div className="bg-sb-accent p-8 rounded-lg text-center">
+                <h2 className="text-2xl font-bold text-sb-text mb-4">
                   Steuern berechnen statt nur lesen
                 </h2>
-                <p className="text-blue-100 mb-6 leading-relaxed">
+                <p className="text-sb-text mb-6 leading-relaxed">
                   Nutzen Sie unseren kostenlosen Steuerrechner und sehen Sie sofort,
                   wie sich diese Begriffe auf Ihre Steuerlast auswirken.
                 </p>
-                <Button asChild className="bg-white text-blue-600 hover:bg-gray-100 font-semibold px-8 py-3">
+                <Button asChild className="bg-sb-accent text-sb-accent-ink hover:bg-sb-accent-deep font-semibold px-8 py-3">
                   <Link href="/rechner">
                     Jetzt kostenlos berechnen
                   </Link>

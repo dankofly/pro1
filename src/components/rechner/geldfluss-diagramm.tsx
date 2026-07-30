@@ -55,7 +55,7 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
     <div className="card-surface p-5 sm:p-6">
       <div className="flex items-center gap-2 mb-3">
         <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-teal-500/15">
-          <ArrowRightLeft className="h-3.5 w-3.5 text-teal-600 dark:text-teal-400" aria-hidden="true" />
+          <ArrowRightLeft className="h-3.5 w-3.5 text-teal-600" aria-hidden="true" />
         </div>
         <span className="section-header">Geldfluss-Diagramm</span>
       </div>
@@ -68,7 +68,7 @@ export function GeldflussDiagramm({ umsatz, aufwaende, gewinn, svs, est, netto }
         </div>
         <div className="text-right min-w-0">
           <p className="section-header">Netto</p>
-          <p className="text-lg font-bold font-mono tabular-nums text-emerald-600 truncate">{formatEuro(netto)}</p>
+          <p className="text-lg font-bold font-mono tabular-nums text-sb-green truncate">{formatEuro(netto)}</p>
         </div>
       </div>
 

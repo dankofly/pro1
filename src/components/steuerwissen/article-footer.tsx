@@ -43,19 +43,19 @@ export function ArticleFooter({ sources, relatedArticles, breadcrumbs, lastUpdat
 
       {/* Author E-E-A-T Badge */}
       <section className="mt-12 mb-8">
-        <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-6">
+        <div className="bg-white/[0.04] border border-sb-line rounded-lg p-6">
           <div className="flex items-start gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-blue-900/50 border border-blue-700">
-              <Scale className="h-6 w-6 text-blue-400" />
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-sb-accent-soft border border-sb-accent/30">
+              <Scale className="h-6 w-6 text-sb-accent" />
             </div>
             <div>
-              <p className="text-sm font-semibold text-white mb-1">Fachlich geprüfter Inhalt</p>
-              <p className="text-sm text-slate-400 leading-relaxed">
+              <p className="text-sm font-semibold text-sb-text mb-1">Fachlich geprüfter Inhalt</p>
+              <p className="text-sm text-sb-mut leading-relaxed">
                 Dieser Artikel basiert auf den aktuellen österreichischen Steuergesetzen (EStG, GSVG, KStG) und wird
                 regelmäßig auf Aktualität geprüft. Alle Berechnungen und Angaben entsprechen dem Rechtsstand {lastUpdated.slice(0, 4)}.
                 Dieser Artikel ersetzt keine individuelle Steuerberatung.
               </p>
-              <p className="text-xs text-slate-500 mt-2">Letzte Aktualisierung: {lastUpdated}</p>
+              <p className="text-xs text-sb-dim mt-2">Letzte Aktualisierung: {lastUpdated}</p>
             </div>
           </div>
         </div>
@@ -63,24 +63,24 @@ export function ArticleFooter({ sources, relatedArticles, breadcrumbs, lastUpdat
 
       {/* Quellen */}
       <section className="mb-10">
-        <h2 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
-          <BookOpen className="h-5 w-5 text-blue-400" />
+        <h2 className="text-xl font-semibold text-sb-text mb-4 flex items-center gap-2">
+          <BookOpen className="h-5 w-5 text-sb-accent" />
           Quellen und weiterführende Informationen
         </h2>
         <ul className="space-y-3">
           {sources.map((source) => (
             <li key={source.url} className="flex items-start gap-2">
-              <ExternalLink className="h-4 w-4 text-slate-500 mt-1 shrink-0" />
+              <ExternalLink className="h-4 w-4 text-sb-dim mt-1 shrink-0" />
               <div>
                 <a
                   href={source.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-400 hover:text-blue-300 transition-colors text-sm font-medium"
+                  className="text-sb-accent hover:text-sb-accent-deep transition-colors text-sm font-medium"
                 >
                   {source.name}
                 </a>
-                <p className="text-xs text-slate-500">{source.description}</p>
+                <p className="text-xs text-sb-dim">{source.description}</p>
               </div>
             </li>
           ))}
@@ -90,18 +90,18 @@ export function ArticleFooter({ sources, relatedArticles, breadcrumbs, lastUpdat
       {/* Verwandte Artikel */}
       {relatedArticles.length > 0 && (
         <section className="mb-10">
-          <h2 className="text-xl font-semibold text-white mb-4">Verwandte Artikel</h2>
+          <h2 className="text-xl font-semibold text-sb-text mb-4">Verwandte Artikel</h2>
           <div className="grid gap-3">
             {relatedArticles.map((article) => (
               <Link
                 key={article.href}
                 href={article.href}
-                className="flex items-center gap-3 bg-slate-800/50 border border-slate-700 rounded-lg p-4 hover:bg-slate-800 hover:border-blue-700 transition-colors group"
+                className="flex items-center gap-3 bg-white/[0.04] border border-sb-line rounded-lg p-4 hover:bg-white/[0.05] hover:border-sb-accent/30 transition-colors group"
               >
-                <span className="text-blue-400 group-hover:text-blue-300 text-sm font-medium">
+                <span className="text-sb-accent group-hover:text-sb-accent-deep text-sm font-medium">
                   {article.title}
                 </span>
-                <span className="text-slate-600 ml-auto">→</span>
+                <span className="text-sb-dim ml-auto">→</span>
               </Link>
             ))}
           </div>

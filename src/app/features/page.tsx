@@ -44,16 +44,16 @@ const FREE_FEATURES: Feature[] = [
     icon: Calculator,
     title: 'SVS-Beitragsrechner',
     desc: 'Berechne deine endgültigen SVS-Beiträge: Pensionsversicherung, Krankenversicherung, Unfallversicherung und Selbständigenvorsorge — basierend auf deinem tatsächlichen Jahresgewinn.',
-    color: 'text-emerald-400',
-    bg: 'bg-emerald-500/10',
+    color: 'text-sb-accent',
+    bg: 'bg-sb-accent-soft',
     href: '/rechner',
   },
   {
     icon: Shield,
     title: 'Wahrheits-Tabelle',
     desc: 'Die Tabelle, die dein Steuerberater nicht hat: Alle SVS-Positionen im Detail aufgeschlüsselt — vorläufig vs. endgültig, Nachzahlung und Rückerstattung auf einen Blick.',
-    color: 'text-blue-400',
-    bg: 'bg-blue-500/10',
+    color: 'text-sb-accent',
+    bg: 'bg-sb-accent-soft',
     href: '/rechner',
   },
   {
@@ -68,23 +68,23 @@ const FREE_FEATURES: Feature[] = [
     icon: CalendarDays,
     title: '2026 Ready',
     desc: 'Neue Familienbonus-Werte (2.000 EUR pro Kind unter 18), angepasster AVAB (612 EUR), aktueller Verkehrsabsetzbetrag (496 EUR) und Kindermehrbetrag (700 EUR). Bereits eingebaut.',
-    color: 'text-amber-400',
-    bg: 'bg-amber-500/10',
+    color: 'text-sb-accent',
+    bg: 'bg-sb-accent-soft',
   },
   {
     icon: Gift,
     title: 'Sachbezug-Rechner',
     desc: 'PKW-Sachbezug berechnen nach aktuellen Richtwerten. Firmenwagen, E-Auto-Bonus und CO2-Grenzwerte für 2024–2026.',
-    color: 'text-orange-400',
-    bg: 'bg-orange-500/10',
+    color: 'text-sb-accent',
+    bg: 'bg-sb-accent-soft',
     href: '/sachbezug-rechner',
   },
   {
     icon: BookOpen,
     title: 'Steuer-Wissen Bot',
     desc: 'Kostenloser KI-Tutor für österreichisches Steuerrecht — basierend auf dem Lehrbuch "Steuerrecht". Erklärt ESt, KöSt, USt und Verfahrensrecht.',
-    color: 'text-violet-400',
-    bg: 'bg-violet-500/10',
+    color: 'text-sb-accent',
+    bg: 'bg-sb-accent-soft',
     href: '/steuerwissen',
   },
 ]
@@ -94,8 +94,8 @@ const BASIC_FEATURES: Feature[] = [
     icon: Receipt,
     title: 'Einkommensteuer-Prognose',
     desc: 'Berechne deine voraussichtliche Einkommensteuer inkl. aller Tarifstufen, Absetzbeträge und Freibeträge. Mit Progressionsverlauf und Grenzsteuersatz-Anzeige.',
-    color: 'text-emerald-400',
-    bg: 'bg-emerald-500/10',
+    color: 'text-sb-accent',
+    bg: 'bg-sb-accent-soft',
     href: '/einkommensteuer',
   },
   {
@@ -109,8 +109,8 @@ const BASIC_FEATURES: Feature[] = [
     icon: Lock,
     title: 'Berechnungen speichern',
     desc: 'Speichere deine Szenarien und vergleiche verschiedene Gewinn-Varianten. Deine Daten bleiben DSGVO-konform in der EU.',
-    color: 'text-blue-400',
-    bg: 'bg-blue-500/10',
+    color: 'text-sb-accent',
+    bg: 'bg-sb-accent-soft',
   },
   {
     icon: BarChart3,
@@ -124,8 +124,8 @@ const BASIC_FEATURES: Feature[] = [
     icon: FileText,
     title: 'Einfacher Export',
     desc: 'Exportiere deine Berechnungen als übersichtlichen Bericht. Ideal für die Ablage oder als Gesprächsgrundlage mit dem Steuerberater.',
-    color: 'text-slate-400',
-    bg: 'bg-slate-500/10',
+    color: 'text-sb-mut',
+    bg: 'bg-white/[0.05]',
   },
 ]
 
@@ -134,16 +134,16 @@ const PRO_FEATURES: Feature[] = [
     icon: MessageSquare,
     title: 'Steuer-Chatbot (7 Rechner)',
     desc: 'KI-Steuerexperte powered by Google Gemini mit Zugriff auf 7 spezialisierte Rechner: Einkommensteuer, Körperschaftsteuer, Umsatzsteuer, Krypto-Steuer, Immobilienertragsteuer, Sachbezug und Investitionsfreibetrag.',
-    color: 'text-emerald-400',
-    bg: 'bg-emerald-500/10',
+    color: 'text-sb-accent',
+    bg: 'bg-sb-accent-soft',
     href: '/steuerberater',
   },
   {
     icon: Sparkles,
     title: 'AI SteuerBoard',
     desc: 'Persönliche Steueranalyse deiner Rechner-Ergebnisse. Optimierungsstrategien mit konkreten Euro-Beträgen — zum Beispiel: "Du sparst 1.240 EUR wenn du den IFB nutzt."',
-    color: 'text-amber-400',
-    bg: 'bg-amber-500/10',
+    color: 'text-sb-accent',
+    bg: 'bg-sb-accent-soft',
     href: '/steuerberater',
   },
   {
@@ -165,8 +165,8 @@ const PRO_FEATURES: Feature[] = [
     icon: Building2,
     title: 'GmbH-Vergleich',
     desc: 'EPU vs. GmbH: Vergleiche KöSt + KESt + Mindest-KöSt gegen ESt + SVS. Mit konkreten Netto-Zahlen und Break-Even-Punkt.',
-    color: 'text-blue-400',
-    bg: 'bg-blue-500/10',
+    color: 'text-sb-accent',
+    bg: 'bg-sb-accent-soft',
   },
   {
     icon: Layers,
@@ -179,8 +179,8 @@ const PRO_FEATURES: Feature[] = [
     icon: Zap,
     title: 'Gewinnmaximierer',
     desc: 'Simuliere Zusatzumsätze und sieh die marginale Auswirkung auf Steuern und Netto. Finde den Sweet Spot, ab dem sich Mehrarbeit nicht mehr lohnt.',
-    color: 'text-yellow-400',
-    bg: 'bg-yellow-500/10',
+    color: 'text-sb-accent',
+    bg: 'bg-sb-accent-soft',
   },
   {
     icon: Calculator,
@@ -194,16 +194,16 @@ const PRO_FEATURES: Feature[] = [
     icon: Coins,
     title: 'Krypto-Steuer',
     desc: 'Bitcoin, Ethereum & Co: Berechne die 27,5% KESt auf realisierte Krypto-Gewinne. Mit Freigrenze und Verlustverrechnung.',
-    color: 'text-orange-400',
-    bg: 'bg-orange-500/10',
+    color: 'text-sb-accent',
+    bg: 'bg-sb-accent-soft',
     href: '/krypto-steuer',
   },
   {
     icon: FileText,
     title: 'PDF-Export für Steuerberater',
     desc: 'Professioneller PDF-Report mit allen Berechnungen, Diagrammen und Optimierungsvorschlägen. Direkt an den Steuerberater weitergeben.',
-    color: 'text-slate-400',
-    bg: 'bg-slate-500/10',
+    color: 'text-sb-mut',
+    bg: 'bg-white/[0.05]',
   },
 ]
 
@@ -232,7 +232,7 @@ function TierSection({
           <Badge className={badgeColor}>{badge}</Badge>
           <div>
             <h2 className="text-2xl sm:text-3xl font-bold text-white font-heading">{title}</h2>
-            <p className="text-blue-200/50 text-sm mt-0.5">{subtitle}</p>
+            <p className="text-sb-mut text-sm mt-0.5">{subtitle}</p>
           </div>
         </div>
       </Reveal>
@@ -255,12 +255,12 @@ function TierSection({
                     {f.title}
                   </h3>
                 </div>
-                <p className="text-sm text-blue-200/50 leading-relaxed flex-1">{f.desc}</p>
+                <p className="text-sm text-sb-mut leading-relaxed flex-1">{f.desc}</p>
                 {f.href && (
                   <div className="mt-4 pt-3 border-t border-white/5">
                     <Link
                       href={f.href}
-                      className="inline-flex items-center text-xs font-medium text-emerald-400 hover:text-emerald-300 transition-colors cursor-pointer"
+                      className="inline-flex items-center text-xs font-medium text-sb-accent hover:text-sb-accent transition-colors cursor-pointer"
                     >
                       Ausprobieren
                       <ArrowRight className="h-3 w-3 ml-1" />
@@ -307,13 +307,13 @@ function ComparisonTable() {
         <table className="w-full min-w-[600px] text-sm">
           <thead>
             <tr className="border-b border-white/10">
-              <th className="text-left py-4 px-4 text-blue-200/40 font-medium">Feature</th>
+              <th className="text-left py-4 px-4 text-sb-dim font-medium">Feature</th>
               <th className="text-center py-4 px-4 text-white font-semibold w-28">Free</th>
               <th className="text-center py-4 px-4 text-white font-semibold w-28">
                 Sicherheit
               </th>
               <th className="text-center py-4 px-4 w-28">
-                <span className="inline-flex items-center gap-1 text-amber-400 font-semibold">
+                <span className="inline-flex items-center gap-1 text-sb-accent font-semibold">
                   <Crown className="h-3.5 w-3.5" />
                   Pro
                 </span>
@@ -326,24 +326,24 @@ function ComparisonTable() {
                 key={row.feature}
                 className={`border-b border-white/5 ${i % 2 === 0 ? 'bg-white/[0.01]' : ''}`}
               >
-                <td className="py-3 px-4 text-blue-100">{row.feature}</td>
+                <td className="py-3 px-4 text-sb-text">{row.feature}</td>
                 <td className="py-3 px-4 text-center">
                   {row.free ? (
-                    <Check className="h-4 w-4 text-emerald-400 mx-auto" />
+                    <Check className="h-4 w-4 text-sb-accent mx-auto" />
                   ) : (
                     <span className="text-white/15">—</span>
                   )}
                 </td>
                 <td className="py-3 px-4 text-center">
                   {row.basic ? (
-                    <Check className="h-4 w-4 text-emerald-400 mx-auto" />
+                    <Check className="h-4 w-4 text-sb-accent mx-auto" />
                   ) : (
                     <span className="text-white/15">—</span>
                   )}
                 </td>
                 <td className="py-3 px-4 text-center">
                   {row.pro ? (
-                    <Check className="h-4 w-4 text-amber-400 mx-auto" />
+                    <Check className="h-4 w-4 text-sb-accent mx-auto" />
                   ) : (
                     <span className="text-white/15">—</span>
                   )}
@@ -360,50 +360,21 @@ function ComparisonTable() {
 /* ─── Page ─── */
 export default function FeaturesPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
-      {/* Navbar */}
-      <nav className="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-white/5">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/20">
-              <Calculator className="h-4 w-4 text-emerald-400" />
-            </div>
-            <span className="font-bold text-white text-lg font-heading">SteuerBoard.pro</span>
-          </Link>
-          <div className="flex items-center gap-3">
-            <Button
-              asChild
-              variant="ghost"
-              size="sm"
-              className="text-blue-200 hover:text-white hover:bg-white/10"
-            >
-              <Link href="/pricing">Preise</Link>
-            </Button>
-            <Button
-              asChild
-              size="sm"
-              className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-lg shadow-emerald-500/25"
-            >
-              <Link href="/rechner">Jetzt starten</Link>
-            </Button>
-          </div>
-        </div>
-      </nav>
-
+    <main className="min-h-screen bg-sb-bg">
       {/* Hero */}
       <section className="relative py-20 sm:py-28">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
           <Reveal>
-            <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 mb-6">
+            <Badge className="bg-sb-accent-soft text-sb-accent border-sb-accent/20 mb-6">
               Alle Features
             </Badge>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight font-heading">
               Jede Funktion,{' '}
-              <span className="bg-gradient-to-r from-emerald-400 to-emerald-300 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-sb-accent to-sb-accent-deep bg-clip-text text-transparent">
                 die du brauchst
               </span>
             </h1>
-            <p className="mt-6 text-lg sm:text-xl text-blue-200/60 max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-6 text-lg sm:text-xl text-sb-mut max-w-2xl mx-auto leading-relaxed">
               Von der kostenlosen SVS-Berechnung bis zum AI SteuerBoard mit 7 Rechnern.
               Gebaut von Selbständigen, für Selbständige in Österreich.
             </p>
@@ -414,7 +385,7 @@ export default function FeaturesPage() {
               <Button
                 asChild
                 size="lg"
-                className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-xl shadow-emerald-500/25 text-base px-8 h-12"
+                className="bg-sb-accent hover:bg-sb-accent-deep text-sb-accent-ink shadow-xl shadow-sb-accent/25 text-base px-8 h-12"
               >
                 <Link href="/rechner">
                   Kostenlos starten
@@ -443,14 +414,14 @@ export default function FeaturesPage() {
           badge="Free"
           badgeColor="bg-white/10 text-white border-white/20"
           features={FREE_FEATURES}
-          accentColor="from-emerald-500/20"
+          accentColor="from-sb-accent/20"
           delay={0}
         />
 
         {/* Divider */}
         <div className="flex items-center gap-4">
           <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-          <span className="text-xs text-blue-200/30 uppercase tracking-widest">Upgrade</span>
+          <span className="text-xs text-sb-dim uppercase tracking-widest">Upgrade</span>
           <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         </div>
 
@@ -459,17 +430,17 @@ export default function FeaturesPage() {
           title="Sicherheits-Plan"
           subtitle="12,90 EUR/Monat · Einkommensteuer-Prognose & Speichern"
           badge="Basic"
-          badgeColor="bg-blue-500/10 text-blue-400 border-blue-500/20"
+          badgeColor="bg-sb-accent-soft text-sb-accent border-sb-accent/20"
           features={BASIC_FEATURES}
-          accentColor="from-blue-500/20"
+          accentColor="from-sb-accent/20"
           delay={0}
         />
 
         {/* Divider */}
         <div className="flex items-center gap-4">
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-amber-500/20 to-transparent" />
-          <Crown className="h-4 w-4 text-amber-400" />
-          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-amber-500/20 to-transparent" />
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-sb-accent/20 to-transparent" />
+          <Crown className="h-4 w-4 text-sb-accent" />
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-sb-accent/20 to-transparent" />
         </div>
 
         {/* Pro */}
@@ -477,16 +448,16 @@ export default function FeaturesPage() {
           title="SteuerBoard Pro"
           subtitle="24,90 EUR/Monat · Alles, plus KI-Power und 7 Rechner"
           badge="Pro"
-          badgeColor="bg-amber-500/10 text-amber-400 border-amber-500/20"
+          badgeColor="bg-sb-accent-soft text-sb-accent border-sb-accent/20"
           features={PRO_FEATURES}
-          accentColor="from-amber-500/20"
+          accentColor="from-sb-accent/20"
           delay={0}
         />
 
         {/* Divider */}
         <div className="flex items-center gap-4">
           <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-          <span className="text-xs text-blue-200/30 uppercase tracking-widest">Vergleich</span>
+          <span className="text-xs text-sb-dim uppercase tracking-widest">Vergleich</span>
           <div className="flex-1 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
         </div>
 
@@ -497,7 +468,7 @@ export default function FeaturesPage() {
               <h2 className="text-2xl sm:text-3xl font-bold text-white font-heading">
                 Alle Features im Vergleich
               </h2>
-              <p className="mt-3 text-blue-200/50 max-w-lg mx-auto">
+              <p className="mt-3 text-sb-mut max-w-lg mx-auto">
                 Finde den Plan, der zu dir passt. Jederzeit upgraden oder kündigen.
               </p>
             </div>
@@ -506,7 +477,7 @@ export default function FeaturesPage() {
           <div className="bg-white/[0.02] border border-white/10 rounded-2xl overflow-hidden">
             <ComparisonTable />
           </div>
-          <p className="text-center text-blue-200/30 text-xs mt-6">
+          <p className="text-center text-sb-dim text-xs mt-6">
             Alle Preise inkl. USt.
           </p>
         </section>
@@ -514,19 +485,19 @@ export default function FeaturesPage() {
         {/* Bottom CTA */}
         <Reveal>
           <section className="relative rounded-2xl overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 via-blue-500/10 to-amber-500/10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-sb-accent/10 via-sb-accent/10 to-sb-accent/10" />
             <div className="relative text-center py-16 px-6">
               <h2 className="text-2xl sm:text-3xl font-bold text-white font-heading mb-4">
                 Bereit, dein echtes Netto zu kennen?
               </h2>
-              <p className="text-blue-200/50 mb-8 max-w-md mx-auto">
+              <p className="text-sb-mut mb-8 max-w-md mx-auto">
                 Starte kostenlos und berechne in 30 Sekunden, was die SVS wirklich von dir will.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 justify-center">
                 <Button
                   asChild
                   size="lg"
-                  className="bg-emerald-500 hover:bg-emerald-600 text-white shadow-xl shadow-emerald-500/25 text-base px-8 h-12"
+                  className="bg-sb-accent hover:bg-sb-accent-deep text-sb-accent-ink shadow-xl shadow-sb-accent/25 text-base px-8 h-12"
                 >
                   <Link href="/rechner">
                     Jetzt gratis berechnen
@@ -536,7 +507,7 @@ export default function FeaturesPage() {
                 <Button
                   asChild
                   size="lg"
-                  className="bg-amber-500 hover:bg-amber-600 text-white shadow-lg shadow-amber-500/25 text-base px-8 h-12"
+                  className="bg-sb-accent hover:bg-sb-accent-deep text-white shadow-lg shadow-amber-500/25 text-base px-8 h-12"
                 >
                   <Link href="/pricing">
                     <Crown className="h-4 w-4 mr-2" />

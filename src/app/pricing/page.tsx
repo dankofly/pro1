@@ -49,7 +49,7 @@ function CheckoutReturn() {
 
   if (status === 'loading') {
     return (
-      <div className="min-h-[calc(100vh-3.5rem)] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center">
+      <div className="min-h-[calc(100vh-3.5rem)] bg-gradient-to-b from-sb-deep to-sb-bg flex items-center justify-center">
         <div className="text-center space-y-4">
           <Loader2 className="h-10 w-10 text-white animate-spin mx-auto" />
           <p className="text-white text-lg">Zahlung wird verarbeitet\u2026</p>
@@ -60,16 +60,16 @@ function CheckoutReturn() {
 
   if (status === 'complete') {
     return (
-      <div className="min-h-[calc(100vh-3.5rem)] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center px-4">
+      <div className="min-h-[calc(100vh-3.5rem)] bg-gradient-to-b from-sb-deep to-sb-bg flex items-center justify-center px-4">
         <Card className="w-full max-w-md bg-white/10 border-white/20 text-white">
           <CardHeader className="text-center space-y-3">
             <div className="flex justify-center">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-green-500/20">
-                <CheckCircle className="h-8 w-8 text-green-400" />
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-sb-green-soft0/20">
+                <CheckCircle className="h-8 w-8 text-sb-green" />
               </div>
             </div>
             <CardTitle className="text-2xl">Zahlung erfolgreich!</CardTitle>
-            <CardDescription className="text-blue-200">
+            <CardDescription className="text-sb-mut">
               Dein Abo ist jetzt aktiv. Alle Premium-Features sind freigeschaltet.
             </CardDescription>
           </CardHeader>
@@ -87,11 +87,11 @@ function CheckoutReturn() {
   }
 
   return (
-    <div className="min-h-[calc(100vh-3.5rem)] bg-gradient-to-b from-slate-900 to-slate-950 flex items-center justify-center px-4">
+    <div className="min-h-[calc(100vh-3.5rem)] bg-gradient-to-b from-sb-deep to-sb-bg flex items-center justify-center px-4">
       <Card className="w-full max-w-md bg-white/10 border-white/20 text-white">
         <CardHeader className="text-center space-y-3">
           <CardTitle>Fehler bei der Zahlung</CardTitle>
-          <CardDescription className="text-blue-200">
+          <CardDescription className="text-sb-mut">
             Die Zahlung konnte nicht verarbeitet werden. Bitte versuche es erneut.
           </CardDescription>
         </CardHeader>
@@ -195,7 +195,7 @@ function PricingContent() {
   // Show Embedded Checkout
   if (clientSecret) {
     return (
-      <div className="min-h-[calc(100vh-3.5rem)] bg-gradient-to-b from-slate-900 to-slate-950">
+      <div className="min-h-[calc(100vh-3.5rem)] bg-gradient-to-b from-sb-deep to-sb-bg">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
           <Button
             variant="ghost"
@@ -205,7 +205,7 @@ function PricingContent() {
             <ArrowLeft className="h-4 w-4 mr-2" />
             Zurück zur Preisübersicht
           </Button>
-          <div className="bg-white rounded-2xl overflow-hidden">
+          <div className="bg-sb-card rounded-2xl overflow-hidden">
             <EmbeddedCheckoutProvider stripe={getStripePromise()} options={{ fetchClientSecret }}>
               <EmbeddedCheckout />
             </EmbeddedCheckoutProvider>
@@ -332,9 +332,9 @@ function PricingContent() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 to-slate-950">
+    <div className="min-h-screen bg-gradient-to-b from-sb-deep to-sb-bg">
       {/* Mobile header */}
-      <div className="sticky top-0 z-30 bg-slate-900/80 backdrop-blur-lg border-b border-white/10 md:hidden">
+      <div className="sticky top-0 z-30 bg-sb-deep backdrop-blur-lg border-b border-white/10 md:hidden">
         <div className="px-4 h-14 flex items-center">
           <MobileNav />
           <span className="ml-2 text-sm font-semibold text-white">Preise</span>
@@ -347,14 +347,14 @@ function PricingContent() {
           <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white font-heading">
             Starte kostenlos, upgrade wenn du bereit bist
           </h1>
-          <p className="text-blue-200/60 text-lg whitespace-pre-line max-w-2xl mx-auto">
+          <p className="text-sb-mut text-lg whitespace-pre-line max-w-2xl mx-auto">
             Keine versteckten Kosten. Monatsabo jederzeit kündbar, Jahresabo bis Jahresende.{'\n'}Sichere Zahlung via Stripe.
           </p>
         </div>
 
         {/* Billing Toggle with Confetti */}
         <div className="flex items-center justify-center gap-3 mb-12">
-          <span className={cn('text-sm font-medium transition-colors', isMonthly ? 'text-white' : 'text-blue-200/40')}>
+          <span className={cn('text-sm font-medium transition-colors', isMonthly ? 'text-white' : 'text-sb-dim')}>
             Monatlich
           </span>
           <label className="relative inline-flex items-center cursor-pointer">
@@ -363,15 +363,15 @@ function PricingContent() {
                 ref={switchRef as React.Ref<HTMLButtonElement>}
                 checked={!isMonthly}
                 onCheckedChange={handleToggle}
-                className="data-[state=checked]:bg-emerald-500 data-[state=unchecked]:bg-white/20 border-0"
+                className="data-[state=checked]:bg-sb-green-soft0 data-[state=unchecked]:bg-white/20 border-0"
               />
             </Label>
           </label>
-          <span className={cn('text-sm font-medium transition-colors', !isMonthly ? 'text-white' : 'text-blue-200/40')}>
+          <span className={cn('text-sm font-medium transition-colors', !isMonthly ? 'text-white' : 'text-sb-dim')}>
             Jährlich
           </span>
           {!isMonthly && (
-            <span className="ml-1 text-xs font-semibold text-emerald-400 bg-emerald-500/15 border border-emerald-500/25 rounded-full px-2.5 py-0.5">
+            <span className="ml-1 text-xs font-semibold text-sb-green bg-sb-green-soft0/15 border border-sb-green/25 rounded-full px-2.5 py-0.5">
               Spare 20%
             </span>
           )}
@@ -409,7 +409,7 @@ function PricingContent() {
                 className={cn(
                   'rounded-2xl border p-6 sm:p-8 text-center relative backdrop-blur-sm',
                   tier.highlight
-                    ? 'bg-white/10 border-amber-400/30 ring-2 ring-amber-400/20 z-10'
+                    ? 'bg-white/10 border-sb-accent/30 ring-2 ring-sb-accent/20 z-10'
                     : 'bg-white/[0.03] border-white/10 z-0',
                   'flex flex-col',
                   !tier.highlight && 'mt-5 md:mt-0',
@@ -419,16 +419,16 @@ function PricingContent() {
               >
                 {tier.highlight && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="inline-flex items-center bg-amber-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-lg">
+                    <span className="inline-flex items-center bg-sb-accent-soft0 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-lg">
                       <Star className="h-3.5 w-3.5 fill-current mr-1" />
                       Beliebtester Plan
                     </span>
                   </div>
                 )}
                 <div className="flex-1 flex flex-col">
-                  <p className="text-blue-200/60 text-sm">{tier.desc}</p>
+                  <p className="text-sb-mut text-sm">{tier.desc}</p>
                   <h3 className="text-xl font-bold text-white mt-1 flex items-center justify-center gap-2">
-                    {tier.highlight && <Crown className="h-5 w-5 text-amber-400" />}
+                    {tier.highlight && <Crown className="h-5 w-5 text-sb-accent" />}
                     {tier.name}
                   </h3>
 
@@ -452,7 +452,7 @@ function PricingContent() {
                     </span>
                   </div>
 
-                  <p className="text-xs text-blue-200/40 mt-1">
+                  <p className="text-xs text-sb-dim mt-1">
                     {tier.isFree
                       ? 'für immer'
                       : isMonthly
@@ -470,11 +470,11 @@ function PricingContent() {
                         {visible.map((f) => (
                           <div key={f.text} className="flex items-center gap-2.5 text-sm">
                             {f.included ? (
-                              <Check className={cn('h-4 w-4 shrink-0', tier.highlight ? 'text-amber-400' : 'text-emerald-400')} />
+                              <Check className={cn('h-4 w-4 shrink-0', tier.highlight ? 'text-sb-accent' : 'text-sb-green')} />
                             ) : (
                               <X className="h-4 w-4 shrink-0 text-white/20" />
                             )}
-                            <span className={cn('text-left', f.included ? 'text-blue-100' : 'text-white/30')}>
+                            <span className={cn('text-left', f.included ? 'text-sb-text' : 'text-white/30')}>
                               {f.text}
                             </span>
                           </div>
@@ -482,7 +482,7 @@ function PricingContent() {
                         {hasMore && (
                           <button
                             onClick={() => setExpanded((p) => ({ ...p, [index]: !p[index] }))}
-                            className="flex items-center gap-1.5 text-xs font-medium text-blue-300/60 hover:text-blue-200 transition-colors pt-1 cursor-pointer"
+                            className="flex items-center gap-1.5 text-xs font-medium text-sb-mut hover:text-sb-accent transition-colors pt-1 cursor-pointer"
                           >
                             <ChevronDown className={cn('h-3.5 w-3.5 transition-transform duration-200', isExp && 'rotate-180')} />
                             {isExp ? 'Weniger anzeigen' : `+${hiddenCount} weitere Features`}
@@ -490,7 +490,7 @@ function PricingContent() {
                         )}
                         <Link
                           href="/features"
-                          className="block text-xs font-medium text-emerald-400/70 hover:text-emerald-400 transition-colors pt-1"
+                          className="block text-xs font-medium text-sb-green/70 hover:text-sb-green transition-colors pt-1"
                         >
                           Alle Features im Detail →
                         </Link>
@@ -514,7 +514,7 @@ function PricingContent() {
                         'transform-gpu ring-offset-current transition-all duration-300 ease-out',
                         'hover:ring-2 hover:ring-offset-1',
                         tier.highlight
-                          ? 'bg-amber-500 text-white border-amber-500 hover:bg-amber-600 hover:ring-amber-400 shadow-lg shadow-amber-500/25'
+                          ? 'bg-sb-accent-soft0 text-white border-sb-accent/40 hover:bg-sb-accent-deep hover:ring-sb-accent shadow-lg shadow-amber-500/25'
                           : 'bg-white/10 text-white border-white/10 hover:bg-white/20 hover:ring-white/30',
                       )}
                     >
@@ -530,7 +530,7 @@ function PricingContent() {
                         'transform-gpu ring-offset-current transition-all duration-300 ease-out',
                         'hover:ring-2 hover:ring-offset-1',
                         tier.highlight
-                          ? 'bg-amber-500 text-white border-amber-500 hover:bg-amber-600 hover:ring-amber-400 shadow-lg shadow-amber-500/25'
+                          ? 'bg-sb-accent-soft0 text-white border-sb-accent/40 hover:bg-sb-accent-deep hover:ring-sb-accent shadow-lg shadow-amber-500/25'
                           : 'bg-white/10 text-white border-white/10 hover:bg-white/20 hover:ring-white/30',
                       )}
                       onClick={tier.onAction ?? undefined}
@@ -548,30 +548,30 @@ function PricingContent() {
         </div>
 
         {/* Footer */}
-        <p className="text-center text-blue-200/30 text-xs mt-8">
+        <p className="text-center text-sb-dim text-xs mt-8">
           Alle Preise inkl. USt. {isMonthly ? 'Monatlich kündbar.' : 'Jährlich im Voraus.'} Sichere Zahlung via Stripe.
           <br />
-          <span className="text-blue-200/20">Preise gelten für Steuerjahr 2026 — Werte werden jährlich aktualisiert.</span>
+          <span className="text-sb-dim">Preise gelten für Steuerjahr 2026 — Werte werden jährlich aktualisiert.</span>
         </p>
 
         {/* Trust Signals */}
         <div className="flex flex-wrap items-center justify-center gap-6 mt-8">
-          <div className="flex items-center gap-2 text-blue-200/40 text-xs">
+          <div className="flex items-center gap-2 text-sb-dim text-xs">
             <Shield className="h-4 w-4" />
             <span>256-bit SSL-Verschlüsselung</span>
           </div>
-          <div className="flex items-center gap-2 text-blue-200/40 text-xs">
+          <div className="flex items-center gap-2 text-sb-dim text-xs">
             <CreditCard className="h-4 w-4" />
             <span>Sichere Zahlung via Stripe</span>
           </div>
-          <div className="flex items-center gap-2 text-blue-200/40 text-xs">
+          <div className="flex items-center gap-2 text-sb-dim text-xs">
             <CalendarX className="h-4 w-4" />
             <span>Jederzeit kündbar zum Ende der Laufzeit</span>
           </div>
         </div>
 
         {/* Tax deductibility hint */}
-        <p className="text-center text-base text-slate-400 max-w-2xl mx-auto mt-6 px-4">
+        <p className="text-center text-base text-sb-mut max-w-2xl mx-auto mt-6 px-4">
           SteuerBoard kann sich doppelt lohnen: Die Kosten sind oft steuerlich absetzbar. Wie viel du effektiv sparst, kannst du direkt mit SteuerBoard Pro berechnen.
         </p>
 
@@ -589,15 +589,15 @@ function PricingContent() {
                 {q}
                 <ChevronDown className="h-4 w-4 text-white/40 group-open:rotate-180 transition-transform" />
               </summary>
-              <p className="px-5 pb-4 text-sm text-blue-200/60 leading-relaxed">{a}</p>
+              <p className="px-5 pb-4 text-sm text-sb-mut leading-relaxed">{a}</p>
             </details>
           ))}
         </div>
 
-        <div className="flex items-center justify-center gap-3 text-xs text-blue-200/20 mt-8">
-          <Link href="/impressum" className="hover:text-blue-200/40 transition-colors">Impressum</Link>
+        <div className="flex items-center justify-center gap-3 text-xs text-sb-dim mt-8">
+          <Link href="/impressum" className="hover:text-sb-mut transition-colors">Impressum</Link>
           <span>·</span>
-          <Link href="/datenschutz" className="hover:text-blue-200/40 transition-colors">Datenschutz</Link>
+          <Link href="/datenschutz" className="hover:text-sb-mut transition-colors">Datenschutz</Link>
         </div>
       </div>
     </div>

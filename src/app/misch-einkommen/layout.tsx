@@ -57,7 +57,7 @@ export default function MischLayout({ children }: { children: React.ReactNode })
         inLanguage: 'de-AT',
       }} />
       <JsonLd data={MISCH_HOWTO_JSONLD} />
-      {children}
+      <div className="sb-scope">{children}</div>
     </>
   )
 }

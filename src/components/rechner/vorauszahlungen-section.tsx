@@ -87,8 +87,8 @@ export function VorauszahlungenSection({
             {result.svDifferenz !== 0 && vorauszahlungen.svVorauszahlung > 0 && (
               <div className={`rounded-lg p-2.5 text-sm ${
                 result.svDifferenz > 0
-                  ? 'bg-amber-50 text-amber-800'
-                  : 'bg-emerald-50 text-emerald-800'
+                  ? 'bg-sb-accent-soft text-sb-accent'
+                  : 'bg-sb-green-soft text-sb-green'
               }`}>
                 {result.svDifferenz > 0
                   ? `Voraussichtliche Nachzahlung: ${formatEuro(result.svDifferenz)}`
@@ -118,8 +118,8 @@ export function VorauszahlungenSection({
             {result.estDifferenz !== 0 && vorauszahlungen.estVorauszahlung > 0 && (
               <div className={`rounded-lg p-2.5 text-sm ${
                 result.estDifferenz > 0
-                  ? 'bg-amber-50 text-amber-800'
-                  : 'bg-emerald-50 text-emerald-800'
+                  ? 'bg-sb-accent-soft text-sb-accent'
+                  : 'bg-sb-green-soft text-sb-green'
               }`}>
                 {result.estDifferenz > 0
                   ? `Voraussichtliche ESt-Nachzahlung: ${formatEuro(result.estDifferenz)}`

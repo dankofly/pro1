@@ -7,7 +7,7 @@ function DatenschutzContent() {
 
         <h1 className="text-3xl font-bold mb-8">Datenschutzerklärung</h1>
 
-        <div className="prose prose-slate max-w-none space-y-6">
+        <div className="prose prose-slate prose-invert max-w-none space-y-6">
 
           {/* 1. Verantwortlicher */}
           <section>
@@ -21,7 +21,7 @@ function DatenschutzContent() {
               Thal-Aue 95<br />
               9911 Assling<br />
               Österreich<br />
-              E-Mail: <a href="mailto:info@hypeakz.io" className="text-blue-600 hover:underline">info@hypeakz.io</a><br />
+              E-Mail: <a href="mailto:info@hypeakz.io" className="text-sb-accent hover:underline">info@hypeakz.io</a><br />
               Telefon: +43 676 7293888
             </p>
           </section>
@@ -86,7 +86,7 @@ function DatenschutzContent() {
             <p>
               Netlify verfügt über EU-Standardvertragsklauseln als Garantie für die Datenübermittlung
               in die USA. Weitere Informationen:{' '}
-              <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener noreferrer" className="text-sb-accent hover:underline">
                 https://www.netlify.com/privacy/
               </a>
             </p>
@@ -112,7 +112,7 @@ function DatenschutzContent() {
               Die Benutzerdaten werden bei <strong>Supabase, Inc.</strong> (970 Toa Payoh North #07-04,
               Singapore 318992) gespeichert. Supabase setzt Hosting-Infrastruktur in der EU (AWS
               eu-central-1, Frankfurt) ein. Weitere Informationen:{' '}
-              <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer" className="text-sb-accent hover:underline">
                 https://supabase.com/privacy
               </a>
             </p>
@@ -168,7 +168,7 @@ function DatenschutzContent() {
               Die Verarbeitung erfolgt zur Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO) und
               ausschließlich im Rahmen der Google Gemini API (kein Training auf Nutzerdaten).
               Google verarbeitet die Daten gemäß den{' '}
-              <a href="https://cloud.google.com/terms/data-processing-addendum" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              <a href="https://cloud.google.com/terms/data-processing-addendum" target="_blank" rel="noopener noreferrer" className="text-sb-accent hover:underline">
                 Google Cloud Data Processing Terms
               </a>{' '}
               und dem EU-U.S. Data Privacy Framework. Die Daten werden nicht länger als für die
@@ -177,7 +177,7 @@ function DatenschutzContent() {
             <p>
               KI-generierte Antworten können fehlerhaft oder unvollständig sein und stellen keine
               Steuerberatung dar. Weitere Informationen:{' '}
-              <a href="https://cloud.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              <a href="https://cloud.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-sb-accent hover:underline">
                 https://cloud.google.com/privacy
               </a>
             </p>
@@ -225,7 +225,7 @@ function DatenschutzContent() {
             <p>
               Die Verarbeitung erfolgt zur Vertragserfüllung (Art. 6 Abs. 1 lit. b DSGVO). Weitere
               Informationen:{' '}
-              <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer" className="text-sb-accent hover:underline">
                 https://stripe.com/privacy
               </a>
             </p>
@@ -305,7 +305,7 @@ function DatenschutzContent() {
             </p>
             <p>
               Meldung von Sicherheitsvorfällen an:{' '}
-              <a href="mailto:info@hypeakz.io" className="text-blue-600 hover:underline">info@hypeakz.io</a>
+              <a href="mailto:info@hypeakz.io" className="text-sb-accent hover:underline">info@hypeakz.io</a>
             </p>
           </section>
 
@@ -357,7 +357,7 @@ function DatenschutzContent() {
             </ul>
             <p>
               Zur Ausübung Ihrer Rechte wenden Sie sich bitte per E-Mail an:{' '}
-              <a href="mailto:info@hypeakz.io" className="text-blue-600 hover:underline">info@hypeakz.io</a>
+              <a href="mailto:info@hypeakz.io" className="text-sb-accent hover:underline">info@hypeakz.io</a>
             </p>
           </section>
 
@@ -374,9 +374,9 @@ function DatenschutzContent() {
               Barichgasse 40-42<br />
               1030 Wien<br />
               Telefon: +43 1 52 152-0<br />
-              E-Mail: <a href="mailto:dsb@dsb.gv.at" className="text-blue-600 hover:underline">dsb@dsb.gv.at</a><br />
+              E-Mail: <a href="mailto:dsb@dsb.gv.at" className="text-sb-accent hover:underline">dsb@dsb.gv.at</a><br />
               Website:{' '}
-              <a href="https://www.dsb.gv.at" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              <a href="https://www.dsb.gv.at" target="_blank" rel="noopener noreferrer" className="text-sb-accent hover:underline">
                 https://www.dsb.gv.at
               </a>
             </p>

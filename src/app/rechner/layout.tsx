@@ -84,7 +84,7 @@ export default function RechnerLayout({ children }: { children: React.ReactNode 
           },
         ],
       }} />
-      {children}
+      <div className="sb-scope">{children}</div>
     </>
   )
 }

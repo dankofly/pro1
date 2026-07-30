@@ -27,10 +27,10 @@ export function NachzahlungsPrognoseDialog({ open, onOpenChange, result, vorschr
 
   // Risiko-Level
   const riskLevel = result.riskPercent >= 70
-    ? { label: 'Hohes Risiko', color: 'text-red-600', bg: 'bg-red-500', barColor: 'bg-red-500' }
+    ? { label: 'Hohes Risiko', color: 'text-sb-red', bg: 'bg-sb-red/100', barColor: 'bg-sb-red/100' }
     : result.riskPercent >= 40
-      ? { label: 'Mittleres Risiko', color: 'text-amber-600', bg: 'bg-amber-500', barColor: 'bg-amber-500' }
-      : { label: 'Niedriges Risiko', color: 'text-emerald-600', bg: 'bg-emerald-500', barColor: 'bg-emerald-500' }
+      ? { label: 'Mittleres Risiko', color: 'text-sb-accent', bg: 'bg-sb-accent-soft0', barColor: 'bg-sb-accent-soft0' }
+      : { label: 'Niedriges Risiko', color: 'text-sb-green', bg: 'bg-sb-green-soft0', barColor: 'bg-sb-green-soft0' }
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -44,11 +44,11 @@ export function NachzahlungsPrognoseDialog({ open, onOpenChange, result, vorschr
 
         <div className="space-y-5 pt-2">
           {/* Hero: Nachzahlung/Gutschrift */}
-          <div className={`rounded-xl p-4 text-center ${isNachzahlung ? 'bg-red-50 border border-red-200' : isGutschrift ? 'bg-emerald-50 border border-emerald-200' : 'bg-muted/30 border border-border'}`}>
+          <div className={`rounded-xl p-4 text-center ${isNachzahlung ? 'bg-sb-red/10 border border-sb-red/30' : isGutschrift ? 'bg-sb-green-soft border border-sb-green/30' : 'bg-muted/30 border border-border'}`}>
             <p className="text-xs font-medium text-muted-foreground mb-1">
               {isNachzahlung ? 'Geschätzte Nachzahlung' : isGutschrift ? 'Voraussichtliche Gutschrift' : 'Keine Nachzahlung'}
             </p>
-            <p className={`text-3xl font-bold font-mono ${isNachzahlung ? 'text-red-600' : isGutschrift ? 'text-emerald-600' : 'text-muted-foreground'}`}>
+            <p className={`text-3xl font-bold font-mono ${isNachzahlung ? 'text-sb-red' : isGutschrift ? 'text-sb-green' : 'text-muted-foreground'}`}>
               {formatEuro(Math.abs(nachzahlung))}
             </p>
           </div>
@@ -76,12 +76,12 @@ export function NachzahlungsPrognoseDialog({ open, onOpenChange, result, vorschr
                     <td className="text-right px-3 py-2 font-mono">{formatEuro(result.endgueltigeMonatlich)}</td>
                     <td className="text-right px-3 py-2 font-mono">{formatEuro(result.endgueltigeSVS)}</td>
                   </tr>
-                  <tr className={`border-t font-bold ${isNachzahlung ? 'bg-red-50' : isGutschrift ? 'bg-emerald-50' : ''}`}>
+                  <tr className={`border-t font-bold ${isNachzahlung ? 'bg-sb-red/10' : isGutschrift ? 'bg-sb-green-soft' : ''}`}>
                     <td className="px-3 py-2">Differenz</td>
-                    <td className={`text-right px-3 py-2 font-mono ${isNachzahlung ? 'text-red-600' : isGutschrift ? 'text-emerald-600' : ''}`}>
+                    <td className={`text-right px-3 py-2 font-mono ${isNachzahlung ? 'text-sb-red' : isGutschrift ? 'text-sb-green' : ''}`}>
                       {monatlicheDifferenz > 0 ? '+' : ''}{formatEuro(monatlicheDifferenz)}
                     </td>
-                    <td className={`text-right px-3 py-2 font-mono ${isNachzahlung ? 'text-red-600' : isGutschrift ? 'text-emerald-600' : ''}`}>
+                    <td className={`text-right px-3 py-2 font-mono ${isNachzahlung ? 'text-sb-red' : isGutschrift ? 'text-sb-green' : ''}`}>
                       {nachzahlung > 0 ? '+' : ''}{formatEuro(nachzahlung)}
                     </td>
                   </tr>
@@ -99,7 +99,7 @@ export function NachzahlungsPrognoseDialog({ open, onOpenChange, result, vorschr
                   <div key={q.label} className="rounded-lg border p-2 text-center">
                     <p className="text-xs font-semibold text-muted-foreground">{q.label}</p>
                     <p className="text-xs text-muted-foreground/60">Mo. {q.monate}</p>
-                    <p className={`text-sm font-bold font-mono mt-1 ${q.kumuliert > 0 ? 'text-red-600' : 'text-emerald-600'}`}>
+                    <p className={`text-sm font-bold font-mono mt-1 ${q.kumuliert > 0 ? 'text-sb-red' : 'text-sb-green'}`}>
                       {q.kumuliert > 0 ? '+' : ''}{formatEuro(q.kumuliert)}
                     </p>
                   </div>
@@ -127,31 +127,31 @@ export function NachzahlungsPrognoseDialog({ open, onOpenChange, result, vorschr
           </div>
 
           {/* Handlungsempfehlung */}
-          <div className={`rounded-lg p-3 flex gap-2.5 ${isNachzahlung ? 'bg-amber-50 border border-amber-200' : 'bg-emerald-50 border border-emerald-200'}`}>
+          <div className={`rounded-lg p-3 flex gap-2.5 ${isNachzahlung ? 'bg-sb-accent-soft border border-sb-accent/30' : 'bg-sb-green-soft border border-sb-green/30'}`}>
             {isNachzahlung ? (
-              <AlertTriangle className="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
+              <AlertTriangle className="h-4 w-4 text-sb-accent shrink-0 mt-0.5" />
             ) : (
-              <CheckCircle className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
+              <CheckCircle className="h-4 w-4 text-sb-green shrink-0 mt-0.5" />
             )}
             <div className="text-xs leading-relaxed">
               {isNachzahlung ? (
                 <>
-                  <p className="font-semibold text-amber-800 mb-1">Handlungsempfehlung</p>
-                  <p className="text-amber-700">
+                  <p className="font-semibold text-sb-accent mb-1">Handlungsempfehlung</p>
+                  <p className="text-sb-accent">
                     Lege monatlich <span className="font-bold font-mono">{formatEuro(result.sparEmpfehlung)}</span> auf ein separates Konto, um die erwartete Nachzahlung von {formatEuro(nachzahlung)} stressfrei zu decken.
                   </p>
                 </>
               ) : isGutschrift ? (
                 <>
-                  <p className="font-semibold text-emerald-800 mb-1">Alles im grünen Bereich</p>
-                  <p className="text-emerald-700">
+                  <p className="font-semibold text-sb-green mb-1">Alles im grünen Bereich</p>
+                  <p className="text-sb-green">
                     Du zahlst aktuell mehr als nötig. Die SVS wird dir voraussichtlich {formatEuro(Math.abs(nachzahlung))} gutschreiben.
                   </p>
                 </>
               ) : (
                 <>
-                  <p className="font-semibold text-emerald-800 mb-1">Perfekt aufgestellt</p>
-                  <p className="text-emerald-700">
+                  <p className="font-semibold text-sb-green mb-1">Perfekt aufgestellt</p>
+                  <p className="text-sb-green">
                     Deine aktuelle Vorschreibung entspricht der berechneten endgültigen Belastung. Keine Nachzahlung erwartet.
                   </p>
                 </>

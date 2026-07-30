@@ -52,7 +52,7 @@ export default function EinkommensteuerLayout({ children }: { children: React.Re
           },
         ],
       }} />
-      {children}
+      <div className="sb-scope">{children}</div>
     </>
   )
 }

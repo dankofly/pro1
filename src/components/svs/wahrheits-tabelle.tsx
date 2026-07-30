@@ -45,32 +45,32 @@ export function WahrheitsTabelle({ gewinn, result, year }: WahrheitsTabelleProps
               <td className="py-3.5 text-right font-mono font-medium text-white">{formatEuro(gewinn)}</td>
               <td className="py-3.5 text-right font-mono font-medium text-white">{formatEuro(gewinn / 12)}</td>
             </tr>
-            <tr className="border-b border-white/10 text-red-300/80">
+            <tr className="border-b border-white/10 text-sb-red/80">
               <td className="py-3.5">- SVS Beiträge</td>
               <td className="py-3.5 text-right font-mono">{formatEuro(result.endgueltigeSVS)}</td>
               <td className="py-3.5 text-right font-mono">{formatEuro(result.endgueltigeSVS / 12)}</td>
             </tr>
             {result.hasProOptions && (result.steuerBrutto - result.einkommensteuer) > 0 ? (
               <>
-                <tr className="border-b border-white/10 text-red-300/80">
+                <tr className="border-b border-white/10 text-sb-red/80">
                   <td className="py-3.5">- Einkommensteuer (Tarif)</td>
                   <td className="py-3.5 text-right font-mono">{formatEuro(result.steuerBrutto)}</td>
                   <td className="py-3.5 text-right font-mono">{formatEuro(result.steuerBrutto / 12)}</td>
                 </tr>
-                <tr className="border-b border-white/10 text-emerald-300">
+                <tr className="border-b border-white/10 text-sb-green">
                   <td className="py-3.5">+ Absetzbeträge</td>
                   <td className="py-3.5 text-right font-mono">{formatEuro(result.steuerBrutto - result.einkommensteuer)}</td>
                   <td className="py-3.5 text-right font-mono">{formatEuro((result.steuerBrutto - result.einkommensteuer) / 12)}</td>
                 </tr>
               </>
             ) : (
-              <tr className="border-b border-white/10 text-red-300/80">
+              <tr className="border-b border-white/10 text-sb-red/80">
                 <td className="py-3.5">- Einkommensteuer</td>
                 <td className="py-3.5 text-right font-mono">{formatEuro(result.einkommensteuer)}</td>
                 <td className="py-3.5 text-right font-mono">{formatEuro(result.einkommensteuer / 12)}</td>
               </tr>
             )}
-            <tr className="bg-emerald-500/90 text-white rounded-lg border border-emerald-400/20">
+            <tr className="bg-sb-green-soft0/90 text-white rounded-lg border border-sb-green/20">
               <td className="py-3.5 pl-3 font-bold text-base rounded-l-lg">ECHTES NETTO</td>
               <td className="py-3.5 text-right font-mono font-bold text-base">{formatEuro(result.echtesNetto)}</td>
               <td className="py-3.5 pr-3 text-right font-mono font-bold text-base rounded-r-lg">{formatEuro(result.echtesNetto / 12)}</td>

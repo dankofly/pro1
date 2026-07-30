@@ -81,7 +81,7 @@ function RuecklagenplanInner() {
           <>
             <Card>
               <CardHeader>
-                <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 mb-1">
+                <div className="flex items-center gap-2 text-sb-green mb-1">
                   <CheckCircle className="h-5 w-5" aria-hidden="true" />
                   <span className="text-sm font-medium">Zahlung erfolgreich</span>
                 </div>
@@ -105,10 +105,10 @@ function RuecklagenplanInner() {
               </CardContent>
             </Card>
 
-            <Card className="border-emerald-200/60 dark:border-emerald-800/40 bg-emerald-50/40 dark:bg-emerald-950/20">
+            <Card className="border-sb-green/30/60 bg-sb-green-soft/40">
               <CardHeader>
                 <div className="flex items-center gap-2 mb-1">
-                  <ShieldCheck className="h-4 w-4 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+                  <ShieldCheck className="h-4 w-4 text-sb-green" aria-hidden="true" />
                   <span className="text-sm font-medium text-foreground">Nächster Schritt</span>
                 </div>
                 <CardTitle className="text-lg">Zahlen ändern sich. Dein Plan sollte mitziehen.</CardTitle>

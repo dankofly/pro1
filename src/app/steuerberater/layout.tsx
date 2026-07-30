@@ -28,7 +28,7 @@ export default function SteuerberaterLayout({ children }: { children: React.Reac
         description: 'KI-gestützter Steuer-Assistent für österreichische Selbständige. Beantwortet Fragen zu SVS, Einkommensteuer, GmbH und Absetzbeträgen. Keine Steuerberatung im Sinne des WTBG.',
         inLanguage: 'de-AT',
       }} />
-      {children}
+      <div className="sb-scope">{children}</div>
     </>
   )
 }

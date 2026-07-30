@@ -17,14 +17,14 @@ export function UstVergleichTabelle({ ustResult }: UstVergleichTabelleProps) {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Receipt className="h-5 w-5 text-blue-600 dark:text-blue-400" aria-hidden="true" />
+          <Receipt className="h-5 w-5 text-sb-accent" aria-hidden="true" />
           <h3 className="text-base font-semibold">KUR vs. Regelbesteuerung</h3>
         </div>
         <Badge
           variant="outline"
           className={ustResult.kurVorteilhaft
-            ? 'bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/40'
-            : 'bg-blue-50 dark:bg-blue-950/30 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800/40'
+            ? 'bg-sb-green-soft text-sb-green border-sb-green/30'
+            : 'bg-sb-accent-soft text-sb-accent border-sb-accent/30'
           }
         >
           {ustResult.kurVorteilhaft ? (
@@ -52,34 +52,34 @@ export function UstVergleichTabelle({ ustResult }: UstVergleichTabelleProps) {
               <td className="py-2.5 text-right font-mono">{formatEuro(ustResult.kurNetto)}</td>
             </tr>
             <tr className="border-b border-border/50">
-              <td className="py-2.5 text-emerald-600 dark:text-emerald-400">+ USt kassiert</td>
+              <td className="py-2.5 text-sb-green">+ USt kassiert</td>
               <td className="py-2.5 text-right font-mono">–</td>
-              <td className="py-2.5 text-right font-mono text-emerald-600 dark:text-emerald-400">{formatEuro(ustResult.ustEinnahmen)}</td>
+              <td className="py-2.5 text-right font-mono text-sb-green">{formatEuro(ustResult.ustEinnahmen)}</td>
             </tr>
             <tr className="border-b border-border/50">
-              <td className="py-2.5 text-red-600 dark:text-red-400">- Vorsteuer verloren</td>
-              <td className="py-2.5 text-right font-mono text-red-600 dark:text-red-400">{formatEuro(ustResult.kurVorsteuerVerlust)}</td>
+              <td className="py-2.5 text-sb-red">- Vorsteuer verloren</td>
+              <td className="py-2.5 text-right font-mono text-sb-red">{formatEuro(ustResult.kurVorsteuerVerlust)}</td>
               <td className="py-2.5 text-right font-mono">–</td>
             </tr>
             <tr className="border-b border-border/50">
-              <td className="py-2.5 text-red-600 dark:text-red-400">- USt Zahllast</td>
+              <td className="py-2.5 text-sb-red">- USt Zahllast</td>
               <td className="py-2.5 text-right font-mono">–</td>
-              <td className="py-2.5 text-right font-mono text-red-600 dark:text-red-400">{formatEuro(ustResult.ustZahllast)}</td>
+              <td className="py-2.5 text-right font-mono text-sb-red">{formatEuro(ustResult.ustZahllast)}</td>
             </tr>
             <tr className="border-b border-border/50">
-              <td className="py-2.5 text-emerald-600 dark:text-emerald-400">+ Vorsteuer zurück</td>
+              <td className="py-2.5 text-sb-green">+ Vorsteuer zurück</td>
               <td className="py-2.5 text-right font-mono">–</td>
-              <td className="py-2.5 text-right font-mono text-emerald-600 dark:text-emerald-400">{formatEuro(ustResult.vorsteuerAbzug)}</td>
+              <td className="py-2.5 text-right font-mono text-sb-green">{formatEuro(ustResult.vorsteuerAbzug)}</td>
             </tr>
             <tr className="font-bold border-t-2 border-border">
               <td className="py-2.5">Effektiv netto</td>
-              <td className="py-2.5 text-right font-mono text-emerald-600 dark:text-emerald-400">{formatEuro(effektivKur)}</td>
-              <td className="py-2.5 text-right font-mono text-emerald-600 dark:text-emerald-400">{formatEuro(ustResult.regelNetto)}</td>
+              <td className="py-2.5 text-right font-mono text-sb-green">{formatEuro(effektivKur)}</td>
+              <td className="py-2.5 text-right font-mono text-sb-green">{formatEuro(ustResult.regelNetto)}</td>
             </tr>
             <tr>
               <td className="py-2.5 font-medium">Differenz</td>
               <td className="py-2.5 text-right font-mono" colSpan={2}>
-                <span className={ustResult.vorteilKur > 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-red-400'}>
+                <span className={ustResult.vorteilKur > 0 ? 'text-sb-green' : 'text-sb-red'}>
                   {ustResult.vorteilKur > 0 ? '+' : ''}{formatEuro(ustResult.vorteilKur)}
                 </span>
                 <span className="text-muted-foreground ml-1">
@@ -94,21 +94,21 @@ export function UstVergleichTabelle({ ustResult }: UstVergleichTabelleProps) {
       {/* Empfehlung Box */}
       <div className={`rounded-lg p-3 text-center ${
         ustResult.empfehlung === 'kur'
-          ? 'bg-emerald-500/10'
-          : 'bg-blue-500/10'
+          ? 'bg-sb-green-soft0/10'
+          : 'bg-sb-accent-soft0/10'
       }`}>
         <div className="flex items-center justify-center gap-1.5">
           <Lightbulb className={`h-4 w-4 ${
-            ustResult.empfehlung === 'kur' ? 'text-emerald-600 dark:text-emerald-400' : 'text-blue-600 dark:text-blue-400'
+            ustResult.empfehlung === 'kur' ? 'text-sb-green' : 'text-sb-accent'
           }`} aria-hidden="true" />
           <span className={`font-bold text-sm ${
-            ustResult.empfehlung === 'kur' ? 'text-emerald-700 dark:text-emerald-300' : 'text-blue-700 dark:text-blue-300'
+            ustResult.empfehlung === 'kur' ? 'text-sb-green' : 'text-sb-accent'
           }`}>
             Empfehlung: {ustResult.empfehlung === 'kur' ? 'KUR' : 'Regelbesteuerung'}
           </span>
         </div>
         <p className={`text-xs mt-1 ${
-          ustResult.empfehlung === 'kur' ? 'text-emerald-600 dark:text-emerald-400' : 'text-blue-600 dark:text-blue-400'
+          ustResult.empfehlung === 'kur' ? 'text-sb-green' : 'text-sb-accent'
         }`}>
           {ustResult.empfehlungGrund}
         </p>
@@ -125,9 +125,9 @@ export function UstVergleichTabelle({ ustResult }: UstVergleichTabelleProps) {
 
       {/* Toleranz-Warnung */}
       {ustResult.kurToleranz && (
-        <div className="rounded-lg bg-amber-500/10 border border-amber-200 dark:border-amber-800/40 p-3 flex items-start gap-2">
-          <AlertTriangle className="h-4 w-4 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0" aria-hidden="true" />
-          <p className="text-xs text-amber-700 dark:text-amber-300">
+        <div className="rounded-lg bg-sb-accent-soft0/10 border border-sb-accent/30 p-3 flex items-start gap-2">
+          <AlertTriangle className="h-4 w-4 text-sb-accent mt-0.5 shrink-0" aria-hidden="true" />
+          <p className="text-xs text-sb-accent">
             Dein Umsatz liegt in der Toleranzzone (€55.000–€60.500). KUR bleibt einmalig gültig.
           </p>
         </div>

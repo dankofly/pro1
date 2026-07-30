@@ -170,15 +170,15 @@ function SteuerwissenContent() {
               {/* ── Header ── */}
               <div className="flex items-center justify-between px-5 py-3 border-b border-border/30 bg-[hsl(var(--surface))]/50">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/10">
-                    <BookOpen className="h-4 w-4 text-emerald-500" />
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sb-green-soft">
+                    <BookOpen className="h-4 w-4 text-sb-green" />
                   </div>
                   <div>
                     <div className="flex items-center gap-2">
                       <h2 className="text-sm font-semibold text-foreground">Steuer-Wissen</h2>
                       <Badge
                         variant="outline"
-                        className="text-[10px] px-1.5 py-0 h-4 font-medium bg-emerald-500/10 text-emerald-400 border-emerald-500/25"
+                        className="text-[10px] px-1.5 py-0 h-4 font-medium bg-sb-green-soft text-sb-green border-sb-green/25"
                       >
                         Kostenlos
                       </Badge>
@@ -195,10 +195,10 @@ function SteuerwissenContent() {
                         <div
                           className={`h-full rounded-full transition-all duration-500 ${
                             remaining / limit > 0.5
-                              ? 'bg-emerald-500'
+                              ? 'bg-sb-green'
                               : remaining / limit > 0.25
-                                ? 'bg-amber-500'
-                                : 'bg-red-500'
+                                ? 'bg-sb-accent'
+                                : 'bg-sb-red'
                           }`}
                           style={{ width: `${(remaining / limit) * 100}%` }}
                         />
@@ -232,8 +232,8 @@ function SteuerwissenContent() {
                 {!hasMessages ? (
                   /* Welcome screen */
                   <div className="flex flex-col items-center justify-center h-full gap-4">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500/15 to-emerald-600/5 ring-1 ring-emerald-500/20">
-                      <Sparkles className="h-7 w-7 text-emerald-400" />
+                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-sb-green/15 to-sb-green/5 ring-1 ring-sb-green/20">
+                      <Sparkles className="h-7 w-7 text-sb-green" />
                     </div>
                     <div className="text-center space-y-2 max-w-sm">
                       <h3 className="text-xl font-semibold text-foreground tracking-tight">
@@ -254,14 +254,14 @@ function SteuerwissenContent() {
                     {messages.map((msg, i) => (
                       <div key={i} className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : ''}`}>
                         {msg.role === 'assistant' && (
-                          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 mt-0.5">
-                            <Bot className="h-3.5 w-3.5 text-emerald-500" />
+                          <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-sb-green-soft mt-0.5">
+                            <Bot className="h-3.5 w-3.5 text-sb-green" />
                           </div>
                         )}
                         <div
                           className={`max-w-[85%] sm:max-w-[75%] ${
                             msg.role === 'user'
-                              ? 'bg-emerald-600 text-white rounded-2xl rounded-br-sm px-4 py-2.5'
+                              ? 'bg-sb-green text-sb-text rounded-2xl rounded-br-sm px-4 py-2.5'
                               : 'text-foreground py-1'
                           }`}
                         >
@@ -298,15 +298,15 @@ function SteuerwissenContent() {
                     {/* Loading indicator */}
                     {isLoading && (
                       <div className="flex gap-3">
-                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 mt-0.5">
-                          <Bot className="h-3.5 w-3.5 text-emerald-500" />
+                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-sb-green-soft mt-0.5">
+                          <Bot className="h-3.5 w-3.5 text-sb-green" />
                         </div>
                         <div className="py-2">
                           <div className="flex items-center gap-2 text-sm text-muted-foreground">
                             <div className="flex gap-1">
-                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/60 animate-bounce" style={{ animationDelay: '0ms' }} />
-                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/60 animate-bounce" style={{ animationDelay: '150ms' }} />
-                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500/60 animate-bounce" style={{ animationDelay: '300ms' }} />
+                              <span className="w-1.5 h-1.5 rounded-full bg-sb-green/60 animate-bounce" style={{ animationDelay: '0ms' }} />
+                              <span className="w-1.5 h-1.5 rounded-full bg-sb-green/60 animate-bounce" style={{ animationDelay: '150ms' }} />
+                              <span className="w-1.5 h-1.5 rounded-full bg-sb-green/60 animate-bounce" style={{ animationDelay: '300ms' }} />
                             </div>
                             <span className="text-xs">Suche im Lehrbuch...</span>
                           </div>
@@ -328,12 +328,12 @@ function SteuerwissenContent() {
               {/* ── CTA Banner (only after 3+ assistant messages) ── */}
               {messages.filter(m => m.role === 'assistant').length >= 3 && (
                 <div className="px-5 py-2">
-                  <div className="flex items-center gap-3 px-4 py-2.5 rounded-lg bg-gradient-to-r from-amber-500/5 to-emerald-500/5 border border-border/30">
-                    <Crown className="h-4 w-4 text-amber-400 shrink-0" />
+                  <div className="flex items-center gap-3 px-4 py-2.5 rounded-lg bg-gradient-to-r from-sb-accent/5 to-sb-green/5 border border-border/30">
+                    <Crown className="h-4 w-4 text-sb-accent shrink-0" />
                     <p className="text-xs text-muted-foreground flex-1">
                       Konkrete Steuerersparnis berechnen?
                     </p>
-                    <Button asChild size="sm" variant="ghost" className="h-7 text-xs gap-1.5 text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 shrink-0">
+                    <Button asChild size="sm" variant="ghost" className="h-7 text-xs gap-1.5 text-sb-accent hover:text-sb-accent-deep hover:bg-sb-accent-soft shrink-0">
                       <Link href="/steuerberater">
                         AI SteuerBoard
                         <ArrowUp className="h-3 w-3 rotate-45" />
@@ -346,12 +346,12 @@ function SteuerwissenContent() {
               {/* ── Rate limit reached message ── */}
               {limitReached && (
                 <div className="px-5 py-2">
-                  <div className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-amber-500/8 border border-amber-500/15 text-sm">
-                    <AlertCircle className="h-4 w-4 text-amber-400 shrink-0" />
+                  <div className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-sb-accent-soft border border-sb-accent/20 text-sm">
+                    <AlertCircle className="h-4 w-4 text-sb-accent shrink-0" />
                     {isAnonymous ? (
                       <div className="flex items-center gap-2 flex-wrap">
-                        <span className="text-xs text-amber-200">Tageslimit erreicht.</span>
-                        <Button asChild size="sm" variant="ghost" className="h-6 text-xs gap-1 text-amber-300 hover:text-amber-200 hover:bg-amber-500/10">
+                        <span className="text-xs text-sb-mut">Tageslimit erreicht.</span>
+                        <Button asChild size="sm" variant="ghost" className="h-6 text-xs gap-1 text-sb-accent hover:text-sb-mut hover:bg-sb-accent-soft">
                           <Link href="/auth/login?redirect=/steuerwissen">
                             <LogIn className="h-3 w-3" />
                             Anmelden
@@ -359,7 +359,7 @@ function SteuerwissenContent() {
                         </Button>
                       </div>
                     ) : (
-                      <span className="text-xs text-amber-200">Tageslimit erreicht. Versuche es morgen wieder.</span>
+                      <span className="text-xs text-sb-mut">Tageslimit erreicht. Versuche es morgen wieder.</span>
                     )}
                   </div>
                 </div>
@@ -372,7 +372,7 @@ function SteuerwissenContent() {
                     KI-Tutor -- keine Rechtsberatung
                   </p>
                 )}
-                <div className="relative flex items-end gap-2 rounded-xl border border-border/40 bg-background/50 focus-within:border-emerald-500/40 focus-within:ring-1 focus-within:ring-emerald-500/20 transition-all">
+                <div className="relative flex items-end gap-2 rounded-xl border border-border/40 bg-background/50 focus-within:border-sb-green/40 focus-within:ring-1 focus-within:ring-sb-green/20 transition-all">
                   <textarea
                     ref={inputRef}
                     value={inputText}
@@ -387,7 +387,7 @@ function SteuerwissenContent() {
                     size="icon"
                     onClick={() => sendMessage(inputText)}
                     disabled={!inputText.trim() || isLoading || limitReached}
-                    className="h-8 w-8 rounded-lg shrink-0 mr-1.5 mb-1.5 cursor-pointer bg-emerald-600 hover:bg-emerald-500 disabled:bg-muted disabled:opacity-40 transition-colors"
+                    className="h-8 w-8 rounded-lg shrink-0 mr-1.5 mb-1.5 cursor-pointer bg-sb-green hover:bg-sb-green disabled:bg-muted disabled:opacity-40 transition-colors"
                   >
                     <ArrowUp className="h-4 w-4" />
                   </Button>

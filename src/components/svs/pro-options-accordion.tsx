@@ -55,19 +55,19 @@ export function ProOptionsAccordion({
             type="button"
             className="flex w-full items-center gap-3 p-5 sm:p-6 text-left"
           >
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-amber-100">
-              <Crown className="h-4 w-4 text-amber-600" />
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-sb-accent-soft">
+              <Crown className="h-4 w-4 text-sb-accent" />
             </div>
             <div className="flex-1 min-w-0">
-              <h2 className="text-lg font-semibold tracking-tight text-slate-900 font-heading">
+              <h2 className="text-lg font-semibold tracking-tight text-sb-text font-heading">
                 Steuer-Optimierung
               </h2>
-              <p className="text-xs text-slate-400 mt-0.5 truncate">
+              <p className="text-xs text-sb-mut mt-0.5 truncate">
                 Absetzbeträge, Pendler, Investitionen
               </p>
             </div>
             <ChevronDown
-              className={`h-5 w-5 shrink-0 text-slate-400 transition-transform duration-200 ${
+              className={`h-5 w-5 shrink-0 text-sb-mut transition-transform duration-200 ${
                 open ? 'rotate-180' : ''
               }`}
             />
@@ -80,8 +80,8 @@ export function ProOptionsAccordion({
             {/* Lock overlay for non-Pro users */}
             {!isPro && (
               <div className="absolute inset-0 bg-background/60 backdrop-blur-sm z-10 flex flex-col items-center justify-center gap-3 rounded-b-2xl">
-                <Lock className="h-6 w-6 text-slate-400" />
-                <p className="text-sm font-medium text-slate-600">
+                <Lock className="h-6 w-6 text-sb-mut" />
+                <p className="text-sm font-medium text-sb-dim">
                   Pro Feature
                 </p>
                 <Button
@@ -95,19 +95,19 @@ export function ProOptionsAccordion({
 
             <div className="space-y-6 px-5 pb-6 sm:px-6 sm:pb-8">
               {/* Divider from trigger */}
-              <div className="border-t border-slate-200/60" />
+              <div className="border-t border-sb-line" />
 
               {/* ── Kinder ──────────────────────────── */}
               <div className="space-y-4">
-                <Label className="text-sm font-medium text-slate-700">
+                <Label className="text-sm font-medium text-sb-mut">
                   Kinder
                 </Label>
 
                 {/* Kinder unter 18 */}
                 <div className="flex items-center justify-between gap-4">
                   <div className="min-w-0">
-                    <p className="text-sm text-slate-600">Kinder unter 18</p>
-                    <p className="text-xs text-slate-400">
+                    <p className="text-sm text-sb-dim">Kinder unter 18</p>
+                    <p className="text-xs text-sb-mut">
                       FBP {fbpUnder18.toLocaleString('de-AT')} EUR / Kind
                     </p>
                   </div>
@@ -146,8 +146,8 @@ export function ProOptionsAccordion({
                 {/* Kinder ueber 18 */}
                 <div className="flex items-center justify-between gap-4">
                   <div className="min-w-0">
-                    <p className="text-sm text-slate-600">Kinder über 18</p>
-                    <p className="text-xs text-slate-400">
+                    <p className="text-sm text-sb-dim">Kinder über 18</p>
+                    <p className="text-xs text-sb-mut">
                       FBP {fbpOver18.toLocaleString('de-AT')} EUR / Kind
                     </p>
                   </div>
@@ -185,15 +185,15 @@ export function ProOptionsAccordion({
               </div>
 
               {/* Divider */}
-              <div className="border-t border-slate-200/60" />
+              <div className="border-t border-sb-line" />
 
               {/* ── Alleinverdiener / Alleinerzieher ─ */}
               <div className="flex items-center justify-between gap-4">
                 <div className="min-w-0">
-                  <Label className="text-sm font-medium text-slate-700">
+                  <Label className="text-sm font-medium text-sb-mut">
                     Alleinverdiener / Alleinerzieher
                   </Label>
-                  <p className="text-xs text-slate-400 mt-0.5">
+                  <p className="text-xs text-sb-mut mt-0.5">
                     AVAB/AEAB bei mind. 1 Kind
                   </p>
                 </div>
@@ -206,15 +206,15 @@ export function ProOptionsAccordion({
               </div>
 
               {/* Divider */}
-              <div className="border-t border-slate-200/60" />
+              <div className="border-t border-sb-line" />
 
               {/* ── Pendlerkilometer ─────────────────── */}
               <div className="space-y-4">
                 <div className="flex items-baseline justify-between gap-2">
-                  <Label className="text-sm font-medium text-slate-700">
+                  <Label className="text-sm font-medium text-sb-mut">
                     Pendlerkilometer
                   </Label>
-                  <span className="text-sm font-mono font-semibold text-slate-900 tabular-nums">
+                  <span className="text-sm font-mono font-semibold text-sb-text tabular-nums">
                     {proOptions.pendlerKm} km
                   </span>
                 </div>
@@ -227,7 +227,7 @@ export function ProOptionsAccordion({
                   step={1}
                 />
 
-                <div className="flex justify-between text-[11px] font-medium text-slate-400">
+                <div className="flex justify-between text-[11px] font-medium text-sb-mut">
                   <span>0 km</span>
                   <span>20 km</span>
                   <span>40 km</span>
@@ -237,8 +237,8 @@ export function ProOptionsAccordion({
 
                 <div className="flex items-center justify-between gap-4 pt-1">
                   <div className="flex items-center gap-2 min-w-0">
-                    <Train className="h-4 w-4 text-slate-400 shrink-0" />
-                    <span className="text-sm text-slate-600">
+                    <Train className="h-4 w-4 text-sb-mut shrink-0" />
+                    <span className="text-sm text-sb-dim">
                       Öffentliche Verkehrsmittel zumutbar
                     </span>
                   </div>
@@ -252,16 +252,16 @@ export function ProOptionsAccordion({
               </div>
 
               {/* Divider */}
-              <div className="border-t border-slate-200/60" />
+              <div className="border-t border-sb-line" />
 
               {/* ── Investitionen (IFB) ──────────────── */}
               <div className="space-y-3">
-                <Label className="text-sm font-medium text-slate-700">
+                <Label className="text-sm font-medium text-sb-mut">
                   Investitionen (IFB)
                 </Label>
 
                 <div className="relative max-w-[220px]">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm font-medium">
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sb-mut text-sm font-medium">
                     EUR
                   </span>
                   <Input
@@ -277,11 +277,11 @@ export function ProOptionsAccordion({
                       })
                     }}
                     placeholder="0"
-                    className="pl-14 text-right font-mono text-base font-semibold tracking-tight h-10 rounded-xl border-slate-200 focus:border-slate-400 focus:ring-slate-400"
+                    className="pl-14 text-right font-mono text-base font-semibold tracking-tight h-10 rounded-xl border-sb-line focus:border-sb-line-strong focus:ring-sb-line-strong"
                   />
                 </div>
 
-                <p className="text-xs text-slate-400 leading-relaxed">
+                <p className="text-xs text-sb-mut leading-relaxed">
                   Tatsächliche Investitionen für den investitionsbedingten
                   Gewinnfreibetrag
                 </p>

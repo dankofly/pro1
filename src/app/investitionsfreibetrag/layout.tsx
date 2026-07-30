@@ -52,7 +52,7 @@ export default function IFBLayout({ children }: { children: React.ReactNode }) {
           },
         ],
       }} />
-      {children}
+      <div className="sb-scope">{children}</div>
     </>
   )
 }

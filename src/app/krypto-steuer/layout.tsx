@@ -52,7 +52,7 @@ export default function KryptoSteuerLayout({ children }: { children: React.React
           },
         ],
       }} />
-      {children}
+      <div className="sb-scope">{children}</div>
     </>
   )
 }

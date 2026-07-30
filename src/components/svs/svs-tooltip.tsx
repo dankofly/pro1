@@ -33,16 +33,16 @@ export function SvsTooltip({ term, children }: SvsTooltipProps) {
       <PopoverTrigger asChild>
         <button
           type="button"
-          className="inline-flex items-center gap-0.5 border-b border-dashed border-blue-400 text-blue-600 font-medium cursor-pointer hover:text-blue-700 active:text-blue-800 transition-colors"
+          className="inline-flex items-center gap-0.5 border-b border-dashed border-sb-accent/30 text-sb-accent font-medium cursor-pointer hover:text-sb-accent active:text-sb-accent transition-colors"
         >
           {term}
-          <Info className="h-3.5 w-3.5 text-blue-400" />
+          <Info className="h-3.5 w-3.5 text-sb-accent" />
         </button>
       </PopoverTrigger>
       <PopoverContent
         side="top"
         align="center"
-        className="max-w-[280px] bg-slate-800 text-white border-slate-700 text-xs leading-relaxed px-3 py-2"
+        className="max-w-[280px] bg-white/[0.05] text-white border-sb-line text-xs leading-relaxed px-3 py-2"
       >
         <p>{content}</p>
       </PopoverContent>

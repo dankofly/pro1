@@ -342,8 +342,8 @@ function RechnerContent() {
           {/* Right - Results */}
           <div className="space-y-8 min-w-0 overflow-hidden">
             {svs.belowMinimum && (
-              <div className="flex gap-3 bg-blue-50/50 dark:bg-blue-950/30 border border-blue-200/50 dark:border-blue-800/30 border-l-[3px] border-l-blue-500 rounded-lg p-4 shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 mt-1.5" />
+              <div className="flex gap-3 bg-sb-accent-soft border border-sb-accent/30 border-l-[3px] border-l-blue-500 rounded-lg p-4 shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-sb-accent-soft0 shrink-0 mt-1.5" />
                 <p className="text-sm text-foreground">
                   <span className="font-medium">Unter der Versicherungsgrenze:</span>{' '}
                   Bei einem Jahresgewinn unter {formatEuro(versicherungsgrenze)} besteht als Neuer Selbständiger keine Pflichtversicherung bei der SVS.
@@ -352,8 +352,8 @@ function RechnerContent() {
             )}
 
             {svs.usesMinBeitragsgrundlage && (
-              <div className="flex gap-3 bg-amber-50/50 dark:bg-amber-950/30 border border-amber-200/50 dark:border-amber-800/30 border-l-[3px] border-l-amber-500 rounded-lg p-4 shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0 mt-1.5" />
+              <div className="flex gap-3 bg-sb-accent-soft border border-sb-accent/30 border-l-[3px] border-l-amber-500 rounded-lg p-4 shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-sb-accent-soft0 shrink-0 mt-1.5" />
                 <p className="text-sm text-foreground">
                   <span className="font-medium">Mindestbeitragsgrundlage:</span>{' '}
                   SVS wird auf der Mindestbeitragsgrundlage von {formatEuro(minBeitragsgrundlage)} berechnet, da dein Gewinn darunter liegt.
@@ -362,8 +362,8 @@ function RechnerContent() {
             )}
 
             {svs.isJungunternehmer && (
-              <div className="flex gap-3 bg-emerald-50/50 dark:bg-emerald-950/30 border border-emerald-200/50 dark:border-emerald-800/30 border-l-[3px] border-l-emerald-500 rounded-lg p-4 shadow-sm">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 shrink-0 mt-1.5" />
+              <div className="flex gap-3 bg-sb-green-soft border border-sb-green/30 border-l-[3px] border-l-emerald-500 rounded-lg p-4 shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-sb-green-soft0 shrink-0 mt-1.5" />
                 <p className="text-sm text-foreground">
                   <span className="font-medium">Jungunternehmer-Bonus:</span>{' '}
                   Reduzierter KV-Beitragssatz (3,84% statt 6,80%) im {Number(input.year) - input.stammdaten.gruendungsJahr + 1}. Kalenderjahr.
@@ -415,7 +415,7 @@ function RechnerContent() {
                   return (
                     <div className="glass rounded-2xl p-5 space-y-3 border-l-[3px] border-l-amber-500">
                       <div className="flex items-center gap-2">
-                        <AlertTriangle className="h-5 w-5 text-amber-500" />
+                        <AlertTriangle className="h-5 w-5 text-sb-accent" />
                         <h3 className="text-base font-semibold">SVS-Nachzahlung im {nachzahlungJahr > selectedYear ? nachzahlungJahr : 3}. Jahr</h3>
                       </div>
                       <p className="text-sm text-muted-foreground">
@@ -434,10 +434,10 @@ function RechnerContent() {
                           <p className="text-xs text-muted-foreground">pro Jahr</p>
                         </div>
                       </div>
-                      <div className="bg-amber-50/50 dark:bg-amber-950/20 rounded-lg p-3 border border-amber-200/30 dark:border-amber-800/30">
+                      <div className="bg-sb-accent-soft rounded-lg p-3 border border-sb-accent/30">
                         <div className="flex justify-between items-center">
                           <span className="text-sm font-medium">Erwartete Nachzahlung</span>
-                          <span className="text-lg font-bold font-mono text-amber-600 dark:text-amber-400">{formatEuro(nachzahlungJahr3)}</span>
+                          <span className="text-lg font-bold font-mono text-sb-accent">{formatEuro(nachzahlungJahr3)}</span>
                         </div>
                         <p className="text-xs text-muted-foreground mt-1">
                           Tipp: Lege {formatEuro(nachzahlungJahr3 / 12)}/Monat zusätzlich auf ein separates Konto zurück, damit dich die Nachzahlung nicht kalt erwischt.

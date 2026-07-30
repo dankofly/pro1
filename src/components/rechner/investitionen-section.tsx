@@ -82,11 +82,11 @@ export function InvestitionenSection({ investitionen, afa, gewinn, year, isPro, 
       <div className="card-surface">
         <CollapsibleTrigger asChild>
           <button type="button" className="flex w-full items-center gap-3 px-4 py-3.5 text-left">
-            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-violet-500/10">
-              <Landmark className="h-3.5 w-3.5 text-violet-600" />
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-sb-accent-soft0/10">
+              <Landmark className="h-3.5 w-3.5 text-sb-accent" />
             </div>
             <div className="flex-1 min-w-0">
-              <h2 className="text-sm font-semibold tracking-tight flex items-center gap-1.5">Investitionen & AfA <Crown className="h-3 w-3 text-amber-400" aria-hidden="true" /><span className="sr-only">(Pro-Feature)</span></h2>
+              <h2 className="text-sm font-semibold tracking-tight flex items-center gap-1.5">Investitionen & AfA <Crown className="h-3 w-3 text-sb-accent" aria-hidden="true" /><span className="sr-only">(Pro-Feature)</span></h2>
               <p className="text-xs text-muted-foreground truncate">
                 {afa.gesamt > 0 ? `AfA: ${formatEuro(afa.gesamt)}/Jahr` : 'Abschreibungen für Anlagegüter'}
               </p>
@@ -131,7 +131,7 @@ export function InvestitionenSection({ investitionen, afa, gewinn, year, isPro, 
               {/* Bundesschatz / Wertpapiere für investitionsbedingten GFB */}
               <div className="space-y-2">
                 <div className="flex items-center gap-2 pt-2">
-                  <Banknote className="h-4 w-4 text-emerald-600" />
+                  <Banknote className="h-4 w-4 text-sb-green" />
                   <Label htmlFor="invest-bundesschatz" className="text-sm font-medium">
                     Bundesschatz / Wertpapiere für iGFB
                   </Label>
@@ -157,10 +157,10 @@ export function InvestitionenSection({ investitionen, afa, gewinn, year, isPro, 
                   const maxIgfb = calcMaxIFB(gewinn, year as TaxYear)
                   if (maxIgfb > 0) {
                     return (
-                      <div className="flex items-start gap-2 bg-emerald-50/50 dark:bg-emerald-950/20 rounded-lg p-2.5 border border-emerald-200/30 dark:border-emerald-800/30">
-                        <Info className="h-3.5 w-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                      <div className="flex items-start gap-2 bg-sb-green-soft rounded-lg p-2.5 border border-sb-green/30/30">
+                        <Info className="h-3.5 w-3.5 text-sb-green shrink-0 mt-0.5" />
                         <p className="text-xs text-muted-foreground">
-                          Bei deinem Gewinn von {formatEuro(gewinn)} kannst du max. <span className="font-medium text-emerald-700 dark:text-emerald-400">{formatEuro(maxIgfb)}</span> als invest. GFB geltend machen. Optimal: diesen Betrag in Bundesschatz anlegen.
+                          Bei deinem Gewinn von {formatEuro(gewinn)} kannst du max. <span className="font-medium text-sb-green">{formatEuro(maxIgfb)}</span> als invest. GFB geltend machen. Optimal: diesen Betrag in Bundesschatz anlegen.
                         </p>
                       </div>
                     )

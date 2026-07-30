@@ -50,7 +50,7 @@ export function AlertSettingsDialog({
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <BellRing className="h-5 w-5 text-orange-500" />
+            <BellRing className="h-5 w-5 text-sb-accent" />
             Smart Alerts
           </DialogTitle>
           <DialogDescription>
@@ -62,7 +62,7 @@ export function AlertSettingsDialog({
           {/* Enable toggle */}
           <div className="flex items-center justify-between">
             <Label htmlFor="alert-enable" className="flex items-center gap-2 cursor-pointer">
-              {prefs.enabled ? <Bell className="h-4 w-4 text-orange-500" /> : <BellOff className="h-4 w-4 text-muted-foreground" />}
+              {prefs.enabled ? <Bell className="h-4 w-4 text-sb-accent" /> : <BellOff className="h-4 w-4 text-muted-foreground" />}
               Nachzahlungs-Warnungen
             </Label>
             <Switch
@@ -103,8 +103,8 @@ export function AlertSettingsDialog({
               </div>
 
               {/* Current status */}
-              <div className={`p-3 rounded-lg border ${isExceeded ? 'bg-red-50 border-red-200' : 'bg-green-50 border-green-200'}`}>
-                <p className={`text-sm font-medium ${isExceeded ? 'text-red-800' : 'text-green-800'}`}>
+              <div className={`p-3 rounded-lg border ${isExceeded ? 'bg-sb-red/10 border-sb-red/30' : 'bg-sb-green-soft border-sb-green/30'}`}>
+                <p className={`text-sm font-medium ${isExceeded ? 'text-sb-red' : 'text-sb-green'}`}>
                   {isExceeded
                     ? `Warnung aktiv! Nachzahlung ${formatEuro(currentNachzahlung)} > Schwellwert ${formatEuro(prefs.threshold)}`
                     : `Alles im gruenen Bereich. Nachzahlung ${formatEuro(Math.max(0, currentNachzahlung))} < Schwellwert ${formatEuro(prefs.threshold)}`
@@ -125,9 +125,9 @@ export function AlertSettingsDialog({
                   />
                 </div>
                 {prefs.notificationsEnabled && (
-                  <Alert className="bg-blue-50 border-blue-200">
-                    <Info className="h-4 w-4 text-blue-500" />
-                    <AlertDescription className="text-blue-800 text-xs">
+                  <Alert className="bg-sb-accent-soft border-sb-accent/30">
+                    <Info className="h-4 w-4 text-sb-accent" />
+                    <AlertDescription className="text-sb-accent text-xs">
                       Du erhältst eine Browser-Benachrichtigung, wenn sich deine Nachzahlung ändert und den Schwellwert übersteigt.
                     </AlertDescription>
                   </Alert>

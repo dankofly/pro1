@@ -141,8 +141,8 @@ export function AiTaxAdvisor({ input, result, isPro, onUpgradeRequired }: AiTaxA
       <div className="p-5 sm:p-6">
         {/* Header */}
         <div className="flex items-center gap-3 mb-1">
-          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-amber-500/10">
-            <Sparkles className="h-4 w-4 text-amber-600" />
+          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-sb-accent-soft0/10">
+            <Sparkles className="h-4 w-4 text-sb-accent" />
           </div>
           <div className="flex-1">
             <div className="flex items-center gap-2">

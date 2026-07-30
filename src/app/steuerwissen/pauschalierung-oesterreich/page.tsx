@@ -7,25 +7,25 @@ import { ArticleFooter } from '@/components/steuerwissen/article-footer'
 export default function PauschalierungOesterreichPage() {
   return (
     <AppShell>
-      <div className="min-h-screen bg-slate-950">
+      <div className="min-h-screen bg-sb-bg">
         <div className="max-w-3xl mx-auto px-6 py-8">
           {/* Breadcrumb */}
           <nav className="mb-8">
-            <div className="flex items-center space-x-2 text-sm text-slate-400">
-              <Link href="/" className="hover:text-slate-300 transition-colors">Home</Link>
+            <div className="flex items-center space-x-2 text-sm text-sb-mut">
+              <Link href="/" className="hover:text-sb-mut transition-colors">Home</Link>
               <span>›</span>
-              <Link href="/steuerwissen" className="hover:text-slate-300 transition-colors">Steuerwissen</Link>
+              <Link href="/steuerwissen" className="hover:text-sb-mut transition-colors">Steuerwissen</Link>
               <span>›</span>
-              <span className="text-slate-300">Pauschalierung</span>
+              <span className="text-sb-mut">Pauschalierung</span>
             </div>
           </nav>
 
           <article>
-            <h1 className="text-4xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-4xl font-bold text-sb-text mb-6 leading-tight">
               Pauschalierung in Österreich 2026 — Basispauschalierung, Branchenpauschalierung & Kleinunternehmerpauschalierung
             </h1>
 
-            <p className="text-lg text-slate-300 mb-8 leading-relaxed">
+            <p className="text-lg text-sb-mut mb-8 leading-relaxed">
               Die Pauschalierung ist eine der effektivsten Möglichkeiten, den steuerlichen Verwaltungsaufwand
               als Selbstständiger in Österreich drastisch zu reduzieren. Statt jeden Beleg einzeln zu erfassen,
               setzen Sie einen pauschalen Prozentsatz Ihrer Einnahmen als Betriebsausgaben an. Dieser Guide
@@ -35,23 +35,23 @@ export default function PauschalierungOesterreichPage() {
 
             {/* Was ist Pauschalierung? */}
             <section className="mb-10">
-              <h2 className="text-2xl font-semibold text-white mb-4">
+              <h2 className="text-2xl font-semibold text-sb-text mb-4">
                 Was ist die Pauschalierung?
               </h2>
-              <p className="text-slate-300 mb-4 leading-relaxed">
+              <p className="text-sb-mut mb-4 leading-relaxed">
                 Bei der Pauschalierung werden Betriebsausgaben nicht einzeln erfasst, sondern pauschal als
                 Prozentsatz der Betriebseinnahmen angesetzt. Das österreichische Einkommensteuergesetz (EStG)
                 bietet drei verschiedene Pauschalierungsmodelle an, die sich in Voraussetzungen, Pauschalsätzen
                 und Anwendungsbereich unterscheiden.
               </p>
-              <p className="text-slate-300 mb-4 leading-relaxed">
+              <p className="text-sb-mut mb-4 leading-relaxed">
                 Der große Vorteil: Sie müssen keine detaillierte Einnahmen-Ausgaben-Rechnung führen und sparen
                 sich erheblichen Buchhaltungsaufwand. Gleichzeitig kann die Pauschalierung aber auch zu einer
                 höheren Steuerbelastung führen, wenn Ihre tatsächlichen Ausgaben über dem Pauschalsatz liegen.
               </p>
-              <div className="bg-slate-900 p-4 rounded-lg border-l-4 border-blue-500">
-                <p className="text-slate-300">
-                  <strong className="text-white">Wichtig:</strong> Die Pauschalierung betrifft nur die
+              <div className="bg-sb-card p-4 rounded-lg border-l-4 border-sb-accent/40">
+                <p className="text-sb-mut">
+                  <strong className="text-sb-text">Wichtig:</strong> Die Pauschalierung betrifft nur die
                   Einkommensteuer. SVS-Beiträge, Umsatzsteuer und andere Abgaben werden unabhängig davon berechnet.
                 </p>
               </div>
@@ -59,68 +59,68 @@ export default function PauschalierungOesterreichPage() {
 
             {/* Die drei Arten */}
             <section className="mb-10">
-              <h2 className="text-2xl font-semibold text-white mb-4">
+              <h2 className="text-2xl font-semibold text-sb-text mb-4">
                 Die drei Pauschalierungsarten im Überblick
               </h2>
 
               {/* Basispauschalierung */}
-              <div className="bg-slate-900 p-6 rounded-lg border border-slate-700 mb-6">
-                <h3 className="text-xl font-semibold text-white mb-3">
+              <div className="bg-sb-card p-6 rounded-lg border border-sb-line mb-6">
+                <h3 className="text-xl font-semibold text-sb-text mb-3">
                   1. Basispauschalierung (§ 17 Abs 1 EStG)
                 </h3>
-                <p className="text-slate-300 mb-3 leading-relaxed">
+                <p className="text-sb-mut mb-3 leading-relaxed">
                   Die Basispauschalierung ist die häufigste Form und steht grundsätzlich allen Selbstständigen
                   mit Einkünften aus Gewerbebetrieb oder selbstständiger Arbeit offen.
                 </p>
-                <div className="space-y-2 text-slate-300 mb-4">
-                  <p><strong className="text-white">Pauschalsatz:</strong> 15% der Betriebseinnahmen ab 2026 (2025: 13,5%, 2024: 12%)</p>
-                  <p><strong className="text-white">Für bestimmte Tätigkeiten:</strong> 6% (z.B. kaufmännische Beratung, Schriftsteller, Vortragende, Wissenschaftler)</p>
-                  <p><strong className="text-white">Umsatzgrenze:</strong> 420.000€ Jahresumsatz ab 2026 (2025: 320.000€, 2024: 220.000€)</p>
-                  <p><strong className="text-white">Maximaler Pauschalbetrag:</strong> 63.000€ (bei 15%) bzw. 25.200€ (bei 6%) ab 2026 (2025: 43.200€ bzw. 19.200€)</p>
-                  <p><strong className="text-white">Vorsteuerpauschale:</strong> 1,8% des Umsatzes (max. 7.560€ ab 2026; 2025: 5.760€)</p>
+                <div className="space-y-2 text-sb-mut mb-4">
+                  <p><strong className="text-sb-text">Pauschalsatz:</strong> 15% der Betriebseinnahmen ab 2026 (2025: 13,5%, 2024: 12%)</p>
+                  <p><strong className="text-sb-text">Für bestimmte Tätigkeiten:</strong> 6% (z.B. kaufmännische Beratung, Schriftsteller, Vortragende, Wissenschaftler)</p>
+                  <p><strong className="text-sb-text">Umsatzgrenze:</strong> 420.000€ Jahresumsatz ab 2026 (2025: 320.000€, 2024: 220.000€)</p>
+                  <p><strong className="text-sb-text">Maximaler Pauschalbetrag:</strong> 63.000€ (bei 15%) bzw. 25.200€ (bei 6%) ab 2026 (2025: 43.200€ bzw. 19.200€)</p>
+                  <p><strong className="text-sb-text">Vorsteuerpauschale:</strong> 1,8% des Umsatzes (max. 7.560€ ab 2026; 2025: 5.760€)</p>
                 </div>
-                <p className="text-slate-300 leading-relaxed">
+                <p className="text-sb-mut leading-relaxed">
                   Zusätzlich zum Pauschalbetrag können Sozialversicherungsbeiträge (SVS), der Grundfreibetrag
                   des Gewinnfreibetrags und Reise- sowie Fahrtkosten gesondert abgesetzt werden.
                 </p>
               </div>
 
               {/* Branchenpauschalierung */}
-              <div className="bg-slate-900 p-6 rounded-lg border border-slate-700 mb-6">
-                <h3 className="text-xl font-semibold text-white mb-3">
+              <div className="bg-sb-card p-6 rounded-lg border border-sb-line mb-6">
+                <h3 className="text-xl font-semibold text-sb-text mb-3">
                   2. Branchenpauschalierung (Verordnungen des BMF)
                 </h3>
-                <p className="text-slate-300 mb-3 leading-relaxed">
+                <p className="text-sb-mut mb-3 leading-relaxed">
                   Für bestimmte Branchen gibt es eigene Pauschalierungsverordnungen des Bundesministeriums
                   für Finanzen mit branchenspezifischen Pauschalsätzen, die oft deutlich höher als der Basissatz sind.
                 </p>
-                <div className="space-y-2 text-slate-300 mb-4">
-                  <p><strong className="text-white">Gastronomie:</strong> Eigene Verordnung mit gestaffelten Sätzen (Wareneinsatz + Personalkosten)</p>
-                  <p><strong className="text-white">Lebensmittelhandel:</strong> Branchenspezifischer Wareneinsatz</p>
-                  <p><strong className="text-white">Drogisten:</strong> Eigene Pauschalierung</p>
-                  <p><strong className="text-white">Sportler, Künstler:</strong> Spezielle Regelungen</p>
+                <div className="space-y-2 text-sb-mut mb-4">
+                  <p><strong className="text-sb-text">Gastronomie:</strong> Eigene Verordnung mit gestaffelten Sätzen (Wareneinsatz + Personalkosten)</p>
+                  <p><strong className="text-sb-text">Lebensmittelhandel:</strong> Branchenspezifischer Wareneinsatz</p>
+                  <p><strong className="text-sb-text">Drogisten:</strong> Eigene Pauschalierung</p>
+                  <p><strong className="text-sb-text">Sportler, Künstler:</strong> Spezielle Regelungen</p>
                 </div>
-                <p className="text-slate-300 leading-relaxed">
+                <p className="text-sb-mut leading-relaxed">
                   Die Branchenpauschalierung ist besonders für Betriebe mit hohem Wareneinsatz attraktiv,
                   da die Pauschalsätze den branchentypischen Kostenstrukturen angepasst sind.
                 </p>
               </div>
 
               {/* Kleinunternehmerpauschalierung */}
-              <div className="bg-slate-900 p-6 rounded-lg border border-slate-700 mb-6">
-                <h3 className="text-xl font-semibold text-white mb-3">
+              <div className="bg-sb-card p-6 rounded-lg border border-sb-line mb-6">
+                <h3 className="text-xl font-semibold text-sb-text mb-3">
                   3. Kleinunternehmerpauschalierung (§ 17 Abs 3a EStG)
                 </h3>
-                <p className="text-slate-300 mb-3 leading-relaxed">
+                <p className="text-sb-mut mb-3 leading-relaxed">
                   Die Kleinunternehmerpauschalierung wurde 2020 eingeführt und richtet sich speziell an
                   umsatzsteuerbefreite Kleinunternehmer.
                 </p>
-                <div className="space-y-2 text-slate-300 mb-4">
-                  <p><strong className="text-white">Pauschalsatz Dienstleistungen:</strong> 20% der Betriebseinnahmen (Deckel 11.000€)</p>
-                  <p><strong className="text-white">Pauschalsatz Warenhandel/Produktion:</strong> 45% der Betriebseinnahmen (Deckel 24.750€)</p>
-                  <p><strong className="text-white">Umsatzgrenze:</strong> 55.000€ brutto (= Kleinunternehmergrenze seit 2025, davor 40.000€)</p>
+                <div className="space-y-2 text-sb-mut mb-4">
+                  <p><strong className="text-sb-text">Pauschalsatz Dienstleistungen:</strong> 20% der Betriebseinnahmen (Deckel 11.000€)</p>
+                  <p><strong className="text-sb-text">Pauschalsatz Warenhandel/Produktion:</strong> 45% der Betriebseinnahmen (Deckel 24.750€)</p>
+                  <p><strong className="text-sb-text">Umsatzgrenze:</strong> 55.000€ brutto (= Kleinunternehmergrenze seit 2025, davor 40.000€)</p>
                 </div>
-                <p className="text-slate-300 leading-relaxed">
+                <p className="text-sb-mut leading-relaxed">
                   Zusätzlich absetzbar: SVS-Beiträge, Reisekosten und der Grundfreibetrag. Die
                   Kleinunternehmerpauschalierung bietet den höchsten Pauschalsatz für Dienstleister,
                   die unter der Kleinunternehmergrenze bleiben.
@@ -130,57 +130,57 @@ export default function PauschalierungOesterreichPage() {
 
             {/* Vergleichstabelle */}
             <section className="mb-10">
-              <h2 className="text-2xl font-semibold text-white mb-4">
+              <h2 className="text-2xl font-semibold text-sb-text mb-4">
                 Vergleichstabelle: Alle Pauschalierungen auf einen Blick
               </h2>
               <div className="overflow-x-auto">
-                <table className="w-full text-sm text-slate-300 border border-slate-700 rounded-lg overflow-hidden">
-                  <thead className="bg-slate-800">
+                <table className="w-full text-sm text-sb-mut border border-sb-line rounded-lg overflow-hidden">
+                  <thead className="bg-white/[0.05]">
                     <tr>
-                      <th className="text-left p-3 text-white">Kriterium</th>
-                      <th className="text-left p-3 text-white">Basis (15%/6%)</th>
-                      <th className="text-left p-3 text-white">Branche</th>
-                      <th className="text-left p-3 text-white">Kleinunternehmer</th>
+                      <th className="text-left p-3 text-sb-text">Kriterium</th>
+                      <th className="text-left p-3 text-sb-text">Basis (15%/6%)</th>
+                      <th className="text-left p-3 text-sb-text">Branche</th>
+                      <th className="text-left p-3 text-sb-text">Kleinunternehmer</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-700">
-                    <tr className="bg-slate-900">
+                  <tbody className="divide-y divide-sb-line">
+                    <tr className="bg-sb-card">
                       <td className="p-3 font-medium">Umsatzgrenze</td>
                       <td className="p-3">420.000€ (ab 2026)</td>
                       <td className="p-3">Branchenabhängig</td>
                       <td className="p-3">55.000€ brutto</td>
                     </tr>
-                    <tr className="bg-slate-900/50">
+                    <tr className="bg-sb-deep">
                       <td className="p-3 font-medium">Pauschalsatz</td>
                       <td className="p-3">15% / 6%</td>
                       <td className="p-3">Branchenspezifisch</td>
                       <td className="p-3">45% / 20%</td>
                     </tr>
-                    <tr className="bg-slate-900">
+                    <tr className="bg-sb-card">
                       <td className="p-3 font-medium">Max. Pauschale</td>
                       <td className="p-3">63.000€</td>
                       <td className="p-3">Variabel</td>
                       <td className="p-3">24.750€ / 11.000€</td>
                     </tr>
-                    <tr className="bg-slate-900/50">
+                    <tr className="bg-sb-deep">
                       <td className="p-3 font-medium">SVS zusätzlich</td>
                       <td className="p-3">Ja</td>
                       <td className="p-3">Teilweise</td>
                       <td className="p-3">Ja</td>
                     </tr>
-                    <tr className="bg-slate-900">
+                    <tr className="bg-sb-card">
                       <td className="p-3 font-medium">Vorsteuerabzug</td>
                       <td className="p-3">Möglich</td>
                       <td className="p-3">Möglich</td>
                       <td className="p-3">Nein (KU)</td>
                     </tr>
-                    <tr className="bg-slate-900/50">
+                    <tr className="bg-sb-deep">
                       <td className="p-3 font-medium">GFB möglich</td>
                       <td className="p-3">Grundfreibetrag</td>
                       <td className="p-3">Ja</td>
                       <td className="p-3">Grundfreibetrag</td>
                     </tr>
-                    <tr className="bg-slate-900">
+                    <tr className="bg-sb-card">
                       <td className="p-3 font-medium">Buchführung</td>
                       <td className="p-3">Vereinfacht</td>
                       <td className="p-3">Vereinfacht</td>
@@ -193,14 +193,14 @@ export default function PauschalierungOesterreichPage() {
 
             {/* Voraussetzungen */}
             <section className="mb-10">
-              <h2 className="text-2xl font-semibold text-white mb-4">
+              <h2 className="text-2xl font-semibold text-sb-text mb-4">
                 Voraussetzungen für die Pauschalierung
               </h2>
 
               <div className="space-y-4">
-                <div className="bg-slate-900 p-5 rounded-lg border border-slate-700">
-                  <h3 className="text-lg font-semibold text-white mb-2">Basispauschalierung</h3>
-                  <ul className="text-slate-300 space-y-2">
+                <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
+                  <h3 className="text-lg font-semibold text-sb-text mb-2">Basispauschalierung</h3>
+                  <ul className="text-sb-mut space-y-2">
                     <li>• Einkünfte aus Gewerbebetrieb oder selbstständiger Arbeit</li>
                     <li>• Jahresumsatz nicht über 420.000€ (ab 2026; 2025: 320.000€, 2024: 220.000€)</li>
                     <li>• Keine Buchführungspflicht (oder freiwilliger Verzicht darauf)</li>
@@ -208,18 +208,18 @@ export default function PauschalierungOesterreichPage() {
                   </ul>
                 </div>
 
-                <div className="bg-slate-900 p-5 rounded-lg border border-slate-700">
-                  <h3 className="text-lg font-semibold text-white mb-2">Branchenpauschalierung</h3>
-                  <ul className="text-slate-300 space-y-2">
+                <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
+                  <h3 className="text-lg font-semibold text-sb-text mb-2">Branchenpauschalierung</h3>
+                  <ul className="text-sb-mut space-y-2">
                     <li>• Tätigkeit muss unter eine BMF-Pauschalierungsverordnung fallen</li>
                     <li>• Branchenspezifische Umsatzgrenzen beachten</li>
                     <li>• Teilweise: Gewerbeschein für die betreffende Branche erforderlich</li>
                   </ul>
                 </div>
 
-                <div className="bg-slate-900 p-5 rounded-lg border border-slate-700">
-                  <h3 className="text-lg font-semibold text-white mb-2">Kleinunternehmerpauschalierung</h3>
-                  <ul className="text-slate-300 space-y-2">
+                <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
+                  <h3 className="text-lg font-semibold text-sb-text mb-2">Kleinunternehmerpauschalierung</h3>
+                  <ul className="text-sb-mut space-y-2">
                     <li>• USt-Befreiung als Kleinunternehmer muss gelten</li>
                     <li>• Jahresumsatz maximal 55.000€ brutto (seit 2025, mit einmaliger Toleranz von +10%)</li>
                     <li>• Keine Buchführungspflicht</li>
@@ -231,89 +231,89 @@ export default function PauschalierungOesterreichPage() {
 
             {/* Rechenbeispiele */}
             <section className="mb-10">
-              <h2 className="text-2xl font-semibold text-white mb-4">
+              <h2 className="text-2xl font-semibold text-sb-text mb-4">
                 Rechenbeispiele: Pauschalierung vs. tatsächliche Ausgaben
               </h2>
 
               <div className="space-y-6">
-                <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
-                  <h3 className="text-lg font-semibold text-white mb-3">
+                <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
+                  <h3 className="text-lg font-semibold text-sb-text mb-3">
                     Beispiel 1: IT-Berater mit 80.000€ Umsatz
                   </h3>
-                  <div className="grid grid-cols-2 gap-4 text-slate-300 mb-4">
+                  <div className="grid grid-cols-2 gap-4 text-sb-mut mb-4">
                     <div>
-                      <p className="font-medium text-white mb-2">Mit Basispauschalierung (6%):</p>
+                      <p className="font-medium text-sb-text mb-2">Mit Basispauschalierung (6%):</p>
                       <p>Einnahmen: 80.000€</p>
                       <p>Pauschale (6%): -4.800€</p>
                       <p>SVS-Beiträge: -20.200€</p>
                       <p>GFB Grundfreibetrag: -4.950€</p>
-                      <p className="font-semibold text-white mt-2">Gewinn: 50.050€</p>
+                      <p className="font-semibold text-sb-text mt-2">Gewinn: 50.050€</p>
                     </div>
                     <div>
-                      <p className="font-medium text-white mb-2">Mit tatsächlichen Ausgaben:</p>
+                      <p className="font-medium text-sb-text mb-2">Mit tatsächlichen Ausgaben:</p>
                       <p>Einnahmen: 80.000€</p>
                       <p>Tatsächl. Ausgaben: -12.000€</p>
                       <p>SVS-Beiträge: -18.200€</p>
                       <p>GFB: -4.950€</p>
-                      <p className="font-semibold text-white mt-2">Gewinn: 44.850€</p>
+                      <p className="font-semibold text-sb-text mt-2">Gewinn: 44.850€</p>
                     </div>
                   </div>
-                  <p className="text-slate-400 text-sm">
+                  <p className="text-sb-mut text-sm">
                     → In diesem Fall sind die tatsächlichen Ausgaben höher als die Pauschale.
                     Die E/A-Rechnung spart ca. 1.500€ Einkommensteuer.
                   </p>
                 </div>
 
-                <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
-                  <h3 className="text-lg font-semibold text-white mb-3">
+                <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
+                  <h3 className="text-lg font-semibold text-sb-text mb-3">
                     Beispiel 2: Texterin mit 35.000€ Umsatz (Kleinunternehmerin)
                   </h3>
-                  <div className="grid grid-cols-2 gap-4 text-slate-300 mb-4">
+                  <div className="grid grid-cols-2 gap-4 text-sb-mut mb-4">
                     <div>
-                      <p className="font-medium text-white mb-2">Kleinunternehmer-Pauschale (20%):</p>
+                      <p className="font-medium text-sb-text mb-2">Kleinunternehmer-Pauschale (20%):</p>
                       <p>Einnahmen: 35.000€</p>
                       <p>Pauschale (20%): -7.000€</p>
                       <p>SVS-Beiträge: -7.500€</p>
                       <p>GFB Grundfreibetrag: -3.075€</p>
-                      <p className="font-semibold text-white mt-2">Gewinn: 17.425€</p>
+                      <p className="font-semibold text-sb-text mt-2">Gewinn: 17.425€</p>
                     </div>
                     <div>
-                      <p className="font-medium text-white mb-2">Tatsächliche Ausgaben:</p>
+                      <p className="font-medium text-sb-text mb-2">Tatsächliche Ausgaben:</p>
                       <p>Einnahmen: 35.000€</p>
                       <p>Tatsächl. Ausgaben: -3.500€</p>
                       <p>SVS-Beiträge: -8.450€</p>
                       <p>GFB: -3.075€</p>
-                      <p className="font-semibold text-white mt-2">Gewinn: 19.975€</p>
+                      <p className="font-semibold text-sb-text mt-2">Gewinn: 19.975€</p>
                     </div>
                   </div>
-                  <p className="text-slate-400 text-sm">
+                  <p className="text-sb-mut text-sm">
                     → Die Kleinunternehmerpauschalierung ist hier klar vorteilhaft und spart ca. 760€ Steuer.
                   </p>
                 </div>
 
-                <div className="bg-slate-900 p-6 rounded-lg border border-slate-700">
-                  <h3 className="text-lg font-semibold text-white mb-3">
+                <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
+                  <h3 className="text-lg font-semibold text-sb-text mb-3">
                     Beispiel 3: Handwerker mit 150.000€ Umsatz
                   </h3>
-                  <div className="grid grid-cols-2 gap-4 text-slate-300 mb-4">
+                  <div className="grid grid-cols-2 gap-4 text-sb-mut mb-4">
                     <div>
-                      <p className="font-medium text-white mb-2">Basispauschalierung (15%):</p>
+                      <p className="font-medium text-sb-text mb-2">Basispauschalierung (15%):</p>
                       <p>Einnahmen: 150.000€</p>
                       <p>Pauschale (15%): -22.500€</p>
                       <p>SVS-Beiträge: -22.600€</p>
                       <p>GFB: -4.950€</p>
-                      <p className="font-semibold text-white mt-2">Gewinn: 99.950€</p>
+                      <p className="font-semibold text-sb-text mt-2">Gewinn: 99.950€</p>
                     </div>
                     <div>
-                      <p className="font-medium text-white mb-2">Tatsächliche Ausgaben:</p>
+                      <p className="font-medium text-sb-text mb-2">Tatsächliche Ausgaben:</p>
                       <p>Einnahmen: 150.000€</p>
                       <p>Tatsächl. Ausgaben: -65.000€</p>
                       <p>SVS-Beiträge: -16.800€</p>
                       <p>GFB: -4.950€</p>
-                      <p className="font-semibold text-white mt-2">Gewinn: 63.250€</p>
+                      <p className="font-semibold text-sb-text mt-2">Gewinn: 63.250€</p>
                     </div>
                   </div>
-                  <p className="text-slate-400 text-sm">
+                  <p className="text-sb-mut text-sm">
                     → Bei hohem Wareneinsatz ist die Basispauschalierung nachteilig.
                     Prüfen Sie, ob eine Branchenpauschalierung in Frage kommt.
                   </p>
@@ -323,14 +323,14 @@ export default function PauschalierungOesterreichPage() {
 
             {/* Wann lohnt sich Pauschalierung? */}
             <section className="mb-10">
-              <h2 className="text-2xl font-semibold text-white mb-4">
+              <h2 className="text-2xl font-semibold text-sb-text mb-4">
                 Wann lohnt sich die Pauschalierung?
               </h2>
 
               <div className="grid gap-4 md:grid-cols-2">
-                <div className="bg-green-900/20 border border-green-700/50 p-5 rounded-lg">
-                  <h3 className="text-lg font-semibold text-green-400 mb-3">Pauschalierung lohnt sich bei:</h3>
-                  <ul className="text-slate-300 space-y-2">
+                <div className="bg-sb-green-soft border border-sb-green/30 p-5 rounded-lg">
+                  <h3 className="text-lg font-semibold text-sb-green mb-3">Pauschalierung lohnt sich bei:</h3>
+                  <ul className="text-sb-mut space-y-2">
                     <li>• Dienstleistungen ohne Wareneinsatz</li>
                     <li>• Geringen tatsächlichen Betriebsausgaben</li>
                     <li>• Wenig Zeit für Buchhaltung</li>
@@ -340,9 +340,9 @@ export default function PauschalierungOesterreichPage() {
                   </ul>
                 </div>
 
-                <div className="bg-red-900/20 border border-red-700/50 p-5 rounded-lg">
-                  <h3 className="text-lg font-semibold text-red-400 mb-3">E/A-Rechnung ist besser bei:</h3>
-                  <ul className="text-slate-300 space-y-2">
+                <div className="bg-sb-red/10 border border-sb-red/30 p-5 rounded-lg">
+                  <h3 className="text-lg font-semibold text-sb-red mb-3">E/A-Rechnung ist besser bei:</h3>
+                  <ul className="text-sb-mut space-y-2">
                     <li>• Hohem Wareneinsatz oder Materialkauf</li>
                     <li>• Vielen absetzbaren Investitionen</li>
                     <li>• Arbeitszimmer, Fahrzeug, etc.</li>
@@ -356,30 +356,30 @@ export default function PauschalierungOesterreichPage() {
 
             {/* SVS-Auswirkungen */}
             <section className="mb-10">
-              <h2 className="text-2xl font-semibold text-white mb-4">
+              <h2 className="text-2xl font-semibold text-sb-text mb-4">
                 Auswirkungen auf SVS-Beiträge
               </h2>
-              <p className="text-slate-300 mb-4 leading-relaxed">
+              <p className="text-sb-mut mb-4 leading-relaxed">
                 Die Pauschalierung hat direkte Auswirkungen auf Ihre SVS-Beiträge, da diese
                 auf Basis des steuerlichen Gewinns berechnet werden. Bei der Pauschalierung kann
                 der Gewinn höher oder niedriger ausfallen als bei tatsächlichen Ausgaben — und
                 damit ändern sich auch die SVS-Beiträge.
               </p>
 
-              <div className="bg-slate-900 p-5 rounded-lg border border-slate-700 mb-4">
-                <h3 className="text-lg font-semibold text-white mb-2">Rechenbeispiel: SVS-Auswirkung</h3>
-                <div className="text-slate-300 space-y-1">
+              <div className="bg-sb-card p-5 rounded-lg border border-sb-line mb-4">
+                <h3 className="text-lg font-semibold text-sb-text mb-2">Rechenbeispiel: SVS-Auswirkung</h3>
+                <div className="text-sb-mut space-y-1">
                   <p>Umsatz: 50.000€, tatsächliche Ausgaben: 8.000€</p>
-                  <p className="mt-2"><strong className="text-white">Mit Pauschalierung (15%):</strong></p>
+                  <p className="mt-2"><strong className="text-sb-text">Mit Pauschalierung (15%):</strong></p>
                   <p>Gewinn = 50.000 - 7.500 = 42.500€ → SVS ca. 11.390€</p>
-                  <p className="mt-2"><strong className="text-white">Mit tatsächlichen Ausgaben:</strong></p>
+                  <p className="mt-2"><strong className="text-sb-text">Mit tatsächlichen Ausgaben:</strong></p>
                   <p>Gewinn = 50.000 - 8.000 = 42.000€ → SVS ca. 11.256€</p>
-                  <p className="mt-2 text-slate-400">Differenz: ca. 134€ mehr SVS bei Pauschalierung</p>
+                  <p className="mt-2 text-sb-mut">Differenz: ca. 134€ mehr SVS bei Pauschalierung</p>
                 </div>
               </div>
 
-              <div className="bg-blue-900/20 border border-blue-700/50 p-4 rounded-lg">
-                <p className="text-blue-200">
+              <div className="bg-sb-accent-soft border border-sb-accent/30 p-4 rounded-lg">
+                <p className="text-sb-mut">
                   <strong>Tipp:</strong> Beachten Sie, dass SVS-Beiträge bei der Pauschalierung
                   zusätzlich zum Pauschalbetrag abgezogen werden können. Das mildert den Effekt ab.
                 </p>
@@ -388,34 +388,34 @@ export default function PauschalierungOesterreichPage() {
 
             {/* Häufige Fehler */}
             <section className="mb-10">
-              <h2 className="text-2xl font-semibold text-white mb-4">
+              <h2 className="text-2xl font-semibold text-sb-text mb-4">
                 Häufige Fehler bei der Pauschalierung
               </h2>
               <div className="space-y-4">
-                <div className="bg-slate-900 p-5 rounded-lg border border-slate-700">
-                  <h3 className="font-semibold text-red-400 mb-2">1. Falscher Pauschalsatz gewählt</h3>
-                  <p className="text-slate-300">
+                <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
+                  <h3 className="font-semibold text-sb-red mb-2">1. Falscher Pauschalsatz gewählt</h3>
+                  <p className="text-sb-mut">
                     Viele Selbstständige setzen automatisch den vollen Satz von 15% an, obwohl für ihre Tätigkeit nur 6% gelten.
                     Prüfen Sie genau, ob Ihre Tätigkeit unter die 6%-Regelung fällt (z.B. Beratung, Vorträge, wissenschaftliche Tätigkeit).
                   </p>
                 </div>
-                <div className="bg-slate-900 p-5 rounded-lg border border-slate-700">
-                  <h3 className="font-semibold text-red-400 mb-2">2. Umsatzgrenze übersehen</h3>
-                  <p className="text-slate-300">
+                <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
+                  <h3 className="font-semibold text-sb-red mb-2">2. Umsatzgrenze übersehen</h3>
+                  <p className="text-sb-mut">
                     Bei Überschreitung der 420.000€-Grenze (ab 2026) verlieren Sie rückwirkend das Recht auf
                     Basispauschalierung. Behalten Sie Ihre Umsatzentwicklung im Blick.
                   </p>
                 </div>
-                <div className="bg-slate-900 p-5 rounded-lg border border-slate-700">
-                  <h3 className="font-semibold text-red-400 mb-2">3. Zusätzlich absetzbare Posten vergessen</h3>
-                  <p className="text-slate-300">
+                <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
+                  <h3 className="font-semibold text-sb-red mb-2">3. Zusätzlich absetzbare Posten vergessen</h3>
+                  <p className="text-sb-mut">
                     SVS-Beiträge, Reisekosten und der Grundfreibetrag sind neben der Pauschale absetzbar.
                     Viele vergessen diese zusätzlichen Abzüge und zahlen zu viel Steuer.
                   </p>
                 </div>
-                <div className="bg-slate-900 p-5 rounded-lg border border-slate-700">
-                  <h3 className="font-semibold text-red-400 mb-2">4. Keine jährliche Vergleichsrechnung</h3>
-                  <p className="text-slate-300">
+                <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
+                  <h3 className="font-semibold text-sb-red mb-2">4. Keine jährliche Vergleichsrechnung</h3>
+                  <p className="text-sb-mut">
                     Prüfen Sie jedes Jahr, ob die Pauschalierung noch vorteilhaft ist. Ihre Kostenstruktur
                     kann sich ändern und plötzlich sind tatsächliche Ausgaben günstiger.
                   </p>
@@ -425,48 +425,48 @@ export default function PauschalierungOesterreichPage() {
 
             {/* FAQ */}
             <section className="mb-10">
-              <h2 className="text-2xl font-semibold text-white mb-6">
+              <h2 className="text-2xl font-semibold text-sb-text mb-6">
                 Häufig gestellte Fragen zur Pauschalierung
               </h2>
               <div className="space-y-4">
-                <div className="bg-slate-900 p-5 rounded-lg border border-slate-700">
-                  <h3 className="font-semibold text-white mb-2">Kann ich zwischen Pauschalierung und E/A-Rechnung wechseln?</h3>
-                  <p className="text-slate-300">
+                <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
+                  <h3 className="font-semibold text-sb-text mb-2">Kann ich zwischen Pauschalierung und E/A-Rechnung wechseln?</h3>
+                  <p className="text-sb-mut">
                     Ja, ein Wechsel ist jährlich möglich. Sie entscheiden mit der Steuererklärung, ob Sie
                     für das betreffende Jahr die Pauschalierung oder tatsächliche Ausgaben ansetzen.
                   </p>
                 </div>
-                <div className="bg-slate-900 p-5 rounded-lg border border-slate-700">
-                  <h3 className="font-semibold text-white mb-2">Brauche ich bei der Pauschalierung trotzdem Belege?</h3>
-                  <p className="text-slate-300">
+                <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
+                  <h3 className="font-semibold text-sb-text mb-2">Brauche ich bei der Pauschalierung trotzdem Belege?</h3>
+                  <p className="text-sb-mut">
                     Bei der Basispauschalierung müssen Sie keine Ausgabenbelege aufbewahren (außer für SVS und Reisekosten).
                     Einnahmenbelege müssen aber 7 Jahre aufbewahrt werden.
                   </p>
                 </div>
-                <div className="bg-slate-900 p-5 rounded-lg border border-slate-700">
-                  <h3 className="font-semibold text-white mb-2">Kann ich als Neuer Selbstständiger sofort pauschalieren?</h3>
-                  <p className="text-slate-300">
+                <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
+                  <h3 className="font-semibold text-sb-text mb-2">Kann ich als Neuer Selbstständiger sofort pauschalieren?</h3>
+                  <p className="text-sb-mut">
                     Ja, die Pauschalierung kann ab dem ersten Jahr der Selbstständigkeit angewendet werden,
                     sofern die Voraussetzungen erfüllt sind.
                   </p>
                 </div>
-                <div className="bg-slate-900 p-5 rounded-lg border border-slate-700">
-                  <h3 className="font-semibold text-white mb-2">Ist die Pauschalierung auch für Freiberufler möglich?</h3>
-                  <p className="text-slate-300">
+                <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
+                  <h3 className="font-semibold text-sb-text mb-2">Ist die Pauschalierung auch für Freiberufler möglich?</h3>
+                  <p className="text-sb-mut">
                     Ja, sowohl Gewerbetreibende als auch Freiberufler (z.B. Ärzte, Rechtsanwälte, IT-Berater)
                     können die Basispauschalierung nutzen. Freiberufler fallen allerdings oft unter den 6%-Satz.
                   </p>
                 </div>
-                <div className="bg-slate-900 p-5 rounded-lg border border-slate-700">
-                  <h3 className="font-semibold text-white mb-2">Was passiert, wenn ich die Umsatzgrenze im Laufe des Jahres überschreite?</h3>
-                  <p className="text-slate-300">
+                <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
+                  <h3 className="font-semibold text-sb-text mb-2">Was passiert, wenn ich die Umsatzgrenze im Laufe des Jahres überschreite?</h3>
+                  <p className="text-sb-mut">
                     Bei Überschreitung der 420.000€-Grenze (ab 2026) verlieren Sie das Recht auf Basispauschalierung
                     für das betreffende Jahr. Sie müssen dann rückwirkend auf tatsächliche Ausgaben umstellen.
                   </p>
                 </div>
-                <div className="bg-slate-900 p-5 rounded-lg border border-slate-700">
-                  <h3 className="font-semibold text-white mb-2">Kann ich Basis- und Kleinunternehmerpauschalierung kombinieren?</h3>
-                  <p className="text-slate-300">
+                <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
+                  <h3 className="font-semibold text-sb-text mb-2">Kann ich Basis- und Kleinunternehmerpauschalierung kombinieren?</h3>
+                  <p className="text-sb-mut">
                     Nein, Sie müssen sich für eine Pauschalierungsart entscheiden. Als Kleinunternehmer
                     können Sie aber wählen, ob die Kleinunternehmerpauschalierung oder die Basispauschalierung
                     günstiger ist.
@@ -477,15 +477,15 @@ export default function PauschalierungOesterreichPage() {
 
             {/* CTA */}
             <section className="mt-12 mb-8">
-              <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-8 rounded-lg text-center">
-                <h2 className="text-2xl font-bold text-white mb-4">
+              <div className="bg-sb-accent p-8 rounded-lg text-center">
+                <h2 className="text-2xl font-bold text-sb-text mb-4">
                   Berechnen Sie Ihre optimale Steuerbelastung
                 </h2>
-                <p className="text-blue-100 mb-6 leading-relaxed">
+                <p className="text-sb-text mb-6 leading-relaxed">
                   Unser kostenloser Steuerrechner zeigt Ihnen, ob sich die Pauschalierung für Sie lohnt
                   und wie viel Sie sparen können.
                 </p>
-                <Button asChild className="bg-white text-blue-600 hover:bg-gray-100 font-semibold px-8 py-3">
+                <Button asChild className="bg-sb-accent text-sb-accent-ink hover:bg-sb-accent-deep font-semibold px-8 py-3">
                   <Link href="/rechner">
                     Jetzt kostenlos berechnen
                   </Link>

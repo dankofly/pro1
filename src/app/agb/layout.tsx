@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 }
 
 export default function AGBLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>
+  return <><div className="sb-scope">{children}</div></>
 }

@@ -164,7 +164,7 @@ function WasserfallChart({ result }: { result: EStResult }) {
     <Card className="glass">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
-          <TrendingDown className="h-5 w-5 text-blue-600" />
+          <TrendingDown className="h-5 w-5 text-sb-accent" />
           Wasserfall: Vom Brutto zum Netto
         </CardTitle>
         <CardDescription>Schritt-für-Schritt Abzüge und Gutschriften</CardDescription>
@@ -219,13 +219,13 @@ function WasserfallChart({ result }: { result: EStResult }) {
                 <div className="flex-1 relative h-6">
                   <div
                     className={`h-full rounded-md transition-all ${
-                      isLast ? 'bg-emerald-500/100' : step.typ === 'abzug' ? 'bg-red-400/70' : step.typ === 'bonus' ? 'bg-emerald-400/70' : 'bg-blue-500/100'
+                      isLast ? 'bg-sb-green-soft0/100' : step.typ === 'abzug' ? 'bg-sb-red/70' : step.typ === 'bonus' ? 'bg-sb-green/70' : 'bg-sb-accent-soft0/100'
                     }`}
                     style={{ width: `${barWidth}%` }}
                   />
                 </div>
                 <div className={`w-24 text-right font-mono text-xs shrink-0 ${
-                  isLast ? 'font-bold text-emerald-400' : step.betrag < 0 ? 'text-red-600' : step.typ === 'bonus' ? 'text-emerald-400' : ''
+                  isLast ? 'font-bold text-sb-green' : step.betrag < 0 ? 'text-sb-red' : step.typ === 'bonus' ? 'text-sb-green' : ''
                 }`}>
                   {formatEuro(step.typ === 'ergebnis' || step.typ === 'start' ? step.laufend : step.betrag)}
                 </div>
@@ -241,8 +241,8 @@ function WasserfallChart({ result }: { result: EStResult }) {
 // ── Tarifstufen-Visualisierung ──────────────────────────────
 
 const BRACKET_COLORS = [
-  'bg-emerald-500/100', 'bg-emerald-400', 'bg-yellow-400',
-  'bg-orange-400', 'bg-orange-500', 'bg-red-400', 'bg-red-600',
+  'bg-sb-green-soft0/100', 'bg-sb-green', 'bg-sb-accent',
+  'bg-sb-accent', 'bg-sb-accent', 'bg-sb-red/80', 'bg-sb-red',
 ]
 
 function TarifstufenViz({ result, year }: { result: EStResult; year: TaxYear }) {
@@ -265,7 +265,7 @@ function TarifstufenViz({ result, year }: { result: EStResult; year: TaxYear }) 
     <Card className="glass">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
-          <BarChart3 className="h-5 w-5 text-violet-600" />
+          <BarChart3 className="h-5 w-5 text-sb-accent" />
           Tarifstufen-Visualisierung
         </CardTitle>
         <CardDescription>Dein Einkommen aufgeteilt nach Steuerstufen</CardDescription>
@@ -332,18 +332,18 @@ function ResultCards({ result }: { result: EStResult }) {
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
       <Card className="glass-dark border-0 text-white">
         <CardContent className="p-4 sm:p-5">
-          <p className="text-slate-300 text-xs mb-1">Einkommensteuer</p>
+          <p className="text-sb-mut text-xs mb-1">Einkommensteuer</p>
           <p className="text-2xl sm:text-3xl font-bold">
             {formatEuro(Math.max(0, result.steuer))}
           </p>
-          <p className="text-slate-400 text-xs mt-1">Steuerbelastung</p>
+          <p className="text-sb-mut text-xs mt-1">Steuerbelastung</p>
         </CardContent>
       </Card>
 
       <Card className="glass">
         <CardContent className="p-4 sm:p-5">
           <p className="text-muted-foreground text-xs mb-1">Grenzsteuersatz</p>
-          <p className="text-2xl sm:text-3xl font-bold text-amber-600">
+          <p className="text-2xl sm:text-3xl font-bold text-sb-accent">
             {pct(result.grenzsteuersatz)}
           </p>
           <p className="text-muted-foreground text-xs mt-1">nächster Euro</p>
@@ -353,20 +353,20 @@ function ResultCards({ result }: { result: EStResult }) {
       <Card className="glass">
         <CardContent className="p-4 sm:p-5">
           <p className="text-muted-foreground text-xs mb-1">Effektivsteuersatz</p>
-          <p className="text-2xl sm:text-3xl font-bold text-blue-600">
+          <p className="text-2xl sm:text-3xl font-bold text-sb-accent">
             {pct(Math.max(0, result.effektivsteuersatz))}
           </p>
           <p className="text-muted-foreground text-xs mt-1">durchschnittlich</p>
         </CardContent>
       </Card>
 
-      <Card className="glass border-emerald-500/30 bg-emerald-500/100/10">
+      <Card className="glass border-sb-green/30 bg-sb-green-soft0/100/10">
         <CardContent className="p-4 sm:p-5">
-          <p className="text-emerald-400 text-xs mb-1">Netto nach Steuer</p>
-          <p className="text-2xl sm:text-3xl font-bold text-emerald-400">
+          <p className="text-sb-green text-xs mb-1">Netto nach Steuer</p>
+          <p className="text-2xl sm:text-3xl font-bold text-sb-green">
             {formatEuro(result.netto)}
           </p>
-          <p className="text-emerald-400/60 text-xs mt-1">
+          <p className="text-sb-green/60 text-xs mt-1">
             {formatEuro(result.netto / 12)}/Monat
           </p>
         </CardContent>
@@ -384,17 +384,17 @@ function SteuerersparnisHinweis({ result, year }: { result: EStResult; year: Tax
   if (tatsaechlicheErsparnis <= 0) return null
 
   return (
-    <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-4 space-y-2">
-      <div className="flex items-center gap-2 text-emerald-400">
+    <div className="bg-sb-green-soft0/10 border border-sb-green/30 rounded-xl p-4 space-y-2">
+      <div className="flex items-center gap-2 text-sb-green">
         <Sparkles className="h-4 w-4" />
         <span className="font-semibold text-sm">Deine Steuerersparnis {year}</span>
       </div>
-      <p className="text-emerald-400 text-sm">
+      <p className="text-sb-green text-sm">
         Durch deine Absetzbeträge sparst du{' '}
         <strong>{formatEuro(tatsaechlicheErsparnis)}</strong> an Steuern.
       </p>
       {result.absetzbetraege.map((ab, i) => (
-        <p key={i} className="text-emerald-400 text-xs">
+        <p key={i} className="text-sb-green text-xs">
           {ab.name}: {formatEuro(ab.betrag)}
         </p>
       ))}
@@ -412,7 +412,7 @@ function ProFeatureOverlay({ children, label, isPro }: {
     <div className="relative">
       <div className="pointer-events-none select-none blur-sm opacity-50">{children}</div>
       <div className="absolute inset-0 flex items-center justify-center">
-        <Badge variant="outline" className="bg-background/90 text-amber-500 border-amber-500/30 gap-1 shadow-lg">
+        <Badge variant="outline" className="bg-background/90 text-sb-accent border-sb-accent/30 gap-1 shadow-lg">
           <Lock className="h-3 w-3" /> {label} – Pro Feature
         </Badge>
       </div>
@@ -507,7 +507,7 @@ function EinkommensteuerContent() {
                 </SelectContent>
               </Select>
               {year === '2026' && (
-                <Badge variant="outline" className="text-amber-600 border-amber-300 bg-amber-500/10 text-xs">
+                <Badge variant="outline" className="text-sb-accent border-sb-accent/40 bg-sb-accent-soft0/10 text-xs">
                   Prognose – vorbehaltlich gesetzlicher Änderungen
                 </Badge>
               )}
@@ -521,8 +521,8 @@ function EinkommensteuerContent() {
           <Card className="glass">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500/10">
-                  <Receipt className="h-4 w-4 text-blue-600" />
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sb-accent-soft0/10">
+                  <Receipt className="h-4 w-4 text-sb-accent" />
                 </div>
                 Einkommen
               </CardTitle>
@@ -548,8 +548,8 @@ function EinkommensteuerContent() {
           <Card className="glass">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/10">
-                  <Users className="h-4 w-4 text-violet-600" />
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sb-accent-soft0/10">
+                  <Users className="h-4 w-4 text-sb-accent" />
                 </div>
                 Absetzbeträge
               </CardTitle>
@@ -592,12 +592,12 @@ function EinkommensteuerContent() {
           <Card className="glass">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500/10">
-                  <Crown className="h-4 w-4 text-amber-600" />
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sb-accent-soft0/10">
+                  <Crown className="h-4 w-4 text-sb-accent" />
                 </div>
                 Pendlerpauschale
                 {!isPro && (
-                  <Badge variant="outline" className="ml-2 bg-amber-500/100/10 text-amber-600 border-amber-300/30 text-xs">
+                  <Badge variant="outline" className="ml-2 bg-sb-accent-soft0/100/10 text-sb-accent border-sb-accent/30 text-xs">
                     <Crown className="h-3 w-3 mr-1" /> Pro
                   </Badge>
                 )}
@@ -643,10 +643,10 @@ function EinkommensteuerContent() {
                 )}
               </div>
               {pendlerpauschale !== 'keine' && result.pendlerpauschale > 0 && (
-                <div className="bg-amber-500/10 rounded-lg p-3 text-sm">
+                <div className="bg-sb-accent-soft0/10 rounded-lg p-3 text-sm">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Pendlerpauschale pro Jahr</span>
-                    <span className="font-mono text-emerald-400">{formatEuro(result.pendlerpauschale)}</span>
+                    <span className="font-mono text-sb-green">{formatEuro(result.pendlerpauschale)}</span>
                   </div>
                 </div>
               )}
@@ -717,7 +717,7 @@ function EinkommensteuerContent() {
                         <TableCell>Gesamt</TableCell>
                         <TableCell />
                         <TableCell className="text-right font-mono">{formatEuro(result.steuerbaresEinkommen)}</TableCell>
-                        <TableCell className="text-right font-mono text-red-600">{formatEuro(result.steuerBrutto)}</TableCell>
+                        <TableCell className="text-right font-mono text-sb-red">{formatEuro(result.steuerBrutto)}</TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>
@@ -735,7 +735,7 @@ function EinkommensteuerContent() {
                       result.absetzbetraege.map((ab, i) => (
                         <div key={i} className="flex justify-between text-sm py-1">
                           <span className="text-muted-foreground">{ab.name}</span>
-                          <span className="font-mono text-emerald-400">{formatEuro(ab.betrag)}</span>
+                          <span className="font-mono text-sb-green">{formatEuro(ab.betrag)}</span>
                         </div>
                       ))
                     ) : (
@@ -744,7 +744,7 @@ function EinkommensteuerContent() {
                     {result.absetzbetraege.length > 0 && (
                       <div className="flex justify-between text-sm py-1 border-t font-medium">
                         <span>Gesamt Absetzbeträge</span>
-                        <span className="font-mono text-emerald-400">{formatEuro(result.absetzbetraegeGesamt)}</span>
+                        <span className="font-mono text-sb-green">{formatEuro(result.absetzbetraegeGesamt)}</span>
                       </div>
                     )}
                   </div>
@@ -764,12 +764,12 @@ function EinkommensteuerContent() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Werbungskosten</span>
-                      <span className="font-mono text-red-600">-{formatEuro(result.werbungskosten)}</span>
+                      <span className="font-mono text-sb-red">-{formatEuro(result.werbungskosten)}</span>
                     </div>
                     {result.pendlerpauschale > 0 && (
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">Pendlerpauschale</span>
-                        <span className="font-mono text-red-600">-{formatEuro(result.pendlerpauschale)}</span>
+                        <span className="font-mono text-sb-red">-{formatEuro(result.pendlerpauschale)}</span>
                       </div>
                     )}
                     <div className="flex justify-between font-medium border-t pt-1">
@@ -778,15 +778,15 @@ function EinkommensteuerContent() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Steuer (Tarif)</span>
-                      <span className="font-mono text-red-600">{formatEuro(result.steuerBrutto)}</span>
+                      <span className="font-mono text-sb-red">{formatEuro(result.steuerBrutto)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Absetzbeträge</span>
-                      <span className="font-mono text-emerald-400">-{formatEuro(result.absetzbetraegeGesamt)}</span>
+                      <span className="font-mono text-sb-green">-{formatEuro(result.absetzbetraegeGesamt)}</span>
                     </div>
                     <div className="flex justify-between font-medium border-t pt-1">
                       <span>Steuer (effektiv)</span>
-                      <span className={`font-mono ${result.steuer < 0 ? 'text-emerald-400' : 'text-red-600'}`}>
+                      <span className={`font-mono ${result.steuer < 0 ? 'text-sb-green' : 'text-sb-red'}`}>
                         {formatEuro(Math.max(0, result.steuer))}
                       </span>
                     </div>
@@ -799,8 +799,8 @@ function EinkommensteuerContent() {
                       <span className="font-mono">{pct(result.grenzsteuersatz)}</span>
                     </div>
                     <div className="flex justify-between font-bold border-t pt-1 text-base">
-                      <span className="text-emerald-400">Netto nach Steuer</span>
-                      <span className="font-mono text-emerald-400">{formatEuro(result.netto)}</span>
+                      <span className="text-sb-green">Netto nach Steuer</span>
+                      <span className="font-mono text-sb-green">{formatEuro(result.netto)}</span>
                     </div>
                   </div>
                 </AccordionContent>

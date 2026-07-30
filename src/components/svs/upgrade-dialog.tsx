@@ -24,7 +24,7 @@ export function UpgradeDialog({ open, onOpenChange, feature, requiredPlan }: Upg
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <Crown className="h-5 w-5 text-amber-500" aria-hidden="true" />
+            <Crown className="h-5 w-5 text-sb-accent" aria-hidden="true" />
             {feature} freischalten
           </DialogTitle>
           <DialogDescription>
@@ -45,7 +45,7 @@ export function UpgradeDialog({ open, onOpenChange, feature, requiredPlan }: Upg
             </span>
           </div>
           <div className="flex flex-wrap gap-1.5">
-            <Badge className="bg-emerald-100 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/40">
+            <Badge className="bg-sb-green-soft text-sb-green border-sb-green/30">
               2 Monate geschenkt im Jahresabo
             </Badge>
             <Badge variant="outline" className="text-muted-foreground">
@@ -55,18 +55,18 @@ export function UpgradeDialog({ open, onOpenChange, feature, requiredPlan }: Upg
           <ul className="space-y-1.5 text-sm">
             {requiredPlan === 'basic' ? (
               <>
-                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" aria-hidden="true" /> Einkommensteuer-Prognose</li>
-                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" aria-hidden="true" /> Berechnungen speichern</li>
-                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" aria-hidden="true" /> Dashboard mit Verlauf</li>
-                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" aria-hidden="true" /> Einfacher Export</li>
+                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-sb-green" aria-hidden="true" /> Einkommensteuer-Prognose</li>
+                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-sb-green" aria-hidden="true" /> Berechnungen speichern</li>
+                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-sb-green" aria-hidden="true" /> Dashboard mit Verlauf</li>
+                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-sb-green" aria-hidden="true" /> Einfacher Export</li>
               </>
             ) : (
               <>
-                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" aria-hidden="true" /> Alles aus dem Sicherheits-Plan</li>
-                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" aria-hidden="true" /> Misch-Einkommen Rechner</li>
-                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" aria-hidden="true" /> Bank-Anbindung (CSV)</li>
-                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" aria-hidden="true" /> PDF-Export für Steuerberater</li>
-                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" aria-hidden="true" /> Smart Alerts & Absetzbeträge</li>
+                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-sb-green" aria-hidden="true" /> Alles aus dem Sicherheits-Plan</li>
+                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-sb-green" aria-hidden="true" /> Misch-Einkommen Rechner</li>
+                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-sb-green" aria-hidden="true" /> Bank-Anbindung (CSV)</li>
+                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-sb-green" aria-hidden="true" /> PDF-Export für Steuerberater</li>
+                <li className="flex items-center gap-2"><Check className="h-4 w-4 text-sb-green" aria-hidden="true" /> Smart Alerts & Absetzbeträge</li>
               </>
             )}
           </ul>

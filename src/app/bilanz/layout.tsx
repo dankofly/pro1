@@ -33,7 +33,7 @@ export default function BilanzLayout({ children }: { children: React.ReactNode }
         description: 'Bilanz hochladen, Finanzkennzahlen berechnen und AI-gestützten Forecast mit Steueroptimierung erhalten.',
         inLanguage: 'de-AT',
       }} />
-      {children}
+      <div className="sb-scope">{children}</div>
     </>
   )
 }

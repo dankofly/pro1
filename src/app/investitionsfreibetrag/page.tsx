@@ -133,7 +133,7 @@ function ComparisonChart({ result }: { result: IFBResult }) {
     <Card className="glass">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
-          <BarChart3 className="h-5 w-5 text-emerald-400" />
+          <BarChart3 className="h-5 w-5 text-sb-green" />
           Steuervergleich: Vorher vs. Nachher
         </CardTitle>
         <CardDescription>
@@ -187,7 +187,7 @@ function ComparisonChart({ result }: { result: IFBResult }) {
           </ResponsiveContainer>
         </div>
         {result.gesamteSteuerersparnis > 0 && (
-          <div className="mt-4 flex items-center justify-center gap-2 text-emerald-400 font-semibold">
+          <div className="mt-4 flex items-center justify-center gap-2 text-sb-green font-semibold">
             <TrendingDown className="h-4 w-4" />
             <span>Ersparnis: {formatEuro(result.gesamteSteuerersparnis)}</span>
           </div>
@@ -210,7 +210,7 @@ function GFBDetailTable({ result }: { result: IFBResult }) {
     <Card className="glass">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
-          <PiggyBank className="h-5 w-5 text-blue-600" />
+          <PiggyBank className="h-5 w-5 text-sb-accent" />
           Gewinnfreibetrag - Stufenberechnung
         </CardTitle>
         <CardDescription>
@@ -238,7 +238,7 @@ function GFBDetailTable({ result }: { result: IFBResult }) {
                   <TableCell>
                     <span className="font-medium">{stufe.stufe}</span>
                     {i === 0 && (
-                      <Badge variant="outline" className="ml-2 text-xs text-emerald-400 border-emerald-500/30">
+                      <Badge variant="outline" className="ml-2 text-xs text-sb-green border-sb-green/30">
                         automatisch
                       </Badge>
                     )}
@@ -261,7 +261,7 @@ function GFBDetailTable({ result }: { result: IFBResult }) {
               <TableCell colSpan={3} className="font-semibold">
                 Gewinnfreibetrag gesamt
               </TableCell>
-              <TableCell className="text-right font-mono font-bold text-emerald-400">
+              <TableCell className="text-right font-mono font-bold text-sb-green">
                 {formatEuro(result.gewinnfreibetrag)}
               </TableCell>
             </TableRow>
@@ -289,7 +289,7 @@ function InvestitionTable({
     <Card className="glass">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
-          <Factory className="h-5 w-5 text-slate-600" />
+          <Factory className="h-5 w-5 text-sb-dim" />
           Investitionen
         </CardTitle>
         <CardDescription>
@@ -351,7 +351,7 @@ function InvestitionTable({
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="h-10 w-10 cursor-pointer text-muted-foreground hover:text-red-400"
+                      className="h-10 w-10 cursor-pointer text-muted-foreground hover:text-sb-red"
                       onClick={() => onRemove(inv.id)}
                       disabled={investitionen.length <= 1}
                     >
@@ -378,7 +378,7 @@ function InvestitionTable({
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-11 w-11 cursor-pointer text-muted-foreground hover:text-red-400"
+                  className="h-11 w-11 cursor-pointer text-muted-foreground hover:text-sb-red"
                   onClick={() => onRemove(inv.id)}
                   disabled={investitionen.length <= 1}
                 >
@@ -528,15 +528,15 @@ function IFBContent() {
               </div>
             )}
             {result.investitionenOeko > 0 && (
-              <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 p-3">
-                <div className="flex items-center gap-1.5 text-xs text-emerald-400 mb-1">
+              <div className="rounded-lg border border-sb-green/30 bg-sb-green-soft0/10 p-3">
+                <div className="flex items-center gap-1.5 text-xs text-sb-green mb-1">
                   <Leaf className="h-3 w-3" />
                   Ökologisch
                 </div>
-                <p className="font-mono font-semibold text-sm text-emerald-400">
+                <p className="font-mono font-semibold text-sm text-sb-green">
                   {formatEuro(result.investitionenOeko)}
                 </p>
-                <p className="text-xs text-emerald-400">IFB 22 %: {formatEuro(result.ifbOeko)}</p>
+                <p className="text-xs text-sb-green">IFB 22 %: {formatEuro(result.ifbOeko)}</p>
               </div>
             )}
             <div className="rounded-lg border border-border/50 bg-muted/30 p-3">
@@ -545,7 +545,7 @@ function IFBContent() {
                 {formatEuro(result.investitionsBasis)}
               </p>
               {investSumme > 1_000_000 && (
-                <p className="text-xs text-amber-600 mt-0.5">Gedeckelt</p>
+                <p className="text-xs text-sb-accent mt-0.5">Gedeckelt</p>
               )}
             </div>
           </div>
@@ -582,22 +582,22 @@ function IFBContent() {
             label="Investitionsfreibetrag"
             value={formatEuro(result.ifbGesamt)}
             sub={investSumme > 0 ? `${result.investitionenOeko > 0 ? '20 %/22 %' : '20 %'} von ${formatEuro(result.investitionsBasis)}` : 'Noch keine Investitionen'}
-            icon={<Factory className="h-4 w-4 text-blue-600" />}
-            accent="text-blue-600"
+            icon={<Factory className="h-4 w-4 text-sb-accent" />}
+            accent="text-sb-accent"
           />
           <KpiCard
             label="Gewinnfreibetrag"
             value={formatEuro(result.gewinnfreibetrag)}
             sub={jahresgewinn > 0 ? `bei ${formatEuro(jahresgewinn)} Gewinn` : ''}
-            icon={<PiggyBank className="h-4 w-4 text-violet-600" />}
-            accent="text-violet-600"
+            icon={<PiggyBank className="h-4 w-4 text-sb-accent" />}
+            accent="text-sb-accent"
           />
           <KpiCard
             label="Forschungsprämie"
             value={formatEuro(result.forschungspraemie)}
             sub={forschungsausgaben > 0 ? `14 % von ${formatEuro(forschungsausgaben)}` : 'Keine Ausgaben eingetragen'}
-            icon={<FlaskConical className="h-4 w-4 text-amber-600" />}
-            accent="text-amber-600"
+            icon={<FlaskConical className="h-4 w-4 text-sb-accent" />}
+            accent="text-sb-accent"
           />
           <KpiCard
             label="Gesamte Steuerersparnis"
@@ -607,8 +607,8 @@ function IFBContent() {
                 ? `Steuersatz: ${pct(result.effektiverSteuersatzOhne)} → ${pct(result.effektiverSteuersatzMit)}`
                 : ''
             }
-            icon={<TrendingDown className="h-4 w-4 text-emerald-400" />}
-            accent="text-emerald-400"
+            icon={<TrendingDown className="h-4 w-4 text-sb-green" />}
+            accent="text-sb-green"
           />
         </div>
 
@@ -618,9 +618,9 @@ function IFBContent() {
             {result.warnungen.map((w, i) => (
               <div
                 key={i}
-                className="flex gap-3 bg-amber-50/50 dark:bg-amber-950/30 border border-amber-200/50 dark:border-amber-800/30 border-l-[3px] border-l-amber-500 rounded-lg p-4 shadow-sm"
+                className="flex gap-3 bg-sb-accent-soft border border-sb-accent/30 border-l-[3px] border-l-amber-500 rounded-lg p-4 shadow-sm"
               >
-                <AlertTriangle className="h-4 w-4 text-amber-500 shrink-0 mt-0.5" />
+                <AlertTriangle className="h-4 w-4 text-sb-accent shrink-0 mt-0.5" />
                 <p className="text-sm text-foreground">{w.text}</p>
               </div>
             ))}
@@ -650,12 +650,12 @@ function IFBContent() {
                     <span className="text-muted-foreground">
                       − Investitionsfreibetrag ({result.investitionenOeko > 0 ? '20 %/22 %' : '20 %'})
                     </span>
-                    <span className="font-mono text-emerald-400">−{formatEuro(result.ifbGesamt)}</span>
+                    <span className="font-mono text-sb-green">−{formatEuro(result.ifbGesamt)}</span>
                   </div>
                 )}
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">− Gewinnfreibetrag (gestaffelt)</span>
-                  <span className="font-mono text-emerald-400">−{formatEuro(result.gewinnfreibetrag)}</span>
+                  <span className="font-mono text-sb-green">−{formatEuro(result.gewinnfreibetrag)}</span>
                 </div>
                 <div className="flex justify-between font-medium border-t pt-2">
                   <span>Steuerpflichtiger Gewinn</span>
@@ -665,19 +665,19 @@ function IFBContent() {
                 </div>
                 <div className="flex justify-between border-t pt-2">
                   <span className="text-muted-foreground">ESt ohne Freibeträge</span>
-                  <span className="font-mono text-red-600">{formatEuro(result.steuerOhne)}</span>
+                  <span className="font-mono text-sb-red">{formatEuro(result.steuerOhne)}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">ESt mit Freibeträgen</span>
-                  <span className="font-mono text-emerald-400">{formatEuro(result.steuerMit)}</span>
+                  <span className="font-mono text-sb-green">{formatEuro(result.steuerMit)}</span>
                 </div>
                 {result.forschungspraemie > 0 && (
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">+ Forschungsprämie (14 % Gutschrift)</span>
-                    <span className="font-mono text-emerald-400">{formatEuro(result.forschungspraemie)}</span>
+                    <span className="font-mono text-sb-green">{formatEuro(result.forschungspraemie)}</span>
                   </div>
                 )}
-                <div className="flex justify-between font-bold border-t pt-2 text-emerald-400">
+                <div className="flex justify-between font-bold border-t pt-2 text-sb-green">
                   <span>Gesamte Steuerersparnis</span>
                   <span className="font-mono">{formatEuro(result.gesamteSteuerersparnis)}</span>
                 </div>
@@ -687,8 +687,8 @@ function IFBContent() {
         )}
 
         {/* ── Info Box ───────────────────────────────── */}
-        <div className="flex gap-3 bg-blue-50/50 dark:bg-blue-950/30 border border-blue-200/50 dark:border-blue-800/30 border-l-[3px] border-l-blue-500 rounded-lg p-4 shadow-sm">
-          <Info className="h-4 w-4 text-blue-500 shrink-0 mt-0.5" />
+        <div className="flex gap-3 bg-sb-accent-soft border border-sb-accent/30 border-l-[3px] border-l-blue-500 rounded-lg p-4 shadow-sm">
+          <Info className="h-4 w-4 text-sb-accent shrink-0 mt-0.5" />
           <div className="text-sm text-foreground space-y-1">
             <p className="font-medium">Hinweise zum Investitionsfreibetrag</p>
             <ul className="list-disc list-inside text-muted-foreground space-y-0.5 text-xs">

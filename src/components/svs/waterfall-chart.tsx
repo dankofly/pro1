@@ -26,7 +26,7 @@ function WaterfallBar({ label, amount, total, color, isResult }: {
         <span className={`text-xs font-medium ${isResult ? 'text-foreground font-bold' : 'text-muted-foreground'}`}>
           {label}
         </span>
-        <span className={`text-xs font-mono font-medium ${isResult ? 'text-emerald-600 dark:text-emerald-400 font-bold' : 'text-muted-foreground'}`}>
+        <span className={`text-xs font-mono font-medium ${isResult ? 'text-sb-green font-bold' : 'text-muted-foreground'}`}>
           {amount < 0 ? '−' : ''}{formatEuro(Math.abs(amount))}
         </span>
       </div>
@@ -45,8 +45,8 @@ export function WaterfallChart({ gewinn, result }: WaterfallChartProps) {
     <section className="card-surface p-5 sm:p-6 space-y-3">
       <h3 className="sr-only">Abzugs-Wasserfall: Vom Brutto-Gewinn zum Netto</h3>
       <div className="flex items-center gap-2 mb-4">
-        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-violet-500/15">
-          <BarChart2 className="h-3.5 w-3.5 text-violet-600 dark:text-violet-400" aria-hidden="true" />
+        <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-sb-accent-soft0/15">
+          <BarChart2 className="h-3.5 w-3.5 text-sb-accent" aria-hidden="true" />
         </div>
         <span className="section-header">Abzugs-Wasserfall</span>
       </div>
@@ -60,7 +60,7 @@ export function WaterfallChart({ gewinn, result }: WaterfallChartProps) {
         label="− SVS Beiträge"
         amount={-result.endgueltigeSVS}
         total={gewinn}
-        color="bg-red-400"
+        color="bg-sb-red/80"
       />
       {result.hasProOptions && (result.steuerBrutto - result.einkommensteuer) > 0 ? (
         <>
@@ -68,13 +68,13 @@ export function WaterfallChart({ gewinn, result }: WaterfallChartProps) {
             label="− ESt (Tarif)"
             amount={-result.steuerBrutto}
             total={gewinn}
-            color="bg-orange-400"
+            color="bg-sb-accent"
           />
           <WaterfallBar
             label="+ Absetzbeträge"
             amount={result.steuerBrutto - result.einkommensteuer}
             total={gewinn}
-            color="bg-emerald-400"
+            color="bg-sb-green"
           />
         </>
       ) : (
@@ -82,7 +82,7 @@ export function WaterfallChart({ gewinn, result }: WaterfallChartProps) {
           label="− Einkommensteuer"
           amount={-result.einkommensteuer}
           total={gewinn}
-          color="bg-orange-400"
+          color="bg-sb-accent"
         />
       )}
       <div className="border-t border-dashed border-border pt-3">
@@ -90,7 +90,7 @@ export function WaterfallChart({ gewinn, result }: WaterfallChartProps) {
           label="Echtes Netto"
           amount={result.echtesNetto}
           total={gewinn}
-          color="bg-emerald-500"
+          color="bg-sb-green-soft0"
           isResult
         />
       </div>

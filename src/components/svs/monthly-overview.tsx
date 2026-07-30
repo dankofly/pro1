@@ -37,14 +37,14 @@ export function MonthlyOverview({ result, vorschreibung }: MonthlyOverviewProps)
         <div>
           <p className="text-[11px] text-muted-foreground mb-0.5">Differenz</p>
           <p className={`text-base font-bold font-mono ${
-            differenz > 0 ? 'text-red-500' : differenz < 0 ? 'text-emerald-500' : 'text-muted-foreground'
+            differenz > 0 ? 'text-sb-red' : differenz < 0 ? 'text-sb-green' : 'text-muted-foreground'
           }`}>
             {differenz > 0 ? '+' : ''}{formatEuro(differenz)}
           </p>
         </div>
         <div>
           <p className="text-[11px] text-muted-foreground mb-0.5">Nach Steuer-Effekt</p>
-          <p className="text-base font-bold font-mono text-emerald-600">
+          <p className="text-base font-bold font-mono text-sb-green">
             {formatEuro(result.effektiveSVS / 12)}
           </p>
         </div>

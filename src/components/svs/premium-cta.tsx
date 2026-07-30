@@ -108,7 +108,7 @@ export function PremiumCTA({
         <div className="absolute bottom-0 left-0 w-40 h-40 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
         <div className="relative p-6 sm:p-8">
           <Badge variant="outline" className="mb-4 bg-white/10 text-white border-white/20 backdrop-blur-sm">
-            <span className="w-1.5 h-1.5 bg-green-400 rounded-full mr-1.5" />
+            <span className="w-1.5 h-1.5 bg-sb-green rounded-full mr-1.5" />
             SteuerBoard Pro
           </Badge>
 
@@ -162,7 +162,7 @@ export function PremiumCTA({
                   24,90 €/Monat, als Betriebsausgabe in der Regel steuerlich absetzbar.
                 </p>
               </div>
-              <Button asChild size="sm" className="shrink-0 bg-white text-slate-900 hover:bg-white/90">
+              <Button asChild size="sm" className="shrink-0 bg-sb-card text-sb-text hover:bg-white/90">
                 <Link href="/pricing">Pro freischalten</Link>
               </Button>
             </div>

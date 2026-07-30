@@ -31,14 +31,14 @@ export function PauschalierungVergleich({
     <div className="glass rounded-2xl p-5 sm:p-6 space-y-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Calculator className="h-5 w-5 text-blue-600 dark:text-blue-400" aria-hidden="true" />
+          <Calculator className="h-5 w-5 text-sb-accent" aria-hidden="true" />
           <h3 className="text-base font-semibold">Pauschalierung vs. Standard</h3>
         </div>
         <Badge
           variant="outline"
           className={pauschalierung.vorteilhaft
-            ? 'bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 border-emerald-200 dark:border-emerald-800/40'
-            : 'bg-red-50 dark:bg-red-950/30 text-red-700 dark:text-red-300 border-red-200 dark:border-red-800/40'
+            ? 'bg-sb-green-soft text-sb-green border-sb-green/30'
+            : 'bg-sb-red/10 text-sb-red border-sb-red/30'
           }
         >
           {pauschalierung.vorteilhaft ? (
@@ -82,11 +82,11 @@ export function PauschalierungVergleich({
             </tr>
             <tr className="border-b border-border/50">
               <td className="py-2.5">Abgaben gesamt (SVS + ESt)</td>
-              <td className="py-2.5 text-right font-mono text-red-600 dark:text-red-400">
+              <td className="py-2.5 text-right font-mono text-sb-red">
                 {/* SVS allein ist aus den Props nicht ableitbar (ESt fehlt): Netto = Gewinn - SVS - ESt */}
                 {formatEuro(standardNetto > 0 ? standardGewinn - standardNetto : 0)}
               </td>
-              <td className="py-2.5 text-right font-mono text-red-600 dark:text-red-400">
+              <td className="py-2.5 text-right font-mono text-sb-red">
                 {formatEuro(pauschalierung.gewinnPauschal - pauschalierung.echtesNettoPauschal)}
               </td>
               <td className="py-2.5 text-right font-mono text-muted-foreground">–</td>
@@ -96,7 +96,7 @@ export function PauschalierungVergleich({
               <td className="py-2.5 text-right font-mono">{formatEuro(standardNetto)}</td>
               <td className="py-2.5 text-right font-mono">{formatEuro(pauschalierung.echtesNettoPauschal)}</td>
               <td className={`py-2.5 text-right font-mono ${
-                pauschalierung.differenzZuStandard > 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-red-400'
+                pauschalierung.differenzZuStandard > 0 ? 'text-sb-green' : 'text-sb-red'
               }`}>
                 {pauschalierung.differenzZuStandard > 0 ? '+' : ''}{formatEuro(pauschalierung.differenzZuStandard)}
               </td>

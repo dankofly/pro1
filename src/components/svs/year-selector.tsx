@@ -42,7 +42,7 @@ export function YearSelector({ year, onYearChange }: YearSelectorProps) {
         {year === '2026' && (
           <Badge
             variant="outline"
-            className="text-amber-600 border-amber-300 bg-amber-50 text-xs"
+            className="text-sb-accent border-sb-accent/40 bg-sb-accent-soft text-xs"
           >
             Prognose
           </Badge>

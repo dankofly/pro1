@@ -6,7 +6,7 @@ function ImpressumContent() {
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
       <h1 className="text-3xl font-bold mb-8">Impressum</h1>
 
-        <div className="prose prose-slate max-w-none space-y-6">
+        <div className="prose prose-slate prose-invert max-w-none space-y-6">
           <section>
             <h2 className="text-xl font-semibold mb-3">Angaben gemäß &sect; 5 ECG und &sect; 25 MedienG</h2>
             <p>
@@ -22,7 +22,7 @@ function ImpressumContent() {
             <h2 className="text-xl font-semibold mb-3">Kontakt</h2>
             <p>
               Telefon: +43 676 7293888<br />
-              E-Mail: <a href="mailto:info@hypeakz.io" className="text-blue-600 hover:underline">info@hypeakz.io</a>
+              E-Mail: <a href="mailto:info@hypeakz.io" className="text-sb-accent hover:underline">info@hypeakz.io</a>
             </p>
           </section>
 
@@ -51,7 +51,7 @@ function ImpressumContent() {
               Gewerbeordnung (GewO), E-Commerce-Gesetz (ECG), Mediengesetz (MedienG),
               Bundesgesetz gegen den unlauteren Wettbewerb (UWG).<br />
               Abrufbar unter:{' '}
-              <a href="https://www.ris.bka.gv.at" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+              <a href="https://www.ris.bka.gv.at" target="_blank" rel="noopener noreferrer" className="text-sb-accent hover:underline">
                 www.ris.bka.gv.at
               </a>
             </p>

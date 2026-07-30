@@ -5,10 +5,10 @@ interface GaugeBarometerProps {
 }
 
 function getColor(pct: number) {
-  if (pct <= 25) return { stroke: '#22c55e', text: 'Niedrig', label: 'text-green-600 dark:text-green-400', bg: 'bg-green-50 dark:bg-green-950/30' }
-  if (pct <= 50) return { stroke: '#f59e0b', text: 'Mittel', label: 'text-amber-600 dark:text-amber-400', bg: 'bg-amber-50 dark:bg-amber-950/30' }
-  if (pct <= 75) return { stroke: '#f97316', text: 'Hoch', label: 'text-orange-600 dark:text-orange-400', bg: 'bg-orange-50 dark:bg-orange-950/30' }
-  return { stroke: '#ef4444', text: 'Kritisch', label: 'text-red-600 dark:text-red-400', bg: 'bg-red-50 dark:bg-red-950/30' }
+  if (pct <= 25) return { stroke: '#22c55e', text: 'Niedrig', label: 'text-sb-green', bg: 'bg-sb-green-soft' }
+  if (pct <= 50) return { stroke: '#f59e0b', text: 'Mittel', label: 'text-sb-accent', bg: 'bg-sb-accent-soft' }
+  if (pct <= 75) return { stroke: '#f97316', text: 'Hoch', label: 'text-sb-accent', bg: 'bg-sb-accent-soft' }
+  return { stroke: '#ef4444', text: 'Kritisch', label: 'text-sb-red', bg: 'bg-sb-red/10' }
 }
 
 export function GaugeBarometer({ riskPercent }: GaugeBarometerProps) {

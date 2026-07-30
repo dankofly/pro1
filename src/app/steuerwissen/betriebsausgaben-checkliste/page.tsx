@@ -1,19 +1,21 @@
 import { Check, Calculator, FileText, AlertCircle, Info, CheckCircle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { PublicShell } from '@/components/public-shell'
 import { SiteFooter } from '@/components/site-footer'
 import { ArticleFooter } from '@/components/steuerwissen/article-footer'
 
 export default function BetriebsausgabenCheckliste() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-300">
+    <PublicShell>
+    <div className="min-h-screen bg-sb-bg text-sb-mut">
       <div className="max-w-4xl mx-auto px-4 py-8">
         {/* Breadcrumbs */}
         <nav className="mb-8">
-          <ol className="flex items-center space-x-2 text-sm text-slate-400">
+          <ol className="flex items-center space-x-2 text-sm text-sb-mut">
             <li>
               <Button asChild>
-                <Link href="/" className="hover:text-slate-300">
+                <Link href="/" className="hover:text-sb-mut">
                   Start
                 </Link>
               </Button>
@@ -21,26 +23,26 @@ export default function BetriebsausgabenCheckliste() {
             <li>/</li>
             <li>
               <Button asChild>
-                <Link href="/steuerwissen" className="hover:text-slate-300">
+                <Link href="/steuerwissen" className="hover:text-sb-mut">
                   Steuerwissen
                 </Link>
               </Button>
             </li>
             <li>/</li>
-            <li className="text-slate-300">Betriebsausgaben Checkliste</li>
+            <li className="text-sb-mut">Betriebsausgaben Checkliste</li>
           </ol>
         </nav>
 
         {/* Header */}
         <header className="mb-12">
-          <h1 className="text-4xl font-bold text-white mb-4">
+          <h1 className="text-4xl font-bold text-sb-text mb-4">
             Betriebsausgaben Checkliste 2026 — Was Selbständige absetzen können
           </h1>
-          <p className="text-xl text-slate-400 leading-relaxed">
+          <p className="text-xl text-sb-mut leading-relaxed">
             Vollständige Übersicht aller absetzbaren Betriebsausgaben für EPU und Selbständige in Österreich.
             Mit Arbeitsplatzpauschale, GWG-Grenze und praktischen Berechnungsbeispielen.
           </p>
-          <div className="flex items-center space-x-4 mt-6 text-sm text-slate-500">
+          <div className="flex items-center space-x-4 mt-6 text-sm text-sb-dim">
             <span>📅 19. März 2026</span>
             <span>📖 12 min Lesezeit</span>
             <span>🎯 Für Selbständige</span>
@@ -50,12 +52,12 @@ export default function BetriebsausgabenCheckliste() {
         {/* Article Content */}
         <article className="prose prose-invert prose-slate max-w-none">
           {/* Kurzantwort */}
-          <div className="bg-blue-900/30 border border-blue-700 rounded-lg p-6 mb-8">
-            <h2 className="text-xl font-bold text-blue-200 mb-3 flex items-center">
+          <div className="bg-sb-accent-soft border border-sb-accent/30 rounded-lg p-6 mb-8">
+            <h2 className="text-xl font-bold text-sb-mut mb-3 flex items-center">
               <Info className="mr-2" size={20} />
               Kurzantwort
             </h2>
-            <p className="text-blue-100 mb-0">
+            <p className="text-sb-text mb-0">
               <strong>Selbständige können in Österreich 2026 alle betrieblich veranlassten Ausgaben absetzen:</strong>
               Arbeitsplatzpauschale (1.200 € oder 300 €), Büroausstattung, EDV-Kosten, Fahrzeugkosten (0,42 €/km),
               Versicherungen, Weiterbildung, Steuerberatung und Marketing. Wichtig: klare Abgrenzung zu Privatausgaben
@@ -65,29 +67,29 @@ export default function BetriebsausgabenCheckliste() {
 
           {/* Was sind Betriebsausgaben? */}
           <section className="mb-12">
-            <h2 className="text-2xl font-bold text-white mb-6">Was sind Betriebsausgaben?</h2>
+            <h2 className="text-2xl font-bold text-sb-text mb-6">Was sind Betriebsausgaben?</h2>
 
             <p>
               Betriebsausgaben sind laut <strong>§ 4 Abs 4 EStG</strong> alle Aufwendungen, die durch den Betrieb
               veranlasst sind. Sie mindern direkt Ihren steuerpflichtigen Gewinn und damit die zu zahlende Steuer.
             </p>
 
-            <h3 className="text-xl font-semibold text-white mt-8 mb-4">Grundprinzipien der Betriebsausgaben</h3>
+            <h3 className="text-xl font-semibold text-sb-text mt-8 mb-4">Grundprinzipien der Betriebsausgaben</h3>
 
-            <div className="bg-slate-900 rounded-lg p-6 mb-6">
-              <h4 className="font-semibold text-slate-200 mb-3">1. Betriebliche Veranlassung</h4>
+            <div className="bg-sb-card rounded-lg p-6 mb-6">
+              <h4 className="font-semibold text-sb-text mb-3">1. Betriebliche Veranlassung</h4>
               <p className="mb-4">
                 Die Ausgabe muss objektiv dem Betrieb dienen. Private Nutzung schließt Betriebsausgabenabzug nicht
                 automatisch aus, aber der betriebliche Anteil muss klar abgrenzbar sein.
               </p>
 
-              <h4 className="font-semibold text-slate-200 mb-3">2. Tatsächliche Aufwendung</h4>
+              <h4 className="font-semibold text-sb-text mb-3">2. Tatsächliche Aufwendung</h4>
               <p className="mb-4">
                 Die Ausgabe muss tatsächlich entstanden und bezahlt worden sein. Rückstellungen sind nur in
                 bestimmten Fällen zulässig.
               </p>
 
-              <h4 className="font-semibold text-slate-200 mb-3">3. Abgrenzung zu Privatausgaben</h4>
+              <h4 className="font-semibold text-sb-text mb-3">3. Abgrenzung zu Privatausgaben</h4>
               <p>
                 Gemischte Aufwendungen (beruflich + privat) müssen aufgeteilt werden. Typische Aufteilung
                 bei Handy/Internet: 40-60% betrieblich, je nach Nutzungsintensität.
@@ -97,21 +99,21 @@ export default function BetriebsausgabenCheckliste() {
 
           {/* Vollständige Checkliste */}
           <section className="mb-12">
-            <h2 className="text-2xl font-bold text-white mb-6">Vollständige Betriebsausgaben Checkliste 2026</h2>
+            <h2 className="text-2xl font-bold text-sb-text mb-6">Vollständige Betriebsausgaben Checkliste 2026</h2>
 
             {/* Arbeitsplatz & Büro */}
-            <div className="bg-slate-900 rounded-lg p-6 mb-8">
-              <h3 className="text-xl font-semibold text-green-400 mb-4 flex items-center">
+            <div className="bg-sb-card rounded-lg p-6 mb-8">
+              <h3 className="text-xl font-semibold text-sb-green mb-4 flex items-center">
                 <CheckCircle className="mr-2" size={20} />
                 Arbeitsplatz & Büro
               </h3>
 
               <div className="grid gap-4">
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Arbeitsplatzpauschale 2026</strong>
-                    <p className="text-slate-400 text-sm">
+                    <p className="text-sb-mut text-sm">
                       Typ 1: 1.200 € (hohe fachliche Anforderungen, überwiegend PC-Arbeit)<br />
                       Typ 2: 300 € (niedrige Anforderungen, einfache Bürotätigkeit)
                     </p>
@@ -119,118 +121,118 @@ export default function BetriebsausgabenCheckliste() {
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Miete & Betriebskosten (anteilig)</strong>
-                    <p className="text-slate-400 text-sm">Bei Homeoffice: Fläche des Arbeitszimmers im Verhältnis zur Gesamtwohnfläche</p>
+                    <p className="text-sb-mut text-sm">Bei Homeoffice: Fläche des Arbeitszimmers im Verhältnis zur Gesamtwohnfläche</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Büromöbel & Einrichtung</strong>
-                    <p className="text-slate-400 text-sm">Schreibtisch, Bürostuhl, Regale, Beleuchtung</p>
+                    <p className="text-sb-mut text-sm">Schreibtisch, Bürostuhl, Regale, Beleuchtung</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Büromaterial</strong>
-                    <p className="text-slate-400 text-sm">Papier, Stifte, Ordner, Druckerpatronen, Briefumschläge</p>
+                    <p className="text-sb-mut text-sm">Papier, Stifte, Ordner, Druckerpatronen, Briefumschläge</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* EDV & Kommunikation */}
-            <div className="bg-slate-900 rounded-lg p-6 mb-8">
-              <h3 className="text-xl font-semibold text-blue-400 mb-4 flex items-center">
+            <div className="bg-sb-card rounded-lg p-6 mb-8">
+              <h3 className="text-xl font-semibold text-sb-accent mb-4 flex items-center">
                 <CheckCircle className="mr-2" size={20} />
                 EDV & Kommunikation
               </h3>
 
               <div className="grid gap-4">
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Computer, Laptop, Tablet</strong>
-                    <p className="text-slate-400 text-sm">GWG bis 1.000 € sofort absetzbar, darüber AfA über Nutzungsdauer</p>
+                    <p className="text-sb-mut text-sm">GWG bis 1.000 € sofort absetzbar, darüber AfA über Nutzungsdauer</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Software & Lizenzen</strong>
-                    <p className="text-slate-400 text-sm">Microsoft Office, Adobe Creative Suite, Buchhaltungssoftware</p>
+                    <p className="text-sb-mut text-sm">Microsoft Office, Adobe Creative Suite, Buchhaltungssoftware</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Cloud-Services</strong>
-                    <p className="text-slate-400 text-sm">Dropbox, Google Workspace, AWS, Hosting-Kosten</p>
+                    <p className="text-sb-mut text-sm">Dropbox, Google Workspace, AWS, Hosting-Kosten</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Telefon & Internet (anteilig)</strong>
-                    <p className="text-slate-400 text-sm">Typisch 40-60% betrieblich, je nach Nutzung</p>
+                    <p className="text-sb-mut text-sm">Typisch 40-60% betrieblich, je nach Nutzung</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Handy & Mobilvertrag</strong>
-                    <p className="text-slate-400 text-sm">Betrieblicher Anteil klar dokumentieren</p>
+                    <p className="text-sb-mut text-sm">Betrieblicher Anteil klar dokumentieren</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Fahrzeug & Reisen */}
-            <div className="bg-slate-900 rounded-lg p-6 mb-8">
-              <h3 className="text-xl font-semibold text-purple-400 mb-4 flex items-center">
+            <div className="bg-sb-card rounded-lg p-6 mb-8">
+              <h3 className="text-xl font-semibold text-sb-accent mb-4 flex items-center">
                 <CheckCircle className="mr-2" size={20} />
                 Fahrzeug & Reisen
               </h3>
 
               <div className="grid gap-4">
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Amtliches Kilometergeld: 0,42 €/km</strong>
-                    <p className="text-slate-400 text-sm">Einfachste Variante für betriebliche Fahrten mit Privatfahrzeug</p>
+                    <p className="text-sb-mut text-sm">Einfachste Variante für betriebliche Fahrten mit Privatfahrzeug</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>KFZ-Kosten bei Fahrtenbuch</strong>
-                    <p className="text-slate-400 text-sm">Treibstoff, Reparaturen, Versicherung, AfA anteilig nach betrieblicher Nutzung</p>
+                    <p className="text-sb-mut text-sm">Treibstoff, Reparaturen, Versicherung, AfA anteilig nach betrieblicher Nutzung</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Öffentliche Verkehrsmittel</strong>
-                    <p className="text-slate-400 text-sm">Bahntickets, Flugkosten, Öffi-Karten für Geschäftsreisen</p>
+                    <p className="text-sb-mut text-sm">Bahntickets, Flugkosten, Öffi-Karten für Geschäftsreisen</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Reisekosten & Diäten</strong>
-                    <p className="text-slate-400 text-sm">
+                    <p className="text-sb-mut text-sm">
                       Inland: 26,40 €/Tag (über 3h Abwesenheit)<br />
                       Nächtigungskosten: angemessene Hotelkosten
                     </p>
@@ -240,91 +242,91 @@ export default function BetriebsausgabenCheckliste() {
             </div>
 
             {/* Versicherungen & Vorsorge */}
-            <div className="bg-slate-900 rounded-lg p-6 mb-8">
-              <h3 className="text-xl font-semibold text-orange-400 mb-4 flex items-center">
+            <div className="bg-sb-card rounded-lg p-6 mb-8">
+              <h3 className="text-xl font-semibold text-sb-accent mb-4 flex items-center">
                 <CheckCircle className="mr-2" size={20} />
                 Versicherungen & Vorsorge
               </h3>
 
               <div className="grid gap-4">
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>SVS-Beiträge</strong>
-                    <p className="text-slate-400 text-sm">Kranken- und Pensionsversicherung als Betriebsausgabe absetzbar!</p>
+                    <p className="text-sb-mut text-sm">Kranken- und Pensionsversicherung als Betriebsausgabe absetzbar!</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Betriebshaftpflichtversicherung</strong>
-                    <p className="text-slate-400 text-sm">Schutz vor Schadenersatzansprüchen Dritter</p>
+                    <p className="text-sb-mut text-sm">Schutz vor Schadenersatzansprüchen Dritter</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Rechtsschutzversicherung (betrieblich)</strong>
-                    <p className="text-slate-400 text-sm">Nur der betriebliche Anteil absetzbar</p>
+                    <p className="text-sb-mut text-sm">Nur der betriebliche Anteil absetzbar</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Cyber-Versicherung</strong>
-                    <p className="text-slate-400 text-sm">Schutz vor Hackerangriffen und Datenverlust</p>
+                    <p className="text-sb-mut text-sm">Schutz vor Hackerangriffen und Datenverlust</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Marketing & Werbung */}
-            <div className="bg-slate-900 rounded-lg p-6 mb-8">
-              <h3 className="text-xl font-semibold text-pink-400 mb-4 flex items-center">
+            <div className="bg-sb-card rounded-lg p-6 mb-8">
+              <h3 className="text-xl font-semibold text-sb-accent mb-4 flex items-center">
                 <CheckCircle className="mr-2" size={20} />
                 Marketing & Werbung
               </h3>
 
               <div className="grid gap-4">
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Website, Domain, Hosting</strong>
-                    <p className="text-slate-400 text-sm">Webseitenerstellung, Domaingebühren, Server-Hosting</p>
+                    <p className="text-sb-mut text-sm">Webseitenerstellung, Domaingebühren, Server-Hosting</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Online-Werbung</strong>
-                    <p className="text-slate-400 text-sm">Google Ads, Facebook Ads, LinkedIn Ads, Instagram-Werbung</p>
+                    <p className="text-sb-mut text-sm">Google Ads, Facebook Ads, LinkedIn Ads, Instagram-Werbung</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Werbematerial</strong>
-                    <p className="text-slate-400 text-sm">Visitenkarten, Flyer, Broschüren, Messestände</p>
+                    <p className="text-sb-mut text-sm">Visitenkarten, Flyer, Broschüren, Messestände</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Bewirtungskosten (50% absetzbar)</strong>
-                    <p className="text-slate-400 text-sm">Geschäftsessen mit Kunden, Geschäftspartner. Dokumentation erforderlich!</p>
+                    <p className="text-sb-mut text-sm">Geschäftsessen mit Kunden, Geschäftspartner. Dokumentation erforderlich!</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Weiterbildung */}
-            <div className="bg-slate-900 rounded-lg p-6 mb-8">
+            <div className="bg-sb-card rounded-lg p-6 mb-8">
               <h3 className="text-xl font-semibold text-cyan-400 mb-4 flex items-center">
                 <CheckCircle className="mr-2" size={20} />
                 Weiterbildung & Wissen
@@ -332,110 +334,110 @@ export default function BetriebsausgabenCheckliste() {
 
               <div className="grid gap-4">
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Fortbildungen & Seminare</strong>
-                    <p className="text-slate-400 text-sm">Kurse, Workshops, Online-Trainings, Zertifizierungen</p>
+                    <p className="text-sb-mut text-sm">Kurse, Workshops, Online-Trainings, Zertifizierungen</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Fachliteratur & Zeitschriften</strong>
-                    <p className="text-slate-400 text-sm">Bücher, Magazine, digitale Publikationen</p>
+                    <p className="text-sb-mut text-sm">Bücher, Magazine, digitale Publikationen</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Konferenzen & Events</strong>
-                    <p className="text-slate-400 text-sm">Teilnahmegebühren, Networking-Events, Branchentreffen</p>
+                    <p className="text-sb-mut text-sm">Teilnahmegebühren, Networking-Events, Branchentreffen</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Beratung & Dienstleistungen */}
-            <div className="bg-slate-900 rounded-lg p-6 mb-8">
-              <h3 className="text-xl font-semibold text-yellow-400 mb-4 flex items-center">
+            <div className="bg-sb-card rounded-lg p-6 mb-8">
+              <h3 className="text-xl font-semibold text-sb-accent mb-4 flex items-center">
                 <CheckCircle className="mr-2" size={20} />
                 Beratung & Dienstleistungen
               </h3>
 
               <div className="grid gap-4">
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Steuerberater</strong>
-                    <p className="text-slate-400 text-sm">Beratung, Steuererklärung, laufende Buchführung</p>
+                    <p className="text-sb-mut text-sm">Beratung, Steuererklärung, laufende Buchführung</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Rechtsanwalt</strong>
-                    <p className="text-slate-400 text-sm">Vertragsberatung, Geschäftsstreitigkeiten, AGB-Erstellung</p>
+                    <p className="text-sb-mut text-sm">Vertragsberatung, Geschäftsstreitigkeiten, AGB-Erstellung</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Buchführung & Lohnverrechnung</strong>
-                    <p className="text-slate-400 text-sm">Externe Buchhaltung, Personalverrechnung</p>
+                    <p className="text-sb-mut text-sm">Externe Buchhaltung, Personalverrechnung</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Freelancer & Subunternehmer</strong>
-                    <p className="text-slate-400 text-sm">Projektbasierte Zusammenarbeit, Auslagerung von Tätigkeiten</p>
+                    <p className="text-sb-mut text-sm">Projektbasierte Zusammenarbeit, Auslagerung von Tätigkeiten</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Sonstiges */}
-            <div className="bg-slate-900 rounded-lg p-6 mb-8">
-              <h3 className="text-xl font-semibold text-indigo-400 mb-4 flex items-center">
+            <div className="bg-sb-card rounded-lg p-6 mb-8">
+              <h3 className="text-xl font-semibold text-sb-accent mb-4 flex items-center">
                 <CheckCircle className="mr-2" size={20} />
                 Sonstige Betriebsausgaben
               </h3>
 
               <div className="grid gap-4">
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Geringwertige Wirtschaftsgüter (GWG)</strong>
-                    <p className="text-slate-400 text-sm">Bis 1.000 € netto sofort absetzbar</p>
+                    <p className="text-sb-mut text-sm">Bis 1.000 € netto sofort absetzbar</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Bankgebühren Geschäftskonto</strong>
-                    <p className="text-slate-400 text-sm">Kontoführung, Überweisungen, Kreditkartengebühren</p>
+                    <p className="text-sb-mut text-sm">Kontoführung, Überweisungen, Kreditkartengebühren</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Porto & Versandkosten</strong>
-                    <p className="text-slate-400 text-sm">Briefporto, Paketversand, Expresslieferungen</p>
+                    <p className="text-sb-mut text-sm">Briefporto, Paketversand, Expresslieferungen</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Mitgliedschaften</strong>
-                    <p className="text-slate-400 text-sm">WKO-Beitrag, Berufsverbände, Kammern</p>
+                    <p className="text-sb-mut text-sm">WKO-Beitrag, Berufsverbände, Kammern</p>
                   </div>
                 </div>
               </div>
@@ -444,13 +446,13 @@ export default function BetriebsausgabenCheckliste() {
 
           {/* Nicht absetzbar */}
           <section className="mb-12">
-            <div className="bg-red-900/30 border border-red-700 rounded-lg p-6">
-              <h2 className="text-xl font-bold text-red-200 mb-4 flex items-center">
+            <div className="bg-sb-red/10 border border-sb-red/30 rounded-lg p-6">
+              <h2 className="text-xl font-bold text-sb-mut mb-4 flex items-center">
                 <AlertCircle className="mr-2" size={20} />
                 Nicht als Betriebsausgabe absetzbar
               </h2>
 
-              <div className="space-y-2 text-red-100">
+              <div className="space-y-2 text-sb-text">
                 <p>• <strong>Reine Privatausgaben</strong> (Lebensmittel, private Kleidung, Freizeitaktivitäten)</p>
                 <p>• <strong>Strafen und Bußgelder</strong> (Verkehrsstrafen, behördliche Strafen)</p>
                 <p>• <strong>Repräsentationskleidung</strong> (normale Anzüge, Kostüme - außer Berufskleidung)</p>
@@ -462,31 +464,31 @@ export default function BetriebsausgabenCheckliste() {
 
           {/* Arbeitsplatzpauschale Detail */}
           <section className="mb-12">
-            <h2 className="text-2xl font-bold text-white mb-6">Arbeitsplatzpauschale 2026 im Detail</h2>
+            <h2 className="text-2xl font-bold text-sb-text mb-6">Arbeitsplatzpauschale 2026 im Detail</h2>
 
             <div className="overflow-x-auto">
-              <table className="w-full bg-slate-900 rounded-lg overflow-hidden">
-                <thead className="bg-slate-800">
+              <table className="w-full bg-sb-card rounded-lg overflow-hidden">
+                <thead className="bg-white/[0.05]">
                   <tr>
-                    <th className="px-6 py-4 text-left font-semibold text-slate-200">Typ</th>
-                    <th className="px-6 py-4 text-left font-semibold text-slate-200">Betrag</th>
-                    <th className="px-6 py-4 text-left font-semibold text-slate-200">Voraussetzungen</th>
+                    <th className="px-6 py-4 text-left font-semibold text-sb-text">Typ</th>
+                    <th className="px-6 py-4 text-left font-semibold text-sb-text">Betrag</th>
+                    <th className="px-6 py-4 text-left font-semibold text-sb-text">Voraussetzungen</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-700">
+                <tbody className="divide-y divide-sb-line">
                   <tr>
-                    <td className="px-6 py-4 font-medium text-green-400">Typ 1</td>
-                    <td className="px-6 py-4 text-slate-300">1.200 €</td>
-                    <td className="px-6 py-4 text-slate-300">
+                    <td className="px-6 py-4 font-medium text-sb-green">Typ 1</td>
+                    <td className="px-6 py-4 text-sb-mut">1.200 €</td>
+                    <td className="px-6 py-4 text-sb-mut">
                       • Überwiegend Computer-/Büroarbeit<br />
                       • Hohe fachliche Anforderungen<br />
                       • Qualifizierte Tätigkeit
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 font-medium text-blue-400">Typ 2</td>
-                    <td className="px-6 py-4 text-slate-300">300 €</td>
-                    <td className="px-6 py-4 text-slate-300">
+                    <td className="px-6 py-4 font-medium text-sb-accent">Typ 2</td>
+                    <td className="px-6 py-4 text-sb-mut">300 €</td>
+                    <td className="px-6 py-4 text-sb-mut">
                       • Einfache Bürotätigkeit<br />
                       • Niedrige fachliche Anforderungen<br />
                       • Routine-Tätigkeiten
@@ -496,8 +498,8 @@ export default function BetriebsausgabenCheckliste() {
               </table>
             </div>
 
-            <div className="bg-amber-900/30 border border-amber-700 rounded-lg p-4 mt-6">
-              <p className="text-amber-100">
+            <div className="bg-sb-accent-soft border border-sb-accent/30 rounded-lg p-4 mt-6">
+              <p className="text-sb-text">
                 <strong>Wichtig:</strong> Die Arbeitsplatzpauschale kann alternativ zu tatsächlichen Kosten
                 gewählt werden. Bei höheren tatsächlichen Kosten lohnt sich die Einzelaufstellung.
               </p>
@@ -506,42 +508,42 @@ export default function BetriebsausgabenCheckliste() {
 
           {/* GWG-Grenze */}
           <section className="mb-12">
-            <h2 className="text-2xl font-bold text-white mb-6">GWG-Grenze: 1.000 € optimal nutzen</h2>
+            <h2 className="text-2xl font-bold text-sb-text mb-6">GWG-Grenze: 1.000 € optimal nutzen</h2>
 
             <p>
               <strong>Geringwertige Wirtschaftsgüter (GWG)</strong> bis 1.000 € netto können im Jahr der
               Anschaffung vollständig als Betriebsausgabe abgesetzt werden.
             </p>
 
-            <h3 className="text-xl font-semibold text-white mt-8 mb-4">GWG vs. Abschreibung (AfA)</h3>
+            <h3 className="text-xl font-semibold text-sb-text mt-8 mb-4">GWG vs. Abschreibung (AfA)</h3>
 
             <div className="overflow-x-auto">
-              <table className="w-full bg-slate-900 rounded-lg overflow-hidden">
-                <thead className="bg-slate-800">
+              <table className="w-full bg-sb-card rounded-lg overflow-hidden">
+                <thead className="bg-white/[0.05]">
                   <tr>
-                    <th className="px-6 py-4 text-left font-semibold text-slate-200">Anschaffungskosten</th>
-                    <th className="px-6 py-4 text-left font-semibold text-slate-200">Behandlung</th>
-                    <th className="px-6 py-4 text-left font-semibold text-slate-200">Steuerlicher Vorteil</th>
+                    <th className="px-6 py-4 text-left font-semibold text-sb-text">Anschaffungskosten</th>
+                    <th className="px-6 py-4 text-left font-semibold text-sb-text">Behandlung</th>
+                    <th className="px-6 py-4 text-left font-semibold text-sb-text">Steuerlicher Vorteil</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-700">
+                <tbody className="divide-y divide-sb-line">
                   <tr>
-                    <td className="px-6 py-4 text-slate-300">Bis 1.000 € netto</td>
-                    <td className="px-6 py-4 text-green-400 font-medium">Sofort absetzbar (GWG)</td>
-                    <td className="px-6 py-4 text-slate-300">Volle Betriebsausgabe im Jahr der Anschaffung</td>
+                    <td className="px-6 py-4 text-sb-mut">Bis 1.000 € netto</td>
+                    <td className="px-6 py-4 text-sb-green font-medium">Sofort absetzbar (GWG)</td>
+                    <td className="px-6 py-4 text-sb-mut">Volle Betriebsausgabe im Jahr der Anschaffung</td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 text-slate-300">Über 1.000 € netto</td>
-                    <td className="px-6 py-4 text-blue-400">Abschreibung (AfA)</td>
-                    <td className="px-6 py-4 text-slate-300">Aufteilung über Nutzungsdauer (z.B. 3 Jahre)</td>
+                    <td className="px-6 py-4 text-sb-mut">Über 1.000 € netto</td>
+                    <td className="px-6 py-4 text-sb-accent">Abschreibung (AfA)</td>
+                    <td className="px-6 py-4 text-sb-mut">Aufteilung über Nutzungsdauer (z.B. 3 Jahre)</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
-            <div className="bg-green-900/30 border border-green-700 rounded-lg p-6 mt-6">
-              <h4 className="font-semibold text-green-200 mb-3">Praxis-Tipp: GWG-Grenze optimal nutzen</h4>
-              <p className="text-green-100">
+            <div className="bg-sb-green-soft border border-sb-green/30 rounded-lg p-6 mt-6">
+              <h4 className="font-semibold text-sb-mut mb-3">Praxis-Tipp: GWG-Grenze optimal nutzen</h4>
+              <p className="text-sb-text">
                 Bei Anschaffungen knapp über 1.000 € prüfen, ob eine Aufteilung sinnvoll ist.
                 Beispiel: Laptop um 1.100 € + externe Maus um 50 € separat kaufen →
                 beide unter GWG-Grenze → sofort absetzbar.
@@ -551,38 +553,38 @@ export default function BetriebsausgabenCheckliste() {
 
           {/* Bewirtungskosten */}
           <section className="mb-12">
-            <h2 className="text-2xl font-bold text-white mb-6">Bewirtungskosten: 50%-Regel beachten</h2>
+            <h2 className="text-2xl font-bold text-sb-text mb-6">Bewirtungskosten: 50%-Regel beachten</h2>
 
             <p>
               Bewirtungsaufwendungen für Geschäftspartner sind nur zu <strong>50% als Betriebsausgabe</strong>
               absetzbar. Die Dokumentationspflichten sind streng.
             </p>
 
-            <h3 className="text-xl font-semibold text-white mt-8 mb-4">Voraussetzungen für Absetzbarkeit</h3>
+            <h3 className="text-xl font-semibold text-sb-text mt-8 mb-4">Voraussetzungen für Absetzbarkeit</h3>
 
-            <div className="bg-slate-900 rounded-lg p-6">
+            <div className="bg-sb-card rounded-lg p-6">
               <div className="space-y-4">
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Geschäftlicher Anlass</strong>
-                    <p className="text-slate-400 text-sm">Kunden-/Geschäftspartner-Bewirtung mit nachweisbarem betrieblichem Bezug</p>
+                    <p className="text-sb-mut text-sm">Kunden-/Geschäftspartner-Bewirtung mit nachweisbarem betrieblichem Bezug</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Angemessenheit</strong>
-                    <p className="text-slate-400 text-sm">Kosten müssen in angemessenem Verhältnis zum Geschäftszweck stehen</p>
+                    <p className="text-sb-mut text-sm">Kosten müssen in angemessenem Verhältnis zum Geschäftszweck stehen</p>
                   </div>
                 </div>
 
                 <div className="flex items-start">
-                  <Check className="text-green-400 mr-3 mt-1 flex-shrink-0" size={16} />
+                  <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Vollständige Dokumentation erforderlich:</strong>
-                    <p className="text-slate-400 text-sm">
+                    <p className="text-sb-mut text-sm">
                       • Datum, Ort, Teilnehmer<br />
                       • Geschäftlicher Anlass<br />
                       • Originalrechnung<br />
@@ -596,15 +598,15 @@ export default function BetriebsausgabenCheckliste() {
 
           {/* Berechnungsbeispiel */}
           <section className="mb-12">
-            <h2 className="text-2xl font-bold text-white mb-6">Berechnungsbeispiel: Steuerersparnis durch Betriebsausgaben</h2>
+            <h2 className="text-2xl font-bold text-sb-text mb-6">Berechnungsbeispiel: Steuerersparnis durch Betriebsausgaben</h2>
 
-            <div className="bg-slate-900 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-blue-400 mb-4">EPU Grafik-Designer, Umsatz: 50.000 €</h3>
+            <div className="bg-sb-card rounded-lg p-6">
+              <h3 className="text-lg font-semibold text-sb-accent mb-4">EPU Grafik-Designer, Umsatz: 50.000 €</h3>
 
               <div className="grid md:grid-cols-2 gap-8">
                 <div>
-                  <h4 className="font-semibold text-slate-200 mb-3">Typische Betriebsausgaben:</h4>
-                  <div className="space-y-2 text-slate-300">
+                  <h4 className="font-semibold text-sb-text mb-3">Typische Betriebsausgaben:</h4>
+                  <div className="space-y-2 text-sb-mut">
                     <div className="flex justify-between">
                       <span>Arbeitsplatzpauschale Typ 1:</span>
                       <span>1.200 €</span>
@@ -641,8 +643,8 @@ export default function BetriebsausgabenCheckliste() {
                       <span>SVS-Beiträge:</span>
                       <span>3.600 €</span>
                     </div>
-                    <hr className="border-slate-700" />
-                    <div className="flex justify-between font-bold text-green-400">
+                    <hr className="border-sb-line" />
+                    <div className="flex justify-between font-bold text-sb-green">
                       <span>Gesamt Betriebsausgaben:</span>
                       <span>11.300 €</span>
                     </div>
@@ -650,8 +652,8 @@ export default function BetriebsausgabenCheckliste() {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-slate-200 mb-3">Steuerliche Auswirkung:</h4>
-                  <div className="space-y-2 text-slate-300">
+                  <h4 className="font-semibold text-sb-text mb-3">Steuerliche Auswirkung:</h4>
+                  <div className="space-y-2 text-sb-mut">
                     <div className="flex justify-between">
                       <span>Umsatz:</span>
                       <span>50.000 €</span>
@@ -668,7 +670,7 @@ export default function BetriebsausgabenCheckliste() {
                       <span>Einkommensteuer (ca. 25%):</span>
                       <span>9.675 €</span>
                     </div>
-                    <div className="flex justify-between text-green-400 font-bold">
+                    <div className="flex justify-between text-sb-green font-bold">
                       <span>Steuerersparnis durch BA:</span>
                       <span>2.825 €</span>
                     </div>
@@ -676,8 +678,8 @@ export default function BetriebsausgabenCheckliste() {
                 </div>
               </div>
 
-              <div className="bg-green-900/30 border border-green-700 rounded-lg p-4 mt-6">
-                <p className="text-green-100">
+              <div className="bg-sb-green-soft border border-sb-green/30 rounded-lg p-4 mt-6">
+                <p className="text-sb-text">
                   <strong>Wichtiger Hinweis:</strong> Durch ordnungsgemäße Dokumentation der Betriebsausgaben
                   spart dieser EPU rund 2.825 € Steuern pro Jahr!
                 </p>
@@ -687,16 +689,16 @@ export default function BetriebsausgabenCheckliste() {
 
           {/* Tipps */}
           <section className="mb-12">
-            <div className="bg-green-900/30 border border-green-700 rounded-lg p-6">
-              <h2 className="text-xl font-bold text-green-200 mb-4 flex items-center">
+            <div className="bg-sb-green-soft border border-sb-green/30 rounded-lg p-6">
+              <h2 className="text-xl font-bold text-sb-mut mb-4 flex items-center">
                 <Info className="mr-2" size={20} />
                 Praktische Tipps für Selbständige
               </h2>
 
-              <div className="space-y-4 text-green-100">
+              <div className="space-y-4 text-sb-text">
                 <div>
                   <strong>1. Digitale Belegverwaltung einrichten</strong>
-                  <p className="text-sm text-green-200">
+                  <p className="text-sm text-sb-mut">
                     Apps wie "Steuer-Sparbuch" oder "Lexware" für automatische Belegerfassung nutzen.
                     Fotos von Belegen sofort nach dem Kauf machen.
                   </p>
@@ -704,14 +706,14 @@ export default function BetriebsausgabenCheckliste() {
 
                 <div>
                   <strong>2. Separate Konten für Klarheit</strong>
-                  <p className="text-sm text-green-200">
+                  <p className="text-sm text-sb-mut">
                     Geschäftskonto von Privatkonto trennen. Erleichtert die Buchführung und Belegzuordnung erheblich.
                   </p>
                 </div>
 
                 <div>
                   <strong>3. Fahrtenbuch vs. Kilometergeld</strong>
-                  <p className="text-sm text-green-200">
+                  <p className="text-sm text-sb-mut">
                     Bei wenigen Fahrten: Kilometergeld (0,42 €/km). Bei viel Nutzung: Fahrtenbuch und
                     tatsächliche Kosten oft günstiger.
                   </p>
@@ -719,7 +721,7 @@ export default function BetriebsausgabenCheckliste() {
 
                 <div>
                   <strong>4. Deadlines beachten</strong>
-                  <p className="text-sm text-green-200">
+                  <p className="text-sm text-sb-mut">
                     Einreichung bis 30. April des Folgejahres (bei Steuerberater bis 31. Juli).
                     Belege 7 Jahre aufbewahren!
                   </p>
@@ -727,7 +729,7 @@ export default function BetriebsausgabenCheckliste() {
 
                 <div>
                   <strong>5. Zweifelsfälle dokumentieren</strong>
-                  <p className="text-sm text-green-200">
+                  <p className="text-sm text-sb-mut">
                     Bei gemischten Aufwendungen (privat/betrieblich) die Aufteilung nachvollziehbar begründen
                     und dokumentieren.
                   </p>
@@ -738,11 +740,11 @@ export default function BetriebsausgabenCheckliste() {
 
           {/* FAQ */}
           <section className="mb-12">
-            <h2 className="text-2xl font-bold text-white mb-6">Häufige Fragen zu Betriebsausgaben</h2>
+            <h2 className="text-2xl font-bold text-sb-text mb-6">Häufige Fragen zu Betriebsausgaben</h2>
 
             <div className="space-y-6">
-              <div className="bg-slate-900 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-blue-400 mb-3">
+              <div className="bg-sb-card rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-sb-accent mb-3">
                   Was sind die wichtigsten Betriebsausgaben für Selbständige?
                 </h3>
                 <p>
@@ -752,8 +754,8 @@ export default function BetriebsausgabenCheckliste() {
                 </p>
               </div>
 
-              <div className="bg-slate-900 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-blue-400 mb-3">
+              <div className="bg-sb-card rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-sb-accent mb-3">
                   Wie hoch ist die Arbeitsplatzpauschale 2026?
                 </h3>
                 <p>
@@ -763,8 +765,8 @@ export default function BetriebsausgabenCheckliste() {
                 </p>
               </div>
 
-              <div className="bg-slate-900 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-blue-400 mb-3">
+              <div className="bg-sb-card rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-sb-accent mb-3">
                   Was ist die GWG-Grenze für Selbständige?
                 </h3>
                 <p>
@@ -774,8 +776,8 @@ export default function BetriebsausgabenCheckliste() {
                 </p>
               </div>
 
-              <div className="bg-slate-900 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-blue-400 mb-3">
+              <div className="bg-sb-card rounded-lg p-6">
+                <h3 className="text-lg font-semibold text-sb-accent mb-3">
                   Sind SVS-Beiträge als Betriebsausgabe absetzbar?
                 </h3>
                 <p>
@@ -809,5 +811,6 @@ export default function BetriebsausgabenCheckliste() {
 
       <SiteFooter />
     </div>
+    </PublicShell>
   )
 }

@@ -28,7 +28,10 @@ export default function SteuerwissenLayout({ children }: { children: React.React
         description: 'Kostenloser KI-Tutor für österreichisches Steuerrecht. Erklärt ESt, KöSt, USt, BAO und mehr mit §-Referenzen.',
         inLanguage: 'de-AT',
       }} />
-      {children}
+      {/* sb-scope: Charcoal-Design für alle Steuerwissen-Seiten; Seiten mit
+          AppShell behalten deren Chrome, Standalone-Artikel bringen die
+          Pill-Navbar über PublicShell selbst mit. */}
+      <div className="sb-scope">{children}</div>
     </>
   )
 }

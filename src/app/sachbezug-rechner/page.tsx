@@ -114,7 +114,7 @@ function KinderCounter({ value, onChange }: {
 function CO2Badge({ co2 }: { co2: number }) {
   if (co2 === 0) {
     return (
-      <Badge className="bg-emerald-500/15 text-emerald-400 border-emerald-500/30">
+      <Badge className="bg-sb-green-soft0/15 text-sb-green border-sb-green/30">
         <Leaf className="h-3 w-3 mr-1" />
         0% -- E-Auto steuerfrei
       </Badge>
@@ -122,13 +122,13 @@ function CO2Badge({ co2 }: { co2: number }) {
   }
   if (co2 <= 126) {
     return (
-      <Badge className="bg-blue-500/15 text-blue-400 border-blue-500/30">
+      <Badge className="bg-sb-accent-soft0/15 text-sb-accent border-sb-accent/30">
         1,5% -- max. EUR 720/Monat
       </Badge>
     )
   }
   return (
-    <Badge className="bg-amber-500/15 text-amber-400 border-amber-500/30">
+    <Badge className="bg-sb-accent-soft0/15 text-sb-accent border-sb-accent/30">
       2% -- max. EUR 960/Monat
     </Badge>
   )
@@ -203,7 +203,7 @@ function ComparisonChart({ benefitsWert, aequivalentBrutto }: {
     <Card className="glass">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
-          <TrendingUp className="h-5 w-5 text-emerald-500" />
+          <TrendingUp className="h-5 w-5 text-sb-green" />
           Benefits vs. Bruttogehaltserhöhung
         </CardTitle>
         <CardDescription>
@@ -310,7 +310,7 @@ function SachbezugContent() {
               <span className="text-sm font-semibold">Sachbezug-Rechner</span>
             </div>
           </div>
-          <Badge variant="outline" className="bg-emerald-500/10 text-emerald-500 border-emerald-500/30 text-xs">
+          <Badge variant="outline" className="bg-sb-green-soft0/10 text-sb-green border-sb-green/30 text-xs">
             Kostenlos
           </Badge>
         </div>
@@ -333,8 +333,8 @@ function SachbezugContent() {
           <CardHeader>
             <div className="flex items-center justify-between">
               <CardTitle className="flex items-center gap-2 text-lg">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-950/50">
-                  <Car className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sb-accent-soft">
+                  <Car className="h-4 w-4 text-sb-accent" />
                 </div>
                 Firmenwagen
               </CardTitle>
@@ -380,8 +380,8 @@ function SachbezugContent() {
               </div>
 
               {!privatnutzung && (
-                <div className="flex gap-3 bg-blue-50/50 dark:bg-blue-950/30 border border-blue-200/50 dark:border-blue-800/30 border-l-[3px] border-l-blue-500 rounded-lg p-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 mt-1.5" />
+                <div className="flex gap-3 bg-sb-accent-soft border border-sb-accent/30 border-l-[3px] border-l-blue-500 rounded-lg p-3">
+                  <span className="w-1.5 h-1.5 rounded-full bg-sb-accent-soft0 shrink-0 mt-1.5" />
                   <p className="text-sm text-foreground">
                     Ohne Privatnutzung entfällt der Sachbezug. Es muss ein Fahrtenbuch geführt werden.
                   </p>
@@ -402,8 +402,8 @@ function SachbezugContent() {
                     />
                   </div>
                   {unter500Km && (
-                    <div className="flex gap-3 bg-blue-50/50 dark:bg-blue-950/30 border border-blue-200/50 dark:border-blue-800/30 border-l-[3px] border-l-blue-500 rounded-lg p-3">
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 mt-1.5" />
+                    <div className="flex gap-3 bg-sb-accent-soft border border-sb-accent/30 border-l-[3px] border-l-blue-500 rounded-lg p-3">
+                      <span className="w-1.5 h-1.5 rounded-full bg-sb-accent-soft0 shrink-0 mt-1.5" />
                       <p className="text-sm text-foreground">
                         Halber Sachbezug (0,75 % bzw. 1 %): Die Privatnutzung von max. 500 km/Monat
                         (6.000 km/Jahr) muss per Fahrtenbuch nachgewiesen werden.
@@ -415,7 +415,7 @@ function SachbezugContent() {
 
               {/* Firmenwagen Result Summary */}
               {result.dienstwagen && result.dienstwagen.sachbezugMonat > 0 && (
-                <div className="bg-slate-100 dark:bg-slate-800/50 rounded-lg p-4 space-y-2 text-sm">
+                <div className="bg-white/[0.05] rounded-lg p-4 space-y-2 text-sm">
                   <div className="flex justify-between">
                     <span className="text-muted-foreground">Sachbezug/Monat</span>
                     <span className="font-mono font-medium">{formatEuro(result.dienstwagen.sachbezugMonat)}</span>
@@ -432,8 +432,8 @@ function SachbezugContent() {
               )}
 
               {result.dienstwagen && co2 === 0 && privatnutzung && (
-                <div className="flex gap-3 bg-emerald-50/50 dark:bg-emerald-950/30 border border-emerald-200/50 dark:border-emerald-800/30 border-l-[3px] border-l-emerald-500 rounded-lg p-3">
-                  <Leaf className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
+                <div className="flex gap-3 bg-sb-green-soft border border-sb-green/30 border-l-[3px] border-l-emerald-500 rounded-lg p-3">
+                  <Leaf className="h-4 w-4 text-sb-green shrink-0 mt-0.5" />
                   <p className="text-sm text-foreground">
                     <span className="font-medium">E-Auto:</span>{' '}
                     Kein Sachbezug -- die Privatnutzung ist komplett steuerfrei!
@@ -448,8 +448,8 @@ function SachbezugContent() {
         <Card className="glass">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-50 dark:bg-emerald-950/50">
-                <Gift className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sb-green-soft">
+                <Gift className="h-4 w-4 text-sb-green" />
               </div>
               Steuerfreie Benefits
               {activeBenefitsCount > 0 && (
@@ -478,7 +478,7 @@ function SachbezugContent() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className="text-sm font-medium">{def.label}</span>
-                        <Badge variant="outline" className="text-[10px] bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20">
+                        <Badge variant="outline" className="text-[10px] bg-sb-green-soft0/10 text-sb-green border-sb-green/20">
                           steuerfrei
                         </Badge>
                       </div>
@@ -517,10 +517,10 @@ function SachbezugContent() {
           </Card>
 
           {/* Nettovorteil Arbeitnehmer */}
-          <Card className="glass border-emerald-500/30">
+          <Card className="glass border-sb-green/30">
             <CardContent className="p-4 sm:p-5">
               <p className="text-xs text-muted-foreground mb-1">Nettovorteil AN</p>
-              <p className="text-xl sm:text-2xl font-bold font-mono text-emerald-500">
+              <p className="text-xl sm:text-2xl font-bold font-mono text-sb-green">
                 {formatEuro(result.gesamtWertArbeitnehmer)}
               </p>
               <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">
@@ -533,7 +533,7 @@ function SachbezugContent() {
           <Card className="glass">
             <CardContent className="p-4 sm:p-5">
               <p className="text-xs text-muted-foreground mb-1">LNK-Ersparnis AG</p>
-              <p className="text-xl sm:text-2xl font-bold font-mono text-blue-500">
+              <p className="text-xl sm:text-2xl font-bold font-mono text-sb-accent">
                 {formatEuro(result.lohnnebenkostenErsparnis)}
               </p>
               <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">
@@ -558,8 +558,8 @@ function SachbezugContent() {
 
         {/* ── Explanation banner ── */}
         {result.gesamtWertArbeitnehmer > 0 && (
-          <div className="flex gap-3 bg-emerald-50/50 dark:bg-emerald-950/30 border border-emerald-200/50 dark:border-emerald-800/30 border-l-[3px] border-l-emerald-500 rounded-lg p-4 shadow-sm">
-            <Banknote className="h-5 w-5 text-emerald-500 shrink-0 mt-0.5" />
+          <div className="flex gap-3 bg-sb-green-soft border border-sb-green/30 border-l-[3px] border-l-emerald-500 rounded-lg p-4 shadow-sm">
+            <Banknote className="h-5 w-5 text-sb-green shrink-0 mt-0.5" />
             <div className="space-y-1">
               <p className="text-sm font-medium text-foreground">
                 {formatEuro(result.gesamtWertArbeitnehmer)} steuerfreier Vorteil
@@ -584,7 +584,7 @@ function SachbezugContent() {
           <Card className="glass">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
-                <Users className="h-5 w-5 text-slate-500" />
+                <Users className="h-5 w-5 text-sb-dim" />
                 Detailübersicht aller Benefits
               </CardTitle>
               <CardDescription>
@@ -610,7 +610,7 @@ function SachbezugContent() {
                         <TableRow>
                           <TableCell className="font-medium">
                             <div className="flex items-center gap-2">
-                              <Car className="h-4 w-4 text-blue-500" />
+                              <Car className="h-4 w-4 text-sb-accent" />
                               Firmenwagen ({result.dienstwagen.sachbezugProzent}%)
                             </div>
                           </TableCell>
@@ -625,7 +625,7 @@ function SachbezugContent() {
                           </TableCell>
                           <TableCell className="text-center">
                             {result.dienstwagen.sachbezugJahr === 0 ? (
-                              <Badge className="bg-emerald-500/15 text-emerald-500 border-emerald-500/30 text-[10px]">
+                              <Badge className="bg-sb-green-soft0/15 text-sb-green border-sb-green/30 text-[10px]">
                                 <CheckCircle2 className="h-3 w-3 mr-0.5" />
                                 steuerfrei
                               </Badge>
@@ -643,7 +643,7 @@ function SachbezugContent() {
                         <TableRow key={b.name}>
                           <TableCell className="font-medium">
                             <div className="flex items-center gap-2">
-                              <Gift className="h-4 w-4 text-emerald-500" />
+                              <Gift className="h-4 w-4 text-sb-green" />
                               {b.name}
                             </div>
                           </TableCell>
@@ -658,7 +658,7 @@ function SachbezugContent() {
                           </TableCell>
                           <TableCell className="text-center">
                             {b.steuerfrei ? (
-                              <Badge className="bg-emerald-500/15 text-emerald-500 border-emerald-500/30 text-[10px]">
+                              <Badge className="bg-sb-green-soft0/15 text-sb-green border-sb-green/30 text-[10px]">
                                 <CheckCircle2 className="h-3 w-3 mr-0.5" />
                                 steuerfrei
                               </Badge>
@@ -674,7 +674,7 @@ function SachbezugContent() {
                       {/* Totals row */}
                       <TableRow className="font-bold border-t-2">
                         <TableCell>Gesamt</TableCell>
-                        <TableCell className="text-right font-mono text-emerald-600 dark:text-emerald-400">
+                        <TableCell className="text-right font-mono text-sb-green">
                           {formatEuro(
                             result.gesamtWertArbeitnehmer
                           )}
@@ -707,12 +707,12 @@ function SachbezugContent() {
             <h3 className="text-xl sm:text-2xl font-bold mb-3">
               Benefits-Paket optimieren?
             </h3>
-            <p className="text-slate-300 text-sm mb-6 max-w-lg">
+            <p className="text-sb-mut text-sm mb-6 max-w-lg">
               Mit SteuerBoard Pro berechnest du die gesamte Abgabenlast deiner
               Mitarbeiter -- inklusive SVS, Einkommensteuer und Optimierungspotenzial.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <Button asChild className="bg-emerald-500 hover:bg-emerald-600 text-white gap-2">
+              <Button asChild className="bg-sb-green-soft0 hover:bg-sb-accent-deep text-white gap-2">
                 <Link href="/rechner">
                   <Calculator className="h-4 w-4" />
                   Zum SVS-Rechner

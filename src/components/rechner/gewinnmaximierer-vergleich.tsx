@@ -20,10 +20,10 @@ export function GewinnmaximiererVergleich({
     <div className="glass rounded-2xl p-5 sm:p-6 space-y-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Zap className="h-5 w-5 text-amber-600 dark:text-amber-400" aria-hidden="true" />
+          <Zap className="h-5 w-5 text-sb-accent" aria-hidden="true" />
           <h3 className="text-base font-semibold">Gewinnmaximierer</h3>
         </div>
-        <Badge variant="outline" className="bg-amber-50 dark:bg-amber-950/30 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800/40 font-mono">
+        <Badge variant="outline" className="bg-sb-accent-soft text-sb-accent border-sb-accent/30 font-mono">
           {abgabenquotePct}% Abgaben
         </Badge>
       </div>
@@ -48,9 +48,9 @@ export function GewinnmaximiererVergleich({
               </td>
             </tr>
             <tr className="border-b border-border/50">
-              <td className="py-2.5 text-red-600 dark:text-red-400">SVS</td>
+              <td className="py-2.5 text-sb-red">SVS</td>
               <td className="py-2.5 text-right font-mono">–</td>
-              <td className="py-2.5 text-right font-mono text-red-600 dark:text-red-400">
+              <td className="py-2.5 text-right font-mono text-sb-red">
                 {formatEuro(result.svsResult.endgueltigeSVS)}
               </td>
               <td className="py-2.5 text-right font-mono text-muted-foreground">–</td>
@@ -60,7 +60,7 @@ export function GewinnmaximiererVergleich({
               <td className="py-2.5 text-right font-mono">{formatEuro(basisNetto)}</td>
               <td className="py-2.5 text-right font-mono">{formatEuro(result.nettoMit)}</td>
               <td className={`py-2.5 text-right font-mono ${
-                result.nettoDifferenz > 0 ? 'text-emerald-600 dark:text-emerald-400' : 'text-red-600 dark:text-red-400'
+                result.nettoDifferenz > 0 ? 'text-sb-green' : 'text-sb-red'
               }`}>
                 {result.nettoDifferenz > 0 ? '+' : ''}{formatEuro(result.nettoDifferenz)}
               </td>

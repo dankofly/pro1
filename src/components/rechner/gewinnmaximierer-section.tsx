@@ -60,11 +60,11 @@ export function GewinnmaximiererSection({
       <div className="card-surface">
         <CollapsibleTrigger asChild>
           <button type="button" className="flex w-full items-center gap-3 px-4 py-3.5 text-left">
-            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-amber-500/10">
-              <Zap className="h-3.5 w-3.5 text-amber-600" />
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-sb-accent-soft0/10">
+              <Zap className="h-3.5 w-3.5 text-sb-accent" />
             </div>
             <div className="flex-1 min-w-0">
-              <h2 className="text-sm font-semibold tracking-tight flex items-center gap-1.5">Gewinnmaximierer <Crown className="h-3 w-3 text-amber-400" aria-hidden="true" /><span className="sr-only">(Pro-Feature)</span></h2>
+              <h2 className="text-sm font-semibold tracking-tight flex items-center gap-1.5">Gewinnmaximierer <Crown className="h-3 w-3 text-sb-accent" aria-hidden="true" /><span className="sr-only">(Pro-Feature)</span></h2>
               <p className="text-xs text-muted-foreground truncate">
                 Was bringt ein Zusatzauftrag?
               </p>

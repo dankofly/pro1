@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
+import { PublicShell } from '@/components/public-shell'
 
 export const metadata: Metadata = {
   title: 'Features – Alle Funktionen von SteuerBoard.pro',
@@ -27,7 +28,7 @@ export default function FeaturesLayout({ children }: { children: React.ReactNode
           url: 'https://steuerboard.pro/features',
         }}
       />
-      {children}
+      <PublicShell>{children}</PublicShell>
     </>
   )
 }

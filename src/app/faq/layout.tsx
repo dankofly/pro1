@@ -89,7 +89,7 @@ export default function FaqLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <JsonLd data={FAQ_JSONLD} />
-      {children}
+      <div className="sb-scope">{children}</div>
     </>
   )
 }

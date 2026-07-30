@@ -109,6 +109,70 @@
     --elevation-3: 0 4px 8px 0 rgba(0,0,0,0.18), 0 12px 32px -4px rgba(0,0,0,0.22);
     --elevation-4: 0 8px 16px 0 rgba(0,0,0,0.20), 0 20px 48px -8px rgba(0,0,0,0.25);
   }
+
+  /* Charcoal-Scope: mappt die shadcn-Variablen auf die sb-Palette (HSL-Werte
+     exakt aus den OKLCH-Tokens in tailwind.config.ts konvertiert). Öffentliche
+     Seiten bekommen damit das Landing-Design, ohne jede Komponente anzufassen.
+     Theme-unabhängig (überschreibt :root UND .dark). */
+  .sb-scope {
+    /* color neu deklarieren: body liegt außerhalb des Scopes, sonst erben
+       klassenlose Elemente dessen berechnete Light-Theme-Farbe */
+    color: hsl(var(--foreground));
+    --background: 26 18.9% 4.7%;          /* sb-bg */
+    --foreground: 34 16.1% 93.2%;         /* sb-text */
+    --card: 26 14.1% 8.9%;                /* sb-card */
+    --card-foreground: 34 16.1% 93.2%;
+    --popover: 26 14.1% 8.9%;
+    --popover-foreground: 34 16.1% 93.2%;
+    --primary: 28 87.8% 54.8%;            /* sb-accent */
+    --primary-foreground: 20 96.1% 5.6%;  /* sb-accent-ink */
+    --secondary: 26 15% 7.2%;             /* sb-raise */
+    --secondary-foreground: 34 16.1% 93.2%;
+    --muted: 26 15% 7.2%;
+    --muted-foreground: 31 6.1% 59.2%;    /* sb-mut */
+    --accent: 26 14.1% 8.9%;              /* hover-Flaechen: sb-card */
+    --accent-foreground: 34 16.1% 93.2%;
+    --destructive: 3 66.8% 65.3%;         /* sb-red */
+    --destructive-foreground: 26 18.9% 4.7%;
+    --success: 151 51.5% 57.3%;           /* sb-green */
+    --success-foreground: 26 18.9% 4.7%;
+    --warning: 28 87.8% 54.8%;
+    --warning-foreground: 20 96.1% 5.6%;
+    --border: 34 16.1% 93.2% / 0.09;      /* sb-line */
+    --input: 34 16.1% 93.2% / 0.16;       /* sb-line-strong */
+    --ring: 28 87.8% 54.8%;
+    --surface: 26 14.1% 8.9%;
+    --border-subtle: 34 16.1% 93.2% / 0.16;
+    --border-card: 34 16.1% 93.2% / 0.09;
+    --shadow-card: 26 18.9% 2%;
+    --chart-1: 28 87.8% 54.8%;
+    --chart-2: 151 51.5% 57.3%;
+    --chart-3: 31 6.1% 59.2%;
+    --chart-4: 3 66.8% 65.3%;
+    --chart-5: 31 5.1% 52.1%;
+    /* Sidebar-Chrome im Scope ebenfalls Charcoal/Orange */
+    --sidebar-background: 26 16.8% 6.3%;
+    --sidebar-foreground: 34 16.1% 93.2%;
+    --sidebar-primary: 28 87.8% 54.8%;
+    --sidebar-primary-foreground: 20 96.1% 5.6%;
+    --sidebar-accent: 26 14.1% 8.9%;
+    --sidebar-accent-foreground: 34 16.1% 93.2%;
+    --sidebar-border: 34 16.1% 93.2% / 0.09;
+    --sidebar-ring: 28 87.8% 54.8%;
+  }
+
+  /* Geteiltes App-Chrome (Sidebar, Mobile-Nav, Bottom-Nav) nutzt hartkodierte
+     Emerald-Akzente, weil es auch im eingeloggten Bereich läuft. Im sb-scope
+     werden genau diese Utilities auf den Orange-Akzent umgelenkt, ohne die
+     Komponenten zu forken. ponytail: Utility-Override statt Chrome-Refactor;
+     wenn das Chrome mal auf Semantik-Tokens umgestellt wird, fliegt das raus. */
+  .sb-scope .text-emerald-400 { color: hsl(28 87.8% 54.8%); }
+  .sb-scope .text-emerald-600 { color: hsl(28 87.8% 54.8%); }
+  .sb-scope .bg-emerald-500 { background-color: hsl(28 87.8% 54.8%); }
+  .sb-scope .bg-emerald-500\/15 { background-color: hsl(28 87.8% 54.8% / 0.13); }
+  .sb-scope .bg-emerald-500\/10 { background-color: hsl(28 87.8% 54.8% / 0.1); }
+  .sb-scope .border-emerald-800\/40 { border-color: hsl(28 87.8% 54.8% / 0.3); }
+  .sb-scope .bg-slate-200 { background-color: hsl(34 16.1% 93.2% / 0.12); }
 }
 
 @layer base {

@@ -107,7 +107,7 @@ function WasserfallChart({ result }: { result: MischResult }) {
     <Card className="glass">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
-          <TrendingDown className="h-5 w-5 text-blue-600" />
+          <TrendingDown className="h-5 w-5 text-sb-accent" />
           Wasserfall: Vom Brutto zum Netto
         </CardTitle>
         <CardDescription>Schritt für Schritt Abzüge auf einen Blick</CardDescription>
@@ -124,13 +124,13 @@ function WasserfallChart({ result }: { result: MischResult }) {
               <div className="flex-1 relative h-7">
                 <div
                   className={`h-full rounded-md transition-all ${
-                    isLast ? 'bg-emerald-500' : step.typ === 'abzug' ? 'bg-red-400/70' : 'bg-blue-500'
+                    isLast ? 'bg-sb-green-soft0' : step.typ === 'abzug' ? 'bg-sb-red/70' : 'bg-sb-accent-soft0'
                   }`}
                   style={{ width: `${barWidth}%` }}
                 />
               </div>
               <div className={`w-28 text-right font-mono text-sm shrink-0 ${
-                isLast ? 'font-bold text-emerald-600' : step.betrag < 0 ? 'text-red-600' : ''
+                isLast ? 'font-bold text-sb-green' : step.betrag < 0 ? 'text-sb-red' : ''
               }`}>
                 {formatEuro(step.typ === 'ergebnis' ? step.laufend : step.betrag)}
               </div>
@@ -149,7 +149,7 @@ function VergleichTable({ result }: { result: MischResult }) {
     <Card className="glass">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
-          <ArrowRight className="h-5 w-5 text-blue-600" />
+          <ArrowRight className="h-5 w-5 text-sb-accent" />
           Vergleichs-Modus
         </CardTitle>
         <CardDescription>Nur Anstellung vs. Anstellung + Nebengewerbe</CardDescription>
@@ -171,7 +171,7 @@ function VergleichTable({ result }: { result: MischResult }) {
                 <TableCell className="text-right font-mono">{formatEuro(row.nurGehalt)}</TableCell>
                 <TableCell className="text-right font-mono">{formatEuro(row.mitGewerbe)}</TableCell>
                 <TableCell className={`text-right font-mono ${
-                  row.differenz > 0 ? 'text-emerald-600' : row.differenz < 0 ? 'text-red-600' : ''
+                  row.differenz > 0 ? 'text-sb-green' : row.differenz < 0 ? 'text-sb-red' : ''
                 }`}>
                   {row.differenz > 0 ? '+' : ''}{formatEuro(row.differenz)}
                 </TableCell>
@@ -190,8 +190,8 @@ function ProGate() {
   return (
     <div className="max-w-2xl mx-auto text-center py-16 px-4">
       <div className="flex justify-center mb-6">
-        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-100 border border-amber-200">
-          <Lock className="h-8 w-8 text-amber-600" />
+        <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-sb-accent-soft border border-sb-accent/30">
+          <Lock className="h-8 w-8 text-sb-accent" />
         </div>
       </div>
       <h2 className="text-2xl font-bold mb-3">SteuerBoard Pro Feature</h2>
@@ -200,7 +200,7 @@ function ProGate() {
         Berechne Anstellung + Nebengewerbe kombiniert mit allen Absetzbeträgen.
       </p>
       <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-        <Button asChild className="bg-amber-500 hover:bg-amber-600 text-white gap-2">
+        <Button asChild className="bg-sb-accent-soft0 hover:bg-sb-accent-deep text-white gap-2">
           <Link href="/pricing">
             <Crown className="h-4 w-4" /> Jetzt upgraden
           </Link>
@@ -234,34 +234,34 @@ function SavingsSummary({ result }: { result: MischResult }) {
   const yearLabel = result.year === '2026' ? '2026' : result.year
 
   return (
-    <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 space-y-2">
-      <div className="flex items-center gap-2 text-emerald-700">
+    <div className="bg-sb-green-soft border border-sb-green/30 rounded-xl p-4 space-y-2">
+      <div className="flex items-center gap-2 text-sb-green">
         <Sparkles className="h-4 w-4" />
         <span className="font-semibold text-sm">Deine Steuerersparnis {yearLabel}</span>
       </div>
 
       {tatsächlicheErsparnis > 0 && (
-        <p className="text-emerald-800 text-sm">
+        <p className="text-sb-green text-sm">
           Durch deine Absetzbeträge sparst du{' '}
           <strong>{formatEuro(tatsächlicheErsparnis)}</strong> an Steuern.
         </p>
       )}
 
       {kinderCount && result.absetzbetraege.familienbonus > 0 && (
-        <p className="text-emerald-700 text-xs">
+        <p className="text-sb-green text-xs">
           Davon Familienbonus Plus: {formatEuro(result.absetzbetraege.familienbonus)}/Jahr
           (EUR {yc.absetzbetraege.familienbonusUnder18.toLocaleString('de-AT')}/Kind &lt;18J, EUR {yc.absetzbetraege.familienbonusOver18.toLocaleString('de-AT')}/Kind &gt;18J)
         </p>
       )}
 
       {result.absetzbetraege.kindermehrbetrag > 0 && (
-        <p className="text-emerald-700 text-xs">
+        <p className="text-sb-green text-xs">
           Kindermehrbetrag (Gutschrift): {formatEuro(result.absetzbetraege.kindermehrbetrag)}
         </p>
       )}
 
       {result.absetzbetraege.alleinverdiener > 0 && (
-        <p className="text-emerald-700 text-xs">
+        <p className="text-sb-green text-xs">
           Alleinverdiener-/Alleinerzieherabsetzbetrag: {formatEuro(result.absetzbetraege.alleinverdiener)}
         </p>
       )}
@@ -299,7 +299,7 @@ function MischContent() {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Badge variant="outline" className="bg-amber-500/10 text-amber-600 border-amber-300/30 text-xs">
+            <Badge variant="outline" className="bg-sb-accent-soft0/10 text-sb-accent border-sb-accent/30 text-xs">
               <Crown className="h-3 w-3 mr-1" /> Pro
             </Badge>
           </div>
@@ -333,7 +333,7 @@ function MischContent() {
                     </SelectContent>
                   </Select>
                   {year === '2026' && (
-                    <Badge variant="outline" className="text-amber-600 border-amber-300 bg-amber-50 text-xs">
+                    <Badge variant="outline" className="text-sb-accent border-sb-accent/40 bg-sb-accent-soft text-xs">
                       Prognose – vorbehaltlich gesetzlicher Änderungen
                     </Badge>
                   )}
@@ -347,8 +347,8 @@ function MischContent() {
               <Card className="glass">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-lg">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50">
-                      <Briefcase className="h-4 w-4 text-blue-600" />
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sb-accent-soft">
+                      <Briefcase className="h-4 w-4 text-sb-accent" />
                     </div>
                     Einkünfte aus Anstellung
                   </CardTitle>
@@ -362,14 +362,14 @@ function MischContent() {
                     label="Jahres-Bruttogehalt (inkl. 13./14.)"
                     suffix="/ Jahr"
                   />
-                  <div className="bg-blue-50 rounded-lg p-3 space-y-1 text-sm">
+                  <div className="bg-sb-accent-soft rounded-lg p-3 space-y-1 text-sm">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">SV-Beitrag ({pct(yc.employeeSvRate)})</span>
-                      <span className="font-mono text-red-600">-{formatEuro(result.anstellung.sv)}</span>
+                      <span className="font-mono text-sb-red">-{formatEuro(result.anstellung.sv)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Werbungskostenpauschale</span>
-                      <span className="font-mono text-red-600">-{formatEuro(yc.werbungskostenpauschale)}</span>
+                      <span className="font-mono text-sb-red">-{formatEuro(yc.werbungskostenpauschale)}</span>
                     </div>
                     <div className="flex justify-between font-medium border-t pt-1">
                       <span>Steuerpflichtig</span>
@@ -383,8 +383,8 @@ function MischContent() {
               <Card className="glass">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-lg">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-50">
-                      <Store className="h-4 w-4 text-emerald-600" />
+                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sb-green-soft">
+                      <Store className="h-4 w-4 text-sb-green" />
                     </div>
                     Einkünfte aus Gewerbe
                   </CardTitle>
@@ -398,26 +398,26 @@ function MischContent() {
                     label="Jahres-Gewinn (Einnahmen - Ausgaben)"
                     suffix="/ Jahr"
                   />
-                  <div className="bg-emerald-50 rounded-lg p-3 space-y-1 text-sm">
+                  <div className="bg-sb-green-soft rounded-lg p-3 space-y-1 text-sm">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">SVS PV ({pct(yc.svs.pvRate)})</span>
-                      <span className="font-mono text-red-600">-{formatEuro(result.gewerbe.svsPv)}</span>
+                      <span className="font-mono text-sb-red">-{formatEuro(result.gewerbe.svsPv)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">SVS KV ({pct(yc.svs.kvRate)})</span>
-                      <span className="font-mono text-red-600">-{formatEuro(result.gewerbe.svsKv)}</span>
+                      <span className="font-mono text-sb-red">-{formatEuro(result.gewerbe.svsKv)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">SVS MV ({pct(yc.svs.mvRate)})</span>
-                      <span className="font-mono text-red-600">-{formatEuro(result.gewerbe.svsMv)}</span>
+                      <span className="font-mono text-sb-red">-{formatEuro(result.gewerbe.svsMv)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">SVS UV (fix)</span>
-                      <span className="font-mono text-red-600">-{formatEuro(result.gewerbe.svsUv)}</span>
+                      <span className="font-mono text-sb-red">-{formatEuro(result.gewerbe.svsUv)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Gewinnfreibetrag ({pct(yc.gewinnfreibetrag.grundfreibetragRate)})</span>
-                      <span className="font-mono text-emerald-600">-{formatEuro(result.gewerbe.grundfreibetrag)}</span>
+                      <span className="font-mono text-sb-green">-{formatEuro(result.gewerbe.grundfreibetrag)}</span>
                     </div>
                     <div className="flex justify-between font-medium border-t pt-1">
                       <span>Steuerpflichtig</span>
@@ -432,8 +432,8 @@ function MischContent() {
             <Card className="glass">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-lg">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-50">
-                    <Users className="h-4 w-4 text-violet-600" />
+                  <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sb-accent-soft">
+                    <Users className="h-4 w-4 text-sb-accent" />
                   </div>
                   Absetzbeträge {year}
                 </CardTitle>
@@ -457,28 +457,28 @@ function MischContent() {
                       <Switch id="avab" checked={alleinverdiener} onCheckedChange={setAlleinverdiener} />
                     </div>
                   </div>
-                  <div className="bg-violet-50 rounded-lg p-4 space-y-2 text-sm">
+                  <div className="bg-sb-accent-soft rounded-lg p-4 space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Verkehrsabsetzbetrag</span>
-                      <span className="font-mono text-emerald-600">{formatEuro(result.absetzbetraege.verkehrsabsetzbetrag)}</span>
+                      <span className="font-mono text-sb-green">{formatEuro(result.absetzbetraege.verkehrsabsetzbetrag)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Familienbonus Plus</span>
-                      <span className="font-mono text-emerald-600">{formatEuro(result.absetzbetraege.familienbonus)}</span>
+                      <span className="font-mono text-sb-green">{formatEuro(result.absetzbetraege.familienbonus)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Alleinverdiener-AB</span>
-                      <span className="font-mono text-emerald-600">{formatEuro(result.absetzbetraege.alleinverdiener)}</span>
+                      <span className="font-mono text-sb-green">{formatEuro(result.absetzbetraege.alleinverdiener)}</span>
                     </div>
                     {result.absetzbetraege.kindermehrbetrag > 0 && (
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">Kindermehrbetrag</span>
-                        <span className="font-mono text-emerald-600">{formatEuro(result.absetzbetraege.kindermehrbetrag)}</span>
+                        <span className="font-mono text-sb-green">{formatEuro(result.absetzbetraege.kindermehrbetrag)}</span>
                       </div>
                     )}
                     <div className="flex justify-between font-medium border-t pt-1">
                       <span>Gesamt Absetzbeträge</span>
-                      <span className="font-mono text-emerald-600">
+                      <span className="font-mono text-sb-green">
                         {formatEuro(result.absetzbetraege.gesamt + result.absetzbetraege.kindermehrbetrag)}
                       </span>
                     </div>
@@ -504,44 +504,44 @@ function MischContent() {
                 {jahresgewinn > 0 ? (
                   <div className="grid sm:grid-cols-3 gap-4">
                     <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10">
-                      <p className="text-slate-300 text-xs mb-1">Effektive Abgabenquote</p>
+                      <p className="text-sb-mut text-xs mb-1">Effektive Abgabenquote</p>
                       <p className="text-3xl font-bold">{pct(result.nebengewerbeAbgabenquote)}</p>
-                      <p className="text-slate-400 text-xs mt-1">auf jeden Euro Gewinn</p>
+                      <p className="text-sb-mut text-xs mt-1">auf jeden Euro Gewinn</p>
                     </div>
                     <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10">
-                      <p className="text-slate-300 text-xs mb-1">Netto pro EUR 1 Gewinn</p>
-                      <p className="text-3xl font-bold text-emerald-400">
+                      <p className="text-sb-mut text-xs mb-1">Netto pro EUR 1 Gewinn</p>
+                      <p className="text-3xl font-bold text-sb-green">
                         {(result.nebengewerbeNettoCent * 100).toFixed(0)} Cent
                       </p>
-                      <p className="text-slate-400 text-xs mt-1">bleiben übrig</p>
+                      <p className="text-sb-mut text-xs mt-1">bleiben übrig</p>
                     </div>
                     <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/10">
-                      <p className="text-slate-300 text-xs mb-1">Grenzsteuersatz</p>
-                      <p className="text-3xl font-bold text-amber-400">{pct(result.steuerGesamt.grenzsteuersatz)}</p>
-                      <p className="text-slate-400 text-xs mt-1">nächste Tarifstufe</p>
+                      <p className="text-sb-mut text-xs mb-1">Grenzsteuersatz</p>
+                      <p className="text-3xl font-bold text-sb-accent">{pct(result.steuerGesamt.grenzsteuersatz)}</p>
+                      <p className="text-sb-mut text-xs mt-1">nächste Tarifstufe</p>
                     </div>
                   </div>
                 ) : (
-                  <p className="text-slate-400">Gib einen Gewinn aus Gewerbe ein, um die Analyse zu sehen.</p>
+                  <p className="text-sb-mut">Gib einen Gewinn aus Gewerbe ein, um die Analyse zu sehen.</p>
                 )}
 
                 {jahresgewinn > 0 && (
                   <div className="mt-6 grid sm:grid-cols-2 gap-3">
                     <div className="bg-white/5 rounded-lg p-3 text-sm">
-                      <span className="text-slate-400">Zusätzliche SVS:</span>
-                      <span className="float-right font-mono text-red-300">-{formatEuro(result.gewerbe.svsGesamt)}</span>
+                      <span className="text-sb-mut">Zusätzliche SVS:</span>
+                      <span className="float-right font-mono text-sb-red">-{formatEuro(result.gewerbe.svsGesamt)}</span>
                     </div>
                     <div className="bg-white/5 rounded-lg p-3 text-sm">
-                      <span className="text-slate-400">Zusätzliche Steuer:</span>
-                      <span className="float-right font-mono text-red-300">-{formatEuro(result.steuerDifferenz)}</span>
+                      <span className="text-sb-mut">Zusätzliche Steuer:</span>
+                      <span className="float-right font-mono text-sb-red">-{formatEuro(result.steuerDifferenz)}</span>
                     </div>
                     <div className="bg-white/5 rounded-lg p-3 text-sm">
-                      <span className="text-slate-400">Gesamte Abgaben Nebengewerbe:</span>
-                      <span className="float-right font-mono text-red-300">-{formatEuro(result.gewerbe.svsGesamt + result.steuerDifferenz)}</span>
+                      <span className="text-sb-mut">Gesamte Abgaben Nebengewerbe:</span>
+                      <span className="float-right font-mono text-sb-red">-{formatEuro(result.gewerbe.svsGesamt + result.steuerDifferenz)}</span>
                     </div>
-                    <div className="bg-emerald-500/20 rounded-lg p-3 text-sm">
-                      <span className="text-emerald-200">Netto-Zuwachs durch Gewerbe:</span>
-                      <span className="float-right font-mono font-bold text-emerald-300">+{formatEuro(result.nettoGewerbeAnteil)}</span>
+                    <div className="bg-sb-green-soft0/20 rounded-lg p-3 text-sm">
+                      <span className="text-sb-mut">Netto-Zuwachs durch Gewerbe:</span>
+                      <span className="float-right font-mono font-bold text-sb-green">+{formatEuro(result.nettoGewerbeAnteil)}</span>
                     </div>
                   </div>
                 )}
@@ -550,9 +550,9 @@ function MischContent() {
 
             {/* ── FOMO: Versicherungsgrenze ─────────── */}
             {jahresgewinn > 0 && result.gewerbe.ueberVersicherungsgrenze && result.gewerbe.differenzZurGrenze < 3000 && (
-              <Alert className="border-amber-300 bg-amber-50">
-                <AlertTriangle className="h-4 w-4 text-amber-600" />
-                <AlertDescription className="text-amber-800">
+              <Alert className="border-sb-accent/40 bg-sb-accent-soft">
+                <AlertTriangle className="h-4 w-4 text-sb-accent" />
+                <AlertDescription className="text-sb-accent">
                   <strong>Achtung Versicherungsgrenze!</strong>{' '}
                   Dein Gewinn überschreitet die SVS-Versicherungsgrenze von {formatEuro(yc.versicherungsgrenze)} um nur{' '}
                   <strong>{formatEuro(result.gewerbe.differenzZurGrenze)}</strong>.
@@ -565,9 +565,9 @@ function MischContent() {
             )}
 
             {jahresgewinn > 0 && !result.gewerbe.ueberVersicherungsgrenze && jahresgewinn > 0 && (
-              <Alert className="border-green-300 bg-green-50">
-                <ShieldCheck className="h-4 w-4 text-green-600" />
-                <AlertDescription className="text-green-800">
+              <Alert className="border-sb-green/40 bg-sb-green-soft">
+                <ShieldCheck className="h-4 w-4 text-sb-green" />
+                <AlertDescription className="text-sb-green">
                   <strong>Unter der Versicherungsgrenze!</strong>{' '}
                   Dein Gewinn von {formatEuro(jahresgewinn)} liegt unter {formatEuro(yc.versicherungsgrenze)}.
                   Du zahlst nur die Unfallversicherung ({formatEuro(result.gewerbe.svsUv)}/Jahr). PV und KV entfallen.
@@ -607,21 +607,21 @@ function MischContent() {
                     <h4 className="font-medium mb-2">Tarifstufen-Analyse</h4>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Steuer brutto (Tarif)</span>
-                      <span className="font-mono text-red-600">{formatEuro(result.steuerGesamt.steuerBrutto)}</span>
+                      <span className="font-mono text-sb-red">{formatEuro(result.steuerGesamt.steuerBrutto)}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Absetzbeträge</span>
-                      <span className="font-mono text-emerald-600">-{formatEuro(result.steuerGesamt.absetzbetraege)}</span>
+                      <span className="font-mono text-sb-green">-{formatEuro(result.steuerGesamt.absetzbetraege)}</span>
                     </div>
                     {result.steuerGesamt.kindermehrbetrag > 0 && (
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">Kindermehrbetrag</span>
-                        <span className="font-mono text-emerald-600">-{formatEuro(result.steuerGesamt.kindermehrbetrag)}</span>
+                        <span className="font-mono text-sb-green">-{formatEuro(result.steuerGesamt.kindermehrbetrag)}</span>
                       </div>
                     )}
                     <div className="flex justify-between font-medium border-t pt-1">
                       <span>Steuer netto (effektiv)</span>
-                      <span className={`font-mono ${result.steuerGesamt.steuerNetto < 0 ? 'text-emerald-600' : 'text-red-600'}`}>
+                      <span className={`font-mono ${result.steuerGesamt.steuerNetto < 0 ? 'text-sb-green' : 'text-sb-red'}`}>
                         {result.steuerGesamt.steuerNetto < 0 ? '-' : ''}{formatEuro(Math.abs(result.steuerGesamt.steuerNetto))}
                       </span>
                     </div>

@@ -75,7 +75,7 @@ export function JahresvergleichDialog({ open, onOpenChange, gewinn, vorschreibun
     return {
       icon: isPositive ? <ArrowUp className="h-2.5 w-2.5" /> : <ArrowDown className="h-2.5 w-2.5" />,
       text: formatEuro(Math.abs(diff)),
-      color: isPositive ? 'text-emerald-600' : 'text-red-600',
+      color: isPositive ? 'text-sb-green' : 'text-sb-red',
     }
   }
 
@@ -128,7 +128,7 @@ export function JahresvergleichDialog({ open, onOpenChange, gewinn, vorschreibun
                         const isWorst = row.highlight === 'higher-is-better' ? val === min : row.highlight === 'lower-is-better' ? val === max : false
 
                         return (
-                          <td key={r.year} className={`text-right px-3 py-2.5 font-mono text-xs ${isBest && min !== max ? 'text-emerald-600 font-semibold' : isWorst && min !== max ? 'text-red-600' : ''}`}>
+                          <td key={r.year} className={`text-right px-3 py-2.5 font-mono text-xs ${isBest && min !== max ? 'text-sb-green font-semibold' : isWorst && min !== max ? 'text-sb-red' : ''}`}>
                             {row.format(r.result)}
                           </td>
                         )
@@ -154,7 +154,7 @@ export function JahresvergleichDialog({ open, onOpenChange, gewinn, vorschreibun
                     <span className={`text-xs font-semibold w-10 ${r.year === input.year ? 'text-primary' : 'text-muted-foreground'}`}>{r.year}</span>
                     <div className="flex-1 h-6 bg-muted/40 rounded-md overflow-hidden relative">
                       <div
-                        className={`h-full rounded-md transition-all duration-500 ${isBest ? 'bg-emerald-500' : 'bg-primary/60'}`}
+                        className={`h-full rounded-md transition-all duration-500 ${isBest ? 'bg-sb-green-soft0' : 'bg-primary/60'}`}
                         style={{ width: `${pct}%` }}
                       />
                     </div>

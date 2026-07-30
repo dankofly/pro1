@@ -116,7 +116,7 @@ export function NachzahlungsUpsell({ svs, gewinn, vorschreibung, ruecklagen, yea
     return (
       <section
         aria-label="Absicherung für deine Steuerplanung"
-        className="relative rounded-2xl border border-emerald-200/60 dark:border-emerald-800/40 bg-emerald-50/60 dark:bg-emerald-950/20 p-5 sm:p-6"
+        className="relative rounded-2xl border border-sb-green/30/60 bg-sb-green-soft/60 p-5 sm:p-6"
       >
         <button
           type="button"
@@ -128,8 +128,8 @@ export function NachzahlungsUpsell({ svs, gewinn, vorschreibung, ruecklagen, yea
         </button>
 
         <div className="flex items-start gap-3">
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-500/15 mt-0.5">
-            <ShieldCheck className="h-4.5 w-4.5 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-sb-green-soft0/15 mt-0.5">
+            <ShieldCheck className="h-4.5 w-4.5 text-sb-green" aria-hidden="true" />
           </div>
 
           <div className="min-w-0 pr-8">
@@ -185,7 +185,7 @@ export function NachzahlungsUpsell({ svs, gewinn, vorschreibung, ruecklagen, yea
   return (
     <section
       aria-label="Dein persönlicher Rücklagenplan"
-      className="relative rounded-2xl border border-emerald-200/60 dark:border-emerald-800/40 bg-emerald-50/60 dark:bg-emerald-950/20 p-5 sm:p-6"
+      className="relative rounded-2xl border border-sb-green/30/60 bg-sb-green-soft/60 p-5 sm:p-6"
     >
       <button
         type="button"
@@ -197,8 +197,8 @@ export function NachzahlungsUpsell({ svs, gewinn, vorschreibung, ruecklagen, yea
       </button>
 
       <div className="flex items-start gap-3">
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-emerald-500/15 mt-0.5">
-          <ShieldCheck className="h-4.5 w-4.5 text-emerald-600 dark:text-emerald-400" aria-hidden="true" />
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-sb-green-soft0/15 mt-0.5">
+          <ShieldCheck className="h-4.5 w-4.5 text-sb-green" aria-hidden="true" />
         </div>
 
         <div className="min-w-0 pr-8">

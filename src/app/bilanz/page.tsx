@@ -83,9 +83,9 @@ interface BilanzForecast {
 // ── Helpers ──────────────────────────────────────────────────────
 
 const STATUS_COLORS: Record<string, string> = {
-  gut: 'bg-emerald-100 text-emerald-700 border-emerald-200',
-  mittel: 'bg-amber-100 text-amber-700 border-amber-200',
-  kritisch: 'bg-red-100 text-red-700 border-red-200',
+  gut: 'bg-sb-green-soft text-sb-green border-sb-green/30',
+  mittel: 'bg-sb-accent-soft text-sb-accent border-sb-accent/30',
+  kritisch: 'bg-sb-red/10 text-sb-red border-sb-red/30',
 }
 
 const STATUS_LABELS: Record<string, string> = {
@@ -159,8 +159,8 @@ function UploadZone({
     <Card className="glass">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-50">
-            <Upload className="h-4 w-4 text-emerald-600" />
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sb-green-soft">
+            <Upload className="h-4 w-4 text-sb-green" />
           </div>
           Bilanz hochladen
         </CardTitle>
@@ -179,8 +179,8 @@ function UploadZone({
             relative cursor-pointer rounded-xl border-2 border-dashed p-8 sm:p-12
             transition-all duration-200 text-center
             ${dragOver
-              ? 'border-emerald-500 bg-emerald-50/50'
-              : 'border-slate-300 hover:border-emerald-400 hover:bg-slate-50/50'
+              ? 'border-sb-green/40 bg-sb-green-soft'
+              : 'border-sb-line-strong hover:border-sb-accent/40 hover:bg-white/[0.04]'
             }
             ${uploading ? 'pointer-events-none opacity-60' : ''}
           `}
@@ -194,14 +194,14 @@ function UploadZone({
           />
 
           <div className="flex flex-col items-center gap-4">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-100 border border-emerald-200">
-              <FileUp className="h-7 w-7 text-emerald-600" />
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-sb-green-soft border border-sb-green/30">
+              <FileUp className="h-7 w-7 text-sb-green" />
             </div>
 
             <div>
               <p className="text-sm font-medium">
                 Datei hierher ziehen oder{' '}
-                <span className="text-emerald-600 underline underline-offset-2">durchsuchen</span>
+                <span className="text-sb-green underline underline-offset-2">durchsuchen</span>
               </p>
               <p className="text-xs text-muted-foreground mt-1">
                 CSV-Export deiner Buchhaltung — max. 10 MB
@@ -240,8 +240,8 @@ function UploadZone({
 
         {/* Selected file info */}
         {file && !uploading && (
-          <div className="flex items-center gap-3 bg-emerald-50 rounded-lg p-3 border border-emerald-200">
-            <CheckCircle2 className="h-4 w-4 text-emerald-600 shrink-0" />
+          <div className="flex items-center gap-3 bg-sb-green-soft rounded-lg p-3 border border-sb-green/30">
+            <CheckCircle2 className="h-4 w-4 text-sb-green shrink-0" />
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium truncate">{file.name}</p>
               <p className="text-xs text-muted-foreground">
@@ -279,8 +279,8 @@ function ParsingPreview({
     <Card className="glass">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50">
-            <CheckCircle2 className="h-4 w-4 text-blue-600" />
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sb-accent-soft">
+            <CheckCircle2 className="h-4 w-4 text-sb-accent" />
           </div>
           Bilanz erkannt
         </CardTitle>
@@ -322,7 +322,7 @@ function ParsingPreview({
 
         <Separator />
 
-        <div className="bg-blue-50 rounded-lg p-4 space-y-2">
+        <div className="bg-sb-accent-soft rounded-lg p-4 space-y-2">
           <p className="text-sm font-medium">GuV-Zusammenfassung</p>
           <div className="grid grid-cols-2 gap-2 text-sm">
             <div className="flex justify-between">
@@ -331,15 +331,15 @@ function ParsingPreview({
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground">Materialaufwand</span>
-              <span className="font-mono text-red-600">-{formatEuro(data.guv.materialaufwand)}</span>
+              <span className="font-mono text-sb-red">-{formatEuro(data.guv.materialaufwand)}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground">Personalaufwand</span>
-              <span className="font-mono text-red-600">-{formatEuro(data.guv.personalaufwand)}</span>
+              <span className="font-mono text-sb-red">-{formatEuro(data.guv.personalaufwand)}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground">Abschreibungen</span>
-              <span className="font-mono text-red-600">-{formatEuro(data.guv.abschreibungen)}</span>
+              <span className="font-mono text-sb-red">-{formatEuro(data.guv.abschreibungen)}</span>
             </div>
           </div>
         </div>
@@ -347,7 +347,7 @@ function ParsingPreview({
         <Button
           onClick={onAnalyze}
           disabled={analyzing}
-          className="w-full gap-2 bg-emerald-600 hover:bg-emerald-700"
+          className="w-full gap-2 bg-sb-accent hover:bg-sb-accent-deep"
         >
           {analyzing ? (
             <>
@@ -373,8 +373,8 @@ function KennzahlenGrid({ kennzahlen }: { kennzahlen: Kennzahl[] }) {
     <Card className="glass">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-50">
-            <BarChart3 className="h-4 w-4 text-violet-600" />
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sb-accent-soft">
+            <BarChart3 className="h-4 w-4 text-sb-accent" />
           </div>
           Kennzahlen
         </CardTitle>
@@ -394,7 +394,7 @@ function KennzahlenGrid({ kennzahlen }: { kennzahlen: Kennzahl[] }) {
             return (
               <div
                 key={kz.label}
-                className="rounded-xl border p-4 space-y-2 bg-white"
+                className="rounded-xl border p-4 space-y-2 bg-sb-card"
               >
                 <p className="text-xs text-muted-foreground font-medium">{kz.label}</p>
                 <p className="text-2xl font-bold font-mono tabular-nums">{displayValue}</p>
@@ -435,8 +435,8 @@ function SteuerAnalyse({
     <Card className="glass">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-50">
-            <Calculator className="h-4 w-4 text-amber-600" />
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sb-accent-soft">
+            <Calculator className="h-4 w-4 text-sb-accent" />
           </div>
           Steuer-Analyse
         </CardTitle>
@@ -447,15 +447,15 @@ function SteuerAnalyse({
       <CardContent className="space-y-6">
         {/* Summary Row */}
         <div className="grid sm:grid-cols-3 gap-4">
-          <div className="rounded-xl bg-slate-50 p-4 border">
+          <div className="rounded-xl bg-white/[0.04] p-4 border">
             <p className="text-xs text-muted-foreground">KöSt-Betrag</p>
             <p className="text-xl font-bold font-mono">{formatEuro(steuerAnalyse.koest)}</p>
           </div>
-          <div className="rounded-xl bg-slate-50 p-4 border">
+          <div className="rounded-xl bg-white/[0.04] p-4 border">
             <p className="text-xs text-muted-foreground">Effektiver Steuersatz</p>
             <p className="text-xl font-bold font-mono">{formatPercent(steuerAnalyse.effektiverSatz)}</p>
           </div>
-          <div className="rounded-xl bg-slate-50 p-4 border">
+          <div className="rounded-xl bg-white/[0.04] p-4 border">
             <p className="text-xs text-muted-foreground">Gesamtabgaben</p>
             <p className="text-xl font-bold font-mono">{formatEuro(steuerAnalyse.gesamtAbgaben)}</p>
           </div>
@@ -500,15 +500,15 @@ function SteuerAnalyse({
             <Separator />
             <div className="space-y-3">
               <p className="text-sm font-medium flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-amber-500" />
+                <Sparkles className="h-4 w-4 text-sb-accent" />
                 Optimierungsvorschläge
               </p>
               {optimierungen.map((opt, i) => (
-                <div key={i} className="rounded-lg border p-3 space-y-1 bg-white">
+                <div key={i} className="rounded-lg border p-3 space-y-1 bg-sb-card">
                   <div className="flex items-start justify-between gap-3">
                     <p className="text-sm font-medium">{opt.titel}</p>
                     {opt.ersparnisEur > 0 && (
-                      <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 shrink-0 text-xs">
+                      <Badge className="bg-sb-green-soft text-sb-green border-sb-green/30 shrink-0 text-xs">
                         bis zu {formatEuro(opt.ersparnisEur)}
                       </Badge>
                     )}
@@ -542,14 +542,14 @@ function ForecastSection({
   if (!isPro) {
     return (
       <Card className="glass relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/5 to-slate-900/10 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-gradient-to-br from-sb-deep/40 to-sb-deep/40 backdrop-blur-[1px]" />
         <CardHeader className="relative">
           <CardTitle className="flex items-center gap-2 text-lg">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-50">
-              <TrendingUp className="h-4 w-4 text-amber-600" />
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sb-accent-soft">
+              <TrendingUp className="h-4 w-4 text-sb-accent" />
             </div>
             AI Forecast
-            <Badge className="bg-amber-500/10 text-amber-600 border-amber-300/30 text-xs">
+            <Badge className="bg-sb-accent-soft0/10 text-sb-accent border-sb-accent/30 text-xs">
               <Crown className="h-3 w-3 mr-1" /> Pro
             </Badge>
           </CardTitle>
@@ -560,8 +560,8 @@ function ForecastSection({
         <CardContent className="relative">
           <div className="text-center py-8">
             <div className="flex justify-center mb-4">
-              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-100 border border-amber-200">
-                <Lock className="h-7 w-7 text-amber-600" />
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-sb-accent-soft border border-sb-accent/30">
+                <Lock className="h-7 w-7 text-sb-accent" />
               </div>
             </div>
             <p className="text-sm text-muted-foreground mb-4 max-w-md mx-auto">
@@ -570,7 +570,7 @@ function ForecastSection({
             </p>
             <Button
               onClick={onUpgradeRequired}
-              className="gap-2 bg-amber-500 hover:bg-amber-600 text-white"
+              className="gap-2 bg-sb-accent-soft0 hover:bg-sb-accent-deep text-white"
             >
               <Crown className="h-4 w-4" />
               Auf Pro upgraden
@@ -585,11 +585,11 @@ function ForecastSection({
     <Card className="glass">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50">
-            <TrendingUp className="h-4 w-4 text-blue-600" />
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sb-accent-soft">
+            <TrendingUp className="h-4 w-4 text-sb-accent" />
           </div>
           AI Forecast
-          <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 text-xs">
+          <Badge className="bg-sb-green-soft text-sb-green border-sb-green/30 text-xs">
             Pro
           </Badge>
         </CardTitle>
@@ -603,7 +603,7 @@ function ForecastSection({
             <Button
               onClick={onForecast}
               disabled={forecasting}
-              className="gap-2 bg-blue-600 hover:bg-blue-700"
+              className="gap-2 bg-sb-accent hover:bg-sb-accent-deep"
             >
               {forecasting ? (
                 <>
@@ -689,7 +689,7 @@ function ForecastSection({
             {forecast.optimierungen.length > 0 && (
               <div className="space-y-3">
                 <p className="text-sm font-medium flex items-center gap-2">
-                  <Sparkles className="h-4 w-4 text-blue-500" />
+                  <Sparkles className="h-4 w-4 text-sb-accent" />
                   Top-Empfehlungen
                 </p>
                 <div className="grid sm:grid-cols-2 gap-3">
@@ -697,7 +697,7 @@ function ForecastSection({
                     .sort((a, b) => a.prioritaet - b.prioritaet)
                     .slice(0, 4)
                     .map((opt, i) => (
-                      <div key={i} className="rounded-xl border p-4 space-y-1 bg-white">
+                      <div key={i} className="rounded-xl border p-4 space-y-1 bg-sb-card">
                         <div className="flex items-center gap-2">
                           <Badge variant="outline" className="text-xs shrink-0">
                             #{opt.prioritaet}
@@ -706,7 +706,7 @@ function ForecastSection({
                         </div>
                         <p className="text-xs text-muted-foreground">{opt.beschreibung}</p>
                         {opt.ersparnisEur > 0 && (
-                          <p className="text-xs font-medium text-emerald-600">
+                          <p className="text-xs font-medium text-sb-green">
                             Ersparnis: {formatEuro(opt.ersparnisEur)}
                           </p>
                         )}
@@ -718,9 +718,9 @@ function ForecastSection({
 
             {/* Summary Text */}
             {forecast.empfehlungen && (
-              <div className="bg-blue-50 rounded-xl p-4 border border-blue-200">
-                <p className="text-sm font-medium text-blue-800 mb-2">Zusammenfassung</p>
-                <p className="text-sm text-blue-700 whitespace-pre-line">{forecast.empfehlungen}</p>
+              <div className="bg-sb-accent-soft rounded-xl p-4 border border-sb-accent/30">
+                <p className="text-sm font-medium text-sb-accent mb-2">Zusammenfassung</p>
+                <p className="text-sm text-sb-accent whitespace-pre-line">{forecast.empfehlungen}</p>
               </div>
             )}
           </>
@@ -900,7 +900,7 @@ function BilanzContent() {
           <div className="flex items-center gap-3">
             <MobileNav />
             <div className="flex items-center gap-2">
-              <BarChart3 className="h-4 w-4 text-emerald-500" />
+              <BarChart3 className="h-4 w-4 text-sb-green" />
               <span className="text-sm font-semibold">Bilanz-Analyse</span>
             </div>
           </div>
@@ -909,12 +909,12 @@ function BilanzContent() {
               AT 2026
             </Badge>
             {subscription.isPro && (
-              <Badge className="bg-emerald-100 text-emerald-700 border-emerald-200 text-xs">
+              <Badge className="bg-sb-green-soft text-sb-green border-sb-green/30 text-xs">
                 Pro
               </Badge>
             )}
             {subscription.isBasic && !subscription.isPro && (
-              <Badge className="bg-blue-100 text-blue-700 border-blue-200 text-xs">
+              <Badge className="bg-sb-accent-soft text-sb-accent border-sb-accent/30 text-xs">
                 Basic
               </Badge>
             )}
@@ -936,9 +936,9 @@ function BilanzContent() {
 
         {/* Error Alert */}
         {error && (
-          <Alert className="border-red-300 bg-red-50">
-            <AlertTriangle className="h-4 w-4 text-red-600" />
-            <AlertDescription className="text-red-800">{error}</AlertDescription>
+          <Alert className="border-sb-red/40 bg-sb-red/10">
+            <AlertTriangle className="h-4 w-4 text-sb-red" />
+            <AlertDescription className="text-sb-red">{error}</AlertDescription>
           </Alert>
         )}
 
@@ -983,7 +983,7 @@ function BilanzContent() {
         {/* Action Buttons */}
         {analysis && (
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button asChild className="gap-2 flex-1 bg-emerald-600 hover:bg-emerald-700">
+            <Button asChild className="gap-2 flex-1 bg-sb-accent hover:bg-sb-accent-deep">
               <Link href="/steuerberater?context=bilanz">
                 <MessageSquare className="h-4 w-4" />
                 Im Chat besprechen

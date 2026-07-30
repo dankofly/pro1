@@ -42,8 +42,8 @@ export function UstSection({ ust, jahresumsatz, dispatch }: UstSectionProps) {
       <div className="card-surface">
         <CollapsibleTrigger asChild>
           <button type="button" className="flex w-full items-center gap-3 px-4 py-3.5 text-left">
-            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-blue-500/10">
-              <Receipt className="h-3.5 w-3.5 text-blue-600 dark:text-blue-400" />
+            <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-sb-accent-soft0/10">
+              <Receipt className="h-3.5 w-3.5 text-sb-accent" />
             </div>
             <div className="flex-1 min-w-0">
               <h2 className="text-sm font-semibold tracking-tight">Umsatzsteuer &amp; KUR</h2>
@@ -61,20 +61,20 @@ export function UstSection({ ust, jahresumsatz, dispatch }: UstSectionProps) {
             {/* KUR Status Badge */}
             <div>
               {kurBerechtigt && (
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-500/10 px-2.5 py-1 text-xs font-medium text-emerald-700 dark:text-emerald-400">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-sb-green-soft0/10 px-2.5 py-1 text-xs font-medium text-sb-green">
+                  <span className="h-1.5 w-1.5 rounded-full bg-sb-green-soft0" />
                   KUR berechtigt
                 </span>
               )}
               {kurToleranz && (
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500/10 px-2.5 py-1 text-xs font-medium text-amber-700 dark:text-amber-400">
-                  <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-sb-accent-soft0/10 px-2.5 py-1 text-xs font-medium text-sb-accent">
+                  <span className="h-1.5 w-1.5 rounded-full bg-sb-accent-soft0" />
                   Toleranzzone (einmalig)
                 </span>
               )}
               {kurNichtMoeglich && (
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-red-500/10 px-2.5 py-1 text-xs font-medium text-red-700 dark:text-red-400">
-                  <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-sb-red/100/10 px-2.5 py-1 text-xs font-medium text-sb-red">
+                  <span className="h-1.5 w-1.5 rounded-full bg-sb-red/100" />
                   KUR nicht möglich
                 </span>
               )}
@@ -92,14 +92,14 @@ export function UstSection({ ust, jahresumsatz, dispatch }: UstSectionProps) {
                   onClick={() => setUst('ustPflichtig', false)}
                   className={`flex items-center gap-2.5 rounded-lg border px-3 py-3 sm:py-2 text-left text-sm transition-colors ${
                     !ust.ustPflichtig
-                      ? 'border-blue-500/40 bg-blue-500/5 text-foreground dark:border-blue-400/30 dark:bg-blue-500/10'
+                      ? 'border-sb-accent/40 bg-sb-accent-soft0/5 text-foreground'
                       : 'border-border/50 text-muted-foreground hover:bg-muted/40'
                   } ${kurNichtMoeglich ? 'cursor-not-allowed opacity-40' : 'cursor-pointer'}`}
                 >
                   <span className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-2 ${
-                    !ust.ustPflichtig ? 'border-blue-500 dark:border-blue-400' : 'border-muted-foreground/30'
+                    !ust.ustPflichtig ? 'border-sb-accent/30' : 'border-muted-foreground/30'
                   }`}>
-                    {!ust.ustPflichtig && <span className="h-2 w-2 rounded-full bg-blue-500 dark:bg-blue-400" />}
+                    {!ust.ustPflichtig && <span className="h-2 w-2 rounded-full bg-sb-accent-soft0" />}
                   </span>
                   Kleinunternehmerregelung (KUR)
                 </button>
@@ -110,14 +110,14 @@ export function UstSection({ ust, jahresumsatz, dispatch }: UstSectionProps) {
                   onClick={() => setUst('ustPflichtig', true)}
                   className={`flex items-center gap-2.5 rounded-lg border px-3 py-3 sm:py-2 text-left text-sm transition-colors cursor-pointer ${
                     ust.ustPflichtig
-                      ? 'border-blue-500/40 bg-blue-500/5 text-foreground dark:border-blue-400/30 dark:bg-blue-500/10'
+                      ? 'border-sb-accent/40 bg-sb-accent-soft0/5 text-foreground'
                       : 'border-border/50 text-muted-foreground hover:bg-muted/40'
                   }`}
                 >
                   <span className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-2 ${
-                    ust.ustPflichtig ? 'border-blue-500 dark:border-blue-400' : 'border-muted-foreground/30'
+                    ust.ustPflichtig ? 'border-sb-accent/30' : 'border-muted-foreground/30'
                   }`}>
-                    {ust.ustPflichtig && <span className="h-2 w-2 rounded-full bg-blue-500 dark:bg-blue-400" />}
+                    {ust.ustPflichtig && <span className="h-2 w-2 rounded-full bg-sb-accent-soft0" />}
                   </span>
                   Regelbesteuerung (USt-pflichtig)
                 </button>
@@ -141,7 +141,7 @@ export function UstSection({ ust, jahresumsatz, dispatch }: UstSectionProps) {
                       onClick={() => setUst('ustSatz', rate)}
                       className={`rounded-lg border px-3 py-2.5 sm:py-1.5 text-sm font-medium transition-colors cursor-pointer ${
                         ust.ustSatz === rate
-                          ? 'border-blue-500/40 bg-blue-500/5 text-blue-700 dark:border-blue-400/30 dark:bg-blue-500/10 dark:text-blue-400'
+                          ? 'border-sb-accent/40 bg-sb-accent-soft0/5 text-sb-accent'
                           : 'border-border/50 text-muted-foreground hover:bg-muted/40'
                       }`}
                     >
@@ -200,10 +200,10 @@ export function UstSection({ ust, jahresumsatz, dispatch }: UstSectionProps) {
 
             {/* 5-Jahres-Bindungs-Warnung (only if ustPflichtig) */}
             {ust.ustPflichtig && (
-              <div className="bg-amber-50/60 dark:bg-amber-950/20 border border-amber-200/40 dark:border-amber-800/20 rounded-lg p-2.5">
+              <div className="bg-sb-accent-soft/60 border border-sb-accent/30/40 rounded-lg p-2.5">
                 <div className="flex items-start gap-2">
-                  <AlertTriangle className="h-3.5 w-3.5 text-amber-600 mt-0.5 shrink-0" />
-                  <p className="text-xs text-amber-800 dark:text-amber-300">
+                  <AlertTriangle className="h-3.5 w-3.5 text-sb-accent mt-0.5 shrink-0" />
+                  <p className="text-xs text-sb-accent">
                     Achtung: Wechsel zur Regelbesteuerung bindet dich für 5 Jahre.
                   </p>
                 </div>

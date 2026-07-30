@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
+import { PublicShell } from '@/components/public-shell'
 
 export const metadata: Metadata = {
   title: 'Steuerwissen für Selbständige in Österreich: Alle Guides & Tipps',
@@ -121,7 +122,7 @@ export default function Layout({
   return (
     <>
       <JsonLd data={jsonLd} />
-      {children}
+      <PublicShell>{children}</PublicShell>
     </>
   )
 }

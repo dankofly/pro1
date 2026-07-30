@@ -78,7 +78,7 @@ export function BankImportDialog({ open, onOpenChange, onImport }: BankImportDia
       <DialogContent className="sm:max-w-lg">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <FileSpreadsheet className="h-5 w-5 text-blue-600" />
+            <FileSpreadsheet className="h-5 w-5 text-sb-accent" />
             Bank-Anbindung
           </DialogTitle>
           <DialogDescription>
@@ -96,8 +96,8 @@ export function BankImportDialog({ open, onOpenChange, onImport }: BankImportDia
         )}
 
         {step === 'upload' && (
-          <label className="flex flex-col items-center justify-center gap-3 border-2 border-dashed border-slate-200 rounded-xl p-8 cursor-pointer hover:border-blue-400 hover:bg-blue-50/50 transition-colors">
-            <Upload className="h-10 w-10 text-slate-400" />
+          <label className="flex flex-col items-center justify-center gap-3 border-2 border-dashed border-sb-line rounded-xl p-8 cursor-pointer hover:border-sb-accent/30 hover:bg-sb-accent-soft transition-colors">
+            <Upload className="h-10 w-10 text-sb-mut" />
             <div className="text-center">
               <p className="font-medium text-sm">CSV-Datei auswaehlen</p>
               <p className="text-xs text-muted-foreground mt-1">Kontoauszug als .csv Datei</p>
@@ -118,7 +118,7 @@ export function BankImportDialog({ open, onOpenChange, onImport }: BankImportDia
                 <button
                   key={col.index}
                   onClick={() => handleColumnSelect(col.index)}
-                  className="w-full text-left p-3 rounded-lg border border-slate-200 hover:border-blue-400 hover:bg-blue-50/50 transition-colors"
+                  className="w-full text-left p-3 rounded-lg border border-sb-line hover:border-sb-accent/30 hover:bg-sb-accent-soft transition-colors"
                 >
                   <div className="flex items-center justify-between mb-1">
                     <span className="font-medium text-sm">{col.header}</span>
@@ -137,10 +137,10 @@ export function BankImportDialog({ open, onOpenChange, onImport }: BankImportDia
 
         {step === 'confirm' && parsed && selectedColumn !== null && (
           <div className="space-y-4">
-            <div className="text-center p-6 bg-emerald-50 rounded-xl border border-emerald-200">
-              <p className="text-sm text-emerald-700 mb-1">Erkannter Jahresgewinn</p>
-              <p className="text-3xl font-bold text-emerald-800 font-mono">{formatEuro(computedSum)}</p>
-              <p className="text-xs text-emerald-600 mt-2">
+            <div className="text-center p-6 bg-sb-green-soft rounded-xl border border-sb-green/30">
+              <p className="text-sm text-sb-green mb-1">Erkannter Jahresgewinn</p>
+              <p className="text-3xl font-bold text-sb-green font-mono">{formatEuro(computedSum)}</p>
+              <p className="text-xs text-sb-green mt-2">
                 Aus Spalte &ldquo;{parsed.headers[selectedColumn]}&rdquo; · {parsed.rowCount} Zeilen
               </p>
             </div>
@@ -150,7 +150,7 @@ export function BankImportDialog({ open, onOpenChange, onImport }: BankImportDia
                 <thead>
                   <tr className="border-b">
                     {parsed.headers.map((h, i) => (
-                      <th key={i} className={`py-1.5 px-2 text-left ${i === selectedColumn ? 'bg-emerald-50 font-bold' : 'text-muted-foreground'}`}>
+                      <th key={i} className={`py-1.5 px-2 text-left ${i === selectedColumn ? 'bg-sb-green-soft font-bold' : 'text-muted-foreground'}`}>
                         {h}
                       </th>
                     ))}
@@ -158,9 +158,9 @@ export function BankImportDialog({ open, onOpenChange, onImport }: BankImportDia
                 </thead>
                 <tbody>
                   {parsed.rows.slice(0, 8).map((row, ri) => (
-                    <tr key={ri} className="border-b border-slate-50">
+                    <tr key={ri} className="border-b border-sb-line-strong">
                       {row.map((cell, ci) => (
-                        <td key={ci} className={`py-1 px-2 ${ci === selectedColumn ? 'bg-emerald-50 font-medium' : ''}`}>
+                        <td key={ci} className={`py-1 px-2 ${ci === selectedColumn ? 'bg-sb-green-soft font-medium' : ''}`}>
                           {cell}
                         </td>
                       ))}

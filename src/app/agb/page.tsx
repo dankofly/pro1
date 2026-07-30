@@ -6,7 +6,7 @@ function AGBContent() {
     <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
       <h1 className="text-3xl font-bold mb-8">Allgemeine Geschäftsbedingungen (AGB)</h1>
 
-      <div className="prose prose-slate max-w-none space-y-6">
+      <div className="prose prose-slate prose-invert max-w-none space-y-6">
         {/* 1. Geltungsbereich */}
         <section>
           <h2 className="text-xl font-semibold mb-3">1. Geltungsbereich</h2>
@@ -18,7 +18,7 @@ function AGBContent() {
             <strong>HYPEAKZ.IO</strong><br />
             Thal-Aue 95, 9911 Assling<br />
             Österreich<br />
-            E-Mail: <a href="mailto:info@hypeakz.io" className="text-blue-600 hover:underline">info@hypeakz.io</a>
+            E-Mail: <a href="mailto:info@hypeakz.io" className="text-sb-accent hover:underline">info@hypeakz.io</a>
           </p>
           <p>
             Mit der Nutzung von steuerboard.pro erklären Sie sich mit diesen AGB einverstanden.
@@ -136,7 +136,7 @@ function AGBContent() {
             Kostenpflichtige Dienste (&quot;Pro&quot;-Plan) werden als Abonnement über den
             Zahlungsdienstleister <strong>Stripe</strong> abgerechnet. Mit dem Abschluss eines
             Abonnements stimmen Sie auch den{' '}
-            <a href="https://stripe.com/at/legal" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+            <a href="https://stripe.com/at/legal" target="_blank" rel="noopener noreferrer" className="text-sb-accent hover:underline">
               Nutzungsbedingungen von Stripe
             </a>{' '}
             zu.
@@ -172,7 +172,7 @@ function AGBContent() {
           <p>
             <strong>An:</strong><br />
             HYPEAKZ.IO, Thal-Aue 95, 9911 Assling, Österreich<br />
-            E-Mail: <a href="mailto:info@hypeakz.io" className="text-blue-600 hover:underline">info@hypeakz.io</a>
+            E-Mail: <a href="mailto:info@hypeakz.io" className="text-sb-accent hover:underline">info@hypeakz.io</a>
           </p>
           <p>
             Zur Wahrung der Widerrufsfrist reicht es aus, dass Sie die Mitteilung über die
@@ -199,7 +199,7 @@ function AGBContent() {
             <li>seine Kenntnis davon bestätigt hat, dass er durch seine Zustimmung mit Beginn der Ausführung des Vertrags sein Widerrufsrecht verliert.</li>
           </ul>
 
-          <div className="mt-4 p-4 bg-slate-100 dark:bg-slate-800 rounded-lg">
+          <div className="mt-4 p-4 bg-white/[0.05] rounded-lg">
             <p><strong>Muster-Widerrufsformular</strong></p>
             <p className="text-sm mt-2">(Wenn Sie den Vertrag widerrufen wollen, dann füllen Sie bitte dieses Formular aus und senden Sie es zurück.)</p>
             <ul className="list-none pl-0 space-y-2 text-sm mt-3">
@@ -309,7 +309,7 @@ function AGBContent() {
           <h2 className="text-xl font-semibold mb-3">9. Datenschutz</h2>
           <p>
             Informationen zur Verarbeitung personenbezogener Daten finden Sie in unserer{' '}
-            <a href="/datenschutz" className="text-blue-600 hover:underline">
+            <a href="/datenschutz" className="text-sb-accent hover:underline">
               Datenschutzerklärung
             </a>.
           </p>

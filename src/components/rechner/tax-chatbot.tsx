@@ -145,8 +145,8 @@ export function TaxChatbot({ isPro, onUpgradeRequired }: TaxChatbotProps) {
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-3 border-b border-border/40">
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/10">
-            <MessageSquare className="h-4.5 w-4.5 text-emerald-600" />
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-sb-green-soft0/10">
+            <MessageSquare className="h-4.5 w-4.5 text-sb-green" />
           </div>
           <div>
             <div className="flex items-center gap-2">
@@ -170,10 +170,10 @@ export function TaxChatbot({ isPro, onUpgradeRequired }: TaxChatbotProps) {
                   <div
                     className={`h-full rounded-full transition-all duration-500 ${
                       remaining / limit > 0.5
-                        ? 'bg-emerald-500'
+                        ? 'bg-sb-green-soft0'
                         : remaining / limit > 0.25
-                          ? 'bg-amber-500'
-                          : 'bg-red-500'
+                          ? 'bg-sb-accent-soft0'
+                          : 'bg-sb-red/100'
                     }`}
                     style={{ width: `${(remaining / limit) * 100}%` }}
                   />
@@ -203,8 +203,8 @@ export function TaxChatbot({ isPro, onUpgradeRequired }: TaxChatbotProps) {
         {messages.length === 0 && !isLoading ? (
           /* Welcome screen */
           <div className="flex flex-col items-center justify-center h-full gap-6 py-8">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-500/10">
-              <Sparkles className="h-8 w-8 text-emerald-500" />
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-sb-green-soft0/10">
+              <Sparkles className="h-8 w-8 text-sb-green" />
             </div>
             <div className="text-center space-y-1.5 max-w-md">
               <h3 className="text-lg font-semibold text-foreground">Steuer-Chatbot</h3>
@@ -231,14 +231,14 @@ export function TaxChatbot({ isPro, onUpgradeRequired }: TaxChatbotProps) {
             {messages.map((msg, i) => (
               <div key={i} className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : ''}`}>
                 {msg.role === 'assistant' && (
-                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10 mt-0.5">
-                    <Bot className="h-3.5 w-3.5 text-emerald-600" />
+                  <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-sb-green-soft0/10 mt-0.5">
+                    <Bot className="h-3.5 w-3.5 text-sb-green" />
                   </div>
                 )}
                 <div
                   className={`max-w-[85%] sm:max-w-[75%] rounded-2xl px-4 py-2.5 ${
                     msg.role === 'user'
-                      ? 'bg-emerald-600 text-white rounded-br-md'
+                      ? 'bg-sb-accent text-white rounded-br-md'
                       : 'bg-muted/50 text-foreground rounded-bl-md'
                   }`}
                 >
@@ -275,8 +275,8 @@ export function TaxChatbot({ isPro, onUpgradeRequired }: TaxChatbotProps) {
             {/* Loading indicator */}
             {isLoading && (
               <div className="flex gap-3">
-                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10 mt-0.5">
-                  <Bot className="h-3.5 w-3.5 text-emerald-600" />
+                <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-sb-green-soft0/10 mt-0.5">
+                  <Bot className="h-3.5 w-3.5 text-sb-green" />
                 </div>
                 <div className="bg-muted/50 rounded-2xl rounded-bl-md px-4 py-3">
                   <div className="flex items-center gap-2 text-sm text-muted-foreground">

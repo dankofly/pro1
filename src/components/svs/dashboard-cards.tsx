@@ -44,8 +44,8 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
       {/* Nachzahlungs-Alarm */}
       <div className="card-surface p-5 sm:p-6">
         <div className="flex items-center gap-2 mb-3">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-500/15">
-            <AlertTriangle className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" />
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-sb-accent-soft0/15">
+            <AlertTriangle className="h-3.5 w-3.5 text-sb-accent" />
           </div>
           <span className="section-header">
             Nachzahlungs-Alarm
@@ -63,14 +63,14 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
             </>
           ) : result.nachzahlung > 0 ? (
             <>
-              <p className="text-2xl font-bold text-red-500 num-transition font-mono">
+              <p className="text-2xl font-bold text-sb-red num-transition font-mono">
                 {formatEuroShort(Math.round(animatedNachzahlung))}
               </p>
               <p className="text-xs text-muted-foreground mt-1">
                 geschätzte Nachzahlung
               </p>
-              <div className="mt-2 p-2 rounded-lg bg-red-50/50 dark:bg-red-950/20 border border-red-200/40 dark:border-red-800/20">
-                <p className="text-xs text-red-600 dark:text-red-400">
+              <div className="mt-2 p-2 rounded-lg bg-sb-red/10/50 border border-sb-red/30/40">
+                <p className="text-xs text-sb-red">
                   Vorschreibung ({formatEuro(vorschreibung)}) ist{' '}
                   <span className="font-bold">
                     {formatEuro(result.endgueltigeMonatlich - vorschreibung)}
@@ -81,7 +81,7 @@ export function DashboardCards({ result, vorschreibung }: DashboardCardsProps) {
             </>
           ) : result.nachzahlung < 0 ? (
             <>
-              <p className="text-2xl font-bold text-emerald-500 num-transition font-mono">
+              <p className="text-2xl font-bold text-sb-green num-transition font-mono">
                 {formatEuroShort(Math.round(animatedNachzahlung))}
               </p>
               <p className="text-xs text-muted-foreground mt-1">
