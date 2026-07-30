@@ -56,7 +56,7 @@ export default function Layout({
           },
         },
         datePublished: '2026-03-19',
-        dateModified: '2026-03-19',
+        dateModified: '2026-07-30',
         inLanguage: 'de-AT',
         mainEntityOfPage: {
           '@type': 'WebPage',
@@ -72,7 +72,7 @@ export default function Layout({
             name: 'Wann sind die UVA-Termine 2026?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'UVA-Termine sind grundsätzlich am 15. des Folgemonats. Bei monatlicher Abgabe (ab 100.000€ Vorjahresumsatz) jeden Monat, bei quartalsweiser Abgabe am 15. Februar, 15. Mai, 15. August und 15. November.'
+              text: 'UVA-Termine sind grundsätzlich am 15. des zweitfolgenden Monats (Beispiel: UVA für Jänner bis 15. März). Bei monatlicher Abgabe (ab 100.000€ Vorjahresumsatz) jeden Monat, bei quartalsweiser Abgabe am 15. Februar, 15. Mai, 15. August und 15. November.'
             }
           },
           {
@@ -80,7 +80,7 @@ export default function Layout({
             name: 'Wie hoch sollten meine monatlichen Steuerrücklagen sein?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Faustregeln: Bei 30.000€ Gewinn → 650€/Monat, bei 50.000€ → 1.200€/Monat, bei 80.000€ → 2.100€/Monat, bei 100.000€ → 2.800€/Monat. Inkludiert EST, SVS und UVA.'
+              text: 'Faustregeln: Bei 30.000€ Gewinn → 650€/Monat, bei 50.000€ → 1.200€/Monat, bei 80.000€ → 2.100€/Monat, bei 100.000€ → 2.800€/Monat. Inkludiert EST, SVS und UVA. Richtwerte, die tatsächliche Belastung hängt von der individuellen Situation ab.'
             }
           },
           {

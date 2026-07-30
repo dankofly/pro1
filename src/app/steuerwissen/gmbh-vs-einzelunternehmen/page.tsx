@@ -39,10 +39,10 @@ export default function GmbHvsEinzelunternehmenPage() {
           <div className="bg-sb-accent-soft border border-sb-accent/30 rounded-lg p-6 mb-12">
             <h2 className="text-lg font-semibold text-sb-accent mb-3">Kurzantwort</h2>
             <p className="text-sb-mut mb-0">
-              Die GmbH wird ab ca. <strong className="text-sb-text">60.000–80.000 € Jahresgewinn</strong> steuerlich interessant.
+              Die GmbH wird ab ca. <strong className="text-sb-text">60.000–80.000 € Jahresgewinn</strong> steuerlich interessant (Modellrechnung, individuell zu prüfen).
               Bei Vollausschüttung beträgt die GmbH-Gesamtbelastung ca. 44,2% (23% KöSt + 27,5% KESt auf den Rest),
-              während das Einzelunternehmen ab 100.000 € Gewinn bereits über 48% ESt zahlt — plus ca. 27% SVS-Beiträge.
-              Seit 2024 bietet die <strong className="text-sb-text">FlexKap</strong> eine schlankere Alternative zur klassischen GmbH.
+              während beim Einzelunternehmen ab rund 70.400 € Einkommen bereits der Grenzsteuersatz von 48% greift, plus SVS-Beiträge von ca. 27% auf die Beitragsgrundlage.
+              Seit 2024 bietet die <strong className="text-sb-text">FlexKap</strong> eine flexiblere Alternative zur klassischen GmbH bei identischem Mindestkapital.
             </p>
           </div>
 
@@ -56,8 +56,8 @@ export default function GmbHvsEinzelunternehmenPage() {
                 <ul className="space-y-3">
                   <li><strong className="text-sb-text">Einkommensteuer (ESt):</strong> Progressiv 0% bis 55% (§ 33 EStG)</li>
                   <li><strong className="text-sb-text">SVS-Beiträge:</strong> Ca. 26,83% auf Beitragsgrundlage (PV 18,50% + KV 6,80% + SV 1,53%)</li>
-                  <li><strong className="text-sb-text">Mindest-SVS:</strong> Ca. 1.951 €/Jahr (2026)</li>
-                  <li><strong className="text-sb-text">Höchst-SVS:</strong> Ca. 22.788 €/Jahr (2026)</li>
+                  <li><strong className="text-sb-text">Mindest-SVS:</strong> Ca. 1.930 €/Jahr (2026)</li>
+                  <li><strong className="text-sb-text">Höchst-SVS:</strong> Ca. 26.186 €/Jahr (2026)</li>
                   <li><strong className="text-sb-text">Buchführung:</strong> E/A-Rechnung bis 700.000 € Umsatz</li>
                   <li><strong className="text-sb-text">Gewinnentnahme:</strong> Jederzeit, steuerfrei</li>
                 </ul>
@@ -68,8 +68,8 @@ export default function GmbHvsEinzelunternehmenPage() {
                 <ul className="space-y-3">
                   <li><strong className="text-sb-text">Körperschaftsteuer (KöSt):</strong> 23% auf Gewinn (§ 22 KStG)</li>
                   <li><strong className="text-sb-text">KESt auf Ausschüttungen:</strong> 27,5% auf Brutto-Dividende</li>
-                  <li><strong className="text-sb-text">ASVG-Beiträge (GF):</strong> Ca. 22,8% der Beitragsgrundlage (AG + AN)</li>
-                  <li><strong className="text-sb-text">Mindest-KöSt:</strong> 500 €/Quartal = 2.000 €/Jahr</li>
+                  <li><strong className="text-sb-text">SV des Gesellschafter-GF:</strong> Bis 25% Beteiligung ASVG, darüber i.d.R. GSVG (SVS)</li>
+                  <li><strong className="text-sb-text">Mindest-KöSt:</strong> 125 €/Quartal = 500 €/Jahr</li>
                   <li><strong className="text-sb-text">Buchführung:</strong> Doppelte Buchführung verpflichtend</li>
                   <li><strong className="text-sb-text">Gewinnentnahme:</strong> Nur als Gehalt oder Gewinnausschüttung</li>
                 </ul>
@@ -79,7 +79,7 @@ export default function GmbHvsEinzelunternehmenPage() {
             <div className="bg-white/[0.05] p-6 rounded-lg border-l-4 border-sb-accent/40 mb-6">
               <h4 className="text-lg font-semibold text-sb-text mb-2">Effektive Gesamtbelastung bei Vollausschüttung</h4>
               <p className="mb-4">
-                <strong className="text-sb-text">Einzelunternehmen:</strong> ESt (bis 55%) + SVS (~27%) = <span className="text-sb-red font-semibold">bis zu 75%+</span> bei hohen Gewinnen
+                <strong className="text-sb-text">Einzelunternehmen:</strong> ESt-Grenzsteuersatz bis 55%, dazu SVS-Beiträge (2026 gedeckelt bei ca. 26.186 €/Jahr, als Betriebsausgabe abzugsfähig) = <span className="text-sb-red font-semibold">bei hohen Gewinnen deutlich höhere Belastung</span>
               </p>
               <p className="mb-0">
                 <strong className="text-sb-text">GmbH:</strong> 23% KöSt + 27,5% KESt auf verbleibende 77% = <span className="text-sb-green font-semibold">ca. 44,2% Gesamtbelastung</span>
@@ -97,12 +97,12 @@ export default function GmbHvsEinzelunternehmenPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-t border-sb-line"><td className="p-3 border-r border-sb-line">0 – 12.816 €</td><td className="p-3">0%</td></tr>
-                    <tr className="border-t border-sb-line bg-sb-deep"><td className="p-3 border-r border-sb-line">12.816 – 20.818 €</td><td className="p-3">20%</td></tr>
-                    <tr className="border-t border-sb-line"><td className="p-3 border-r border-sb-line">20.818 – 34.513 €</td><td className="p-3">30%</td></tr>
-                    <tr className="border-t border-sb-line bg-sb-deep"><td className="p-3 border-r border-sb-line">34.513 – 66.612 €</td><td className="p-3">40%</td></tr>
-                    <tr className="border-t border-sb-line"><td className="p-3 border-r border-sb-line">66.612 – 99.266 €</td><td className="p-3">48%</td></tr>
-                    <tr className="border-t border-sb-line bg-sb-deep"><td className="p-3 border-r border-sb-line">99.266 – 1.000.000 €</td><td className="p-3">50%</td></tr>
+                    <tr className="border-t border-sb-line"><td className="p-3 border-r border-sb-line">0 – 13.539 €</td><td className="p-3">0%</td></tr>
+                    <tr className="border-t border-sb-line bg-sb-deep"><td className="p-3 border-r border-sb-line">13.539 – 21.992 €</td><td className="p-3">20%</td></tr>
+                    <tr className="border-t border-sb-line"><td className="p-3 border-r border-sb-line">21.992 – 36.458 €</td><td className="p-3">30%</td></tr>
+                    <tr className="border-t border-sb-line bg-sb-deep"><td className="p-3 border-r border-sb-line">36.458 – 70.365 €</td><td className="p-3">40%</td></tr>
+                    <tr className="border-t border-sb-line"><td className="p-3 border-r border-sb-line">70.365 – 104.859 €</td><td className="p-3">48%</td></tr>
+                    <tr className="border-t border-sb-line bg-sb-deep"><td className="p-3 border-r border-sb-line">104.859 – 1.000.000 €</td><td className="p-3">50%</td></tr>
                     <tr className="border-t border-sb-line"><td className="p-3 border-r border-sb-line">Über 1.000.000 €</td><td className="p-3">55%</td></tr>
                   </tbody>
                 </table>
@@ -116,7 +116,8 @@ export default function GmbHvsEinzelunternehmenPage() {
 
             <p className="mb-6">
               Ein oft unterschätzter Faktor bei der Rechtsformwahl ist die <strong className="text-sb-text">Sozialversicherung</strong>.
-              Als Einzelunternehmer zahlst du SVS-Beiträge (GSVG), als GmbH-Geschäftsführer ASVG-Beiträge auf dein Gehalt.
+              Als Einzelunternehmer zahlst du SVS-Beiträge (GSVG). Als Gesellschafter-Geschäftsführer einer GmbH gilt:
+              Nur bei einer Beteiligung bis 25% bist du ASVG-versichert (Beiträge auf dein Gehalt), darüber bleibst du in der Regel GSVG-pflichtig.
             </p>
 
             <div className="overflow-x-auto mb-6">
@@ -125,14 +126,14 @@ export default function GmbHvsEinzelunternehmenPage() {
                   <tr>
                     <th className="p-4 text-left text-sb-text border-r border-sb-line">Kriterium</th>
                     <th className="p-4 text-left text-sb-text border-r border-sb-line">SVS (Einzelunternehmen)</th>
-                    <th className="p-4 text-left text-sb-text">ASVG (GmbH-Geschäftsführer)</th>
+                    <th className="p-4 text-left text-sb-text">ASVG (GF bis 25% Beteiligung)</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr className="border-t border-sb-line">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">Beitragssatz gesamt</td>
                     <td className="p-4 border-r border-sb-line">~26,83% + UV pauschal</td>
-                    <td className="p-4">~22,8% (AG + AN-Anteil auf Gehalt)</td>
+                    <td className="p-4">~39% auf das Gehalt (AN 18,07% + AG 20,98%)</td>
                   </tr>
                   <tr className="border-t border-sb-line bg-sb-deep">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">Beitragsgrundlage</td>
@@ -146,13 +147,13 @@ export default function GmbHvsEinzelunternehmenPage() {
                   </tr>
                   <tr className="border-t border-sb-line bg-sb-deep">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">Höchstbeitragsgrundlage</td>
-                    <td className="p-4 border-r border-sb-line">84.840 €/Jahr (2026)</td>
-                    <td className="p-4">Laufend an Gehalt gekoppelt</td>
+                    <td className="p-4 border-r border-sb-line">97.020 €/Jahr (2026)</td>
+                    <td className="p-4">6.930 €/Monat (2026)</td>
                   </tr>
                   <tr className="border-t border-sb-line">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">Arbeitslosenversicherung</td>
                     <td className="p-4 border-r border-sb-line text-sb-red">Nicht enthalten</td>
-                    <td className="p-4 text-sb-green">Enthalten (3% AN + 3% AG)</td>
+                    <td className="p-4 text-sb-green">Enthalten (je 2,95% AN und AG)</td>
                   </tr>
                   <tr className="border-t border-sb-line bg-sb-deep">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">Abfertigung</td>
@@ -170,9 +171,9 @@ export default function GmbHvsEinzelunternehmenPage() {
 
             <div className="bg-sb-accent-soft p-6 rounded-lg border border-sb-accent/30">
               <p className="text-sb-mut mb-0">
-                <strong>SVS-Vorteil der GmbH:</strong> Als GmbH-Geschäftsführer mit &gt;25% Beteiligung bist du ASVG-pflichtversichert.
-                Du hast bessere Leistungen (Krankengeld, Arbeitslosenversicherung) und kein Nachzahlungsrisiko.
-                Die Beiträge werden direkt vom laufenden Gehalt berechnet — keine bösen Überraschungen 3 Jahre später.
+                <strong>Achtung, häufiger Irrtum:</strong> ASVG gilt nur für Gesellschafter-Geschäftsführer mit maximal 25% Beteiligung.
+                Wer mehr hält, typischerweise der Alleingesellschafter-Geschäftsführer, bleibt GSVG-pflichtversichert (SVS),
+                inklusive Nachbemessung. Der Wechsel in die GmbH ändert an deiner Sozialversicherung dann wenig.
               </p>
             </div>
           </section>
@@ -182,7 +183,7 @@ export default function GmbHvsEinzelunternehmenPage() {
             <h2 className="text-3xl font-semibold text-sb-text mb-6">Break-Even-Analyse: Ab welchem Gewinn lohnt sich die GmbH?</h2>
 
             <p className="mb-6">
-              Der Break-Even-Punkt liegt typischerweise zwischen <strong className="text-sb-text">60.000 und 80.000 Euro Jahresgewinn</strong>,
+              Der Break-Even-Punkt liegt in unserer Modellrechnung typischerweise zwischen <strong className="text-sb-text">60.000 und 80.000 Euro Jahresgewinn</strong>,
               abhängig von der geplanten Ausschüttungspolitik und individuellen Faktoren.
             </p>
 
@@ -200,60 +201,61 @@ export default function GmbHvsEinzelunternehmenPage() {
                 <tbody>
                   <tr className="border-t border-sb-line">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">30.000 €</td>
-                    <td className="p-4 border-r border-sb-line">~12.100 €</td>
+                    <td className="p-4 border-r border-sb-line">~9.200 €</td>
                     <td className="p-4 border-r border-sb-line">~13.500 €</td>
                     <td className="p-4 border-r border-sb-line">~8.900 €</td>
-                    <td className="p-4 text-sb-red">−1.400 € (50% Aussch.)</td>
+                    <td className="p-4 text-sb-red">−4.300 € (50% Aussch.)</td>
                   </tr>
                   <tr className="border-t border-sb-line bg-sb-deep">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">50.000 €</td>
-                    <td className="p-4 border-r border-sb-line">~22.300 €</td>
+                    <td className="p-4 border-r border-sb-line">~18.100 €</td>
                     <td className="p-4 border-r border-sb-line">~21.100 €</td>
                     <td className="p-4 border-r border-sb-line">~13.500 €</td>
-                    <td className="p-4 text-sb-green">+1.200 €</td>
+                    <td className="p-4 text-sb-red">−3.000 €</td>
                   </tr>
                   <tr className="border-t border-sb-line">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">80.000 €</td>
-                    <td className="p-4 border-r border-sb-line">~38.400 €</td>
+                    <td className="p-4 border-r border-sb-line">~34.400 €</td>
                     <td className="p-4 border-r border-sb-line">~31.200 €</td>
                     <td className="p-4 border-r border-sb-line">~20.400 €</td>
-                    <td className="p-4 text-sb-green">+7.200 €</td>
+                    <td className="p-4 text-sb-green">+3.200 €</td>
                   </tr>
                   <tr className="border-t border-sb-line bg-sb-deep">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">100.000 €</td>
-                    <td className="p-4 border-r border-sb-line">~49.500 €</td>
+                    <td className="p-4 border-r border-sb-line">~45.200 €</td>
                     <td className="p-4 border-r border-sb-line">~37.800 €</td>
                     <td className="p-4 border-r border-sb-line">~25.000 €</td>
-                    <td className="p-4 text-sb-green">+11.700 €</td>
+                    <td className="p-4 text-sb-green">+7.400 €</td>
                   </tr>
                   <tr className="border-t border-sb-line">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">150.000 €</td>
-                    <td className="p-4 border-r border-sb-line">~76.000 €</td>
+                    <td className="p-4 border-r border-sb-line">~69.300 €</td>
                     <td className="p-4 border-r border-sb-line">~55.800 €</td>
                     <td className="p-4 border-r border-sb-line">~37.500 €</td>
-                    <td className="p-4 text-sb-green">+20.200 €</td>
+                    <td className="p-4 text-sb-green">+13.500 €</td>
                   </tr>
                   <tr className="border-t border-sb-line bg-sb-deep">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">200.000 €</td>
-                    <td className="p-4 border-r border-sb-line">~101.000 €</td>
+                    <td className="p-4 border-r border-sb-line">~94.300 €</td>
                     <td className="p-4 border-r border-sb-line">~74.400 €</td>
                     <td className="p-4 border-r border-sb-line">~50.000 €</td>
-                    <td className="p-4 text-sb-green">+26.600 €</td>
+                    <td className="p-4 text-sb-green">+19.900 €</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
             <p className="text-sm text-sb-mut mb-6">
-              Annahmen: EPU = E/A-Rechnung, ledig, keine Kinder, SVS-Beiträge als Betriebsausgabe.
-              GmbH = GF-Gehalt 3.000 €/Monat brutto, Rest als Ausschüttung. Laufende Mehrkosten GmbH ca. 8.000 €/Jahr.
+              Annahmen (vereinfachte Modellrechnung, gerundet): EPU = E/A-Rechnung, ledig, Tarif 2026, Grundfreibetrag,
+              SVS-Beiträge als Betriebsausgabe (2026 gedeckelt). GmbH = GF-Gehalt 3.000 €/Monat brutto (SV vereinfacht),
+              Rest als Ausschüttung, laufende Mehrkosten ca. 8.000 €/Jahr. Individuelle Berechnung beim Steuerberater.
             </p>
 
             <div className="bg-sb-accent-soft p-6 rounded-lg border border-sb-accent/30">
               <p className="text-sb-mut mb-0">
                 <strong>Wichtig — Thesaurierung:</strong> Wenn du Gewinne in der GmbH belässt (thesaurierst),
                 zahlst du nur 23% KöSt. Die KESt fällt erst bei Ausschüttung an. Bei Wachstumsunternehmen,
-                die Gewinne reinvestieren, ist die GmbH daher schon ab ca. 40.000 € Gewinn interessant.
+                die Gewinne reinvestieren, ist die GmbH in dieser Modellrechnung schon ab ca. 40.000 € Gewinn interessant.
               </p>
             </div>
           </section>
@@ -267,18 +269,18 @@ export default function GmbHvsEinzelunternehmenPage() {
                 <h3 className="text-xl font-semibold text-sb-text mb-4">Einzelunternehmen</h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between"><span>Jahresgewinn</span><span className="text-sb-text">80.000 €</span></div>
-                  <div className="flex justify-between"><span>– SVS-Beiträge (~26,83%)</span><span className="text-sb-red">−21.464 €</span></div>
-                  <div className="flex justify-between"><span>= Steuerpflichtiger Gewinn</span><span className="text-sb-text">58.536 €</span></div>
+                  <div className="flex justify-between"><span>– SVS-Beiträge (~26,83% + UV)</span><span className="text-sb-red">−21.619 €</span></div>
+                  <div className="flex justify-between"><span>= Steuerpflichtiger Gewinn</span><span className="text-sb-text">58.381 €</span></div>
                   <div className="flex justify-between"><span>– Gewinnfreibetrag (§ 10)</span><span className="text-sb-green">−4.950 €</span></div>
-                  <div className="flex justify-between"><span>= Zu versteuerndes Einkommen</span><span className="text-sb-text">53.586 €</span></div>
-                  <div className="flex justify-between border-t border-sb-line pt-2"><span>Einkommensteuer</span><span className="text-sb-red">−13.448 €</span></div>
+                  <div className="flex justify-between"><span>= Zu versteuerndes Einkommen</span><span className="text-sb-text">53.431 €</span></div>
+                  <div className="flex justify-between border-t border-sb-line pt-2"><span>Einkommensteuer (Tarif 2026)</span><span className="text-sb-red">−12.820 €</span></div>
                   <div className="flex justify-between border-t border-sb-line pt-2 font-semibold">
                     <span className="text-sb-text">Gesamtbelastung (ESt + SVS)</span>
-                    <span className="text-sb-red">34.912 €</span>
+                    <span className="text-sb-red">34.439 €</span>
                   </div>
                   <div className="flex justify-between font-semibold">
                     <span className="text-sb-text">Netto</span>
-                    <span className="text-sb-green">45.088 €</span>
+                    <span className="text-sb-green">45.561 €</span>
                   </div>
                 </div>
               </div>
@@ -314,7 +316,7 @@ export default function GmbHvsEinzelunternehmenPage() {
             <div className="bg-white/[0.05] p-6 rounded-lg border-l-4 border-sb-accent/40">
               <p className="mb-0">
                 <strong className="text-sb-text">Fazit des Rechenbeispiels:</strong> Bei 80.000 € Gewinn und 50% Ausschüttung
-                ist das EPU-Netto (~45.088 €) noch höher als das GmbH-Netto (~34.712 €) — aber: in der GmbH bleiben
+                ist das EPU-Netto (~45.561 €) noch höher als das GmbH-Netto (~34.712 €) — aber: in der GmbH bleiben
                 zusätzlich ~8.155 € thesauriert. Die GmbH lohnt sich hier vor allem, wenn du Gewinne reinvestierst
                 und von der niedrigeren KöSt (23% statt bis zu 48% ESt) profitierst.
               </p>
@@ -336,10 +338,10 @@ export default function GmbHvsEinzelunternehmenPage() {
                 <div>
                   <h4 className="text-lg font-medium text-sb-green mb-3">Vorteile gegenüber GmbH</h4>
                   <ul className="space-y-2">
-                    <li><strong className="text-sb-text">Mindestkapital:</strong> 10.000 € (statt 35.000 €)</li>
-                    <li><strong className="text-sb-text">Unternehmenswert-Anteile:</strong> Mitarbeiterbeteiligung ohne Notar</li>
+                    <li><strong className="text-sb-text">Unternehmenswert-Anteile:</strong> Mitarbeiterbeteiligung, unter 25% des Stammkapitals, ohne Stimmrecht</li>
+                    <li><strong className="text-sb-text">Start-Up-Mitarbeiterbeteiligung:</strong> Steueraufschub nach § 67a EStG nutzbar</li>
                     <li><strong className="text-sb-text">Flexiblere Satzung:</strong> Mehr Gestaltungsspielraum</li>
-                    <li><strong className="text-sb-text">Einfachere Anteilsübertragung:</strong> Kein Notariatsakt nötig</li>
+                    <li><strong className="text-sb-text">Einfachere Anteilsübertragung:</strong> Notarielle oder anwaltliche Privaturkunde statt Notariatsakt</li>
                   </ul>
                 </div>
                 <div>
@@ -347,7 +349,7 @@ export default function GmbHvsEinzelunternehmenPage() {
                   <ul className="space-y-2">
                     <li><strong className="text-sb-text">KöSt:</strong> 23% (wie GmbH)</li>
                     <li><strong className="text-sb-text">KESt:</strong> 27,5% auf Ausschüttungen</li>
-                    <li><strong className="text-sb-text">ASVG:</strong> Gleiche SV-Pflicht für GF</li>
+                    <li><strong className="text-sb-text">SV-Zuordnung:</strong> Wie GmbH (bis 25% ASVG, darüber GSVG)</li>
                     <li><strong className="text-sb-text">Bilanzierung:</strong> Doppelte Buchführung</li>
                   </ul>
                 </div>
@@ -356,10 +358,10 @@ export default function GmbHvsEinzelunternehmenPage() {
 
             <div className="bg-sb-accent-soft p-6 rounded-lg border border-sb-accent/30">
               <p className="text-sb-mut mb-0">
-                <strong>Empfehlung:</strong> Für Neugründungen ist die FlexKap oft die bessere Wahl als die klassische GmbH.
-                Geringeres Stammkapital (10.000 € statt 35.000 €), gleiche steuerliche Behandlung,
-                und mehr Flexibilität bei der Gesellschafterstruktur. Besonders für Startups und
-                Ein-Personen-Kapitalgesellschaften interessant.
+                <strong>Empfehlung:</strong> Seit 2024 gilt für GmbH und FlexKap dasselbe Mindeststammkapital von 10.000 €.
+                Der FlexKap-Vorteil liegt daher nicht beim Kapital, sondern bei Unternehmenswert-Anteilen für Mitarbeiter,
+                der einfacheren Anteilsübertragung und der flexibleren Satzung. Besonders für Startups mit
+                Beteiligungsprogrammen interessant.
               </p>
             </div>
           </section>
@@ -379,7 +381,7 @@ export default function GmbHvsEinzelunternehmenPage() {
                     <li>Haftungsbeschränkung auf Stammkapital</li>
                     <li>Steueroptimierung ab ca. 60.000 € Gewinn</li>
                     <li>Gewinnthesaurierung: nur 23% KöSt</li>
-                    <li>ASVG: bessere SV-Leistungen, kein Nachzahlungsrisiko</li>
+                    <li>GF-Gehalt als Betriebsausgabe der GmbH absetzbar</li>
                     <li>Höhere Reputation bei Kunden und Banken</li>
                     <li>Pensionsvorsorge über die Gesellschaft</li>
                     <li>Mehrere Gesellschafter und Beteiligungsmodelle</li>
@@ -390,12 +392,12 @@ export default function GmbHvsEinzelunternehmenPage() {
                 <div>
                   <h4 className="text-lg font-medium text-sb-red mb-3">Nachteile</h4>
                   <ul className="space-y-2">
-                    <li>Mindestkapital: 35.000 € (GmbH) / 10.000 € (FlexKap)</li>
-                    <li>Gründungskosten: Notar, Firmenbuch (2.000–5.000 €)</li>
+                    <li>Mindestkapital: 10.000 € (GmbH und FlexKap, seit 2024)</li>
+                    <li>Gründungskosten: Notar, Firmenbuch (ca. 2.000–5.000 €, Richtwert)</li>
                     <li>Doppelte Buchführung verpflichtend</li>
                     <li>Bilanzierungs- und Publizitätspflicht</li>
                     <li>Laufende Mehrkosten: 6.000–16.000 €/Jahr</li>
-                    <li>Mindest-KöSt: 2.000 €/Jahr (auch bei Verlust)</li>
+                    <li>Mindest-KöSt: 500 €/Jahr (auch bei Verlust)</li>
                     <li>Geschäftsführerhaftung bei Pflichtverletzung</li>
                   </ul>
                 </div>
@@ -409,12 +411,12 @@ export default function GmbHvsEinzelunternehmenPage() {
                   <h4 className="text-lg font-medium text-sb-green mb-3">Vorteile</h4>
                   <ul className="space-y-2">
                     <li>Einfache und schnelle Gründung (ab 1 Tag)</li>
-                    <li>Geringe Gründungskosten (Gewerbeanmeldung ~30 €)</li>
+                    <li>Geringe Gründungskosten (Gewerbeanmeldung gebührenfrei)</li>
                     <li>Einnahmen-Ausgaben-Rechnung möglich</li>
                     <li>Weniger Formalitäten und Bürokratie</li>
                     <li>Vollständige Kontrolle und schnelle Entscheidungen</li>
                     <li>Einfache Gewinnentnahme (jederzeit, steuerfrei)</li>
-                    <li>Gewinnfreibetrag (§ 10 EStG): bis 4.950 € steuerfrei</li>
+                    <li>Gewinnfreibetrag (§ 10 EStG): Grundfreibetrag bis 4.950 €</li>
                     <li>Betriebsausgabenpauschale möglich (§ 17 EStG)</li>
                   </ul>
                 </div>
@@ -426,7 +428,7 @@ export default function GmbHvsEinzelunternehmenPage() {
                     <li>Progressiver Steuersatz bis 55% ESt</li>
                     <li>SVS-Beiträge: ~27% auf Gewinn + Nachzahlungsrisiko</li>
                     <li>Weniger Gestaltungsmöglichkeiten</li>
-                    <li>Kein Arbeitslosengeld bei Einstellung der Tätigkeit</li>
+                    <li>Arbeitslosenversicherung nur über freiwilliges Opt-in</li>
                     <li>Schwierigere Nachfolgeplanung</li>
                     <li>Geringere Außenwirkung und Reputation</li>
                   </ul>
@@ -443,22 +445,22 @@ export default function GmbHvsEinzelunternehmenPage() {
               <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
                 <h3 className="text-lg font-semibold text-sb-text mb-4">Einzelunternehmen</h3>
                 <ul className="space-y-2 text-sm">
-                  <li><strong className="text-sb-text">Gewerbeanmeldung:</strong> ~30 €</li>
-                  <li><strong className="text-sb-text">WKO-Beitrag:</strong> ~100 €/Jahr</li>
+                  <li><strong className="text-sb-text">Gewerbeanmeldung:</strong> gebührenfrei</li>
+                  <li><strong className="text-sb-text">WKO-Beitrag:</strong> Grundumlage, je nach Fachgruppe</li>
                   <li><strong className="text-sb-text">Steuerberatung (E/A):</strong> ~1.000–3.000 €/Jahr</li>
-                  <li className="pt-2 border-t border-sb-line"><strong className="text-sb-text">Gründung:</strong> ~30–100 €</li>
-                  <li><strong className="text-sb-text">Laufend:</strong> ~1.100–3.100 €/Jahr</li>
+                  <li className="pt-2 border-t border-sb-line"><strong className="text-sb-text">Gründung:</strong> nahezu 0 €</li>
+                  <li><strong className="text-sb-text">Laufend:</strong> ~1.000–3.000 €/Jahr</li>
                 </ul>
               </div>
 
               <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
                 <h3 className="text-lg font-semibold text-sb-text mb-4">GmbH (klassisch)</h3>
                 <ul className="space-y-2 text-sm">
-                  <li><strong className="text-sb-text">Stammkapital:</strong> 35.000 €</li>
-                  <li><strong className="text-sb-text">Notar + Firmenbuch:</strong> ~2.000–3.500 €</li>
+                  <li><strong className="text-sb-text">Stammkapital:</strong> 10.000 € (5.000 € bar)</li>
+                  <li><strong className="text-sb-text">Notar + Firmenbuch:</strong> ca. 2.000–3.500 € (Richtwert)</li>
                   <li><strong className="text-sb-text">Bilanzierung:</strong> ~3.000–8.000 €/Jahr</li>
-                  <li><strong className="text-sb-text">Mindest-KöSt:</strong> 2.000 €/Jahr</li>
-                  <li className="pt-2 border-t border-sb-line"><strong className="text-sb-text">Gründung:</strong> ~37.000–40.000 €</li>
+                  <li><strong className="text-sb-text">Mindest-KöSt:</strong> 500 €/Jahr</li>
+                  <li className="pt-2 border-t border-sb-line"><strong className="text-sb-text">Gründung:</strong> ~12.000–14.000 € (inkl. Stammkapital)</li>
                   <li><strong className="text-sb-text">Laufend:</strong> ~6.000–16.000 €/Jahr</li>
                 </ul>
               </div>
@@ -466,10 +468,10 @@ export default function GmbHvsEinzelunternehmenPage() {
               <div className="bg-sb-card p-6 rounded-lg border border-sb-accent/30">
                 <h3 className="text-lg font-semibold text-sb-accent mb-4">FlexKap (neu)</h3>
                 <ul className="space-y-2 text-sm">
-                  <li><strong className="text-sb-text">Stammkapital:</strong> 10.000 €</li>
-                  <li><strong className="text-sb-text">Notar + Firmenbuch:</strong> ~1.500–3.000 €</li>
+                  <li><strong className="text-sb-text">Stammkapital:</strong> 10.000 € (5.000 € bar)</li>
+                  <li><strong className="text-sb-text">Notar + Firmenbuch:</strong> ca. 2.000–3.000 € (WKO-Richtwert)</li>
                   <li><strong className="text-sb-text">Bilanzierung:</strong> ~3.000–8.000 €/Jahr</li>
-                  <li><strong className="text-sb-text">Mindest-KöSt:</strong> 2.000 €/Jahr</li>
+                  <li><strong className="text-sb-text">Mindest-KöSt:</strong> 500 €/Jahr</li>
                   <li className="pt-2 border-t border-sb-line"><strong className="text-sb-text">Gründung:</strong> ~12.000–14.000 €</li>
                   <li><strong className="text-sb-text">Laufend:</strong> ~6.000–16.000 €/Jahr</li>
                 </ul>
@@ -490,7 +492,7 @@ export default function GmbHvsEinzelunternehmenPage() {
                   <li><strong className="text-sb-text">Gewinne reinvestiert werden</strong> — Thesaurierung spart 23% statt bis zu 55%</li>
                   <li><strong className="text-sb-text">Mitarbeiterbeteiligung geplant</strong> — FlexKap: Unternehmenswert-Anteile</li>
                   <li><strong className="text-sb-text">Unternehmensverkauf angestrebt</strong> — GmbH-Anteile leichter verkaufbar</li>
-                  <li><strong className="text-sb-text">Bessere SV-Leistungen gewünscht</strong> — ASVG statt SVS</li>
+                  <li><strong className="text-sb-text">Vergütung flexibel gestaltbar</strong> - Mix aus GF-Gehalt und Gewinnausschüttung</li>
                 </ul>
               </div>
 
@@ -523,7 +525,7 @@ export default function GmbHvsEinzelunternehmenPage() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="bg-sb-accent text-sb-accent-ink rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold shrink-0">3</span>
-                  <div><strong className="text-sb-text">Stammkapital einzahlen</strong> — 35.000 € (GmbH) oder 10.000 € (FlexKap) auf Geschäftskonto</div>
+                  <div><strong className="text-sb-text">Stammkapital einzahlen</strong> — 10.000 € (GmbH und FlexKap, davon mind. 5.000 € bar) auf Geschäftskonto</div>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="bg-sb-accent text-sb-accent-ink rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold shrink-0">4</span>
@@ -535,7 +537,7 @@ export default function GmbHvsEinzelunternehmenPage() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="bg-sb-accent text-sb-accent-ink rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold shrink-0">6</span>
-                  <div><strong className="text-sb-text">SVS → ASVG Wechsel</strong> — Abmeldung SVS, Anmeldung ASVG als GF mit &gt;25% Beteiligung</div>
+                  <div><strong className="text-sb-text">Sozialversicherung klären</strong> — bis 25% Beteiligung ASVG, darüber i.d.R. weiterhin GSVG (SVS)</div>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="bg-sb-accent text-sb-accent-ink rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold shrink-0">7</span>
@@ -572,25 +574,27 @@ export default function GmbHvsEinzelunternehmenPage() {
                 <p className="mb-0">
                   Ja, nach Art. III UmgrStG (Umgründungssteuergesetz) ist eine steuerneutrale Einbringung möglich.
                   Dabei werden alle Wirtschaftsgüter des EPU zu Buchwerten in die GmbH übertragen — ohne Aufdeckung stiller Reserven.
-                  Voraussetzung: Es muss ein positiver Verkehrswert vorliegen und die Einbringung durch einen Steuerberater begleitet werden.
+                  Voraussetzung ist ein positiver Verkehrswert; wegen strenger Form- und Fristerfordernisse sollte die Einbringung steuerlich begleitet werden.
                 </p>
               </div>
 
               <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
                 <h3 className="text-lg font-semibold text-sb-text mb-2">Was ist die Mindest-KöSt und muss ich sie auch bei Verlust zahlen?</h3>
                 <p className="mb-0">
-                  Ja, die Mindest-KöSt beträgt 500 €/Quartal (= 2.000 €/Jahr) und ist auch bei Verlust zu zahlen.
-                  Sie wird aber auf die tatsächliche KöSt-Schuld der Folgejahre angerechnet. Bei der FlexKap gelten
-                  die gleichen Regeln. In den ersten 5 Jahren nach Gründung gilt eine reduzierte Mindest-KöSt von 125 €/Quartal.
+                  Ja, die Mindest-KöSt beträgt 125 €/Quartal (= 500 €/Jahr) und ist auch bei Verlust zu zahlen.
+                  Sie wird aber auf die tatsächliche KöSt-Schuld der Folgejahre angerechnet. Für GmbH und FlexKap gilt
+                  seit 2024 einheitlich derselbe Betrag (5% des Mindeststammkapitals von 10.000 €); die frühere
+                  Staffelung für Neugründungen ist entfallen.
                 </p>
               </div>
 
               <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
                 <h3 className="text-lg font-semibold text-sb-text mb-2">Was ist der Unterschied zwischen GmbH und FlexKap?</h3>
                 <p className="mb-0">
-                  Die FlexKap (seit 2024) ist steuerlich identisch zur GmbH (23% KöSt, 27,5% KESt).
-                  Vorteile: Niedrigeres Mindestkapital (10.000 € statt 35.000 €), Unternehmenswert-Anteile
-                  für Mitarbeiter ohne Notar, flexiblere Satzungsgestaltung und einfachere Anteilsübertragung.
+                  Die FlexKap (seit 2024) ist steuerlich identisch zur GmbH (23% KöSt, 27,5% KESt), auch das
+                  Mindeststammkapital ist mit 10.000 € gleich. Vorteile: Unternehmenswert-Anteile für Mitarbeiter
+                  (unter 25% des Stammkapitals, ohne Stimmrecht), Anteilsübertragung per notarieller oder anwaltlicher
+                  Privaturkunde statt Notariatsakt und flexiblere Satzungsgestaltung.
                   Nachteile: Noch wenig Rechtsprechung und Praxis vorhanden.
                 </p>
               </div>
@@ -606,10 +610,11 @@ export default function GmbHvsEinzelunternehmenPage() {
               <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
                 <h3 className="text-lg font-semibold text-sb-text mb-2">Kann ich als GmbH-Geschäftsführer den Gewinnfreibetrag nutzen?</h3>
                 <p className="mb-0">
-                  Nein. Der Gewinnfreibetrag (§ 10 EStG) gilt nur für natürliche Personen mit Einkünften
-                  aus selbständiger Arbeit oder Gewerbebetrieb. Als GmbH-Geschäftsführer beziehst du ein Gehalt
-                  (Einkünfte aus nichtselbständiger Arbeit). Der GFB fällt daher bei der GmbH-Variante weg — wird aber durch
-                  die niedrigere KöSt (23%) kompensiert.
+                  Das hängt von deiner Beteiligung ab. Bis 25% Beteiligung beziehst du lohnsteuerpflichtige Einkünfte
+                  aus nichtselbständiger Arbeit, dafür steht kein Gewinnfreibetrag zu. Bei mehr als 25% Beteiligung
+                  gelten deine GF-Bezüge als Einkünfte aus selbständiger Arbeit (§ 22 Z 2 EStG), dann kannst du den
+                  Grundfreibetrag (bis 4.950 €) nutzen. Auf den Gewinn der GmbH selbst gibt es keinen Gewinnfreibetrag,
+                  dafür gilt die niedrigere KöSt (23%).
                 </p>
               </div>
 
@@ -629,10 +634,10 @@ export default function GmbHvsEinzelunternehmenPage() {
             <h2 className="text-3xl font-semibold text-sb-text mb-6">Fazit: Wann lohnt sich die GmbH?</h2>
             <div className="bg-white/[0.05] p-6 rounded-lg border-l-4 border-sb-green/40">
               <ul className="space-y-3">
-                <li><strong className="text-sb-text">Ab 60.000–80.000 € Jahresgewinn:</strong> GmbH wird steuerlich interessant (bei Vollausschüttung)</li>
+                <li><strong className="text-sb-text">Ab 60.000–80.000 € Jahresgewinn:</strong> GmbH wird steuerlich interessant (Modellrechnung, bei Vollausschüttung)</li>
                 <li><strong className="text-sb-text">Ab 40.000 € bei Thesaurierung:</strong> Nur 23% KöSt statt bis zu 48% ESt</li>
-                <li><strong className="text-sb-text">FlexKap als günstigere Alternative:</strong> Nur 10.000 € Stammkapital, gleiche Steuervorteile</li>
-                <li><strong className="text-sb-text">Bessere Sozialversicherung:</strong> ASVG statt SVS, kein Nachzahlungsrisiko</li>
+                <li><strong className="text-sb-text">FlexKap als flexible Alternative:</strong> Gleiches Stammkapital und gleiche Steuern wie die GmbH, plus Unternehmenswert-Anteile</li>
+                <li><strong className="text-sb-text">Sozialversicherung:</strong> ASVG nur bei GF-Beteiligung bis 25%, Alleingesellschafter bleiben SVS-versichert</li>
                 <li><strong className="text-sb-text">Bei Haftungsrisiken:</strong> GmbH bietet wichtigen Schutz</li>
                 <li><strong className="text-sb-text">Bei niedrigeren Gewinnen:</strong> Einzelunternehmen oft günstiger und einfacher</li>
               </ul>

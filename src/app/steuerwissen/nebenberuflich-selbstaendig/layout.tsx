@@ -27,7 +27,7 @@ const articleJsonLd = {
   "description": "Nebenberuflich selbständig in Österreich: SVS-Pflicht, Steuerberechnung bei Mischeinkommen, Meldepflichten und typische Fehler vermeiden.",
   "image": "https://steuerboard.pro/opengraph-image",
   "datePublished": "2026-03-19",
-  "dateModified": "2026-03-19",
+  "dateModified": "2026-07-30",
   "inLanguage": "de-AT",
   "author": {
     "@type": "Person",
@@ -63,7 +63,7 @@ const faqJsonLd = {
       "name": "Muss ich als nebenberuflich Selbständiger zur SVS?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ja, sobald deine Einkünfte aus selbständiger Tätigkeit 6.221,28 € pro Jahr überschreiten, bist du pflichtversichert bei der SVS. Bei niedrigeren Einkünften kannst du dich freiwillig versichern."
+        "text": "Als Neuer Selbständiger bist du pflichtversichert, sobald deine Einkünfte aus selbständiger Tätigkeit 6.613,20 € pro Jahr (2026) überschreiten. Mit Gewerbeschein bist du ab der Gewerbeanmeldung pflichtversichert; eine Ausnahme gibt es nur auf Antrag. Bei niedrigeren Einkünften kannst du dich freiwillig versichern."
       }
     },
     {
@@ -71,7 +71,7 @@ const faqJsonLd = {
       "name": "Ab welchem Nebeneinkommen muss ich eine Steuererklärung machen?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Als Arbeitnehmer musst du ab 730 € jährlichen Einkünften aus selbständiger Tätigkeit eine Pflichtveranlagung (Steuererklärung) abgeben. Darunter ist es freiwillig."
+        "text": "Als Arbeitnehmer musst du bei über 730 € jährlichen Einkünften aus selbständiger Tätigkeit eine Pflichtveranlagung (Steuererklärung) abgeben (Veranlagungsfreibetrag, Einschleifregelung bis 1.460 €). Darunter ist es freiwillig."
       }
     },
     {
@@ -87,7 +87,7 @@ const faqJsonLd = {
       "name": "Kann ich nebenberuflich selbständig sein ohne Gewerbeschein?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Das kommt auf die Tätigkeit an. Freiberufliche Tätigkeiten (Beratung, IT, Kunst) brauchen keinen Gewerbeschein. Gewerbliche Tätigkeiten schon. Bei Unsicherheit bei der WKO nachfragen."
+        "text": "Das kommt auf die Tätigkeit an. Nur echte freie Tätigkeiten (Vortragende, Autoren, Künstler, Wissenschaft) brauchen keinen Gewerbeschein. IT-Dienstleistung, Webdesign und Grafik sind freie Gewerbe mit Anmeldepflicht, Coaching ist reglementiert. Bei Unsicherheit bei der WKO nachfragen."
       }
     }
   ]

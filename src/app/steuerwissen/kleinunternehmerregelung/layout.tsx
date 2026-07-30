@@ -3,7 +3,7 @@ import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
   title: 'Kleinunternehmerregelung Österreich 2026: Umsatzgrenze, Vorteile & Fallstricke',
-  description: 'Alles zur Kleinunternehmerregelung in Österreich: Umsatzgrenze 42.000€, USt-Befreiung, Toleranzgrenze, EU-Regelung und wann sich der Verzicht lohnt.',
+  description: 'Alles zur Kleinunternehmerregelung in Österreich: Umsatzgrenze 55.000€ brutto, USt-Befreiung, Toleranzgrenze, EU-Regelung und wann sich der Verzicht lohnt.',
   openGraph: {
     title: 'Kleinunternehmerregelung Österreich 2026: Kompletter Guide',
     description: 'Umsatzgrenze, USt-Befreiung, Vorsteuerabzug und wann sich die Regelbesteuerung lohnt.',
@@ -26,7 +26,7 @@ const articleJsonLd = {
     url: 'https://steuerboard.pro/impressum',
   },
   datePublished: '2026-03-18',
-  dateModified: '2026-03-19',
+  dateModified: '2026-07-30',
   inLanguage: 'de-AT',
   publisher: {
     '@type': 'Organization',
@@ -54,7 +54,7 @@ const faqJsonLd = {
       name: 'Wie hoch ist die Umsatzgrenze für Kleinunternehmer in Österreich 2026?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Die Umsatzgrenze für Kleinunternehmer liegt seit 2025 bei 42.000€ netto pro Jahr. Zuvor lag sie bei 35.000€.'
+        text: 'Die Umsatzgrenze für Kleinunternehmer liegt seit 2025 bei 55.000€ brutto pro Jahr. Zuvor lag sie bei 35.000€ netto.'
       }
     },
     {
@@ -62,7 +62,7 @@ const faqJsonLd = {
       name: 'Was passiert wenn ich die Kleinunternehmergrenze überschreite?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Eine einmalige Überschreitung um bis zu 15% innerhalb von 5 Jahren wird toleriert. Bei größerer oder wiederholter Überschreitung fällt die Befreiung rückwirkend weg und USt muss nachgezahlt werden.'
+        text: 'Eine Überschreitung um bis zu 10% (max. 60.500€) ist im selben Kalenderjahr unschädlich, die Befreiung bleibt bis zum Jahresende bestehen. Bei Überschreitung um mehr als 10% werden der übersteigende Umsatz und alle folgenden Umsätze steuerpflichtig. Einen rückwirkenden Entfall für das ganze Jahr gibt es seit 2025 nicht mehr.'
       }
     },
     {
@@ -78,7 +78,7 @@ const faqJsonLd = {
       name: 'Wie verzichte ich auf die Kleinunternehmerregelung?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Der Verzicht (Option zur Regelbesteuerung) erfolgt durch schriftliche Erklärung beim Finanzamt. Er bindet für mindestens 5 Jahre und kann danach widerrufen werden.'
+        text: 'Der Verzicht (Option zur Regelbesteuerung) erfolgt durch schriftliche Erklärung beim Finanzamt, möglich bis zur Rechtskraft des Umsatzsteuerbescheids. Er bindet für mindestens 5 Jahre und kann danach widerrufen werden.'
       }
     }
   ]

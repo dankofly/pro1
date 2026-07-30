@@ -4,7 +4,7 @@ import { JsonLd } from '@/components/json-ld'
 export const metadata: Metadata = {
   title: 'Die 5 besten Steuerrechner in Österreich 2026 im Vergleich',
   description:
-    'BMF Brutto-Netto-Rechner, SVS-Beitragsrechner, WKO-Sozialversicherungsrechner, finanz.at und SteuerBoard im Vergleich: welcher Steuerrechner wofür gebaut ist und welcher für Selbständige alles zusammenrechnet.',
+    'BMF Brutto-Netto-Rechner, SVS-Beitragsrechner, WKO SV- und Steuer-Rechner, finanz.at und SteuerBoard im Vergleich: welcher Steuerrechner wofür gebaut ist und welcher für Selbständige alles zusammenrechnet.',
   openGraph: {
     title: 'Die 5 besten Steuerrechner in Österreich 2026 im Vergleich',
     description:
@@ -40,7 +40,7 @@ const articleJsonLd = {
     },
   },
   description:
-    'Sachlicher Vergleich der fünf wichtigsten Steuerrechner in Österreich 2026: Einsatzzweck, Zielgruppe und Grenzen von BMF Brutto-Netto-Rechner, SVS-Beitragsrechner, WKO-Sozialversicherungsrechner, finanz.at und SteuerBoard.pro.',
+    'Sachlicher Vergleich der fünf wichtigsten Steuerrechner in Österreich 2026: Einsatzzweck, Zielgruppe und Grenzen von BMF Brutto-Netto-Rechner, SVS-Beitragsrechner, WKO SV- und Steuer-Rechner, finanz.at und SteuerBoard.pro.',
   mainEntityOfPage: {
     '@type': 'WebPage',
     '@id': 'https://steuerboard.pro/steuerwissen/steuerrechner-oesterreich-vergleich',
@@ -74,7 +74,7 @@ const itemListJsonLd = {
       '@type': 'ListItem',
       position: 1,
       name: 'BMF Brutto-Netto-Rechner (Bundesministerium für Finanzen)',
-      url: 'https://bruttonetto.bmf.gv.at/',
+      url: 'https://www.bmf.gv.at/brutto-netto-rechner.html',
     },
     {
       '@type': 'ListItem',
@@ -85,8 +85,8 @@ const itemListJsonLd = {
     {
       '@type': 'ListItem',
       position: 3,
-      name: 'WKO-Sozialversicherungsrechner (Wirtschaftskammer Österreich)',
-      url: 'https://www.wko.at/',
+      name: 'WKO SV- und Steuer-Rechner (Wirtschaftskammer Österreich)',
+      url: 'https://www.wko.at/gruendung/sv-steuerrechner',
     },
     {
       '@type': 'ListItem',
@@ -112,7 +112,7 @@ const faqJsonLd = {
       name: 'Welcher Steuerrechner ist der beste für Selbständige in Österreich?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Für Selbständige reicht ein einzelner Rechner selten: Der SVS-Beitragsrechner und der WKO-Sozialversicherungsrechner berechnen die Sozialversicherung, Einkommensteuer-Rechner den Steuertarif. Wer SVS-Beiträge, Einkommensteuer, die Nachbelastung aus der Nachbemessung und das echte Netto in einer Rechnung sehen will, braucht einen kombinierten Rechner wie SteuerBoard.pro.',
+        text: 'Der SVS-Beitragsrechner berechnet die Sozialversicherung, der WKO SV- und Steuer-Rechner zusätzlich eine Steuer-Schätzung. Wer auch die Nachbelastung aus der Nachbemessung und das echte Netto in einer Rechnung sehen will, braucht einen kombinierten Rechner wie SteuerBoard.pro.',
       },
     },
     {
@@ -120,7 +120,7 @@ const faqJsonLd = {
       name: 'Sind die Steuerrechner von BMF, SVS und WKO kostenlos?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Ja. Der Brutto-Netto-Rechner des Finanzministeriums, der Beitragsrechner der SVS und der Sozialversicherungsrechner der WKO sind kostenlos nutzbar. Auch finanz.at und die Basis-Rechner von SteuerBoard.pro sind kostenlos und ohne Registrierung zugänglich.',
+        text: 'Ja. Der Brutto-Netto-Rechner des Finanzministeriums, der Beitragsrechner der SVS und der SV- und Steuer-Rechner der WKO sind kostenlos nutzbar. Auch finanz.at und die Basis-Rechner von SteuerBoard.pro sind kostenlos und ohne Registrierung zugänglich.',
       },
     },
     {

@@ -51,8 +51,9 @@ export default function PauschalierungOesterreichPage() {
               </p>
               <div className="bg-sb-card p-4 rounded-lg border-l-4 border-sb-accent/40">
                 <p className="text-sb-mut">
-                  <strong className="text-sb-text">Wichtig:</strong> Die Pauschalierung betrifft nur die
-                  Einkommensteuer. SVS-Beiträge, Umsatzsteuer und andere Abgaben werden unabhängig davon berechnet.
+                  <strong className="text-sb-text">Wichtig:</strong> Die Pauschalierung betrifft direkt nur die
+                  Einkommensteuer. Die Umsatzsteuer bleibt unberührt. Die SVS-Beiträge ändern sich aber indirekt mit,
+                  weil ihre Beitragsgrundlage der steuerliche Gewinn ist.
                 </p>
               </div>
             </section>
@@ -95,7 +96,7 @@ export default function PauschalierungOesterreichPage() {
                   für Finanzen mit branchenspezifischen Pauschalsätzen, die oft deutlich höher als der Basissatz sind.
                 </p>
                 <div className="space-y-2 text-sb-mut mb-4">
-                  <p><strong className="text-sb-text">Gastronomie:</strong> Eigene Verordnung mit gestaffelten Sätzen (Wareneinsatz + Personalkosten)</p>
+                  <p><strong className="text-sb-text">Gastronomie:</strong> Modulsystem aus Grundpauschale (15%), Mobilitätspauschale (2 bis 6%) und Energie- und Raumpauschale (8%)</p>
                   <p><strong className="text-sb-text">Lebensmittelhandel:</strong> Branchenspezifischer Wareneinsatz</p>
                   <p><strong className="text-sb-text">Drogisten:</strong> Eigene Pauschalierung</p>
                   <p><strong className="text-sb-text">Sportler, Künstler:</strong> Spezielle Regelungen</p>
@@ -202,9 +203,8 @@ export default function PauschalierungOesterreichPage() {
                   <h3 className="text-lg font-semibold text-sb-text mb-2">Basispauschalierung</h3>
                   <ul className="text-sb-mut space-y-2">
                     <li>• Einkünfte aus Gewerbebetrieb oder selbstständiger Arbeit</li>
-                    <li>• Jahresumsatz nicht über 420.000€ (ab 2026; 2025: 320.000€, 2024: 220.000€)</li>
-                    <li>• Keine Buchführungspflicht (oder freiwilliger Verzicht darauf)</li>
-                    <li>• Keine Gesellschafter einer OG oder KG mit Buchführungspflicht</li>
+                    <li>• Vorjahresumsatz nicht über 420.000€ (ab 2026; 2025: 320.000€, 2024: 220.000€)</li>
+                    <li>• Keine Buchführungspflicht und keine freiwillige Buchführung</li>
                   </ul>
                 </div>
 
@@ -220,10 +220,9 @@ export default function PauschalierungOesterreichPage() {
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
                   <h3 className="text-lg font-semibold text-sb-text mb-2">Kleinunternehmerpauschalierung</h3>
                   <ul className="text-sb-mut space-y-2">
-                    <li>• USt-Befreiung als Kleinunternehmer muss gelten</li>
-                    <li>• Jahresumsatz maximal 55.000€ brutto (seit 2025, mit einmaliger Toleranz von +10%)</li>
+                    <li>• USt-Kleinunternehmerbefreiung muss anwendbar sein oder nur wegen Verzichts (Option zur Regelbesteuerung) nicht anwendbar sein (§ 17 Abs 3a Z 2 EStG)</li>
+                    <li>• Jahresumsatz maximal 55.000€ brutto (seit 2025; Überschreitung um bis zu 10% im selben Jahr unschädlich)</li>
                     <li>• Keine Buchführungspflicht</li>
-                    <li>• Kein Verzicht auf die Kleinunternehmerregelung (Option zur Regelbesteuerung)</li>
                   </ul>
                 </div>
               </div>
@@ -402,8 +401,8 @@ export default function PauschalierungOesterreichPage() {
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
                   <h3 className="font-semibold text-sb-red mb-2">2. Umsatzgrenze übersehen</h3>
                   <p className="text-sb-mut">
-                    Bei Überschreitung der 420.000€-Grenze (ab 2026) verlieren Sie rückwirkend das Recht auf
-                    Basispauschalierung. Behalten Sie Ihre Umsatzentwicklung im Blick.
+                    Maßgeblich ist der Vorjahresumsatz: Liegt er über 420.000€ (ab 2026), steht die
+                    Basispauschalierung für das aktuelle Jahr nicht zu. Behalten Sie Ihre Umsatzentwicklung im Blick.
                   </p>
                 </div>
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
@@ -432,8 +431,9 @@ export default function PauschalierungOesterreichPage() {
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
                   <h3 className="font-semibold text-sb-text mb-2">Kann ich zwischen Pauschalierung und E/A-Rechnung wechseln?</h3>
                   <p className="text-sb-mut">
-                    Ja, ein Wechsel ist jährlich möglich. Sie entscheiden mit der Steuererklärung, ob Sie
-                    für das betreffende Jahr die Pauschalierung oder tatsächliche Ausgaben ansetzen.
+                    Der Wechsel von der Pauschalierung zur E/A-Rechnung ist mit der Steuererklärung jederzeit
+                    möglich. Danach ist eine Rückkehr zur Basispauschalierung aber erst nach 5 Wirtschaftsjahren
+                    zulässig, zur Kleinunternehmerpauschalierung nach 3 Wirtschaftsjahren.
                   </p>
                 </div>
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
@@ -446,8 +446,9 @@ export default function PauschalierungOesterreichPage() {
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
                   <h3 className="font-semibold text-sb-text mb-2">Kann ich als Neuer Selbstständiger sofort pauschalieren?</h3>
                   <p className="text-sb-mut">
-                    Ja, die Pauschalierung kann ab dem ersten Jahr der Selbstständigkeit angewendet werden,
-                    sofern die Voraussetzungen erfüllt sind.
+                    Ja, grundsätzlich kann die Pauschalierung ab dem ersten Jahr angewendet werden, sofern die
+                    Voraussetzungen erfüllt sind. Da im ersten Jahr ein Vorjahresumsatz fehlt, klären Sie den
+                    Einzelfall am besten mit Ihrer Steuerberatung.
                   </p>
                 </div>
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
@@ -460,8 +461,9 @@ export default function PauschalierungOesterreichPage() {
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
                   <h3 className="font-semibold text-sb-text mb-2">Was passiert, wenn ich die Umsatzgrenze im Laufe des Jahres überschreite?</h3>
                   <p className="text-sb-mut">
-                    Bei Überschreitung der 420.000€-Grenze (ab 2026) verlieren Sie das Recht auf Basispauschalierung
-                    für das betreffende Jahr. Sie müssen dann rückwirkend auf tatsächliche Ausgaben umstellen.
+                    Für das laufende Jahr ändert sich nichts, denn maßgeblich ist der Vorjahresumsatz. Liegt Ihr
+                    Umsatz heuer über 420.000€ (ab 2026), steht die Basispauschalierung erst im Folgejahr nicht
+                    mehr zu. Eine rückwirkende Umstellung gibt es nicht.
                   </p>
                 </div>
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">

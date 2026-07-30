@@ -39,7 +39,7 @@ export default function SvsNachzahlungVermeidenPage() {
                 <strong className="text-sb-text">Kurzantwort:</strong> Die SVS-Nachzahlung entsteht, weil
                 vorläufige Beiträge auf Basis einer Schätzung gezahlt werden. Steigt dein Gewinn, folgt
                 3 Jahre später eine Nachzahlung. Du vermeidest sie durch: (1) Antrag auf Erhöhung der
-                vorläufigen Beitragsgrundlage bei der SVS, (2) monatliche Rücklagen von 15-20% des
+                vorläufigen Beitragsgrundlage bei der SVS, (2) monatliche Rücklagen von rund 27% des
                 Mehrgewinns, (3) optimale Nutzung von Gewinnfreibetrag und Betriebsausgaben.
               </p>
             </div>
@@ -75,7 +75,7 @@ export default function SvsNachzahlungVermeidenPage() {
                   </li>
                   <li className="flex justify-between">
                     <span>Unfallversicherung:</span>
-                    <strong className="text-sb-text">~11,35€/Monat (pauschal)</strong>
+                    <strong className="text-sb-text">12,95€/Monat (pauschal, 2026)</strong>
                   </li>
                   <li className="flex justify-between border-t border-sb-line pt-2 mt-2">
                     <span className="font-medium">Gesamtbelastung (ohne UV):</span>
@@ -126,8 +126,8 @@ export default function SvsNachzahlungVermeidenPage() {
                 </div>
                 <div className="bg-sb-card p-4 rounded-lg border-l-4 border-sb-red/40">
                   <p className="text-sb-mut">
-                    <strong className="text-sb-text">Jahr 3 (Nachzahlung):</strong> Die SVS fordert die
-                    Nachzahlung ein — oft als Einmalbetrag. Gleichzeitig steigen die vorläufigen
+                    <strong className="text-sb-text">Jahr 3 (Nachzahlung):</strong> Die SVS schreibt die
+                    Nachzahlung vor, aufgeteilt auf die vier Quartale des Folgejahres. Gleichzeitig steigen die vorläufigen
                     Beiträge für die Zukunft (basierend auf dem jetzt bekannten höheren Gewinn).
                   </p>
                 </div>
@@ -194,7 +194,8 @@ export default function SvsNachzahlungVermeidenPage() {
               </div>
               <p className="text-sb-mut text-sm">
                 *Berechnung: Differenz × 26,83% (PV 18,50% + KV 6,80% + SV 1,53%). Ohne Unfallversicherung (pauschal).
-                Tatsächliche Nachzahlung kann durch Höchstbeitragsgrundlage niedriger ausfallen.
+                Vereinfacht ohne Hinzurechnung der SV-Beiträge zur Beitragsgrundlage (§ 25 Abs 2 GSVG); die tatsächliche
+                Nachzahlung kann dadurch höher, durch die Höchstbeitragsgrundlage niedriger ausfallen.
               </p>
             </section>
 
@@ -219,8 +220,8 @@ export default function SvsNachzahlungVermeidenPage() {
                     <strong className="text-sb-green">1.500€ ESt-Ersparnis</strong>
                   </div>
                   <div className="flex justify-between">
-                    <span>Nachzahlung 8.000€ bei Grenzsteuersatz 42%:</span>
-                    <strong className="text-sb-green">3.360€ ESt-Ersparnis</strong>
+                    <span>Nachzahlung 8.000€ bei Grenzsteuersatz 40%:</span>
+                    <strong className="text-sb-green">3.200€ ESt-Ersparnis</strong>
                   </div>
                   <div className="flex justify-between">
                     <span>Nachzahlung 10.000€ bei Grenzsteuersatz 48%:</span>
@@ -250,7 +251,7 @@ export default function SvsNachzahlungVermeidenPage() {
                     1. Antrag auf Erhöhung der vorläufigen Beitragsgrundlage
                   </h3>
                   <p className="text-sb-mut mb-3 leading-relaxed">
-                    Nach § 25a Abs 3 GSVG kannst du bei der SVS eine Erhöhung der vorläufigen
+                    Nach § 25a Abs 5 GSVG kannst du bei der SVS eine Erhöhung der vorläufigen
                     Beitragsgrundlage beantragen. So zahlst du laufend höhere Beiträge und
                     vermeidest die große Nachzahlung.
                   </p>
@@ -317,7 +318,8 @@ export default function SvsNachzahlungVermeidenPage() {
                   </h3>
                   <p className="text-sb-mut leading-relaxed">
                     Bei Anschaffung von Wirtschaftsgütern kannst du zusätzlich zur normalen AfA
-                    einen Investitionsfreibetrag von 15% (ökologisch: 20%) geltend machen.
+                    einen Investitionsfreibetrag von 10% (ökologisch: 15%) geltend machen; für Investitionen
+                    von 1.11.2025 bis 31.12.2026 gelten befristet 20% bzw. 22%.
                     Dieser senkt den Gewinn und damit die SVS-Grundlage.
                   </p>
                 </div>
@@ -332,7 +334,8 @@ export default function SvsNachzahlungVermeidenPage() {
                   </p>
                   <p className="text-sb-mut text-sm">
                     Kontakt: SVS-Landesstelle oder telefonisch unter 050 808 808.
-                    Ratenzahlungen über 12-24 Monate sind üblich.
+                    Nachbelastungen aus der Nachbemessung verteilt die SVS von sich aus auf die vier Quartale des
+                    Folgejahres, aus den ersten drei Jahren der Selbständigkeit auf Antrag auf bis zu zwölf Quartale.
                   </p>
                 </div>
 
@@ -360,15 +363,16 @@ export default function SvsNachzahlungVermeidenPage() {
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
                   <h3 className="font-semibold text-sb-text mb-2">1. Bescheid genau prüfen</h3>
                   <p className="text-sb-mut">
-                    Prüfe den Nachzahlungsbescheid auf korrekte Beitragsgrundlage.
+                    Prüfe die Nachzahlungsvorschreibung auf korrekte Beitragsgrundlage.
                     Stimmt der zugrunde gelegte Gewinn? Wurde der Gewinnfreibetrag berücksichtigt?
-                    Fehler kommen vor und du hast 3 Monate Zeit für einen Einspruch.
+                    Fehler kommen vor. Bei Zweifeln kannst du einen Bescheid verlangen; gegen den Bescheid
+                    ist binnen 4 Wochen Beschwerde möglich.
                   </p>
                 </div>
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
                   <h3 className="font-semibold text-sb-text mb-2">2. Zahlungsfrist beachten</h3>
                   <p className="text-sb-mut">
-                    Die Nachzahlung ist in der Regel innerhalb von 2 Wochen nach Zustellung fällig.
+                    Die Nachzahlung wird in vier Teilbeträgen zu den Quartalsterminen des Folgejahres fällig.
                     Kannst du nicht zahlen, sofort Kontakt mit der SVS aufnehmen.
                   </p>
                 </div>
@@ -441,9 +445,9 @@ export default function SvsNachzahlungVermeidenPage() {
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
                   <h3 className="font-semibold text-sb-text mb-2">Kann ich die SVS-Nachzahlung in Raten zahlen?</h3>
                   <p className="text-sb-mut">
-                    Ja, die SVS bietet Ratenzahlungen an. Kontaktiere deine SVS-Landesstelle
-                    telefonisch (050 808 808) oder über das Onlineportal. Ratenzahlungen über
-                    12-24 Monate sind üblich.
+                    Ja. Nachbelastungen werden standardmäßig auf die vier Quartale des Folgejahres aufgeteilt,
+                    aus den ersten drei Jahren der Selbständigkeit auf Antrag auf bis zu zwölf Quartale.
+                    Kontaktiere deine SVS-Landesstelle telefonisch (050 808 808) oder über das Onlineportal.
                   </p>
                 </div>
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
@@ -457,7 +461,8 @@ export default function SvsNachzahlungVermeidenPage() {
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
                   <h3 className="font-semibold text-sb-text mb-2">Kann ich gegen den Nachzahlungsbescheid Einspruch erheben?</h3>
                   <p className="text-sb-mut">
-                    Ja, du hast 3 Monate ab Zustellung Zeit für einen Einspruch (Beschwerde).
+                    Ja. Verlange zunächst einen Bescheid, die Vorschreibung selbst ist keiner. Gegen den Bescheid
+                    kannst du binnen 4 Wochen Beschwerde an das Bundesverwaltungsgericht erheben.
                     Prüfe insbesondere, ob die Beitragsgrundlage korrekt berechnet wurde und
                     ob der Gewinnfreibetrag berücksichtigt wurde.
                   </p>
@@ -465,9 +470,9 @@ export default function SvsNachzahlungVermeidenPage() {
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
                   <h3 className="font-semibold text-sb-text mb-2">Gibt es eine Höchstgrenze für SVS-Beiträge?</h3>
                   <p className="text-sb-mut">
-                    Ja, die Höchstbeitragsgrundlage liegt 2026 bei ca. 7.070€/Monat (84.840€/Jahr).
+                    Ja, die Höchstbeitragsgrundlage liegt 2026 bei 8.085€/Monat (97.020€/Jahr).
                     Ab diesem Gewinn steigen die SVS-Beiträge nicht mehr weiter. Die maximale
-                    jährliche SVS-Belastung beträgt damit ca. 22.760€.
+                    jährliche SVS-Belastung beträgt damit ca. 26.186€.
                   </p>
                 </div>
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
@@ -514,9 +519,9 @@ export default function SvsNachzahlungVermeidenPage() {
                 { name: 'SVS-Nachzahlung vermeiden', href: '/steuerwissen/svs-nachzahlung-vermeiden' },
               ]}
               sources={[
-                { name: 'SVS — Sozialversicherung der Selbständigen', url: 'https://www.svs.at/cdscontent/?contentid=10007.816984', description: 'Offizielle SVS-Seite zu Beitragsgrundlagen und Nachzahlungen' },
+                { name: 'SVS — Endgültige Beitragsberechnung', url: 'https://www.svs.at/cdscontent/?contentid=10007.816610&portal=svsportal', description: 'Offizielle SVS-Seite zu Nachbemessung und Nachbelastung' },
                 { name: 'GSVG § 25a — Vorläufige Beitragsgrundlage', url: 'https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10008442', description: 'Rechtsinformationssystem des Bundes (RIS)' },
-                { name: 'WKO — SVS-Beiträge für Gewerbetreibende', url: 'https://www.wko.at/sozialversicherung/svs-beitraege', description: 'Wirtschaftskammer Österreich — Aktuelle SVS-Beitragssätze' },
+                { name: 'WKO — Gewerbliche Sozialversicherungsbeiträge (Werte 2026)', url: 'https://www.wko.at/sozialversicherung/gewerbliche-sozialversicherungsbeitraege-ausmass', description: 'Wirtschaftskammer Österreich — Aktuelle SVS-Beitragssätze' },
                 { name: 'BMF — Einkommensteuergesetz', url: 'https://www.bmf.gv.at/themen/steuern/selbststaendige-unternehmer.html', description: 'Bundesministerium für Finanzen — Informationen für Selbständige' },
               ]}
               relatedArticles={[

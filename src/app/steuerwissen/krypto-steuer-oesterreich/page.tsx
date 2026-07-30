@@ -37,7 +37,7 @@ export default function KryptoSteuerOesterreichPage() {
                 Die neue Krypto-Besteuerung seit März 2022
               </h2>
               <p className="text-sb-mut mb-4 leading-relaxed">
-                Mit dem ökosozialen Steuerreformgesetz 2022 (BGBl I 2021/198) wurden Kryptowährungen
+                Mit dem ökosozialen Steuerreformgesetz 2022 (BGBl I Nr. 10/2022) wurden Kryptowährungen
                 in das Regime der Kapitalertragsteuer einbezogen. Seit dem 1. März 2022 gilt:
               </p>
               <div className="bg-sb-card p-5 rounded-lg border border-sb-line mb-4">
@@ -81,8 +81,11 @@ export default function KryptoSteuerOesterreichPage() {
                 <div className="bg-sb-card p-5 rounded-lg border-l-4 border-sb-accent/40">
                   <h3 className="text-lg font-semibold text-sb-text mb-2">Neubestand (ab 1. März 2021 angeschafft)</h3>
                   <p className="text-sb-mut">
-                    Alle Kryptowährungen, die ab dem 1. März 2021 angeschafft wurden, unterliegen
-                    immer der 27,5% KESt — unabhängig von der Haltedauer. Es gibt keine Spekulationsfrist mehr.
+                    Alle Kryptowährungen, die ab dem 1. März 2021 angeschafft wurden, gelten als
+                    Neubestand. Für Realisierungen ab dem 1. März 2022 fällt die 27,5% KESt an,
+                    unabhängig von der Haltedauer, eine Spekulationsfrist gibt es nicht mehr.
+                    Veräußerungen von Neubestand vor dem 1. März 2022 fielen noch unter das alte
+                    Spekulationsregime.
                   </p>
                 </div>
               </div>
@@ -109,7 +112,12 @@ export default function KryptoSteuerOesterreichPage() {
                     </tr>
                     <tr className="bg-sb-card">
                       <td className="p-3">Ab 1.3.2021</td>
-                      <td className="p-3">Jederzeit</td>
+                      <td className="p-3">Vor 1.3.2022</td>
+                      <td className="p-3">Altes Spekulationsregime</td>
+                    </tr>
+                    <tr className="bg-sb-deep">
+                      <td className="p-3">Ab 1.3.2021</td>
+                      <td className="p-3">Ab 1.3.2022</td>
                       <td className="p-3 text-sb-accent">27,5% KESt</td>
                     </tr>
                   </tbody>
@@ -143,7 +151,7 @@ export default function KryptoSteuerOesterreichPage() {
                     <li>• <strong className="text-sb-text">Staking-Rewards:</strong> Kein steuerpflichtiger Zufluss - Ansatz mit Anschaffungskosten 0, Besteuerung erst bei Veräußerung</li>
                     <li>• <strong className="text-sb-text">Airdrops und Bounties:</strong> Nicht steuerpflichtig bei Zufluss - Anschaffungskosten 0, Besteuerung erst bei Veräußerung</li>
                     <li>• <strong className="text-sb-text">Transfer zwischen eigenen Wallets:</strong> Kein Veräußerungsvorgang</li>
-                    <li>• <strong className="text-sb-text">Schenkung/Erbschaft:</strong> Keine Einkommensteuer (aber ev. Erbschaftssteuer-Äquivalent)</li>
+                    <li>• <strong className="text-sb-text">Schenkung/Erbschaft:</strong> Keine Einkommensteuer. Österreich hat keine Erbschafts- oder Schenkungssteuer, es gilt nur die Schenkungsmeldepflicht (§ 121a BAO)</li>
                     <li>• <strong className="text-sb-text">Kauf von Krypto:</strong> Die Anschaffung selbst ist nicht steuerpflichtig</li>
                   </ul>
                 </div>
@@ -161,7 +169,7 @@ export default function KryptoSteuerOesterreichPage() {
                   <h3 className="text-lg font-semibold text-sb-text mb-2">Staking</h3>
                   <p className="text-sb-mut mb-2">
                     Staking-Rewards aus der Blockerstellung (Konsensmechanismus) sind beim Zufluss
-                    NICHT steuerpflichtig (§ 27b Abs 2 Z 2 EStG). Es liegt kein steuerpflichtiger
+                    NICHT steuerpflichtig (§ 27b Abs 2 Schlussteil EStG). Es liegt kein steuerpflichtiger
                     Zufluss vor.
                   </p>
                   <p className="text-sb-mut text-sm">
@@ -288,7 +296,7 @@ export default function KryptoSteuerOesterreichPage() {
                 <h3 className="text-lg font-semibold text-sb-text mb-2">Schritt-für-Schritt:</h3>
                 <ol className="text-sb-mut space-y-2 list-decimal list-inside">
                   <li>Alle Krypto-Transaktionen des Jahres zusammentragen</li>
-                  <li>Anschaffungskosten pro Token ermitteln (FIFO oder Durchschnittsmethode)</li>
+                  <li>Anschaffungskosten pro Token ermitteln (gleitender Durchschnittspreis)</li>
                   <li>Gewinne und Verluste pro Transaktion berechnen</li>
                   <li>Mining- und Lending-Einkünfte separat erfassen (Staking-Rewards nur mit AK 0 dokumentieren)</li>
                   <li>Verlustausgleich mit anderen Kapitalerträgen durchführen</li>
@@ -299,7 +307,7 @@ export default function KryptoSteuerOesterreichPage() {
 
               <div className="bg-sb-accent-soft border border-sb-accent/30 p-4 rounded-lg">
                 <p className="text-sb-mut">
-                  <strong>Tipp:</strong> Nutzen Sie ein Krypto-Steuertool (z.B. Blockpit, CoinTracking, Accointing),
+                  <strong>Tipp:</strong> Nutzen Sie ein Krypto-Steuertool (z.B. Blockpit, CoinTracking),
                   um Ihre Transaktionen automatisch zu erfassen und den Steuerreport für die E1kv zu generieren.
                   Bei vielen Transaktionen ist eine manuelle Berechnung kaum möglich.
                 </p>
@@ -309,42 +317,23 @@ export default function KryptoSteuerOesterreichPage() {
             {/* Bewertungsmethoden */}
             <section className="mb-10">
               <h2 className="text-2xl font-semibold text-sb-text mb-4">
-                Bewertungsmethoden: FIFO vs. Durchschnitt
+                Bewertungsmethode: Gleitender Durchschnittspreis
               </h2>
               <p className="text-sb-mut mb-4 leading-relaxed">
-                Für die Ermittlung der Anschaffungskosten bei der Veräußerung stehen zwei Methoden
-                zur Verfügung:
+                Die Ermittlung der Anschaffungskosten ist bei Kryptowährungen gesetzlich vorgegeben:
+                Es gilt der gleitende Durchschnittspreis (KryptowährungsVO, BGBl II 455/2022).
+                Ein Wahlrecht, etwa FIFO, gibt es für Neuvermögen nicht.
               </p>
 
-              <div className="grid gap-4 md:grid-cols-2">
-                <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
-                  <h3 className="text-lg font-semibold text-sb-text mb-2">Gleitender Durchschnitt</h3>
-                  <p className="text-sb-mut mb-2">
-                    Die Anschaffungskosten aller gehaltenen Einheiten werden bei jedem Zukauf
-                    neu berechnet. Bei Verkauf wird der aktuelle Durchschnittspreis als
-                    Anschaffungskosten herangezogen.
-                  </p>
-                  <p className="text-sb-mut text-sm">
-                    → Empfohlen vom BMF und einfacher bei vielen Transaktionen.
-                  </p>
-                </div>
-
-                <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
-                  <h3 className="text-lg font-semibold text-sb-text mb-2">FIFO (First In, First Out)</h3>
-                  <p className="text-sb-mut mb-2">
-                    Die zuerst angeschafften Einheiten werden als zuerst veräußert betrachtet.
-                    Die Anschaffungskosten der ältesten Einheiten werden bei Verkauf herangezogen.
-                  </p>
-                  <p className="text-sb-mut text-sm">
-                    → Kann bei steigenden Kursen vorteilhafter sein (höhere AK = niedrigerer Gewinn).
-                  </p>
-                </div>
-              </div>
-
-              <div className="bg-sb-accent-soft border border-sb-accent/30 p-4 rounded-lg mt-4">
-                <p className="text-sb-mut">
-                  <strong>Achtung:</strong> Die gewählte Methode muss konsistent für alle Einheiten
-                  derselben Kryptowährung angewendet werden. Ein Wechsel ist nur zum Jahreswechsel möglich.
+              <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
+                <h3 className="text-lg font-semibold text-sb-text mb-2">So funktioniert der gleitende Durchschnittspreis</h3>
+                <p className="text-sb-mut mb-2">
+                  Die Anschaffungskosten aller Einheiten derselben Kryptowährung auf einer
+                  Kryptowährungsadresse werden bei jedem Zukauf neu gemittelt. Bei einem Verkauf
+                  gilt dieser Durchschnittspreis als Anschaffungskosten.
+                </p>
+                <p className="text-sb-mut text-sm">
+                  → Krypto-Steuertools berechnen den gleitenden Durchschnittspreis automatisch.
                 </p>
               </div>
             </section>
@@ -383,9 +372,9 @@ export default function KryptoSteuerOesterreichPage() {
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
                   <h3 className="font-semibold text-sb-red mb-2">4. Strafen bei Nichtmeldung</h3>
                   <p className="text-sb-mut">
-                    Wer Krypto-Einkünfte nicht deklariert, riskiert Finanzordnungswidrigkeiten (bis 25%
-                    der verkürzten Steuer) oder bei Vorsatz Abgabenhinterziehung (bis 200% der
-                    verkürzten Steuer + strafrechtliche Konsequenzen).
+                    Wer Krypto-Einkünfte nicht deklariert, riskiert Finanzordnungswidrigkeiten (bis 50%
+                    des nicht entrichteten Betrags, § 49 FinStrG) oder bei Vorsatz Abgabenhinterziehung
+                    (bis 200% der verkürzten Steuer + strafrechtliche Konsequenzen).
                   </p>
                 </div>
               </div>
@@ -473,9 +462,9 @@ export default function KryptoSteuerOesterreichPage() {
               ]}
               sources={[
                 { name: 'EStG § 27b — Einkünfte aus Kryptowährungen', url: 'https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10004570', description: 'Rechtsinformationssystem des Bundes (RIS)' },
-                { name: 'BMF — Kryptowährungen und Steuern', url: 'https://www.bmf.gv.at/themen/steuern/kryptowaehrungen.html', description: 'Bundesministerium für Finanzen — Infos zur Krypto-Besteuerung' },
-                { name: 'BMF-Erlass zu Kryptowährungen (EStR 2000 Rz 6148ff)', url: 'https://findok.bmf.gv.at/findok/link?gz=%2215%202301%2F7-IV%2F7%2F2022%22&aession=1', description: 'Einkommensteuerrichtlinien — Krypto-Kapitel' },
-                { name: 'WKO — Besteuerung von Kryptowährungen', url: 'https://www.wko.at/steuern/kryptowaehrungen-steuer', description: 'Wirtschaftskammer Österreich' },
+                { name: 'BMF — Steuerliche Behandlung von Kryptowährungen', url: 'https://www.bmf.gv.at/themen/steuern/sparen-veranlagen/steuerliche-behandlung-von-kryptowaehrungen.html', description: 'Bundesministerium für Finanzen — Infos zur Krypto-Besteuerung' },
+                { name: 'KryptowährungsVO (BGBl II 455/2022)', url: 'https://www.ris.bka.gv.at/Dokumente/BgblAuth/BGBLA_2022_II_455/BGBLA_2022_II_455.html', description: 'Verordnung zu Anschaffungskosten (gleitender Durchschnittspreis) und KESt-Abzug' },
+                { name: 'ÖkoStRefG 2022 Teil I (BGBl I 10/2022)', url: 'https://www.parlament.gv.at/gegenstand/XXVII/I/1293', description: 'Parlament Österreich — Gesetzgebungsverfahren zur Krypto-Besteuerung' },
               ]}
               relatedArticles={[
                 { title: 'Steueroptimierung für Selbstständige', href: '/steuerwissen/steueroptimierung-selbststaendige' },

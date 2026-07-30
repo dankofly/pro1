@@ -56,7 +56,7 @@ export default function Layout({
           },
         },
         datePublished: '2026-03-18',
-        dateModified: '2026-03-18',
+        dateModified: '2026-07-30',
         inLanguage: 'de-AT',
         mainEntityOfPage: {
           '@type': 'WebPage',
@@ -96,7 +96,7 @@ export default function Layout({
             name: 'Ab welchem Gewinn lohnt sich eine GmbH?',
             acceptedAnswer: {
               '@type': 'Answer',
-              text: 'Der Break-Even liegt meist zwischen 60.000-80.000€ Jahresgewinn. Ab diesem Punkt wird die GmbH-Besteuerung (25% KöSt + 27,5% KESt auf Ausschüttungen) günstiger als der Einkommensteuertarif.'
+              text: 'Der Break-Even liegt als Faustregel meist zwischen 60.000-80.000€ Jahresgewinn. Ab diesem Punkt wird die GmbH-Besteuerung (23% KöSt + 27,5% KESt auf Ausschüttungen) günstiger als der Einkommensteuertarif.'
             }
           }
         ]

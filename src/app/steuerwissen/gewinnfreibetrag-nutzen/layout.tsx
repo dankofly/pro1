@@ -2,15 +2,15 @@ import { Metadata } from 'next'
 import { JsonLd } from '@/components/json-ld'
 
 export const metadata: Metadata = {
-  title: 'Gewinnfreibetrag 2026: So sparst du bis zu 4.950 € Steuern',
-  description: 'Gewinnfreibetrag Österreich: Spare bis zu 4.950€ Steuern mit dem Grundfreibetrag nach § 10 EStG. Berechne deinen Gewinnfreibetrag und nutze alle Vorteile optimal.',
+  title: 'Gewinnfreibetrag 2026: Bis zu 4.950 € Gewinn steuerfrei',
+  description: 'Gewinnfreibetrag Österreich: Bis zu 4.950€ deines Gewinns steuerfrei mit dem Grundfreibetrag nach § 10 EStG. Berechne deinen Gewinnfreibetrag und nutze alle Vorteile optimal.',
   keywords: 'Gewinnfreibetrag, Gewinnfreibetrag Österreich, Gewinnfreibetrag berechnen, § 10 EStG, Grundfreibetrag, Steuerersparnis',
   alternates: {
     canonical: '/steuerwissen/gewinnfreibetrag-nutzen'
   },
   openGraph: {
-    title: 'Gewinnfreibetrag 2026: So sparst du bis zu 4.950 € Steuern',
-    description: 'Gewinnfreibetrag Österreich: Spare bis zu 4.950€ Steuern mit dem Grundfreibetrag nach § 10 EStG. Berechne deinen Gewinnfreibetrag und nutze alle Vorteile optimal.',
+    title: 'Gewinnfreibetrag 2026: Bis zu 4.950 € Gewinn steuerfrei',
+    description: 'Gewinnfreibetrag Österreich: Bis zu 4.950€ deines Gewinns steuerfrei mit dem Grundfreibetrag nach § 10 EStG. Berechne deinen Gewinnfreibetrag und nutze alle Vorteile optimal.',
     type: 'article',
     locale: 'de_AT'
   }
@@ -34,8 +34,8 @@ export default function GewinnfreibetragLayout({
   const articleStructuredData = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: 'Gewinnfreibetrag 2026 — So sparst du bis zu 4.950 € Steuern',
-    description: 'Gewinnfreibetrag Österreich: Spare bis zu 4.950€ Steuern mit dem Grundfreibetrag nach § 10 EStG. Berechne deinen Gewinnfreibetrag und nutze alle Vorteile optimal.',
+    headline: 'Gewinnfreibetrag 2026: Bis zu 4.950 € Gewinn steuerfrei',
+    description: 'Gewinnfreibetrag Österreich: Bis zu 4.950€ deines Gewinns steuerfrei mit dem Grundfreibetrag nach § 10 EStG. Berechne deinen Gewinnfreibetrag und nutze alle Vorteile optimal.',
     image: 'https://steuerboard.pro/opengraph-image',
     author: {
       '@type': 'Person',
@@ -44,7 +44,7 @@ export default function GewinnfreibetragLayout({
       url: 'https://steuerboard.pro/impressum',
     },
     datePublished: '2026-03-18',
-    dateModified: '2026-03-18',
+    dateModified: '2026-07-30',
     inLanguage: 'de-AT',
     publisher: {
       '@type': 'Organization',
@@ -78,7 +78,7 @@ export default function GewinnfreibetragLayout({
         name: 'Wie hoch ist der Gewinnfreibetrag 2026?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Der Grundfreibetrag beträgt 15% auf die ersten 33.000€ Gewinn, maximal also 4.950€. Zusätzlich gibt es den investitionsbedingten Gewinnfreibetrag von 13% auf Gewinne über 33.000€ bei entsprechenden Investitionen.'
+          text: 'Der Grundfreibetrag beträgt 15% auf die ersten 33.000€ Gewinn, maximal also 4.950€. Zusätzlich gibt es den investitionsbedingten Gewinnfreibetrag von 13% auf Gewinne über 33.000€ (bis 178.000€, darüber 7% bzw. 4,5%, Deckel gesamt 46.400€) bei entsprechenden Investitionen.'
         }
       },
       {

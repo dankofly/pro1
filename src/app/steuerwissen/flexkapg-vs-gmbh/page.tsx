@@ -30,8 +30,9 @@ export default function FlexKapGvsGmbHPage() {
             </h1>
             <p className="text-xl text-sb-mut leading-relaxed">
               Seit 2024 gibt es mit der Flexiblen Kapitalgesellschaft (FlexKapG) eine neue Alternative zur klassischen GmbH.
-              Mit nur 10.000 € Stammkapital, flexibler Mitarbeiterbeteiligung und vereinfachter Gründung stellt sie eine
-              interessante Option dar. Hier der komplette Vergleich — mit Kosten, Vorteilen und konkreten Gründungsschritten.
+              Das Mindeststammkapital ist mit 10.000 € bei beiden gleich; die FlexKapG punktet mit flexibler
+              Mitarbeiterbeteiligung und vereinfachter Anteilsübertragung. Hier der komplette Vergleich mit Kosten,
+              Vorteilen und konkreten Gründungsschritten.
             </p>
           </header>
 
@@ -39,10 +40,11 @@ export default function FlexKapGvsGmbHPage() {
           <div className="bg-sb-accent-soft border border-sb-accent/30 rounded-lg p-6 mb-12">
             <h2 className="text-lg font-semibold text-sb-accent mb-3">Kurzantwort</h2>
             <p className="text-sb-mut mb-0">
-              Die <strong className="text-sb-text">FlexKapG benötigt nur 10.000 € Stammkapital</strong> statt 35.000 € bei der GmbH.
+              <strong className="text-sb-text">GmbH und FlexKapG benötigen seit 2024 dasselbe Mindeststammkapital von 10.000 €</strong>.
               <strong className="text-sb-text">Steuerlich sind beide identisch</strong> (23% KöSt, 27,5% KESt).
-              Die FlexKapG bietet jedoch mehr Flexibilität bei Mitarbeiterbeteiligung durch <strong className="text-sb-text">Unternehmenswert-Anteile</strong>
-              und einfachere Anteilsübertragung ohne Notariatsakt. Ideal für Startups, Tech-Unternehmen und Ein-Personen-Kapitalgesellschaften.
+              Die FlexKapG bietet mehr Flexibilität bei Mitarbeiterbeteiligung durch <strong className="text-sb-text">Unternehmenswert-Anteile</strong>
+              (unter 25% des Stammkapitals, ohne Stimmrecht) und Anteilsübertragung per notarieller oder anwaltlicher
+              Privaturkunde statt Notariatsakt. Ideal für Startups, Tech-Unternehmen und Beteiligungsprogramme.
             </p>
           </div>
 
@@ -60,11 +62,11 @@ export default function FlexKapGvsGmbHPage() {
             <div className="bg-sb-card p-6 rounded-lg border border-sb-line mb-6">
               <h3 className="text-xl font-semibold text-sb-text mb-4">Kernmerkmale der FlexKapG</h3>
               <ul className="space-y-3">
-                <li><strong className="text-sb-text">Mindestkapital:</strong> 10.000 € (statt 35.000 € bei GmbH)</li>
+                <li><strong className="text-sb-text">Mindestkapital:</strong> 10.000 € (wie bei der GmbH, davon 5.000 € bar)</li>
                 <li><strong className="text-sb-text">Zwei Anteilstypen:</strong> Geschäftsanteile + Unternehmenswert-Anteile</li>
                 <li><strong className="text-sb-text">Flexible Satzung:</strong> Mehr Gestaltungsspielraum als bei der GmbH</li>
                 <li><strong className="text-sb-text">Mitarbeiterbeteiligung:</strong> Einfach über Unternehmenswert-Anteile möglich</li>
-                <li><strong className="text-sb-text">Anteilsübertragung:</strong> Ohne Notariatsakt möglich (bei entsprechender Satzungsgestaltung)</li>
+                <li><strong className="text-sb-text">Anteilsübertragung:</strong> Notarielle oder anwaltliche Privaturkunde statt Notariatsakt</li>
                 <li><strong className="text-sb-text">Firmierung:</strong> Mit "FlexKapG", "FlexCo" oder ausgeschrieben</li>
               </ul>
             </div>
@@ -94,18 +96,18 @@ export default function FlexKapGvsGmbHPage() {
                 <tbody>
                   <tr className="border-t border-sb-line">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">Stammkapital</td>
-                    <td className="p-4 border-r border-sb-line">35.000 € (10.000 € privilegiert)</td>
-                    <td className="p-4 text-sb-green">10.000 € (mindestens)</td>
+                    <td className="p-4 border-r border-sb-line">10.000 € (seit 2024)</td>
+                    <td className="p-4 text-sb-green">10.000 € (identisch)</td>
                   </tr>
                   <tr className="border-t border-sb-line bg-sb-deep">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">Gründungskosten</td>
-                    <td className="p-4 border-r border-sb-line">~2.000-3.000 € (Notar + Gebühren)</td>
-                    <td className="p-4 text-sb-green">~1.500-2.500 €</td>
+                    <td className="p-4 border-r border-sb-line">ca. 2.000-3.000 € (Notar + Gebühren)</td>
+                    <td className="p-4 text-sb-green">ca. 2.000-3.000 € (vergleichbar)</td>
                   </tr>
                   <tr className="border-t border-sb-line">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">Mindest-KöSt</td>
-                    <td className="p-4 border-r border-sb-line">1.750 €/Jahr (500 € erste 5 Jahre)</td>
-                    <td className="p-4 text-sb-accent">500 €/Jahr</td>
+                    <td className="p-4 border-r border-sb-line">500 €/Jahr (seit 2024)</td>
+                    <td className="p-4 text-sb-accent">500 €/Jahr (identisch)</td>
                   </tr>
                   <tr className="border-t border-sb-line bg-sb-deep">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">Gesellschafteranteile</td>
@@ -120,7 +122,7 @@ export default function FlexKapGvsGmbHPage() {
                   <tr className="border-t border-sb-line bg-sb-deep">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">Anteilsübertragung</td>
                     <td className="p-4 border-r border-sb-line">Notariatsakt erforderlich</td>
-                    <td className="p-4 text-sb-green">Ohne Notar möglich</td>
+                    <td className="p-4 text-sb-green">Notarielle oder anwaltliche Privaturkunde</td>
                   </tr>
                   <tr className="border-t border-sb-line">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">Firma</td>
@@ -148,9 +150,9 @@ export default function FlexKapGvsGmbHPage() {
 
             <div className="bg-white/[0.05] p-6 rounded-lg border-l-4 border-sb-accent/40">
               <p className="mb-0">
-                <strong className="text-sb-text">Steuerlich identisch:</strong> Beide Rechtsformen unterliegen denselben steuerlichen Bestimmungen.
-                Der entscheidende Unterschied liegt in der Flexibilität der Gesellschafterstruktur und den deutlich niedrigeren Gründungskosten
-                der FlexKapG.
+                <strong className="text-sb-text">Steuerlich identisch:</strong> Beide Rechtsformen unterliegen denselben steuerlichen Bestimmungen,
+                inklusive Mindeststammkapital (10.000 €) und Mindest-KöSt (500 €/Jahr). Der entscheidende Unterschied liegt in der
+                Flexibilität der Gesellschafterstruktur, nicht in Kapital oder Steuern.
               </p>
             </div>
           </section>
@@ -176,8 +178,8 @@ export default function FlexKapGvsGmbHPage() {
                 <ul className="space-y-3">
                   <li><strong className="text-sb-text">Steuerliche Behandlung:</strong> Wie normale Geschäftsanteile</li>
                   <li><strong className="text-sb-text">Gewinnausschüttung:</strong> 27,5% KESt (identisch)</li>
-                  <li><strong className="text-sb-text">Veräußerungsgewinn:</strong> Spekulationsfrist beachten</li>
-                  <li><strong className="text-sb-text">Mitarbeiterbeteiligung:</strong> Lohnversteuerung bei Zuteilung</li>
+                  <li><strong className="text-sb-text">Veräußerungsgewinn:</strong> 27,5% unabhängig von der Behaltedauer</li>
+                  <li><strong className="text-sb-text">Mitarbeiterbeteiligung:</strong> Steueraufschub nach § 67a EStG möglich</li>
                   <li><strong className="text-sb-text">Bewertung:</strong> Nach Verkehrswert</li>
                 </ul>
               </div>
@@ -186,9 +188,11 @@ export default function FlexKapGvsGmbHPage() {
             <div className="bg-sb-accent-soft p-6 rounded-lg border border-sb-accent/30 mb-6">
               <h4 className="text-lg font-semibold text-sb-mut mb-2">Wichtig bei Mitarbeiterbeteiligung</h4>
               <p className="text-sb-mut mb-0">
-                Erhalten Mitarbeiter Unternehmenswert-Anteile, gilt dies als geldwerter Vorteil und ist
-                lohnsteuerpflichtig. Der Wert wird zum Zeitpunkt der Zuteilung bewertet. Spätere Wertsteigerungen
-                sind bei Veräußerung nach der einjährigen Spekulationsfrist steuerfrei.
+                Für Unternehmenswert-Anteile an Mitarbeiter greift unter den Voraussetzungen der
+                Start-Up-Mitarbeiterbeteiligung (§ 67a EStG, seit 2024) ein Steueraufschub: Besteuert wird erst
+                bei Veräußerung der Anteile, mit begünstigter Pauschalregelung. Ohne diese Begünstigung ist die
+                Zuteilung als geldwerter Vorteil lohnsteuerpflichtig. Veräußerungsgewinne aus Kapitalvermögen
+                unterliegen generell 27,5%; eine einjährige Spekulationsfrist mit Steuerfreiheit gibt es nicht mehr.
               </p>
             </div>
 
@@ -220,9 +224,9 @@ export default function FlexKapGvsGmbHPage() {
               <div className="bg-sb-card p-6 rounded-lg border border-sb-green/30">
                 <h3 className="text-lg font-semibold text-sb-green mb-3">Startups & Tech-Unternehmen</h3>
                 <ul className="space-y-2 text-sm">
-                  <li>Niedrigere Gründungskosten</li>
+                  <li>ESOP-fähige Anteilsklasse (UW-Anteile)</li>
                   <li>Einfache Investor-Beteiligung</li>
-                  <li>Mitarbeiter-Equity ohne Notar</li>
+                  <li>Mitarbeiter-Equity vereinfacht</li>
                   <li>Flexible Satzungsgestaltung</li>
                   <li>Moderne Unternehmenskultur</li>
                 </ul>
@@ -231,11 +235,11 @@ export default function FlexKapGvsGmbHPage() {
               <div className="bg-sb-card p-6 rounded-lg border border-sb-accent/30">
                 <h3 className="text-lg font-semibold text-sb-accent mb-3">Ein-Personen-Unternehmen</h3>
                 <ul className="space-y-2 text-sm">
-                  <li>Nur 10.000 € Stammkapital</li>
+                  <li>10.000 € Stammkapital (wie GmbH)</li>
                   <li>Haftungsbeschränkung</li>
                   <li>Steuervorteile wie GmbH</li>
-                  <li>Weniger Kapital gebunden</li>
-                  <li>Einfachere Gründung</li>
+                  <li>Anteile flexibel übertragbar</li>
+                  <li>Satzung flexibel gestaltbar</li>
                 </ul>
               </div>
 
@@ -299,7 +303,7 @@ export default function FlexKapGvsGmbHPage() {
                   <div>
                     <strong className="text-sb-text">Notarielle Beurkundung</strong>
                     <p className="text-sm text-sb-mut mt-1">Gesellschaftsvertrag beim Notar beurkunden lassen.
-                    Kosten: ca. 800-1.500 € je nach Komplexität der Satzung.</p>
+                    Gesamtkosten für Rechtsanwalt und Notar laut WKO-Schätzung ca. 2.000-3.000 €, je nach Komplexität der Satzung.</p>
                   </div>
                 </li>
 
@@ -307,7 +311,7 @@ export default function FlexKapGvsGmbHPage() {
                   <span className="bg-sb-accent text-sb-accent-ink rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold shrink-0">4</span>
                   <div>
                     <strong className="text-sb-text">Firmenbucheintragung</strong>
-                    <p className="text-sm text-sb-mut mt-1">Antrag beim Handelsgericht. Gebühren: ca. 300-600 €.
+                    <p className="text-sm text-sb-mut mt-1">Antrag beim Handelsgericht. Gerichtsgebühren: Richtwert ca. 300-600 €.
                     Die FlexKapG entsteht erst mit der Eintragung ins Firmenbuch.</p>
                   </div>
                 </li>
@@ -325,8 +329,8 @@ export default function FlexKapGvsGmbHPage() {
                   <span className="bg-sb-accent text-sb-accent-ink rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold shrink-0">6</span>
                   <div>
                     <strong className="text-sb-text">Sozialversicherung</strong>
-                    <p className="text-sm text-sb-mut mt-1">ASVG-Anmeldung für Geschäftsführer mit mehr als 25% Beteiligung.
-                    Wie bei der GmbH: bessere Leistungen als SVS.</p>
+                    <p className="text-sm text-sb-mut mt-1">Zuordnung wie bei der GmbH: bis 25% Beteiligung ASVG,
+                    darüber in der Regel GSVG (SVS). Alleingesellschafter-Geschäftsführer bleiben SVS-versichert.</p>
                   </div>
                 </li>
               </ol>
@@ -347,10 +351,10 @@ export default function FlexKapGvsGmbHPage() {
                 <div>
                   <p className="text-sb-mut mb-2"><strong>Gesamtkosten:</strong></p>
                   <ul className="text-sm space-y-1">
-                    <li>Stammkapital: 10.000 €</li>
-                    <li>Notar + Anwalt: 1.000-2.000 €</li>
-                    <li>Gerichtsgebühren: 300-600 €</li>
-                    <li><strong>Gesamt: ca. 11.500-13.000 €</strong></li>
+                    <li>Stammkapital: 10.000 € (davon 5.000 € bar)</li>
+                    <li>Notar + Anwalt: ca. 2.000-3.000 €</li>
+                    <li>Gerichtsgebühren: ca. 300-600 €</li>
+                    <li><strong>Gesamt: ca. 12.300-13.600 €</strong></li>
                   </ul>
                 </div>
               </div>
@@ -366,11 +370,11 @@ export default function FlexKapGvsGmbHPage() {
               <div className="bg-sb-green-soft p-6 rounded-lg border border-sb-green/30">
                 <h3 className="text-xl font-semibold text-sb-green mb-4">Vorteile der FlexKapG</h3>
                 <ul className="space-y-3">
-                  <li><strong className="text-sb-text">Niedrigeres Stammkapital:</strong> Nur 10.000 € statt 35.000 €</li>
-                  <li><strong className="text-sb-text">Mitarbeiterbeteiligung:</strong> Unternehmenswert-Anteile ohne Notar</li>
+                  <li><strong className="text-sb-text">Start-Up-Mitarbeiterbeteiligung:</strong> Steueraufschub nach § 67a EStG nutzbar</li>
+                  <li><strong className="text-sb-text">Mitarbeiterbeteiligung:</strong> Unternehmenswert-Anteile (unter 25% des Stammkapitals)</li>
                   <li><strong className="text-sb-text">Flexible Anteilsübertragung:</strong> Vereinfachte Prozesse</li>
                   <li><strong className="text-sb-text">Moderne Satzungsgestaltung:</strong> Mehr Freiheiten</li>
-                  <li><strong className="text-sb-text">Geringere Gründungskosten:</strong> 25.000 € weniger Startkapital</li>
+                  <li><strong className="text-sb-text">Anteilsübertragung:</strong> Notarielle oder anwaltliche Privaturkunde statt Notariatsakt</li>
                   <li><strong className="text-sb-text">Investor-freundlich:</strong> Einfachere Kapitalerhöhungen</li>
                   <li><strong className="text-sb-text">Steuerlich identisch:</strong> Alle GmbH-Vorteile</li>
                   <li><strong className="text-sb-text">Innovatives Image:</strong> Moderne Unternehmensform</li>
@@ -386,7 +390,7 @@ export default function FlexKapGvsGmbHPage() {
                   <li><strong className="text-sb-text">Internationale Akzeptanz:</strong> GmbH ist bekannter</li>
                   <li><strong className="text-sb-text">Beratung teurer:</strong> Wenige spezialisierte Anwälte</li>
                   <li><strong className="text-sb-text">Komplexere Satzung:</strong> Mehr Gestaltungsoptionen = mehr Fehlerquellen</li>
-                  <li><strong className="text-sb-text">Umwandlung aufwendig:</strong> Von/zu anderen Rechtsformen schwierig</li>
+                  <li><strong className="text-sb-text">Kein Kapitalvorteil:</strong> Mindeststammkapital wie bei der GmbH 10.000 €</li>
                   <li><strong className="text-sb-text">Noch keine Standards:</strong> Jede Satzung ist Einzelfall</li>
                   <li><strong className="text-sb-text">Risiko bei Gesetzesänderung:</strong> Neue Gesetze können sich ändern</li>
                 </ul>
@@ -399,8 +403,9 @@ export default function FlexKapGvsGmbHPage() {
             <h2 className="text-3xl font-semibold text-sb-text mb-6">Berechnungsbeispiel: 5-Jahres-Kostenvergleich</h2>
 
             <p className="mb-6">
-              Hier ein konkretes Beispiel für ein Tech-Startup mit 100.000 € Jahresgewinn über 5 Jahre —
-              inklusive aller Gründungs- und laufenden Kosten:
+              Hier ein konkretes Beispiel für ein Tech-Startup mit 100.000 € Jahresgewinn über 5 Jahre,
+              inklusive aller Gründungs- und laufenden Kosten. Ergebnis: Seit der GmbH-Reform 2024 sind
+              beide Rechtsformen bei Kapital und Kosten praktisch gleichauf.
             </p>
 
             <div className="overflow-x-auto mb-6">
@@ -415,16 +420,16 @@ export default function FlexKapGvsGmbHPage() {
                 </thead>
                 <tbody>
                   <tr className="border-t border-sb-line">
-                    <td className="p-4 border-r border-sb-line font-medium text-sb-text">Stammkapital</td>
-                    <td className="p-4 border-r border-sb-line">35.000 €</td>
+                    <td className="p-4 border-r border-sb-line font-medium text-sb-text">Stammkapital (gebunden, kein Aufwand)</td>
                     <td className="p-4 border-r border-sb-line">10.000 €</td>
-                    <td className="p-4 text-sb-green">+25.000 €</td>
+                    <td className="p-4 border-r border-sb-line">10.000 €</td>
+                    <td className="p-4 text-sb-accent">±0 €</td>
                   </tr>
                   <tr className="border-t border-sb-line bg-sb-deep">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">Gründungskosten</td>
                     <td className="p-4 border-r border-sb-line">2.500 €</td>
-                    <td className="p-4 border-r border-sb-line">2.000 €</td>
-                    <td className="p-4 text-sb-green">+500 €</td>
+                    <td className="p-4 border-r border-sb-line">2.500 €</td>
+                    <td className="p-4 text-sb-accent">±0 €</td>
                   </tr>
                   <tr className="border-t border-sb-line">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">Bilanzierung (5 Jahre)</td>
@@ -440,8 +445,8 @@ export default function FlexKapGvsGmbHPage() {
                   </tr>
                   <tr className="border-t border-sb-line">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">KESt (Ausschüttungen, 5 Jahre)</td>
-                    <td className="p-4 border-r border-sb-line">81.675 €</td>
-                    <td className="p-4 border-r border-sb-line">81.675 €</td>
+                    <td className="p-4 border-r border-sb-line">105.875 €</td>
+                    <td className="p-4 border-r border-sb-line">105.875 €</td>
                     <td className="p-4 text-sb-accent">±0 €</td>
                   </tr>
                   <tr className="border-t border-sb-line bg-sb-deep">
@@ -451,16 +456,16 @@ export default function FlexKapGvsGmbHPage() {
                     <td className="p-4 text-sb-accent">±0 €</td>
                   </tr>
                   <tr className="border-t border-sb-line bg-white/[0.05]">
-                    <td className="p-4 border-r border-sb-line font-semibold text-sb-text">Gesamtkosten (5 Jahre)</td>
-                    <td className="p-4 border-r border-sb-line font-semibold">274.175 €</td>
-                    <td className="p-4 border-r border-sb-line font-semibold">248.675 €</td>
-                    <td className="p-4 font-semibold text-sb-green">+25.500 €</td>
+                    <td className="p-4 border-r border-sb-line font-semibold text-sb-text">Kapitaleinsatz gesamt (5 Jahre)</td>
+                    <td className="p-4 border-r border-sb-line font-semibold">273.375 €</td>
+                    <td className="p-4 border-r border-sb-line font-semibold">273.375 €</td>
+                    <td className="p-4 font-semibold text-sb-accent">±0 €</td>
                   </tr>
                   <tr className="border-t border-sb-line">
                     <td className="p-4 border-r border-sb-line font-semibold text-sb-text">Verfügbares Kapital</td>
-                    <td className="p-4 border-r border-sb-line font-semibold">225.825 €</td>
-                    <td className="p-4 border-r border-sb-line font-semibold">251.325 €</td>
-                    <td className="p-4 font-semibold text-sb-green">+25.500 €</td>
+                    <td className="p-4 border-r border-sb-line font-semibold">226.625 €</td>
+                    <td className="p-4 border-r border-sb-line font-semibold">226.625 €</td>
+                    <td className="p-4 font-semibold text-sb-accent">±0 €</td>
                   </tr>
                 </tbody>
               </table>
@@ -470,7 +475,7 @@ export default function FlexKapGvsGmbHPage() {
               <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
                 <h4 className="text-lg font-semibold text-sb-text mb-3">Zusätzliche FlexKapG-Vorteile</h4>
                 <ul className="space-y-2 text-sm">
-                  <li><strong className="text-sb-text">Liquidität:</strong> 25.000 € weniger Kapital gebunden</li>
+                  <li><strong className="text-sb-text">Mitarbeiterbindung:</strong> Equity-Programme ohne Notariatsakt-Aufwand</li>
                   <li><strong className="text-sb-text">Flexibilität:</strong> Mitarbeiterbeteiligung ohne Zusatzkosten</li>
                   <li><strong className="text-sb-text">Wachstum:</strong> Einfachere Kapitalerhöhungen</li>
                   <li><strong className="text-sb-text">Exit:</strong> Verkauf der Anteile vereinfacht</li>
@@ -478,13 +483,13 @@ export default function FlexKapGvsGmbHPage() {
               </div>
 
               <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
-                <h4 className="text-lg font-semibold text-sb-text mb-3">ROI-Betrachtung</h4>
+                <h4 className="text-lg font-semibold text-sb-text mb-3">Kosten-Fazit</h4>
                 <div className="space-y-2 text-sm">
-                  <div className="flex justify-between"><span>Kapitalersparnis</span><span className="text-sb-green">25.500 €</span></div>
-                  <div className="flex justify-between"><span>Zinsvorteil (5% p.a.)</span><span className="text-sb-green">~6.500 €</span></div>
+                  <div className="flex justify-between"><span>Kapitalersparnis FlexKapG</span><span className="text-sb-green">0 € (identisches Mindestkapital)</span></div>
+                  <div className="flex justify-between"><span>Laufender Kostenvorteil</span><span className="text-sb-green">±0 €</span></div>
                   <div className="flex justify-between border-t border-sb-line pt-2 font-semibold">
-                    <span>Gesamtvorteil über 5 Jahre</span>
-                    <span className="text-sb-green">~32.000 €</span>
+                    <span>Vorteil über 5 Jahre</span>
+                    <span className="text-sb-green">Qualitativ: Beteiligung + Übertragbarkeit</span>
                   </div>
                 </div>
               </div>
@@ -499,35 +504,37 @@ export default function FlexKapGvsGmbHPage() {
               <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
                 <h3 className="text-lg font-semibold text-sb-text mb-2">Was ist der Hauptunterschied zwischen FlexKapG und GmbH?</h3>
                 <p className="mb-0">
-                  Die FlexKapG benötigt nur 10.000 € Stammkapital statt 35.000 € bei der GmbH.
+                  GmbH und FlexKapG benötigen seit 2024 dasselbe Mindeststammkapital von 10.000 €.
                   Steuerlich sind beide identisch (23% KöSt, 27,5% KESt). Die FlexKapG bietet mehr Flexibilität
-                  bei Mitarbeiterbeteiligung durch Unternehmenswert-Anteile und einfachere Anteilsübertragung ohne Notariatsakt.
+                  bei Mitarbeiterbeteiligung durch Unternehmenswert-Anteile und Anteilsübertragung per notarieller
+                  oder anwaltlicher Privaturkunde statt Notariatsakt.
                 </p>
               </div>
 
               <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
                 <h3 className="text-lg font-semibold text-sb-text mb-2">Sind FlexKapG-Gründungskosten niedriger als bei der GmbH?</h3>
                 <p className="mb-0">
-                  Ja, FlexKapG-Gründungskosten betragen ca. 1.500-2.500 € plus 10.000 € Stammkapital.
-                  GmbH kostet ca. 2.000-3.000 € plus 35.000 € Stammkapital — insgesamt also 25.000 € weniger Startkapital bei der FlexKapG.
+                  Kaum. Für beide gilt seit 2024 das Mindeststammkapital von 10.000 €; Beratungs- und Notarkosten
+                  liegen laut WKO-Schätzung bei ca. 2.000-3.000 €. Wegen der flexibleren Satzungsgestaltung kann
+                  die FlexKapG im Einzelfall sogar etwas teurer sein.
                 </p>
               </div>
 
               <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
                 <h3 className="text-lg font-semibold text-sb-text mb-2">Ist die FlexKapG für Startups besser als die GmbH?</h3>
                 <p className="mb-0">
-                  Ja, besonders für Startups mit Mitarbeiterbeteiligung. Die FlexKapG ermöglicht Unternehmenswert-Anteile ohne
-                  Notariatsakt und hat niedrigere Gründungskosten bei identischen Steuervorteilen. Ideal für Tech-Unternehmen
-                  und wachstumsorientierte Betriebe.
+                  Ja, besonders für Startups mit Mitarbeiterbeteiligung. Die FlexKapG ermöglicht Unternehmenswert-Anteile
+                  und den Steueraufschub der Start-Up-Mitarbeiterbeteiligung (§ 67a EStG) bei identischen Steuervorteilen.
+                  Ideal für Tech-Unternehmen und wachstumsorientierte Betriebe.
                 </p>
               </div>
 
               <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
                 <h3 className="text-lg font-semibold text-sb-text mb-2">Kann ich von einer GmbH zur FlexKapG wechseln?</h3>
                 <p className="mb-0">
-                  Eine direkte Umwandlung ist nicht möglich. Du musst eine neue FlexKapG gründen und deine GmbH liquidieren
-                  oder eine Verschmelzung durchführen — das ist aufwendig und meist nicht sinnvoll. Die FlexKapG ist primär
-                  für Neugründungen interessant.
+                  Ja. Das Gesetz sieht die Umwandlung einer GmbH in eine FlexKapG (und umgekehrt) ausdrücklich vor.
+                  Erforderlich sind ein Generalversammlungsbeschluss und die Anpassung des Gesellschaftsvertrags;
+                  eine Liquidation oder Verschmelzung ist nicht nötig. Lass die Umwandlung rechtlich begleiten.
                 </p>
               </div>
             </div>
@@ -555,7 +562,7 @@ export default function FlexKapGvsGmbHPage() {
             <h2 className="text-3xl font-semibold text-sb-text mb-6">Fazit: FlexKapG oder GmbH?</h2>
             <div className="bg-white/[0.05] p-6 rounded-lg border-l-4 border-sb-green/40">
               <ul className="space-y-3">
-                <li><strong className="text-sb-text">FlexKapG für Startups & Tech:</strong> 25.000 € weniger Stammkapital, einfache Mitarbeiterbeteiligung</li>
+                <li><strong className="text-sb-text">FlexKapG für Startups & Tech:</strong> Einfache Mitarbeiterbeteiligung über Unternehmenswert-Anteile, Stammkapital wie GmbH</li>
                 <li><strong className="text-sb-text">Steuerlich identisch:</strong> 23% KöSt, 27,5% KESt — keine steuerlichen Nachteile</li>
                 <li><strong className="text-sb-text">GmbH für Traditionsbetriebe:</strong> Bewährt, rechtssicher, international anerkannt</li>
                 <li><strong className="text-sb-text">FlexKapG-Risiko:</strong> Neue Rechtsform mit wenig Rechtsprechung</li>
@@ -564,7 +571,7 @@ export default function FlexKapGvsGmbHPage() {
               </ul>
               <p className="mt-4 text-sb-mut">
                 Die FlexKapG ist eine echte Innovation im österreichischen Gesellschaftsrecht.
-                Für die richtige Zielgruppe bietet sie erhebliche Vorteile bei identischen Steuerkonditionen.
+                Für die richtige Zielgruppe bietet sie mehr Flexibilität bei identischen Steuer- und Kapitalkonditionen.
                 Lass dich von einem spezialisierten Anwalt beraten, bevor du dich entscheidest.
               </p>
             </div>
@@ -579,10 +586,10 @@ export default function FlexKapGvsGmbHPage() {
             sources={[
               { name: 'FlexKapGG — Flexible Kapitalgesellschaftsgesetz', url: 'https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20012713', description: 'Rechtsinformationssystem des Bundes (RIS)' },
               { name: 'BMJ — Flexible Kapitalgesellschaft', url: 'https://www.bmj.gv.at/themen/gesellschaftsrecht/flexible-kapitalgesellschaft.html', description: 'Bundesministerium für Justiz — FlexKapG Informationen' },
-              { name: 'WKO — FlexKapG gründen', url: 'https://www.wko.at/gruendung/flexkapg-gruenden', description: 'Wirtschaftskammer Österreich — FlexKapG Gründungsratgeber' },
+              { name: 'WKO - FlexKapG FAQs', url: 'https://www.wko.at/startups/flexible-kapitalgesellschaft-flexkapg-faqs', description: 'Wirtschaftskammer Österreich - FlexKapG Fragen und Antworten' },
               { name: 'KStG § 22 — Körperschaftsteuersatz', url: 'https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10004531', description: 'Rechtsinformationssystem des Bundes (RIS) — Körperschaftsteuergesetz' },
               { name: 'GmbHG — GmbH-Gesetz', url: 'https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10001720', description: 'Rechtsinformationssystem des Bundes (RIS)' },
-              { name: 'BMF — Gesellschaftsteuer', url: 'https://www.bmf.gv.at/themen/steuern/gesellschaftsteuer.html', description: 'Bundesministerium für Finanzen' },
+              { name: 'WKO - Einkommen-/Körperschaftsteuer 2026', url: 'https://www.wko.at/steuern/einkommen-koerperschaftsteuer-2026', description: 'Aktuelle Steuerwerte 2026 (KöSt, Mindest-KöSt, KESt, Tarif)' },
             ]}
             relatedArticles={[
               { title: 'GmbH vs. Einzelunternehmen: Der Steuer-Vergleich', href: '/steuerwissen/gmbh-vs-einzelunternehmen' },

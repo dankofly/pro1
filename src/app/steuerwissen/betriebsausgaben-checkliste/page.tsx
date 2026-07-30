@@ -91,8 +91,9 @@ export default function BetriebsausgabenCheckliste() {
 
               <h4 className="font-semibold text-sb-text mb-3">3. Abgrenzung zu Privatausgaben</h4>
               <p>
-                Gemischte Aufwendungen (beruflich + privat) müssen aufgeteilt werden. Typische Aufteilung
-                bei Handy/Internet: 40-60% betrieblich, je nach Nutzungsintensität.
+                Gemischte Aufwendungen (beruflich + privat) müssen aufgeteilt werden. Bei Handy/Internet
+                ist der betriebliche Anteil im Einzelfall zu schätzen und zu dokumentieren (in der Praxis
+                oft 40-60%, das ist eine Faustregel und keine amtliche Quote).
               </p>
             </div>
           </section>
@@ -114,8 +115,9 @@ export default function BetriebsausgabenCheckliste() {
                   <div>
                     <strong>Arbeitsplatzpauschale 2026</strong>
                     <p className="text-sb-mut text-sm">
-                      Typ 1: 1.200 € (hohe fachliche Anforderungen, überwiegend PC-Arbeit)<br />
-                      Typ 2: 300 € (niedrige Anforderungen, einfache Bürotätigkeit)
+                      Großes Pauschale: 1.200 € (andere aktive Erwerbseinkünfte max. 13.539 €)<br />
+                      Kleines Pauschale: 300 € (andere aktive Erwerbseinkünfte darüber), plus ergonomisches Mobiliar bis 300 €/Jahr<br />
+                      Voraussetzung: kein anderer Raum steht für die Tätigkeit zur Verfügung
                     </p>
                   </div>
                 </div>
@@ -124,7 +126,7 @@ export default function BetriebsausgabenCheckliste() {
                   <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Miete & Betriebskosten (anteilig)</strong>
-                    <p className="text-sb-mut text-sm">Bei Homeoffice: Fläche des Arbeitszimmers im Verhältnis zur Gesamtwohnfläche</p>
+                    <p className="text-sb-mut text-sm">Nur bei steuerlich anerkanntem Arbeitszimmer (ausschließlich betriebliche Nutzung, Mittelpunkt der Tätigkeit): Fläche im Verhältnis zur Gesamtwohnfläche. Nicht mit dem Arbeitsplatzpauschale kombinierbar.</p>
                   </div>
                 </div>
 
@@ -182,7 +184,7 @@ export default function BetriebsausgabenCheckliste() {
                   <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
                     <strong>Telefon & Internet (anteilig)</strong>
-                    <p className="text-sb-mut text-sm">Typisch 40-60% betrieblich, je nach Nutzung</p>
+                    <p className="text-sb-mut text-sm">Betrieblicher Anteil nach Nutzung schätzen und dokumentieren (Faustregel oft 40-60%)</p>
                   </div>
                 </div>
 
@@ -233,8 +235,8 @@ export default function BetriebsausgabenCheckliste() {
                   <div>
                     <strong>Reisekosten & Diäten</strong>
                     <p className="text-sb-mut text-sm">
-                      Inland: 26,40 €/Tag (über 3h Abwesenheit)<br />
-                      Nächtigungskosten: angemessene Hotelkosten
+                      Inland: 30 €/Tag bzw. 2,50 € je angefangener Stunde (ab mehr als 3 Stunden, Werte seit 2025)<br />
+                      Nächtigungskosten: tatsächliche Hotelkosten oder 17 € Pauschale pro Nacht
                     </p>
                   </div>
                 </div>
@@ -318,8 +320,8 @@ export default function BetriebsausgabenCheckliste() {
                 <div className="flex items-start">
                   <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
-                    <strong>Bewirtungskosten (50% absetzbar)</strong>
-                    <p className="text-sb-mut text-sm">Geschäftsessen mit Kunden, Geschäftspartner. Dokumentation erforderlich!</p>
+                    <strong>Bewirtungskosten (50% bei Werbezweck)</strong>
+                    <p className="text-sb-mut text-sm">Geschäftsessen nur zur Hälfte absetzbar, wenn sie nachweislich der Werbung dienen. Dokumentation erforderlich!</p>
                   </div>
                 </div>
               </div>
@@ -477,21 +479,20 @@ export default function BetriebsausgabenCheckliste() {
                 </thead>
                 <tbody className="divide-y divide-sb-line">
                   <tr>
-                    <td className="px-6 py-4 font-medium text-sb-green">Typ 1</td>
+                    <td className="px-6 py-4 font-medium text-sb-green">Großes Pauschale</td>
                     <td className="px-6 py-4 text-sb-mut">1.200 €</td>
                     <td className="px-6 py-4 text-sb-mut">
-                      • Überwiegend Computer-/Büroarbeit<br />
-                      • Hohe fachliche Anforderungen<br />
-                      • Qualifizierte Tätigkeit
+                      • Andere aktive Erwerbseinkünfte max. 13.539 € (2026)<br />
+                      • Kein anderer Raum für die Tätigkeit verfügbar
                     </td>
                   </tr>
                   <tr>
-                    <td className="px-6 py-4 font-medium text-sb-accent">Typ 2</td>
+                    <td className="px-6 py-4 font-medium text-sb-accent">Kleines Pauschale</td>
                     <td className="px-6 py-4 text-sb-mut">300 €</td>
                     <td className="px-6 py-4 text-sb-mut">
-                      • Einfache Bürotätigkeit<br />
-                      • Niedrige fachliche Anforderungen<br />
-                      • Routine-Tätigkeiten
+                      • Andere aktive Erwerbseinkünfte über 13.539 € (2026)<br />
+                      • Kein anderer Raum für die Tätigkeit verfügbar<br />
+                      • Zusätzlich absetzbar: ergonomisches Mobiliar bis 300 €/Jahr
                     </td>
                   </tr>
                 </tbody>
@@ -500,8 +501,10 @@ export default function BetriebsausgabenCheckliste() {
 
             <div className="bg-sb-accent-soft border border-sb-accent/30 rounded-lg p-4 mt-6">
               <p className="text-sb-text">
-                <strong>Wichtig:</strong> Die Arbeitsplatzpauschale kann alternativ zu tatsächlichen Kosten
-                gewählt werden. Bei höheren tatsächlichen Kosten lohnt sich die Einzelaufstellung.
+                <strong>Wichtig:</strong> Wer ein steuerliches Arbeitszimmer (§ 20 Abs 1 Z 2 lit d EStG)
+                geltend macht, bekommt kein Arbeitsplatzpauschale. Es gilt: entweder Pauschale oder
+                tatsächliche Arbeitszimmerkosten (nur bei ausschließlich betrieblicher Nutzung und
+                Mittelpunkt der Tätigkeit).
               </p>
             </div>
           </section>
@@ -511,8 +514,9 @@ export default function BetriebsausgabenCheckliste() {
             <h2 className="text-2xl font-bold text-sb-text mb-6">GWG-Grenze: 1.000 € optimal nutzen</h2>
 
             <p>
-              <strong>Geringwertige Wirtschaftsgüter (GWG)</strong> bis 1.000 € netto können im Jahr der
-              Anschaffung vollständig als Betriebsausgabe abgesetzt werden.
+              <strong>Geringwertige Wirtschaftsgüter (GWG)</strong> bis 1.000 € können im Jahr der
+              Anschaffung vollständig als Betriebsausgabe abgesetzt werden. Die Grenze gilt netto bei
+              Vorsteuerabzug; für nicht regelbesteuerte Kleinunternehmer zählt der Bruttopreis.
             </p>
 
             <h3 className="text-xl font-semibold text-sb-text mt-8 mb-4">GWG vs. Abschreibung (AfA)</h3>
@@ -544,9 +548,10 @@ export default function BetriebsausgabenCheckliste() {
             <div className="bg-sb-green-soft border border-sb-green/30 rounded-lg p-6 mt-6">
               <h4 className="font-semibold text-sb-mut mb-3">Praxis-Tipp: GWG-Grenze optimal nutzen</h4>
               <p className="text-sb-text">
-                Bei Anschaffungen knapp über 1.000 € prüfen, ob eine Aufteilung sinnvoll ist.
-                Beispiel: Laptop um 1.100 € + externe Maus um 50 € separat kaufen →
-                beide unter GWG-Grenze → sofort absetzbar.
+                Maßgeblich ist der Wert pro einzelnem, selbständig nutzbarem Wirtschaftsgut.
+                Beispiel: Ein Laptop um 1.100 € liegt über der Grenze und muss abgeschrieben werden.
+                Separat nutzbares Zubehör wie eine externe Maus um 50 € ist ein eigenes GWG und
+                sofort absetzbar, auch wenn beides auf einer Rechnung steht.
               </p>
             </div>
           </section>
@@ -556,8 +561,10 @@ export default function BetriebsausgabenCheckliste() {
             <h2 className="text-2xl font-bold text-sb-text mb-6">Bewirtungskosten: 50%-Regel beachten</h2>
 
             <p>
-              Bewirtungsaufwendungen für Geschäftspartner sind nur zu <strong>50% als Betriebsausgabe</strong>
-              absetzbar. Die Dokumentationspflichten sind streng.
+              Bewirtung von Geschäftsfreunden ist als Repräsentationsaufwand <strong>grundsätzlich nicht
+              absetzbar</strong>. Nur wenn die Bewirtung nachweislich der Werbung dient und die betriebliche
+              Veranlassung weitaus überwiegt, sind <strong>50% als Betriebsausgabe</strong> absetzbar.
+              Die Dokumentationspflichten sind streng.
             </p>
 
             <h3 className="text-xl font-semibold text-sb-text mt-8 mb-4">Voraussetzungen für Absetzbarkeit</h3>
@@ -567,8 +574,8 @@ export default function BetriebsausgabenCheckliste() {
                 <div className="flex items-start">
                   <Check className="text-sb-green mr-3 mt-1 flex-shrink-0" size={16} />
                   <div>
-                    <strong>Geschäftlicher Anlass</strong>
-                    <p className="text-sb-mut text-sm">Kunden-/Geschäftspartner-Bewirtung mit nachweisbarem betrieblichem Bezug</p>
+                    <strong>Nachweisbarer Werbezweck</strong>
+                    <p className="text-sb-mut text-sm">Die Bewirtung dient der Werbung (z.B. konkretes Geschäftsgespräch), die betriebliche Veranlassung überwiegt weitaus</p>
                   </div>
                 </div>
 
@@ -608,7 +615,7 @@ export default function BetriebsausgabenCheckliste() {
                   <h4 className="font-semibold text-sb-text mb-3">Typische Betriebsausgaben:</h4>
                   <div className="space-y-2 text-sb-mut">
                     <div className="flex justify-between">
-                      <span>Arbeitsplatzpauschale Typ 1:</span>
+                      <span>Arbeitsplatzpauschale (großes Pauschale):</span>
                       <span>1.200 €</span>
                     </div>
                     <div className="flex justify-between">
@@ -667,12 +674,12 @@ export default function BetriebsausgabenCheckliste() {
                       <span>38.700 €</span>
                     </div>
                     <div className="flex justify-between mt-4">
-                      <span>Einkommensteuer (ca. 25%):</span>
-                      <span>9.675 €</span>
+                      <span>Einkommensteuer (Tarif 2026, vereinfacht):</span>
+                      <span>ca. 6.900 €</span>
                     </div>
                     <div className="flex justify-between text-sb-green font-bold">
-                      <span>Steuerersparnis durch BA:</span>
-                      <span>2.825 €</span>
+                      <span>Steuerersparnis durch BA (40% Grenzsteuersatz):</span>
+                      <span>ca. 4.520 €</span>
                     </div>
                   </div>
                 </div>
@@ -681,7 +688,8 @@ export default function BetriebsausgabenCheckliste() {
               <div className="bg-sb-green-soft border border-sb-green/30 rounded-lg p-4 mt-6">
                 <p className="text-sb-text">
                   <strong>Wichtiger Hinweis:</strong> Durch ordnungsgemäße Dokumentation der Betriebsausgaben
-                  spart dieser EPU rund 2.825 € Steuern pro Jahr!
+                  spart dieser EPU rund 4.500 € Steuern pro Jahr (vereinfachte Rechnung ohne Gewinnfreibetrag
+                  und Absetzbeträge).
                 </p>
               </div>
             </div>
@@ -760,9 +768,9 @@ export default function BetriebsausgabenCheckliste() {
                   Wie hoch ist die Arbeitsplatzpauschale 2026?
                 </h3>
                 <p>
-                  Die Arbeitsplatzpauschale 2026 beträgt für Typ 1 (hohe Anforderungen) 1.200 € und für Typ 2
-                  (niedrige Anforderungen) 300 €. Typ 1 gilt bei überwiegender Bürotätigkeit mit Computer und hohen
-                  fachlichen Anforderungen.
+                  Das Arbeitsplatzpauschale 2026 beträgt 1.200 €, wenn die anderen aktiven Erwerbseinkünfte
+                  maximal 13.539 € betragen, sonst 300 € (zusätzlich ergonomisches Mobiliar bis 300 €/Jahr).
+                  Voraussetzung: Es steht kein anderer Raum für die betriebliche Tätigkeit zur Verfügung.
                 </p>
               </div>
 
@@ -771,9 +779,10 @@ export default function BetriebsausgabenCheckliste() {
                   Was ist die GWG-Grenze für Selbständige?
                 </h3>
                 <p>
-                  Die GWG-Grenze (Geringwertige Wirtschaftsgüter) beträgt 1.000 € netto. Anschaffungen bis zu diesem
-                  Betrag können im Jahr der Anschaffung vollständig als Betriebsausgabe abgesetzt werden, ohne
-                  Abschreibung über mehrere Jahre.
+                  Die GWG-Grenze (Geringwertige Wirtschaftsgüter) beträgt 1.000 € (netto bei Vorsteuerabzug,
+                  brutto für nicht regelbesteuerte Kleinunternehmer). Anschaffungen bis zu diesem Betrag können
+                  im Jahr der Anschaffung vollständig als Betriebsausgabe abgesetzt werden, ohne Abschreibung
+                  über mehrere Jahre.
                 </p>
               </div>
 
@@ -793,8 +802,8 @@ export default function BetriebsausgabenCheckliste() {
         {/* Article Footer */}
         <ArticleFooter
           sources={[
-            { name: "BMF.gv.at — Betriebsausgaben", url: "https://www.bmf.gv.at/themen/steuern/arbeitnehmer-pensionisten/pendlerpauschale/betriebsausgaben.html", description: "Offizielle BMF-Informationen zu Betriebsausgaben" },
-            { name: "WKO.at — Steuerinfo für Selbständige", url: "https://www.wko.at/service/steuern/Steuerinfos_fuer_Selbststaendige.html", description: "WKO-Leitfaden für steuerliche Pflichten Selbständiger" },
+            { name: "USP.gv.at - Arbeitsplatzpauschale", url: "https://www.usp.gv.at/themen/steuern-finanzen/steuerliche-gewinnermittlung/weitere-informationen-zur-steuerlichen-gewinnermittlung/betriebseinnahmen-und-ausgaben/Arbeitsplatzpauschale.html", description: "Amtliche Informationen zum Arbeitsplatzpauschale" },
+            { name: "USP.gv.at - Geringwertige Wirtschaftsgüter", url: "https://www.usp.gv.at/themen/steuern-finanzen/steuerliche-gewinnermittlung/weitere-informationen-zur-steuerlichen-gewinnermittlung/betriebseinnahmen-und-ausgaben/geringwertige-wirtschaftsgueter.html", description: "Amtliche Informationen zur GWG-Grenze" },
             { name: "RIS — Einkommensteuergesetz (EStG)", url: "https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10004570", description: "Aktuelle Fassung des EStG im Rechtsinformationssystem" }
           ]}
           relatedArticles={[

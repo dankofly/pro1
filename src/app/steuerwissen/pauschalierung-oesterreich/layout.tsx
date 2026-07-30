@@ -26,7 +26,7 @@ const articleJsonLd = {
     url: 'https://steuerboard.pro/impressum',
   },
   datePublished: '2026-03-18',
-  dateModified: '2026-03-19',
+  dateModified: '2026-07-30',
   inLanguage: 'de-AT',
   publisher: {
     '@type': 'Organization',
@@ -78,7 +78,7 @@ const faqJsonLd = {
       name: 'Kann ich zwischen Pauschalierung und tatsächlichen Ausgaben wechseln?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Ja, Sie können jährlich zwischen Pauschalierung und der Erfassung tatsächlicher Betriebsausgaben wechseln. Ein Wechsel ist mit der Steuererklärung für das jeweilige Jahr möglich.'
+        text: 'Der Wechsel von der Pauschalierung zur Erfassung tatsächlicher Betriebsausgaben ist mit der Steuererklärung jederzeit möglich. Eine Rückkehr zur Basispauschalierung ist danach aber erst nach 5 Wirtschaftsjahren zulässig, zur Kleinunternehmerpauschalierung nach 3 Wirtschaftsjahren.'
       }
     }
   ]

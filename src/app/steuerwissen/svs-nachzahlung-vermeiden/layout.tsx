@@ -26,7 +26,7 @@ const articleJsonLd = {
     url: 'https://steuerboard.pro/impressum',
   },
   datePublished: '2026-03-18',
-  dateModified: '2026-03-18',
+  dateModified: '2026-07-30',
   inLanguage: 'de-AT',
   publisher: {
     '@type': 'Organization',
@@ -62,7 +62,7 @@ const faqJsonLd = {
       name: 'Wie kann ich eine SVS-Nachzahlung vermeiden?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Du kannst eine Änderung der vorläufigen Beitragsgrundlage nach § 25a Abs 3 GSVG beantragen, monatliche Rücklagen bilden und den Gewinnfreibetrag optimal nutzen.'
+        text: 'Du kannst eine Änderung der vorläufigen Beitragsgrundlage nach § 25a Abs 5 GSVG beantragen, monatliche Rücklagen bilden und den Gewinnfreibetrag optimal nutzen.'
       }
     },
     {
@@ -70,7 +70,7 @@ const faqJsonLd = {
       name: 'Wann muss ich mit einer SVS-Nachzahlung rechnen?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Eine Nachzahlung wird drei Jahre nach dem Beitragsjahr fällig, wenn dein tatsächlicher Gewinn höher war als die Grundlage für die vorläufigen Beiträge.'
+        text: 'Eine Nachzahlung kommt typischerweise zwei bis vier Jahre nach dem Beitragsjahr, sobald der Einkommensteuerbescheid bei der SVS verarbeitet ist. Sie wird auf die vier Quartale des Folgejahres aufgeteilt.'
       }
     },
     {

@@ -14,7 +14,7 @@ const RECHNER = [
     nr: '01',
     name: 'BMF Brutto-Netto-Rechner',
     betreiber: 'Bundesministerium für Finanzen',
-    url: 'https://bruttonetto.bmf.gv.at/',
+    url: 'https://www.bmf.gv.at/brutto-netto-rechner.html',
     rechnet: 'Lohnsteuer, ASVG-Sozialversicherung, Netto aus Brutto',
     idealFuer: 'Angestellte, Lehrlinge, Pensionistinnen und Pensionisten',
     kosten: 'kostenlos',
@@ -30,10 +30,10 @@ const RECHNER = [
   },
   {
     nr: '03',
-    name: 'WKO-Sozialversicherungsrechner',
+    name: 'WKO SV- und Steuer-Rechner',
     betreiber: 'Wirtschaftskammer Österreich',
-    url: 'https://www.wko.at/',
-    rechnet: 'SV-Beiträge für Gewerbetreibende nach GSVG, inkl. Gründungsjahre',
+    url: 'https://www.wko.at/gruendung/sv-steuerrechner',
+    rechnet: 'SV-Beiträge und Einkommensteuer für Selbständige, auch Mischfälle mit Anstellung',
     idealFuer: 'Gründerinnen, Gründer und Gewerbetreibende',
     kosten: 'kostenlos',
   },
@@ -96,10 +96,10 @@ export default function SteuerrechnerVergleichPage() {
             <p className="font-medium leading-relaxed text-sb-mut">
               <strong className="text-sb-text">Kurzantwort:</strong> Für Angestellte ist der
               amtliche BMF Brutto-Netto-Rechner die erste Wahl. Selbständige prüfen ihre
-              Sozialversicherung mit dem SVS-Beitragsrechner oder dem WKO-Sozialversicherungsrechner
-              und die Steuer mit einem Einkommensteuer-Rechner wie finanz.at. Wer als Selbständiger
-              SVS-Beiträge, Einkommensteuer, die kommende Nachbelastung aus der Nachbemessung und
-              das echte Netto in einer einzigen Rechnung sehen will, nutzt SteuerBoard.pro.
+              Vorschreibung mit dem SVS-Beitragsrechner, einen ersten Überschlag über SV plus
+              Steuer liefert der WKO SV- und Steuer-Rechner. Wer als Selbständiger zusätzlich
+              die kommende Nachbelastung aus der Nachbemessung und das echte Netto in einer
+              einzigen Rechnung sehen will, nutzt SteuerBoard.pro.
             </p>
           </div>
 
@@ -175,19 +175,19 @@ export default function SteuerrechnerVergleichPage() {
           {/* 3. WKO */}
           <section className="mb-10">
             <h2 className="mb-4 font-heading text-2xl font-semibold text-sb-text">
-              3. WKO-Sozialversicherungsrechner: stark für Gründung und Gewerbe
+              3. WKO SV- und Steuer-Rechner: stark für Gründung und Gewerbe
             </h2>
             <p className="mb-4 leading-relaxed text-sb-mut">
-              Die Wirtschaftskammer bietet einen Sozialversicherungsrechner, der auf Gewerbetreibende
-              zugeschnitten ist. Besonders nützlich ist er in den ersten Jahren der Selbständigkeit,
-              weil er die Sonderregeln für Gründerinnen und Gründer abbildet, etwa die reduzierten
-              Beitragsgrundlagen am Anfang. Für die Frage "Was kostet mich die Sozialversicherung im
-              Gewerbe?" ist er ein solides, kostenloses Werkzeug.
+              Die Wirtschaftskammer bietet mit dem SV- und Steuer-Rechner ein kostenloses Werkzeug,
+              das auf Selbständige und Gründer zugeschnitten ist. Aus geschätzten Umsätzen und
+              Aufwänden berechnet er die voraussichtlichen Abgaben für Sozialversicherung und
+              Steuern, auch für Mischfälle aus Anstellung und Selbständigkeit. Für die Frage
+              "Was kostet mich die Selbständigkeit an Abgaben?" ist er ein solider Einstieg.
             </p>
             <p className="leading-relaxed text-sb-mut">
-              Auch hier gilt die klare Arbeitsteilung: Er berechnet die Sozialversicherung. Die
-              Einkommensteuer nach dem Tarif des § 33 EStG und das daraus folgende echte Netto sind
-              ein eigenes Kapitel, das ein SV-Rechner bewusst nicht aufschlägt.
+              Seine Grenze liegt beim Zeithorizont: Er liefert eine Momentaufnahme der laufenden
+              Abgaben. Die spätere Nachbemessung der SVS nach Vorliegen des
+              Einkommensteuerbescheids und die daraus folgende Nachbelastung bildet er nicht ab.
             </p>
           </section>
 
@@ -197,7 +197,7 @@ export default function SteuerrechnerVergleichPage() {
               4. finanz.at: schnelle Überschläge mit aktuellen Tarifen
             </h2>
             <p className="mb-4 leading-relaxed text-sb-mut">
-              finanz.at ist eines der größten privaten Finanzportale Österreichs und bündelt mehrere
+              finanz.at ist ein privates österreichisches Finanzportal und bündelt mehrere
               kostenlose Rechner: Brutto-Netto in beide Richtungen, Lohnsteuer und den
               Einkommensteuer-Tarif mit den aktuellen Stufen. Wer schnell wissen will, in welcher
               Tarifstufe ein Einkommen landet oder was eine Gehaltserhöhung netto bringt, ist hier
@@ -260,7 +260,7 @@ export default function SteuerrechnerVergleichPage() {
               </li>
               <li className="rounded-lg border border-sb-line bg-sb-raise p-4">
                 <strong className="text-sb-text">Du gründest gerade ein Gewerbe:</strong>{' '}
-                WKO-Sozialversicherungsrechner, er kennt die Gründer-Sonderregeln.
+                WKO SV- und Steuer-Rechner, er ist auf Gründerinnen und Gründer zugeschnitten.
               </li>
               <li className="rounded-lg border border-sb-line bg-sb-raise p-4">
                 <strong className="text-sb-text">Du brauchst einen schnellen Tarif-Überschlag:</strong>{' '}
@@ -283,8 +283,9 @@ export default function SteuerrechnerVergleichPage() {
             </h2>
             <p className="mb-4 leading-relaxed text-sb-mut">
               Alle vier Einzelrechner oben machen genau das, wofür sie gebaut wurden, und sie machen
-              es gut. Die Lücke entsteht zwischen ihnen: Ein SV-Rechner kennt die Einkommensteuer
-              nicht, ein Steuertarif-Rechner kennt die SVS nicht, und keiner der beiden blickt in die
+              es gut. Die Lücke liegt auf der Zeitachse: Ein Beitragsrechner kennt die Einkommensteuer
+              nicht, ein Steuertarif-Rechner kennt die SVS nicht, und der WKO-Rechner verbindet zwar
+              beides für das laufende Jahr, aber keiner dieser Rechner blickt in die
               Zukunft der Nachbemessung. Die SVS schreibt Beiträge zunächst auf Basis der vorläufigen
               Beitragsgrundlage vor, meist aus dem drittvorangegangenen Jahr. Liegt der
               Einkommensteuerbescheid vor, wird nachbemessen, und bei gestiegenem Gewinn folgt eine
@@ -309,9 +310,9 @@ export default function SteuerrechnerVergleichPage() {
                   Welcher Steuerrechner ist der beste für Selbständige in Österreich?
                 </h3>
                 <p className="leading-relaxed text-sb-mut">
-                  Ein einzelner Rechner reicht selten: SVS- und WKO-Rechner berechnen die
-                  Sozialversicherung, Einkommensteuer-Rechner den Tarif. Wer SVS-Beiträge,
-                  Einkommensteuer, Nachbelastung und echtes Netto in einer Rechnung sehen will,
+                  Der SVS-Beitragsrechner berechnet die Sozialversicherung, der WKO SV- und
+                  Steuer-Rechner zusätzlich eine Steuer-Schätzung. Wer auch die Nachbelastung
+                  aus der Nachbemessung und das echte Netto in einer Rechnung sehen will,
                   braucht einen kombinierten Rechner wie SteuerBoard.pro.
                 </p>
               </div>
@@ -365,7 +366,7 @@ export default function SteuerrechnerVergleichPage() {
             </h2>
             <ul className="space-y-2 text-sb-mut">
               <li>
-                <a href="https://bruttonetto.bmf.gv.at/" target="_blank" rel="noopener noreferrer" className="text-sb-accent hover:text-sb-accent-deep">
+                <a href="https://www.bmf.gv.at/brutto-netto-rechner.html" target="_blank" rel="noopener noreferrer" className="text-sb-accent hover:text-sb-accent-deep">
                   Brutto-Netto-Rechner des Bundesministeriums für Finanzen
                 </a>
               </li>

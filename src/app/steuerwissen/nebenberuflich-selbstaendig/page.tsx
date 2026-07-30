@@ -36,10 +36,11 @@ export default function NebenberuflichSelbstaendigPage() {
             <div className="bg-sb-accent-soft border border-sb-accent/30 p-5 rounded-lg mb-10">
               <p className="text-sb-mut font-medium leading-relaxed">
                 <strong className="text-sb-text">Kurzantwort:</strong> Nebenberuflich selbständig bedeutet:
-                (1) SVS-Pflicht ab 6.221,28 € Jahreseinkommen, (2) Pflichtveranlagung ab 730 € Nebeneinkünften,
+                (1) SVS-Pflicht für Neue Selbständige bei Einkünften über 6.613,20 € (2026), mit Gewerbeschein
+                ab der Anmeldung, (2) Pflichtveranlagung bei über 730 € Nebeneinkünften,
                 (3) Progressive Besteuerung aller Einkünfte zusammen, (4) Meldung bei Finanzamt, SVS und ggf.
-                Gewerbebehörde, (5) Kleinunternehmerregelung bis 42.000 € möglich. Bei Mischeinkommen steigt oft
-                der Grenzsteuersatz erheblich.
+                Gewerbebehörde, (5) Kleinunternehmerregelung bis 55.000 € Umsatz (brutto) möglich. Bei
+                Mischeinkommen steigt oft der Grenzsteuersatz erheblich.
               </p>
             </div>
 
@@ -73,25 +74,24 @@ export default function NebenberuflichSelbstaendigPage() {
 
               <div className="grid md:grid-cols-2 gap-4 mb-6">
                 <div className="bg-sb-green-soft border border-sb-green/30 p-4 rounded-lg">
-                  <h4 className="font-semibold text-sb-green mb-2">Kein Gewerbeschein nötig:</h4>
+                  <h4 className="font-semibold text-sb-green mb-2">Kein Gewerbeschein (Neue Selbständige & freie Berufe):</h4>
                   <ul className="text-sb-mut text-sm space-y-1">
-                    <li>• IT-Beratung & Programmierung</li>
-                    <li>• Grafik & Design</li>
-                    <li>• Texten & Übersetzen</li>
-                    <li>• Coaching & Training</li>
+                    <li>• Vortragende & Lehrende</li>
+                    <li>• Autoren & Journalisten</li>
                     <li>• Künstlerische Tätigkeiten</li>
-                    <li>• Wissenschaftliche Beratung</li>
+                    <li>• Wissenschaftliche Beratung & Gutachten</li>
+                    <li>• Psychotherapeuten & andere Berufe mit eigenem Berufsrecht</li>
                   </ul>
                 </div>
                 <div className="bg-sb-red/10 border border-sb-red/30 p-4 rounded-lg">
-                  <h4 className="font-semibold text-sb-red mb-2">Gewerbeschein erforderlich:</h4>
+                  <h4 className="font-semibold text-sb-red mb-2">Gewerbeanmeldung erforderlich:</h4>
                   <ul className="text-sb-mut text-sm space-y-1">
+                    <li>• IT-Dienstleistung & Programmierung (freies Gewerbe)</li>
+                    <li>• Grafik, Webdesign & Werbetexten (freies Gewerbe)</li>
+                    <li>• Coaching & Lebensberatung (reglementiert: Lebens- und Sozialberatung bzw. Unternehmensberatung)</li>
                     <li>• Online-Handel (E-Commerce)</li>
-                    <li>• Handwerksleistungen</li>
-                    <li>• Produktverkauf</li>
-                    <li>• Dienstleistungen vor Ort</li>
-                    <li>• Gastronomie & Events</li>
-                    <li>• Transport & Logistik</li>
+                    <li>• Handwerksleistungen (oft reglementiert)</li>
+                    <li>• Gastronomie, Transport & Logistik</li>
                   </ul>
                 </div>
               </div>
@@ -107,17 +107,20 @@ export default function NebenberuflichSelbstaendigPage() {
             {/* SVS-Pflicht bei Nebeneinkünften */}
             <section className="mb-10">
               <h2 className="text-2xl font-semibold text-sb-text mb-4">
-                SVS-Pflicht bei Nebeneinkünften — Die 6.221,28 € Grenze
+                SVS-Pflicht bei Nebeneinkünften: Die 6.613,20 € Grenze
               </h2>
 
               <p className="text-sb-mut mb-4 leading-relaxed">
-                Die wichtigste Schwelle für nebenberuflich Selbständige ist die SVS-Versicherungsgrenze
-                von <strong className="text-sb-text">6.221,28 € jährlich</strong> (2026). Diese Grenze
-                bezieht sich auf deine Einkünfte aus selbständiger Tätigkeit, nicht auf den Umsatz.
+                Die wichtigste Schwelle für nebenberuflich Selbständige ohne Gewerbeschein (Neue Selbständige)
+                ist die SVS-Versicherungsgrenze von <strong className="text-sb-text">6.613,20 € jährlich</strong> (2026).
+                Diese Grenze bezieht sich auf deine Einkünfte aus selbständiger Tätigkeit, nicht auf den Umsatz.
+                Achtung: Mit Gewerbeschein bist du ab der Gewerbeanmeldung pflichtversichert, unabhängig vom
+                Einkommen. Die Kleinstunternehmer-Ausnahme gibt es nur auf Antrag (Einkünfte max. 6.613,20 €
+                UND Umsatz max. 55.000 €, plus weitere Voraussetzungen).
               </p>
 
               <div className="bg-sb-card p-5 rounded-lg border border-sb-line mb-6">
-                <h3 className="text-lg font-semibold text-sb-text mb-3">Was passiert unter 6.221,28 €?</h3>
+                <h3 className="text-lg font-semibold text-sb-text mb-3">Was passiert unter 6.613,20 €?</h3>
                 <ul className="text-sb-mut space-y-2">
                   <li>• <strong className="text-sb-text">Keine SVS-Pflicht:</strong> Du bleibst nur bei deiner Anstellungs-Krankenversicherung</li>
                   <li>• <strong className="text-sb-text">Freiwillige Versicherung:</strong> Du kannst dich trotzdem bei der SVS versichern</li>
@@ -127,12 +130,12 @@ export default function NebenberuflichSelbstaendigPage() {
               </div>
 
               <div className="bg-sb-card p-5 rounded-lg border border-sb-line mb-6">
-                <h3 className="text-lg font-semibold text-sb-text mb-3">Was passiert über 6.221,28 €?</h3>
+                <h3 className="text-lg font-semibold text-sb-text mb-3">Was passiert über 6.613,20 €?</h3>
                 <ul className="text-sb-mut space-y-2">
                   <li>• <strong className="text-sb-text">SVS-Pflichtversicherung:</strong> Automatische Anmeldung bei der SVS</li>
                   <li>• <strong className="text-sb-text">Doppelversicherung:</strong> ASVG (Anstellung) + GSVG (SVS) parallel</li>
-                  <li>• <strong className="text-sb-text">Mindestbeitrag 2026:</strong> Ca. 186 €/Monat (2.232 €/Jahr)</li>
-                  <li>• <strong className="text-sb-text">Unfallversicherung:</strong> Automatisch inkludiert (ca. 11,35 €/Monat)</li>
+                  <li>• <strong className="text-sb-text">Mindestbeitrag 2026:</strong> Ca. 160,81 €/Monat (rund 1.930 €/Jahr)</li>
+                  <li>• <strong className="text-sb-text">Unfallversicherung:</strong> Automatisch inkludiert (155,40 €/Jahr = 12,95 €/Monat)</li>
                 </ul>
               </div>
 
@@ -151,37 +154,42 @@ export default function NebenberuflichSelbstaendigPage() {
                     <tr className="border-t border-sb-line">
                       <td className="p-3">Pensionsversicherung</td>
                       <td className="p-3 text-right">18,50%</td>
-                      <td className="p-3 text-right">€ 120,46</td>
+                      <td className="p-3 text-right">€ 101,95</td>
                     </tr>
                     <tr className="border-t border-sb-line">
                       <td className="p-3">Krankenversicherung</td>
                       <td className="p-3 text-right">6,80%</td>
-                      <td className="p-3 text-right">€ 44,27</td>
+                      <td className="p-3 text-right">€ 37,47</td>
                     </tr>
                     <tr className="border-t border-sb-line">
                       <td className="p-3">Selbständigenvorsorge</td>
                       <td className="p-3 text-right">1,53%</td>
-                      <td className="p-3 text-right">€ 9,96</td>
+                      <td className="p-3 text-right">€ 8,43</td>
                     </tr>
                     <tr className="border-t border-sb-line">
                       <td className="p-3">Unfallversicherung</td>
                       <td className="p-3 text-right">Pauschal</td>
-                      <td className="p-3 text-right">€ 11,35</td>
+                      <td className="p-3 text-right">€ 12,95</td>
                     </tr>
                     <tr className="border-t border-sb-line bg-white/[0.05]">
                       <td className="p-3 font-semibold text-sb-text">Gesamt</td>
                       <td className="p-3 text-right font-semibold text-sb-text">26,83%*</td>
-                      <td className="p-3 text-right font-semibold text-sb-text">€ 186,04</td>
+                      <td className="p-3 text-right font-semibold text-sb-text">€ 160,81</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
 
+              <p className="text-sb-mut text-sm mb-6">
+                * Summe der Beitragssätze PV + KV + Selbständigenvorsorge. Mindestbeiträge auf Basis der
+                Mindestbeitragsgrundlage von 551,10 €/Monat (2026), Unfallversicherung als Fixbetrag.
+              </p>
+
               <div className="bg-sb-accent-soft border border-sb-accent/30 p-4 rounded-lg">
                 <p className="text-sb-mut">
                   <strong>Achtung:</strong> Die Doppelversicherung bedeutet höhere Gesamtkosten, aber auch
-                  bessere Absicherung. Bei der Krankenversicherung gibt es teilweise Erstattungen zwischen
-                  ASVG und GSVG, aber nie 100%. Kalkuliere mindestens 80% der SVS-Beiträge als Mehrkosten ein.
+                  bessere Absicherung, etwa zusätzliche Pensionszeiten. Kalkuliere die SVS-Beiträge auf
+                  deine selbständigen Einkünfte als volle Mehrkosten ein.
                 </p>
               </div>
             </section>
@@ -202,7 +210,8 @@ export default function NebenberuflichSelbstaendigPage() {
                 <h4 className="font-medium text-sb-accent mb-2">Wichtige Regel:</h4>
                 <p className="text-sb-mut">
                   Als Arbeitnehmer mit Nebeneinkünften über 730 € musst du eine Pflichtveranlagung
-                  (Steuererklärung) abgeben. Darunter ist es freiwillig, aber oft vorteilhaft.
+                  (Steuererklärung) abgeben. Darunter ist es freiwillig, aber oft vorteilhaft. Der
+                  Veranlagungsfreibetrag von 730 € schleift sich zwischen 730 € und 1.460 € ein.
                 </p>
               </div>
 
@@ -219,34 +228,39 @@ export default function NebenberuflichSelbstaendigPage() {
                   </thead>
                   <tbody className="text-sb-mut">
                     <tr className="border-t border-sb-line">
-                      <td className="p-3">0 - 12.816</td>
+                      <td className="p-3">0 - 13.539</td>
                       <td className="p-3 text-center text-sb-green font-medium">0%</td>
                       <td className="p-3 text-right">0%</td>
                     </tr>
                     <tr className="border-t border-sb-line">
-                      <td className="p-3">12.817 - 20.818</td>
+                      <td className="p-3">13.540 - 21.992</td>
                       <td className="p-3 text-center text-sb-accent font-medium">20%</td>
                       <td className="p-3 text-right">7,7%</td>
                     </tr>
                     <tr className="border-t border-sb-line">
-                      <td className="p-3">20.819 - 34.513</td>
+                      <td className="p-3">21.993 - 36.458</td>
                       <td className="p-3 text-center text-sb-accent font-medium">30%</td>
-                      <td className="p-3 text-right">16,2%</td>
+                      <td className="p-3 text-right">16,5%</td>
                     </tr>
                     <tr className="border-t border-sb-line">
-                      <td className="p-3">34.514 - 66.612</td>
+                      <td className="p-3">36.459 - 70.365</td>
                       <td className="p-3 text-center text-sb-red font-medium">40%</td>
                       <td className="p-3 text-right">27,8%</td>
                     </tr>
                     <tr className="border-t border-sb-line">
-                      <td className="p-3">66.613 - 99.266</td>
+                      <td className="p-3">70.366 - 104.859</td>
                       <td className="p-3 text-center text-sb-red font-medium">48%</td>
-                      <td className="p-3 text-right">35,2%</td>
+                      <td className="p-3 text-right">34,5%</td>
                     </tr>
                     <tr className="border-t border-sb-line">
-                      <td className="p-3">99.267 - 1.000.000</td>
+                      <td className="p-3">104.860 - 1.000.000</td>
                       <td className="p-3 text-center text-sb-red font-medium">50%</td>
-                      <td className="p-3 text-right">42,1%</td>
+                      <td className="p-3 text-right">48,4%</td>
+                    </tr>
+                    <tr className="border-t border-sb-line">
+                      <td className="p-3">über 1.000.000</td>
+                      <td className="p-3 text-center text-sb-red font-medium">55%</td>
+                      <td className="p-3 text-right">-</td>
                     </tr>
                   </tbody>
                 </table>
@@ -260,6 +274,7 @@ export default function NebenberuflichSelbstaendigPage() {
                   <li>• Bruttogehalt: 40.000 € (entspricht ca. 28.500 € netto)</li>
                   <li>• Gewinn aus selbständiger Tätigkeit: 15.000 €</li>
                   <li>• Gesamteinkommen: 55.000 €</li>
+                  <li>• Vereinfachte Rechnung: direkt auf das Bruttoeinkommen, ohne SV-Abzug, Werbungskosten und Absetzbeträge</li>
                 </ul>
               </div>
 
@@ -275,34 +290,34 @@ export default function NebenberuflichSelbstaendigPage() {
                   </thead>
                   <tbody className="text-sb-mut">
                     <tr className="border-t border-sb-line">
-                      <td className="p-3">0 - 12.816</td>
-                      <td className="p-3 text-right">12.816</td>
+                      <td className="p-3">0 - 13.539</td>
+                      <td className="p-3 text-right">13.539</td>
                       <td className="p-3 text-center">0%</td>
                       <td className="p-3 text-right">0</td>
                     </tr>
                     <tr className="border-t border-sb-line">
-                      <td className="p-3">12.817 - 20.818</td>
-                      <td className="p-3 text-right">8.002</td>
+                      <td className="p-3">13.540 - 21.992</td>
+                      <td className="p-3 text-right">8.453</td>
                       <td className="p-3 text-center">20%</td>
-                      <td className="p-3 text-right">1.600</td>
+                      <td className="p-3 text-right">1.691</td>
                     </tr>
                     <tr className="border-t border-sb-line">
-                      <td className="p-3">20.819 - 34.513</td>
-                      <td className="p-3 text-right">13.695</td>
+                      <td className="p-3">21.993 - 36.458</td>
+                      <td className="p-3 text-right">14.466</td>
                       <td className="p-3 text-center">30%</td>
-                      <td className="p-3 text-right">4.109</td>
+                      <td className="p-3 text-right">4.340</td>
                     </tr>
                     <tr className="border-t border-sb-line">
-                      <td className="p-3">34.514 - 55.000</td>
-                      <td className="p-3 text-right">20.487</td>
+                      <td className="p-3">36.459 - 55.000</td>
+                      <td className="p-3 text-right">18.542</td>
                       <td className="p-3 text-center">40%</td>
-                      <td className="p-3 text-right">8.195</td>
+                      <td className="p-3 text-right">7.417</td>
                     </tr>
                     <tr className="border-t border-sb-line bg-white/[0.05]">
                       <td className="p-3 font-semibold text-sb-text">Gesamt</td>
                       <td className="p-3 text-right font-semibold text-sb-text">55.000</td>
-                      <td className="p-3 text-center font-semibold text-sb-text">25,1%</td>
-                      <td className="p-3 text-right font-semibold text-sb-text">13.904</td>
+                      <td className="p-3 text-center font-semibold text-sb-text">24,5%</td>
+                      <td className="p-3 text-right font-semibold text-sb-text">13.447</td>
                     </tr>
                   </tbody>
                 </table>
@@ -311,8 +326,8 @@ export default function NebenberuflichSelbstaendigPage() {
               <div className="bg-sb-red/10 border border-sb-red/30 p-4 rounded-lg">
                 <p className="text-sb-mut">
                   <strong>Wichtig:</strong> Die 15.000 € aus selbständiger Tätigkeit werden größtenteils mit
-                  40% besteuert! Ohne das Nebeneinkommen läge der Durchschnittssteuersatz bei nur 16,2%.
-                  Plane daher mindestens 35-40% der Nebeneinkünfte für Steuern und SVS-Beiträge ein.
+                  40% besteuert! Ohne das Nebeneinkommen läge der Durchschnittssteuersatz bei rund 18,6%.
+                  Plane daher rund 40-50% der Nebeneinkünfte für Steuern und SVS-Beiträge ein.
                 </p>
               </div>
             </section>
@@ -350,12 +365,15 @@ export default function NebenberuflichSelbstaendigPage() {
                 </div>
 
                 <div className="bg-sb-card p-4 rounded-lg border-l-4 border-sb-accent">
-                  <h4 className="font-semibold text-sb-text mb-2">3. SVS (ab 6.221,28 €)</h4>
+                  <h4 className="font-semibold text-sb-text mb-2">3. SVS</h4>
                   <p className="text-sb-mut text-sm mb-2">
-                    <strong>Wann:</strong> Automatisch durch Finanzamts-Meldung, bei Überschreitung der Grenze
+                    <strong>Wann:</strong> Binnen eines Monats selbst melden. Gewerbetreibende werden über die
+                    Gewerbeanmeldung erfasst; Neue Selbständige melden die Überschreitung der Versicherungsgrenze
+                    (6.613,20 €, 2026) per Versicherungserklärung
                   </p>
                   <p className="text-sb-mut text-sm">
-                    <strong>Was:</strong> Bekommt Daten vom Finanzamt, schickt Beitragsbescheid
+                    <strong>Was:</strong> Schickt Beitragsvorschreibung. Wird die Überschreitung erst über den
+                    Steuerbescheid bekannt, kommen die Beiträge rückwirkend
                   </p>
                 </div>
 
@@ -404,8 +422,9 @@ export default function NebenberuflichSelbstaendigPage() {
 
               <p className="text-sb-mut mb-4 leading-relaxed">
                 Ein wichtiger Entscheidungspunkt für Nebenberufler ist die Umsatzsteuer. Die
-                Kleinunternehmerregelung nach § 6 Abs. 1 Z 27 UStG befreit dich bis zu einem
-                Jahresumsatz von 42.000 € von der Umsatzsteuerpflicht.
+                Kleinunternehmerregelung nach § 6 Abs. 1 Z 27 UStG befreit dich seit 2025 bis zu einem
+                Jahresumsatz von 55.000 € (brutto) von der Umsatzsteuerpflicht. Eine einmalige
+                Überschreitung um bis zu 10% ist toleriert.
               </p>
 
               <div className="grid md:grid-cols-2 gap-6 mb-6">
@@ -437,7 +456,7 @@ export default function NebenberuflichSelbstaendigPage() {
                   </ul>
                   <h4 className="text-sb-text font-medium mb-2">Nachteile:</h4>
                   <ul className="text-sb-mut text-sm space-y-1">
-                    <li>• Monatliche USt-Voranmeldung</li>
+                    <li>• USt-Voranmeldung (quartalsweise bis 100.000 € Vorjahresumsatz, darüber monatlich)</li>
                     <li>• 20% USt auf alle Rechnungen</li>
                     <li>• Mehr Bürokratie</li>
                     <li>• Jahreserklärung komplexer</li>
@@ -453,7 +472,7 @@ export default function NebenberuflichSelbstaendigPage() {
                 <ul className="text-sb-mut space-y-1 mb-4">
                   <li>• Du hauptsächlich an Endkunden verkaufst (B2C)</li>
                   <li>• Deine Betriebsausgaben niedrig sind (wenig Vorsteuer)</li>
-                  <li>• Du unter 42.000 € Jahresumsatz bleibst</li>
+                  <li>• Du unter 55.000 € Jahresumsatz (brutto) bleibst</li>
                   <li>• Du den administrativen Aufwand minimal halten willst</li>
                 </ul>
 
@@ -463,16 +482,17 @@ export default function NebenberuflichSelbstaendigPage() {
                 <ul className="text-sb-mut space-y-1">
                   <li>• Du hauptsächlich an Unternehmen verkaufst (B2B)</li>
                   <li>• Du hohe Betriebsausgaben hast (viel Vorsteuer)</li>
-                  <li>• Du über 42.000 € Jahresumsatz planst</li>
+                  <li>• Du über 55.000 € Jahresumsatz planst</li>
                   <li>• Du professionell auftreten willst</li>
                 </ul>
               </div>
 
               <div className="bg-sb-accent-soft border border-sb-accent/30 p-4 rounded-lg">
                 <p className="text-sb-mut">
-                  <strong>Wichtig:</strong> Du kannst zwischen beiden Optionen wählen, musst dich aber
-                  für mindestens 5 Jahre festlegen. Ändere nur mit guter Begründung — etwa bei dauerhafter
-                  Überschreitung der 42.000 € Grenze.
+                  <strong>Wichtig:</strong> Die Kleinunternehmerregelung selbst bindet dich nicht. Nur der
+                  Verzicht auf die Befreiung (Option zur Regelbesteuerung) bindet für mindestens 5 Jahre.
+                  Wechsle daher nur mit guter Begründung, etwa bei dauerhaft hoher Vorsteuer oder
+                  Überschreitung der 55.000 € Grenze.
                 </p>
               </div>
             </section>
@@ -487,15 +507,16 @@ export default function NebenberuflichSelbstaendigPage() {
                 <div className="bg-sb-red/10 border border-sb-red/30 p-4 rounded-lg">
                   <h4 className="font-semibold text-sb-red mb-2">1. Zu niedrige Steuerrücklagen</h4>
                   <p className="text-sb-mut text-sm">
-                    Viele nebenberuflich Selbständige vergessen, dass ihre Einkünfte oft mit 35-40%
-                    besteuert werden. Lege mindestens 40% deiner Gewinne für Steuern und SVS zurück.
+                    Viele nebenberuflich Selbständige vergessen, dass ihre Einkünfte oft mit bis zu 40%
+                    Grenzsteuersatz besteuert werden und SVS-Beiträge dazukommen. Lege rund 50% deiner
+                    Gewinne für Steuern und SVS zurück.
                   </p>
                 </div>
 
                 <div className="bg-sb-red/10 border border-sb-red/30 p-4 rounded-lg">
                   <h4 className="font-semibold text-sb-red mb-2">2. SVS-Grenze übersehen</h4>
                   <p className="text-sb-mut text-sm">
-                    Bei Überschreitung der 6.221,28 € Grenze wirst du rückwirkend SVS-pflichtig.
+                    Bei Überschreitung der 6.613,20 € Grenze wirst du rückwirkend SVS-pflichtig.
                     Das bedeutet auch rückwirkende Beitragszahlung! Überwache deine Einkünfte laufend.
                   </p>
                 </div>
@@ -519,16 +540,17 @@ export default function NebenberuflichSelbstaendigPage() {
                 <div className="bg-sb-red/10 border border-sb-red/30 p-4 rounded-lg">
                   <h4 className="font-semibold text-sb-red mb-2">5. Betriebsausgaben nicht nutzen</h4>
                   <p className="text-sb-mut text-sm">
-                    Arbeitszimmer, Telefon, Internet, Fachliteratur — nutze alle möglichen Absetzungen.
-                    Bei häuslichem Arbeitszimmer sind bis zu 1.200 € ohne Nachweis absetzbar.
+                    Arbeitsplatzpauschale, Telefon, Internet, Fachliteratur: nutze alle möglichen Absetzungen.
+                    Mit Gehalt über 13.539 € (2026) stehen dir 300 € Arbeitsplatzpauschale ohne Nachweis zu,
+                    die 1.200 € gibt es nur ohne bzw. mit geringen anderen aktiven Erwerbseinkünften.
                   </p>
                 </div>
 
                 <div className="bg-sb-red/10 border border-sb-red/30 p-4 rounded-lg">
                   <h4 className="font-semibold text-sb-red mb-2">6. Umsatz vs. Einkünfte verwechseln</h4>
                   <p className="text-sb-mut text-sm">
-                    Die SVS-Grenze von 6.221,28 € bezieht sich auf Einkünfte (Gewinn), nicht auf Umsatz!
-                    Die USt-Grenze von 42.000 € hingegen auf den Umsatz. Nicht verwechseln.
+                    Die SVS-Versicherungsgrenze von 6.613,20 € bezieht sich auf Einkünfte (Gewinn), nicht auf
+                    Umsatz! Die USt-Grenze von 55.000 € hingegen auf den Brutto-Umsatz. Nicht verwechseln.
                   </p>
                 </div>
 
@@ -603,18 +625,24 @@ export default function NebenberuflichSelbstaendigPage() {
                     <tr className="border-t border-sb-line">
                       <td className="p-3">Unfallversicherung (pauschal)</td>
                       <td className="p-3 text-right">Fixbetrag</td>
-                      <td className="p-3 text-right">11,35 €</td>
-                      <td className="p-3 text-right">136,20 €</td>
+                      <td className="p-3 text-right">12,95 €</td>
+                      <td className="p-3 text-right">155,40 €</td>
                     </tr>
                     <tr className="border-t border-sb-line bg-white/[0.05]">
                       <td className="p-3 font-semibold text-sb-text">SVS-Beiträge gesamt</td>
                       <td className="p-3 text-right font-semibold text-sb-text"></td>
-                      <td className="p-3 text-right font-semibold text-sb-text">413,80 €</td>
-                      <td className="p-3 text-right font-semibold text-sb-text">4.965,60 €</td>
+                      <td className="p-3 text-right font-semibold text-sb-text">415,40 €</td>
+                      <td className="p-3 text-right font-semibold text-sb-text">4.984,80 €</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
+
+              <p className="text-sb-mut text-sm mb-6">
+                Vereinfacht: Die endgültige SVS-Beitragsgrundlage ist der Gewinn laut Steuerbescheid plus
+                die im Jahr vorgeschriebenen PV- und KV-Beiträge (Hinzurechnung). Die endgültigen Beiträge
+                liegen daher etwas höher.
+              </p>
 
               <h3 className="text-lg font-semibold text-sb-text mb-3">2. Einkommensteuer berechnen:</h3>
               <div className="overflow-x-auto mb-6">
@@ -629,34 +657,34 @@ export default function NebenberuflichSelbstaendigPage() {
                   </thead>
                   <tbody className="text-sb-mut">
                     <tr className="border-t border-sb-line">
-                      <td className="p-3">0 - 12.816 €</td>
-                      <td className="p-3 text-right">12.816 €</td>
+                      <td className="p-3">0 - 13.539 €</td>
+                      <td className="p-3 text-right">13.539 €</td>
                       <td className="p-3 text-center">0%</td>
                       <td className="p-3 text-right">0 €</td>
                     </tr>
                     <tr className="border-t border-sb-line">
-                      <td className="p-3">12.817 - 20.818 €</td>
-                      <td className="p-3 text-right">8.002 €</td>
+                      <td className="p-3">13.540 - 21.992 €</td>
+                      <td className="p-3 text-right">8.453 €</td>
                       <td className="p-3 text-center">20%</td>
-                      <td className="p-3 text-right">1.600,40 €</td>
+                      <td className="p-3 text-right">1.690,60 €</td>
                     </tr>
                     <tr className="border-t border-sb-line">
-                      <td className="p-3">20.819 - 34.513 €</td>
-                      <td className="p-3 text-right">13.695 €</td>
+                      <td className="p-3">21.993 - 36.458 €</td>
+                      <td className="p-3 text-right">14.466 €</td>
                       <td className="p-3 text-center">30%</td>
-                      <td className="p-3 text-right">4.108,50 €</td>
+                      <td className="p-3 text-right">4.339,80 €</td>
                     </tr>
                     <tr className="border-t border-sb-line">
-                      <td className="p-3">34.514 - 60.000 €</td>
-                      <td className="p-3 text-right">25.487 €</td>
+                      <td className="p-3">36.459 - 60.000 €</td>
+                      <td className="p-3 text-right">23.542 €</td>
                       <td className="p-3 text-center">40%</td>
-                      <td className="p-3 text-right">10.194,80 €</td>
+                      <td className="p-3 text-right">9.416,80 €</td>
                     </tr>
                     <tr className="border-t border-sb-line bg-white/[0.05]">
-                      <td className="p-3 font-semibold text-sb-text">Einkommensteuer gesamt</td>
+                      <td className="p-3 font-semibold text-sb-text">Einkommensteuer gesamt (vereinfacht)</td>
                       <td className="p-3 text-right font-semibold text-sb-text">60.000 €</td>
-                      <td className="p-3 text-center font-semibold text-sb-text">26,3%</td>
-                      <td className="p-3 text-right font-semibold text-sb-text">15.903,70 €</td>
+                      <td className="p-3 text-center font-semibold text-sb-text">25,7%</td>
+                      <td className="p-3 text-right font-semibold text-sb-text">15.447,20 €</td>
                     </tr>
                   </tbody>
                 </table>
@@ -680,12 +708,12 @@ export default function NebenberuflichSelbstaendigPage() {
                     </tr>
                     <tr className="border-t border-sb-line">
                       <td className="p-3">Einkommensteuer</td>
-                      <td className="p-3 text-right">15.904 €</td>
-                      <td className="p-3 text-right">26,5%</td>
+                      <td className="p-3 text-right">15.447 €</td>
+                      <td className="p-3 text-right">25,7%</td>
                     </tr>
                     <tr className="border-t border-sb-line">
                       <td className="p-3">SVS-Beiträge (Nebentätigkeit)</td>
-                      <td className="p-3 text-right">4.966 €</td>
+                      <td className="p-3 text-right">4.985 €</td>
                       <td className="p-3 text-right">8,3%</td>
                     </tr>
                     <tr className="border-t border-sb-line">
@@ -695,8 +723,8 @@ export default function NebenberuflichSelbstaendigPage() {
                     </tr>
                     <tr className="border-t border-sb-line bg-white/[0.05]">
                       <td className="p-3 font-semibold text-sb-text">Netto verfügbar</td>
-                      <td className="p-3 text-right font-semibold text-sb-text">31.570 €</td>
-                      <td className="p-3 text-right font-semibold text-sb-text">52,6%</td>
+                      <td className="p-3 text-right font-semibold text-sb-text">32.008 €</td>
+                      <td className="p-3 text-right font-semibold text-sb-text">53,3%</td>
                     </tr>
                   </tbody>
                 </table>
@@ -704,9 +732,10 @@ export default function NebenberuflichSelbstaendigPage() {
 
               <div className="bg-sb-accent-soft border border-sb-accent/30 p-4 rounded-lg">
                 <p className="text-sb-mut">
-                  <strong>Fazit:</strong> Von den 18.000 € Gewinn aus der Nebentätigkeit bleiben Maria
-                  nach Abzug der zusätzlichen Steuern und SVS-Beiträge etwa 11.000 € netto übrig.
-                  Das entspricht einer Belastung von ca. 39% auf die Nebeneinkünfte.
+                  <strong>Fazit:</strong> Rechnet man die SVS-Beiträge als Betriebsausgabe gegen und
+                  berücksichtigt den Grenzsteuersatz von 40%, bleiben Maria von den 18.000 € Gewinn
+                  aus der Nebentätigkeit etwa 8.000 bis 8.600 € netto (mit Gewinnfreibetrag am oberen
+                  Rand). Das entspricht einer Belastung von rund 50-55% auf die Nebeneinkünfte.
                 </p>
               </div>
             </section>
@@ -744,10 +773,11 @@ export default function NebenberuflichSelbstaendigPage() {
                   </summary>
                   <div className="p-4 pt-0 text-sb-mut">
                     <p className="leading-relaxed">
-                      Ja, sobald deine Einkünfte aus selbständiger Tätigkeit 6.221,28 € pro Jahr überschreiten,
-                      bist du pflichtversichert bei der SVS. Bei niedrigeren Einkünften kannst du dich freiwillig
-                      versichern, um Pensionszeiten zu sammeln. Die SVS-Pflicht greift automatisch, wenn das
-                      Finanzamt deine Daten weitergibt.
+                      Als Neuer Selbständiger bist du pflichtversichert, sobald deine Einkünfte aus selbständiger
+                      Tätigkeit 6.613,20 € pro Jahr (2026) überschreiten. Mit Gewerbeschein bist du ab der
+                      Gewerbeanmeldung pflichtversichert; eine Ausnahme gibt es nur auf Antrag. Bei niedrigeren
+                      Einkünften kannst du dich freiwillig versichern, um Pensionszeiten zu sammeln. Melde die
+                      Überschreitung selbst, sonst kommen die Beiträge rückwirkend.
                     </p>
                   </div>
                 </details>
@@ -758,10 +788,10 @@ export default function NebenberuflichSelbstaendigPage() {
                   </summary>
                   <div className="p-4 pt-0 text-sb-mut">
                     <p className="leading-relaxed">
-                      Als Arbeitnehmer musst du ab 730 € jährlichen Einkünften aus selbständiger Tätigkeit
-                      eine Pflichtveranlagung (Steuererklärung) abgeben. Diese Grenze gilt für die Einkünfte
-                      (Gewinn), nicht für den Umsatz. Darunter ist die Veranlagung freiwillig, aber oft
-                      vorteilhaft wegen Betriebsausgabenabzug.
+                      Als Arbeitnehmer musst du bei über 730 € jährlichen Einkünften aus selbständiger Tätigkeit
+                      eine Pflichtveranlagung (Steuererklärung) abgeben (Veranlagungsfreibetrag, schleift sich
+                      bis 1.460 € ein). Diese Grenze gilt für die Einkünfte (Gewinn), nicht für den Umsatz.
+                      Darunter ist die Veranlagung freiwillig, aber oft vorteilhaft wegen Betriebsausgabenabzug.
                     </p>
                   </div>
                 </details>
@@ -775,8 +805,8 @@ export default function NebenberuflichSelbstaendigPage() {
                       Alle Einkünfte werden zusammengerechnet und mit dem progressiven Einkommensteuertarif
                       besteuert. Dabei kann der Grenzsteuersatz auf die selbständigen Einkünfte höher sein
                       als bei der Anstellung. Bei einem Gesamteinkommen von 60.000 € werden die letzten
-                      Euros bereits mit 40% besteuert. Daher solltest du mindestens 35-40% der Nebeneinkünfte
-                      für Steuern zurücklegen.
+                      Euros bereits mit 40% besteuert. Daher solltest du rund 40-50% der Nebeneinkünfte
+                      für Steuern und SVS zurücklegen.
                     </p>
                   </div>
                 </details>
@@ -787,10 +817,11 @@ export default function NebenberuflichSelbstaendigPage() {
                   </summary>
                   <div className="p-4 pt-0 text-sb-mut">
                     <p className="leading-relaxed">
-                      Das kommt auf die Tätigkeit an. Freiberufliche Tätigkeiten (IT-Beratung, Grafik, Texten,
-                      Coaching, wissenschaftliche Beratung) brauchen keinen Gewerbeschein. Gewerbliche Tätigkeiten
-                      (Handel, Handwerk, Dienstleistungen vor Ort) schon. Bei Unsicherheit unbedingt bei der
-                      WKO nachfragen — auch telefonisch möglich und kostenlos.
+                      Das kommt auf die Tätigkeit an. Nur echte freie Tätigkeiten (Vortragende, Autoren, Künstler,
+                      Wissenschaft) brauchen keinen Gewerbeschein. IT-Dienstleistung, Webdesign, Grafik und
+                      Werbetexten sind freie Gewerbe: keine Befähigungsprüfung, aber Gewerbeanmeldung nötig.
+                      Coaching ist reglementiert (Lebens- und Sozialberatung bzw. Unternehmensberatung).
+                      Bei Unsicherheit unbedingt bei der WKO nachfragen, auch telefonisch möglich und kostenlos.
                     </p>
                   </div>
                 </details>
@@ -805,14 +836,14 @@ export default function NebenberuflichSelbstaendigPage() {
                   description: "Offizielle Informationen zur Einkommensteuer in Österreich"
                 },
                 {
-                  name: "Sozialversicherung der Selbständigen (SVS)",
-                  url: "https://www.svs.at/cdscontent/?contentid=10008.884908",
-                  description: "Versicherungspflicht und Beiträge für Selbständige"
+                  name: "Sozialversicherung der Selbständigen (SVS): Aktuelle Werte",
+                  url: "https://www.svs.at/cdscontent/?contentid=10007.816718&portal=svsportal",
+                  description: "Versicherungsgrenze und aktuelle Beitragswerte der SVS"
                 },
                 {
-                  name: "Wirtschaftskammer Österreich — Nebengewerbe",
-                  url: "https://www.wko.at/service/wirtschaftsrecht-gewerberecht/nebengewerbe.html",
-                  description: "Gewerberechtliche Bestimmungen für nebenberufliche Selbständigkeit"
+                  name: "Wirtschaftskammer Österreich: Sozialversicherung für Gründer",
+                  url: "https://www.wko.at/gruendung/sozialversicherung",
+                  description: "GSVG-Pflichtversicherung, Mindestbeiträge und Kleinstunternehmer-Ausnahme"
                 },
                 {
                   name: "Rechtsinformationssystem (RIS) — GSVG",
@@ -844,7 +875,7 @@ export default function NebenberuflichSelbstaendigPage() {
                 { name: "Steuerwissen", href: "/steuerwissen" },
                 { name: "Nebenberuflich selbständig", href: "/steuerwissen/nebenberuflich-selbstaendig" }
               ]}
-              lastUpdated="2026-03-19"
+              lastUpdated="2026-07-30"
             />
           </article>
         </div>

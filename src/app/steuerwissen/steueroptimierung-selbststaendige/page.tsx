@@ -45,12 +45,12 @@ export default function SteueroptimierungSelbststaendigePage() {
             <div className="bg-sb-card p-6 rounded-lg mb-6">
               <h3 className="text-lg font-medium mb-4 text-sb-text">Die 7 Tarifstufen nach § 33 EStG (2026):</h3>
               <ul className="space-y-2 text-sb-mut">
-                <li>• Bis 12.816€: <span className="text-sb-green font-medium">0%</span></li>
-                <li>• 12.817€ bis 20.818€: <span className="text-sb-accent font-medium">20%</span></li>
-                <li>• 20.819€ bis 34.513€: <span className="text-sb-accent font-medium">30%</span></li>
-                <li>• 34.514€ bis 66.612€: <span className="text-sb-red font-medium">40%</span></li>
-                <li>• 66.613€ bis 99.266€: <span className="text-sb-red font-medium">48%</span></li>
-                <li>• 99.267€ bis 1.000.000€: <span className="text-sb-red font-medium">50%</span></li>
+                <li>• Bis 13.539€: <span className="text-sb-green font-medium">0%</span></li>
+                <li>• 13.540€ bis 21.992€: <span className="text-sb-accent font-medium">20%</span></li>
+                <li>• 21.993€ bis 36.458€: <span className="text-sb-accent font-medium">30%</span></li>
+                <li>• 36.459€ bis 70.365€: <span className="text-sb-red font-medium">40%</span></li>
+                <li>• 70.366€ bis 104.859€: <span className="text-sb-red font-medium">48%</span></li>
+                <li>• 104.860€ bis 1.000.000€: <span className="text-sb-red font-medium">50%</span></li>
                 <li>• Über 1.000.000€: <span className="text-sb-red font-medium">55%</span></li>
               </ul>
             </div>
@@ -82,7 +82,7 @@ export default function SteueroptimierungSelbststaendigePage() {
               <div className="bg-sb-card p-6 rounded-lg">
                 <h3 className="text-lg font-medium mb-3 text-sb-green">Familienbonus Plus</h3>
                 <p className="text-sb-mut">
-                  <strong>2.100€ pro Kind unter 18 Jahren</strong> (ab 2026). Direkte Steuerreduktion,
+                  <strong>2.000€ pro Kind unter 18 Jahren</strong> (700€ pro Jahr ab 18). Direkte Steuerreduktion,
                   nicht nur Abzug von der Bemessungsgrundlage.
                 </p>
               </div>
@@ -90,19 +90,20 @@ export default function SteueroptimierungSelbststaendigePage() {
               <div className="grid md:grid-cols-2 gap-4">
                 <div className="bg-sb-card p-4 rounded-lg">
                   <h4 className="font-medium mb-2 text-sb-text">AVAB</h4>
-                  <p className="text-sb-mut text-sm">572€ Arbeitnehmerveranlagung-Absetzbetrag</p>
+                  <p className="text-sb-mut text-sm">612€ Alleinverdienerabsetzbetrag bei einem Kind (2026)</p>
                 </div>
                 <div className="bg-sb-card p-4 rounded-lg">
                   <h4 className="font-medium mb-2 text-sb-text">Verkehrsabsetzbetrag</h4>
-                  <p className="text-sb-mut text-sm">481€ bei entsprechender Nutzung</p>
+                  <p className="text-sb-mut text-sm">496€ (2026), steht nur Arbeitnehmern zu</p>
                 </div>
               </div>
 
               <div className="bg-sb-card p-6 rounded-lg">
-                <h3 className="text-lg font-medium mb-3 text-sb-green">Pendlerpauschale</h3>
+                <h3 className="text-lg font-medium mb-3 text-sb-green">Pendlerpauschale (nur Arbeitnehmer)</h3>
                 <p className="text-sb-mut">
-                  Wenn Sie regelmäßig zwischen Wohnung und Betriebsstätte pendeln, können Sie je nach
-                  Entfernung und öffentlicher Erreichbarkeit zwischen 372€ und 3.672€ jährlich absetzen.
+                  Das Pendlerpauschale (372€ bis 3.672€ jährlich je nach Entfernung und Öffi-Erreichbarkeit)
+                  ist ein Werbungskosten-Instrument für Arbeitnehmer. Als Selbständiger setzen Sie stattdessen
+                  die tatsächlichen Fahrtkosten bzw. das Kilometergeld als Betriebsausgabe ab.
                 </p>
               </div>
             </div>
@@ -115,8 +116,9 @@ export default function SteueroptimierungSelbststaendigePage() {
               <div className="bg-sb-card p-6 rounded-lg">
                 <h3 className="text-lg font-medium mb-4 text-sb-text">Arbeitszimmer</h3>
                 <p className="text-sb-mut mb-3">
-                  Wenn Sie ein Arbeitszimmer <strong>ausschließlich betrieblich</strong> nutzen,
-                  können Sie alle Kosten absetzen: Miete, Betriebskosten, Einrichtung, Renovierung.
+                  Wenn Ihr Arbeitszimmer im Wohnungsverband den <strong>Mittelpunkt Ihrer gesamten betrieblichen
+                  Tätigkeit</strong> bildet und (nahezu) ausschließlich betrieblich genutzt wird,
+                  können Sie die Kosten absetzen: Miete, Betriebskosten, Einrichtung, Renovierung.
                 </p>
                 <p className="text-sm text-sb-mut">
                   Bei gemischter Nutzung nur der betriebliche Anteil (z.B. 20m² von 100m² = 20%).
@@ -133,7 +135,7 @@ export default function SteueroptimierungSelbststaendigePage() {
                 <div className="bg-sb-card p-4 rounded-lg">
                   <h4 className="font-medium mb-2 text-sb-text">Telefon & Internet</h4>
                   <p className="text-sb-mut text-sm">
-                    Bei gemischter Nutzung mindestens 20% betrieblich ansetzbar, oft mehr.
+                    Bei gemischter Nutzung ist der betriebliche Anteil absetzbar, geschätzt nach tatsächlicher Nutzung.
                   </p>
                 </div>
               </div>
@@ -170,9 +172,10 @@ export default function SteueroptimierungSelbststaendigePage() {
                   Abschreibung einen Freibetrag geltend machen:
                 </p>
                 <ul className="space-y-2 text-sb-mut">
-                  <li>• <strong>15%</strong> der Anschaffungskosten (allgemein)</li>
-                  <li>• <strong>20%</strong> bei ökologischen Investitionen (Klimaschutz, Digitalisierung)</li>
-                  <li>• Maximal 46.000€ Freibetrag pro Jahr (bei 20%: 62.000€)</li>
+                  <li>• <strong>10%</strong> der Anschaffungskosten (allgemein), befristet <strong>20%</strong> für Anschaffungen von 1.11.2025 bis 31.12.2026</li>
+                  <li>• <strong>15%</strong> bei ökologischen Investitionen, befristet <strong>22%</strong> (gleicher Zeitraum)</li>
+                  <li>• Bemessungsgrundlage maximal 1 Mio.€ pro Wirtschaftsjahr (bei 20% also bis zu 200.000€ IFB)</li>
+                  <li>• Nicht für Wirtschaftsgüter, die den investitionsbedingten Gewinnfreibetrag decken</li>
                 </ul>
               </div>
 
@@ -201,8 +204,8 @@ export default function SteueroptimierungSelbststaendigePage() {
               <div className="bg-sb-card p-6 rounded-lg">
                 <h3 className="text-lg font-medium mb-4 text-sb-text">Einzelunternehmen vs. GmbH</h3>
                 <p className="text-sb-mut mb-4">
-                  Der Break-Even liegt meist zwischen <strong>60.000-80.000€ Jahresgewinn</strong>.
-                  Ab diesem Punkt wird die GmbH steuerlich interessant:
+                  Der Break-Even liegt als Faustregel meist zwischen <strong>60.000-80.000€ Jahresgewinn</strong>
+                  (abhängig von Ausschüttungsverhalten und Geschäftsführergehalt). Ab diesem Punkt wird die GmbH steuerlich interessant:
                 </p>
                 <ul className="space-y-2 text-sb-mut">
                   <li>• GmbH: 23% Körperschaftsteuer + 27,5% KESt auf Ausschüttungen</li>
@@ -215,9 +218,9 @@ export default function SteueroptimierungSelbststaendigePage() {
                 <h3 className="text-lg font-medium mb-4 text-sb-text">Pauschalierung prüfen</h3>
                 <p className="text-sb-mut mb-4">Je nach Branche können verschiedene Pauschalierungen vorteilhaft sein:</p>
                 <ul className="space-y-2 text-sb-mut">
-                  <li>• Basispauschalierung: 12% des Umsatzes</li>
-                  <li>• Kleinunternehmerregelung: 6% bei Dienstleistungen</li>
-                  <li>• Branchenpauschalen: 45% bei Ärzten, 20% bei Anwälten</li>
+                  <li>• Basispauschalierung: 15% des Umsatzes (2026, bis 420.000€ Umsatz; 6% für bestimmte Tätigkeiten wie Beratung)</li>
+                  <li>• Kleinunternehmerpauschalierung: 45% Ausgabenpauschale, 20% bei Dienstleistungsbetrieben</li>
+                  <li>• Branchenpauschalierungen: z.B. Gastgewerbe, Lebensmittelhandel, Handelsvertreter</li>
                 </ul>
               </div>
             </div>
@@ -281,7 +284,7 @@ export default function SteueroptimierungSelbststaendigePage() {
                   Ab welchem Gewinn lohnt sich eine GmbH?
                 </h3>
                 <p className="text-sb-mut">
-                  Der Break-Even liegt meist zwischen 60.000-80.000€ Jahresgewinn.
+                  Der Break-Even liegt als Faustregel meist zwischen 60.000-80.000€ Jahresgewinn.
                   Ab diesem Punkt wird die GmbH-Besteuerung (23% KöSt + 27,5% KESt auf Ausschüttungen)
                   günstiger als der progressive Einkommensteuertarif.
                 </p>
@@ -297,8 +300,8 @@ export default function SteueroptimierungSelbststaendigePage() {
                 <h3 className="text-lg font-medium text-sb-text mb-2">Unter 30.000€ Gewinn</h3>
                 <p className="text-sb-mut">
                   Nutzen Sie den Grundfreibetrag (bis 4.950€) voll aus. Prüfen Sie die Kleinunternehmerpauschalierung
-                  (20% oder 45%). SVS-Opting-Out bei Gewinn unter Geringfügigkeitsgrenze (~6.221€) möglich.
-                  Fokus auf vollständige Erfassung aller Betriebsausgaben.
+                  (45% bzw. 20%). SVS-Ausnahme möglich bei Einkünften unter der Versicherungsgrenze
+                  (6.613,20€, 2026) und Umsatz bis 55.000€. Fokus auf vollständige Erfassung aller Betriebsausgaben.
                 </p>
               </div>
               <div className="bg-sb-card p-6 rounded-lg border-l-4 border-sb-accent/40">
@@ -312,9 +315,9 @@ export default function SteueroptimierungSelbststaendigePage() {
               <div className="bg-sb-card p-6 rounded-lg border-l-4 border-sb-accent">
                 <h3 className="text-lg font-medium text-sb-text mb-2">60.000€ – 100.000€ Gewinn</h3>
                 <p className="text-sb-mut">
-                  GmbH-Gründung prüfen (Break-Even bei ~60-80k). Gewinnthesaurierung in der GmbH spart
-                  erheblich. SVS-Höchstbeitragsgrundlage beachten (~84.840€/Jahr). Kombinierte Nutzung
-                  von GFB + IFB maximiert Steuerersparnis.
+                  GmbH-Gründung prüfen (Break-Even als Faustregel bei ~60-80k). Gewinnthesaurierung in der GmbH spart
+                  erheblich. SVS-Höchstbeitragsgrundlage beachten (97.020€/Jahr, 2026). Kombinierte Nutzung
+                  von GFB + IFB (für verschiedene Wirtschaftsgüter) maximiert die Steuerersparnis.
                 </p>
               </div>
               <div className="bg-sb-card p-6 rounded-lg border-l-4 border-sb-red/40">
@@ -367,8 +370,9 @@ export default function SteueroptimierungSelbststaendigePage() {
               <h4 className="font-medium mb-3 text-sb-accent">Antrag auf Herabsetzung:</h4>
               <p className="text-sb-mut">
                 Bei einem erwarteten Gewinnrückgang können Sie beim Finanzamt einen Antrag auf Herabsetzung
-                der Vorauszahlungen stellen. Der Antrag muss vor dem jeweiligen Fälligkeitstermin einlangen.
-                Vorsicht: Zu niedrig angesetzte Vorauszahlungen führen zu Anspruchszinsen (aktuell ~4,88%).
+                der Vorauszahlungen stellen. Der Antrag ist bis 30. September des laufenden Jahres möglich.
+                Vorsicht: Ergibt der Bescheid später eine Nachzahlung, fallen ab 1. Oktober des Folgejahres
+                Anspruchszinsen an (aktuell 3,53%).
               </p>
             </div>
           </section>
@@ -383,7 +387,7 @@ export default function SteueroptimierungSelbststaendigePage() {
                 </h3>
                 <p className="text-sb-mut">
                   Ja, Steuerberatungskosten sind vollständig als Betriebsausgabe absetzbar. Bei einem
-                  Grenzsteuersatz von 42% spart Ihnen jeder Euro Steuerberatung effektiv 42 Cent Steuern.
+                  Grenzsteuersatz von 40% spart Ihnen jeder Euro Steuerberatung effektiv 40 Cent Steuern.
                   Auch SteuerBoard.pro-Abos sind als Betriebsausgabe absetzbar.
                 </p>
               </div>
@@ -403,7 +407,7 @@ export default function SteueroptimierungSelbststaendigePage() {
                 </h3>
                 <p className="text-sb-mut">
                   Die Pauschalierung lohnt sich, wenn Ihre tatsächlichen Betriebsausgaben unter dem
-                  Pauschalsatz liegen (12% bei Basispauschalierung, 20%/45% bei Kleinunternehmerpauschalierung).
+                  Pauschalsatz liegen (15% bei Basispauschalierung ab 2026, 45% bzw. 20% bei Kleinunternehmerpauschalierung).
                   Berechnen Sie beide Varianten und wählen Sie die günstigere.
                 </p>
               </div>
@@ -413,7 +417,8 @@ export default function SteueroptimierungSelbststaendigePage() {
                 </h3>
                 <p className="text-sb-mut">
                   Ohne Steuerberater: bis 30. April (Papier) bzw. 30. Juni (FinanzOnline) des Folgejahres.
-                  Mit Steuerberater: verlängerte Frist bis 30. April des übernächsten Jahres (Quotenregelung).
+                  Mit Steuerberater: verlängerte Frist im Rahmen der Quotenregelung, längstens bis
+                  31. März des zweitfolgenden Jahres (§ 134a BAO).
                 </p>
               </div>
             </div>

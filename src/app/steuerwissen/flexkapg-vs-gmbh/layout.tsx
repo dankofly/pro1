@@ -53,7 +53,7 @@ export default function Layout({
       }
     },
     "datePublished": "2026-03-19",
-    "dateModified": "2026-03-19",
+    "dateModified": "2026-07-30",
     "inLanguage": "de-AT",
     "mainEntityOfPage": {
       "@type": "WebPage",
@@ -70,7 +70,7 @@ export default function Layout({
         "name": "Was ist der Hauptunterschied zwischen FlexKapG und GmbH?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die FlexKapG benötigt nur 10.000 € Stammkapital statt 35.000 € bei der GmbH. Steuerlich sind beide identisch (23% KöSt, 27,5% KESt). Die FlexKapG bietet mehr Flexibilität bei Mitarbeiterbeteiligung und Anteilsübertragung."
+          "text": "GmbH und FlexKapG benötigen seit 2024 dasselbe Mindeststammkapital von 10.000 €. Steuerlich sind beide identisch (23% KöSt, 27,5% KESt). Die FlexKapG bietet mehr Flexibilität bei Mitarbeiterbeteiligung durch Unternehmenswert-Anteile und Anteilsübertragung per notarieller oder anwaltlicher Privaturkunde statt Notariatsakt."
         }
       },
       {
@@ -78,7 +78,7 @@ export default function Layout({
         "name": "Sind FlexKapG-Gründungskosten niedriger als bei der GmbH?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ja, FlexKapG-Gründungskosten betragen ca. 1.500-2.500 € plus 10.000 € Stammkapital. GmbH kostet ca. 2.000-3.000 € plus 35.000 € Stammkapital — insgesamt also 25.000 € weniger Startkapital."
+          "text": "Kaum. Für beide gilt seit 2024 das Mindeststammkapital von 10.000 €; Beratungs- und Notarkosten liegen laut WKO-Schätzung bei ca. 2.000-3.000 €. Die FlexKapG kann wegen der flexibleren Satzungsgestaltung im Einzelfall sogar etwas teurer sein."
         }
       },
       {
@@ -86,7 +86,7 @@ export default function Layout({
         "name": "Ist die FlexKapG für Startups besser als die GmbH?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Ja, besonders für Startups mit Mitarbeiterbeteiligung. Die FlexKapG ermöglicht Unternehmenswert-Anteile ohne Notariatsakt und hat niedrigere Gründungskosten bei identischen Steuervorteilen."
+          "text": "Ja, besonders für Startups mit Mitarbeiterbeteiligung. Die FlexKapG ermöglicht Unternehmenswert-Anteile und den Steueraufschub der Start-Up-Mitarbeiterbeteiligung (§ 67a EStG) bei identischen Steuervorteilen."
         }
       },
       {
@@ -94,7 +94,7 @@ export default function Layout({
         "name": "Kann ich von einer GmbH zur FlexKapG wechseln?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Eine direkte Umwandlung ist nicht möglich. Du musst eine neue FlexKapG gründen und deine GmbH liquidieren oder eine Verschmelzung durchführen — das ist aufwendig und meist nicht sinnvoll."
+          "text": "Ja, die Umwandlung einer GmbH in eine FlexKapG (und umgekehrt) ist gesetzlich ausdrücklich vorgesehen. Erforderlich sind ein Generalversammlungsbeschluss und die Anpassung des Gesellschaftsvertrags; eine Liquidation oder Verschmelzung ist nicht nötig."
         }
       }
     ]

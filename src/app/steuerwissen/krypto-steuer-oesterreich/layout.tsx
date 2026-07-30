@@ -26,7 +26,7 @@ const articleJsonLd = {
     url: 'https://steuerboard.pro/impressum',
   },
   datePublished: '2026-03-18',
-  dateModified: '2026-03-19',
+  dateModified: '2026-07-30',
   inLanguage: 'de-AT',
   publisher: {
     '@type': 'Organization',
@@ -62,7 +62,7 @@ const faqJsonLd = {
       name: 'Was ist der Unterschied zwischen Altbestand und Neubestand bei Krypto?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Altbestand sind Kryptowährungen, die vor dem 1. März 2021 angeschafft wurden. Diese konnten bis Februar 2022 nach alter Regelung (Spekulationsfrist 1 Jahr) steuerfrei verkauft werden. Neubestand unterliegt immer der 27,5% KESt.'
+        text: 'Altbestand sind Kryptowährungen, die vor dem 1. März 2021 angeschafft wurden. Diese konnten bis Februar 2022 nach alter Regelung (Spekulationsfrist 1 Jahr) steuerfrei verkauft werden. Neubestand unterliegt bei Realisierungen seit dem 1. März 2022 der 27,5% KESt, unabhängig von der Haltedauer.'
       }
     },
     {
@@ -70,7 +70,7 @@ const faqJsonLd = {
       name: 'Ist Krypto-Staking in Österreich steuerpflichtig?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Staking-Rewards aus der Blockerstellung sind beim Zufluss nicht steuerpflichtig (§ 27b Abs 2 Z 2 EStG). Sie werden mit Anschaffungskosten von 0 angesetzt. Erst bei der späteren Veräußerung fällt 27,5% KESt auf den gesamten Verkaufserlös an.'
+        text: 'Staking-Rewards aus der Blockerstellung sind beim Zufluss nicht steuerpflichtig (§ 27b Abs 2 Schlussteil EStG). Sie werden mit Anschaffungskosten von 0 angesetzt. Erst bei der späteren Veräußerung fällt 27,5% KESt auf den gesamten Verkaufserlös an.'
       }
     },
     {

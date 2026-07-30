@@ -26,7 +26,7 @@ const articleJsonLd = {
     url: 'https://steuerboard.pro/impressum',
   },
   datePublished: '2026-03-18',
-  dateModified: '2026-03-19',
+  dateModified: '2026-07-30',
   inLanguage: 'de-AT',
   publisher: {
     '@type': 'Organization',
@@ -54,7 +54,7 @@ const faqJsonLd = {
       name: 'Welche USt-Sätze gelten in Österreich?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'In Österreich gelten drei USt-Sätze: 20% Normalsteuersatz, 13% ermäßigter Satz (z.B. Blumen, Kunst) und 10% besonders ermäßigter Satz (z.B. Lebensmittel, Bücher, Miete).'
+        text: 'In Österreich gelten vier USt-Sätze: 20% Normalsteuersatz, 13% ermäßigter Satz (z.B. Blumen, Kunst), 10% besonders ermäßigter Satz (z.B. Bücher, Wohnraummiete) und seit 1.7.2026 der superermäßigte Satz von 4,9% auf ausgewählte Grundnahrungsmittel.'
       }
     },
     {
@@ -62,7 +62,7 @@ const faqJsonLd = {
       name: 'Wann muss ich eine UVA abgeben?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Die Umsatzsteuervoranmeldung (UVA) ist monatlich abzugeben, wenn der Vorjahresumsatz über 100.000€ liegt. Bei Umsätzen zwischen 35.000€ und 100.000€ ist vierteljährliche Abgabe möglich. Unter 35.000€ entfällt die UVA-Pflicht.'
+        text: 'Die Umsatzsteuervoranmeldung (UVA) ist monatlich abzugeben, wenn der Vorjahresumsatz über 100.000€ liegt. Bei Umsätzen bis 100.000€ genügt die vierteljährliche Abgabe. Unter 55.000€ Vorjahresumsatz entfällt die Einreichungspflicht, wenn die Zahllast fristgerecht entrichtet wird oder sich eine Gutschrift ergibt.'
       }
     },
     {

@@ -107,7 +107,7 @@ export default function SteuerJahresplanungPage() {
                   <div className="bg-white/[0.05] p-4 rounded-lg">
                     <h4 className="font-medium text-sb-text mb-2">15. Februar</h4>
                     <ul className="text-sb-mut space-y-1">
-                      <li>• UVA für Dezember + Zusammenfassende Meldung Q4</li>
+                      <li>• UVA für Dezember (Zusammenfassende Meldung für Q4: schon bis 31. Jänner)</li>
                       <li>• EST-Vorauszahlung Q1 (§ 45 EStG)</li>
                       <li>• UVA für Q4 (bei quartalsweiser Abgabe)</li>
                     </ul>
@@ -121,7 +121,7 @@ export default function SteuerJahresplanungPage() {
                     <ul className="text-sb-mut space-y-1">
                       <li>• Jahresabschluss erstellen / EAR finalisieren</li>
                       <li>• Steuererklärung vorbereiten</li>
-                      <li>• SVS-Nachzahlung für Vorjahr (meist im Jänner)</li>
+                      <li>• SVS-Nachbelastung für das Vorjahr einplanen (folgt dem ESt-Bescheid)</li>
                       <li>• Buchhaltung des Vorjahres abschließen</li>
                     </ul>
                   </div>
@@ -197,7 +197,7 @@ export default function SteuerJahresplanungPage() {
                     <ul className="text-sb-mut space-y-1">
                       <li>• Investitionen vorziehen (GWG bis 1.000€)</li>
                       <li>• Gewinnfreibetrag durch Wertpapierkauf ausschöpfen</li>
-                      <li>• IFB-Investitionen tätigen (15-20% Freibetrag)</li>
+                      <li>• IFB-Investitionen tätigen (befristet bis 31.12.2026: 20%/22% Freibetrag)</li>
                       <li>• Rechnungen noch im alten Jahr stellen</li>
                       <li>• Betriebsausgaben vorziehen</li>
                       <li>• Rücklage für SVS-Nachzahlung bilden</li>
@@ -310,13 +310,13 @@ export default function SteuerJahresplanungPage() {
                 <h3 className="text-lg font-medium text-sb-text mb-4">Herabsetzungsantrag</h3>
                 <p className="text-sb-mut mb-4">
                   Wenn Sie mit einem niedrigeren Gewinn als im Vorjahr rechnen, können Sie einen
-                  Antrag auf Herabsetzung der Vorauszahlungen stellen. Der Antrag muss vor dem
-                  jeweiligen Fälligkeitstermin beim Finanzamt einlangen.
+                  Antrag auf Herabsetzung der Vorauszahlungen stellen. Der Antrag ist bis
+                  30. September des laufenden Jahres beim Finanzamt möglich.
                 </p>
                 <div className="bg-sb-accent-soft p-4 rounded-lg border border-sb-accent/30">
                   <p className="text-sb-mut text-sm">
-                    <strong>Vorsicht:</strong> Zu niedrig angesetzte Vorauszahlungen führen zu
-                    Anspruchszinsen von derzeit ~4,88% p.a. ab dem Fälligkeitstermin.
+                    <strong>Vorsicht:</strong> Ergibt der Bescheid eine Nachzahlung, fallen darauf
+                    Anspruchszinsen von derzeit 3,53% p.a. an, ab dem 1. Oktober des Folgejahres.
                   </p>
                 </div>
               </div>
@@ -339,7 +339,7 @@ export default function SteuerJahresplanungPage() {
                     <h4 className="font-medium text-sb-green mb-2">Monatlich</h4>
                     <ul className="text-sb-mut text-sm space-y-1">
                       <li>• Pflicht ab 100.000€ Vorjahresumsatz</li>
-                      <li>• Frist: 15. des Folgemonats</li>
+                      <li>• Frist: 15. des zweitfolgenden Monats</li>
                       <li>• Schnellere USt-Erstattung</li>
                       <li>• Regelmäßiger Cashflow</li>
                     </ul>
@@ -363,8 +363,8 @@ export default function SteuerJahresplanungPage() {
                   zusammenfassende Meldung abzugeben:
                 </p>
                 <ul className="text-sb-mut space-y-1">
-                  <li>• Monatlich: bis 15. des Folgemonats</li>
-                  <li>• Vierteljährlich: bis 15. des Folgemonats nach Quartalsende</li>
+                  <li>• Monatlich: bis zum Ende des Folgemonats</li>
+                  <li>• Vierteljährlich: bis zum Ende des auf das Quartal folgenden Monats</li>
                 </ul>
               </div>
             </div>
@@ -419,9 +419,9 @@ export default function SteuerJahresplanungPage() {
                   Wann sind die UVA-Termine 2026?
                 </h3>
                 <p className="text-sb-mut">
-                  UVA-Termine sind grundsätzlich am 15. des Folgemonats. Bei monatlicher Abgabe
-                  (ab 100.000€ Vorjahresumsatz) jeden Monat, bei quartalsweiser Abgabe am
-                  15. Februar, 15. Mai, 15. August und 15. November.
+                  UVA-Termine sind grundsätzlich am 15. des zweitfolgenden Monats (Beispiel: UVA für
+                  Jänner bis 15. März). Bei monatlicher Abgabe (ab 100.000€ Vorjahresumsatz) jeden Monat,
+                  bei quartalsweiser Abgabe am 15. Februar, 15. Mai, 15. August und 15. November.
                 </p>
               </div>
 
@@ -432,7 +432,8 @@ export default function SteuerJahresplanungPage() {
                 <p className="text-sb-mut">
                   Faustregeln: Bei 30.000€ Gewinn → 650€/Monat, bei 50.000€ → 1.200€/Monat,
                   bei 80.000€ → 2.100€/Monat, bei 100.000€ → 2.800€/Monat.
-                  Inkludiert EST, SVS und UVA.
+                  Inkludiert EST, SVS und UVA. Richtwerte, die tatsächliche Belastung hängt von
+                  Absetzbeträgen und individueller Situation ab.
                 </p>
               </div>
 
@@ -479,7 +480,7 @@ export default function SteuerJahresplanungPage() {
               { title: 'Gewinnfreibetrag 2026: Bis zu 4.950 € sparen', href: '/steuerwissen/gewinnfreibetrag-nutzen' },
               { title: 'SVS-Nachzahlung vermeiden: 5 Strategien', href: '/steuerwissen/svs-nachzahlung-vermeiden' },
             ]}
-            lastUpdated="2026-03-19"
+            lastUpdated="2026-07-30"
           />
         </article>
       </div>

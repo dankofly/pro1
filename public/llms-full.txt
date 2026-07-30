@@ -12,11 +12,11 @@ Quelle: https://steuerboard.pro/steuerwissen/svs-beitraege-senken
 
 # SVS-Beiträge senken — 7 legale Strategien für Selbständige in Österreich
 
-SVS-Beiträge sind für viele Selbständige der größte laufende Kostenblock — bis zu 22.788 €/Jahr bei hohen Gewinnen. Mit den richtigen Strategien lassen sich mehrere Tausend Euro jährlich einsparen. Hier sind 7 legale Wege, um deine SVS-Beiträge in Österreich zu reduzieren.
+SVS-Beiträge sind für viele Selbständige der größte laufende Kostenblock — bis zu rund 26.200 €/Jahr (2026) bei hohen Gewinnen. Mit den richtigen Strategien lassen sich mehrere Tausend Euro jährlich einsparen. Hier sind 7 legale Wege, um deine SVS-Beiträge in Österreich zu reduzieren.
 
 ## Kurzantwort
 
-SVS-Beiträge für Selbständige betragen ca. 26,83% des Gewinns (PV 18,50% + KV 6,80% + SV 1,53% + UV pauschal). Die wichtigsten Strategien zur Senkung: Gewinnfreibetrag (bis 4.950 € weniger Beitragsgrundlage), optimierte Betriebsausgaben , Investitionsfreibetrag (15%/20% nach § 11 EStG), und bei hohen Gewinnen der Wechsel zur GmbH (ASVG statt SVS).
+SVS-Beiträge für Selbständige betragen ca. 26,83% des Gewinns (PV 18,50% + KV 6,80% + SV 1,53% + UV pauschal). Die wichtigsten Strategien zur Senkung: Gewinnfreibetrag (bis 4.950 € weniger Beitragsgrundlage), optimierte Betriebsausgaben , Investitionsfreibetrag (regulär 10%/15%, befristet bis Ende 2026: 20%/22% nach § 11 EStG), und bei hohen Gewinnen der Wechsel zur GmbH (23% KöSt statt bis zu 55% ESt).
 
 ## Wie setzen sich SVS-Beiträge zusammen?
 
@@ -26,17 +26,17 @@ Die SVS (Sozialversicherung der Selbständigen) berechnet deine Beiträge auf Ba
 
 ### Beitragsgrenzen 2026
 
-- Mindestbeitragsgrundlage: 537,78 €/Monat
+- Mindestbeitragsgrundlage: 551,10 €/Monat
 
-- Höchstbeitragsgrundlage: 7.070 €/Monat
+- Höchstbeitragsgrundlage: 8.085 €/Monat
 
-- Mindest-SVS/Jahr: ~1.951 € (PV+KV+UV)
+- Mindest-SVS/Jahr: ~1.930 € (PV+KV+SV+UV)
 
-- Höchst-SVS/Jahr: ~22.788 € (PV+KV+UV+SV)
+- Höchst-SVS/Jahr: ~26.186 € (PV+KV+SV+UV)
 
 ### Sonderfälle
 
-- Jungunternehmer: Niedrigere Mindestbeiträge in den ersten 2 Kalenderjahren
+- Jungunternehmer: KV in den ersten 2 Kalenderjahren auf der Mindestgrundlage fixiert, keine KV-Nachbemessung
 
 - Nebenberuflich: Differenzvorschreibung wenn auch ASVG-versichert
 
@@ -72,7 +72,7 @@ Jede steuerlich absetzbare Betriebsausgabe reduziert deinen Gewinn und damit die
 
 - • Internet + Telefon (anteilig, z.B. 50%)
 
-- • Reisekosten (Kilometergeld 0,42 €/km)
+- • Reisekosten (Kilometergeld 0,50 €/km)
 
 #### Größere Posten
 
@@ -94,23 +94,23 @@ Bei Anschaffung oder Herstellung von abnutzbaren Wirtschaftsgütern des Anlageve
 
 #### Allgemeiner IFB
 
-- • 15% der Anschaffungskosten
+- • 10% der Anschaffungskosten (befristet 1.11.2025 bis 31.12.2026: 20%)
 
 - • Max. Bemessungsgrundlage: 1.000.000 €/Jahr
 
-- • Max. IFB: 150.000 €/Jahr
+- • Max. IFB: 100.000 €/Jahr (befristet: 200.000 €)
 
 #### Ökologischer IFB
 
-- • 20% der Anschaffungskosten
+- • 15% der Anschaffungskosten (befristet bis 31.12.2026: 22%)
 
 - • Für klimafreundliche Investitionen
 
 - • Z.B. E-Auto, Photovoltaik, Wärmepumpe
 
-Beispiel: Kauf eines Laptops für 2.000 € → IFB 15% = 300 € zusätzlicher Abzug. Das senkt die SVS-Beiträge um ~80 €. Bei einer E-Auto-Anschaffung (40.000 €) → IFB 20% = 8.000 € → SVS-Ersparnis ~2.146 €.
+Beispiel: Kauf eines Laptops für 2.000 € → IFB 20% (befristeter Satz bis Ende 2026) = 400 € zusätzlicher Abzug. Das senkt die SVS-Beiträge um ~107 €. Bei einer E-Auto-Anschaffung (40.000 €) → Öko-IFB 22% = 8.800 € → SVS-Ersparnis ~2.361 €.
 
-### 4. Vorläufige Beitragsgrundlage herabsetzen (§ 25a Abs 3 GSVG)
+### 4. Vorläufige Beitragsgrundlage herabsetzen (§ 25a Abs 5 GSVG)
 
 Wenn du erwartest, dass dein Gewinn dieses Jahr deutlich unter dem Vorjahr liegt, kannst du bei der SVS einen Antrag auf Herabsetzung der vorläufigen Beitragsgrundlage stellen.
 
@@ -124,17 +124,17 @@ Wenn du erwartest, dass dein Gewinn dieses Jahr deutlich unter dem Vorjahr liegt
 
 - Endabrechnung erfolgt nach Einkommensteuerbescheid
 
-Achtung: Setzt du die Beiträge zu niedrig an, folgt eine Nachzahlung mit Verzugszinsen. Lieber konservativ schätzen — eine Rückzahlung bei zu hohen Beiträgen gibt es ebenfalls.
+Achtung: Setzt du die Beiträge zu niedrig an, folgt bei der Nachbemessung eine entsprechend höhere Nachzahlung. Lieber konservativ schätzen — eine Rückzahlung bei zu hohen Beiträgen gibt es ebenfalls.
 
 ### 5. Kleinunternehmerregelung prüfen (§ 6 Abs 1 Z 27 UStG)
 
-Wenn dein Jahresumsatz unter 42.000 € (netto) liegt, kannst du die Kleinunternehmerregelung nutzen. Das spart zwar nicht direkt SVS, hat aber indirekte Vorteile:
+Wenn dein Jahresumsatz unter 55.000 € (brutto, Grenze seit 2025) liegt, kannst du die Kleinunternehmerregelung nutzen. Das spart zwar nicht direkt SVS, hat aber indirekte Vorteile:
 
 - Weniger Verwaltungsaufwand: Keine UVA-Meldungen, vereinfachte Buchhaltung
 
 - Effekt auf Pricing: Da du keine USt ausweist, kannst du bei B2C-Kunden günstiger kalkulieren und gleichzeitig die gleiche Marge halten
 
-- SVS-Opting-Out: Bei geringem Gewinn (unter ~6.221 €/Jahr) und unter 42.000 € Umsatz kannst du dich von der SVS-Pflichtversicherung befreien lassen
+- SVS-Opting-Out: Bei geringen Einkünften (unter 6.613,20 €/Jahr, Wert 2026) und unter 55.000 € Umsatz kannst du dich von der SVS-Pflichtversicherung befreien lassen
 
 Achtung: Ohne Vorsteuerabzug! Rechne durch, ob die Regelung bei dir mehr spart als sie kostet. Bei hohen Investitionen (mit viel Vorsteuer) lohnt sich die Regelung meist nicht.
 
@@ -148,25 +148,25 @@ Pauschalsatz
 
 Voraussetzung
 
-Basispauschalierung (Dienstleistung)
+Basispauschalierung (allgemein)
+
+15% der Einnahmen (2026)
+
+Keine Buchführungspflicht, max. 420.000 € Umsatz
+
+Basispauschalierung (Beratung, Aufsichtsrat, schriftstellerische/unterrichtende Tätigkeit)
 
 6% der Einnahmen
 
-Keine Buchführungspflicht, max. 220.000 € Umsatz
-
-Basispauschalierung (Handel/Produktion)
-
-12% der Einnahmen
-
-Keine Buchführungspflicht, max. 220.000 € Umsatz
+Keine Buchführungspflicht, max. 420.000 € Umsatz
 
 Kleinunternehmerpauschalierung
 
-45% (Dienstl.) / 20% (Handel)
+45% (Dienstleistungsbetriebe: 20%)
 
-Umsatz unter 42.000 €, KU-Regelung genutzt
+Umsatz bis 55.000 €, KU-Regelung genutzt
 
-SVS-Effekt: Bei der Kleinunternehmerpauschalierung (45% Dienstleistung) sinkt der Gewinn bei 35.000 € Umsatz von 35.000 € auf 19.250 € — SVS-Ersparnis: ~4.225 €/Jahr.
+SVS-Effekt: Bei der Kleinunternehmerpauschalierung (45%, z.B. Handel) sinkt der Gewinn bei 35.000 € Umsatz von 35.000 € auf 19.250 €: SVS-Ersparnis ~4.225 €/Jahr. Dienstleistungsbetriebe erhalten 20% Pauschale (Gewinn 28.000 €, Ersparnis ~1.878 €/Jahr).
 
 ### 7. GmbH-Gründung erwägen (ab höherem Gewinn)
 
@@ -174,7 +174,7 @@ Ab einem Gewinn von ca. 60.000–80.000 € kann eine GmbH (oder FlexKap seit 20
 
 #### SV-Vorteile der GmbH
 
-- • ASVG statt SVS (~22,8% statt ~27%)
+- • ASVG statt SVS: nur bei GF-Beteiligung bis 25% (ab 50% bleibt GSVG)
 
 - • Kein Nachzahlungsrisiko
 
@@ -200,11 +200,11 @@ Unter bestimmten Voraussetzungen kannst du dich von der SVS-Pflichtversicherung 
 
 ### Voraussetzungen für Opting-Out
 
-- Umsatz unter 42.000 €/Jahr (Kleinunternehmergrenze)
+- Umsatz unter 55.000 €/Jahr (Kleinunternehmergrenze, brutto)
 
-- Einkünfte unter 6.221,28 €/Jahr (Versicherungsgrenze 2026)
+- Einkünfte unter 6.613,20 €/Jahr (Versicherungsgrenze 2026)
 
-- Keine andere Pflichtversicherung fehlt (z.B. ASVG durch Anstellung)
+- Max. 12 Monate GSVG-Pflichtversicherung in den letzten 60 Kalendermonaten (alternativ: Regelpensionsalter erreicht oder Alter 57+ mit erfüllten Voraussetzungen in den letzten 5 Jahren)
 
 - Antrag innerhalb der Frist bei der SVS
 
@@ -216,11 +216,11 @@ Wenn du hauptberuflich angestellt bist und nebenberuflich selbständig, zahlst d
 
 ### So funktioniert die Differenzvorschreibung
 
-- Pensionsversicherung: Die SVS berechnet die PV-Beiträge nur auf den Gewinn, der die Differenz zwischen deiner ASVG-Beitragsgrundlage und der Höchstbeitragsgrundlage ausmacht. Übersteigt dein ASVG-Gehalt bereits die Höchstgrundlage, zahlst du keine PV an die SVS.
+- Unter der Höchstbeitragsgrundlage: Du zahlst volle SVS-Beiträge (PV und KV) auf den Gewinn, zusätzlich zu den ASVG-Beiträgen aus dem Gehalt.
 
-- Krankenversicherung: Volle KV-Beiträge (6,80%) auf den Gewinn, da KV separat gerechnet wird.
+- Über der Höchstbeitragsgrundlage: Übersteigt die Summe aus ASVG-Beitragsgrundlage und Gewinn die Höchstbeitragsgrundlage (2026: 97.020 €/Jahr), schreibt die SVS seit 2020 automatisch nur die Differenz vor (Differenzvorschreibung, ohne Antrag).
 
-- Rückerstattung möglich: Wenn die Summe aus ASVG- und GSVG-Beiträgen die Höchstbeitragsgrundlage überschreitet, gibt es eine Rückerstattung nach Bescheid.
+- Rückerstattung automatisch: Trotzdem zu viel gezahlte PV-Beiträge erstattet die SVS automatisch bis 30.6. des Folgejahres (GSVG-Beiträge zur Gänze, ASVG-Anteil mit ca. 45% des Überschreitungsbetrags).
 
 Tipp: Nutze unseren Misch-Einkommen Rechner , um deine kombinierte SV-Belastung aus Anstellung und Selbständigkeit exakt zu berechnen.
 
@@ -232,7 +232,7 @@ Scheinselbständigkeit, überhöhte Betriebsausgaben oder fiktive Rechnungen sin
 
 ### SVS-Beiträge nicht zahlen
 
-Säumniszuschläge (2% pro Monat), Verzugszinsen und Zwangsvollstreckung machen das Problem nur größer. Bei Zahlungsschwierigkeiten: sofort Ratenzahlung bei der SVS beantragen.
+Verzugszinsen (2026: 5,53% pro Jahr) und Zwangsvollstreckung machen das Problem nur größer. Bei Zahlungsschwierigkeiten: sofort Ratenzahlung bei der SVS beantragen.
 
 ### Opting-Out ohne Alternative
 
@@ -246,7 +246,7 @@ Nutze unseren kostenlosen Rechner, um herauszufinden, wie viel du bei deinen SVS
 
 ### Sind SVS-Beiträge steuerlich absetzbar?
 
-Ja! SVS-Beiträge sind als Betriebsausgabe voll absetzbar und senken dadurch deinen zu versteuernden Gewinn. Bei einem Grenzsteuersatz von 42% sparst du also 42 Cent Einkommensteuer pro Euro SVS-Beitrag. Beispiel: 15.000 € SVS → 6.300 € ESt-Ersparnis.
+Ja! SVS-Beiträge sind als Betriebsausgabe voll absetzbar und senken dadurch deinen zu versteuernden Gewinn. Bei einem Grenzsteuersatz von 40% sparst du also 40 Cent Einkommensteuer pro Euro SVS-Beitrag. Beispiel: 15.000 € SVS → 6.000 € ESt-Ersparnis.
 
 ### Wann bekomme ich eine SVS-Nachzahlung?
 
@@ -254,19 +254,19 @@ Wenn dein tatsächlicher Gewinn höher ist als die Basis, auf der die SVS vorlä
 
 ### Kann ich meine SVS-Beiträge in Raten zahlen?
 
-Ja. Bei Zahlungsschwierigkeiten kannst du bei der SVS eine Ratenzahlung beantragen. In der Regel wird eine Laufzeit von bis zu 12 Monaten gewährt. Wichtig: Stelle den Antrag rechtzeitig, bevor Säumniszuschläge anfallen.
+Ja. Bei Zahlungsschwierigkeiten kannst du bei der SVS eine Ratenzahlung beantragen. Nachbelastungen aus der Nachbemessung teilt die SVS ohnehin auf die vier Quartale des Folgejahres auf, aus den ersten drei Jahren der Selbständigkeit auf Antrag auf bis zu zwölf Quartale. Wichtig: Stelle den Antrag rechtzeitig, bevor Verzugszinsen anfallen.
 
 ### Was ist der Unterschied zwischen SVS und ASVG?
 
-Die SVS versichert Selbständige (GSVG), das ASVG versichert Angestellte. Hauptunterschiede: SVS-Beiträge werden auf den Gewinn berechnet (mit Verzögerung), ASVG auf das laufende Gehalt. ASVG bietet Arbeitslosenversicherung und besseres Krankengeld. Wer eine GmbH gründet und sich als GF anstellt, wechselt von SVS zu ASVG.
+Die SVS versichert Selbständige (GSVG), das ASVG versichert Angestellte. Hauptunterschiede: SVS-Beiträge werden auf den Gewinn berechnet (mit Verzögerung), ASVG auf das laufende Gehalt. ASVG bietet Arbeitslosenversicherung und besseres Krankengeld. Gesellschafter-Geschäftsführer einer GmbH sind nur bei einer Beteiligung bis 25% ASVG-versichert; ab 50% bleibt es bei GSVG/SVS, dazwischen entscheidet unter anderem die Sperrminorität.
 
 ### Gibt es eine Höchstgrenze für SVS-Beiträge?
 
-Ja. Die Höchstbeitragsgrundlage liegt 2026 bei 84.840 €/Jahr (7.070 €/Monat). Auch wenn dein Gewinn höher ist, zahlst du maximal ca. 22.788 €/Jahr an SVS (PV + KV + SV + UV). Gewinne über der Höchstbeitragsgrundlage sind SVS-frei.
+Ja. Die Höchstbeitragsgrundlage liegt 2026 bei 97.020 €/Jahr (8.085 €/Monat). Auch wenn dein Gewinn höher ist, zahlst du maximal ca. 26.186 €/Jahr an SVS (PV + KV + SV + UV). Gewinne über der Höchstbeitragsgrundlage sind SVS-frei.
 
 ### Wie kann ich als Jungunternehmer SVS sparen?
 
-In den ersten 2 Kalenderjahren der Selbständigkeit gelten reduzierte Mindestbeiträge . Die SVS nimmt eine niedrigere vorläufige Beitragsgrundlage an. Achtung: Wenn dein tatsächlicher Gewinn höher ist, kommt die Nachzahlung trotzdem — nur eben erst nach dem Steuerbescheid.
+In den ersten 2 Kalenderjahren wird die Krankenversicherung auf Basis der Mindestbeitragsgrundlage berechnet und nicht nachbemessen. Achtung: Für die Pensionsversicherung kommt die Nachzahlung trotzdem, sobald der Steuerbescheid vorliegt.
 
 ## Zusammenfassung
 
@@ -276,7 +276,7 @@ SVS-Beiträge lassen sich durch legale Strategien deutlich reduzieren. Die wicht
 
 - Betriebsausgaben: Jeder Euro senkt die SVS um ~27 Cent
 
-- Investitionsfreibetrag: 15%/20% zusätzlicher Abzug bei Investitionen
+- Investitionsfreibetrag: 10%/15%, befristet bis Ende 2026 sogar 20%/22% zusätzlicher Abzug bei Investitionen
 
 - Pauschalierung: Bis zu 45% pauschale Betriebsausgaben
 
@@ -292,7 +292,7 @@ Quelle: https://steuerboard.pro/steuerwissen/svs-nachzahlung-vermeiden
 
 Eine hohe SVS-Nachzahlung kann Selbstständige in Österreich finanziell schwer treffen. Oft kommen mehrere tausend Euro Nachzahlung völlig überraschend drei Jahre nach dem Beitragsjahr. Mit den richtigen Strategien lässt sich diese Nachzahlungsfalle jedoch vermeiden. Dieser umfassende Guide erklärt das System, zeigt konkrete Berechnungen und gibt dir 7 Strategien an die Hand.
 
-Kurzantwort: Die SVS-Nachzahlung entsteht, weil vorläufige Beiträge auf Basis einer Schätzung gezahlt werden. Steigt dein Gewinn, folgt 3 Jahre später eine Nachzahlung. Du vermeidest sie durch: (1) Antrag auf Erhöhung der vorläufigen Beitragsgrundlage bei der SVS, (2) monatliche Rücklagen von 15-20% des Mehrgewinns, (3) optimale Nutzung von Gewinnfreibetrag und Betriebsausgaben.
+Kurzantwort: Die SVS-Nachzahlung entsteht, weil vorläufige Beiträge auf Basis einer Schätzung gezahlt werden. Steigt dein Gewinn, folgt 3 Jahre später eine Nachzahlung. Du vermeidest sie durch: (1) Antrag auf Erhöhung der vorläufigen Beitragsgrundlage bei der SVS, (2) monatliche Rücklagen von rund 27% des Mehrgewinns, (3) optimale Nutzung von Gewinnfreibetrag und Betriebsausgaben.
 
 ## Was ist die SVS-Nachzahlung?
 
@@ -306,7 +306,7 @@ Die SVS-Nachzahlung entsteht durch das System der vorläufigen und endgültigen 
 
 - Selbständigenvorsorge: 1,53%
 
-- Unfallversicherung: ~11,35€/Monat (pauschal)
+- Unfallversicherung: 12,95€/Monat (pauschal, 2026)
 
 - Gesamtbelastung (ohne UV): 26,83%
 
@@ -322,7 +322,7 @@ Jahr 2 (Steuererklärung): Du gibst deine Steuererklärung für Jahr 1 ab. Das F
 
 Jahr 2-3 (Datenweitergabe): Das Finanzamt übermittelt den Bescheid an die SVS. Die SVS berechnet die endgültigen Beiträge und erstellt den Nachzahlungsbescheid.
 
-Jahr 3 (Nachzahlung): Die SVS fordert die Nachzahlung ein — oft als Einmalbetrag. Gleichzeitig steigen die vorläufigen Beiträge für die Zukunft (basierend auf dem jetzt bekannten höheren Gewinn).
+Jahr 3 (Nachzahlung): Die SVS schreibt die Nachzahlung vor, aufgeteilt auf die vier Quartale des Folgejahres. Gleichzeitig steigen die vorläufigen Beiträge für die Zukunft (basierend auf dem jetzt bekannten höheren Gewinn).
 
 Doppeleffekt: In Jahr 3 musst du gleichzeitig die Nachzahlung für Jahr 1 UND höhere laufende Beiträge für das aktuelle Jahr zahlen. Diese doppelte Belastung treibt viele Selbstständige in Liquiditätsprobleme.
 
@@ -370,7 +370,7 @@ Nachzahlung*
 
 ~13.415€
 
-*Berechnung: Differenz × 26,83% (PV 18,50% + KV 6,80% + SV 1,53%). Ohne Unfallversicherung (pauschal). Tatsächliche Nachzahlung kann durch Höchstbeitragsgrundlage niedriger ausfallen.
+*Berechnung: Differenz × 26,83% (PV 18,50% + KV 6,80% + SV 1,53%). Ohne Unfallversicherung (pauschal). Vereinfacht ohne Hinzurechnung der SV-Beiträge zur Beitragsgrundlage (§ 25 Abs 2 GSVG); die tatsächliche Nachzahlung kann dadurch höher, durch die Höchstbeitragsgrundlage niedriger ausfallen.
 
 ## SVS-Nachzahlung als Betriebsausgabe
 
@@ -384,7 +384,7 @@ Tipp: Bei der E/A-Rechnung kannst du durch die Zahlung einer hohen SVS-Nachzahlu
 
 ### 1. Antrag auf Erhöhung der vorläufigen Beitragsgrundlage
 
-Nach § 25a Abs 3 GSVG kannst du bei der SVS eine Erhöhung der vorläufigen Beitragsgrundlage beantragen. So zahlst du laufend höhere Beiträge und vermeidest die große Nachzahlung.
+Nach § 25a Abs 5 GSVG kannst du bei der SVS eine Erhöhung der vorläufigen Beitragsgrundlage beantragen. So zahlst du laufend höhere Beiträge und vermeidest die große Nachzahlung.
 
 #### So geht's:
 
@@ -418,13 +418,13 @@ Plane größere Investitionen und Betriebsausgaben in Jahre mit hohen Gewinnen. 
 
 ### 5. Investitionsfreibetrag nutzen (§ 11 EStG)
 
-Bei Anschaffung von Wirtschaftsgütern kannst du zusätzlich zur normalen AfA einen Investitionsfreibetrag von 15% (ökologisch: 20%) geltend machen. Dieser senkt den Gewinn und damit die SVS-Grundlage.
+Bei Anschaffung von Wirtschaftsgütern kannst du zusätzlich zur normalen AfA einen Investitionsfreibetrag von 10% (ökologisch: 15%) geltend machen; für Investitionen von 1.11.2025 bis 31.12.2026 gelten befristet 20% bzw. 22%. Dieser senkt den Gewinn und damit die SVS-Grundlage.
 
 ### 6. Ratenzahlung bei der SVS beantragen
 
 Wenn die Nachzahlung bereits feststeht, kannst du bei der SVS eine Ratenzahlung beantragen. Die SVS ist hier oft kulanter als das Finanzamt.
 
-Kontakt: SVS-Landesstelle oder telefonisch unter 050 808 808. Ratenzahlungen über 12-24 Monate sind üblich.
+Kontakt: SVS-Landesstelle oder telefonisch unter 050 808 808. Nachbelastungen aus der Nachbemessung verteilt die SVS von sich aus auf die vier Quartale des Folgejahres, aus den ersten drei Jahren der Selbständigkeit auf Antrag auf bis zu zwölf Quartale.
 
 ### 7. Steuerberater frühzeitig einschalten
 
@@ -434,11 +434,11 @@ Ein Steuerberater kann die SVS-Nachzahlung bereits während des laufenden Gesch�
 
 ### 1. Bescheid genau prüfen
 
-Prüfe den Nachzahlungsbescheid auf korrekte Beitragsgrundlage. Stimmt der zugrunde gelegte Gewinn? Wurde der Gewinnfreibetrag berücksichtigt? Fehler kommen vor und du hast 3 Monate Zeit für einen Einspruch.
+Prüfe die Nachzahlungsvorschreibung auf korrekte Beitragsgrundlage. Stimmt der zugrunde gelegte Gewinn? Wurde der Gewinnfreibetrag berücksichtigt? Fehler kommen vor. Bei Zweifeln kannst du einen Bescheid verlangen; gegen den Bescheid ist binnen 4 Wochen Beschwerde möglich.
 
 ### 2. Zahlungsfrist beachten
 
-Die Nachzahlung ist in der Regel innerhalb von 2 Wochen nach Zustellung fällig. Kannst du nicht zahlen, sofort Kontakt mit der SVS aufnehmen.
+Die Nachzahlung wird in vier Teilbeträgen zu den Quartalsterminen des Folgejahres fällig. Kannst du nicht zahlen, sofort Kontakt mit der SVS aufnehmen.
 
 ### 3. Ratenzahlung oder Stundung beantragen
 
@@ -470,7 +470,7 @@ Nutze die Nachzahlung als Anlass, deine vorläufige Beitragsgrundlage für die Z
 
 ### Kann ich die SVS-Nachzahlung in Raten zahlen?
 
-Ja, die SVS bietet Ratenzahlungen an. Kontaktiere deine SVS-Landesstelle telefonisch (050 808 808) oder über das Onlineportal. Ratenzahlungen über 12-24 Monate sind üblich.
+Ja. Nachbelastungen werden standardmäßig auf die vier Quartale des Folgejahres aufgeteilt, aus den ersten drei Jahren der Selbständigkeit auf Antrag auf bis zu zwölf Quartale. Kontaktiere deine SVS-Landesstelle telefonisch (050 808 808) oder über das Onlineportal.
 
 ### Fallen Verzugszinsen auf die Nachzahlung an?
 
@@ -478,11 +478,11 @@ Ja, bei verspäteter Zahlung fallen Verzugszinsen an. Der aktuelle Zinssatz rich
 
 ### Kann ich gegen den Nachzahlungsbescheid Einspruch erheben?
 
-Ja, du hast 3 Monate ab Zustellung Zeit für einen Einspruch (Beschwerde). Prüfe insbesondere, ob die Beitragsgrundlage korrekt berechnet wurde und ob der Gewinnfreibetrag berücksichtigt wurde.
+Ja. Verlange zunächst einen Bescheid, die Vorschreibung selbst ist keiner. Gegen den Bescheid kannst du binnen 4 Wochen Beschwerde an das Bundesverwaltungsgericht erheben. Prüfe insbesondere, ob die Beitragsgrundlage korrekt berechnet wurde und ob der Gewinnfreibetrag berücksichtigt wurde.
 
 ### Gibt es eine Höchstgrenze für SVS-Beiträge?
 
-Ja, die Höchstbeitragsgrundlage liegt 2026 bei ca. 7.070€/Monat (84.840€/Jahr). Ab diesem Gewinn steigen die SVS-Beiträge nicht mehr weiter. Die maximale jährliche SVS-Belastung beträgt damit ca. 22.760€.
+Ja, die Höchstbeitragsgrundlage liegt 2026 bei 8.085€/Monat (97.020€/Jahr). Ab diesem Gewinn steigen die SVS-Beiträge nicht mehr weiter. Die maximale jährliche SVS-Belastung beträgt damit ca. 26.186€.
 
 ### Was passiert wenn ich die Nachzahlung nicht zahlen kann?
 
@@ -510,7 +510,7 @@ Bei der Pauschalierung werden Betriebsausgaben nicht einzeln erfasst, sondern pa
 
 Der große Vorteil: Sie müssen keine detaillierte Einnahmen-Ausgaben-Rechnung führen und sparen sich erheblichen Buchhaltungsaufwand. Gleichzeitig kann die Pauschalierung aber auch zu einer höheren Steuerbelastung führen, wenn Ihre tatsächlichen Ausgaben über dem Pauschalsatz liegen.
 
-Wichtig: Die Pauschalierung betrifft nur die Einkommensteuer. SVS-Beiträge, Umsatzsteuer und andere Abgaben werden unabhängig davon berechnet.
+Wichtig: Die Pauschalierung betrifft direkt nur die Einkommensteuer. Die Umsatzsteuer bleibt unberührt. Die SVS-Beiträge ändern sich aber indirekt mit, weil ihre Beitragsgrundlage der steuerliche Gewinn ist.
 
 ## Die drei Pauschalierungsarten im Überblick
 
@@ -534,7 +534,7 @@ Zusätzlich zum Pauschalbetrag können Sozialversicherungsbeiträge (SVS), der G
 
 Für bestimmte Branchen gibt es eigene Pauschalierungsverordnungen des Bundesministeriums für Finanzen mit branchenspezifischen Pauschalsätzen, die oft deutlich höher als der Basissatz sind.
 
-Gastronomie: Eigene Verordnung mit gestaffelten Sätzen (Wareneinsatz + Personalkosten)
+Gastronomie: Modulsystem aus Grundpauschale (15%), Mobilitätspauschale (2 bis 6%) und Energie- und Raumpauschale (8%)
 
 Lebensmittelhandel: Branchenspezifischer Wareneinsatz
 
@@ -592,7 +592,11 @@ Variabel
 
 SVS zusätzlich
 
+Ja
+
 Teilweise
+
+Ja
 
 Vorsteuerabzug
 
@@ -605,6 +609,8 @@ Nein (KU)
 GFB möglich
 
 Grundfreibetrag
+
+Ja
 
 Grundfreibetrag
 
@@ -622,11 +628,9 @@ Minimal
 
 - • Einkünfte aus Gewerbebetrieb oder selbstständiger Arbeit
 
-- • Jahresumsatz nicht über 420.000€ (ab 2026; 2025: 320.000€, 2024: 220.000€)
+- • Vorjahresumsatz nicht über 420.000€ (ab 2026; 2025: 320.000€, 2024: 220.000€)
 
-- • Keine Buchführungspflicht (oder freiwilliger Verzicht darauf)
-
-- • Keine Gesellschafter einer OG oder KG mit Buchführungspflicht
+- • Keine Buchführungspflicht und keine freiwillige Buchführung
 
 ### Branchenpauschalierung
 
@@ -638,13 +642,11 @@ Minimal
 
 ### Kleinunternehmerpauschalierung
 
-- • USt-Befreiung als Kleinunternehmer muss gelten
+- • USt-Kleinunternehmerbefreiung muss anwendbar sein oder nur wegen Verzichts (Option zur Regelbesteuerung) nicht anwendbar sein (§ 17 Abs 3a Z 2 EStG)
 
-- • Jahresumsatz maximal 55.000€ brutto (seit 2025, mit einmaliger Toleranz von +10%)
+- • Jahresumsatz maximal 55.000€ brutto (seit 2025; Überschreitung um bis zu 10% im selben Jahr unschädlich)
 
 - • Keine Buchführungspflicht
-
-- • Kein Verzicht auf die Kleinunternehmerregelung (Option zur Regelbesteuerung)
 
 ## Rechenbeispiele: Pauschalierung vs. tatsächliche Ausgaben
 
@@ -790,7 +792,7 @@ Viele Selbstständige setzen automatisch den vollen Satz von 15% an, obwohl für
 
 ### 2. Umsatzgrenze übersehen
 
-Bei Überschreitung der 420.000€-Grenze (ab 2026) verlieren Sie rückwirkend das Recht auf Basispauschalierung. Behalten Sie Ihre Umsatzentwicklung im Blick.
+Maßgeblich ist der Vorjahresumsatz: Liegt er über 420.000€ (ab 2026), steht die Basispauschalierung für das aktuelle Jahr nicht zu. Behalten Sie Ihre Umsatzentwicklung im Blick.
 
 ### 3. Zusätzlich absetzbare Posten vergessen
 
@@ -804,7 +806,7 @@ Prüfen Sie jedes Jahr, ob die Pauschalierung noch vorteilhaft ist. Ihre Kostens
 
 ### Kann ich zwischen Pauschalierung und E/A-Rechnung wechseln?
 
-Ja, ein Wechsel ist jährlich möglich. Sie entscheiden mit der Steuererklärung, ob Sie für das betreffende Jahr die Pauschalierung oder tatsächliche Ausgaben ansetzen.
+Der Wechsel von der Pauschalierung zur E/A-Rechnung ist mit der Steuererklärung jederzeit möglich. Danach ist eine Rückkehr zur Basispauschalierung aber erst nach 5 Wirtschaftsjahren zulässig, zur Kleinunternehmerpauschalierung nach 3 Wirtschaftsjahren.
 
 ### Brauche ich bei der Pauschalierung trotzdem Belege?
 
@@ -812,7 +814,7 @@ Bei der Basispauschalierung müssen Sie keine Ausgabenbelege aufbewahren (außer
 
 ### Kann ich als Neuer Selbstständiger sofort pauschalieren?
 
-Ja, die Pauschalierung kann ab dem ersten Jahr der Selbstständigkeit angewendet werden, sofern die Voraussetzungen erfüllt sind.
+Ja, grundsätzlich kann die Pauschalierung ab dem ersten Jahr angewendet werden, sofern die Voraussetzungen erfüllt sind. Da im ersten Jahr ein Vorjahresumsatz fehlt, klären Sie den Einzelfall am besten mit Ihrer Steuerberatung.
 
 ### Ist die Pauschalierung auch für Freiberufler möglich?
 
@@ -820,7 +822,7 @@ Ja, sowohl Gewerbetreibende als auch Freiberufler (z.B. Ärzte, Rechtsanwälte, 
 
 ### Was passiert, wenn ich die Umsatzgrenze im Laufe des Jahres überschreite?
 
-Bei Überschreitung der 420.000€-Grenze (ab 2026) verlieren Sie das Recht auf Basispauschalierung für das betreffende Jahr. Sie müssen dann rückwirkend auf tatsächliche Ausgaben umstellen.
+Für das laufende Jahr ändert sich nichts, denn maßgeblich ist der Vorjahresumsatz. Liegt Ihr Umsatz heuer über 420.000€ (ab 2026), steht die Basispauschalierung erst im Folgejahr nicht mehr zu. Eine rückwirkende Umstellung gibt es nicht.
 
 ### Kann ich Basis- und Kleinunternehmerpauschalierung kombinieren?
 
@@ -840,13 +842,13 @@ Von Daniel Kofler, aktualisiert am 30. Juli 2026. Steuerwerte 2026.
 
 ## Kurzantwort
 
-Für Angestellte ist der amtliche BMF Brutto-Netto-Rechner die erste Wahl. Selbständige prüfen ihre Sozialversicherung mit dem SVS-Beitragsrechner oder dem WKO-Sozialversicherungsrechner und die Steuer mit einem Einkommensteuer-Rechner wie finanz.at. Wer als Selbständiger SVS-Beiträge, Einkommensteuer, die kommende Nachbelastung aus der Nachbemessung und das echte Netto in einer einzigen Rechnung sehen will, nutzt SteuerBoard.pro.
+Für Angestellte ist der amtliche BMF Brutto-Netto-Rechner die erste Wahl. Selbständige prüfen ihre Vorschreibung mit dem SVS-Beitragsrechner, einen ersten Überschlag über SV plus Steuer liefert der WKO SV- und Steuer-Rechner. Wer als Selbständiger zusätzlich die kommende Nachbelastung aus der Nachbemessung und das echte Netto in einer einzigen Rechnung sehen will, nutzt SteuerBoard.pro.
 
 ## Alle 5 Steuerrechner auf einen Blick
 
 - BMF Brutto-Netto-Rechner (Bundesministerium für Finanzen): Lohnsteuer, ASVG-Sozialversicherung, Netto aus Brutto. Ideal für Angestellte, Lehrlinge, Pensionistinnen und Pensionisten. Kostenlos.
 - SVS-Beitragsrechner (Sozialversicherung der Selbständigen): vorläufige SVS-Beiträge (PV, KV, UV, Selbständigenvorsorge). Ideal für Selbständige, die ihre laufende Vorschreibung prüfen wollen. Kostenlos.
-- WKO-Sozialversicherungsrechner (Wirtschaftskammer Österreich): SV-Beiträge für Gewerbetreibende nach GSVG, inkl. Gründungsjahre. Ideal für Gründerinnen, Gründer und Gewerbetreibende. Kostenlos.
+- WKO SV- und Steuer-Rechner (Wirtschaftskammer Österreich): SV-Beiträge und Einkommensteuer für Selbständige, auch Mischfälle mit Anstellung. Ideal für Gründerinnen, Gründer und Gewerbetreibende. Kostenlos.
 - finanz.at Rechner (privates Portal): Brutto-Netto in beide Richtungen, Einkommensteuer-Tarif, Lohnsteuer. Ideal für schnelle Überschläge mit aktuellen Tarifstufen. Kostenlos.
 - SteuerBoard.pro: SVS-Beiträge + Einkommensteuer + Nachbelastung aus der Nachbemessung + echtes Netto, in einer Rechnung. Ideal für Selbständige und EPU, die das ganze Jahr planen wollen. Basis kostenlos, Pro 239 €/Jahr.
 
@@ -858,9 +860,9 @@ Der Brutto-Netto-Rechner des Bundesministeriums für Finanzen ist die amtliche R
 
 Die Sozialversicherung der Selbständigen stellt auf svs.at einen eigenen Beitragsrechner bereit. Er zeigt, wie sich die vorläufigen Beiträge zu Pensionsversicherung (18,50 %), Krankenversicherung (6,80 %), Unfallversicherung und Selbständigenvorsorge (1,53 %) zusammensetzen. Er rechnet, was die SVS heute vorschreibt: die vorläufigen Beiträge. Die spätere Nachbemessung nach Vorliegen des Einkommensteuerbescheids und die Einkommensteuer selbst liegen außerhalb seines Auftrags.
 
-## 3. WKO-Sozialversicherungsrechner: stark für Gründung und Gewerbe
+## 3. WKO SV- und Steuer-Rechner: stark für Gründung und Gewerbe
 
-Die Wirtschaftskammer bietet einen Sozialversicherungsrechner, der auf Gewerbetreibende zugeschnitten ist, besonders in den ersten Jahren der Selbständigkeit mit den Sonderregeln für Gründerinnen und Gründer. Er berechnet die Sozialversicherung; die Einkommensteuer nach § 33 EStG und das echte Netto sind ein eigenes Kapitel.
+Die Wirtschaftskammer bietet mit dem SV- und Steuer-Rechner ein kostenloses Werkzeug, das auf Selbständige und Gründer zugeschnitten ist. Aus geschätzten Umsätzen und Aufwänden berechnet er die voraussichtlichen Abgaben für Sozialversicherung und Steuern, auch für Mischfälle aus Anstellung und Selbständigkeit. Seine Grenze liegt beim Zeithorizont: Er liefert eine Momentaufnahme der laufenden Abgaben. Die spätere Nachbemessung der SVS nach Vorliegen des Einkommensteuerbescheids und die daraus folgende Nachbelastung bildet er nicht ab.
 
 ## 4. finanz.at: schnelle Überschläge mit aktuellen Tarifen
 
@@ -872,4 +874,4 @@ SteuerBoard.pro ist für den Fall gebaut, den die Einzelrechner untereinander au
 
 ## Warum Selbständige mit Einzelrechnern zwei Rechnungen führen
 
-Alle vier Einzelrechner machen genau das, wofür sie gebaut wurden. Die Lücke entsteht zwischen ihnen: Ein SV-Rechner kennt die Einkommensteuer nicht, ein Steuertarif-Rechner kennt die SVS nicht, und keiner blickt in die Zukunft der Nachbemessung. Die SVS schreibt Beiträge zunächst auf Basis der vorläufigen Beitragsgrundlage vor, meist aus dem drittvorangegangenen Jahr. Liegt der Einkommensteuerbescheid vor, wird nachbemessen, und bei gestiegenem Gewinn folgt eine Nachbelastung zusätzlich zu den laufenden Quartalen.
+Alle vier Einzelrechner machen genau das, wofür sie gebaut wurden. Die Lücke liegt auf der Zeitachse: Ein Beitragsrechner kennt die Einkommensteuer nicht, ein Steuertarif-Rechner kennt die SVS nicht, und der WKO-Rechner verbindet zwar beides für das laufende Jahr, aber keiner dieser Rechner blickt in die Zukunft der Nachbemessung. Die SVS schreibt Beiträge zunächst auf Basis der vorläufigen Beitragsgrundlage vor, meist aus dem drittvorangegangenen Jahr. Liegt der Einkommensteuerbescheid vor, wird nachbemessen, und bei gestiegenem Gewinn folgt eine Nachbelastung zusätzlich zu den laufenden Quartalen.

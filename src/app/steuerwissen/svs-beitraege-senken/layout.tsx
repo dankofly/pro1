@@ -37,7 +37,7 @@ export default function Layout({
               "description": "SVS Beiträge senken: 7 bewährte Strategien für Selbständige in Österreich. SVS Beiträge reduzieren durch Gewinnfreibetrag, Betriebsausgaben und mehr.",
               "image": "https://steuerboard.pro/opengraph-image",
               "datePublished": "2026-03-18",
-              "dateModified": "2026-03-18",
+              "dateModified": "2026-07-30",
               "inLanguage": "de-AT",
               "author": {
                 "@type": "Person",
@@ -87,7 +87,7 @@ export default function Layout({
                   "name": "Was sind die SVS-Mindestbeiträge für Selbständige?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Die SVS-Beiträge setzen sich zusammen aus: Pensionsversicherung 18,50%, Krankenversicherung 6,80%, Selbständigenvorsorge 1,53% und Unfallversicherung pauschal ca. 11,35€/Monat. Die Mindestbeitragsgrundlage beträgt ca. 500€/Monat, die Höchstbeitragsgrundlage ca. 7.070€/Monat (2024)."
+                    "text": "Die SVS-Beiträge setzen sich zusammen aus: Pensionsversicherung 18,50%, Krankenversicherung 6,80%, Selbständigenvorsorge 1,53% und Unfallversicherung pauschal 12,95€/Monat (2026). Die Mindestbeitragsgrundlage beträgt 551,10€/Monat, die Höchstbeitragsgrundlage 8.085€/Monat (2026)."
                   }
                 },
                 {
@@ -95,7 +95,7 @@ export default function Layout({
                   "name": "Kann ich als Jungunternehmer SVS-Beiträge sparen?",
                   "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Ja, als Jungunternehmer profitieren Sie von reduzierten SVS-Mindestbeiträgen in den ersten zwei Jahren der Selbständigkeit. Die genaue Höhe der Reduktion hängt von Ihrem Einkommen und der Art Ihrer Tätigkeit ab."
+                    "text": "Ja: In den ersten zwei Kalenderjahren wird die Krankenversicherung auf Basis der Mindestbeitragsgrundlage berechnet und nicht nachbemessen. Die Pensionsversicherung wird nach Vorliegen des Einkommensteuerbescheids nachbemessen, hier kann eine Nachzahlung kommen."
                   }
                 }
               ]

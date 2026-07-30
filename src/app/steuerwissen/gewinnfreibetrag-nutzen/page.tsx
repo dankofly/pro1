@@ -26,7 +26,7 @@ export default function GewinnfreibetragPage() {
           {/* Header */}
           <header className="mb-12">
             <h1 className="text-4xl font-bold text-sb-text mb-6 leading-tight">
-              Gewinnfreibetrag 2026 — So sparst du bis zu 4.950 € Steuern (§ 10 EStG)
+              Gewinnfreibetrag 2026: Bis zu 4.950 € Gewinn steuerfrei (§ 10 EStG)
             </h1>
             <p className="text-xl text-sb-mut leading-relaxed">
               Der Gewinnfreibetrag ist eines der mächtigsten Steuertools für österreichische Selbständige.
@@ -42,7 +42,7 @@ export default function GewinnfreibetragPage() {
               Der Gewinnfreibetrag (§ 10 EStG) gewährt <strong className="text-sb-text">15% Grundfreibetrag auf die ersten 33.000 € Gewinn</strong> (max. 4.950 €) —
               automatisch, ohne Nachweis. Für Gewinne darüber gibt es den <strong className="text-sb-text">investitionsbedingten GFB</strong> (13–4,5% gestaffelt),
               der begünstigte Investitionen erfordert. Der GFB senkt sowohl die <strong className="text-sb-text">Einkommensteuer als auch die SVS-Beiträge</strong>.
-              Er gilt nur bei E/A-Rechnung — nicht bei Pauschalierung.
+              Er gilt bei E/A-Rechnung und Bilanzierung. Bei Pauschalierung steht nur der Grundfreibetrag zu, nicht der investitionsbedingte Teil.
             </p>
           </div>
 
@@ -88,8 +88,8 @@ export default function GewinnfreibetragPage() {
                 <li><strong className="text-sb-text">Selbständige</strong> mit Einkünften aus Gewerbebetrieb (§ 23 EStG)</li>
                 <li><strong className="text-sb-text">Freiberufler</strong> mit Einkünften aus selbständiger Arbeit (§ 22 EStG)</li>
                 <li><strong className="text-sb-text">Land- und Forstwirte</strong> mit Einkünften nach § 21 EStG</li>
-                <li className="text-sb-red"><strong>Nicht:</strong> GmbH-Geschäftsführer, Angestellte, Vermieter</li>
-                <li className="text-sb-red"><strong>Nicht:</strong> Bei Pauschalierung (§ 17 EStG) oder Kleinunternehmerpauschalierung</li>
+                <li className="text-sb-red"><strong>Nicht:</strong> Kapitalgesellschaften (die GmbH selbst), Angestellte, Vermieter. Wesentlich beteiligte GmbH-Geschäftsführer mit Einkünften nach § 22 EStG können den GFB aber nutzen</li>
+                <li className="text-sb-red"><strong>Eingeschränkt:</strong> Bei Pauschalierung (§ 17 EStG, Kleinunternehmerpauschalierung) steht nur der Grundfreibetrag zu, kein investitionsbedingter GFB</li>
               </ul>
             </div>
           </section>
@@ -209,7 +209,7 @@ export default function GewinnfreibetragPage() {
               <p className="mb-0">
                 <strong className="text-sb-text">Gesamtersparnis bei 60.000 € Gewinn:</strong> Ca. <strong className="text-sb-text">5.654 €</strong> (3.384 € ESt + 2.270 € SVS)
                 — vorausgesetzt, du investierst mindestens 3.510 € in begünstigte Wirtschaftsgüter.
-                Ohne Investition sparst du immer noch <strong className="text-sb-text">~3.279 €</strong> durch den Grundfreibetrag allein.
+                Ohne Investition sparst du immer noch <strong className="text-sb-text">~3.308 €</strong> durch den Grundfreibetrag allein.
               </p>
             </div>
           </section>
@@ -235,23 +235,23 @@ export default function GewinnfreibetragPage() {
                   <tr className="border-t border-sb-line">
                     <td className="p-4 border-r border-sb-line">15.000 €</td>
                     <td className="p-4 border-r border-sb-line">2.250 €</td>
-                    <td className="p-4 border-r border-sb-line">~450 €</td>
+                    <td className="p-4 border-r border-sb-line">~290 €</td>
                     <td className="p-4 border-r border-sb-line">~604 €</td>
-                    <td className="p-4 text-sb-green font-semibold">~1.054 €</td>
+                    <td className="p-4 text-sb-green font-semibold">~894 €</td>
                   </tr>
                   <tr className="border-t border-sb-line bg-sb-deep">
                     <td className="p-4 border-r border-sb-line">25.000 €</td>
                     <td className="p-4 border-r border-sb-line">3.750 €</td>
-                    <td className="p-4 border-r border-sb-line">~1.125 €</td>
+                    <td className="p-4 border-r border-sb-line">~1.050 €</td>
                     <td className="p-4 border-r border-sb-line">~1.006 €</td>
-                    <td className="p-4 text-sb-green font-semibold">~2.131 €</td>
+                    <td className="p-4 text-sb-green font-semibold">~2.056 €</td>
                   </tr>
                   <tr className="border-t border-sb-line">
                     <td className="p-4 border-r border-sb-line">33.000 €</td>
                     <td className="p-4 border-r border-sb-line">4.950 €</td>
-                    <td className="p-4 border-r border-sb-line">~1.980 €</td>
+                    <td className="p-4 border-r border-sb-line">~1.485 €</td>
                     <td className="p-4 border-r border-sb-line">~1.328 €</td>
-                    <td className="p-4 text-sb-green font-semibold">~3.308 €</td>
+                    <td className="p-4 text-sb-green font-semibold">~2.813 €</td>
                   </tr>
                   <tr className="border-t border-sb-line bg-sb-deep">
                     <td className="p-4 border-r border-sb-line">50.000 €**</td>
@@ -263,24 +263,25 @@ export default function GewinnfreibetragPage() {
                   <tr className="border-t border-sb-line">
                     <td className="p-4 border-r border-sb-line">80.000 €**</td>
                     <td className="p-4 border-r border-sb-line">11.060 €</td>
-                    <td className="p-4 border-r border-sb-line">~5.309 €</td>
+                    <td className="p-4 border-r border-sb-line">~5.195 €</td>
                     <td className="p-4 border-r border-sb-line">~2.967 €</td>
-                    <td className="p-4 text-sb-green font-semibold">~8.276 €</td>
+                    <td className="p-4 text-sb-green font-semibold">~8.162 €</td>
                   </tr>
                   <tr className="border-t border-sb-line bg-sb-deep">
                     <td className="p-4 border-r border-sb-line">100.000 €**</td>
                     <td className="p-4 border-r border-sb-line">13.660 €</td>
                     <td className="p-4 border-r border-sb-line">~6.557 €</td>
-                    <td className="p-4 border-r border-sb-line">~3.665 €</td>
-                    <td className="p-4 text-sb-green font-semibold">~10.222 €</td>
+                    <td className="p-4 border-r border-sb-line">0 €</td>
+                    <td className="p-4 text-sb-green font-semibold">~6.557 €</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
             <p className="text-sm text-sb-mut">
-              *ESt-Ersparnis bei jeweiligem Grenzsteuersatz. **Investitionsbedingter GFB setzt begünstigte Investitionen voraus.
-              SVS-Ersparnis = GFB × 26,83%.
+              *ESt-Ersparnis bei jeweiligem Grenzsteuersatz (Tarif 2026). **Investitionsbedingter GFB setzt begünstigte Investitionen voraus.
+              SVS-Ersparnis = GFB × 26,83%, solange die Beitragsgrundlage unter der Höchstbeitragsgrundlage von 97.020 €/Jahr (2026) liegt;
+              bei 100.000 € Gewinn ist sie überschritten, daher dort keine SVS-Ersparnis.
             </p>
           </section>
 
@@ -300,10 +301,10 @@ export default function GewinnfreibetragPage() {
                 <h3 className="text-lg font-semibold text-sb-text mb-4">Wertpapiere (§ 14 Abs 7 Z 4 EStG)</h3>
                 <ul className="space-y-2">
                   <li><strong className="text-sb-text">Anleihen</strong> mit Restlaufzeit &gt; 4 Jahre</li>
-                  <li><strong className="text-sb-text">Investmentfonds</strong> mit &gt;50% Anleihen-Anteil</li>
+                  <li><strong className="text-sb-text">Investmentfonds</strong> mit § 14-Deckungseignung (Bestätigung der Fondsgesellschaft)</li>
                   <li><strong className="text-sb-text">Wohnbauanleihen</strong></li>
                   <li><strong className="text-sb-text">Bundesanleihen</strong></li>
-                  <li className="text-sb-red">Nicht: Aktien, ETFs mit &gt;50% Aktien, Krypto</li>
+                  <li className="text-sb-red">Nicht: direkt gehaltene Aktien, Krypto</li>
                 </ul>
                 <div className="mt-4 bg-white/[0.05] p-3 rounded">
                   <p className="text-sm mb-0">
@@ -370,12 +371,12 @@ export default function GewinnfreibetragPage() {
                   <tr className="border-t border-sb-line bg-sb-deep">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">Prozentsatz</td>
                     <td className="p-4 border-r border-sb-line">15% / 13% / 7% / 4,5% (gestaffelt)</td>
-                    <td className="p-4">15% allgemein / 20% ökologisch</td>
+                    <td className="p-4">10% allgemein / 15% öko; befristet 1.11.2025 bis 31.12.2026: 20% / 22%</td>
                   </tr>
                   <tr className="border-t border-sb-line">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">Maximum</td>
                     <td className="p-4 border-r border-sb-line">46.400 €/Jahr</td>
-                    <td className="p-4">150.000 €/Jahr (bei 1 Mio. Investition)</td>
+                    <td className="p-4">Bemessungsgrundlage max. 1 Mio. €/Jahr (bei 20% bis zu 200.000 € IFB)</td>
                   </tr>
                   <tr className="border-t border-sb-line bg-sb-deep">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">Automatisch?</td>
@@ -389,20 +390,20 @@ export default function GewinnfreibetragPage() {
                   </tr>
                   <tr className="border-t border-sb-line bg-sb-deep">
                     <td className="p-4 border-r border-sb-line font-medium text-sb-text">Kombinierbar?</td>
-                    <td className="p-4 border-r border-sb-line text-sb-green" colSpan={2}>Ja — beide können gleichzeitig für dieselbe Investition genutzt werden!</td>
+                    <td className="p-4 border-r border-sb-line text-sb-green" colSpan={2}>Im selben Jahr ja, aber nicht für dasselbe Wirtschaftsgut. Der Grundfreibetrag steht daneben immer zu.</td>
                   </tr>
                 </tbody>
               </table>
             </div>
 
             <div className="bg-white/[0.05] p-6 rounded-lg border-l-4 border-sb-green/40">
-              <h4 className="text-lg font-semibold text-sb-text mb-2">Kombinationsbeispiel</h4>
+              <h4 className="text-lg font-semibold text-sb-text mb-2">Beispiel: IFB oder investitionsbedingter GFB?</h4>
               <p className="mb-0">
-                Du kaufst einen Laptop für 2.000 €: <br/>
-                <strong className="text-sb-text">IFB (§ 11):</strong> 15% × 2.000 € = 300 € zusätzlicher Abzug<br/>
-                <strong className="text-sb-text">GFB (§ 10):</strong> Der Laptop zählt als begünstigte Investition für den investitionsbedingten GFB<br/>
-                <strong className="text-sb-text">AfA:</strong> Normale Abschreibung über Nutzungsdauer (z.B. 3 Jahre)<br/>
-                → Dreifache Steuerersparnis durch eine einzige Investition!
+                Du kaufst eine Maschine für 20.000 € (Nutzungsdauer mind. 4 Jahre): <br/>
+                <strong className="text-sb-text">Variante IFB (§ 11):</strong> 20% × 20.000 € = 4.000 € zusätzlicher Abzug (befristeter Satz bis 31.12.2026)<br/>
+                <strong className="text-sb-text">Variante GFB (§ 10):</strong> Die Maschine deckt den investitionsbedingten GFB<br/>
+                <strong className="text-sb-text">AfA:</strong> Die normale Abschreibung läuft in beiden Varianten zusätzlich<br/>
+                → IFB und investitionsbedingter GFB schließen einander für dasselbe Wirtschaftsgut aus. Rechne beide Varianten durch und wähle die günstigere.
               </p>
             </div>
           </section>
@@ -457,8 +458,8 @@ export default function GewinnfreibetragPage() {
             <div className="bg-sb-accent-soft p-6 rounded-lg border border-sb-accent/30">
               <p className="text-sb-mut mb-0">
                 <strong>Doppeleffekt:</strong> Der GFB senkt den Gewinn → weniger ESt <strong>und</strong> weniger SVS.
-                Die SVS-Ersparnis wird oft übersehen, macht aber bei 33.000 €+ Gewinn immerhin <strong>1.328 €/Jahr</strong> aus —
-                allein durch den automatischen Grundfreibetrag!
+                Die SVS-Ersparnis wird oft übersehen, macht aber ab 33.000 € Gewinn immerhin <strong>1.328 €/Jahr</strong> aus,
+                allein durch den automatischen Grundfreibetrag (solange du unter der Höchstbeitragsgrundlage von 97.020 €/Jahr liegst).
               </p>
             </div>
           </section>
@@ -475,9 +476,9 @@ export default function GewinnfreibetragPage() {
                   1. Grundfreibetrag immer geltend machen
                 </h3>
                 <p>
-                  Der Grundfreibetrag (15% auf die ersten 33.000 €) wird <strong className="text-sb-text">nicht automatisch</strong> in der
-                  E/A-Rechnung berücksichtigt. Du musst ihn in der Steuererklärung (E1a) in Kennzahl 9229 eintragen
-                  oder von deinem Steuerberater einrechnen lassen. Vergiss das nicht — es sind bis zu 4.950 € steuerfrei!
+                  Der Grundfreibetrag (15% auf die ersten 33.000 €) wird vom Finanzamt <strong className="text-sb-text">grundsätzlich automatisch zuerkannt</strong>,
+                  auch wenn die Eintragung vergessen wird. Trag ihn trotzdem aktiv in der Steuererklärung ein
+                  (E1a, Kennzahl 9221) und prüfe den Bescheid: es sind bis zu 4.950 € steuerfrei!
                 </p>
               </div>
 
@@ -505,12 +506,12 @@ export default function GewinnfreibetragPage() {
 
               <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
                 <h3 className="text-lg font-semibold text-sb-accent mb-3">
-                  4. GFB + IFB kombinieren
+                  4. GFB und IFB richtig aufteilen
                 </h3>
                 <p>
-                  Der Investitionsfreibetrag (§ 11 EStG, 15%/20%) kann <strong className="text-sb-text">zusätzlich</strong> zum
-                  Gewinnfreibetrag genutzt werden. Bei größeren Investitionen (z.B. E-Auto mit 20% öko-IFB)
-                  entsteht eine doppelte Steuerersparnis. Beide Freibeträge können für dasselbe Wirtschaftsgut gelten.
+                  Der Investitionsfreibetrag (§ 11 EStG, befristet bis 31.12.2026: 20%/22%) kann <strong className="text-sb-text">im selben Jahr zusätzlich</strong> zum
+                  Gewinnfreibetrag genutzt werden, aber nicht für dasselbe Wirtschaftsgut. Teile daher auf:
+                  ein Wirtschaftsgut für den IFB (z.B. E-Auto mit 22% Öko-IFB), andere Investitionen oder Wertpapiere für den investitionsbedingten GFB.
                 </p>
               </div>
 
@@ -536,12 +537,12 @@ export default function GewinnfreibetragPage() {
             <div className="space-y-4">
               <div className="bg-sb-red/10 border border-sb-red/30 rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-sb-red mb-3">
-                  Grundfreibetrag vergessen
+                  Investitionsbedingten GFB nicht eingetragen
                 </h3>
                 <p>
-                  Der häufigste Fehler: Der GFB wird in der Steuererklärung nicht eingetragen.
-                  Anders als der Arbeitnehmerabsetzbetrag muss der GFB <strong className="text-sb-text">aktiv geltend gemacht</strong> werden
-                  (Kennzahl 9229 in der E1a). Prüfe deinen letzten Bescheid — wurde der GFB berücksichtigt?
+                  Der Grundfreibetrag wird grundsätzlich automatisch zuerkannt, auch ohne Eintragung (Kennzahl 9221 in der E1a).
+                  Der investitionsbedingte GFB muss dagegen <strong className="text-sb-text">aktiv eingetragen</strong> werden
+                  (Kennzahlen 9227/9229), sonst geht er verloren. Prüfe deinen letzten Bescheid: wurde der GFB berücksichtigt?
                 </p>
               </div>
 
@@ -551,19 +552,20 @@ export default function GewinnfreibetragPage() {
                 </h3>
                 <p>
                   Nicht alle Investments sind begünstigt. <strong className="text-sb-text">Nicht begünstigt</strong> sind:
-                  Aktien-ETFs mit &gt;50% Aktienanteil, Kryptowährungen, Gold, Immobilien-Investments,
-                  Crowdinvesting. Nur Anleihen(-fonds) mit Restlaufzeit &gt;4 Jahre und Wohnbauanleihen gelten.
+                  direkt gehaltene Aktien, Kryptowährungen, Gold, Immobilien-Investments,
+                  Crowdinvesting. Begünstigt sind Wertpapiere mit Deckungseignung nach § 14 Abs 7 Z 4 EStG,
+                  z.B. Anleihen und entsprechend gewidmete Fonds (Laufzeit bzw. Behaltedauer mind. 4 Jahre).
                 </p>
               </div>
 
               <div className="bg-sb-red/10 border border-sb-red/30 rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-sb-red mb-3">
-                  GFB bei Pauschalierung beanspruchen
+                  Investitionsbedingten GFB bei Pauschalierung beanspruchen
                 </h3>
                 <p>
-                  Der Gewinnfreibetrag gilt <strong className="text-sb-text">nicht</strong> bei Pauschalierung (§ 17 EStG)
-                  oder Kleinunternehmerpauschalierung. Bei diesen Gewinnermittlungsarten ist eine pauschale
-                  Gewinnermittlung bereits inkludiert. Wer pauschaliert, kann den GFB nicht zusätzlich nutzen.
+                  Bei Pauschalierung (§ 17 EStG) und Kleinunternehmerpauschalierung steht der
+                  Grundfreibetrag (max. 4.950 €) zu, der <strong className="text-sb-text">investitionsbedingte GFB aber nicht</strong>.
+                  Wer pauschaliert und ihn trotzdem beansprucht, riskiert eine Korrektur im Bescheid.
                 </p>
               </div>
 
@@ -590,25 +592,27 @@ export default function GewinnfreibetragPage() {
               <h3 className="text-lg font-semibold text-sb-text mb-4">Wo eintragen?</h3>
               <ul className="space-y-3">
                 <li>
-                  <strong className="text-sb-text">Kennzahl 9229:</strong> Grundfreibetrag — hier trägst du den
-                  Grundfreibetrag ein (15% deines Gewinns, max. 4.950 €)
+                  <strong className="text-sb-text">Kennzahl 9221:</strong> Grundfreibetrag (15% deines Gewinns, max. 4.950 €)
                 </li>
                 <li>
-                  <strong className="text-sb-text">Kennzahl 9227:</strong> Investitionsbedingter GFB — hier den
-                  investitionsbedingten Teil eintragen (13%/7%/4,5% gestaffelt)
+                  <strong className="text-sb-text">Kennzahl 9227:</strong> Investitionsbedingter GFB für körperliche
+                  Wirtschaftsgüter (13%/7%/4,5% gestaffelt)
                 </li>
                 <li>
-                  <strong className="text-sb-text">Beilage E1a-2:</strong> Detailangaben zu den begünstigten
-                  Investitionen (Art, Anschaffungskosten, Datum)
+                  <strong className="text-sb-text">Kennzahl 9229:</strong> Investitionsbedingter GFB für begünstigte Wertpapiere
+                </li>
+                <li>
+                  <strong className="text-sb-text">Verzeichnis:</strong> Begünstigte Wirtschaftsgüter in einem Verzeichnis
+                  dokumentieren (Art, Anschaffungskosten, Datum) und dem Finanzamt auf Verlangen vorlegen
                 </li>
               </ul>
             </div>
 
             <div className="bg-sb-accent-soft p-6 rounded-lg border border-sb-accent/30">
               <p className="text-sb-mut mb-0">
-                <strong>Tipp:</strong> Lass den GFB von deinem Steuerberater einrechnen. Die meisten
-                Steuerprogramme (BMF FinanzOnline, etc.) berechnen den GFB nicht automatisch.
-                Ohne aktive Eintragung geht der Freibetrag verloren.
+                <strong>Tipp:</strong> Der Grundfreibetrag wird auch ohne Eintragung automatisch zuerkannt.
+                Der investitionsbedingte GFB muss dagegen aktiv in der Erklärung ausgewiesen werden,
+                sonst geht er verloren.
               </p>
             </div>
           </section>
@@ -646,28 +650,27 @@ export default function GewinnfreibetragPage() {
               <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
                 <h3 className="text-lg font-semibold text-sb-text mb-2">Bekomme ich den Gewinnfreibetrag automatisch?</h3>
                 <p className="mb-0">
-                  Der Grundfreibetrag (15%, max. 4.950 €) steht dir automatisch zu, muss aber in der
-                  Steuererklärung <strong className="text-sb-text">aktiv eingetragen</strong> werden (Kennzahl 9229 in der E1a).
-                  Ohne Eintragung geht der Freibetrag verloren. Der investitionsbedingte GFB erfordert
-                  zusätzlich begünstigte Investitionen.
+                  Ja. Der Grundfreibetrag (15%, max. 4.950 €) wird grundsätzlich <strong className="text-sb-text">automatisch zuerkannt</strong>,
+                  auch wenn die Eintragung (Kennzahl 9221 in der E1a) vergessen wird. Der investitionsbedingte GFB erfordert
+                  begünstigte Investitionen und muss aktiv eingetragen werden (Kennzahlen 9227/9229).
                 </p>
               </div>
 
               <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
                 <h3 className="text-lg font-semibold text-sb-text mb-2">Kann ich GFB und IFB gleichzeitig nutzen?</h3>
                 <p className="mb-0">
-                  Ja! Der Gewinnfreibetrag (§ 10 EStG) und der Investitionsfreibetrag (§ 11 EStG, 15%/20%)
-                  können <strong className="text-sb-text">gleichzeitig für dasselbe Wirtschaftsgut</strong> genutzt werden.
-                  Beispiel: Ein E-Auto für 40.000 € → 20% IFB (8.000 €) + investitionsbedingter GFB + normale AfA.
+                  Ja, im selben Jahr, aber <strong className="text-sb-text">nicht für dasselbe Wirtschaftsgut</strong>:
+                  Wirtschaftsgüter, die den investitionsbedingten GFB decken, sind vom IFB (§ 11 EStG, befristet bis 31.12.2026: 20%/22%) ausgeschlossen.
+                  Beispiel: E-Auto für 40.000 € → 22% Öko-IFB (8.800 €) plus AfA; den investitionsbedingten GFB deckst du mit anderen Investitionen oder Wertpapieren.
                 </p>
               </div>
 
               <div className="bg-sb-card p-6 rounded-lg border border-sb-line">
                 <h3 className="text-lg font-semibold text-sb-text mb-2">Gilt der GFB auch bei Pauschalierung?</h3>
                 <p className="mb-0">
-                  Nein. Bei Basispauschalierung (§ 17 EStG) und Kleinunternehmerpauschalierung ist der
-                  Gewinnfreibetrag <strong className="text-sb-text">nicht anwendbar</strong>. Nur bei tatsächlicher
-                  Gewinnermittlung (Einnahmen-Ausgaben-Rechnung oder Bilanzierung) kannst du den GFB nutzen.
+                  Teilweise. Bei Basispauschalierung (§ 17 EStG) und Kleinunternehmerpauschalierung steht dir der
+                  Grundfreibetrag (max. 4.950 €) zu, der <strong className="text-sb-text">investitionsbedingte GFB aber nicht</strong>.
+                  Den vollen GFB gibt es nur bei Einnahmen-Ausgaben-Rechnung oder Bilanzierung.
                 </p>
               </div>
 
@@ -676,7 +679,7 @@ export default function GewinnfreibetragPage() {
                 <p className="mb-0">
                   Dann wird der investitionsbedingte GFB im Verkaufsjahr <strong className="text-sb-text">nachversteuert</strong>.
                   Der damals abgezogene Betrag wird deinem Gewinn wieder hinzugerechnet. Bei einem GFB von 5.000 €
-                  und 42% Grenzsteuersatz zahlst du 2.100 € Einkommensteuer nach — plus SVS-Nachforderung.
+                  und 40% Grenzsteuersatz zahlst du 2.000 € Einkommensteuer nach, plus SVS-Nachforderung.
                 </p>
               </div>
 
@@ -708,9 +711,9 @@ export default function GewinnfreibetragPage() {
                 Der Gewinnfreibetrag ist ein mächtiges Instrument für österreichische Selbständige.
                 Mit bis zu <strong className="text-sb-text">4.950 € automatischem Grundfreibetrag</strong> und zusätzlichem investitionsbedingtem
                 Freibetrag kannst du deine Steuerlast und SVS-Beiträge erheblich reduzieren.
-                Kombiniert mit dem Investitionsfreibetrag (§ 11 EStG, 15%/20%) entstehen bei größeren
-                Investitionen signifikante Ersparnisse. Wichtig: <strong className="text-sb-text">Aktiv in der Steuererklärung eintragen</strong> —
-                der GFB wird nicht automatisch berücksichtigt.
+                Kombiniert mit dem Investitionsfreibetrag (§ 11 EStG, befristet bis 31.12.2026: 20%/22%, für andere Wirtschaftsgüter)
+                entstehen bei größeren Investitionen signifikante Ersparnisse. Wichtig: Der Grundfreibetrag wird automatisch zuerkannt,
+                den <strong className="text-sb-text">investitionsbedingten GFB musst du aktiv eintragen</strong>.
               </p>
             </div>
           </section>

@@ -53,7 +53,7 @@ export default function Layout({
       }
     },
     "datePublished": "2026-03-18",
-    "dateModified": "2026-03-18",
+    "dateModified": "2026-07-30",
     "inLanguage": "de-AT",
     "mainEntityOfPage": {
       "@type": "WebPage",
@@ -70,7 +70,7 @@ export default function Layout({
         "name": "Ab welchem Gewinn lohnt sich eine GmbH in Österreich?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Eine GmbH lohnt sich steuerlich meist ab einem Jahresgewinn von 60.000-80.000 Euro, abhängig von der geplanten Ausschüttungspolitik und den SVS-Beiträgen des Einzelunternehmens."
+          "text": "Eine GmbH lohnt sich steuerlich in Modellrechnungen meist ab einem Jahresgewinn von 60.000-80.000 Euro, abhängig von der geplanten Ausschüttungspolitik und den SVS-Beiträgen des Einzelunternehmens."
         }
       },
       {
@@ -78,7 +78,7 @@ export default function Layout({
         "name": "Was sind die Hauptunterschiede zwischen GmbH und Einzelunternehmen bei der Besteuerung?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Einzelunternehmen zahlen Einkommensteuer (progressiv 0-55%) plus SVS-Beiträge. GmbHs zahlen 23% Körperschaftsteuer plus 27,5% KESt auf Ausschüttungen, dafür ASVG-Beiträge für Geschäftsführer."
+          "text": "Einzelunternehmen zahlen Einkommensteuer (progressiv 0-55%) plus SVS-Beiträge. GmbHs zahlen 23% Körperschaftsteuer plus 27,5% KESt auf Ausschüttungen. Gesellschafter-Geschäftsführer sind bis 25% Beteiligung ASVG-versichert, darüber in der Regel GSVG-pflichtig."
         }
       },
       {
@@ -86,7 +86,7 @@ export default function Layout({
         "name": "Welche Kosten entstehen bei der GmbH-Gründung in Österreich?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Mindestkapital 35.000 Euro, Notariatskosten ca. 1.000-2.000 Euro, Firmenbucheintragung, plus laufende Kosten für Bilanzierung und Jahresabschluss."
+          "text": "Mindeststammkapital 10.000 Euro (davon 5.000 Euro bar einzuzahlen), Notar- und Firmenbuchkosten ca. 2.000-3.500 Euro, plus laufende Kosten für Bilanzierung, Jahresabschluss und Mindest-KöSt von 500 Euro pro Jahr."
         }
       }
     ]

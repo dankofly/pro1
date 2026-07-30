@@ -37,8 +37,8 @@ export default function SvsNachzahlung4JahrPage() {
             <div className="bg-sb-accent-soft border border-sb-accent/30 p-5 rounded-lg mb-10">
               <p className="text-sb-mut font-medium leading-relaxed">
                 <strong className="text-sb-text">Kurzantwort:</strong> Neugründer zahlen anfangs SVS-Mindestbeiträge
-                (~150€/Monat), da ihre Gewinne noch unbekannt sind. Steigen die Gewinne in den ersten Jahren, folgt
-                im 3.-4. Jahr eine hohe Nachzahlung plus erhöhte laufende Beiträge. Dieser Doppelschlag überrascht
+                (2026: 160,81€/Monat), da ihre Gewinne noch unbekannt sind. Steigen die Gewinne in den ersten Jahren, folgt
+                ab dem 3.-4. Jahr eine hohe Nachzahlung plus erhöhte laufende Beiträge. Dieser Doppelschlag überrascht
                 viele. Vermeiden kannst du ihn durch: (1) Frühzeitige Beantragung höherer SVS-Beitragsgrundlagen,
                 (2) Monatliche Rücklagen von 25-30% des Gewinns, (3) Strategische Nutzung des Gewinnfreibetrags.
               </p>
@@ -53,8 +53,8 @@ export default function SvsNachzahlung4JahrPage() {
               <p className="text-sb-mut mb-4 leading-relaxed">
                 Das österreichische SVS-System ist für etablierte Unternehmen mit stabilen Gewinnen konzipiert.
                 Neugründer fallen durch das Raster, weil ihre Gewinnentwicklung unvorhersehbar ist. Nach § 25a GSVG
-                berechnet die SVS vorläufige Beiträge auf Basis der letzten verfügbaren Einkommensteuerdaten —
-                bei Neugründern ist das oft null oder sehr wenig.
+                berechnet die SVS vorläufige Beiträge auf Basis des drittvorangegangenen Kalenderjahres.
+                Bei Neugründern gibt es dafür noch keinen Steuerbescheid, also gilt die Mindestbeitragsgrundlage.
               </p>
 
               <div className="bg-sb-card p-5 rounded-lg border border-sb-line mb-6">
@@ -64,7 +64,7 @@ export default function SvsNachzahlung4JahrPage() {
                     <span className="text-sb-red mt-1">⚠️</span>
                     <div>
                       <strong className="text-sb-text">Keine Gewinnhistorie:</strong> Die SVS hat keine Vergleichsdaten
-                      und setzt die Mindestbeitragsgrundlage an (2026: ~1.970€/Monat = ~150€ SVS/Monat).
+                      und setzt die Mindestbeitragsgrundlage an (2026: 551,10€/Monat = 160,81€ SVS/Monat).
                     </div>
                   </li>
                   <li className="flex items-start gap-3">
@@ -112,15 +112,15 @@ export default function SvsNachzahlung4JahrPage() {
                 <div className="bg-sb-card p-5 rounded-lg border-l-4 border-sb-green/40">
                   <div className="flex justify-between items-start mb-2">
                     <h3 className="font-semibold text-sb-text">Jahr 1-2: Schonzeit</h3>
-                    <span className="text-sb-green text-sm font-medium">~150€/Monat SVS</span>
+                    <span className="text-sb-green text-sm font-medium">~160€/Monat SVS</span>
                   </div>
                   <p className="text-sb-mut mb-2">
-                    <strong>SVS-Beiträge:</strong> Mindestbeitragsgrundlage (~1.970€/Monat)<br/>
-                    <strong>Tatsächliche SVS-Belastung:</strong> ~150€/Monat (PV + KV + SV + UV)<br/>
+                    <strong>SVS-Beiträge:</strong> Mindestbeitragsgrundlage (551,10€/Monat, Wert 2026)<br/>
+                    <strong>Tatsächliche SVS-Belastung:</strong> ~160€/Monat (PV + KV + SV + UV)<br/>
                     <strong>Dein Gewinn:</strong> Steigt von 0€ auf 30.000-45.000€
                   </p>
                   <p className="text-sb-mut text-sm">
-                    Du denkst: "SVS ist günstig, nur 150€/Monat. Das ist machbar."
+                    Du denkst: "SVS ist günstig, nur 160€/Monat. Das ist machbar."
                   </p>
                 </div>
 
@@ -131,8 +131,8 @@ export default function SvsNachzahlung4JahrPage() {
                   </div>
                   <p className="text-sb-mut mb-2">
                     <strong>Steuerbescheid Jahr 1:</strong> Finanzamt bestätigt deinen Gewinn<br/>
-                    <strong>SVS-Nachberechnung:</strong> Nachzahlung für Jahr 1 wird berechnet<br/>
-                    <strong>Erste Nachzahlung:</strong> 2.000-5.000€ (je nach Gewinn)
+                    <strong>SVS-Nachberechnung:</strong> Nachbemessen wird nur die Pensionsversicherung, die KV der ersten beiden Kalenderjahre bleibt fix<br/>
+                    <strong>Erste Nachzahlung:</strong> 2.000-5.000€ (je nach Gewinn), verteilt auf vier Quartalsraten
                   </p>
                   <p className="text-sb-mut text-sm">
                     Du denkst: "Okay, das tut weh, aber ist machbar. Wird nicht schlimmer."
@@ -146,8 +146,8 @@ export default function SvsNachzahlung4JahrPage() {
                   </div>
                   <p className="text-sb-mut mb-2">
                     <strong>Dreifach-Belastung:</strong><br/>
-                    ① Nachzahlung für Jahr 2: 5.000-10.000€<br/>
-                    ② Erhöhte laufende Beiträge: 800-1.200€/Monat<br/>
+                    ① Nachzahlung für Jahr 2: 5.000-10.000€, in vier Quartalsraten<br/>
+                    ② Laufende Beiträge steigen (vorläufige Grundlage ist jetzt der Gewinn von Jahr 1)<br/>
                     ③ Normale Betriebsausgaben laufen weiter
                   </p>
                   <p className="text-sb-mut text-sm">
@@ -172,11 +172,12 @@ export default function SvsNachzahlung4JahrPage() {
               </div>
 
               <div className="bg-sb-red/10 border border-sb-red/30 p-5 rounded-lg">
-                <h3 className="font-semibold text-sb-text mb-2">⚠️ Kritischer Punkt: Die Nachzahlung ist sofort fällig!</h3>
+                <h3 className="font-semibold text-sb-text mb-2">⚠️ Kritischer Punkt: Nachzahlung und höhere laufende Beiträge treffen zusammen</h3>
                 <p className="text-sb-mut">
-                  Während sich laufende Beiträge über Monate verteilen, ist die Nachzahlung meist binnen
-                  2 Wochen fällig. Bei einer 8.000€ Nachzahlung plus 1.000€ höheren monatlichen Beiträgen
-                  brauchst du im ersten Monat 9.000€ zusätzliche Liquidität!
+                  Die SVS verteilt Nachbelastungen auf die vier Quartale des Folgejahres (aus den ersten drei
+                  Jahren auf Antrag auf bis zu zwölf Quartale). Trotzdem laufen Nachzahlungsraten und erhöhte
+                  laufende Beiträge parallel: Bei 8.000€ Nachzahlung plus 1.000€ höheren Monatsbeiträgen sind
+                  das rund 20.000€ SVS-Belastung in einem Jahr.
                 </p>
               </div>
             </section>
@@ -225,46 +226,48 @@ export default function SvsNachzahlung4JahrPage() {
                     <tr className="bg-sb-card">
                       <td className="p-3 font-medium">2023</td>
                       <td className="p-3">15.000€</td>
-                      <td className="p-3">1.800€ (150€/Monat)</td>
-                      <td className="p-3">4.024€ (26,83% von 15.000€)</td>
-                      <td className="p-3 font-semibold text-sb-red">2.224€</td>
+                      <td className="p-3">~1.750€ (Mindestbeiträge)</td>
+                      <td className="p-3">Nur PV nachbemessen: 18,5% von 15.000€ = 2.775€ (KV bleibt fix)</td>
+                      <td className="p-3 font-semibold text-sb-red">~1.700€</td>
                     </tr>
                     <tr className="bg-sb-deep">
                       <td className="p-3 font-medium">2024</td>
                       <td className="p-3">45.000€</td>
-                      <td className="p-3">1.800€ (150€/Monat)</td>
-                      <td className="p-3">12.073€ (26,83% von 45.000€)</td>
-                      <td className="p-3 font-semibold text-sb-red">10.273€</td>
+                      <td className="p-3">~1.800€ (Mindestbeiträge)</td>
+                      <td className="p-3">Nur PV nachbemessen: 18,5% von 45.000€ = 8.325€ (KV bleibt fix)</td>
+                      <td className="p-3 font-semibold text-sb-red">~7.200€</td>
                     </tr>
                     <tr className="bg-sb-card">
                       <td className="p-3 font-medium">2025</td>
                       <td className="p-3">65.000€</td>
-                      <td className="p-3">12.073€ (1.006€/Monat)*</td>
-                      <td className="p-3">17.440€ (26,83% von 65.000€)</td>
-                      <td className="p-3 font-semibold text-sb-red">5.367€</td>
+                      <td className="p-3">~1.920€ (weiter Mindestbeiträge)*</td>
+                      <td className="p-3">Volle Nachbemessung: 26,83% von 65.000€ = 17.440€</td>
+                      <td className="p-3 font-semibold text-sb-red">~15.500€</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
 
               <p className="text-sb-mut text-sm mb-6">
-                *2025 werden die laufenden Beiträge bereits auf Basis des 2024er Gewinns (45.000€) berechnet.
+                *Auch 2025 gelten noch Mindestbeiträge: Die vorläufige Grundlage ist das drittvorangegangene Jahr (2022),
+                dafür gibt es keinen Bescheid. Ab dem 3. Kalenderjahr wird auch die KV nachbemessen. Beträge vereinfacht
+                gerundet, ohne Hinzurechnung der SV-Beiträge zur Beitragsgrundlage (§ 25 Abs 2 GSVG).
               </p>
 
               <div className="bg-sb-accent-soft border border-sb-accent/30 p-5 rounded-lg mb-6">
                 <h3 className="font-semibold text-sb-text mb-3">Marios Steuerschock-Timeline:</h3>
                 <div className="space-y-2 text-sb-mut">
-                  <p><strong className="text-sb-text">2025 (Jahr 3):</strong> Nachzahlung 2.224€ für 2023</p>
-                  <p><strong className="text-sb-text">2026 (Jahr 4):</strong> Nachzahlung 10.273€ für 2024 + laufende Beiträge steigen auf 1.006€/Monat</p>
-                  <p><strong className="text-sb-text">2027 (Jahr 5):</strong> Nachzahlung 5.367€ für 2025 + laufende Beiträge steigen auf 1.453€/Monat</p>
+                  <p><strong className="text-sb-text">2025 (Jahr 3):</strong> Nachzahlung ~1.700€ für 2023, in vier Quartalsraten</p>
+                  <p><strong className="text-sb-text">2026 (Jahr 4):</strong> Nachzahlung ~7.200€ für 2024 + laufende Beiträge steigen erstmals (Basis Gewinn 2023: ~350€/Monat)</p>
+                  <p><strong className="text-sb-text">2027 (Jahr 5):</strong> Nachzahlung ~15.500€ für 2025 + laufende Beiträge steigen auf ~1.020€/Monat (Basis Gewinn 2024)</p>
                 </div>
               </div>
 
               <div className="bg-sb-red/10 border border-sb-red/30 p-4 rounded-lg">
                 <p className="text-sb-mut">
-                  <strong>Marios größter Fehler:</strong> Er bildete keine Rücklagen. Im Jahr 2026 muss er
-                  10.273€ nachzahlen und gleichzeitig seine monatlichen SVS-Beiträge von 150€ auf 1.006€ erhöhen.
-                  Das sind 10.273€ + (1.006€ - 150€) × 12 = zusätzlich 20.545€ SVS-Belastung im Jahr 2026!
+                  <strong>Marios größter Fehler:</strong> Er bildete keine Rücklagen. Im Jahr 2027 treffen die
+                  Nachzahlung für 2025 (~15.500€) und laufende Beiträge von ~1.020€/Monat zusammen:
+                  rund 27.700€ SVS-Belastung in einem einzigen Jahr.
                 </p>
               </div>
             </section>
@@ -345,7 +348,7 @@ export default function SvsNachzahlung4JahrPage() {
                   </h3>
                   <p className="text-sb-mut mb-3 leading-relaxed">
                     Sobald absehbar ist, dass dein Jahresgewinn über 20.000€ liegt, stelle einen Antrag
-                    auf Erhöhung der vorläufigen Beitragsgrundlage nach § 25a Abs 3 GSVG. Lieber zu viel
+                    auf Erhöhung der vorläufigen Beitragsgrundlage nach § 25a Abs 5 GSVG. Lieber zu viel
                     zahlen und später eine Gutschrift bekommen, als die große Nachzahlung.
                   </p>
                   <div className="bg-white/[0.05] p-4 rounded-lg">
@@ -377,15 +380,16 @@ export default function SvsNachzahlung4JahrPage() {
                       </div>
                       <div className="flex justify-between">
                         <span>Investitionsbedingter GFB:</span>
-                        <strong>Bis zu 45.350€</strong>
+                        <strong>Bis zu 41.450€</strong>
                       </div>
                       <div className="flex justify-between">
                         <span>Gesamt maximal:</span>
-                        <strong>50.300€</strong>
+                        <strong>46.400€</strong>
                       </div>
                     </div>
                     <p className="text-sb-mut text-sm mt-2">
-                      Bei 50.000€ Gewinn und 20.000€ Gewinnfreibetrag: SVS-Ersparnis von 5.366€!
+                      Bei 50.000€ Gewinn sind bis zu 7.160€ Gewinnfreibetrag möglich (4.950€ Grundfreibetrag
+                      + 13% der nächsten 17.000€): SVS-Ersparnis ~1.921€.
                     </p>
                   </div>
                 </div>
@@ -493,9 +497,9 @@ export default function SvsNachzahlung4JahrPage() {
 
               <div className="bg-sb-green-soft border border-sb-green/30 p-4 rounded-lg">
                 <p className="text-sb-mut">
-                  <strong>Positiv:</strong> Die SVS gewährt meist Ratenzahlungen über 12-24 Monate ohne
-                  große Bürokratie. Anders als bei anderen Behörden musst du nicht nachweisen, dass du
-                  zahlungsunfähig bist — ein begründeter Antrag reicht oft.
+                  <strong>Positiv:</strong> Nachbelastungen verteilt die SVS von sich aus auf die vier Quartale
+                  des Folgejahres. Für Nachbelastungen aus den ersten drei Jahren der Selbständigkeit kannst du
+                  per Antrag eine Aufteilung auf bis zu zwölf Quartale bekommen.
                 </p>
               </div>
             </section>
@@ -578,9 +582,9 @@ export default function SvsNachzahlung4JahrPage() {
               ]}
               sources={[
                 {
-                  name: 'SVS — Sozialversicherung der Selbständigen',
-                  url: 'https://www.svs.at/cdscontent/?contentid=10007.816984',
-                  description: 'Offizielle SVS-Informationen zu Beitragsgrundlagen und Mindestbeiträgen für Neugründer'
+                  name: 'SVS — Endgültige Berechnung in den ersten drei Jahren',
+                  url: 'https://www.svs.at/cdscontent/?contentid=10007.816635&portal=svsportal',
+                  description: 'Offizielle SVS-Informationen zu Nachbemessung und KV-Fixierung für Neugründer'
                 },
                 {
                   name: 'GSVG § 25a — Vorläufige Beitragsgrundlage',
@@ -588,14 +592,14 @@ export default function SvsNachzahlung4JahrPage() {
                   description: 'Rechtsinformationssystem des Bundes — Gesetzliche Grundlagen der SVS-Beitragsberechnung'
                 },
                 {
-                  name: 'WKO — Neugründer-Service',
-                  url: 'https://www.wko.at/service/gruendung/sozialversicherung-selbststaendige.html',
-                  description: 'Wirtschaftskammer Österreich — SVS-Informationen für Neugründer'
+                  name: 'WKO — Gewerbliche Sozialversicherungsbeiträge (Werte 2026)',
+                  url: 'https://www.wko.at/sozialversicherung/gewerbliche-sozialversicherungsbeitraege-ausmass',
+                  description: 'Wirtschaftskammer Österreich — Beitragssätze und Beitragsgrundlagen'
                 },
                 {
-                  name: 'BMF — Gewinnfreibetrag',
-                  url: 'https://www.bmf.gv.at/themen/steuern/selbststaendige-unternehmer/gewinnfreibetrag.html',
-                  description: 'Bundesministerium für Finanzen — Gewinnfreibetrag als Steueroptimierung'
+                  name: 'WKO — Der Gewinnfreibetrag',
+                  url: 'https://www.wko.at/steuern/der-gewinnfreibetrag',
+                  description: 'Wirtschaftskammer Österreich — Gewinnfreibetrag als Steueroptimierung'
                 },
               ]}
               relatedArticles={[

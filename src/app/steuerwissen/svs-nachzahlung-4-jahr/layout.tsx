@@ -27,7 +27,7 @@ const articleJsonLd = {
     url: 'https://steuerboard.pro/impressum',
   },
   datePublished: '2026-03-19',
-  dateModified: '2026-03-19',
+  dateModified: '2026-07-30',
   inLanguage: 'de-AT',
   publisher: {
     '@type': 'Organization',
@@ -55,7 +55,7 @@ const faqJsonLd = {
       name: 'Warum trifft die SVS-Nachzahlung Neugründer besonders hart?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Neugründer zahlen anfangs nur Mindestbeiträge (~150€/Monat). Steigen die Gewinne, folgt 3-4 Jahre später eine hohe Nachzahlung plus erhöhte laufende Beiträge — eine Doppelbelastung die viele überrascht.'
+        text: 'Neugründer zahlen anfangs nur Mindestbeiträge (2026: rund 160€/Monat). Steigen die Gewinne, folgt 3-4 Jahre später eine hohe Nachzahlung plus erhöhte laufende Beiträge, eine Doppelbelastung, die viele überrascht.'
       }
     },
     {
@@ -71,7 +71,7 @@ const faqJsonLd = {
       name: 'Wie hoch kann die SVS-Nachzahlung bei Neugründern sein?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Bei einem Gewinnsprung von 0€ auf 45.000€ im zweiten Jahr kann die Nachzahlung über 10.000€ betragen — zusätzlich zu den erhöhten laufenden Beiträgen von ~1.000€/Monat.'
+        text: 'Bei einem Gewinnsprung von 0€ auf 45.000€ im zweiten Jahr kann allein die Pensionsversicherungs-Nachzahlung rund 7.000€ betragen, da die Krankenversicherung der ersten beiden Jahre fix bleibt. Dazu kommen später deutlich höhere laufende Beiträge von rund 1.000€/Monat.'
       }
     },
     {

@@ -56,7 +56,7 @@ export default function UmsatzsteuerSelbstaendigePage() {
             {/* USt-Sätze */}
             <section className="mb-10">
               <h2 className="text-2xl font-semibold text-sb-text mb-4">
-                Die drei USt-Sätze in Österreich
+                Die USt-Sätze in Österreich
               </h2>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm text-sb-mut border border-sb-line rounded-lg overflow-hidden">
@@ -81,7 +81,12 @@ export default function UmsatzsteuerSelbstaendigePage() {
                     <tr className="bg-sb-card">
                       <td className="p-3 font-medium text-sb-text">Besonders ermäßigter Satz</td>
                       <td className="p-3 text-lg font-bold">10%</td>
-                      <td className="p-3">Lebensmittel, Bücher, Zeitungen, Miete, Personenbeförderung, Medikamente</td>
+                      <td className="p-3">Lebensmittel (soweit nicht 4,9%), Bücher, Zeitungen, Wohnraummiete, Personenbeförderung, Medikamente</td>
+                    </tr>
+                    <tr className="bg-sb-deep">
+                      <td className="p-3 font-medium text-sb-text">Superermäßigter Satz</td>
+                      <td className="p-3 text-lg font-bold">4,9%</td>
+                      <td className="p-3">Seit 1.7.2026: ausgewählte Grundnahrungsmittel (z.B. Milch, Butter, Eier, Gemüse, Brot); entfällt bei Restaurationsumsätzen</td>
                     </tr>
                   </tbody>
                 </table>
@@ -153,14 +158,14 @@ export default function UmsatzsteuerSelbstaendigePage() {
                       <td className="p-3">15. des übernächsten Monats</td>
                     </tr>
                     <tr className="bg-sb-deep">
-                      <td className="p-3">35.000€ bis 100.000€</td>
+                      <td className="p-3">55.000€ bis 100.000€</td>
                       <td className="p-3 font-medium text-sb-text">Vierteljährlich</td>
                       <td className="p-3">15. des übernächsten Monats</td>
                     </tr>
                     <tr className="bg-sb-card">
-                      <td className="p-3">Unter 35.000€</td>
-                      <td className="p-3 font-medium text-sb-text">Keine UVA-Pflicht</td>
-                      <td className="p-3">Nur USt-Jahreserklärung</td>
+                      <td className="p-3">Unter 55.000€ (seit 2025)</td>
+                      <td className="p-3 font-medium text-sb-text">Keine Einreichungspflicht</td>
+                      <td className="p-3">Wenn Zahllast fristgerecht entrichtet wird oder sich eine Gutschrift ergibt</td>
                     </tr>
                   </tbody>
                 </table>
@@ -168,7 +173,7 @@ export default function UmsatzsteuerSelbstaendigePage() {
 
               <div className="bg-sb-accent-soft border border-sb-accent/30 p-4 rounded-lg mt-4">
                 <p className="text-sb-mut">
-                  <strong>Achtung:</strong> Verspätete UVA-Abgabe führt zu Verspätungszuschlägen (bis 2% der Zahllast).
+                  <strong>Achtung:</strong> Verspätete UVA-Abgabe kann einen Verspätungszuschlag von bis zu 10% auslösen, verspätete Zahlung einen Säumniszuschlag von 2%.
                   Nutzen Sie FinanzOnline für die elektronische Abgabe.
                 </p>
               </div>
@@ -222,7 +227,7 @@ export default function UmsatzsteuerSelbstaendigePage() {
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
                   <h3 className="text-lg font-semibold text-sb-text mb-2">Soll-Besteuerung (Standard)</h3>
                   <p className="text-sb-mut mb-2">
-                    USt-Schuld entsteht mit Rechnungslegung, unabhängig davon, wann der Kunde zahlt.
+                    USt-Schuld entsteht bereits mit der Leistungserbringung, unabhängig davon, wann der Kunde zahlt.
                   </p>
                   <p className="text-sb-mut text-sm">
                     Nachteil: Sie müssen USt abführen, bevor Sie das Geld erhalten haben.
@@ -232,8 +237,9 @@ export default function UmsatzsteuerSelbstaendigePage() {
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
                   <h3 className="text-lg font-semibold text-sb-text mb-2">Ist-Besteuerung</h3>
                   <p className="text-sb-mut mb-2">
-                    USt-Schuld entsteht erst bei Zahlungseingang. Verfügbar für Unternehmer mit
-                    Umsätzen unter 2 Mio. € oder Freiberufler.
+                    USt-Schuld entsteht erst bei Zahlungseingang. Gilt für Freiberufler, nicht
+                    buchführungspflichtige Gewerbetreibende sowie Land- und Forstwirte; sonstige
+                    Unternehmer nur bis 110.000€ Gesamtumsatz (§ 17 UStG).
                   </p>
                   <p className="text-sb-mut text-sm">
                     Vorteil: Bessere Liquidität, da USt erst fällig wird, wenn der Kunde bezahlt hat.
@@ -281,7 +287,8 @@ export default function UmsatzsteuerSelbstaendigePage() {
                   <h3 className="text-lg font-semibold text-sb-text mb-2">Digitale Dienstleistungen</h3>
                   <p className="text-sb-mut">
                     Software, E-Books, Online-Kurse und andere digitale Leistungen an EU-Privatkunden
-                    unterliegen immer dem USt-Satz des Kundenlandes. Das OSS vereinfacht die Abwicklung.
+                    unterliegen ab Überschreiten der 10.000€-Schwelle dem USt-Satz des Kundenlandes.
+                    Das OSS vereinfacht die Abwicklung.
                   </p>
                 </div>
               </div>
@@ -339,10 +346,12 @@ export default function UmsatzsteuerSelbstaendigePage() {
                   </p>
                 </div>
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
-                  <h3 className="font-semibold text-sb-red mb-2">4. Vorsteuer bei gemischter Nutzung</h3>
+                  <h3 className="font-semibold text-sb-red mb-2">4. Vorsteuer bei PKW und gemischter Nutzung</h3>
                   <p className="text-sb-mut">
-                    Bei Gegenständen, die sowohl privat als auch beruflich genutzt werden (z.B. Auto,
-                    Handy), darf nur der betriebliche Anteil als Vorsteuer abgezogen werden.
+                    Bei PKW und Kombi ist der Vorsteuerabzug generell ausgeschlossen, auch für den
+                    betrieblichen Anteil. Ausnahmen: Fiskal-LKW, E-Fahrzeuge mit 0 g CO2-Ausstoß sowie
+                    Fahrschul- und Vorführwagen. Bei anderen gemischt genutzten Gegenständen (z.B.
+                    Handy, Laptop) darf nur der betriebliche Anteil als Vorsteuer abgezogen werden.
                   </p>
                 </div>
               </div>
@@ -358,7 +367,7 @@ export default function UmsatzsteuerSelbstaendigePage() {
                   <h3 className="font-semibold text-sb-text mb-2">Wann muss ich mich zur USt registrieren?</h3>
                   <p className="text-sb-mut">
                     Grundsätzlich mit Aufnahme der unternehmerischen Tätigkeit. Als Kleinunternehmer
-                    (unter 42.000€ Umsatz) sind Sie zwar USt-befreit, müssen sich aber trotzdem
+                    (unter 55.000€ Umsatz brutto) sind Sie zwar USt-befreit, müssen sich aber trotzdem
                     beim Finanzamt als Unternehmer registrieren.
                   </p>
                 </div>
@@ -396,9 +405,11 @@ export default function UmsatzsteuerSelbstaendigePage() {
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
                   <h3 className="font-semibold text-sb-text mb-2">Muss ich als Vermieter USt berechnen?</h3>
                   <p className="text-sb-mut">
-                    Wohnraumvermietung ist grundsätzlich mit 10% USt steuerpflichtig, aber eine
-                    Steuerbefreiung ist möglich (dann kein Vorsteuerabzug). Gewerbliche Vermietung
-                    unterliegt dem Normalsteuersatz von 20%.
+                    Die Vermietung zu Wohnzwecken unterliegt zwingend dem ermäßigten Satz von 10%
+                    (außer Sie sind Kleinunternehmer). Die Vermietung von Geschäftsräumen ist dagegen
+                    grundsätzlich unecht steuerbefreit. Zur Steuerpflicht mit 20% können Sie nur
+                    optieren, wenn der Mieter das Grundstück zu mindestens 95% für Umsätze nutzt,
+                    die den Vorsteuerabzug nicht ausschließen.
                   </p>
                 </div>
               </div>

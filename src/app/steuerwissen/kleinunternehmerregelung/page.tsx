@@ -26,7 +26,7 @@ export default function KleinunternehmerregelungPage() {
 
             <p className="text-lg text-sb-mut mb-8 leading-relaxed">
               Die Kleinunternehmerregelung befreit Selbstständige in Österreich von der Umsatzsteuer-Pflicht.
-              Seit 2025 liegt die Umsatzgrenze bei 42.000€ netto pro Jahr. Doch die Befreiung hat nicht
+              Seit 2025 liegt die Umsatzgrenze bei 55.000€ brutto pro Jahr. Doch die Befreiung hat nicht
               nur Vorteile — der fehlende Vorsteuerabzug kann je nach Branche teuer werden. Dieser Guide
               erklärt alles, was Sie wissen müssen.
             </p>
@@ -49,9 +49,9 @@ export default function KleinunternehmerregelungPage() {
               <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
                 <h3 className="text-lg font-semibold text-sb-text mb-2">Kernfakten 2026:</h3>
                 <ul className="text-sb-mut space-y-2">
-                  <li>• <strong className="text-sb-text">Umsatzgrenze:</strong> 42.000€ netto pro Jahr (seit 2025, zuvor 35.000€)</li>
-                  <li>• <strong className="text-sb-text">Toleranzgrenze:</strong> Einmalige Überschreitung um 15% in 5 Jahren erlaubt</li>
-                  <li>• <strong className="text-sb-text">Rechnungshinweis:</strong> „Umsatzsteuerbefreit gemäß § 6 Abs 1 Z 27 UStG"</li>
+                  <li>• <strong className="text-sb-text">Umsatzgrenze:</strong> 55.000€ brutto pro Jahr (seit 2025, zuvor 35.000€ netto)</li>
+                  <li>• <strong className="text-sb-text">Toleranzgrenze:</strong> Überschreitung um bis zu 10% (max. 60.500€) im selben Jahr unschädlich</li>
+                  <li>• <strong className="text-sb-text">Rechnungshinweis:</strong> empfohlen (nicht verpflichtend), z.B. „Umsatzsteuerfrei gemäß § 6 Abs 1 Z 27 UStG"</li>
                   <li>• <strong className="text-sb-text">Gilt für:</strong> Gewerbetreibende, Freiberufler, Land- und Forstwirte</li>
                 </ul>
               </div>
@@ -83,7 +83,7 @@ export default function KleinunternehmerregelungPage() {
                     <li>• Bei B2B-Kunden kein Nachteil für diese (die ziehen ohnehin ab)</li>
                     <li>• Umsatzgrenze kann Wachstum bremsen</li>
                     <li>• Bei hohen Investitionen teuer (keine Vorsteuer)</li>
-                    <li>• Überschreitung der Grenze = rückwirkende USt-Pflicht</li>
+                    <li>• Überschreitung um mehr als 10% = USt-Pflicht ab dem übersteigenden Umsatz</li>
                     <li>• Wirkt weniger „professionell" bei manchen B2B-Kunden</li>
                   </ul>
                 </div>
@@ -93,28 +93,30 @@ export default function KleinunternehmerregelungPage() {
             {/* Umsatzgrenze im Detail */}
             <section className="mb-10">
               <h2 className="text-2xl font-semibold text-sb-text mb-4">
-                Die Umsatzgrenze 42.000€ im Detail
+                Die Umsatzgrenze 55.000€ im Detail
               </h2>
               <p className="text-sb-mut mb-4 leading-relaxed">
-                Die Umsatzgrenze bezieht sich auf den Nettoumsatz innerhalb eines Kalenderjahres.
+                Die Umsatzgrenze ist seit 2025 eine Bruttogrenze und bezieht sich auf den Umsatz innerhalb eines Kalenderjahres.
                 Bestimmte Umsätze werden bei der Berechnung der Grenze nicht berücksichtigt:
               </p>
               <div className="bg-sb-card p-5 rounded-lg border border-sb-line mb-4">
                 <h3 className="text-lg font-semibold text-sb-text mb-2">Was zählt NICHT zum Umsatz:</h3>
                 <ul className="text-sb-mut space-y-2">
                   <li>• Umsätze aus Hilfsgeschäften (z.B. Verkauf eines Betriebsmittels)</li>
-                  <li>• Steuerfreie Umsätze nach § 6 Abs 1 Z 1-26 UStG (z.B. Versicherungen)</li>
-                  <li>• Umsätze aus Vermietung und Verpachtung (wenn steuerfrei)</li>
+                  <li>• Bestimmte steuerfreie Umsätze (z.B. ärztliche Heilbehandlungen, Anlagengold)</li>
+                  <li>• Innergemeinschaftliche Erwerbe und Reverse-Charge-Umsätze als Leistungsempfänger</li>
+                  <li>• Achtung: Umsätze aus Vermietung und Verpachtung zählen dagegen zur Grenze dazu, alle Tätigkeiten werden zusammengerechnet</li>
                 </ul>
               </div>
 
               <div className="bg-sb-accent-soft border border-sb-accent/30 p-4 rounded-lg">
                 <h3 className="font-semibold text-sb-mut mb-2">Toleranzregel:</h3>
                 <p className="text-sb-mut">
-                  Eine einmalige Überschreitung um bis zu 15% (= max. 48.300€) innerhalb von
-                  5 Jahren ist unschädlich. Die Befreiung bleibt bestehen. Bei einer zweiten
-                  Überschreitung oder Überschreitung um mehr als 15% entfällt die Befreiung
-                  rückwirkend für das betreffende Jahr.
+                  Eine Überschreitung um bis zu 10% (= max. 60.500€) ist im selben Kalenderjahr
+                  unschädlich: Die Befreiung bleibt bis zum Jahresende bestehen, ab dem Folgejahr
+                  gilt sie nicht mehr. Bei Überschreitung um mehr als 10% werden der übersteigende
+                  Umsatz und alle danach ausgeführten Umsätze steuerpflichtig. Einen rückwirkenden
+                  Entfall der Befreiung für das ganze Jahr gibt es seit 2025 nicht mehr.
                 </p>
               </div>
             </section>
@@ -201,7 +203,7 @@ export default function KleinunternehmerregelungPage() {
                 <ul className="text-sb-mut space-y-2">
                   <li>• EU-weiter Gesamtumsatz: maximal 100.000€ pro Jahr</li>
                   <li>• Nationale Kleinunternehmergrenze des jeweiligen Landes einhalten</li>
-                  <li>• Registrierung über das BOP-Portal (Business Online Portal)</li>
+                  <li>• Registrierung über FinanzOnline (Vorabmitteilung); Sie erhalten eine Kleinunternehmer-Identifikationsnummer mit dem Suffix EX</li>
                   <li>• Quartalsweise Umsatzmeldung an das Ansässigkeitsland</li>
                 </ul>
               </div>
@@ -240,7 +242,7 @@ export default function KleinunternehmerregelungPage() {
                 <h3 className="text-lg font-semibold text-sb-text mb-2">So funktioniert der Verzicht:</h3>
                 <ul className="text-sb-mut space-y-2">
                   <li>1. Schriftliche Erklärung an das zuständige Finanzamt</li>
-                  <li>2. Wirkt ab dem Zeitpunkt der Erklärung (nicht rückwirkend)</li>
+                  <li>2. Möglich bis zur Rechtskraft des USt-Bescheids, wirkt ab 1. Jänner des betreffenden Jahres (auch rückwirkend)</li>
                   <li>3. Bindet für mindestens 5 Kalenderjahre</li>
                   <li>4. Nach 5 Jahren: Widerruf durch schriftliche Erklärung möglich</li>
                   <li>5. Ab Widerruf: wieder Kleinunternehmer (wenn Umsatzgrenze passt)</li>
@@ -273,7 +275,7 @@ export default function KleinunternehmerregelungPage() {
               <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
                 <h3 className="text-lg font-semibold text-sb-text mb-2">Opting-Out KV:</h3>
                 <p className="text-sb-mut">
-                  Kleinunternehmer mit einem Gewinn unter der Geringfügigkeitsgrenze (ca. 6.221€/Jahr 2026)
+                  Kleinunternehmer mit Einkünften unter der Versicherungsgrenze (6.613,20€/Jahr, Stand 2026) und Umsätzen unter 55.000€
                   können sich von der Pflichtversicherung in der Kranken- und Pensionsversicherung
                   befreien lassen (Opting-Out). Es verbleibt nur die Unfallversicherung.
                 </p>
@@ -289,23 +291,25 @@ export default function KleinunternehmerregelungPage() {
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
                   <h3 className="font-semibold text-sb-text mb-2">Bin ich automatisch Kleinunternehmer?</h3>
                   <p className="text-sb-mut">
-                    Ja, wenn Ihr Jahresumsatz unter 42.000€ liegt, sind Sie automatisch Kleinunternehmer.
+                    Ja, wenn Ihr Jahresumsatz unter 55.000€ brutto liegt, sind Sie automatisch Kleinunternehmer.
                     Sie müssen nichts beantragen. Die Befreiung gilt kraft Gesetz.
                   </p>
                 </div>
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
                   <h3 className="font-semibold text-sb-text mb-2">Muss ich auf meinen Rechnungen einen Hinweis anbringen?</h3>
                   <p className="text-sb-mut">
-                    Ja, Kleinunternehmer müssen auf ihren Rechnungen den Hinweis
-                    „Umsatzsteuerbefreit gemäß § 6 Abs 1 Z 27 UStG" anbringen und dürfen keine USt ausweisen.
+                    Verpflichtend ist der Hinweis nicht, aber empfohlen, z.B.
+                    „Umsatzsteuerfrei aufgrund der Kleinunternehmerregelung (§ 6 Abs 1 Z 27 UStG)".
+                    Umsatzsteuer dürfen Sie keinesfalls ausweisen.
                   </p>
                 </div>
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
-                  <h3 className="font-semibold text-sb-text mb-2">Was passiert bei einer Rückwirkenden Überschreitung?</h3>
+                  <h3 className="font-semibold text-sb-text mb-2">Was passiert bei Überschreitung der Grenze?</h3>
                   <p className="text-sb-mut">
-                    Bei Überschreitung über die Toleranzgrenze hinaus müssen Sie für das gesamte Jahr
-                    USt nachzahlen. Alle Rechnungen müssten eigentlich korrigiert werden. In der Praxis
-                    trägt oft der Unternehmer die USt selbst (aus dem Bruttobetrag herausrechnen).
+                    Bei Überschreitung um bis zu 10% bleibt die Befreiung bis zum Jahresende bestehen.
+                    Wird die Grenze um mehr als 10% überschritten, sind der übersteigende Umsatz und
+                    alle danach ausgeführten Umsätze steuerpflichtig. Die Umsätze davor bleiben befreit,
+                    eine USt-Nachzahlung für das ganze Jahr gibt es seit 2025 nicht mehr.
                   </p>
                 </div>
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
@@ -319,7 +323,7 @@ export default function KleinunternehmerregelungPage() {
                 <div className="bg-sb-card p-5 rounded-lg border border-sb-line">
                   <h3 className="font-semibold text-sb-text mb-2">Gilt die Grenze pro Person oder pro Gewerbe?</h3>
                   <p className="text-sb-mut">
-                    Die 42.000€-Grenze gilt für den gesamten Unternehmer — also für alle gewerblichen
+                    Die 55.000€-Grenze gilt für den gesamten Unternehmer — also für alle gewerblichen
                     und freiberuflichen Tätigkeiten zusammen. Mehrere Gewerbe werden addiert.
                   </p>
                 </div>
@@ -361,7 +365,7 @@ export default function KleinunternehmerregelungPage() {
               sources={[
                 { name: 'UStG § 6 Abs 1 Z 27 — Kleinunternehmerregelung', url: 'https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10004873', description: 'Rechtsinformationssystem des Bundes (RIS) — Umsatzsteuergesetz' },
                 { name: 'BMF — Umsatzsteuer für Kleinunternehmer', url: 'https://www.bmf.gv.at/themen/steuern/selbststaendige-unternehmer/umsatzsteuer/kleinunternehmerregelung.html', description: 'Bundesministerium für Finanzen' },
-                { name: 'WKO — Kleinunternehmerregelung', url: 'https://www.wko.at/steuern/umsatzsteuer-kleinunternehmerregelung', description: 'Wirtschaftskammer Österreich' },
+                { name: 'WKO — Kleinunternehmerregelung', url: 'https://www.wko.at/steuern/kleinunternehmerregelung-umsatzsteuer', description: 'Wirtschaftskammer Österreich' },
                 { name: 'EU-Kleinunternehmerregelung ab 2025', url: 'https://www.bmf.gv.at/themen/steuern/selbststaendige-unternehmer/umsatzsteuer/eu-kleinunternehmerregelung.html', description: 'BMF — Grenzüberschreitende Kleinunternehmerregelung' },
               ]}
               relatedArticles={[

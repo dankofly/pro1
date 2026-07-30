@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     description: 'Vollständige Checkliste aller absetzbaren Betriebsausgaben für Selbständige in Österreich 2026. Arbeitsplatzpauschale, GWG-Grenze, Beispielrechnungen.',
     type: 'article',
     publishedTime: '2026-03-19',
-    modifiedTime: '2026-03-19',
+    modifiedTime: '2026-07-30',
     authors: ['SteuerBoard'],
     url: '/steuerwissen/betriebsausgaben-checkliste'
   }
@@ -55,7 +55,7 @@ export default function BetriebsausgabenChecklisteLayout({
       }
     },
     "datePublished": "2026-03-19",
-    "dateModified": "2026-03-19",
+    "dateModified": "2026-07-30",
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": "https://steuerboard.pro/steuerwissen/betriebsausgaben-checkliste"
@@ -85,7 +85,7 @@ export default function BetriebsausgabenChecklisteLayout({
         "name": "Wie hoch ist die Arbeitsplatzpauschale 2026?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die Arbeitsplatzpauschale 2026 beträgt für Typ 1 (hohe Anforderungen) 1.200 € und für Typ 2 (niedrige Anforderungen) 300 €. Typ 1 gilt bei überwiegender Bürotätigkeit mit Computer und hohen fachlichen Anforderungen."
+          "text": "Das Arbeitsplatzpauschale 2026 beträgt 1.200 €, wenn die anderen aktiven Erwerbseinkünfte maximal 13.539 € betragen, sonst 300 € (zusätzlich ergonomisches Mobiliar bis 300 €/Jahr). Voraussetzung: Es steht kein anderer Raum für die betriebliche Tätigkeit zur Verfügung."
         }
       },
       {
@@ -93,7 +93,7 @@ export default function BetriebsausgabenChecklisteLayout({
         "name": "Was ist die GWG-Grenze für Selbständige?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Die GWG-Grenze (Geringwertige Wirtschaftsgüter) beträgt 1.000 € netto. Anschaffungen bis zu diesem Betrag können im Jahr der Anschaffung vollständig als Betriebsausgabe abgesetzt werden, ohne Abschreibung über mehrere Jahre."
+          "text": "Die GWG-Grenze (Geringwertige Wirtschaftsgüter) beträgt 1.000 € (netto bei Vorsteuerabzug, brutto für nicht regelbesteuerte Kleinunternehmer). Anschaffungen bis zu diesem Betrag können im Jahr der Anschaffung vollständig als Betriebsausgabe abgesetzt werden, ohne Abschreibung über mehrere Jahre."
         }
       },
       {
