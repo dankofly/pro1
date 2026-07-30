@@ -19,6 +19,17 @@ import {
 
 const ARTICLES = [
   {
+    href: '/steuerwissen/steuerrechner-oesterreich-vergleich',
+    icon: Calculator,
+    color: 'text-sb-accent',
+    bgColor: 'bg-sb-accent-soft',
+    borderColor: 'border-sb-accent/20',
+    title: 'Steuerrechner im Vergleich',
+    subtitle: 'Die 5 besten Rechner in Österreich 2026',
+    description: 'BMF, SVS, WKO, finanz.at und SteuerBoard: welcher Rechner wofür gebaut ist und welcher für Selbständige alles zusammenrechnet.',
+    tags: ['Steuerrechner', 'Vergleich', 'SVS'],
+  },
+  {
     href: '/steuerwissen/svs-beitraege-senken',
     icon: TrendingDown,
     color: 'text-sb-accent',
@@ -92,7 +103,7 @@ const ARTICLES = [
     borderColor: 'border-sb-accent/20',
     title: 'FlexKapG vs. GmbH',
     subtitle: 'Die neue Rechtsform im Vergleich',
-    description: 'Stammkapital, Gründungskosten, Mitarbeiterbeteiligung — alles zur FlexKapG seit 2024 und wann sie besser ist als die GmbH.',
+    description: 'Stammkapital, Gründungskosten, Mitarbeiterbeteiligung: alles zur FlexKapG seit 2024 und wann sie besser ist als die GmbH.',
     tags: ['FlexKapG', 'FlexCo', 'Rechtsformvergleich'],
   },
   {
@@ -173,7 +184,7 @@ export default function SteuerwissenHubPage() {
           </nav>
 
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sb-green-soft border border-sb-green/20 text-sb-green text-xs font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sb-accent-soft border border-sb-accent/30 text-sb-accent text-xs font-medium mb-6">
               <Shield className="h-3.5 w-3.5" />
               Praxisnahe Steuer-Guides
             </div>
@@ -182,7 +193,7 @@ export default function SteuerwissenHubPage() {
             </h1>
             <p className="text-lg text-sb-mut leading-relaxed max-w-2xl">
               Verständliche Guides zu SVS-Beiträgen, Steueroptimierung und Rechtsformwahl.
-              Keine Theorie — konkrete Strategien mit Berechnungsbeispielen.
+              Keine Theorie, konkrete Strategien mit Berechnungsbeispielen.
             </p>
           </div>
         </div>
@@ -221,7 +232,7 @@ export default function SteuerwissenHubPage() {
                     </span>
                   ))}
                 </div>
-                <span className="inline-flex items-center gap-1 text-sm font-medium text-sb-green group-hover:gap-2 transition-all">
+                <span className="inline-flex items-center gap-1 text-sm font-medium text-sb-accent group-hover:gap-2 transition-all">
                   Artikel lesen <ArrowRight className="h-3.5 w-3.5" />
                 </span>
               </Link>
@@ -229,10 +240,10 @@ export default function SteuerwissenHubPage() {
           })}
 
           {/* CTA Card */}
-          <div className="rounded-xl border border-sb-green/30 bg-sb-green-soft p-6 flex flex-col justify-between">
+          <div className="rounded-xl border border-sb-accent/30 bg-sb-accent-soft p-6 flex flex-col justify-between">
             <div>
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-sb-green-soft mb-4">
-                <Calculator className="h-5 w-5 text-sb-green" />
+              <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-sb-accent-soft mb-4">
+                <Calculator className="h-5 w-5 text-sb-accent" />
               </div>
               <h2 className="text-lg font-bold text-sb-text mb-2">
                 Direkt berechnen
