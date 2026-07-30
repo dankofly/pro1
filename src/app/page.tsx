@@ -231,7 +231,7 @@ function FeaturesSection() {
           </p>
         </Reveal>
 
-        <div className="mt-10 grid gap-4 md:grid-cols-2">
+        <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
           {/* Card 1: Vorschreibungs-Liste */}
           <Reveal>
             <div className="flex h-full flex-col gap-4 rounded-2xl border border-sb-line bg-sb-raise p-4.5 sm:p-5">
