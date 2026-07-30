@@ -699,7 +699,7 @@ export default function BetriebsausgabenCheckliste() {
                 <div>
                   <strong>1. Digitale Belegverwaltung einrichten</strong>
                   <p className="text-sm text-sb-mut">
-                    Apps wie "Steuer-Sparbuch" oder "Lexware" für automatische Belegerfassung nutzen.
+                    Apps wie "Steuer-Sparbuch" oder "<a href="https://www.lexware.de/" target="_blank" rel="noopener noreferrer" className="text-sb-accent hover:text-sb-accent-deep">Lexware</a>" für automatische Belegerfassung nutzen.
                     Fotos von Belegen sofort nach dem Kauf machen.
                   </p>
                 </div>
